@@ -1,0 +1,12 @@
+{
+  "name": "rumors-site",
+  "version": "0.0.1",
+  "description": "Rumors list / creation UI, with server-side rendering",
+  "main": "index.js",
+  "author": "MrOrz",
+  "license": "MIT",
+  "scripts": {"dev": "next"},
+  "dependencies": {
+    "next": "^1.1.2"
+  }
+}
