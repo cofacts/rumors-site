@@ -5,7 +5,12 @@
   "main": "index.js",
   "author": "MrOrz",
   "license": "MIT",
-  "scripts": {"dev": "next"},
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
+  },
   "dependencies": {
     "next": "^1.1.2"
   }
