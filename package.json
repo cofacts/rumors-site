@@ -7,9 +7,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "docker build -t mrorz/rumors-site:latest .",
+    "build:next": "next build",
     "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build:next"
   },
   "dependencies": {
     "next": "^1.1.2"

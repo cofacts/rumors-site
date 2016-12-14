@@ -1,0 +1,5 @@
+*
+!pages/*
+!config/*
+!package.json
+!yarn.lock
