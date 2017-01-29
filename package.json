@@ -13,6 +13,7 @@
     "heroku-postbuild": "npm run build:next"
   },
   "dependencies": {
-    "next": "^1.1.2"
+    "glob": "^7.1.1",
+    "next": "^1.2.3"
   }
 }
