@@ -15,10 +15,16 @@
   },
   "dependencies": {
     "glob": "^7.1.1",
-    "next": "^1.2.3",
+    "immutable": "^3.8.1",
+    "isomorphic-fetch": "^2.2.1",
+    "next": "beta",
+    "postcss-scss": "^0.4.0",
     "react": "^15.4.2",
     "react-redux": "^5.0.2",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-duck": "^1.0.2",
+    "redux-thunk": "^2.2.0",
+    "styled-jsx-postcss": "^0.1.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
