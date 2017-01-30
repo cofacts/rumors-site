@@ -3,9 +3,10 @@ import { List } from 'immutable';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import app from '../components/App';
+import { load } from '../redux/articleList';
 
 export default compose(
-  app(dispatch => {}),
+  app(dispatch => dispatch(load())),
   connect(({articleList}) => ({
     isLoading: articleList.getIn(['state', 'isLoading']),
     articleList: articleList.get('data') || List(),

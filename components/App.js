@@ -13,6 +13,9 @@ export default (initFn) => (Component) => {
     static async getInitialProps(...args) {
       const store = configure();
       await initFn(store.dispatch, ...args);
+
+      // passed to browser by next.js's mechanism
+      //
       return { initialState: store.getState() };
     }
 
@@ -20,9 +23,11 @@ export default (initFn) => (Component) => {
       super(props);
 
       this.store = configure(
+        // Convert back the rehydrated state to ImmutableJS objects.
+        //
         Object.keys(props.initialState).reduce((obj, key) => ({
           ...obj,
-          [key]: fromJS(obj),
+          [key]: fromJS(props.initialState[key]),
         }), {})
       );
     }

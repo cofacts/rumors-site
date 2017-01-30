@@ -13,13 +13,13 @@ const LOAD = articleList.defineType('LOAD');
 //
 
 export const load = () => dispatch =>
-  GraphQL(` {
+  GraphQL(`{
     ListArticles {
       id
       text
     }
-  }`).then(resp => {
-    dispatch(articleList.createAction(LOAD)(resp.data.ListArticles));
+  }`).then((resp) => {
+    dispatch(articleList.createAction(LOAD)(resp.getIn(['data', 'ListArticles'])));
   })
 
 // Reducer
@@ -31,5 +31,5 @@ const initialState = fromJS({
 });
 
 export default articleList.createReducer({
-  [LOAD]: (state, {data}) => state.set('data', data),
+  [LOAD]: (state, {payload}) => state.set('data', payload),
 }, initialState)
