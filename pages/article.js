@@ -7,7 +7,7 @@ import app from '../components/App';
 import { load } from '../redux/articleDetail';
 
 export default compose(
-  app(dispatch => dispatch(load('5322561282336-rumor'))),
+  app((dispatch, {query: {id}}) => dispatch(load(id))),
   connect(({articleDetail}) => ({
     isLoading: articleDetail.getIn(['state', 'isLoading']),
     article: articleDetail.get('data'),

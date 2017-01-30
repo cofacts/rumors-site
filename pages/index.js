@@ -7,7 +7,7 @@ import app from '../components/App';
 import { load } from '../redux/articleList';
 
 export default compose(
-  app(dispatch => dispatch(load())),
+  app((dispatch) => dispatch(load())),
   connect(({articleList}) => ({
     isLoading: articleList.getIn(['state', 'isLoading']),
     articleList: articleList.get('data'),
@@ -26,7 +26,8 @@ export default compose(
         {
           articleList.map(article => (
             <li key={article.get('id')}>
-              <Link href={`/article/${article.get('id')}`}>
+              {/* See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js */}
+              <Link href={`/article?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
                 <a><pre>{JSON.stringify(article.toJS(), null, '  ')}</pre></a>
               </Link>
             </li>

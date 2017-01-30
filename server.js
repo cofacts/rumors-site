@@ -8,14 +8,21 @@ import next from 'next';
 const app = next({dev: process.env.NODE_ENV !== 'production'});
 const handle = app.getRequestHandler();
 
+// viewPath: mapped client-side route
+//
+const render = (viewPath) => (ctx) => {
+  app.render(ctx.req, ctx.res, viewPath, ctx.params)
+  ctx.respond = false;
+}
+
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
 
-  router.get('/article/:id', (ctx) => {
-    app.render(ctx.req, ctx.res, '/article', ctx.query)
-    ctx.respond = false;
-  });
+  // Server-side routing
+  //
+
+  router.get('/article/:id', render('/article'));
 
   router.get('*', (ctx) => {
     handle(ctx.req, ctx.res);
