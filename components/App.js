@@ -8,15 +8,26 @@ import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 import configure from '../redux';
 
+
+// Wraps the app with <Provider />, and invoke
+/// initFn(dispatch, context passed in getInitialProps)
+// when getInitialProps() is invoked.
+//
 export default (initFn) => (Component) => {
   return class App extends React.Component {
-    static async getInitialProps(...args) {
+    static async getInitialProps(ctx) {
       const store = configure();
-      await initFn(store.dispatch, ...args);
+      await initFn(store.dispatch, ctx);
 
-      // passed to browser by next.js's mechanism
-      //
-      return { initialState: store.getState() };
+      return {
+        // passed to browser by next.js's mechanism
+        //
+        initialState: store.getState(),
+
+        // Other stuff inside getInitialProps' context
+        //
+        pathname: ctx.pathname, query: ctx.query, err: ctx.error,
+      };
     }
 
     constructor(props) {
