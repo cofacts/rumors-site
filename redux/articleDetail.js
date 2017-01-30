@@ -23,7 +23,7 @@ export const load = (id) => dispatch =>
     }`,
     variables: {id},
   }).then(resp => {
-    dispatch(articleDetail.createAction(LOAD)(resp.data.GetArticle));
+    dispatch(articleDetail.createAction(LOAD)(resp.getIn(['data', 'GetArticle'])));
   });
 
 export const reset = () => articleDetail.createAction(RESET);
@@ -37,6 +37,6 @@ const initialState = fromJS({
 });
 
 export default articleDetail.createReducer({
-  [LOAD]: (state, {data}) => state.set('data', data),
+  [LOAD]: (state, {payload}) => state.set('data', payload),
   [RESET]: (state) => state.set('data', initialState.get('data')),
 }, initialState);

@@ -5,3 +5,4 @@
 !util/*
 !package.json
 !yarn.lock
+!server.dist.js

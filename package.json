@@ -6,17 +6,20 @@
   "author": "MrOrz",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "babel-node server",
     "lint": "eslint --fix pages/.",
-    "build": "docker build -t mrorz/rumors-site:latest .",
+    "build": "npm run build:server && docker build -t mrorz/rumors-site:latest .",
     "build:next": "next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build:next"
+    "build:server": "babel server.js -o server.dist.js",
+    "start": "NODE_ENV=production node server.dist.js"
   },
   "dependencies": {
+    "babel-cli": "^6.22.2",
     "glob": "^7.1.1",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
+    "koa": "next",
+    "koa-router": "next",
     "next": "beta",
     "postcss-scss": "^0.4.0",
     "react": "^15.4.2",

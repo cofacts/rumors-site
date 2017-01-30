@@ -18,4 +18,4 @@ RUN npm run build:next
 
 EXPOSE 3000
 
-ENTRYPOINT NODE_ENV=production npm start
+ENTRYPOINT npm start

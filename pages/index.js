@@ -1,7 +1,8 @@
 import React from 'react'
-import { List } from 'immutable';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import Link from 'next/link';
+
 import app from '../components/App';
 import { load } from '../redux/articleList';
 
@@ -9,13 +10,30 @@ export default compose(
   app(dispatch => dispatch(load())),
   connect(({articleList}) => ({
     isLoading: articleList.getIn(['state', 'isLoading']),
-    articleList: articleList.get('data') || List(),
+    articleList: articleList.get('data'),
   })),
-)(function Index({isLoading, articleList}) {
+)(function Index({
+  isLoading = false,
+  articleList = null
+}) {
+  if(isLoading && articleList === null) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div>
-      Hello world!
-      <pre>{JSON.stringify(articleList.toJS(), null, '  ')}</pre>
+      <ol>
+        {
+          articleList.map(article => (
+            <li key={article.get('id')}>
+              <Link href={`/article/${article.get('id')}`}>
+                <a><pre>{JSON.stringify(article.toJS(), null, '  ')}</pre></a>
+              </Link>
+            </li>
+          ))
+        }
+      </ol>
+      {isLoading ? <p>Loading in background...</p> : ''}
     </div>
   );
 })
