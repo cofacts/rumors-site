@@ -34,7 +34,11 @@ export default compose(
         {
           articleList.map(article => (
             <li key={article.get('id')}>
-              {/* See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js */}
+              {/*
+                We make the URL to look like `/article/articleId` but actually sends to index.js here.
+                In this way that we can add show modal dialog overlaying the current list view..
+                See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js
+              */}
               <Link href={`/?articleId=${article.get('id')}`} as={`/article/${article.get('id')}`}>
                 <a><pre>{JSON.stringify(article.toJS(), null, '  ')}</pre></a>
               </Link>
@@ -44,8 +48,14 @@ export default compose(
       </ol>
       {isLoading ? <p>Loading in background...</p> : ''}
       {article ? (
-        <div><h1>This is modal</h1>{JSON.stringify(article.toJS(), null, '  ')}</div>
+        <div className="modal"><h1>This is modal</h1>{JSON.stringify(article.toJS(), null, '  ')}</div>
       ) : ''}
+
+      <style jsx>{`
+        .modal {
+          color: red;
+        }
+      `}</style>
     </div>
   );
 })

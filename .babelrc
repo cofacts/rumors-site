@@ -4,5 +4,6 @@
   ],
   "plugins": [
     "styled-jsx-postcss/babel",
+    "transform-css-import-to-string",
   ]
 }

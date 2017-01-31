@@ -1,5 +1,8 @@
 module.exports = () => ({
   plugins: {
-    'postcss-scss': {}
+    'postcss-color-function': {},
+    'postcss-custom-media': {},
+    'postcss-nesting': {},
+    'postcss-css-variables': {},
   }
 })
