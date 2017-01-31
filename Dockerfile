@@ -5,7 +5,13 @@ WORKDIR /srv/www
 # Src: https://nodesource.com/blog/8-protips-to-start-killing-it-when-dockerizing-node-js/
 #
 COPY package.json yarn.lock ./
-RUN yarn --production --pure-lockfile
+RUN yarn --pure-lockfile
+
+# server.js seldom changes, but requires to be built within docker
+# to make its path correct
+#
+COPY server.js .babelrc ./
+RUN npm run build:server
 
 # Other files, so that other files do not interfere with node_modules cache
 #

@@ -3,6 +3,9 @@
 !pages/*
 !redux/*
 !util/*
+!.babelrc
+!config.js
 !package.json
 !yarn.lock
-!server.dist.js
+!server.js
+!postcss.config.js
