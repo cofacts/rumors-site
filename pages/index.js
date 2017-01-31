@@ -51,7 +51,7 @@ export default compose(
         <div className="modal"><h1>This is modal</h1>{JSON.stringify(article.toJS(), null, '  ')}</div>
       ) : ''}
 
-      <style jsx>{`
+      <style jsx>{/* css */`
         .modal {
           color: red;
         }

@@ -8,6 +8,22 @@ $ yarn
 $ npm run dev
 ```
 
+### styled-jsx syntax highlighting
+
+#### Atom
+
+1. Install `language-postcss` and `language-babel`
+2. Open up `laguage-babel`'s setting page
+3. Set `Javascript Tagged Template Literal Grammar Extensions` to : `"/\\*\\s*css\\s*\\*/":source.css.scss`
+4. Wait for 10 seconds for this to apply
+
+Now whenever we use <style jsx>, put `/* css */` before the template string will enable
+css syntax highlight.
+
+#### Other editors
+
+自求多福。
+
 ## Deploy
 
 Build docker image
