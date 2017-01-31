@@ -1,6 +1,6 @@
 import { createDuck } from 'redux-duck'
 import { fromJS } from 'immutable'
-import GraphQL from '../util/GraphQL'
+import gql from '../util/GraphQL'
 
 const articleList = createDuck('articleList');
 
@@ -13,12 +13,12 @@ const LOAD = articleList.defineType('LOAD');
 //
 
 export const load = () => dispatch =>
-  GraphQL(`{
+  gql`{
     ListArticles {
       id
       text
     }
-  }`).then((resp) => {
+  }`().then((resp) => {
     dispatch(articleList.createAction(LOAD)(resp.getIn(['data', 'ListArticles'])));
   })
 

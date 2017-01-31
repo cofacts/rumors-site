@@ -2,17 +2,24 @@ import fetch from 'isomorphic-fetch';
 import {API_URL} from '../config';
 import { fromJS } from 'immutable';
 
-// Given a graphql query in string or {query, variables},
-// returns a promise that resolves to immutable Map({data, errors}).
+// Usage:
 //
-// http://dev.apollodata.com/tools/graphql-server/requests.html
+// import gql from './util/GraphQL';
+// gql`query($var: Type) { foo }`({var: 123}).then(...)
 //
-export default function GraphQL(queryAndVariable) {
-  if(typeof queryAndVariable !== 'object') {
-    queryAndVariable = {
-      query: queryAndVariable,
-    }
-  }
+// gql`...`() returns a promise that resolves to immutable Map({data, errors}).
+//
+// We use template string here so that Atom's language-babel does syntax highlight
+// for us.
+//
+// GraphQL Protocol: http://dev.apollodata.com/tools/graphql-server/requests.html
+//
+export default (query, ...substitutions) => (variables) => {
+  const queryAndVariable = {
+    query: String.raw(query, ...substitutions),
+  };
+
+  if(variables) queryAndVariable.variables = variables;
 
   let status;
 
