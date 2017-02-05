@@ -3,9 +3,12 @@ Rumors list / creation UI, with server-side rendering
 
 ## Development
 
-```
+``` bash
 $ yarn
 $ npm run dev
+
+# Instead of production api server, you could use local server https://github.com/MrOrz/rumors-api
+$ USE_LOCAL=1 npm run dev
 ```
 
 ### styled-jsx syntax highlighting
