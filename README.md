@@ -12,13 +12,12 @@ $ npm run dev
 
 #### Atom
 
-1. Install `language-postcss` and `language-babel`
-2. Open up `laguage-babel`'s setting page
-3. Set `Javascript Tagged Template Literal Grammar Extensions` to : `"/\\*\\s*css\\s*\\*/":source.css.scss`
-4. Wait for 10 seconds for this to apply
+From https://github.com/gandm/language-babel/issues/324:
 
-Now whenever we use <style jsx>, put `/* css */` before the template string will enable
-css syntax highlight.
+1. Install `language-postcss` and `language-babel`. Make sure `language-babel` has version >= 2.54.0.
+2. Open up `laguage-babel`'s setting page
+3. Set `Javascript Tagged Template Literal Grammar Extensions` to : `"(?<=<style jsx>{)|(?<=<style jsx global>{)":source.css.scss`
+4. Wait for 10 seconds for this to apply
 
 #### Other editors
 
