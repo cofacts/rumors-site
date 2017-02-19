@@ -1,5 +1,5 @@
 import { createDuck } from 'redux-duck'
-import { fromJS } from 'immutable'
+import { fromJS, List } from 'immutable'
 import gql from '../util/GraphQL'
 
 const articleList = createDuck('articleList');
@@ -15,11 +15,15 @@ const LOAD = articleList.defineType('LOAD');
 export const load = () => dispatch =>
   gql`{
     ListArticles {
-      id
-      text
+      edges {
+        node {
+          id
+          text
+        }
+      }
     }
   }`().then((resp) => {
-    dispatch(articleList.createAction(LOAD)(resp.getIn(['data', 'ListArticles'])));
+    dispatch(articleList.createAction(LOAD)(resp.getIn(['data', 'ListArticles', 'edges'], List()).map(edge => edge.get('node'))));
   })
 
 // Reducer
