@@ -8,11 +8,11 @@ import { load } from '../redux/articleList';
 import { load as loadArticle } from '../redux/articleDetail';
 
 export default compose(
-  app((dispatch, {query: { articleId }}) => {
+  app((dispatch, {query: { articleId, ...loadParams }}) => {
     if(articleId) {
       return dispatch(loadArticle(articleId))
     }
-    return dispatch(load());
+    return dispatch(load(loadParams));
   }),
   connect(({articleList, articleDetail}, {query: { articleId }}) => ({
     isLoading: articleList.getIn(['state', 'isLoading']),

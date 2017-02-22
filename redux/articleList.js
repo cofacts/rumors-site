@@ -12,9 +12,21 @@ const LOAD = articleList.defineType('LOAD');
 // Action creators
 //
 
-export const load = () => dispatch =>
-  gql`{
-    ListArticles {
+export const load = ({
+  filter = 'unsolved',
+  orderBy = 'replyRequestCount',
+}) => dispatch => {
+  if(filter === 'solved') {
+    filter = {replyCount: {GT: 0}};
+  } else {
+    filter = {replyCount: {EQ: 0}};
+  }
+
+  return gql`query($filter: ListArticleFilter, $orderBy: [ListArticleOrderBy]) {
+    ListArticles(
+      filter: $filter,
+      orderBy: $orderBy
+    ) {
       edges {
         node {
           id
@@ -22,9 +34,17 @@ export const load = () => dispatch =>
         }
       }
     }
-  }`().then((resp) => {
-    dispatch(articleList.createAction(LOAD)(resp.getIn(['data', 'ListArticles', 'edges'], List()).map(edge => edge.get('node'))));
-  })
+  }`({
+    filter,
+    orderBy: [{[orderBy]: 'DESC'}],
+  }).then((resp) => {
+    dispatch(articleList.createAction(LOAD)(
+      resp
+        .getIn(['data', 'ListArticles', 'edges'], List())
+        .map(edge => edge.get('node'))
+    ));
+  });
+}
 
 // Reducer
 //
