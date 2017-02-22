@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Link from 'next/link';
+import Router from 'next/router';
 
 import app from '../components/App';
 import { load } from '../redux/articleList';
@@ -18,11 +19,18 @@ export default compose(
     isLoading: articleList.getIn(['state', 'isLoading']),
     articleList: articleList.get('data'),
     article: articleId ? articleDetail.get('data') : null,
+  }), () => ({
+    handleOrderByChange(e) {
+      Router.push(`/?orderBy=${e.target.value}`);
+    }
   })),
 )(function Index({
   isLoading = false,
   articleList = null,
   article = null,
+  query,
+
+  handleOrderByChange,
 }) {
   if(isLoading && articleList === null) {
     return <div>Loading...</div>
@@ -30,6 +38,12 @@ export default compose(
 
   return (
     <div>
+      Order By:
+      <select onChange={handleOrderByChange} value={query.orderBy}>
+        <option value="replyRequestCount">Most asked</option>
+        <option value="createdAt">Most recently asked</option>
+        <option value="updatedAt">Latest updated</option>
+      </select>
       <ol>
         {
           articleList.map(article => (
