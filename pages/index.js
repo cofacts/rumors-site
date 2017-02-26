@@ -63,7 +63,7 @@ export default compose(
                 In this way that we can add show modal dialog overlaying the current list view..
                 See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js
               */}
-              <Link href={`/article/?articleId=${article.get('id')}`} as={`/article/${article.get('id')}`}>
+              <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
                 <a><pre>{JSON.stringify(article.toJS(), null, '  ')}</pre></a>
               </Link>
             </li>
