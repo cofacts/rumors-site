@@ -11,7 +11,7 @@ const handle = app.getRequestHandler();
 // viewPath: mapped client-side route
 //
 const render = (viewPath) => (ctx) => {
-  app.render(ctx.req, ctx.res, viewPath, ctx.params)
+  app.render(ctx.req, ctx.res, viewPath, {...ctx.query, ...ctx.params})
   ctx.respond = false;
 }
 
