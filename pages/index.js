@@ -24,6 +24,7 @@ export default compose(
       isLastPage: articleList.get('lastCursor') === lastCursorOfPage,
       firstCursorOfPage,
       lastCursorOfPage,
+      totalCount: articleList.get('totalCount'),
     };
   }, () => ({
     handleOrderByChange(e) {
@@ -38,6 +39,7 @@ export default compose(
   query,
   firstCursorOfPage,
   lastCursorOfPage,
+  totalCount,
 
   handleOrderByChange,
 }) {
@@ -53,6 +55,7 @@ export default compose(
         <option value="createdAt">Most recently asked</option>
         <option value="updatedAt">Latest updated</option>
       </select>
+      <p>{totalCount} articles</p>
       <ol>
         {
           articles.map(article => (
