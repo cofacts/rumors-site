@@ -10,9 +10,7 @@ import app from '../components/App';
 import { load } from '../redux/articleList';
 
 export default compose(
-  app((dispatch, {query: { articleId, ...loadParams }}) => {
-    return dispatch(load(loadParams));
-  }),
+  app((dispatch, {query}) => dispatch(load(query))),
   connect(({articleList}, {query: { articleId }}) => {
     const firstCursorOfPage = articleList.getIn(['edges', 0, 'cursor']);
     const lastCursorOfPage = articleList.getIn(['edges', -1, 'cursor']);
