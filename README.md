@@ -11,6 +11,10 @@ $ npm run dev
 $ USE_LOCAL=1 npm run dev
 ```
 
+### ENV vars and Cache issue
+
+If you found that `USE_LOCAL` does not work (i.e. the server still sends to production server even when `USE_LOCAL` is set), try removing `node_modules/.cache`. This is [an known issue](https://github.com/zeit/next.js/issues/1103).
+
 ### styled-jsx syntax highlighting
 
 #### Atom
