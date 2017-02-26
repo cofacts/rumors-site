@@ -22,7 +22,6 @@ export default compose(
 
   return (
     <div>
-      <Link href="/"><a>Back to list</a></Link>
       <pre>{JSON.stringify(article.toJS(), null, '  ')}</pre>
     </div>
   );
