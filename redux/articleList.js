@@ -15,6 +15,7 @@ const LOAD = articleList.defineType('LOAD');
 export const load = ({
   filter = 'unsolved',
   orderBy = 'replyRequestCount',
+  before, after,
 }) => dispatch => {
   if(filter === 'solved') {
     filter = {replyCount: {GT: 0}};
@@ -22,26 +23,39 @@ export const load = ({
     filter = {replyCount: {EQ: 0}};
   }
 
-  return gql`query($filter: ListArticleFilter, $orderBy: [ListArticleOrderBy]) {
+  return gql`query(
+    $filter: ListArticleFilter,
+    $orderBy: [ListArticleOrderBy],
+    $before: String,
+    $after: String,
+  ) {
     ListArticles(
-      filter: $filter,
+      filter: $filter
       orderBy: $orderBy
+      before: $before
+      after: $after
     ) {
       edges {
         node {
           id
           text
         }
+        cursor
+      }
+      pageInfo {
+        firstCursor
+        lastCursor
       }
     }
   }`({
     filter,
     orderBy: [{[orderBy]: 'DESC'}],
+    before,
+    after,
   }).then((resp) => {
     dispatch(articleList.createAction(LOAD)(
       resp
-        .getIn(['data', 'ListArticles', 'edges'], List())
-        .map(edge => edge.get('node'))
+        .getIn(['data', 'ListArticles'], List())
     ));
   });
 }
@@ -51,9 +65,14 @@ export const load = ({
 
 const initialState = fromJS({
   state: {isLoading: false},
-  data: null,
+  edges: null,
+  firstCursor: null,
+  lastCursor: null,
 });
 
 export default articleList.createReducer({
-  [LOAD]: (state, {payload}) => state.set('data', payload),
+  [LOAD]: (state, {payload}) => state
+    .set('edges', payload.get('edges'))
+    .set('firstCursor', payload.getIn(['pageInfo', 'firstCursor']))
+    .set('lastCursor', payload.getIn(['pageInfo', 'lastCursor'])),
 }, initialState)

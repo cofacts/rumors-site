@@ -3,36 +3,45 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Link from 'next/link';
 import Router from 'next/router';
+import { List } from 'immutable';
+import url from 'url';
 
 import app from '../components/App';
 import { load } from '../redux/articleList';
-import { load as loadArticle } from '../redux/articleDetail';
 
 export default compose(
   app((dispatch, {query: { articleId, ...loadParams }}) => {
-    if(articleId) {
-      return dispatch(loadArticle(articleId))
-    }
     return dispatch(load(loadParams));
   }),
-  connect(({articleList, articleDetail}, {query: { articleId }}) => ({
-    isLoading: articleList.getIn(['state', 'isLoading']),
-    articleList: articleList.get('data'),
-    article: articleId ? articleDetail.get('data') : null,
-  }), () => ({
+  connect(({articleList}, {query: { articleId }}) => {
+    const firstCursorOfPage = articleList.getIn(['edges', 0, 'cursor']);
+    const lastCursorOfPage = articleList.getIn(['edges', -1, 'cursor']);
+
+    return {
+      isLoading: articleList.getIn(['state', 'isLoading']),
+      articles: (articleList.get('edges') || List()).map(edge => edge.get('node')),
+      isFirstPage: articleList.get('firstCursor') === firstCursorOfPage,
+      isLastPage: articleList.get('lastCursor') === lastCursorOfPage,
+      firstCursorOfPage,
+      lastCursorOfPage,
+    };
+  }, () => ({
     handleOrderByChange(e) {
       Router.push(`/?orderBy=${e.target.value}`);
     }
-  })),
-)(function Index({
+  }),
+))(function Index({
   isLoading = false,
-  articleList = null,
-  article = null,
+  articles = null,
+  isFirstPage,
+  isLastPage,
   query,
+  firstCursorOfPage,
+  lastCursorOfPage,
 
   handleOrderByChange,
 }) {
-  if(isLoading && articleList === null) {
+  if(isLoading && articles === null) {
     return <div>Loading...</div>
   }
 
@@ -46,14 +55,14 @@ export default compose(
       </select>
       <ol>
         {
-          articleList.map(article => (
+          articles.map(article => (
             <li key={article.get('id')}>
               {/*
                 We make the URL to look like `/article/articleId` but actually sends to index.js here.
                 In this way that we can add show modal dialog overlaying the current list view..
                 See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js
               */}
-              <Link href={`/?articleId=${article.get('id')}`} as={`/article/${article.get('id')}`}>
+              <Link href={`/article/?articleId=${article.get('id')}`} as={`/article/${article.get('id')}`}>
                 <a><pre>{JSON.stringify(article.toJS(), null, '  ')}</pre></a>
               </Link>
             </li>
@@ -61,9 +70,10 @@ export default compose(
         }
       </ol>
       {isLoading ? <p>Loading in background...</p> : ''}
-      {article ? (
-        <div className="modal"><h1>This is modal</h1>{JSON.stringify(article.toJS(), null, '  ')}</div>
-      ) : ''}
+      <p>
+        {isFirstPage ? '' : <Link href={url.format({query: {...query, before: firstCursorOfPage, after: undefined}})}><a>Prev</a></Link>}
+        {isLastPage ? '' : <Link href={url.format({query: {...query, after: lastCursorOfPage, before: undefined}})}><a>Next</a></Link>}
+      </p>
 
       <style jsx>{`
         .modal {
