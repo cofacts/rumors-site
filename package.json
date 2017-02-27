@@ -29,6 +29,7 @@
     "postcss-custom-media": "^5.0.1",
     "postcss-nesting": "^2.3.1",
     "react": "^15.4.2",
+    "react-radio-group": "^3.0.1",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-duck": "^1.0.2",

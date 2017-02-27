@@ -15,15 +15,25 @@ const LOAD = articleList.defineType('LOAD');
 //
 
 let isInCooldown = false;
+let lastFilter;
 export const load = ({
-  filter = 'unsolved',
+  filter = 'all',
   orderBy = 'replyRequestCount',
   before, after,
 }) => dispatch => {
+  if(lastFilter !== filter) {
+    // Invalidate costy field cache when filter changes
+    isInCooldown = false;
+  }
+
+  lastFilter = filter;
+
   if(filter === 'solved') {
     filter = {replyCount: {GT: 0}};
-  } else {
+  } else if(filter === 'unsolved') {
     filter = {replyCount: {EQ: 0}};
+  } else {
+    filter = undefined;
   }
 
   // Don't query costyFields
@@ -46,6 +56,7 @@ export const load = ({
       orderBy: $orderBy
       before: $before
       after: $after
+      first: 25
     ) {
       edges {
         node {
@@ -70,8 +81,7 @@ export const load = ({
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
     dispatch(articleList.createAction(LOAD)(
-      resp
-        .getIn(['data', 'ListArticles'], List())
+      resp.getIn(['data', 'ListArticles'], List())
     ));
   });
 }

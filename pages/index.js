@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { List } from 'immutable';
 import url from 'url';
+import { RadioGroup, Radio } from 'react-radio-group';
 
 import app from '../components/App';
 import { load } from '../redux/articleList';
@@ -24,10 +25,23 @@ export default compose(
       lastCursorOfPage,
       totalCount: articleList.get('totalCount'),
     };
-  }, () => ({
+  }, (dispatch, {query}) => ({
     handleOrderByChange(e) {
-      Router.push(`/?orderBy=${e.target.value}`);
-    }
+      Router.push(`/${url.format({query: {
+        ...query,
+        orderBy: e.target.value,
+        before: undefined,
+        after: undefined,
+      }})}`);
+    },
+    handleFilterChange(value) {
+      Router.push(`/${url.format({query: {
+        ...query,
+        filter: value,
+        before: undefined,
+        after: undefined,
+      }})}`);
+    },
   }),
 ))(function Index({
   isLoading = false,
@@ -40,6 +54,7 @@ export default compose(
   totalCount,
 
   handleOrderByChange,
+  handleFilterChange,
 }) {
   if(isLoading && articles === null) {
     return <div>Loading...</div>
@@ -48,11 +63,22 @@ export default compose(
   return (
     <div>
       Order By:
-      <select onChange={handleOrderByChange} value={query.orderBy}>
+      <select onChange={handleOrderByChange} value={query.orderBy || 'replyRequestCount'}>
         <option value="replyRequestCount">Most asked</option>
         <option value="createdAt">Most recently asked</option>
         <option value="updatedAt">Latest updated</option>
       </select>
+
+      <RadioGroup
+        onChange={handleFilterChange}
+        selectedValue={query.filter || 'all'}
+        Component="ul"
+      >
+        <li><label><Radio value="all" />All</label></li>
+        <li><label><Radio value="unsolved" />Not replied yet</label></li>
+        <li><label><Radio value="solved" />Replied</label></li>
+      </RadioGroup>
+
       <p>{totalCount} articles</p>
       <ol>
         {
