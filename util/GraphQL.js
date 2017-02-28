@@ -26,7 +26,8 @@ export default (query, ...substitutions) => (variables) => {
   return fetch(API_URL, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'x-app-id': 'RUMORS_SITE',
     },
     credentials: 'include',
     body: JSON.stringify(queryAndVariable),
