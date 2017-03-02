@@ -18,6 +18,7 @@ const fragments = `
     avatarUrl
   }
   fragment replyConnectionFields on ReplyConnection {
+    id
     reply {
       id
       versions(limit: 1) {
