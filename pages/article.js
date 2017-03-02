@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import Link from 'next/link';
 
 import app from '../components/App';
 import { load } from '../redux/articleDetail';
