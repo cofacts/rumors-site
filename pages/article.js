@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import Link from 'next/link';
 
 import app from '../components/App';
 import { load, submitReply, connectReply } from '../redux/articleDetail';
@@ -81,9 +82,44 @@ export default compose(
         </section>
 
         <section>
-
+          <h1>相關文章的回應</h1>
+          {
+            relatedReplies.size ? (
+              <ul>
+                {
+                  relatedReplies.map(reply => (
+                    <RelatedReplyItem
+                      key={reply.get('id')}
+                      reply={reply}
+                      onConnect={this.handleConnect}
+                    />
+                  ))
+                }
+              </ul>
+            ) : (
+              <p>目前沒有相關的回應</p>
+            )
+          }
 
         </section>
+
+        {
+          relatedArticles.size ? (
+            <section>
+              <h1>你可能也會對這些類似文章有興趣</h1>
+              <ul>
+                {
+                  relatedArticles.map(article => (
+                    <RelatedArticleItem
+                      key={article.get('id')}
+                      article={article}
+                    />
+                  ))
+                }
+              </ul>
+            </section>
+          ) : ''
+        }
 
       </div>
     );
@@ -97,6 +133,25 @@ function ReplyItem({id, reply, connectionAuthor, feedbackCount}) {
       {JSON.stringify(reply.toJS())}
       {connectionAuthor && JSON.stringify(connectionAuthor.toJS())}
       {feedbackCount}
+    </li>
+  )
+}
+
+function RelatedReplyItem({reply, onConnect}) {
+  return (
+    <li>
+      {JSON.stringify(reply.toJS())}
+      <button type="button" value={reply.get('id')} onClick={onConnect}>將這份回應加進此文章的回應</button>
+    </li>
+  )
+}
+
+function RelatedArticleItem({article}) {
+  return (
+    <li>
+      <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
+        <a>{JSON.stringify(article.toJS())}</a>
+      </Link>
     </li>
   )
 }
