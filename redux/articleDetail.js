@@ -2,13 +2,14 @@ import { createDuck } from 'redux-duck'
 import { fromJS, Map, List, OrderedMap } from 'immutable'
 import gql from '../util/GraphQL'
 
-const articleDetail = createDuck('articleDetail');
+const {defineType, createAction, createReducer} = createDuck('articleDetail');
 
 // Action Types
 //
 
-const LOAD = articleDetail.defineType('LOAD');
-const RESET = articleDetail.defineType('RESET');
+const LOAD = defineType('LOAD');
+const SET_STATE = defineType('SET_STATE');
+const RESET = defineType('RESET');
 
 // Action creators
 //
@@ -37,10 +38,12 @@ const fragments = `
   }
 `;
 
-const loadData = articleDetail.createAction(LOAD);
+const loadData = createAction(LOAD);
+const setState = createAction(SET_STATE);
 
-export const load = (id) => dispatch =>
-  gql`
+export const load = (id) => dispatch => {
+  dispatch(setState({key: 'isLoading', value: true}));
+  return gql`
     query($id: String!) {
       GetArticle(id: $id) {
         id
@@ -66,12 +69,15 @@ export const load = (id) => dispatch =>
     ${ fragments }
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
+    dispatch(setState({key: 'isLoading', value: false}));
   });
+}
 
-export const reset = () => articleDetail.createAction(RESET);
+export const reset = () => createAction(RESET);
 
-export const connectReply = (articleId, replyId) => dispatch =>
-  gql`mutation(articleId: String!, replyId: String!) {
+export const connectReply = (articleId, replyId) => dispatch => {
+  dispatch(setState({key: 'isReplyLoading', value: true}));
+  return gql`mutation(articleId: String!, replyId: String!) {
     CreateReplyConnection(
       articleId: $articleId, replyId: $replyId,
     ) {
@@ -88,14 +94,21 @@ export const connectReply = (articleId, replyId) => dispatch =>
     ${ fragments }
   `({ id: articleId })).then( resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
+    dispatch(setState({key: 'isReplyLoading', value: false}));
   })
+}
+
+export const submitReply = (reply) => dispatch => {
+  dispatch(setState({key: 'isReplyLoading', value: true}));
+  return Promise.resolve();
+}
 
 // Reducer
 //
 
 const initialState = fromJS({
   state: {isLoading: false},
-  data: { // remote data
+  data: { // data from server
     article: null,
     replyConnections: [], // reply & its connection to this article
     relatedArticles: [],
@@ -103,7 +116,9 @@ const initialState = fromJS({
   },
 });
 
-export default articleDetail.createReducer({
+export default createReducer({
+  [SET_STATE]: (state, {payload: {key, value}}) => state.setIn(['state', key], value),
+
   [LOAD]: (state, {payload}) => {
     const articleEdges = payload.getIn(['relatedArticles', 'edges']) || List();
     const replyConnections = OrderedMap(
