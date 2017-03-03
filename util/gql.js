@@ -1,10 +1,12 @@
-import fetch from 'isomorphic-fetch';
-import {API_URL} from '../config';
+import fetchAPI from './fetchAPI';
+
 import { fromJS } from 'immutable';
+
+let login = () => {};
 
 // Usage:
 //
-// import gql from './util/GraphQL';
+// import gql from './util/gql';
 // gql`query($var: Type) { foo }`({var: 123}).then(...)
 //
 // gql`...`() returns a promise that resolves to immutable Map({data, errors}).
@@ -23,25 +25,30 @@ export default (query, ...substitutions) => (variables) => {
 
   let status;
 
-  return fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-app-id': 'RUMORS_SITE',
-    },
-    credentials: 'include',
+  return fetchAPI('/graphql', {
     body: JSON.stringify(queryAndVariable),
   }).then(r => {
     status = r.status;
     return r.json();
   }).then((resp) => {
-    if(status === 400) {
-      throw new Error(`GraphQL Error: ${resp.errors.map(({message}) => message).join('\n')}`);
-    }
     if (resp.errors) {
+      const shouldLogin = resp.errors.some(err => err.authError);
+      if(shouldLogin) {
+        login();
+        throw new Error('請先登入以繼續');
+      }
+      if(status === 400) {
+        throw new Error(`GraphQL Error: ${resp.errors.map(({message}) => message).join('\n')}`);
+      }
       // When status is 200 but have error, just print them out.
       console.error('GraphQL operation contains error:', resp.errors);
     }
     return fromJS(resp);
   });
+}
+
+// A hack to make gql`...` can invoke redux actions
+//
+export function setLogin(loginFn) {
+  login = loginFn;
 }
