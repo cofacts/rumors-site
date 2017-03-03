@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 import { setLogin } from '../util/gql';
 import configure from '../redux';
-import { login, load } from '../redux/auth';
+import { showDialog, load } from '../redux/auth';
 import AppHeader from './AppHeader';
 import LoginModal from './Modal/LoginModal';
 
@@ -22,10 +22,6 @@ export default (initFn) => (Component) => {
   return class App extends React.Component {
     static async getInitialProps(ctx) {
       const store = configure();
-
-      if(typeof window !== 'undefined') {
-        setLogin(() => store.dispatch(login()));
-      }
 
       await initFn(store.dispatch, ctx);
 
@@ -51,6 +47,10 @@ export default (initFn) => (Component) => {
           [key]: fromJS(props.initialState[key]),
         }), {})
       );
+
+      if(typeof window !== 'undefined') {
+        setLogin(() => this.store.dispatch(showDialog()));
+      }
     }
 
     componentDidMount() {
