@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 import {
   showDialog,
   logout,
@@ -17,7 +18,7 @@ export default connect(({auth}) => ({
 }) {
   return (
     <header className="root">
-      <h1>真的假的</h1>
+      <Link href="/"><a><h1>真的假的</h1></a></Link>
 
       {
         user ? (
