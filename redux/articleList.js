@@ -1,15 +1,15 @@
 import { createDuck } from 'redux-duck'
 import { fromJS, List } from 'immutable'
-import gql from '../util/GraphQL'
+import gql from '../util/gql'
 
 const COSTY_FIELD_COOLDOWN = 60*1000; // in seconds. query costy fields only 1 time within 60 seconds
 
-const articleList = createDuck('articleList');
+const {defineType, createReducer, createAction} = createDuck('articleList');
 
 // Action Types
 //
 
-const LOAD = articleList.defineType('LOAD');
+const LOAD = defineType('LOAD');
 
 // Action creators
 //
@@ -80,7 +80,7 @@ export const load = ({
       isInCooldown = true;
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
-    dispatch(articleList.createAction(LOAD)(
+    dispatch(createAction(LOAD)(
       resp.getIn(['data', 'ListArticles'], List())
     ));
   });
@@ -97,7 +97,7 @@ const initialState = fromJS({
   totalCount: null,
 });
 
-export default articleList.createReducer({
+export default createReducer({
   [LOAD]: (state, {payload}) => state
     .set('edges', payload.get('edges'))
     .set('firstCursor', payload.getIn(['pageInfo', 'firstCursor']) || state.get('firstCursor'))
