@@ -1,6 +1,6 @@
 import { createDuck } from 'redux-duck'
 import { fromJS, Map, List, OrderedMap } from 'immutable'
-import gql from '../util/GraphQL'
+import gql from '../util/gql'
 
 const {defineType, createAction, createReducer} = createDuck('articleDetail');
 
@@ -75,15 +75,8 @@ export const load = (id) => dispatch => {
 
 export const reset = () => createAction(RESET);
 
-export const connectReply = (articleId, replyId) => dispatch => {
-  dispatch(setState({key: 'isReplyLoading', value: true}));
-  return gql`mutation(articleId: String!, replyId: String!) {
-    CreateReplyConnection(
-      articleId: $articleId, replyId: $replyId,
-    ) {
-      id
-    }
-  }`({articleId, replyId}).then(() => gql`
+const reloadReply = articleId => dispatch =>
+  (gql`
     query($id: String!) {
       GetArticle(id: $id) {
         replyConnections {
@@ -96,11 +89,29 @@ export const connectReply = (articleId, replyId) => dispatch => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({key: 'isReplyLoading', value: false}));
   })
+
+export const connectReply = (articleId, replyId) => dispatch => {
+  dispatch(setState({key: 'isReplyLoading', value: true}));
+  return gql`mutation(articleId: String!, replyId: String!) {
+    CreateReplyConnection(
+      articleId: $articleId, replyId: $replyId,
+    ) {
+      id
+    }
+  }`({articleId, replyId}).then(() => dispatch(reloadReply(articleId)))
 }
 
-export const submitReply = (reply) => dispatch => {
+export const submitReply = params => dispatch => {
   dispatch(setState({key: 'isReplyLoading', value: true}));
-  return Promise.resolve();
+  return gql`mutation(
+    $articleId: String!, $text: String!, $type: ReplyTypeEnum!, $reference: String
+  ) {
+    CreateReply(
+      articleId: $articleId, text: $text, type: $type, reference: $reference
+    ) {
+      id
+    }
+  }`(params).then(() => dispatch(reloadReply(params.articleId)))
 }
 
 // Reducer

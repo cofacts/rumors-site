@@ -32,17 +32,19 @@ export default compose(
     console.log('connecting', replyId, this.props.query.id);
   }
 
+  handleSubmit = (reply) =>
+    this.props.submitReply({...reply, articleId: this.props.query.id});
+
   render() {
     const {
       data,
       isLoading,
       isReplyLoading,
-      submitReply,
     } = this.props;
 
     const article = data.get('article');
     const replyConnections = data.get('replyConnections');
-    const relatedArticles= data.get('relatedArticles');
+    const relatedArticles = data.get('relatedArticles');
     const relatedReplies = data.get('relatedReplies');
 
     if(isLoading && article === null) {
@@ -75,7 +77,7 @@ export default compose(
             )
           }
 
-          <ReplyForm onSubmit={submitReply} disabled={isReplyLoading} />
+          <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
         </section>
 
         <section>
@@ -100,6 +102,12 @@ function ReplyItem({id, reply, connectionAuthor, feedbackCount}) {
 }
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
+const formInitialState = {
+  replyType: 'NOT_ARTICLE',
+  reference: '',
+  text: '',
+};
+
 class ReplyForm extends React.PureComponent {
   static defaultProps = {
     onSubmit() {return Promise.reject()},
@@ -109,9 +117,7 @@ class ReplyForm extends React.PureComponent {
   constructor() {
     super();
     this.state = {
-      replyType: 'NOT_ARTICLE',
-      reference: '',
-      text: '',
+      ...formInitialState,
     };
   };
 
@@ -158,6 +164,8 @@ class ReplyForm extends React.PureComponent {
       delete localStorage.replyType;
       delete localStorage.reference;
       delete localStorage.text;
+
+      this.setState(formInitialState)
     });
   }
 
