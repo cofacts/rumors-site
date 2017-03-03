@@ -6,6 +6,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
+import { setLogin } from '../util/gql';
 import configure from '../redux';
 
 
@@ -17,6 +18,11 @@ export default (initFn) => (Component) => {
   return class App extends React.Component {
     static async getInitialProps(ctx) {
       const store = configure();
+
+      if(typeof window !== 'undefined') {
+        setLogin(() => store.dispatch(login()));
+      }
+
       await initFn(store.dispatch, ctx);
 
       return {

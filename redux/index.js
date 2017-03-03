@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 
 import articleList from './articleList';
 import articleDetail from './articleDetail';
+import auth from './auth';
 
 const reducers = combineReducers({
   articleList,
   articleDetail,
+  auth,
 });
 
 const enhancer = composeWithDevTools(
