@@ -29,9 +29,8 @@ export default compose(
   }),
 )(class ArticlePage extends React.Component {
 
-  handleConnect = ({target: {value: replyId}}) => {
-    console.log('connecting', replyId, this.props.query.id);
-  }
+  handleConnect = ({target: {value: replyId}}) =>
+    this.props.connectReply(this.props.query.id, replyId);
 
   handleSubmit = (reply) =>
     this.props.submitReply({...reply, articleId: this.props.query.id});

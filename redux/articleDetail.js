@@ -92,7 +92,7 @@ const reloadReply = articleId => dispatch =>
 
 export const connectReply = (articleId, replyId) => dispatch => {
   dispatch(setState({key: 'isReplyLoading', value: true}));
-  return gql`mutation(articleId: String!, replyId: String!) {
+  return gql`mutation($articleId: String!, $replyId: String!) {
     CreateReplyConnection(
       articleId: $articleId, replyId: $replyId,
     ) {
