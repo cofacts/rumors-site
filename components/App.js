@@ -8,7 +8,11 @@ import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 import { setLogin } from '../util/gql';
 import configure from '../redux';
+import { login, load } from '../redux/auth';
+import AppHeader from './AppHeader';
+import LoginModal from './Modal/LoginModal';
 
+let isBootstrapping = true;
 
 // Wraps the app with <Provider />, and invoke
 /// initFn(dispatch, context passed in getInitialProps)
@@ -49,10 +53,23 @@ export default (initFn) => (Component) => {
       );
     }
 
+    componentDidMount() {
+      // Bootstrapping: Load auth
+      //
+      if(isBootstrapping) {
+        this.store.dispatch(load());
+        isBootstrapping = false;
+      }
+    }
+
     render() {
       return (
         <Provider store={this.store}>
-          <Component {...this.props} />
+          <div>
+            <AppHeader />
+            <Component {...this.props} />
+            <LoginModal />
+          </div>
         </Provider>
       )
     }
