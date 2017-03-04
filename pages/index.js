@@ -56,6 +56,13 @@ export default compose(
   handleOrderByChange,
   handleFilterChange,
 }) {
+  const shorten_title = (title) => {
+    const MAXIMUM_LENGTH = 20;
+    const short_title = title.slice(0, MAXIMUM_LENGTH);
+
+    return title.length > MAXIMUM_LENGTH ? short_title + "..." : short_title;
+  };
+
   if(isLoading && articles === null) {
     return <div>Loading...</div>
   }
@@ -90,7 +97,7 @@ export default compose(
                 See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js
               */}
               <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
-                <a><pre>{JSON.stringify(article.toJS(), null, '  ')}</pre></a>
+                <a>{ shorten_title(article.get('text')) }</a>
               </Link>
             </li>
           ))
