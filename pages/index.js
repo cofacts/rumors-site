@@ -12,10 +12,10 @@ import { load } from '../redux/articleList';
 
 const MAXIMUM_LENGTH = 20;
 
-const shorten_title = (title) => {
-  const short_title = title.slice(0, MAXIMUM_LENGTH);
+const shortenTitle = (title) => {
+  const shortTitle = title.slice(0, MAXIMUM_LENGTH);
 
-  return title.length > MAXIMUM_LENGTH ? short_title + "..." : short_title;
+  return title.length > MAXIMUM_LENGTH ? shortTitle + '⋯⋯' : shortTitle;
 };
 
 export default compose(
@@ -98,7 +98,7 @@ export default compose(
                 See: https://github.com/zeit/next.js/blob/master/examples/parameterized-routing/pages/index.js
               */}
               <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
-                <a>{ shorten_title(article.get('text')) }</a>
+                <a>{ shortenTitle(article.get('text')) }</a>
               </Link>
             </li>
           ))
