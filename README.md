@@ -49,3 +49,8 @@ Push to dockerhub
 ```
 $ docker push mrorz/rumors-site
 ```
+
+## Design and Mockups
+
+* [真的假的 hackfoldr](http://beta.hackfoldr.org/rumors)
+* [網站 UI flow](https://i.imgur.com/lxas2Ic.jpg)
