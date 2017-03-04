@@ -10,6 +10,14 @@ import { RadioGroup, Radio } from 'react-radio-group';
 import app from '../components/App';
 import { load } from '../redux/articleList';
 
+const MAXIMUM_LENGTH = 20;
+
+const shorten_title = (title) => {
+  const short_title = title.slice(0, MAXIMUM_LENGTH);
+
+  return title.length > MAXIMUM_LENGTH ? short_title + "..." : short_title;
+};
+
 export default compose(
   app((dispatch, {query}) => dispatch(load(query))),
   connect(({articleList}, {query: { articleId }}) => {
@@ -56,13 +64,6 @@ export default compose(
   handleOrderByChange,
   handleFilterChange,
 }) {
-  const shorten_title = (title) => {
-    const MAXIMUM_LENGTH = 20;
-    const short_title = title.slice(0, MAXIMUM_LENGTH);
-
-    return title.length > MAXIMUM_LENGTH ? short_title + "..." : short_title;
-  };
-
   if(isLoading && articles === null) {
     return <div>Loading...</div>
   }
