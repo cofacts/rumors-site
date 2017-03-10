@@ -23,7 +23,7 @@
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.0.1",
     "koa-router": "^7.1.0",
-    "next": "beta",
+    "next": "^2.0.0-beta.36",
     "postcss-color-function": "^2.0.1",
     "postcss-css-variables": "^0.6.0",
     "postcss-custom-media": "^5.0.1",

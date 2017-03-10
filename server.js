@@ -1,9 +1,9 @@
 // https://github.com/zeit/next.js/blob/master/examples/custom-server-koa/server.js
 //
 
-import Koa from 'koa';
-import Router from 'koa-router';
-import next from 'next';
+const Koa = require('koa');
+const Router = require('koa-router');
+const next = require('next');
 
 const app = next({dev: process.env.NODE_ENV !== 'production'});
 const handle = app.getRequestHandler();
