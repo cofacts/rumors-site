@@ -2,8 +2,8 @@
 //
 // Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/pages/index.js
 //
-
 import React from 'react';
+import Head from 'next/head'
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 import { setLogin } from '../util/gql';
@@ -11,6 +11,8 @@ import configure from '../redux';
 import { showDialog, load } from '../redux/auth';
 import AppHeader from './AppHeader';
 import LoginModal from './Modal/LoginModal';
+
+import style from './App.css';
 
 let isBootstrapping = true;
 
@@ -66,6 +68,9 @@ export default (initFn) => (Component) => {
       return (
         <Provider store={this.store}>
           <div>
+            <Head>
+              <style dangerouslySetInnerHTML={{ __html: style }} />
+            </Head>
             <AppHeader />
             <Component {...this.props} />
             <LoginModal />

@@ -6,10 +6,15 @@
         "browsers": ["last 2 versions"],
         "node": "current",
       }
-    }]
+    }],
   ],
   "plugins": [
     "styled-jsx-postcss/babel",
+    "transform-class-properties",
     "transform-inline-environment-variables", // inline all process.env.XXX so that they are available in FE as well
+    [ // https://github.com/zeit/next.js/blob/master/examples/with-global-stylesheet/.babelrc
+      "wrap-in-js",
+      { "extensions": ["css$"] }
+    ]
   ]
 }
