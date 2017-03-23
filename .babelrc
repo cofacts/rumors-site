@@ -1,10 +1,15 @@
 {
   "presets": [
-    "next/babel"
+    "next/babel",
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions"],
+        "node": "current",
+      }
+    }]
   ],
   "plugins": [
     "styled-jsx-postcss/babel",
-    "transform-css-import-to-string", // Probably not used now, since styled-jsx does not support imports
     "transform-inline-environment-variables", // inline all process.env.XXX so that they are available in FE as well
   ]
 }
