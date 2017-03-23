@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import app from '../components/App';
 import { load, submitReply, connectReply } from '../redux/articleDetail';
@@ -53,6 +54,10 @@ export default compose(
 
     return (
       <div>
+        <Head>
+          <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
+        </Head>
+
         <pre>{JSON.stringify(article.toJS(), null, '  ')}</pre>
 
         <section>

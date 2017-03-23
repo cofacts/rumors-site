@@ -10,6 +10,7 @@ const {defineType, createReducer, createAction} = createDuck('articleList');
 //
 
 const LOAD = defineType('LOAD');
+const LOAD_AUTH_FIELDS = defineType('LOAD_AUTH_FIELDS');
 
 // Action creators
 //
@@ -36,15 +37,6 @@ export const load = ({
     filter = undefined;
   }
 
-  // Don't query costyFields
-  const costyFields = isInCooldown ? '' : `
-    pageInfo {
-      firstCursor
-      lastCursor
-    }
-    totalCount
-  `;
-
   return gql`query(
     $filter: ListArticleFilter,
     $orderBy: [ListArticleOrderBy],
@@ -62,11 +54,20 @@ export const load = ({
         node {
           id
           text
+          replyCount
         }
         cursor
       }
 
-      ${costyFields}
+      ${
+        isInCooldown ? '' : /* costy fields */ `
+          pageInfo {
+            firstCursor
+            lastCursor
+          }
+          totalCount
+        `
+      }
     }
   }`({
     filter,
@@ -86,6 +87,43 @@ export const load = ({
   });
 }
 
+export const loadAuthFields = ({
+  filter = 'all',
+  orderBy = 'replyRequestCount',
+  before, after,
+}) => dispatch => {
+  return gql`query(
+    $filter: ListArticleFilter,
+    $orderBy: [ListArticleOrderBy],
+    $before: String,
+    $after: String,
+  ) {
+    ListArticles(
+      filter: $filter
+      orderBy: $orderBy
+      before: $before
+      after: $after
+      first: 25
+    ) {
+      edges {
+        node {
+          id
+          requestedForReply
+        }
+      }
+    }
+  }`({
+    filter,
+    orderBy: [{[orderBy]: 'DESC'}],
+    before,
+    after,
+  }).then((resp) => {
+    dispatch(createAction(LOAD_AUTH_FIELDS)(
+      resp.getIn(['data', 'ListArticles', 'edges'], List())
+    ));
+  });
+}
+
 // Reducer
 //
 
@@ -95,6 +133,7 @@ const initialState = fromJS({
   firstCursor: null,
   lastCursor: null,
   totalCount: null,
+  authFields: {},
 });
 
 export default createReducer({
@@ -103,6 +142,8 @@ export default createReducer({
     .set('firstCursor', payload.getIn(['pageInfo', 'firstCursor']) || state.get('firstCursor'))
     .set('lastCursor', payload.getIn(['pageInfo', 'lastCursor']) || state.get('lastCursor'))
     .set('totalCount', payload.get('totalCount') || state.get('totalCount')),
+  [LOAD_AUTH_FIELDS]: (state, {payload}) => state
+    .set('authFields', Map(payload.map(article => [article.getIn(['node', 'id']), article.get('node')])))
 }, initialState);
 
 

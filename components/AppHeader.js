@@ -36,6 +36,7 @@ export default connect(({auth}) => ({
           display: flex;
           justify-content: space-between;
           align-items: center;
+          padding: 0 40px;
         }
         .user {
           display: flex;
