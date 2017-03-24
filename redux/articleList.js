@@ -1,5 +1,5 @@
 import { createDuck } from 'redux-duck'
-import { fromJS, List } from 'immutable'
+import { fromJS, List, Map } from 'immutable'
 import gql from '../util/gql'
 
 const COSTY_FIELD_COOLDOWN = 60*1000; // in seconds. query costy fields only 1 time within 60 seconds
@@ -70,7 +70,7 @@ export const load = ({
       }
     }
   }`({
-    filter,
+    filter: getFilterObject(filter),
     orderBy: [{[orderBy]: 'DESC'}],
     before,
     after,
@@ -113,7 +113,7 @@ export const loadAuthFields = ({
       }
     }
   }`({
-    filter,
+    filter: getFilterObject(filter),
     orderBy: [{[orderBy]: 'DESC'}],
     before,
     after,
@@ -152,4 +152,14 @@ export default createReducer({
 
 function resetCooldown() {
   isInCooldown = false;
+}
+
+function getFilterObject(filter) {
+  if(filter === 'solved') {
+    return {replyCount: {GT: 0}};
+  } else if(filter === 'unsolved') {
+    return {replyCount: {EQ: 0}};
+  } else {
+    return undefined;
+  }
 }
