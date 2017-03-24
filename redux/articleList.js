@@ -55,6 +55,7 @@ export const load = ({
           id
           text
           replyCount
+          replyRequestCount
           references {
             createdAt
             type

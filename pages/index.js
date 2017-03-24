@@ -119,7 +119,12 @@ const Article = function({
       <a className="article">
         <div className="text">{ article.get('text') }</div>
         <div className="info">
-          { article.get('replyCount') } 人回報
+          { article.get('replyRequestCount') } 人回報
+          {
+            article.get('replyCount') > 0 ? (
+              <span>・{ article.get('replyCount') } 則回應</span>
+            ) : ''
+          }
           {
             createdAt.isValid() ? (
               <span title={ createdAt.format('lll') }>・{ createdAt.fromNow() }</span>
