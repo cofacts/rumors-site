@@ -169,7 +169,8 @@ const Pagination = connect(({articleList}) => ({
   firstCursorOfPage: articleList.getIn(['edges', 0, 'cursor']),
   lastCursorOfPage: articleList.getIn(['edges', -1, 'cursor']),
 }))(
-  function ({query = {}, // URL params
+  function ({
+    query = {}, // URL params
     firstCursor,
     lastCursor,
     firstCursorOfPage,

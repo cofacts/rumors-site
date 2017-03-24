@@ -29,14 +29,6 @@ export const load = ({
 
   lastFilter = filter;
 
-  if(filter === 'solved') {
-    filter = {replyCount: {GT: 0}};
-  } else if(filter === 'unsolved') {
-    filter = {replyCount: {EQ: 0}};
-  } else {
-    filter = undefined;
-  }
-
   return gql`query(
     $filter: ListArticleFilter,
     $orderBy: [ListArticleOrderBy],
