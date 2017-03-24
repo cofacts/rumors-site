@@ -55,6 +55,10 @@ export const load = ({
           id
           text
           replyCount
+          references {
+            createdAt
+            type
+          }
         }
         cursor
       }

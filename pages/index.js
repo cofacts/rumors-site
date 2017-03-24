@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { List } from 'immutable';
 import url from 'url';
 import { RadioGroup, Radio } from 'react-radio-group';
+import moment from 'moment';
 
 import app from '../components/App';
 import { load, loadAuthFields } from '../redux/articleList';
@@ -81,17 +82,15 @@ export default compose(
 
         <p>{totalCount} articles</p>
         <Pagination query={query} />
-        <ol className="article-list">
-          {
-            articles.map(article =>
-              <Article
-                key={article.get('id')}
-                article={article}
-                requestedForReply={authFields.get(article.get('id'))}
-              />
-            )
-          }
-        </ol>
+        <div className="article-list">{
+          articles.map(article =>
+            <Article
+              key={article.get('id')}
+              article={article}
+              requestedForReply={authFields.get(article.get('id'))}
+            />
+          )
+        }</div>
         {isLoading ? <p>Loading in background...</p> : ''}
         <Pagination query={query} />
 
@@ -101,7 +100,7 @@ export default compose(
           }
 
           .article-list {
-            padding: 0
+            padding: 0;
           }
         `}</style>
       </main>
@@ -113,19 +112,48 @@ const Article = function({
   article,
   requestedForReply = false,
 }) {
+  const createdAt = moment(article.getIn(['references', 0, 'createdAt']));
+
   return (
-    <li>
-      <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
-        <a className="text">{ article.get('text') }</a>
-      </Link>
-      <style jsx>{`
-        li {
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-        }
-      `}</style>
-    </li>
+    <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
+      <a className="article">
+        <div className="text">{ article.get('text') }</div>
+        <div className="info">
+          { article.get('replyCount') } 人回報
+          {
+            createdAt.isValid() ? (
+              <span title={ createdAt.format('lll') }>・{ createdAt.fromNow() }</span>
+            ) : ''
+          }
+        </div>
+
+        <style jsx>{`
+          .article {
+            display: block;
+            padding: 8px 0;
+            border-top: 1px solid rgba(0,0,0,.2);
+
+            text-decoration: none;
+            color: rgba(0,0,0,.88);
+          }
+
+          .article:first-child {
+            border: 0;
+          }
+
+          .text {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+
+          .info {
+            font-size: 0.8em;
+            color: rgba(0,0,0,.5);
+          }
+        `}</style>
+      </a>
+    </Link>
   );
 }
 
