@@ -11,10 +11,12 @@ import configure from '../redux';
 import { showDialog, load } from '../redux/auth';
 import AppHeader from './AppHeader';
 import LoginModal from './Modal/LoginModal';
-
+import moment from 'moment';
+import 'moment/locale/zh-tw';
 import style from './App.css';
 
 let isBootstrapping = true;
+moment.locale('zh-tw');
 
 // Wraps the app with <Provider />, and invoke
 /// initFn(dispatch, context passed in getInitialProps)
@@ -70,6 +72,7 @@ export default (initFn) => (Component) => {
           <div>
             <Head>
               <style dangerouslySetInnerHTML={{ __html: style }} />
+              <meta name="viewport" content="width=device-width,initial-scale=1.0" />
             </Head>
             <AppHeader />
             <Component {...this.props} />
