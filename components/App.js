@@ -5,6 +5,7 @@
 import React from 'react';
 import Head from 'next/head'
 import { Provider } from 'react-redux';
+import Router from 'next/router';
 import { fromJS } from 'immutable';
 import { setLogin } from '../util/gql';
 import configure from '../redux';
@@ -14,9 +15,17 @@ import LoginModal from './Modal/LoginModal';
 import moment from 'moment';
 import 'moment/locale/zh-tw';
 import style from './App.css';
+import NProgress from 'nprogress';
 
 let isBootstrapping = true;
 moment.locale('zh-tw');
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+}
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+}
 
 // Wraps the app with <Provider />, and invoke
 /// initFn(dispatch, context passed in getInitialProps)

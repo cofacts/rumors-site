@@ -26,6 +26,7 @@
     "koa-router": "^7.1.0",
     "next": "beta",
     "normalize.css": "^5.0.0",
+    "nprogress": "^0.2.0",
     "postcss-color-function": "^2.0.1",
     "postcss-css-variables": "^0.6.0",
     "postcss-custom-media": "^5.0.1",

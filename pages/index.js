@@ -7,7 +7,6 @@ import Router from 'next/router';
 import { List } from 'immutable';
 import url from 'url';
 import { RadioGroup, Radio } from 'react-radio-group';
-import moment from 'moment';
 
 import app from '../components/App';
 import ArticleItem from '../components/ArticleItem';

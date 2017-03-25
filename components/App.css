@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import 'nprogress/nprogress.css';
 
 html {
   font: 15px/1.6 思源黑體, "Source Han Sans", "Noto Sans CJK TC", 蘋方-繁, "PingFang TC", 微軟正黑體, "Microsoft JhengHei", sans-serif;
