@@ -11,7 +11,7 @@ RUN yarn --pure-lockfile
 # to make its path correct
 #
 COPY server.js .babelrc ./
-RUN npm run build:server
+RUN NODE_ENV=production npm run build:server
 
 # Other files, so that other files do not interfere with node_modules cache
 #
@@ -20,7 +20,7 @@ COPY . .
 # Generate .next, which includes absolute path to package so it must be done
 # within container.
 #
-RUN npm run build:next
+RUN NODE_ENV=production npm run build:next
 
 EXPOSE 3000
 
