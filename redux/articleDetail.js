@@ -1,6 +1,7 @@
 import { createDuck } from 'redux-duck'
 import { fromJS, Map, List, OrderedMap } from 'immutable'
 import gql from '../util/gql'
+import NProgress from 'nprogress';
 
 const {defineType, createAction, createReducer} = createDuck('articleDetail');
 
@@ -103,17 +104,22 @@ const reloadReply = articleId => dispatch =>
 
 export const connectReply = (articleId, replyId) => dispatch => {
   dispatch(setState({key: 'isReplyLoading', value: true}));
+  NProgress.start();
   return gql`mutation($articleId: String!, $replyId: String!) {
     CreateReplyConnection(
       articleId: $articleId, replyId: $replyId,
     ) {
       id
     }
-  }`({articleId, replyId}).then(() => dispatch(reloadReply(articleId)))
+  }`({articleId, replyId}).then(() => {
+    dispatch(reloadReply(articleId));
+    NProgress.done();
+  })
 }
 
 export const submitReply = params => dispatch => {
   dispatch(setState({key: 'isReplyLoading', value: true}));
+  NProgress.start();
   return gql`mutation(
     $articleId: String!, $text: String!, $type: ReplyTypeEnum!, $reference: String
   ) {
@@ -122,7 +128,10 @@ export const submitReply = params => dispatch => {
     ) {
       id
     }
-  }`(params).then(() => dispatch(reloadReply(params.articleId)))
+  }`(params).then(() => {
+    dispatch(reloadReply(params.articleId));
+    NProgress.done();
+  })
 }
 
 // Reducer
