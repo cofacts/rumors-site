@@ -356,6 +356,11 @@ class ReplyForm extends React.PureComponent {
     });
   }
 
+  handleSuggestionAdd = (e) => {
+    const suggestion = e.target.textContent;
+    this.set('text', `${this.state.text} ${suggestion}`);
+  }
+
   render() {
     const { replyType, text, reference } = this.state;
     const { disabled } = this.props;
@@ -363,8 +368,7 @@ class ReplyForm extends React.PureComponent {
     return (
       <form onSubmit={this.handleSubmit}>
         <p>
-          <select name="type" defaultValue="NOT_ARTICLE" onChange={this.handleTypeChange}>
-
+          <select name="type" value={replyType} onChange={this.handleTypeChange}>
             <option value="NOT_ARTICLE">{TYPE_NAME['NOT_ARTICLE']}</option>
             <option value="NOT_RUMOR">{TYPE_NAME['NOT_RUMOR']}</option>
             <option value="RUMOR">{TYPE_NAME['RUMOR']}</option>
@@ -372,11 +376,22 @@ class ReplyForm extends React.PureComponent {
           <span>：{TYPE_DESC[replyType]}</span>
         </p>
 
-        <p>
+        <div>
           <label htmlFor="text">
             { TYPE_INSTRUCTION[replyType] }
           </label>
           <br />
+          {
+            replyType === 'NOT_ARTICLE' ? (
+              <p>
+                常見原因 ——&nbsp;
+                <button className="suggestion" type="button" onClick={this.handleSuggestionAdd}>長度太短，不像轉傳文章。</button>
+                <button className="suggestion" type="button" onClick={this.handleSuggestionAdd}>疑似為訊息之節錄片段，並非全文。</button>
+                <button className="suggestion" type="button" onClick={this.handleSuggestionAdd}>詢問句，非轉傳訊息。</button>
+                <button className="suggestion" type="button" onClick={this.handleSuggestionAdd}>測試用之無意義訊息。</button>
+              </p>
+            ) : ''
+          }
           <textarea
             required
             id="text"
@@ -384,7 +399,7 @@ class ReplyForm extends React.PureComponent {
             onChange={this.handleTextChange}
             value={text}
           />
-        </p>
+        </div>
 
         {
           replyType === 'NOT_ARTICLE' ? '' : (
@@ -410,6 +425,15 @@ class ReplyForm extends React.PureComponent {
           textarea {
             width: 100%;
             height: 5em;
+          }
+
+          .suggestion {
+            background: transparent;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 0 8px 8px 0;
+            font-size: 12px;
           }
         `}</style>
       </form>
