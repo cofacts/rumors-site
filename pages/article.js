@@ -1,11 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import moment from 'moment';
 import Link from 'next/link';
 import Head from 'next/head';
 
 import app from '../components/App';
+import ArticleInfo from '../components/ArticleInfo';
 import { load, submitReply, connectReply } from '../redux/articleDetail';
+
+const TYPE_NAME = {
+  NOT_ARTICLE: '⚠️️ 非完整文章或訊息',
+  NOT_RUMOR: '⭕ 含有正確訊息',
+  RUMOR: '❗ 含有不實訊息',
+};
 
 const TYPE_DESC = {
   NOT_ARTICLE: '這篇不是轉傳訊息或完整網路文章，如「這個要怎麼用」、或訊息的節錄片段。',
@@ -52,19 +60,27 @@ export default compose(
       return <div>Loading...</div>
     }
 
+    if(article === null) {
+      return <div>Article not found.</div>
+    }
+
     return (
-      <div>
+      <div className="root">
         <Head>
           <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
         </Head>
 
-        <pre>{JSON.stringify(article.toJS(), null, '  ')}</pre>
+        <header className="header">
+          <h2>訊息原文</h2>
+          <ArticleInfo article={article} />
+        </header>
+        <div className="message">{nl2br(article.get('text'))}</div>
 
         <section>
-          <h1>回應</h1>
+          <h2>回應</h2>
             {
               replyConnections.size ? (
-              <ul>
+              <ul className="items">
                 {
                   replyConnections.map(conn => (
                     <ReplyItem
@@ -86,10 +102,10 @@ export default compose(
         </section>
 
         <section>
-          <h1>相關文章的回應</h1>
+          <h2>相關文章的回應</h2>
           {
             relatedReplies.size ? (
-              <ul>
+              <ul className="items">
                 {
                   relatedReplies.map(reply => (
                     <RelatedReplyItem
@@ -124,7 +140,32 @@ export default compose(
             </section>
           ) : ''
         }
+        <style jsx>{`
+          .root {
+            padding: 24px;
+            @media screen and (min-width: 768px) {
+              padding: 40px;
+            }
+          }
 
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          .message {
+            border: 1px solid #ccc;
+            background: #eee;
+            border-radius: 3px;
+            padding: 24px;
+          }
+
+          .items {
+            list-style-type: none;
+            padding-left: 0;
+          }
+        `}</style>
       </div>
     );
   };
@@ -132,11 +173,52 @@ export default compose(
 
 
 function ReplyItem({id, reply, connectionAuthor, feedbackCount}) {
+  const replyVersion = reply.getIn(['versions', 0]);
+  const createdAt = moment(replyVersion.get('createdAt'));
   return (
-    <li>
-      {JSON.stringify(reply.toJS())}
-      {connectionAuthor && JSON.stringify(connectionAuthor.toJS())}
-      {feedbackCount}
+    <li className="root">
+      <header className="section">
+        {connectionAuthor ? connectionAuthor.get('name') : '有人'}
+        標記此篇為：<strong title={TYPE_DESC[replyVersion.get('type')]}>{TYPE_NAME[replyVersion.get('type')]}</strong>
+      </header>
+      <section className="section">
+        <h3>理由</h3>
+        {nl2br(replyVersion.get('text'))}
+      </section>
+      <section className="section">
+        <h3>出處</h3>
+        {
+          replyVersion.get('reference') ? (
+            nl2br(replyVersion.get('reference'))
+          ) : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'
+        }
+      </section>
+      <footer>
+        <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
+        <span title="Coming soon!">・{feedbackCount} 人評價了這則回應</span>
+      </footer>
+
+      <style jsx>{`
+        .root {
+          padding: 24px;
+          border: 1px solid #ccc;
+          border-top: 0;
+          &:first-child {
+            border-top: 1px solid #ccc;
+          }
+          &:hover {
+            background: rgba(0,0,0,.05);
+          }
+        }
+        h3 {
+          margin: 0;
+        }
+        .section {
+          padding-bottom: 8px;
+          margin-bottom: 8px;
+          border-bottom: 1px dotted rgba(0,0,0,.2);
+        }
+      `}</style>
     </li>
   )
 }
@@ -236,9 +318,10 @@ class ReplyForm extends React.PureComponent {
       <form onSubmit={this.handleSubmit}>
         <p>
           <select name="type" defaultValue="NOT_ARTICLE" onChange={this.handleTypeChange}>
-            <option value="NOT_ARTICLE">⚠️️ 非完整文章或訊息</option>
-            <option value="NOT_RUMOR">⭕ 含有正確訊息</option>
-            <option value="RUMOR">❗ 含有不實訊息</option>
+
+            <option value="NOT_ARTICLE">{TYPE_NAME['NOT_ARTICLE']}</option>
+            <option value="NOT_RUMOR">{TYPE_NAME['NOT_RUMOR']}</option>
+            <option value="RUMOR">{TYPE_NAME['RUMOR']}</option>
           </select>
           <span>：{TYPE_DESC[replyType]}</span>
         </p>
@@ -287,4 +370,13 @@ class ReplyForm extends React.PureComponent {
       </form>
     );
   }
+}
+
+function nl2br(text = '') {
+  const sentences = text.split('\n');
+  if(sentences.length <= 1) return sentences;
+  return sentences.slice(1).reduce(
+    (arr, sentence, i) => arr.concat(<br key={i} />, sentence),
+    [sentences[0]]
+  );
 }

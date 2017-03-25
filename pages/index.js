@@ -10,6 +10,7 @@ import { RadioGroup, Radio } from 'react-radio-group';
 import moment from 'moment';
 
 import app from '../components/App';
+import ArticleInfo from '../components/ArticleInfo';
 import { load, loadAuthFields } from '../redux/articleList';
 
 export default compose(
@@ -121,19 +122,7 @@ const Article = function({
     <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
       <a className="article">
         <div className="text">{ article.get('text') }</div>
-        <div className="info">
-          { article.get('replyRequestCount') } 人回報
-          {
-            article.get('replyCount') > 0 ? (
-              <span>・{ article.get('replyCount') } 則回應</span>
-            ) : ''
-          }
-          {
-            createdAt.isValid() ? (
-              <span title={ createdAt.format('lll') }>・{ createdAt.fromNow() }</span>
-            ) : ''
-          }
-        </div>
+        <ArticleInfo article={article} />
 
         <style jsx>{`
           .article {
@@ -155,10 +144,7 @@ const Article = function({
             overflow: hidden;
           }
 
-          .info {
-            font-size: 0.8em;
-            color: rgba(0,0,0,.5);
-          }
+
         `}</style>
       </a>
     </Link>

@@ -14,6 +14,16 @@ const RESET = defineType('RESET');
 // Action creators
 //
 const fragments = `
+  fragment articleFields on Article {
+    id
+    text
+    replyRequestCount
+    replyCount
+    references {
+      createdAt
+      type
+    }
+  }
   fragment userFields on User {
     name
     avatarUrl
@@ -46,20 +56,15 @@ export const load = (id) => dispatch => {
   return gql`
     query($id: String!) {
       GetArticle(id: $id) {
-        id
-        text
-        replyRequestCount
+        ...articleFields
         user { ...userFields }
-        replyConnections {
-          ...replyConnectionFields
-        }
+        replyConnections { ...replyConnectionFields }
         relatedArticles(filter: {replyCount: {GT: 0}}) {
           edges {
             node {
-              id
-              text
+              ...articleFields
               user { ...userFields }
-              replyConnections { ...replyConnectionFields }
+              replyCount
             }
             score
           }
