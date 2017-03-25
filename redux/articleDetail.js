@@ -1,5 +1,5 @@
 import { createDuck } from 'redux-duck'
-import { fromJS, Map, List, OrderedMap } from 'immutable'
+import { fromJS, Map, List, OrderedMap, Set } from 'immutable'
 import gql from '../util/gql'
 import NProgress from 'nprogress';
 
@@ -162,6 +162,8 @@ export default createReducer({
       ).map(conn => [conn.get('id'), conn])
     ).toList();
 
+    const replyIds = Set((payload.get('replyConnections') || List()).map(conn => conn.getIn(['reply', 'id'])));
+
     return state.withMutations(s =>
       s
       .updateIn(['data', 'article'], (article) =>
@@ -172,8 +174,8 @@ export default createReducer({
         // get reply and articleId
         conn.get('reply').set('articleId', conn.get('articleId'))
       ).filter(reply => {
-        const replyVersion = reply.getIn(['versions', 0]);
-        return replyVersion.get('type') !== 'NOT_ARTICLE' && replyVersion.get('reference') !== ''
+        // Filter-out replies that is already re-used.
+        return !replyIds.contains(reply.get('id'))
       }))
     )
   },
