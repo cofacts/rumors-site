@@ -7,6 +7,7 @@ import Head from 'next/head';
 
 import app from '../components/App';
 import ArticleInfo from '../components/ArticleInfo';
+import ArticleItem from '../components/ArticleItem';
 import { load, submitReply, connectReply } from '../redux/articleDetail';
 
 const TYPE_NAME = {
@@ -70,13 +71,15 @@ export default compose(
           <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
         </Head>
 
-        <header className="header">
-          <h2>訊息原文</h2>
-          <ArticleInfo article={article} />
-        </header>
-        <div className="message">{nl2br(article.get('text'))}</div>
+        <section className="section">
+          <header className="header">
+            <h2>訊息原文</h2>
+            <ArticleInfo article={article} />
+          </header>
+          <div className="message">{nl2br(article.get('text'))}</div>
+        </section>
 
-        <section>
+        <section className="section">
           <h2>回應</h2>
             {
               replyConnections.size ? (
@@ -101,7 +104,7 @@ export default compose(
           <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
         </section>
 
-        <section>
+        <section className="section">
           <h2>相關文章的回應</h2>
           {
             relatedReplies.size ? (
@@ -126,9 +129,9 @@ export default compose(
 
         {
           relatedArticles.size ? (
-            <section>
+            <section className="section">
               <h2>你可能也會對這些類似文章有興趣</h2>
-              <ul>
+              <ul className="items">
                 {
                   relatedArticles.map(article => (
                     <RelatedArticleItem
@@ -147,6 +150,10 @@ export default compose(
             @media screen and (min-width: 768px) {
               padding: 40px;
             }
+          }
+
+          .section {
+            margin-bottom: 84px;
           }
 
           .header {
@@ -274,9 +281,9 @@ function RelatedReplyItem({reply, articleId, onConnect}) {
 function RelatedArticleItem({article}) {
   return (
     <li>
-      <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
-        <a>{JSON.stringify(article.toJS())}</a>
-      </Link>
+      <ArticleItem
+        article={article}
+      />
     </li>
   )
 }
@@ -401,8 +408,7 @@ class ReplyForm extends React.PureComponent {
 
         <style jsx>{`
           textarea {
-            /* 140 word = 28 * 5 */
-            width: 28em;
+            width: 100%;
             height: 5em;
           }
         `}</style>

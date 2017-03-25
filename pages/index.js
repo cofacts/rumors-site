@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import { RadioGroup, Radio } from 'react-radio-group';
 import moment from 'moment';
 
 import app from '../components/App';
-import ArticleInfo from '../components/ArticleInfo';
+import ArticleItem from '../components/ArticleItem';
 import { load, loadAuthFields } from '../redux/articleList';
 
 export default compose(
@@ -85,7 +85,7 @@ export default compose(
         <Pagination query={query} />
         <div className="article-list">{
           articles.map(article =>
-            <Article
+            <ArticleItem
               key={article.get('id')}
               article={article}
               requestedForReply={authFields.get(article.get('id'))}
@@ -111,46 +111,6 @@ export default compose(
     );
   }
 })
-
-const Article = function({
-  article,
-  requestedForReply = false,
-}) {
-  const createdAt = moment(article.getIn(['references', 0, 'createdAt']));
-
-  return (
-    <Link href={`/article/?id=${article.get('id')}`} as={`/article/${article.get('id')}`}>
-      <a className="article">
-        <div className="text">{ article.get('text') }</div>
-        <ArticleInfo article={article} />
-
-        <style jsx>{`
-          .article {
-            display: block;
-            padding: 8px 0;
-            border-top: 1px solid rgba(0,0,0,.2);
-
-            text-decoration: none;
-            color: rgba(0,0,0,.88);
-          }
-
-          .article:first-child {
-            border: 0;
-          }
-
-          .text {
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-          }
-
-
-        `}</style>
-      </a>
-    </Link>
-  );
-}
-
 
 const Pagination = connect(({articleList}) => ({
   firstCursor: articleList.get('firstCursor'),
