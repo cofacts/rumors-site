@@ -9,3 +9,4 @@
 !yarn.lock
 !server.js
 !postcss.config.js
+!next.config.js
