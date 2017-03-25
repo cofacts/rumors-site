@@ -13,40 +13,44 @@ const RESET = defineType('RESET');
 
 // Action creators
 //
-const fragments = `
-  fragment articleFields on Article {
-    id
-    text
-    replyRequestCount
-    replyCount
-    references {
-      createdAt
-      type
-    }
-  }
-  fragment userFields on User {
-    name
-    avatarUrl
-  }
-  fragment replyConnectionFields on ReplyConnection {
-    id
-    reply {
+const fragments = {
+  articleFields: `
+    fragment articleFields on Article {
       id
-      versions(limit: 1) {
-        user {
-          name
-          avatarUrl
-        }
+      text
+      replyRequestCount
+      replyCount
+      createdAt
+      references {
         type
-        text
-        reference
-        createdAt
       }
     }
-    feedbackCount
-    user { ...userFields }
-  }
-`;
+  `,
+  replyConnectionAndUserFields: `
+    fragment userFields on User {
+      name
+      avatarUrl
+    }
+    fragment replyConnectionFields on ReplyConnection {
+      id
+      reply {
+        id
+        versions(limit: 1) {
+          user {
+            name
+            avatarUrl
+          }
+          type
+          text
+          reference
+          createdAt
+        }
+      }
+      feedbackCount
+      user { ...userFields }
+    }
+  `,
+};
 
 const loadData = createAction(LOAD);
 const setState = createAction(SET_STATE);
@@ -72,7 +76,8 @@ export const load = (id) => dispatch => {
         }
       }
     }
-    ${ fragments }
+    ${ fragments.articleFields }
+    ${ fragments.replyConnectionAndUserFields }
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({key: 'isLoading', value: false}));
@@ -90,7 +95,7 @@ const reloadReply = articleId => dispatch =>
         }
       }
     }
-    ${ fragments }
+    ${ fragments.replyConnectionAndUserFields }
   `({ id: articleId })).then( resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({key: 'isReplyLoading', value: false}));

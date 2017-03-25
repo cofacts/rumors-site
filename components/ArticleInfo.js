@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 export default function ArticleInfo({article}) {
-  const createdAt = moment(article.getIn(['references', 0, 'createdAt']));
+  const createdAt = moment(article.get('createdAt'));
   return (
     <div className="root">
       { article.get('replyRequestCount') } 人回報
