@@ -65,6 +65,7 @@ export const load = (id) => dispatch => {
               ...articleFields
               user { ...userFields }
               replyCount
+              replyConnections { ...replyConnectionFields }
             }
             score
           }
@@ -139,7 +140,11 @@ export default createReducer({
     const articleEdges = payload.getIn(['relatedArticles', 'edges']) || List();
     const replyConnections = OrderedMap(
       articleEdges.flatMap(edge =>
-        edge.getIn(['node', 'replyConnections']) || List()
+        (edge.getIn(['node', 'replyConnections']) || List()).map(conn =>
+          // we need to encode articleId into each replyConnection,
+          // so that we can show link to the article in the related reply item.
+          conn.set('articleId', edge.getIn(['node', 'id']))
+        )
       ).map(conn => [conn.get('id'), conn])
     ).toList();
 
@@ -149,7 +154,13 @@ export default createReducer({
         (article || Map()).merge(payload.filterNot((v, key) => key === 'replyConnections' || key === 'relatedArticles')))
       .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
       .updateIn(['data', 'relatedArticles'], articles => !articleEdges.size ? articles : articleEdges.map(edge => edge.get('node')))
-      .updateIn(['data', 'relatedReplies'], replies => !replyConnections.size ? replies : replyConnections.map(conn => conn.get('reply')))
+      .updateIn(['data', 'relatedReplies'], replies => !replyConnections.size ? replies : replyConnections.map(conn =>
+        // get reply and articleId
+        conn.get('reply').set('articleId', conn.get('articleId'))
+      ).filter(reply => {
+        const replyVersion = reply.getIn(['versions', 0]);
+        return replyVersion.get('type') !== 'NOT_ARTICLE' && replyVersion.get('reference') !== ''
+      }))
     )
   },
   [RESET]: (state) => state.set('data', initialState.get('data')),

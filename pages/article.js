@@ -111,6 +111,7 @@ export default compose(
                     <RelatedReplyItem
                       key={reply.get('id')}
                       reply={reply}
+                      articleId={reply.get('articleId')}
                       onConnect={this.handleConnect}
                     />
                   ))
@@ -126,7 +127,7 @@ export default compose(
         {
           relatedArticles.size ? (
             <section>
-              <h1>你可能也會對這些類似文章有興趣</h1>
+              <h2>你可能也會對這些類似文章有興趣</h2>
               <ul>
                 {
                   relatedArticles.map(article => (
@@ -183,7 +184,7 @@ function ReplyItem({id, reply, connectionAuthor, feedbackCount}) {
       </header>
       <section className="section">
         <h3>理由</h3>
-        {nl2br(replyVersion.get('text'))}
+        <ExpandableText>{replyVersion.get('text')}</ExpandableText>
       </section>
       <section className="section">
         <h3>出處</h3>
@@ -223,11 +224,49 @@ function ReplyItem({id, reply, connectionAuthor, feedbackCount}) {
   )
 }
 
-function RelatedReplyItem({reply, onConnect}) {
+function RelatedReplyItem({reply, articleId, onConnect}) {
+  const replyVersion = reply.getIn(['versions', 0]);
+  const createdAt = moment(replyVersion.get('createdAt'));
   return (
-    <li>
-      {JSON.stringify(reply.toJS())}
-      <button type="button" value={reply.get('id')} onClick={onConnect}>將這份回應加進此文章的回應</button>
+    <li className="root">
+      <header className="section">
+        <Link href={`/article/?id=${articleId}`} as={`/article/${articleId}`}>
+          <a>
+            其他文章
+          </a>
+        </Link>
+        被標記為
+        ：<strong title={TYPE_DESC[replyVersion.get('type')]}>{TYPE_NAME[replyVersion.get('type')]}</strong>
+      </header>
+      <section className="section">
+        <ExpandableText>{replyVersion.get('text')}</ExpandableText>
+      </section>
+      <footer>
+        <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
+        ・<button type="button" value={reply.get('id')} onClick={onConnect}>將這份回應加進此文章的回應</button>
+      </footer>
+
+      <style jsx>{`
+        .root {
+          padding: 24px;
+          border: 1px solid #ccc;
+          border-top: 0;
+          &:first-child {
+            border-top: 1px solid #ccc;
+          }
+          &:hover {
+            background: rgba(0,0,0,.05);
+          }
+        }
+        h3 {
+          margin: 0;
+        }
+        .section {
+          padding-bottom: 8px;
+          margin-bottom: 8px;
+          border-bottom: 1px dotted rgba(0,0,0,.2);
+        }
+      `}</style>
     </li>
   )
 }
@@ -379,4 +418,58 @@ function nl2br(text = '') {
     (arr, sentence, i) => arr.concat(<br key={i} />, sentence),
     [sentences[0]]
   );
+}
+
+class ExpandableText extends React.Component {
+  static defaultProps = {
+    children: '',
+    lines: 3,
+  }
+
+  constructor({children}) {
+    super();
+
+    if(typeof children !== 'string') {
+      throw new Error('<ExpandableText> only accepts string children.')
+    }
+
+    this.state = {
+      isExpanded: false,
+    };
+  }
+
+  toggleExapnd = () => {
+    this.setState({isExpanded: !this.state.isExpanded});
+  }
+
+  render() {
+    const { children, lines } = this.props;
+    const { isExpanded } = this.state;
+    const sentences = nl2br(children);
+
+    if(sentences.length <= lines) {
+      return (
+        <p>
+          { sentences }
+        </p>
+      )
+    }
+
+    return (
+      <p>
+        { isExpanded ? sentences : sentences.slice(0, lines) }
+
+        <button className="more" onClick={this.toggleExapnd}>
+          { isExpanded ? '隱藏全文' : '閱讀更多' }
+        </button>
+        <style jsx>{`
+          .more {
+            border: 0;
+            background: transparent;
+            text-decoration: underline;
+          }
+        `}</style>
+      </p>
+    )
+  }
 }
