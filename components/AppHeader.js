@@ -43,7 +43,11 @@ export default connect(({auth}) => ({
           align-items: center;
         }
         .user-name {
+          display: none;
           margin: 0 16px;
+          @media screen and (min-width: 1024px) {
+            display: block;
+          }
         }
       `}</style>
     </header>
