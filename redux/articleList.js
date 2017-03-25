@@ -48,8 +48,8 @@ export const load = ({
           text
           replyCount
           replyRequestCount
+          createdAt
           references {
-            createdAt
             type
           }
         }
