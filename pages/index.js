@@ -96,7 +96,10 @@ export default compose(
 
         <style jsx>{`
           main {
-            padding: 40px;
+            padding: 24px;
+            @media screen and (min-width: 768px) {
+              padding: 40px;
+            }
           }
 
           .article-list {

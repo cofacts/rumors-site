@@ -36,7 +36,11 @@ export default connect(({auth}) => ({
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 40px;
+          padding: 0 24px;
+
+          @media screen and (min-width: 768px) {
+            padding: 0 40px;
+          }
         }
         .user {
           display: flex;
@@ -45,7 +49,7 @@ export default connect(({auth}) => ({
         .user-name {
           display: none;
           margin: 0 16px;
-          @media screen and (min-width: 1024px) {
+          @media screen and (min-width: 768px) {
             display: block;
           }
         }
