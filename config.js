@@ -1,5 +1,5 @@
 module.exports = {
-  API_URL: process.env.USE_LOCAL ? 'http://localhost:5000' : 'http://api.rumors.hacktabl.org',
+  API_URL: process.env.USE_LOCAL ? 'http://localhost:5000' : 'https://api.rumors.hacktabl.org',
 
   // If is dev but connet to production api, don't use appId = RUMORS_SITE.
   // Use RUMORS_SITE only on production, or when connecting to local dev server
