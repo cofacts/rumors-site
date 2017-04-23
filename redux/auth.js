@@ -2,7 +2,6 @@ import { createDuck } from 'redux-duck';
 import { fromJS } from 'immutable';
 import fetchAPI from '../util/fetchAPI';
 import gql from '../util/gql';
-import { API_URL } from '../config';
 
 const {defineType, createAction, createReducer} = createDuck('auth');
 
@@ -11,6 +10,13 @@ const {defineType, createAction, createReducer} = createDuck('auth');
 const LOAD = defineType('LOAD');
 const RESET = defineType('RESET');
 const SET_STATE = defineType('SET_STATE');
+
+// Hacks (?)
+//
+let resolveAuth;
+export const waitForAuth = new Promise((resolve) => {
+  resolveAuth = resolve;
+});
 
 // Action creators
 //
@@ -28,6 +34,7 @@ export const load = () => dispatch => {
   }`().then(resp => {
     dispatch(setState({key: 'isLoading', value: false}));
     dispatch(createAction(LOAD)(resp.getIn(['data', 'GetUser'])));
+    resolveAuth();
   });
 };
 export const logout = () => dispatch => {

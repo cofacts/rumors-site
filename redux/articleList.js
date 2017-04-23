@@ -1,5 +1,6 @@
 import { createDuck } from 'redux-duck'
 import { fromJS, List, Map } from 'immutable'
+import { waitForAuth } from './auth';
 import gql from '../util/gql'
 
 const COSTY_FIELD_COOLDOWN = 60*1000; // in seconds. query costy fields only 1 time within 60 seconds
@@ -88,37 +89,41 @@ export const loadAuthFields = ({
   filter = 'all',
   orderBy = 'replyRequestCount',
   before, after,
-}) => dispatch => {
-  return gql`query(
-    $filter: ListArticleFilter,
-    $orderBy: [ListArticleOrderBy],
-    $before: String,
-    $after: String,
-  ) {
-    ListArticles(
-      filter: $filter
-      orderBy: $orderBy
-      before: $before
-      after: $after
-      first: 25
+}) => (dispatch, getState) => {
+  waitForAuth.then(() => {
+    if(!getState().auth.get('user')) return;
+
+    return gql`query(
+      $filter: ListArticleFilter,
+      $orderBy: [ListArticleOrderBy],
+      $before: String,
+      $after: String,
     ) {
-      edges {
-        node {
-          id
-          requestedForReply
+      ListArticles(
+        filter: $filter
+        orderBy: $orderBy
+        before: $before
+        after: $after
+        first: 25
+      ) {
+        edges {
+          node {
+            id
+            requestedForReply
+          }
         }
       }
-    }
-  }`({
-    filter: getFilterObject(filter),
-    orderBy: [{[orderBy]: 'DESC'}],
-    before,
-    after,
-  }).then((resp) => {
-    dispatch(createAction(LOAD_AUTH_FIELDS)(
-      resp.getIn(['data', 'ListArticles', 'edges'], List())
-    ));
-  });
+    }`({
+      filter: getFilterObject(filter),
+      orderBy: [{[orderBy]: 'DESC'}],
+      before,
+      after,
+    }).then((resp) => {
+      dispatch(createAction(LOAD_AUTH_FIELDS)(
+        resp.getIn(['data', 'ListArticles', 'edges'], List())
+      ));
+    });
+  })
 }
 
 // Reducer
