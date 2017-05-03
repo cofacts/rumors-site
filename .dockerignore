@@ -3,6 +3,7 @@
 !pages/*
 !redux/*
 !util/*
+!static/*
 !.babelrc
 !config.js
 !package.json

@@ -17,6 +17,7 @@ import moment from 'moment';
 import 'moment/locale/zh-tw';
 import style from './App.css';
 import NProgress from 'nprogress';
+import {GA_TRACKER, AUTOTRACK_FILENAME} from '../config';
 
 let isBootstrapping = true;
 moment.locale('zh-tw');
@@ -83,6 +84,17 @@ export default (initFn) => (Component) => {
             <Head>
               <style dangerouslySetInnerHTML={{ __html: style }} />
               <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+              <script dangerouslySetInnerHTML={{__html: `
+                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+                ga('create', '${GA_TRACKER}', 'auto');
+                ga('require', 'eventTracker');
+                ga('require', 'outboundLinkTracker');
+                ga('require', 'urlChangeTracker');
+
+                ga('send', 'pageview');
+              `}} />
+              <script async src="https://www.google-analytics.com/analytics.js" />
+              <script async src={`/static/${AUTOTRACK_FILENAME}`} />
             </Head>
             <AppHeader />
             <Component {...this.props} />

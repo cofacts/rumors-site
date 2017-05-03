@@ -1,3 +1,5 @@
+/*global ga*/
+
 import { createDuck } from 'redux-duck';
 import { fromJS } from 'immutable';
 import fetchAPI from '../util/fetchAPI';
@@ -32,8 +34,12 @@ export const load = () => dispatch => {
   return gql`{
     GetUser { id, name, avatarUrl }
   }`().then(resp => {
+    const user = resp.getIn(['data', 'GetUser']);
     dispatch(setState({key: 'isLoading', value: false}));
-    dispatch(createAction(LOAD)(resp.getIn(['data', 'GetUser'])));
+    dispatch(createAction(LOAD)(user));
+    if(user) {
+      ga('set', 'userId', user.get('id'));
+    }
     resolveAuth();
   });
 };
