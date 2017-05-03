@@ -3,8 +3,8 @@ import React from 'react';
 export default function AppFooter() {
   return (
     <footer>
-      <a href="http://grants.g0v.tw/power/" target="_blank">
-        <img src="http://grants.g0v.tw/images/power/poweredby-long.svg" alt="Powered by g0v"/>
+      <a href="https://grants.g0v.tw/power/" target="_blank">
+        <img src="https://grants.g0v.tw/images/power/poweredby-long.svg" alt="Powered by g0v"/>
       </a>
       <style jsx>{`
         footer {
