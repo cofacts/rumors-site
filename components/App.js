@@ -11,6 +11,7 @@ import { setLogin } from '../util/gql';
 import configure from '../redux';
 import { showDialog, load } from '../redux/auth';
 import AppHeader from './AppHeader';
+import AppFooter from './AppFooter';
 import LoginModal from './Modal/LoginModal';
 import moment from 'moment';
 import 'moment/locale/zh-tw';
@@ -86,6 +87,7 @@ export default (initFn) => (Component) => {
             <AppHeader />
             <Component {...this.props} />
             <LoginModal />
+            <AppFooter />
           </div>
         </Provider>
       )
