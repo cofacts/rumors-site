@@ -19,6 +19,7 @@ const LOAD_AUTH_FIELDS = defineType('LOAD_AUTH_FIELDS');
 let isInCooldown = false;
 let lastFilter;
 export const load = ({
+  q,
   filter = 'all',
   orderBy = 'replyRequestCount',
   before, after,
@@ -68,7 +69,7 @@ export const load = ({
       }
     }
   }`({
-    filter: getFilterObject(filter),
+    filter: getFilterObject(filter, q),
     orderBy: [{[orderBy]: 'DESC'}],
     before,
     after,
@@ -86,6 +87,7 @@ export const load = ({
 }
 
 export const loadAuthFields = ({
+  q,
   filter = 'all',
   orderBy = 'replyRequestCount',
   before, after,
@@ -114,7 +116,7 @@ export const loadAuthFields = ({
         }
       }
     }`({
-      filter: getFilterObject(filter),
+      filter: getFilterObject(filter, q),
       orderBy: [{[orderBy]: 'DESC'}],
       before,
       after,
@@ -156,12 +158,21 @@ function resetCooldown() {
   isInCooldown = false;
 }
 
-function getFilterObject(filter) {
+function getFilterObject(filter, q) {
+  const filterObj = {};
+  if(q) {
+    filterObj.moreLikeThis = {like: q, minimumShouldMatch: '0'};
+  }
+
   if(filter === 'solved') {
-    return {replyCount: {GT: 0}};
+    filterObj.replyCount = {GT: 0};
   } else if(filter === 'unsolved') {
-    return {replyCount: {EQ: 0}};
-  } else {
+    filterObj.replyCount = {EQ: 0};
+  }
+
+  // Return filterObj only when it is populated.
+  if(!Object.keys(filterObj).length) {
     return undefined;
   }
+  return filterObj;
 }
