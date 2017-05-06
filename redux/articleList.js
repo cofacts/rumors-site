@@ -17,19 +17,27 @@ const LOAD_AUTH_FIELDS = defineType('LOAD_AUTH_FIELDS');
 //
 
 let isInCooldown = false;
-let lastFilter;
+let lastStringifiedFilter;
 export const load = ({
   q,
   filter = 'all',
   orderBy = 'replyRequestCount',
   before, after,
 }) => dispatch => {
-  if(lastFilter !== filter) {
+  filter = getFilterObject(filter, q);
+  const stringifiedFilter = JSON.stringify(filter);
+
+  if(lastStringifiedFilter !== stringifiedFilter) {
     // Invalidate costy field cache when filter changes
     isInCooldown = false;
   }
 
-  lastFilter = filter;
+  lastStringifiedFilter = stringifiedFilter;
+
+  // If there is query text, sort by _score first
+  const orderByArray = q ?
+    [{_score: 'DESC'}, {[orderBy]: 'DESC'}] :
+    [{[orderBy]: 'DESC'}];
 
   return gql`query(
     $filter: ListArticleFilter,
@@ -69,8 +77,8 @@ export const load = ({
       }
     }
   }`({
-    filter: getFilterObject(filter, q),
-    orderBy: [{[orderBy]: 'DESC'}],
+    filter,
+    orderBy: orderByArray,
     before,
     after,
   }).then((resp) => {
