@@ -44,6 +44,22 @@ export default compose(
     }})}`);
   }
 
+  handleKeywordChange = e => {
+    const {value} = e.target;
+    Router.push(`/${url.format({query: {
+      ...this.props.query,
+      q: value,
+      before: undefined,
+      after: undefined,
+    }})}`);
+  }
+
+  handleKeywordKeyup = e => {
+    if(e.which === 13) {
+      return this.handleKeywordChange(e);
+    }
+  }
+
   render() {
     const {
       isLoading = false,
@@ -62,6 +78,12 @@ export default compose(
         <Head>
           <title>文章列表</title>
         </Head>
+
+        <label>
+          Search For:
+          <input type="search" onBlur={this.handleKeywordChange} onKeyUp={this.handleKeywordKeyup} defaultValue={query.q} />
+        </label>
+        <br />
 
         Order By:
         <select onChange={this.handleOrderByChange} value={query.orderBy || 'replyRequestCount'}>
