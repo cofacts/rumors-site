@@ -28,6 +28,33 @@ const TYPE_INSTRUCTION = {
   RUMOR: '請簡單說明不實之處，作為「資料來源」的導讀：',
 }
 
+function shortenUrl(s, maxLength) {
+  try {
+    s = decodeURIComponent(s);
+  } catch (e) {
+    // Probably malformed URI components.
+    // Do nothing, just use original s
+  }
+  return s.length <= maxLength ? s : `${s.slice(0, maxLength / 2)}⋯${s.slice(-maxLength / 2)}`;
+}
+
+const urlRegExp = /(https?:\/\/\S+)/
+function linkify(str, maxLength = 80, ) {
+  if(!str) return '';
+  return str
+    .split(urlRegExp)
+    .map((s, i) => s.match(urlRegExp) ? <a key={`link${i}`} href={s}>{shortenUrl(s, maxLength)}</a> : s)
+}
+
+function nl2br(text = '') {
+  const sentences = text.split('\n');
+  if (sentences.length <= 1) return sentences.map(s => linkify(s));
+  return sentences.slice(1).reduce(
+    (arr, sentence, i) => arr.concat(<br key={i} />, linkify(sentence)),
+    [linkify(sentences[0])]
+  );
+}
+
 export default compose(
   app((dispatch, {query: {id}}) => dispatch(load(id))),
   connect(({articleDetail}) => ({
@@ -439,15 +466,6 @@ class ReplyForm extends React.PureComponent {
       </form>
     );
   }
-}
-
-function nl2br(text = '') {
-  const sentences = text.split('\n');
-  if(sentences.length <= 1) return sentences;
-  return sentences.slice(1).reduce(
-    (arr, sentence, i) => arr.concat(<br key={i} />, sentence),
-    [sentences[0]]
-  );
 }
 
 class ExpandableText extends React.Component {
