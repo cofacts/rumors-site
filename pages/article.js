@@ -39,7 +39,7 @@ function shortenUrl(s, maxLength) {
 }
 
 const urlRegExp = /(https?:\/\/\S+)/
-function linkify(str, maxLength = 80, ) {
+function linkify(str, maxLength = 80) {
   if(!str) return '';
   return str
     .split(urlRegExp)
@@ -49,10 +49,7 @@ function linkify(str, maxLength = 80, ) {
 function nl2br(text = '') {
   const sentences = text.split('\n');
   if (sentences.length <= 1) return sentences.map(s => linkify(s));
-  return sentences.slice(1).reduce(
-    (arr, sentence, i) => arr.concat(<br key={i} />, linkify(sentence)),
-    [linkify(sentences[0])]
-  );
+  return sentences.map((sentence, i) => (<div style={{minHeight: '1.6em'}} key={i}>{linkify(sentence)}</div>));
 }
 
 export default compose(
@@ -497,14 +494,14 @@ class ExpandableText extends React.Component {
 
     if(sentences.length <= lines) {
       return (
-        <p>
+        <div>
           { sentences }
-        </p>
+        </div>
       )
     }
 
     return (
-      <p>
+      <div>
         { isExpanded ? sentences : sentences.slice(0, lines) }
 
         <button className="more" onClick={this.toggleExapnd}>
@@ -517,7 +514,7 @@ class ExpandableText extends React.Component {
             text-decoration: underline;
           }
         `}</style>
-      </p>
+      </div>
     )
   }
 }
