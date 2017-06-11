@@ -1,9 +1,9 @@
-import { createDuck } from 'redux-duck'
-import { fromJS, Map, List, OrderedMap, Set } from 'immutable'
-import gql from '../util/gql'
+import { createDuck } from 'redux-duck';
+import { fromJS, Map, List, OrderedMap, Set } from 'immutable';
+import gql from '../util/gql';
 import NProgress from 'nprogress';
 
-const {defineType, createAction, createReducer} = createDuck('articleDetail');
+const { defineType, createAction, createReducer } = createDuck('articleDetail');
 
 // Action Types
 //
@@ -56,8 +56,8 @@ const fragments = {
 const loadData = createAction(LOAD);
 const setState = createAction(SET_STATE);
 
-export const load = (id) => dispatch => {
-  dispatch(setState({key: 'isLoading', value: true}));
+export const load = id => dispatch => {
+  dispatch(setState({ key: 'isLoading', value: true }));
   return gql`
     query($id: String!) {
       GetArticle(id: $id) {
@@ -77,18 +77,18 @@ export const load = (id) => dispatch => {
         }
       }
     }
-    ${ fragments.articleFields }
-    ${ fragments.replyConnectionAndUserFields }
+    ${fragments.articleFields}
+    ${fragments.replyConnectionAndUserFields}
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
-    dispatch(setState({key: 'isLoading', value: false}));
+    dispatch(setState({ key: 'isLoading', value: false }));
   });
-}
+};
 
 export const reset = () => createAction(RESET);
 
 const reloadReply = articleId => dispatch =>
-  (gql`
+  gql`
     query($id: String!) {
       GetArticle(id: $id) {
         replyConnections {
@@ -96,14 +96,14 @@ const reloadReply = articleId => dispatch =>
         }
       }
     }
-    ${ fragments.replyConnectionAndUserFields }
-  `({ id: articleId })).then( resp => {
+    ${fragments.replyConnectionAndUserFields}
+  `({ id: articleId }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
-    dispatch(setState({key: 'isReplyLoading', value: false}));
-  })
+    dispatch(setState({ key: 'isReplyLoading', value: false }));
+  });
 
 export const connectReply = (articleId, replyId) => dispatch => {
-  dispatch(setState({key: 'isReplyLoading', value: true}));
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`mutation($articleId: String!, $replyId: String!) {
     CreateReplyConnection(
@@ -111,14 +111,14 @@ export const connectReply = (articleId, replyId) => dispatch => {
     ) {
       id
     }
-  }`({articleId, replyId}).then(() => {
+  }`({ articleId, replyId }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
-  })
-}
+  });
+};
 
 export const submitReply = params => dispatch => {
-  dispatch(setState({key: 'isReplyLoading', value: true}));
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`mutation(
     $articleId: String!, $text: String!, $type: ReplyTypeEnum!, $reference: String
@@ -131,15 +131,16 @@ export const submitReply = params => dispatch => {
   }`(params).then(() => {
     dispatch(reloadReply(params.articleId));
     NProgress.done();
-  })
-}
+  });
+};
 
 // Reducer
 //
 
 const initialState = fromJS({
-  state: {isLoading: false},
-  data: { // data from server
+  state: { isLoading: false },
+  data: {
+    // data from server
     article: null,
     replyConnections: [], // reply & its connection to this article
     relatedArticles: [],
@@ -147,37 +148,68 @@ const initialState = fromJS({
   },
 });
 
-export default createReducer({
-  [SET_STATE]: (state, {payload: {key, value}}) => state.setIn(['state', key], value),
+export default createReducer(
+  {
+    [SET_STATE]: (state, { payload: { key, value } }) =>
+      state.setIn(['state', key], value),
 
-  [LOAD]: (state, {payload}) => {
-    const articleEdges = payload.getIn(['relatedArticles', 'edges']) || List();
-    const replyConnections = OrderedMap(
-      articleEdges.flatMap(edge =>
-        (edge.getIn(['node', 'replyConnections']) || List()).map(conn =>
-          // we need to encode articleId into each replyConnection,
-          // so that we can show link to the article in the related reply item.
-          conn.set('articleId', edge.getIn(['node', 'id']))
-        )
-      ).map(conn => [conn.get('id'), conn])
-    ).toList();
+    [LOAD]: (state, { payload }) => {
+      const articleEdges =
+        payload.getIn(['relatedArticles', 'edges']) || List();
+      const replyConnections = OrderedMap(
+        articleEdges
+          .flatMap(edge =>
+            (edge.getIn(['node', 'replyConnections']) || List()).map(conn =>
+              // we need to encode articleId into each replyConnection,
+              // so that we can show link to the article in the related reply item.
+              conn.set('articleId', edge.getIn(['node', 'id']))
+            )
+          )
+          .map(conn => [conn.get('id'), conn])
+      ).toList();
 
-    const replyIds = Set((payload.get('replyConnections') || List()).map(conn => conn.getIn(['reply', 'id'])));
+      const replyIds = Set(
+        (payload.get('replyConnections') || List())
+          .map(conn => conn.getIn(['reply', 'id']))
+      );
 
-    return state.withMutations(s =>
-      s
-      .updateIn(['data', 'article'], (article) =>
-        (article || Map()).merge(payload.filterNot((v, key) => key === 'replyConnections' || key === 'relatedArticles')))
-      .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
-      .updateIn(['data', 'relatedArticles'], articles => !articleEdges.size ? articles : articleEdges.map(edge => edge.get('node')))
-      .updateIn(['data', 'relatedReplies'], replies => !replyConnections.size ? replies : replyConnections.map(conn =>
-        // get reply and articleId
-        conn.get('reply').set('articleId', conn.get('articleId'))
-      ).filter(reply => {
-        // Filter-out replies that is already re-used.
-        return !replyIds.contains(reply.get('id'))
-      }))
-    )
+      return state.withMutations(s =>
+        s
+          .updateIn(['data', 'article'], article =>
+            (article || Map())
+              .merge(
+                payload.filterNot(
+                  (v, key) =>
+                    key === 'replyConnections' || key === 'relatedArticles'
+                )
+              )
+          )
+          .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
+          .updateIn(
+            ['data', 'relatedArticles'],
+            articles =>
+              !articleEdges.size
+                ? articles
+                : articleEdges.map(edge => edge.get('node'))
+          )
+          .updateIn(
+            ['data', 'relatedReplies'],
+            replies =>
+              !replyConnections.size
+                ? replies
+                : replyConnections
+                    .map(conn =>
+                      // get reply and articleId
+                      conn.get('reply').set('articleId', conn.get('articleId'))
+                    )
+                    .filter(reply => {
+                      // Filter-out replies that is already re-used.
+                      return !replyIds.contains(reply.get('id'));
+                    })
+          )
+      );
+    },
+    [RESET]: state => state.set('data', initialState.get('data')),
   },
-  [RESET]: (state) => state.set('data', initialState.get('data')),
-}, initialState);
+  initialState
+);

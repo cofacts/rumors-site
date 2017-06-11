@@ -3,7 +3,7 @@
 // Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/pages/index.js
 //
 import React from 'react';
-import Head from 'next/head'
+import Head from 'next/head';
 import { Provider } from 'react-redux';
 import Router from 'next/router';
 import { fromJS } from 'immutable';
@@ -17,23 +17,23 @@ import moment from 'moment';
 import 'moment/locale/zh-tw';
 import style from './App.css';
 import NProgress from 'nprogress';
-import {GA_TRACKER, AUTOTRACK_FILENAME} from '../config';
+import { GA_TRACKER, AUTOTRACK_FILENAME } from '../config';
 
 let isBootstrapping = true;
 moment.locale('zh-tw');
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
-}
+};
 Router.onRouteChangeComplete = () => {
   NProgress.done();
-}
+};
 
 // Wraps the app with <Provider />, and invoke
 /// initFn(dispatch, context passed in getInitialProps)
 // when getInitialProps() is invoked.
 //
-export default (initFn) => (Component) => {
+export default initFn => Component => {
   return class App extends React.Component {
     static async getInitialProps(ctx) {
       const store = configure();
@@ -47,7 +47,9 @@ export default (initFn) => (Component) => {
 
         // Other stuff inside getInitialProps' context
         //
-        pathname: ctx.pathname, query: ctx.query, err: ctx.error,
+        pathname: ctx.pathname,
+        query: ctx.query,
+        err: ctx.error,
       };
     }
 
@@ -57,13 +59,16 @@ export default (initFn) => (Component) => {
       this.store = configure(
         // Convert back the rehydrated state to ImmutableJS objects.
         //
-        Object.keys(props.initialState).reduce((obj, key) => ({
-          ...obj,
-          [key]: fromJS(props.initialState[key]),
-        }), {})
+        Object.keys(props.initialState).reduce(
+          (obj, key) => ({
+            ...obj,
+            [key]: fromJS(props.initialState[key]),
+          }),
+          {}
+        )
       );
 
-      if(typeof window !== 'undefined') {
+      if (typeof window !== 'undefined') {
         setLogin(() => this.store.dispatch(showDialog()));
       }
     }
@@ -71,7 +76,7 @@ export default (initFn) => (Component) => {
     componentDidMount() {
       // Bootstrapping: Load auth
       //
-      if(isBootstrapping) {
+      if (isBootstrapping) {
         this.store.dispatch(load());
         isBootstrapping = false;
       }
@@ -83,8 +88,13 @@ export default (initFn) => (Component) => {
           <div>
             <Head>
               <style dangerouslySetInnerHTML={{ __html: style }} />
-              <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-              <script dangerouslySetInnerHTML={{__html: `
+              <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1.0"
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
                 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
                 ga('create', '${GA_TRACKER}', 'auto');
                 ga('require', 'eventTracker');
@@ -92,8 +102,13 @@ export default (initFn) => (Component) => {
                 ga('require', 'urlChangeTracker');
 
                 ga('send', 'pageview');
-              `}} />
-              <script async src="https://www.google-analytics.com/analytics.js" />
+              `,
+                }}
+              />
+              <script
+                async
+                src="https://www.google-analytics.com/analytics.js"
+              />
               <script async src={`/static/${AUTOTRACK_FILENAME}`} />
             </Head>
             <AppHeader />
@@ -102,8 +117,7 @@ export default (initFn) => (Component) => {
             <AppFooter />
           </div>
         </Provider>
-      )
+      );
     }
-  }
-
-}
+  };
+};

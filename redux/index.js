@@ -13,9 +13,7 @@ const reducers = combineReducers({
   auth,
 });
 
-const enhancer = composeWithDevTools(
-  applyMiddleware(thunk)
-);
+const enhancer = composeWithDevTools(applyMiddleware(thunk));
 
 // Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/store.js
 //
@@ -24,11 +22,11 @@ let store = null;
 export default function configure(initialState) {
   // Server side, always return a new store
   //
-  if(typeof window === 'undefined') {
+  if (typeof window === 'undefined') {
     return createStore(reducers, initialState, enhancer);
   }
 
-  if(store) return store;
+  if (store) return store;
 
   store = createStore(reducers, initialState, enhancer);
 

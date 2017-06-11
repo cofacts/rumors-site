@@ -8,15 +8,15 @@ const POLLING_INTERVAL = 5000;
 
 const SPECIAL_PROPS = {
   7: {
-    top: 'Lucky'
+    top: 'Lucky',
   },
   18: {
     top: '今天是',
-    bottom: '號星期天'
+    bottom: '號星期天',
   },
   21: {
     top: '每天只有',
-    bottom: '小時，剩下 3 小時是用來睡覺的'
+    bottom: '小時，剩下 3 小時是用來睡覺的',
   },
   37: {
     bottom: '森77',
@@ -41,13 +41,13 @@ const SPECIAL_PROPS = {
   },
   92: {
     top: '沒有共識的',
-    bottom: '共識'
+    bottom: '共識',
   },
   95: {
-    bottom: '無鉛加滿'
+    bottom: '無鉛加滿',
   },
   98: {
-    top: 'Windows'
+    top: 'Windows',
   },
   101: {
     bottom: '大樓',
@@ -57,8 +57,8 @@ const SPECIAL_PROPS = {
   },
   123: {
     bottom: '木頭人',
-  }
-}
+  },
+};
 
 function getSpecialProps(number) {
   return SPECIAL_PROPS[number.toString()];
@@ -66,8 +66,9 @@ function getSpecialProps(number) {
 
 function Kuang() {
   return (
-    <style dangerouslySetInnerHTML={{
-      __html: `
+    <style
+      dangerouslySetInnerHTML={{
+        __html: `
       html:after {
         content: '';
         position: fixed;
@@ -77,25 +78,19 @@ function Kuang() {
         bottom: 24px;
         left: 24px;
       }
-    `}} />
-  )
+    `,
+      }}
+    />
+  );
 }
 
-function Hit({number = 0, top = '', bottom = ''}) {
+function Hit({ number = 0, top = '', bottom = '' }) {
   return (
     <FullScreenResizer listen={number}>
       <div className="root">
-        {
-          top ? (
-            <div className="paragraph">{top}</div>
-          ) : ''
-        }
+        {top ? <div className="paragraph">{top}</div> : ''}
         <div className="number">{number}</div>
-        {
-          bottom ? (
-            <div className="paragraph">{bottom}</div>
-          ) : ''
-        }
+        {bottom ? <div className="paragraph">{bottom}</div> : ''}
       </div>
       <Kuang />
       <style jsx>{`
@@ -118,7 +113,7 @@ function Hit({number = 0, top = '', bottom = ''}) {
         }
       `}</style>
     </FullScreenResizer>
-  )
+  );
 }
 
 function Instant({ number = 0, total = 0 }) {
@@ -151,7 +146,7 @@ function Instant({ number = 0, total = 0 }) {
         }
       `}</style>
     </FullScreenResizer>
-  )
+  );
 }
 
 class FullScreenResizer extends React.PureComponent {
@@ -159,11 +154,11 @@ class FullScreenResizer extends React.PureComponent {
     scale: 1,
     isHidden: true,
     listen: null, // When changed, invoke this.setScale()
-  }
+  };
 
   componentDidMount() {
     this.setScale();
-    this.setState({isHidden: false}) // After scale is set, show this component
+    this.setState({ isHidden: false }); // After scale is set, show this component
     window.addEventListener('resize', this.setScale);
   }
 
@@ -172,7 +167,7 @@ class FullScreenResizer extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.listen !== this.props.listen) {
+    if (prevProps.listen !== this.props.listen) {
       this.setScale();
     }
   }
@@ -181,16 +176,16 @@ class FullScreenResizer extends React.PureComponent {
     // Must wait until styled jsx boot up the stylesheet...
     ///
     requestAnimationFrame(() => {
-      if(!this.rootElem) return;
+      if (!this.rootElem) return;
       const { width, height } = this.rootElem.getBoundingClientRect();
       const horizontalScale = window.innerWidth / width;
       const verticalScale = window.innerHeight / height;
 
       this.setState({
         scale: Math.min(horizontalScale, verticalScale),
-      })
-    })
-  }
+      });
+    });
+  };
 
   render() {
     const { scale, isHidden } = this.state;
@@ -198,12 +193,11 @@ class FullScreenResizer extends React.PureComponent {
     return (
       <div
         className={`root ${isHidden ? 'hidden' : ''}`}
-        ref={root => {this.rootElem = root}}
+        ref={root => {
+          this.rootElem = root;
+        }}
       >
-        <div
-          className="scaler"
-          style={{transform: `scale(${scale})`}}
-        >
+        <div className="scaler" style={{ transform: `scale(${scale})` }}>
           {this.props.children}
         </div>
         <style jsx>{`
@@ -214,6 +208,7 @@ class FullScreenResizer extends React.PureComponent {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+
             transition: opacity .25s;
           }
           .hidden {
@@ -225,35 +220,36 @@ class FullScreenResizer extends React.PureComponent {
           }
         `}</style>
       </div>
-    )
+    );
   }
 }
 
-function Loading({show}) {
+function Loading({ show }) {
   return (
     <div className={`root ${show ? '' : 'hidden'}`}>
       Loading...
       <style jsx>{`
         .root {
           position: fixed;
-          top: 0; right: 0; left: 0; bottom: 0;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
           background: #fff;
           opacity: 1;
           transition: opacity .2s;
-
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 28px;
           font-weight: 100;
         }
-
         .hidden {
           opacity: 0;
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 export default class InstantWrapper extends React.Component {
@@ -261,17 +257,19 @@ export default class InstantWrapper extends React.Component {
     current: 0, // current number of replied articles
     startFrom: null, // start number of replied articles to compare from
     isBootstrapping: true,
-  }
+  };
 
   componentDidMount() {
     const queryParams = querystring.parse(location.hash.slice(1));
     this.periodicallyUpdateNumber().then(count => {
       // If startFrom is not specified in hash, set startFrom to the count.
       //
-      const startFrom = queryParams && queryParams.startFrom ? queryParams.startFrom : count;
+      const startFrom = queryParams && queryParams.startFrom
+        ? queryParams.startFrom
+        : count;
       this.setState({ startFrom, isBootstrapping: false });
-      location.hash = querystring.stringify({startFrom})
-    })
+      location.hash = querystring.stringify({ startFrom });
+    });
   }
 
   updateNumber = () => {
@@ -282,18 +280,18 @@ export default class InstantWrapper extends React.Component {
         }
       }
     `().then(data => {
-      const totalCount = data.getIn(['data', 'ListArticles', 'totalCount'], 0)
+      const totalCount = data.getIn(['data', 'ListArticles', 'totalCount'], 0);
       this.setState({ current: totalCount });
       return totalCount;
     });
-  }
+  };
 
   periodicallyUpdateNumber = () =>
-    this.updateNumber().then( count => {
+    this.updateNumber().then(count => {
       clearTimeout(this._timer);
-      this._timer = setTimeout(this.periodicallyUpdateNumber, POLLING_INTERVAL)
+      this._timer = setTimeout(this.periodicallyUpdateNumber, POLLING_INTERVAL);
       return count;
-    })
+    });
 
   render() {
     const { current, startFrom, isBootstrapping } = this.state;
@@ -305,23 +303,22 @@ export default class InstantWrapper extends React.Component {
         <Head>
           <title>{number} 篇新回覆文章 - cofacts</title>
           <style dangerouslySetInnerHTML={{ __html: style }} />
-          <style dangerouslySetInnerHTML={{
-            __html: `
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
             html {
               font-family: 蘋方-繁, "PingFang TC", 思源黑體, "Source Han Sans", "Noto Sans CJK TC", sans-serif;
               color: rgba(0,0,0,0.76);
               overflow: hidden;
               height: 100%;
             }
-          `}} />
+          `,
+            }}
+          />
         </Head>
-        {
-          specialProps ? (
-            <Hit number={number} {...specialProps} />
-          ) : (
-            <Instant number={number} total={current} />
-          )
-        }
+        {specialProps
+          ? <Hit number={number} {...specialProps} />
+          : <Instant number={number} total={current} />}
         <Loading show={isBootstrapping} />
       </div>
     );

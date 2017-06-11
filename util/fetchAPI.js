@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import {API_URL, APP_ID} from '../config';
+import { API_URL, APP_ID } from '../config';
 
 export default function(endpoint = '/', args = {}) {
   return fetch(`${API_URL}${endpoint}`, {
@@ -10,6 +10,6 @@ export default function(endpoint = '/', args = {}) {
       ...args.headers,
     },
     credentials: 'include',
-    ...args
+    ...args,
   });
 }
