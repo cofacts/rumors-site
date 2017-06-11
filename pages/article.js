@@ -137,7 +137,7 @@ export default compose(
               ? <ul className="items">
                   {relatedReplies.map(reply =>
                     <RelatedReplyItem
-                      key={reply.get('id')}
+                      key={`${reply.get('id')}-${reply.get('articleId')}`}
                       reply={reply}
                       articleId={reply.get('articleId')}
                       onConnect={this.handleConnect}
