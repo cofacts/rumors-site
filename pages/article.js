@@ -193,7 +193,7 @@ export default compose(
   }
 );
 
-function ReplyItem({ id, reply, connectionAuthor, feedbackCount }) {
+function ReplyItem({ reply, connectionAuthor, feedbackCount }) {
   const replyVersion = reply.getIn(['versions', 0]);
   const createdAt = moment(replyVersion.get('createdAt'));
   return (

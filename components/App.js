@@ -17,7 +17,7 @@ import moment from 'moment';
 import 'moment/locale/zh-tw';
 import style from './App.css';
 import NProgress from 'nprogress';
-import { GA_TRACKER, AUTOTRACK_FILENAME } from '../config';
+const { GA_TRACKER, AUTOTRACK_FILENAME } = require('../config');
 
 let isBootstrapping = true;
 moment.locale('zh-tw');

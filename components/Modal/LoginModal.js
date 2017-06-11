@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Modal from './';
-import { API_URL } from '../../config';
 import { hideDialog } from '../../redux/auth';
+const { API_URL } = require('../../config');
 
 export default connect(
   ({ auth }) => ({

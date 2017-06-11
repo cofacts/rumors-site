@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import ArticleInfo from './ArticleInfo';
 
-export default function ArticleItem({ article, requestedForReply = false }) {
+export default function ArticleItem({ article }) {
   return (
     <Link
       href={`/article/?id=${article.get('id')}`}

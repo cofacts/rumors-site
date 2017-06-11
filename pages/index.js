@@ -14,7 +14,7 @@ import { load, loadAuthFields } from '../redux/articleList';
 
 export default compose(
   app((dispatch, { query }) => dispatch(load(query))),
-  connect(({ articleList }, { query: { articleId } }) => ({
+  connect(({ articleList }) => ({
     isLoading: articleList.getIn(['state', 'isLoading']),
     articles: (articleList.get('edges') || List())
       .map(edge => edge.get('node')),

@@ -40,6 +40,6 @@ app.prepare().then(() => {
 
   const port = process.env.PORT || 3000;
   server.listen(port, () => {
-    console.log('Listening port', port);
+    console.log('Listening port', port); // eslint-disable-line
   });
 });

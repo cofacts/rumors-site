@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { API_URL, APP_ID } from '../config';
+const { API_URL, APP_ID } = require('../config');
 
 export default function(endpoint = '/', args = {}) {
   return fetch(`${API_URL}${endpoint}`, {
