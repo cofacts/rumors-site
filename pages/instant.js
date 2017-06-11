@@ -181,6 +181,7 @@ class FullScreenResizer extends React.PureComponent {
     // Must wait until styled jsx boot up the stylesheet...
     ///
     requestAnimationFrame(() => {
+      if(!this.rootElem) return;
       const { width, height } = this.rootElem.getBoundingClientRect();
       const horizontalScale = window.innerWidth / width;
       const verticalScale = window.innerHeight / height;
@@ -268,7 +269,6 @@ export default class InstantWrapper extends React.Component {
       // If startFrom is not specified in hash, set startFrom to the count.
       //
       const startFrom = queryParams && queryParams.startFrom ? queryParams.startFrom : count;
-      console.log('c', count);
       this.setState({ startFrom, isBootstrapping: false });
       location.hash = querystring.stringify({startFrom})
     })
