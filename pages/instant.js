@@ -83,7 +83,7 @@ function Kuang() {
 
 function Hit({number = 0, top = '', bottom = ''}) {
   return (
-    <FullScreenResizer>
+    <FullScreenResizer listen={number}>
       <div className="root">
         {
           top ? (
@@ -123,7 +123,7 @@ function Hit({number = 0, top = '', bottom = ''}) {
 
 function Instant({ number = 0, total = 0 }) {
   return (
-    <FullScreenResizer>
+    <FullScreenResizer listen={number}>
       <div className="present">
         目前已回覆 {total} 篇文章
       </div>
@@ -158,6 +158,7 @@ class FullScreenResizer extends React.PureComponent {
   state = {
     scale: 1,
     isHidden: true,
+    listen: null, // When changed, invoke this.setScale()
   }
 
   componentDidMount() {
@@ -170,13 +171,23 @@ class FullScreenResizer extends React.PureComponent {
     window.removeEventListener('resize', this.setScale);
   }
 
-  setScale = () => {
-    const { width, height } = this.rootElem.getBoundingClientRect();
-    const horizontalScale = window.innerWidth / width;
-    const verticalScale = window.innerHeight / height;
+  componentDidUpdate(prevProps) {
+    if(prevProps.listen !== this.props.listen) {
+      this.setScale();
+    }
+  }
 
-    this.setState({
-      scale: Math.min(horizontalScale, verticalScale),
+  setScale = () => {
+    // Must wait until styled jsx boot up the stylesheet...
+    ///
+    requestAnimationFrame(() => {
+      const { width, height } = this.rootElem.getBoundingClientRect();
+      const horizontalScale = window.innerWidth / width;
+      const verticalScale = window.innerHeight / height;
+
+      this.setState({
+        scale: Math.min(horizontalScale, verticalScale),
+      })
     })
   }
 
