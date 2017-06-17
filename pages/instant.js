@@ -10,22 +10,15 @@ const SPECIAL_PROPS = {
   7: {
     top: 'Lucky',
   },
-  18: {
-    top: '今天是',
-    bottom: '號星期天',
+  17: {
+    bottom: '8+9',
   },
   21: {
     top: '每天只有',
     bottom: '小時，剩下 3 小時是用來睡覺的',
   },
-  37: {
-    bottom: '森77',
-  },
   44: {
     bottom: '隻石獅子',
-  },
-  50: {
-    bottom: '嵐抹茶拿鐵好好喝',
   },
   56: {
     bottom: '不能亡',
@@ -43,20 +36,53 @@ const SPECIAL_PROPS = {
     top: '沒有共識的',
     bottom: '共識',
   },
-  95: {
-    bottom: '無鉛加滿',
-  },
-  98: {
-    top: 'Windows',
+  94: {
+    bottom: '狂',
   },
   101: {
     bottom: '大樓',
   },
   118: {
-    bottom: '跪了',
+    top: '看到',
+    bottom: '就跪了',
   },
   123: {
     bottom: '木頭人',
+  },
+  133: {
+    top: '法定最低時薪',
+  },
+  158: {
+    top: 'mini',
+  },
+  165: {
+    top: '警政署',
+    bottom: '反詐騙專線',
+  },
+  183: {
+    bottom: 'CLUB',
+  },
+  193: {
+    bottom: '縣道',
+  },
+  200: {
+    top: '意外撿到',
+    bottom: '元',
+  },
+  228: {
+    bottom: '二二八',
+  },
+  261: {
+    top: '說好不提',
+  },
+  318: {
+    bottom: '學運',
+  },
+  377: {
+    bottom: '森七七',
+  },
+  500: {
+    top: '下去領',
   },
 };
 
