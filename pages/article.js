@@ -460,7 +460,18 @@ class ReplyForm extends React.PureComponent {
               />
             </p>}
 
-        <button type="submit" disabled={disabled}>送出回應</button>
+        <button className="submit" type="submit" disabled={disabled}>送出回應</button>
+        <span className="help">
+          不知道如何下手嗎？
+          <a
+            href="https://www.facebook.com/groups/cofacts/permalink/1959641497601003/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook 編輯求助區
+          </a>
+          歡迎您 :)
+        </span>
 
         <style jsx>{`
           textarea {
@@ -474,6 +485,15 @@ class ReplyForm extends React.PureComponent {
             padding: 8px;
             margin: 0 8px 8px 0;
             font-size: 12px;
+          }
+          .submit {
+            margin-right: 16px;
+          }
+          .help {
+            font-size: 12px;
+            font-style: italic;
+            display: inline-block;
+            color: #999;
           }
         `}</style>
       </form>

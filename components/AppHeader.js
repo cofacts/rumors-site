@@ -14,8 +14,16 @@ export default connect(
 )(function AppHeader({ user, showDialog, logout }) {
   return (
     <header className="root">
-      <Link href="/"><a><h1>真的假的</h1></a></Link>
+      <Link href="/"><a className="logo"><h1>真的假的</h1></a></Link>
 
+      <a
+        href="https://www.facebook.com/groups/cofacts/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="help"
+      >
+        編輯求助區
+      </a>
       {user
         ? <div className="user">
             <img src={user.get('avatarUrl')} alt="avatar" />
@@ -26,11 +34,22 @@ export default connect(
       <style jsx>{`
         .root {
           display: flex;
-          justify-content: space-between;
           align-items: center;
           padding: 0 24px;
           @media screen and (min-width: 768px) {
             padding: 0 40px;
+          }
+        }
+        .logo {
+          margin-right: auto;
+        }
+        .help {
+          padding: 4px 16px;
+          margin-right: 16px;
+          border-right: 1px solid #ccc;
+          display: none;
+          @media screen and (min-width: 768px) {
+            display: block;
           }
         }
         .user {
