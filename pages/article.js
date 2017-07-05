@@ -113,7 +113,7 @@ export default compose(
           </section>
 
           <section className="section">
-            <h2>回應</h2>
+            <h2>現有回應</h2>
             {replyConnections.size
               ? <ul className="items">
                   {replyConnections.map(conn =>
@@ -127,7 +127,10 @@ export default compose(
                   )}
                 </ul>
               : <p>目前尚無回應</p>}
+          </section>
 
+          <section className="section">
+            <h2>撰寫新回應</h2>
             <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
           </section>
 
@@ -169,7 +172,7 @@ export default compose(
               }
             }
             .section {
-              margin-bottom: 84px;
+              margin-bottom: 64px;
             }
             .header {
               display: flex;
