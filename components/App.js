@@ -29,6 +29,14 @@ Router.onRouteChangeComplete = () => {
   NProgress.done();
 };
 
+const SITE_STRUCTURED_DATA = JSON.stringify({
+  '@context': 'http://schema.org',
+  '@type': 'WebSite',
+  name: 'Cofacts',
+  alternateName: '真的假的——轉傳訊息查證',
+  url: 'https://cofacts.g0v.tw',
+});
+
 // Wraps the app with <Provider />, and invoke
 /// initFn(dispatch, context passed in getInitialProps)
 // when getInitialProps() is invoked.
@@ -115,6 +123,10 @@ export default initFn => Component => {
             <Component {...this.props} />
             <LoginModal />
             <AppFooter />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: SITE_STRUCTURED_DATA }}
+            />
           </div>
         </Provider>
       );

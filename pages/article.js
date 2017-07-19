@@ -61,6 +61,27 @@ function nl2br(text = '') {
   );
 }
 
+function getRatingString(replyConnections) {
+  const resultStrings = [];
+  const { NOT_RUMOR, RUMOR } = replyConnections.reduce(
+    (agg, conn) => {
+      agg[conn.getIn(['reply', 'versions', 0, 'type'])] += 1;
+      return agg;
+    },
+    { NOT_RUMOR: 0, RUMOR: 0, NOT_ARTICLE: 0 }
+  );
+
+  if (RUMOR) {
+    resultStrings.push(`${RUMOR} 人認為含有不實訊息`);
+  }
+
+  if (NOT_RUMOR) {
+    resultStrings.push(`${NOT_RUMOR} 人認為含有真實訊息`);
+  }
+
+  return resultStrings.join('、');
+}
+
 export default compose(
   app((dispatch, { query: { id } }) => dispatch(load(id))),
   connect(
@@ -97,12 +118,54 @@ export default compose(
       if (article === null) {
         return <div>Article not found.</div>;
       }
+      const ratingString = getRatingString(replyConnections);
+
+      // Ref: https://developers.google.com/search/docs/data-types/factcheck
+      //
+      const structuredData = ratingString
+        ? {
+            '@context': 'http://schema.org',
+            '@type': 'ClaimReview',
+            datePublished: moment(article.get('updatedAt')).format(
+              'YYYY-MM-DD'
+            ),
+            url: `https://cofacts.g0v.tw/article/${article.get('id')}`,
+            itemReviewed: {
+              '@type': 'CreativeWork',
+              author: {
+                '@type': 'Organization',
+                name: 'Internet',
+              },
+            },
+            claimReviewed: article.get('text'),
+            author: {
+              '@type': 'Organization',
+              name: 'Cofacts editors',
+            },
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: '-1',
+              bestRating: '-1',
+              worstRating: '-1',
+              alternateName: ratingString,
+            },
+          }
+        : null;
 
       return (
         <div className="root">
           <Head>
             <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
           </Head>
+
+          {structuredData
+            ? <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(structuredData),
+                }}
+              />
+            : ''}
 
           <section className="section">
             <header className="header">
@@ -463,7 +526,9 @@ class ReplyForm extends React.PureComponent {
               />
             </p>}
 
-        <button className="submit" type="submit" disabled={disabled}>送出回應</button>
+        <button className="submit" type="submit" disabled={disabled}>
+          送出回應
+        </button>
         <span className="help">
           不知道如何下手嗎？
           <a
