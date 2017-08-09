@@ -10,7 +10,7 @@ function RelatedReplyItem({ reply, articleId, onConnect }) {
   return (
     <li className="root">
       <header className="section">
-        <Link href={`/article/?id=${articleId}`} as={`/article/${articleId}`}>
+        <Link href={`/article?id=${articleId}`} as={`/article/${articleId}`}>
           <a>
             其他文章
           </a>
