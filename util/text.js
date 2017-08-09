@@ -25,10 +25,12 @@ export function linkify(str, maxLength = 80) {
     );
 }
 
+const newLineRegExp = /(\r\n|\r|\n)/g;
 export function nl2br(text = '') {
-  const sentences = text.split('\n');
-  if (sentences.length <= 1) return sentences.map(s => linkify(s));
-  return sentences.map((sentence, i) =>
-    <div style={{ minHeight: '1.6em' }} key={i}>{linkify(sentence)}</div>
-  );
+  return text
+    .split(newLineRegExp)
+    .map(
+      (line, idx) =>
+        line.match(newLineRegExp) ? <br key={`br${idx}`} /> : linkify(line)
+    );
 }
