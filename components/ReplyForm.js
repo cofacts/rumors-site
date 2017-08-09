@@ -40,9 +40,7 @@ export default class ReplyForm extends React.PureComponent {
     this.setState({ [key]: value });
 
     // Backup to localStorage
-    if (typeof requestAnimationFrame !== 'undefined') {
-      requestAnimationFrame(() => (localStorage[key] = value));
-    }
+    requestAnimationFrame(() => (localStorage[key] = value));
   }
 
   handleTypeChange = ({ target: { value } }) => {
