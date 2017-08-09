@@ -4,14 +4,7 @@ import Modal from './';
 import { hideDialog } from '../../redux/auth';
 const { API_URL } = require('../../config');
 
-export default connect(
-  ({ auth }) => ({
-    isDialogShown: auth.getIn(['state', 'isDialogShown']),
-  }),
-  {
-    hideDialog,
-  }
-)(function LoginModal({ isDialogShown, hideDialog }) {
+function LoginModal({ isDialogShown, onModalClose }) {
   if (!isDialogShown) return null;
 
   const redirectUrl = location.href.replace(
@@ -19,7 +12,7 @@ export default connect(
     ''
   );
   return (
-    <Modal onClose={hideDialog}>
+    <Modal onClose={onModalClose}>
       <div className="root">
         <h1>Login / Signup</h1>
 
@@ -38,4 +31,20 @@ export default connect(
       `}</style>
     </Modal>
   );
-});
+}
+
+function mapStateToProps({ auth }) {
+  return {
+    isDialogShown: auth.getIn(['state', 'isDialogShown']),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onModalClose() {
+      dispatch(hideDialog());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

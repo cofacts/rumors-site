@@ -3,15 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import { showDialog, logout } from '../redux/auth';
 
-export default connect(
-  ({ auth }) => ({
-    user: auth.get('user'),
-  }),
-  {
-    showDialog,
-    logout,
-  }
-)(function AppHeader({ user, showDialog, logout }) {
+function AppHeader({ user, onLoginClick, onLogoutClick }) {
   return (
     <header className="root">
       <Link href="/"><a className="logo"><h1>真的假的</h1></a></Link>
@@ -28,9 +20,9 @@ export default connect(
         ? <div className="user">
             <img src={user.get('avatarUrl')} alt="avatar" />
             <span className="user-name">{user.get('name')}</span>
-            <button type="button" onClick={logout}>Logout</button>
+            <button type="button" onClick={onLogoutClick}>Logout</button>
           </div>
-        : <button type="button" onClick={showDialog}>Login</button>}
+        : <button type="button" onClick={onLoginClick}>Login</button>}
       <style jsx>{`
         .root {
           display: flex;
@@ -66,4 +58,23 @@ export default connect(
       `}</style>
     </header>
   );
-});
+}
+
+function mapStateToProps({ auth }) {
+  return {
+    user: auth.get('user'),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onLoginClick() {
+      dispatch(showDialog());
+    },
+    onLogoutClick() {
+      dispatch(logout());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

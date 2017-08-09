@@ -34,167 +34,6 @@ function getRatingString(replyConnections) {
   return resultStrings.join('、');
 }
 
-export default compose(
-  app((dispatch, { query: { id } }) => dispatch(load(id))),
-  connect(
-    ({ articleDetail }) => ({
-      isLoading: articleDetail.getIn(['state', 'isLoading']),
-      isReplyLoading: articleDetail.getIn(['state', 'isReplyLoading']),
-      data: articleDetail.get('data'),
-    }),
-    {
-      submitReply,
-      connectReply,
-    }
-  )
-)(
-  class ArticlePage extends React.Component {
-    handleConnect = ({ target: { value: replyId } }) =>
-      this.props.connectReply(this.props.query.id, replyId);
-
-    handleSubmit = reply =>
-      this.props.submitReply({ ...reply, articleId: this.props.query.id });
-
-    getStructuredData = () => {
-      const { data } = this.props;
-      const article = data.get('article');
-      const ratingString = getRatingString(data.get('replyConnections'));
-      if (!ratingString) return null;
-
-      // Ref: https://developers.google.com/search/docs/data-types/factcheck
-      //
-
-      return {
-        '@context': 'http://schema.org',
-        '@type': 'ClaimReview',
-        datePublished: moment(article.get('updatedAt')).format('YYYY-MM-DD'),
-        url: `https://cofacts.g0v.tw/article/${article.get('id')}`,
-        itemReviewed: {
-          '@type': 'CreativeWork',
-          author: {
-            '@type': 'Organization',
-            name: 'Internet',
-          },
-        },
-        claimReviewed: article.get('text'),
-        author: {
-          '@type': 'Organization',
-          name: 'Cofacts editors',
-        },
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '-1',
-          bestRating: '-1',
-          worstRating: '-1',
-          alternateName: ratingString,
-        },
-      };
-    };
-
-    render() {
-      const { data, isLoading, isReplyLoading } = this.props;
-
-      const article = data.get('article');
-      const replyConnections = data.get('replyConnections');
-      const relatedArticles = data.get('relatedArticles');
-      const relatedReplies = data.get('relatedReplies');
-
-      if (isLoading && article === null) {
-        return <div>Loading...</div>;
-      }
-
-      if (article === null) {
-        return <div>Article not found.</div>;
-      }
-
-      const structuredData = this.getStructuredData();
-
-      return (
-        <div className="root">
-          <Head>
-            <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
-          </Head>
-
-          {structuredData
-            ? <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify(structuredData),
-                }}
-              />
-            : ''}
-
-          <section className="section">
-            <header className="header">
-              <h2>訊息原文</h2>
-              <ArticleInfo article={article} />
-            </header>
-            <div className="message">{nl2br(article.get('text'))}</div>
-          </section>
-
-          <section className="section">
-            <h2>現有回應</h2>
-            <CurrentReplies replyConnections={replyConnections} />
-          </section>
-
-          <section className="section">
-            <h2>撰寫新回應</h2>
-            <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
-          </section>
-
-          <section className="section">
-            <h2>相關文章回應</h2>
-            <RelatedReplies
-              onConnect={this.handleConnect}
-              relatedReplies={relatedReplies}
-            />
-          </section>
-
-          {relatedArticles.size
-            ? <section className="section">
-                <h2>你可能也會對這些類似文章有興趣</h2>
-                <ul className="items">
-                  {relatedArticles.map(article =>
-                    <RelatedArticleItem
-                      key={article.get('id')}
-                      article={article}
-                    />
-                  )}
-                </ul>
-              </section>
-            : ''}
-          <style jsx>{`
-            .root {
-              padding: 24px;
-              @media screen and (min-width: 768px) {
-                padding: 40px;
-              }
-            }
-            .section {
-              margin-bottom: 64px;
-            }
-            .header {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-            }
-            .message {
-              border: 1px solid #ccc;
-              background: #eee;
-              border-radius: 3px;
-              padding: 24px;
-            }
-            .items {
-              list-style-type: none;
-              padding-left: 0;
-            }
-          `}</style>
-        </div>
-      );
-    }
-  }
-);
-
 function RelatedArticleItem({ article }) {
   return (
     <li>
@@ -202,3 +41,166 @@ function RelatedArticleItem({ article }) {
     </li>
   );
 }
+
+class ArticlePage extends React.Component {
+  handleConnect = ({ target: { value: replyId } }) => {
+    const { dispatch, query: { id } } = this.props;
+    return dispatch(connectReply(id, replyId));
+  };
+
+  handleSubmit = reply => {
+    const { dispatch, query: { id } } = this.props;
+    return dispatch(submitReply({ ...reply, articleId: id }));
+  };
+
+  getStructuredData = () => {
+    const { data } = this.props;
+    const article = data.get('article');
+    const ratingString = getRatingString(data.get('replyConnections'));
+    if (!ratingString) return null;
+
+    // Ref: https://developers.google.com/search/docs/data-types/factcheck
+    //
+
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'ClaimReview',
+      datePublished: moment(article.get('updatedAt')).format('YYYY-MM-DD'),
+      url: `https://cofacts.g0v.tw/article/${article.get('id')}`,
+      itemReviewed: {
+        '@type': 'CreativeWork',
+        author: {
+          '@type': 'Organization',
+          name: 'Internet',
+        },
+      },
+      claimReviewed: article.get('text'),
+      author: {
+        '@type': 'Organization',
+        name: 'Cofacts editors',
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '-1',
+        bestRating: '-1',
+        worstRating: '-1',
+        alternateName: ratingString,
+      },
+    };
+  };
+
+  render() {
+    const { data, isLoading, isReplyLoading } = this.props;
+
+    const article = data.get('article');
+    const replyConnections = data.get('replyConnections');
+    const relatedArticles = data.get('relatedArticles');
+    const relatedReplies = data.get('relatedReplies');
+
+    if (isLoading && article === null) {
+      return <div>Loading...</div>;
+    }
+
+    if (article === null) {
+      return <div>Article not found.</div>;
+    }
+
+    const structuredData = this.getStructuredData();
+
+    return (
+      <div className="root">
+        <Head>
+          <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
+        </Head>
+
+        {structuredData
+          ? <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(structuredData),
+              }}
+            />
+          : ''}
+
+        <section className="section">
+          <header className="header">
+            <h2>訊息原文</h2>
+            <ArticleInfo article={article} />
+          </header>
+          <div className="message">{nl2br(article.get('text'))}</div>
+        </section>
+
+        <section className="section">
+          <h2>現有回應</h2>
+          <CurrentReplies replyConnections={replyConnections} />
+        </section>
+
+        <section className="section">
+          <h2>撰寫新回應</h2>
+          <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
+        </section>
+
+        <section className="section">
+          <h2>相關文章回應</h2>
+          <RelatedReplies
+            onConnect={this.handleConnect}
+            relatedReplies={relatedReplies}
+          />
+        </section>
+
+        {relatedArticles.size
+          ? <section className="section">
+              <h2>你可能也會對這些類似文章有興趣</h2>
+              <ul className="items">
+                {relatedArticles.map(article =>
+                  <RelatedArticleItem
+                    key={article.get('id')}
+                    article={article}
+                  />
+                )}
+              </ul>
+            </section>
+          : ''}
+        <style jsx>{`
+          .root {
+            padding: 24px;
+            @media screen and (min-width: 768px) {
+              padding: 40px;
+            }
+          }
+          .section {
+            margin-bottom: 64px;
+          }
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .message {
+            border: 1px solid #ccc;
+            background: #eee;
+            border-radius: 3px;
+            padding: 24px;
+          }
+          .items {
+            list-style-type: none;
+            padding-left: 0;
+          }
+        `}</style>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps({ articleDetail }) {
+  return {
+    isLoading: articleDetail.getIn(['state', 'isLoading']),
+    isReplyLoading: articleDetail.getIn(['state', 'isReplyLoading']),
+    data: articleDetail.get('data'),
+  };
+}
+
+export default compose(
+  app((dispatch, { query: { id } }) => dispatch(load(id))),
+  connect(mapStateToProps)
+)(ArticlePage);
