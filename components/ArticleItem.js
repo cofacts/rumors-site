@@ -5,7 +5,7 @@ import ArticleInfo from './ArticleInfo';
 export default function ArticleItem({ article }) {
   return (
     <Link
-      href={`/article/?id=${article.get('id')}`}
+      href={`/article?id=${article.get('id')}`}
       as={`/article/${article.get('id')}`}
     >
       <a className="article">
