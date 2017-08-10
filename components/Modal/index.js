@@ -28,7 +28,7 @@ export default function Modal({ children, style = {}, onClose = () => {} }) {
         }
         .modal {
           position: absolute;
-          top: 20%;
+          margin: 16% 0;
           left: 50%;
           transform: translate(-50%, 0);
           background: #fff;
