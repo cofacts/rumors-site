@@ -38,10 +38,12 @@ const SITE_STRUCTURED_DATA = JSON.stringify({
 });
 
 // Wraps the app with <Provider />, and invoke
-/// initFn(dispatch, context passed in getInitialProps)
+// initFn(dispatch, context passed in getInitialProps)
 // when getInitialProps() is invoked.
+// When loaded for the first time in browser,
+// bootstrapFn() is invoked.
 //
-export default initFn => Component => {
+export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
   return class App extends React.Component {
     static async getInitialProps(ctx) {
       const store = configure();
@@ -86,6 +88,7 @@ export default initFn => Component => {
       //
       if (isBootstrapping) {
         this.store.dispatch(load());
+        bootstrapFn(this.store.dispatch, this.props);
         isBootstrapping = false;
       }
     }
