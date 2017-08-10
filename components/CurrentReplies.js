@@ -4,9 +4,36 @@ import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import { nl2br } from '../util/text';
 
-function ReplyItem({ reply, connectionAuthor, feedbackCount }) {
+function getFeedbackString(feedbacks) {
+  const { positiveCount, negativeCount } = feedbacks.reduce(
+    (agg, feedback) => {
+      switch (feedback.get('score')) {
+        case 1:
+          agg.positiveCount += 1;
+          break;
+        case -1:
+          agg.negativeCount += 1;
+      }
+      return agg;
+    },
+    { positiveCount: 0, negativeCount: 0 }
+  );
+
+  const results = [];
+  if (positiveCount) {
+    results.push(`${positiveCount} 人覺得有回答到原文`);
+  }
+  if (negativeCount) {
+    results.push(`${negativeCount} 人覺得沒回答到原文`);
+  }
+
+  return results.join('、');
+}
+
+function ReplyItem({ reply, connectionAuthor, feedbacks }) {
   const replyVersion = reply.getIn(['versions', 0]);
   const createdAt = moment(replyVersion.get('createdAt'));
+  const feedbackString = getFeedbackString(feedbacks);
   return (
     <li className="root">
       <header className="section">
@@ -27,7 +54,7 @@ function ReplyItem({ reply, connectionAuthor, feedbackCount }) {
       </section>
       <footer>
         <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
-        <span title="Coming soon!">・{feedbackCount} 人評價了這則回應</span>
+        {feedbackString ? ` ・ ${feedbackString}` : ''}
       </footer>
 
       <style jsx>{`
@@ -68,7 +95,7 @@ export default function CurrentReplies({ replyConnections }) {
           id={conn.get('id')}
           reply={conn.get('reply')}
           connectionAuthor={conn.get('user')}
-          feedbackCount={conn.get('feedbackCount')}
+          feedbacks={conn.get('feedbacks')}
         />
       )}
       <style jsx>{`

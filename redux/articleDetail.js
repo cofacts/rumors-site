@@ -47,7 +47,9 @@ const fragments = {
           createdAt
         }
       }
-      feedbackCount
+      feedbacks {
+        score
+      }
       user { ...userFields }
     }
   `,
