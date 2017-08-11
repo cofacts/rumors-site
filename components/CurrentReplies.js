@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
+import { USER_REFERENCE } from '../constants/urls';
 import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import { nl2br } from '../util/text';
@@ -46,6 +47,30 @@ class ReplyItem extends React.PureComponent {
   handleAction = () => {
     const { replyConnection, onAction } = this.props;
     return onAction(replyConnection.get('id'));
+  };
+
+  renderHint = () => {
+    const { replyConnection } = this.props;
+    const replyType = replyConnection.getIn(['reply', 'versions', 0, 'type']);
+
+    if (replyType !== 'NOT_ARTICLE') return null;
+
+    return (
+      <span>
+        ／ 查證範圍請參考
+        <a href={USER_REFERENCE} target="_blank" rel="noopener noreferrer">
+          《使用者指南》
+        </a>。
+        <style jsx>{`
+          span {
+            display: inline-block; /* line-break as a whole in small screen */
+            margin-left: 0.5em;
+            font-size: 12px;
+            opacity: 0.75;
+          }
+        `}</style>
+      </span>
+    );
   };
 
   renderFooter = () => {
@@ -108,6 +133,7 @@ class ReplyItem extends React.PureComponent {
           標記此篇為：<strong title={TYPE_DESC[replyType]}>
             {TYPE_NAME[replyType]}
           </strong>
+          {this.renderHint()}
         </header>
         <section className="section">
           <h3>理由</h3>

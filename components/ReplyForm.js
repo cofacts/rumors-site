@@ -143,7 +143,7 @@ export default class ReplyForm extends React.PureComponent {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Cofacts 編輯規則
+            《Cofacts 編輯規則》
           </a>。
         </p>
       );
