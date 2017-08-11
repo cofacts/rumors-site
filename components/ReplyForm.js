@@ -1,5 +1,12 @@
 import React from 'react';
-import { TYPE_NAME, TYPE_DESC, TYPE_INSTRUCTION } from '../constants/replyType';
+import {
+  TYPE_NAME,
+  TYPE_DESC,
+  TYPE_INSTRUCTION,
+  TYPE_SUGGESTION_OPTIONS,
+} from '../constants/replyType';
+
+import { QUICKSTART, EDITOR_REFERENCE } from '../constants/urls';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 const formInitialState = {
@@ -70,69 +77,149 @@ export default class ReplyForm extends React.PureComponent {
   };
 
   handleSuggestionAdd = e => {
-    const suggestion = e.target.textContent;
-    this.set('text', `${this.state.text} ${suggestion}`);
+    const result = [e.target.value];
+    if (this.state.text) result.push(this.state.text);
+
+    this.set('text', result.join('\n'));
+    if (this._textEl) {
+      this._textEl.focus();
+    }
   };
 
+  renderTypeSelect = () => {
+    const { replyType } = this.state;
+    return (
+      <p>
+        <select name="type" value={replyType} onChange={this.handleTypeChange}>
+          {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type =>
+            <option key={type} value={type}>{TYPE_NAME[type]}</option>
+          )}
+        </select>
+        <span>：{TYPE_DESC[replyType]}</span>
+      </p>
+    );
+  };
+
+  renderSuggestions = () => {
+    const { replyType } = this.state;
+    if (!TYPE_SUGGESTION_OPTIONS[replyType]) return null;
+
+    return (
+      <p>
+        常用回應樣板 ——&nbsp;
+        {TYPE_SUGGESTION_OPTIONS[replyType].map(({ label, value }) =>
+          <button
+            key={label}
+            className="suggestion"
+            type="button"
+            value={value}
+            onClick={this.handleSuggestionAdd}
+          >
+            {label}
+          </button>
+        )}
+        <style jsx>{`
+          .suggestion {
+            background: transparent;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 0 8px 8px 0;
+            font-size: 12px;
+          }
+        `}</style>
+      </p>
+    );
+  };
+
+  renderReferenceInput = () => {
+    const { replyType, reference } = this.state;
+    if (replyType === 'NOT_ARTICLE') {
+      return (
+        <p>
+          查證範圍請參考{' '}
+          <a
+            href={`${EDITOR_REFERENCE}#${TYPE_NAME[replyType]}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            《Cofacts 編輯規則》
+          </a>。
+        </p>
+      );
+    }
+
+    return (
+      <p>
+        <label htmlFor="reference">
+          {replyType === 'OPINIONATED'
+            ? '請提供與原文「不同觀點」的文章連結，促使讀者接觸不同意見：'
+            : '資料來源：'}
+        </label>
+        <br />
+        <textarea
+          required
+          id="reference"
+          placeholder="超連結與連結說明文字"
+          onChange={this.handleReferenceChange}
+          value={reference}
+        />
+        <style jsx>{`
+          textarea {
+            width: 100%;
+            height: 5em;
+          }
+          label {
+            font-weight: bold;
+          }
+        `}</style>
+      </p>
+    );
+  };
+
+  renderHelp() {
+    return (
+      <span className="help">
+        不知道從何下手嗎？<a
+          href={EDITOR_REFERENCE}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cofacts 編輯規則
+        </a>、
+        <a href={QUICKSTART} target="_blank" rel="noopener noreferrer">
+          Facebook 編輯求助區
+        </a>
+        歡迎您 :)
+        <style jsx>{`
+          .help {
+            font-size: 12px;
+            font-style: italic;
+            display: inline-block;
+            color: #999;
+          }
+        `}</style>
+      </span>
+    );
+  }
+
   render() {
-    const { replyType, text, reference } = this.state;
+    const { replyType, text } = this.state;
     const { disabled } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <p>
-          <select
-            name="type"
-            value={replyType}
-            onChange={this.handleTypeChange}
-          >
-            <option value="NOT_ARTICLE">{TYPE_NAME['NOT_ARTICLE']}</option>
-            <option value="NOT_RUMOR">{TYPE_NAME['NOT_RUMOR']}</option>
-            <option value="RUMOR">{TYPE_NAME['RUMOR']}</option>
-          </select>
-          <span>：{TYPE_DESC[replyType]}</span>
-        </p>
+        {this.renderTypeSelect()}
 
         <div>
           <label htmlFor="text">
             {TYPE_INSTRUCTION[replyType]}
           </label>
           <br />
-          {replyType === 'NOT_ARTICLE'
-            ? <p>
-                常見原因 ——&nbsp;
-                <button
-                  className="suggestion"
-                  type="button"
-                  onClick={this.handleSuggestionAdd}
-                >
-                  長度太短，不像轉傳文章。
-                </button>
-                <button
-                  className="suggestion"
-                  type="button"
-                  onClick={this.handleSuggestionAdd}
-                >
-                  疑似為訊息之節錄片段，並非全文。
-                </button>
-                <button
-                  className="suggestion"
-                  type="button"
-                  onClick={this.handleSuggestionAdd}
-                >
-                  詢問句，非轉傳訊息。
-                </button>
-                <button
-                  className="suggestion"
-                  type="button"
-                  onClick={this.handleSuggestionAdd}
-                >
-                  測試用之無意義訊息。
-                </button>
-              </p>
-            : ''}
+          {this.renderSuggestions()}
           <textarea
             required
+            ref={el => (this._textEl = el)}
             id="text"
             placeholder="140 字以內"
             onChange={this.handleTextChange}
@@ -140,36 +227,13 @@ export default class ReplyForm extends React.PureComponent {
           />
         </div>
 
-        {replyType === 'NOT_ARTICLE'
-          ? ''
-          : <p>
-              <label htmlFor="reference">
-                資料來源：
-              </label>
-              <br />
-              <textarea
-                required
-                id="reference"
-                placeholder="超連結與連結說明文字"
-                onChange={this.handleReferenceChange}
-                value={reference}
-              />
-            </p>}
+        {this.renderReferenceInput()}
 
         <button className="submit" type="submit" disabled={disabled}>
           送出回應
         </button>
-        <span className="help">
-          不知道如何下手嗎？
-          <a
-            href="https://www.facebook.com/groups/cofacts/permalink/1959641497601003/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Facebook 編輯求助區
-          </a>
-          歡迎您 :)
-        </span>
+
+        {this.renderHelp()}
 
         <style jsx>{`
           textarea {
@@ -187,11 +251,8 @@ export default class ReplyForm extends React.PureComponent {
           .submit {
             margin-right: 16px;
           }
-          .help {
-            font-size: 12px;
-            font-style: italic;
-            display: inline-block;
-            color: #999;
+          label {
+            font-weight: bold;
           }
         `}</style>
       </form>

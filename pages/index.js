@@ -131,7 +131,9 @@ class Index extends React.Component {
         <style jsx>{`
           main {
             padding: 24px;
-            @media screen and (min-width: 768px) {
+          }
+          @media screen and (min-width: 768px) {
+            main {
               padding: 40px;
             }
           }

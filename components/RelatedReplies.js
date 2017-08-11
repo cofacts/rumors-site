@@ -35,12 +35,12 @@ function RelatedReplyItem({ reply, articleId, onConnect }) {
           padding: 24px;
           border: 1px solid #ccc;
           border-top: 0;
-          &:first-child {
-            border-top: 1px solid #ccc;
-          }
-          &:hover {
-            background: rgba(0, 0, 0, .05);
-          }
+        }
+        .root:first-child {
+          border-top: 1px solid #ccc;
+        }
+        .root:hover {
+          background: rgba(0, 0, 0, .05);
         }
         h3 {
           margin: 0;

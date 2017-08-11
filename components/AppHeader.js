@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { EDITOR_FACEBOOK_GROUP } from '../constants/urls';
 import Link from 'next/link';
 import { showDialog, logout } from '../redux/auth';
 
@@ -9,7 +10,7 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
       <Link href="/"><a className="logo"><h1>真的假的</h1></a></Link>
 
       <a
-        href="https://www.facebook.com/groups/cofacts/"
+        href={EDITOR_FACEBOOK_GROUP}
         target="_blank"
         rel="noopener noreferrer"
         className="help"
@@ -28,9 +29,6 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           display: flex;
           align-items: center;
           padding: 0 24px;
-          @media screen and (min-width: 768px) {
-            padding: 0 40px;
-          }
         }
         .logo {
           margin-right: auto;
@@ -40,9 +38,6 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           margin-right: 16px;
           border-right: 1px solid #ccc;
           display: none;
-          @media screen and (min-width: 768px) {
-            display: block;
-          }
         }
         .user {
           display: flex;
@@ -51,7 +46,12 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
         .user-name {
           display: none;
           margin: 0 16px;
-          @media screen and (min-width: 768px) {
+        }
+        @media screen and (min-width: 768px) {
+          .root {
+            padding: 0 40px;
+          }
+          .help, .user-name {
             display: block;
           }
         }

@@ -2,7 +2,6 @@ module.exports = () => ({
   plugins: {
     'postcss-color-function': {},
     'postcss-custom-media': {},
-    'postcss-nesting': {},
     'postcss-css-variables': {},
 
     // https://github.com/zeit/next.js/blob/master/examples/with-global-stylesheet/postcss.config.js

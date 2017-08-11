@@ -1,4 +1,5 @@
 import React from 'react';
+import { EDITOR_FACEBOOK_GROUP } from '../constants/urls';
 
 export default function AppFooter() {
   return (
@@ -14,11 +15,7 @@ export default function AppFooter() {
         />
       </a>
       ・
-      <a
-        href="https://www.facebook.com/groups/cofacts/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={EDITOR_FACEBOOK_GROUP} target="_blank" rel="noopener noreferrer">
         編輯求助區
       </a>
       <style jsx>{`

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
+import { USER_REFERENCE } from '../constants/urls';
 import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import { nl2br } from '../util/text';
 import Modal from './Modal';
+import { sectionStyle } from './CurrentReplies.styles';
 
 class ReplyItem extends React.PureComponent {
   static defaultProps = {
@@ -47,6 +49,30 @@ class ReplyItem extends React.PureComponent {
     return onAction(replyConnection.get('id'));
   };
 
+  renderHint = () => {
+    const { replyConnection } = this.props;
+    const replyType = replyConnection.getIn(['reply', 'versions', 0, 'type']);
+
+    if (replyType !== 'NOT_ARTICLE') return null;
+
+    return (
+      <span>
+        ／ 查證範圍請參考
+        <a href={USER_REFERENCE} target="_blank" rel="noopener noreferrer">
+          《使用者指南》
+        </a>。
+        <style jsx>{`
+          span {
+            display: inline-block; /* line-break as a whole in small screen */
+            margin-left: 0.5em;
+            font-size: 12px;
+            opacity: 0.75;
+          }
+        `}</style>
+      </span>
+    );
+  };
+
   renderFooter = () => {
     const { replyConnection, disabled, actionText } = this.props;
     const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
@@ -72,29 +98,49 @@ class ReplyItem extends React.PureComponent {
     );
   };
 
+  renderReference = () => {
+    const { replyConnection } = this.props;
+    const replyType = replyConnection.getIn(['reply', 'versions', 0, 'type']);
+    if (replyType === 'NOT_ARTICLE') return null;
+
+    const reference = replyConnection.getIn([
+      'reply',
+      'versions',
+      0,
+      'reference',
+    ]);
+    return (
+      <section className="section">
+        <h3>
+          {replyType === 'OPINIONATED' ? '不同意見' : '出處'}
+        </h3>
+        {reference ? nl2br(reference) : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
+        <style jsx>{sectionStyle}</style>
+      </section>
+    );
+  };
+
   render() {
     const { replyConnection } = this.props;
     const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
+    const replyType = replyVersion.get('type');
     const connectionAuthor = replyConnection.get('user');
 
     return (
       <li className="root">
         <header className="section">
           {connectionAuthor ? connectionAuthor.get('name') : '有人'}
-          標記此篇為：<strong title={TYPE_DESC[replyVersion.get('type')]}>
-            {TYPE_NAME[replyVersion.get('type')]}
+          標記此篇為：<strong title={TYPE_DESC[replyType]}>
+            {TYPE_NAME[replyType]}
           </strong>
+          {this.renderHint()}
         </header>
         <section className="section">
           <h3>理由</h3>
           <ExpandableText>{replyVersion.get('text')}</ExpandableText>
         </section>
-        <section className="section">
-          <h3>出處</h3>
-          {replyVersion.get('reference')
-            ? nl2br(replyVersion.get('reference'))
-            : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
-        </section>
+
+        {this.renderReference()}
         {this.renderFooter()}
 
         <style jsx>{`
@@ -102,22 +148,15 @@ class ReplyItem extends React.PureComponent {
             padding: 24px;
             border: 1px solid #ccc;
             border-top: 0;
-            &:first-child {
-              border-top: 1px solid #ccc;
-            }
-            &:hover {
-              background: rgba(0, 0, 0, .05);
-            }
           }
-          h3 {
-            margin: 0;
+          .root:first-child {
+            border-top: 1px solid #ccc;
           }
-          .section {
-            padding-bottom: 8px;
-            margin-bottom: 8px;
-            border-bottom: 1px dotted rgba(0, 0, 0, .2);
+          .root:hover {
+            background: rgba(0, 0, 0, .05);
           }
         `}</style>
+        <style jsx>{sectionStyle}</style>
       </li>
     );
   }

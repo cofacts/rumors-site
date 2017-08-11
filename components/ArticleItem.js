@@ -19,9 +19,9 @@ export default function ArticleItem({ article }) {
             border-top: 1px solid rgba(0, 0, 0, .2);
             text-decoration: none;
             color: rgba(0, 0, 0, .88);
-            &:hover {
-              color: rgba(0, 0, 0, .56);
-            }
+          }
+          .article:hover {
+            color: rgba(0, 0, 0, .56);
           }
           .article:first-child {
             border: 0;
