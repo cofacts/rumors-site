@@ -51,12 +51,14 @@ function RelatedArticleItem({ article }) {
 class ArticlePage extends React.Component {
   handleConnect = ({ target: { value: replyId } }) => {
     const { dispatch, query: { id } } = this.props;
-    return dispatch(connectReply(id, replyId));
+    return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
   };
 
   handleSubmit = reply => {
     const { dispatch, query: { id } } = this.props;
-    return dispatch(submitReply({ ...reply, articleId: id }));
+    return dispatch(submitReply({ ...reply, articleId: id })).then(
+      this.scrollToReplySection
+    );
   };
 
   handleReplyConnectionDelete = replyConnectionId => {
@@ -70,7 +72,12 @@ class ArticlePage extends React.Component {
     const { dispatch, query: { id } } = this.props;
     return dispatch(
       updateReplyConnectionStatus(id, replyConnectionId, 'NORMAL')
-    );
+    ).then(this.scrollToReplySection);
+  };
+
+  scrollToReplySection = () => {
+    if (!this._replySectionEl) return;
+    this._replySectionEl.scrollIntoView({ behavior: 'smooth' });
   };
 
   getStructuredData = () => {
@@ -150,7 +157,11 @@ class ArticlePage extends React.Component {
           <div className="message">{nl2br(article.get('text'))}</div>
         </section>
 
-        <section className="section">
+        <section
+          id="current-replies"
+          className="section"
+          ref={replySectionEl => (this._replySectionEl = replySectionEl)}
+        >
           <h2>現有回應</h2>
           <CurrentReplies
             replyConnections={replyConnections}
