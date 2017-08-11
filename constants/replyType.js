@@ -8,7 +8,7 @@ export const TYPE_NAME = {
 export const TYPE_DESC = {
   NOT_ARTICLE: '這篇訊息不是編輯能夠處理、或 Cofacts 不應該受理此類文章。',
   NOT_RUMOR: '轉傳訊息或網路文章有一部分內容查證屬實。',
-  OPINIONATED:'轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論、尚無共識的研究、對政策的推論等等。',
+  OPINIONATED: '轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論、尚無共識的研究、對政策的推論等等。',
   RUMOR: '轉傳訊息或網路文章部分含有有一資訊。',
 };
 
@@ -27,12 +27,11 @@ export const TYPE_SUGGESTION_OPTIONS = {
     { label: '個人價值', value: '⋯⋯的部分純屬個人價值觀，並非客觀事實。' },
   ],
   NOT_ARTICLE: [
-    { label: '詢問句', value: '詢問句，非轉傳訊息。' },
-    { label: '僅含失效連結', value: '訊息僅含有失效連結，無從查證。' },
+    { label: '長度太短', value: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。' },
     { label: '商業促銷', value: '這是商業活動廣告，活動期間到⋯⋯' },
-    { label: '聊天', value: '送出文章的人在跟機器人聊天。' },
+    { label: '僅含失效連結', value: '訊息僅含有失效連結，無從查證。' },
+    { label: '聊天', value: '送出文章的人在嘗試與機器人聊天。' },
     { label: '意見回饋', value: '對 Cofacts 真的假的的建言。' },
     { label: '無意義測試', value: '測試用之無意義訊息。' },
-    { label: '長度太短', value: '長度太短，疑似為手動輸入之查詢語句，不像轉傳文章。' },
   ],
 };
