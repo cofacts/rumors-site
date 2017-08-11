@@ -200,7 +200,9 @@ class ArticlePage extends React.Component {
         <style jsx>{`
           .root {
             padding: 24px;
-            @media screen and (min-width: 768px) {
+          }
+          @media screen and (min-width: 768px) {
+            .root {
               padding: 40px;
             }
           }

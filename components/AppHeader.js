@@ -29,9 +29,6 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           display: flex;
           align-items: center;
           padding: 0 24px;
-          @media screen and (min-width: 768px) {
-            padding: 0 40px;
-          }
         }
         .logo {
           margin-right: auto;
@@ -41,9 +38,6 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           margin-right: 16px;
           border-right: 1px solid #ccc;
           display: none;
-          @media screen and (min-width: 768px) {
-            display: block;
-          }
         }
         .user {
           display: flex;
@@ -52,7 +46,12 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
         .user-name {
           display: none;
           margin: 0 16px;
-          @media screen and (min-width: 768px) {
+        }
+        @media screen and (min-width: 768px) {
+          .root {
+            padding: 0 40px;
+          }
+          .help, .user-name {
             display: block;
           }
         }
