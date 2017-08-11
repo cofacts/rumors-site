@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { EDITOR_FACEBOOK_GROUP } from '../constants/urls';
 import Link from 'next/link';
 import { showDialog, logout } from '../redux/auth';
 
@@ -9,7 +10,7 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
       <Link href="/"><a className="logo"><h1>真的假的</h1></a></Link>
 
       <a
-        href="https://www.facebook.com/groups/cofacts/"
+        href={EDITOR_FACEBOOK_GROUP}
         target="_blank"
         rel="noopener noreferrer"
         className="help"
