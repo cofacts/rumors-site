@@ -26,7 +26,7 @@ function getRatingString(replyConnections) {
       agg[conn.getIn(['reply', 'versions', 0, 'type'])] += 1;
       return agg;
     },
-    { NOT_RUMOR: 0, RUMOR: 0, NOT_ARTICLE: 0 }
+    { NOT_RUMOR: 0, RUMOR: 0, NOT_ARTICLE: 0, OPINIONATED: 0 }
   );
 
   if (RUMOR) {
