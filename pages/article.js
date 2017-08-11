@@ -11,7 +11,13 @@ import ArticleItem from '../components/ArticleItem';
 import CurrentReplies from '../components/CurrentReplies';
 import RelatedReplies from '../components/RelatedReplies';
 import ReplyForm from '../components/ReplyForm';
-import { load, submitReply, connectReply } from '../redux/articleDetail';
+import {
+  load,
+  loadAuth,
+  submitReply,
+  connectReply,
+  updateReplyConnectionStatus,
+} from '../redux/articleDetail';
 
 function getRatingString(replyConnections) {
   const resultStrings = [];
@@ -51,6 +57,20 @@ class ArticlePage extends React.Component {
   handleSubmit = reply => {
     const { dispatch, query: { id } } = this.props;
     return dispatch(submitReply({ ...reply, articleId: id }));
+  };
+
+  handleReplyConnectionDelete = replyConnectionId => {
+    const { dispatch, query: { id } } = this.props;
+    return dispatch(
+      updateReplyConnectionStatus(id, replyConnectionId, 'DELETED')
+    );
+  };
+
+  handleReplyConnectionRestore = replyConnectionId => {
+    const { dispatch, query: { id } } = this.props;
+    return dispatch(
+      updateReplyConnectionStatus(id, replyConnectionId, 'NORMAL')
+    );
   };
 
   getStructuredData = () => {
@@ -132,7 +152,12 @@ class ArticlePage extends React.Component {
 
         <section className="section">
           <h2>現有回應</h2>
-          <CurrentReplies replyConnections={replyConnections} />
+          <CurrentReplies
+            replyConnections={replyConnections}
+            disabled={isReplyLoading}
+            onDelete={this.handleReplyConnectionDelete}
+            onRestore={this.handleReplyConnectionRestore}
+          />
         </section>
 
         <section className="section">
@@ -192,6 +217,13 @@ class ArticlePage extends React.Component {
   }
 }
 
+function initFn(dispatch, { query: { id } }) {
+  return dispatch(load(id));
+}
+function bootstrapFn(dispatch, { query: { id } }) {
+  return dispatch(loadAuth(id));
+}
+
 function mapStateToProps({ articleDetail }) {
   return {
     isLoading: articleDetail.getIn(['state', 'isLoading']),
@@ -200,7 +232,6 @@ function mapStateToProps({ articleDetail }) {
   };
 }
 
-export default compose(
-  app((dispatch, { query: { id } }) => dispatch(load(id))),
-  connect(mapStateToProps)
-)(ArticlePage);
+export default compose(app(initFn, bootstrapFn), connect(mapStateToProps))(
+  ArticlePage
+);

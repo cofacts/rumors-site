@@ -9,6 +9,7 @@ const { defineType, createAction, createReducer } = createDuck('articleDetail');
 //
 
 const LOAD = defineType('LOAD');
+const LOAD_AUTH = defineType('LOAD_AUTH');
 const SET_STATE = defineType('SET_STATE');
 const RESET = defineType('RESET');
 
@@ -34,6 +35,8 @@ const fragments = {
     }
     fragment replyConnectionFields on ReplyConnection {
       id
+      canUpdateStatus
+      status
       reply {
         id
         versions(limit: 1) {
@@ -47,7 +50,9 @@ const fragments = {
           createdAt
         }
       }
-      feedbackCount
+      feedbacks {
+        score
+      }
       user { ...userFields }
     }
   `,
@@ -85,6 +90,23 @@ export const load = id => dispatch => {
   });
 };
 
+export const loadAuth = id => dispatch => {
+  dispatch(setState({ key: 'isAuthLoading', value: true }));
+  return gql`
+    query($id: String!) {
+      GetArticle(id: $id) {
+        replyConnections {
+          id
+          canUpdateStatus
+        }
+      }
+    }
+  `({ id }).then(resp => {
+    dispatch(createAction(LOAD_AUTH)(resp.getIn(['data', 'GetArticle'])));
+    dispatch(setState({ key: 'isAuthLoading', value: false }));
+  });
+};
+
 export const reset = () => createAction(RESET);
 
 const reloadReply = articleId => dispatch =>
@@ -117,6 +139,26 @@ export const connectReply = (articleId, replyId) => dispatch => {
   });
 };
 
+export const updateReplyConnectionStatus = (
+  articleId,
+  replyConnectionId,
+  status
+) => dispatch => {
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
+  NProgress.start();
+  return gql`mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum! ) {
+    UpdateReplyConnectionStatus(
+      replyConnectionId: $replyConnectionId
+      status: $status
+    ) {
+      id
+    }
+  }`({ replyConnectionId, status }).then(() => {
+    dispatch(reloadReply(articleId));
+    NProgress.done();
+  });
+};
+
 export const submitReply = params => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
@@ -138,7 +180,7 @@ export const submitReply = params => dispatch => {
 //
 
 const initialState = fromJS({
-  state: { isLoading: false },
+  state: { isLoading: false, isAuthLoading: false, isReplyLoading: false },
   data: {
     // data from server
     article: null,
@@ -209,6 +251,17 @@ export default createReducer(
           )
       );
     },
+
+    [LOAD_AUTH]: (state, { payload }) => {
+      const idAuthMap = payload.get('replyConnections').reduce((agg, conn) => {
+        agg[conn.get('id')] = conn;
+        return agg;
+      }, {});
+      return state.updateIn(['data', 'replyConnections'], replyConnections =>
+        replyConnections.map(conn => conn.merge(idAuthMap[conn.get('id')]))
+      );
+    },
+
     [RESET]: state => state.set('data', initialState.get('data')),
   },
   initialState
