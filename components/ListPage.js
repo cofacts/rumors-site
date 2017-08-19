@@ -5,44 +5,42 @@ import url from 'url';
 // Super class for list pages
 //
 export default class ListPage extends React.Component {
-  handleOrderByChange = e => {
+  goToQuery = (newQuery, resetPage = true) => {
+    const resetObj = resetPage
+      ? {
+          before: undefined,
+          after: undefined,
+        }
+      : {};
+
     Router.push(
       `${location.pathname}${url.format({
         query: {
           ...this.props.query,
-          orderBy: e.target.value,
-          before: undefined,
-          after: undefined,
+          ...resetObj,
+          ...newQuery,
         },
       })}`
     );
   };
 
+  handleOrderByChange = e => {
+    this.goToQuery({
+      orderBy: e.target.value,
+    });
+  };
+
   handleFilterChange = value => {
-    Router.push(
-      `${location.pathname}${url.format({
-        query: {
-          ...this.props.query,
-          filter: value,
-          before: undefined,
-          after: undefined,
-        },
-      })}`
-    );
+    this.goToQuery({
+      filter: value,
+    });
   };
 
   handleKeywordChange = e => {
     const { value } = e.target;
-    Router.push(
-      `${location.pathname}${url.format({
-        query: {
-          ...this.props.query,
-          q: value,
-          before: undefined,
-          after: undefined,
-        },
-      })}`
-    );
+    this.goToQuery({
+      q: value,
+    });
   };
 
   handleKeywordKeyup = e => {
