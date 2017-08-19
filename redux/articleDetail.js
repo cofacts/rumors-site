@@ -1,5 +1,6 @@
 import { createDuck } from 'redux-duck';
 import { fromJS, Map, List, OrderedMap, Set } from 'immutable';
+import { waitForAuth } from './auth';
 import gql from '../util/gql';
 import NProgress from 'nprogress';
 
@@ -92,19 +93,23 @@ export const load = id => dispatch => {
 
 export const loadAuth = id => dispatch => {
   dispatch(setState({ key: 'isAuthLoading', value: true }));
-  return gql`
-    query($id: String!) {
-      GetArticle(id: $id) {
-        replyConnections {
-          id
-          canUpdateStatus
+  return waitForAuth
+    .then(() =>
+      gql`
+        query($id: String!) {
+          GetArticle(id: $id) {
+            replyConnections {
+              id
+              canUpdateStatus
+            }
+          }
         }
-      }
-    }
-  `({ id }).then(resp => {
-    dispatch(createAction(LOAD_AUTH)(resp.getIn(['data', 'GetArticle'])));
-    dispatch(setState({ key: 'isAuthLoading', value: false }));
-  });
+      `({ id })
+    )
+    .then(resp => {
+      dispatch(createAction(LOAD_AUTH)(resp.getIn(['data', 'GetArticle'])));
+      dispatch(setState({ key: 'isAuthLoading', value: false }));
+    });
 };
 
 export const reset = () => createAction(RESET);
