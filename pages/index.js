@@ -66,11 +66,30 @@ class Index extends ListPage {
     );
   };
 
+  renderPagination = () => {
+    const {
+      query = {}, // URL params
+      firstCursor,
+      lastCursor,
+      firstCursorOfPage,
+      lastCursorOfPage,
+    } = this.props;
+
+    return (
+      <Pagination
+        query={query}
+        firstCursor={firstCursor}
+        lastCursor={lastCursor}
+        firstCursorOfPage={firstCursorOfPage}
+        lastCursorOfPage={lastCursorOfPage}
+      />
+    );
+  };
+
   render() {
     const {
       isLoading = false,
       articles = null,
-      query,
       totalCount,
       authFields,
     } = this.props;
@@ -93,7 +112,7 @@ class Index extends ListPage {
         {this.renderFilter()}
 
         <p>{totalCount} articles</p>
-        <Pagination query={query} />
+        {this.renderPagination()}
         <div className="article-list">
           {articles.map(article =>
             <ArticleItem
@@ -104,7 +123,7 @@ class Index extends ListPage {
           )}
         </div>
         {isLoading ? <p>Loading in background...</p> : ''}
-        <Pagination query={query} />
+        {this.renderPagination()}
 
         <style jsx>{mainStyle}</style>
         <style jsx>{`
@@ -124,6 +143,10 @@ function mapStateToProps({ articleList }) {
       .map(edge => edge.get('node')),
     authFields: articleList.get('authFields'),
     totalCount: articleList.get('totalCount'),
+    firstCursor: articleList.get('firstCursor'),
+    lastCursor: articleList.get('lastCursor'),
+    firstCursorOfPage: articleList.getIn(['edges', 0, 'cursor']),
+    lastCursorOfPage: articleList.getIn(['edges', -1, 'cursor']),
   };
 }
 

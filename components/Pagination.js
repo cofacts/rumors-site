@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import url from 'url';
 
-function Pagination({
+export default function Pagination({
   query = {}, // URL params
   firstCursor,
   lastCursor,
@@ -38,14 +38,3 @@ function Pagination({
     </p>
   );
 }
-
-function mapStateToProps({ articleList }) {
-  return {
-    firstCursor: articleList.get('firstCursor'),
-    lastCursor: articleList.get('lastCursor'),
-    firstCursorOfPage: articleList.getIn(['edges', 0, 'cursor']),
-    lastCursorOfPage: articleList.getIn(['edges', -1, 'cursor']),
-  };
-}
-
-export default connect(mapStateToProps)(Pagination);
