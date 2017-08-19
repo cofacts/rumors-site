@@ -1,67 +1,69 @@
+/* eslint-disable react/display-name */
+// https://github.com/yannickcr/eslint-plugin-react/issues/1200
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Head from 'next/head';
-import Router from 'next/router';
 import { List } from 'immutable';
-import url from 'url';
 import { RadioGroup, Radio } from 'react-radio-group';
 
 import app from '../components/App';
+import ListPage from '../components/ListPage';
 import Pagination from '../components/Pagination';
 import ArticleItem from '../components/ArticleItem';
 import { load, loadAuthFields } from '../redux/articleList';
 
-class Index extends React.Component {
+import { mainStyle } from './index.styles';
+
+class Index extends ListPage {
   componentDidMount() {
     // Browser-only
     this.props.dispatch(loadAuthFields(this.props.query));
   }
 
-  handleOrderByChange = e => {
-    Router.push(
-      `/${url.format({
-        query: {
-          ...this.props.query,
-          orderBy: e.target.value,
-          before: undefined,
-          after: undefined,
-        },
-      })}`
+  renderSearch = () => {
+    const { query: { q } } = this.props;
+    return (
+      <label>
+        Search For:
+        <input
+          type="search"
+          onBlur={this.handleKeywordChange}
+          onKeyUp={this.handleKeywordKeyup}
+          defaultValue={q}
+        />
+      </label>
     );
   };
 
-  handleFilterChange = value => {
-    Router.push(
-      `/${url.format({
-        query: {
-          ...this.props.query,
-          filter: value,
-          before: undefined,
-          after: undefined,
-        },
-      })}`
+  renderOrderBy = () => {
+    const { query: { orderBy } } = this.props;
+    return (
+      <select
+        onChange={this.handleOrderByChange}
+        value={orderBy || 'replyRequestCount'}
+      >
+        <option value="replyRequestCount">Most asked</option>
+        <option value="createdAt">Most recently asked</option>
+        <option value="updatedAt">Latest updated</option>
+      </select>
     );
   };
 
-  handleKeywordChange = e => {
-    const { value } = e.target;
-    Router.push(
-      `/${url.format({
-        query: {
-          ...this.props.query,
-          q: value,
-          before: undefined,
-          after: undefined,
-        },
-      })}`
+  renderFilter = () => {
+    const { query: { filter } } = this.props;
+    return (
+      <RadioGroup
+        onChange={this.handleFilterChange}
+        selectedValue={filter || 'all'}
+        Component="ul"
+      >
+        <li><label><Radio value="all" />All</label></li>
+        <li><label><Radio value="unsolved" />Not replied yet</label></li>
+        <li><label><Radio value="solved" />Replied</label></li>
+      </RadioGroup>
     );
-  };
-
-  handleKeywordKeyup = e => {
-    if (e.which === 13) {
-      return this.handleKeywordChange(e);
-    }
   };
 
   render() {
@@ -83,36 +85,12 @@ class Index extends React.Component {
           <title>文章列表</title>
         </Head>
 
-        <label>
-          Search For:
-          <input
-            type="search"
-            onBlur={this.handleKeywordChange}
-            onKeyUp={this.handleKeywordKeyup}
-            defaultValue={query.q}
-          />
-        </label>
+        {this.renderSearch()}
         <br />
 
         Order By:
-        <select
-          onChange={this.handleOrderByChange}
-          value={query.orderBy || 'replyRequestCount'}
-        >
-          <option value="replyRequestCount">Most asked</option>
-          <option value="createdAt">Most recently asked</option>
-          <option value="updatedAt">Latest updated</option>
-        </select>
-
-        <RadioGroup
-          onChange={this.handleFilterChange}
-          selectedValue={query.filter || 'all'}
-          Component="ul"
-        >
-          <li><label><Radio value="all" />All</label></li>
-          <li><label><Radio value="unsolved" />Not replied yet</label></li>
-          <li><label><Radio value="solved" />Replied</label></li>
-        </RadioGroup>
+        {this.renderOrderBy()}
+        {this.renderFilter()}
 
         <p>{totalCount} articles</p>
         <Pagination query={query} />
@@ -128,15 +106,8 @@ class Index extends React.Component {
         {isLoading ? <p>Loading in background...</p> : ''}
         <Pagination query={query} />
 
+        <style jsx>{mainStyle}</style>
         <style jsx>{`
-          main {
-            padding: 24px;
-          }
-          @media screen and (min-width: 768px) {
-            main {
-              padding: 40px;
-            }
-          }
           .article-list {
             padding: 0;
           }
