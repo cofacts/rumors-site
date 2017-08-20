@@ -54,12 +54,16 @@ class ReplyList extends ListPage {
   };
 
   renderMyReplyOnlyCheckbox() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, query: { mine } } = this.props;
     if (!isLoggedIn) return null;
 
     return (
       <label>
-        <input type="checkbox" onChange={this.handleMyReplyOnlyCheck} />
+        <input
+          type="checkbox"
+          onChange={this.handleMyReplyOnlyCheck}
+          checked={!!mine}
+        />
         只顯示我寫的
       </label>
     );
