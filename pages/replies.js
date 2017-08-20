@@ -167,7 +167,19 @@ function mapStateToProps({ replyList, auth }) {
   };
 }
 
-export default compose(
-  app((dispatch, { query }) => dispatch(load(query))),
-  connect(mapStateToProps)
-)(ReplyList);
+function initFn(dispatch, { query }) {
+  // Load on server-side render only when query.mine is not set.
+  // This makes sure that reply list can be crawled by search engines too, and it can load fast
+  if (query.mine && typeof window === 'undefined') return;
+  return dispatch(load(query));
+}
+
+function bootstrapFn(dispatch, { query }) {
+  // Pick up initial data loading when server-side render skips
+  if (!query.mine) return;
+  return dispatch(load(query));
+}
+
+export default compose(app(initFn, bootstrapFn), connect(mapStateToProps))(
+  ReplyList
+);
