@@ -86,17 +86,37 @@ class Index extends ListPage {
     );
   };
 
-  render() {
+  renderList = () => {
     const {
-      isLoading = false,
       articles = null,
       totalCount,
       authFields,
     } = this.props;
+    return (
+      <div>
+        <p>{totalCount} articles</p>
+        {this.renderPagination()}
+        <div className="article-list">
+          {articles.map(article =>
+            <ArticleItem
+              key={article.get('id')}
+              article={article}
+              requestedForReply={authFields.get(article.get('id'))}
+            />
+          )}
+        </div>
+        {this.renderPagination()}
+        <style jsx>{`
+          .article-list {
+            padding: 0;
+          }
+        `}</style>
+      </div>
+    );
+  };
 
-    if (isLoading && articles === null) {
-      return <div>Loading...</div>;
-    }
+  render() {
+    const { isLoading = false } = this.props;
 
     return (
       <main>
@@ -111,26 +131,10 @@ class Index extends ListPage {
         {this.renderOrderBy()}
         {this.renderFilter()}
 
-        <p>{totalCount} articles</p>
-        {this.renderPagination()}
-        <div className="article-list">
-          {articles.map(article =>
-            <ArticleItem
-              key={article.get('id')}
-              article={article}
-              requestedForReply={authFields.get(article.get('id'))}
-            />
-          )}
-        </div>
-        {isLoading ? <p>Loading in background...</p> : ''}
-        {this.renderPagination()}
+        {isLoading ? <p>Loading...</p> : this.renderList()}
 
         <style jsx>{mainStyle}</style>
-        <style jsx>{`
-          .article-list {
-            padding: 0;
-          }
-        `}</style>
+
       </main>
     );
   }

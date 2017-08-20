@@ -1,6 +1,7 @@
 import { createDuck } from 'redux-duck';
 import { fromJS, List } from 'immutable';
 import gql from '../util/gql';
+import { commonSetState } from '../util/reducer';
 
 const COSTY_FIELD_COOLDOWN = 60 * 1000; // in seconds. query costy fields only 1 time within 60 seconds
 
@@ -10,9 +11,11 @@ const { defineType, createReducer, createAction } = createDuck('replyList');
 //
 
 const LOAD = defineType('LOAD');
+const SET_STATE = defineType('SET_STATE');
 
 // Action creators
 //
+export const setState = createAction(SET_STATE);
 
 let isInCooldown = false;
 let lastStringifiedFilter;
@@ -42,6 +45,7 @@ export const load = ({
     ? [{ _score: 'DESC' }, { [orderByField]: orderByDirection }]
     : [{ [orderByField]: orderByDirection }];
 
+  dispatch(setState({ key: 'isLoading', value: true }));
   return gql`query(
     $filter: ListReplyFilter,
     $orderBy: [ListReplyOrderBy],
@@ -93,6 +97,7 @@ export const load = ({
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
     dispatch(createAction(LOAD)(resp.getIn(['data', 'ListReplies'], List())));
+    dispatch(setState({ key: 'isLoading', value: false }));
   });
 };
 
@@ -100,7 +105,7 @@ export const load = ({
 //
 
 const initialState = fromJS({
-  state: { isLoading: false },
+  state: { isLoading: true },
   edges: null,
   firstCursor: null,
   lastCursor: null,
@@ -109,6 +114,7 @@ const initialState = fromJS({
 
 export default createReducer(
   {
+    [SET_STATE]: commonSetState,
     [LOAD]: (state, { payload }) =>
       state
         .set(

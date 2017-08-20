@@ -4,6 +4,7 @@ import { createDuck } from 'redux-duck';
 import { fromJS } from 'immutable';
 import fetchAPI from '../util/fetchAPI';
 import gql from '../util/gql';
+import { commonSetState } from '../util/reducer';
 
 const { defineType, createAction, createReducer } = createDuck('auth');
 
@@ -67,8 +68,7 @@ const initialState = fromJS({
 
 const reducer = createReducer(
   {
-    [SET_STATE]: (state, { payload: { key, value } }) =>
-      state.setIn(['state', key], value),
+    [SET_STATE]: commonSetState,
     [LOAD]: (state, { payload }) => state.set('user', payload),
     [RESET]: state => state.set('user', initialState.get('user')),
   },

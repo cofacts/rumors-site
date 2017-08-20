@@ -2,6 +2,7 @@ import { createDuck } from 'redux-duck';
 import { fromJS, List, Map } from 'immutable';
 import { waitForAuth } from './auth';
 import gql from '../util/gql';
+import { commonSetState } from '../util/reducer';
 
 const COSTY_FIELD_COOLDOWN = 60 * 1000; // in seconds. query costy fields only 1 time within 60 seconds
 
@@ -12,9 +13,11 @@ const { defineType, createReducer, createAction } = createDuck('articleList');
 
 const LOAD = defineType('LOAD');
 const LOAD_AUTH_FIELDS = defineType('LOAD_AUTH_FIELDS');
+const SET_STATE = defineType('SET_STATE');
 
 // Action creators
 //
+export const setState = createAction(SET_STATE);
 
 let isInCooldown = false;
 let lastStringifiedFilter;
@@ -40,6 +43,7 @@ export const load = ({
     ? [{ _score: 'DESC' }, { [orderBy]: 'DESC' }]
     : [{ [orderBy]: 'DESC' }];
 
+  dispatch(setState({ key: 'isLoading', value: true }));
   return gql`query(
     $filter: ListArticleFilter,
     $orderBy: [ListArticleOrderBy],
@@ -90,6 +94,7 @@ export const load = ({
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
     dispatch(createAction(LOAD)(resp.getIn(['data', 'ListArticles'], List())));
+    dispatch(setState({ key: 'isLoading', value: false }));
   });
 };
 
@@ -152,6 +157,8 @@ const initialState = fromJS({
 
 export default createReducer(
   {
+    [SET_STATE]: commonSetState,
+
     [LOAD]: (state, { payload }) =>
       state
         .set('edges', payload.get('edges'))

@@ -106,12 +106,26 @@ class ReplyList extends ListPage {
     );
   };
 
-  render() {
-    const { isLoading = false, replies = null, totalCount } = this.props;
+  renderList = () => {
+    const { replies = null, totalCount } = this.props;
+    return (
+      <div>
+        <p>{totalCount} replies</p>
+        {this.renderPagination()}
+        <div>
+          <pre>
+            {JSON.stringify(replies, null, '  ')}
+          </pre>
 
-    if (isLoading && replies === null) {
-      return <div>Loading...</div>;
-    }
+        </div>
+        {this.renderPagination()}
+
+      </div>
+    );
+  };
+
+  render() {
+    const { isLoading = false } = this.props;
 
     return (
       <main>
@@ -127,15 +141,7 @@ class ReplyList extends ListPage {
         {this.renderFilter()}
         {this.renderMyReplyOnlyCheckbox()}
 
-        <p>{totalCount} replies</p>
-        {this.renderPagination()}
-        <div>
-          <pre>
-            {JSON.stringify(replies, null, '  ')}
-          </pre>
-
-        </div>
-        {this.renderPagination()}
+        {isLoading ? <p>Loading...</p> : this.renderList()}
 
         <style jsx>{mainStyle}</style>
         <style jsx>{`
