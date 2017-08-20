@@ -120,7 +120,12 @@ export default createReducer(
         .set(
           'edges',
           (payload.get('edges') || List())
-            .map(edge => edge.setIn(['node', 'replyConnectionCount']))
+            .map(edge =>
+              edge.setIn(
+                ['node', 'replyConnectionCount'],
+                (edge.getIn(['node', 'replyConnections']) || List()).size
+              )
+            )
         )
         .set(
           'firstCursor',
