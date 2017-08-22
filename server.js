@@ -23,6 +23,7 @@ app.prepare().then(() => {
   //
 
   router.get('/article/:id', render('/article'));
+  router.get('/reply/:id', render('/reply'));
 
   router.get('*', ctx => {
     handle(ctx.req, ctx.res);
