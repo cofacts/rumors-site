@@ -87,11 +87,7 @@ class Index extends ListPage {
   };
 
   renderList = () => {
-    const {
-      articles = null,
-      totalCount,
-      authFields,
-    } = this.props;
+    const { articles = null, totalCount, authFields } = this.props;
     return (
       <div>
         <p>{totalCount} articles</p>
