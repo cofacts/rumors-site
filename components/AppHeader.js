@@ -8,7 +8,10 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
   return (
     <header className="root">
       <Link href="/"><a className="logo"><h1>真的假的</h1></a></Link>
-
+      <nav>
+        <Link href="/"><a>文章</a></Link>
+        <Link href="/replies"><a>回應</a></Link>
+      </nav>
       <a
         href={EDITOR_FACEBOOK_GROUP}
         target="_blank"
@@ -31,7 +34,16 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           padding: 0 24px;
         }
         .logo {
+          display: none;
+          margin-right: 16px;
+        }
+        nav {
           margin-right: auto;
+        }
+        nav a {
+          display: inline-block;
+          padding: 8px;
+          border-left: 1px dashed #ccc;
         }
         .help {
           padding: 4px 16px;
@@ -51,7 +63,7 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           .root {
             padding: 0 40px;
           }
-          .help, .user-name {
+          .logo, .help, .user-name {
             display: block;
           }
         }
