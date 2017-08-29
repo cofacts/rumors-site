@@ -16,12 +16,12 @@ export default function ReplyItem({ reply, showUser = true }) {
     >
       <a className="item">
         <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
-        <div>
+        <div className="item-content">
           <div className="item-text">
             {showUser ? `${currentVersion.getIn(['user', 'name'], '有人')}：` : ''}
             {currentVersion.get('text')}
           </div>
-          <div>
+          <div className="item-info">
             使用於 {reply.get('replyConnectionCount')} 篇
             {createdAt.isValid()
               ? <span title={createdAt.format('lll')}>
@@ -34,6 +34,14 @@ export default function ReplyItem({ reply, showUser = true }) {
         <style jsx>{`
           .item {
             display: flex;
+          }
+          .item-content {
+            margin-left: 8px;
+            min-width: 0; /* Make inner ellipsis work */
+          }
+          .item-info {
+            font-size: 0.8em;
+            color: rgba(0, 0, 0, .5);
           }
         `}</style>
       </a>
