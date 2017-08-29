@@ -38,7 +38,11 @@ class Index extends ListPage {
   };
 
   renderOrderBy = () => {
-    const { query: { orderBy } } = this.props;
+    const { query: { orderBy, q } } = this.props;
+    if (q) {
+      return <span> Relevance</span>;
+    }
+
     return (
       <select
         onChange={this.handleOrderByChange}
