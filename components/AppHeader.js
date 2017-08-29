@@ -22,8 +22,12 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
       </a>
       {user
         ? <div className="user">
-            <img src={user.get('avatarUrl')} alt="avatar" />
-            <span className="user-name">{user.get('name')}</span>
+            <Link href="/replies?mine=1">
+              <a className="user-link">
+                <img src={user.get('avatarUrl')} alt="avatar" />
+                <span className="user-name">{user.get('name')}</span>
+              </a>
+            </Link>
             <button type="button" onClick={onLogoutClick}>Logout</button>
           </div>
         : <button type="button" onClick={onLoginClick}>Login</button>}
@@ -54,6 +58,10 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
         .user {
           display: flex;
           align-items: center;
+
+        }
+        .user-link {
+          display: flex;
         }
         .user-name {
           display: none;
