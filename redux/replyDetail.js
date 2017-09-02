@@ -35,6 +35,7 @@ export const load = id => dispatch => {
           user {
             name
           }
+          status
           createdAt
         }
       }
@@ -64,7 +65,18 @@ export default createReducer(
       state.setIn(['state', key], value),
 
     [LOAD]: (state, { payload }) => {
-      return state.setIn(['data', 'reply'], payload);
+
+      return state
+        .setIn(['data', 'reply'], payload)
+        .set('currentVersion', payload.getIn(['versions', 0]))
+        .set(
+          'originalArticle',
+          payload
+            .getIn(['replyConnections'])
+            .sortBy(item => item.get('createdAt'))
+            .first()
+            .get('article')
+        );
     },
 
     [RESET]: state => state.set('data', initialState.get('data')),
