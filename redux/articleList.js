@@ -23,8 +23,8 @@ let isInCooldown = false;
 let lastStringifiedFilter;
 export const load = ({
   q,
-  filter = 'all',
-  orderBy = 'replyRequestCount',
+  filter = 'unsolved',
+  orderBy = 'createdAt',
   before,
   after,
 }) => dispatch => {

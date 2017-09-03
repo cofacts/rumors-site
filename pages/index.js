@@ -46,11 +46,10 @@ class Index extends ListPage {
     return (
       <select
         onChange={this.handleOrderByChange}
-        value={orderBy || 'replyRequestCount'}
+        value={orderBy || 'createdAt'}
       >
-        <option value="replyRequestCount">Most asked</option>
         <option value="createdAt">Most recently asked</option>
-        <option value="updatedAt">Latest updated</option>
+        <option value="replyRequestCount">Most asked</option>
       </select>
     );
   };
@@ -60,12 +59,12 @@ class Index extends ListPage {
     return (
       <RadioGroup
         onChange={this.handleFilterChange}
-        selectedValue={filter || 'all'}
+        selectedValue={filter || 'unsolved'}
         Component="ul"
       >
-        <li><label><Radio value="all" />All</label></li>
         <li><label><Radio value="unsolved" />Not replied yet</label></li>
         <li><label><Radio value="solved" />Replied</label></li>
+        <li><label><Radio value="all" />All</label></li>
       </RadioGroup>
     );
   };
