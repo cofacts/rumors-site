@@ -28,8 +28,8 @@ export const load = ({
   before,
   after,
 }) => dispatch => {
-  filter = getFilterObject(filter, q);
-  const stringifiedFilter = JSON.stringify(filter);
+  const filterObject = getFilterObject(filter, q);
+  const stringifiedFilter = JSON.stringify(filterObject);
 
   if (lastStringifiedFilter !== stringifiedFilter) {
     // Invalidate costy field cache when filter changes
@@ -82,7 +82,7 @@ export const load = ({
         `}
     }
   }`({
-    filter,
+    filter: filterObject,
     orderBy: orderByArray,
     before,
     after,
