@@ -48,7 +48,10 @@ class ReplyPage extends React.Component {
       : '查看文章頁面';
 
     return (
-      <Link href={`/article/${originalArticle.get('id')}`}>
+      <Link
+        href={`/article?id=${originalArticle.get('id')}`}
+        as={`/article/${originalArticle.get('id')}`}
+      >
         <a>{prompt} &gt;</a>
       </Link>
     );
