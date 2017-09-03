@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import { USER_REFERENCE } from '../constants/urls';
@@ -13,6 +14,7 @@ export default class ReplyConnection extends React.PureComponent {
     disabled: false,
     onAction() {},
     actionText: '刪除回應',
+    linkToReply: true,
   };
 
   getFeedbackString = () => {
@@ -73,13 +75,26 @@ export default class ReplyConnection extends React.PureComponent {
   };
 
   renderFooter = () => {
-    const { replyConnection, disabled, actionText } = this.props;
+    const { replyConnection, disabled, actionText, linkToReply } = this.props;
     const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
     const createdAt = moment(replyVersion.get('createdAt'));
     const feedbackString = this.getFeedbackString();
+
+    const timeEl = (
+      <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
+    );
+
     return (
       <footer>
-        <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
+        {linkToReply
+          ? <Link
+              href={`/reply?id=${replyConnection.getIn(['reply', 'id'])}`}
+              as={`/reply/${replyConnection.getIn(['reply', 'id'])}`}
+            >
+              <a>{timeEl}</a>
+            </Link>
+          : timeEl}
+
         {feedbackString ? ` ・ ${feedbackString}` : ''}
         {replyConnection.get('canUpdateStatus')
           ? [
