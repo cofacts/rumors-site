@@ -2,7 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { load, loadAuth } from '../redux/replyDetail';
+import {
+  load,
+  loadAuth,
+  updateReplyConnectionStatus,
+} from '../redux/replyDetail';
 import Head from 'next/head';
 import { nl2br } from '../util/text';
 
@@ -12,6 +16,53 @@ import ReplyConnection from '../components/ReplyConnection';
 import { detailStyle } from './article.styles';
 
 class ReplyPage extends React.Component {
+  handleReplyConnectionDelete = () => {
+    const { dispatch, originalReplyConnection, query: { id } } = this.props;
+    return dispatch(
+      updateReplyConnectionStatus(
+        id,
+        originalReplyConnection.get('id'),
+        'DELETED'
+      )
+    );
+  };
+
+  handleReplyConnectionRestore = () => {
+    const { dispatch, originalReplyConnection, query: { id } } = this.props;
+    return dispatch(
+      updateReplyConnectionStatus(
+        id,
+        originalReplyConnection.get('id'),
+        'NORMAL'
+      )
+    );
+  };
+
+  renderReply = () => {
+    const { originalReplyConnection, isReplyLoading } = this.props;
+    const isDeleted = originalReplyConnection.get('status') === 'DELETED';
+
+    return (
+      <section className="section">
+        <h2>本則回應</h2>
+        <ul className="items">
+          <ReplyConnection
+            replyConnection={originalReplyConnection}
+            actionText={isDeleted ? '恢復回應' : '刪除回應'}
+            onAction={
+              isDeleted
+                ? this.handleReplyConnectionRestore
+                : this.handleReplyConnectionDelete
+            }
+            disabled={isReplyLoading}
+          />
+        </ul>
+        {isDeleted ? <p>此回應已被作者刪除。</p> : ''}
+        <style jsx>{detailStyle}</style>
+      </section>
+    );
+  };
+
   render() {
     const { isLoading, reply, originalReplyConnection } = this.props;
     const currentVersion = reply.getIn(['versions', 0]);
@@ -41,12 +92,7 @@ class ReplyPage extends React.Component {
           <div className="message">{nl2br(originalArticle.get('text'))}</div>
         </section>
 
-        <section className="section">
-          <h2>本則回應</h2>
-          <ul className="items">
-            <ReplyConnection replyConnection={originalReplyConnection} />
-          </ul>
-        </section>
+        {this.renderReply()}
 
         <style jsx>{detailStyle}</style>
       </div>
@@ -65,6 +111,8 @@ function bootstrapFn(dispatch, { query: { id } }) {
 function mapStateToProps({ replyDetail }) {
   return {
     isLoading: replyDetail.getIn(['state', 'isLoading']),
+    isReplyLoading: replyDetail.getIn(['state', 'isReplyLoading']),
+
     reply: replyDetail.getIn(['data', 'reply']),
     originalReplyConnection: replyDetail.getIn([
       'data',

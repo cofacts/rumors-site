@@ -1,5 +1,6 @@
 import { createDuck } from 'redux-duck';
 import { fromJS } from 'immutable';
+import NProgress from 'nprogress';
 import { waitForAuth } from './auth';
 import gql from '../util/gql';
 
@@ -43,6 +44,7 @@ export const load = id => dispatch => {
             score
           }
           status
+          canUpdateStatus
           createdAt
         }
       }
@@ -74,13 +76,41 @@ export const loadAuth = id => dispatch => {
     });
 };
 
+export const updateReplyConnectionStatus = (
+  replyId,
+  replyConnectionId,
+  status
+) => dispatch => {
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
+  NProgress.start();
+  return gql`mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum! ) {
+    UpdateReplyConnectionStatus(
+      replyConnectionId: $replyConnectionId
+      status: $status
+    ) {
+      id
+    }
+  }`({ replyConnectionId, status }).then(() => {
+    // FIXME:
+    // Immediate load(replyId) will not get updated reply connection status.
+    // Super wierd.
+    //
+    setTimeout(() => {
+      NProgress.done();
+      dispatch(load(replyId)).then(() => {
+        dispatch(setState({ key: 'isReplyLoading', value: false }));
+      });
+    }, 1000);
+  });
+};
+
 export const reset = () => createAction(RESET);
 
 // Reducer
 //
 
 const initialState = fromJS({
-  state: { isLoading: false, isAuthLoading: false },
+  state: { isLoading: false, isAuthLoading: false, isReplyLoading: false },
   data: {
     // data from server
     reply: null,
