@@ -72,8 +72,15 @@ class ReplyPage extends React.Component {
             disabled={isReplyLoading}
           />
         </ul>
-        {isDeleted ? <p>此回應已被作者刪除。</p> : ''}
+        {isDeleted ? <p className="deleted-prompt">此回應已被作者刪除。</p> : ''}
         <style jsx>{detailStyle}</style>
+        <style jsx>{`
+          .deleted-prompt {
+            font-size: 12px;
+            color: rgba(0, 0, 0, .5);
+            font-style: italic;
+          }
+        `}</style>
       </section>
     );
   };
