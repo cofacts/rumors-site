@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -12,9 +13,38 @@ import { nl2br } from '../util/text';
 
 import app from '../components/App';
 import ReplyConnection from '../components/ReplyConnection';
-import ArticleItem from '../components/ArticleItem';
 
 import { detailStyle } from './article.styles';
+import { listItemStyle } from '../components/ListItem.styles';
+
+function UsedArticleItem({ article, replyConnection }) {
+  const createdAt = moment(replyConnection.get('createdAt'));
+  const otherReplyCount = article.get('replyCount') - 1;
+
+  return (
+    <Link
+      href={`/article?id=${article.get('id')}`}
+      as={`/article/${article.get('id')}`}
+    >
+      <a className="item">
+        <div className="item-text">{article.get('text')}</div>
+        <div className="info">
+          {replyConnection.getIn(['user', 'name'])} 在{' '}
+          <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span> 加的
+          {otherReplyCount ? ` · 另有 ${otherReplyCount} 篇回應` : ''}
+        </div>
+
+        <style jsx>{listItemStyle}</style>
+        <style jsx>{`
+          .info {
+            font-size: 0.8em;
+            color: rgba(0, 0, 0, .5);
+          }
+        `}</style>
+      </a>
+    </Link>
+  );
+}
 
 class ReplyPage extends React.Component {
   handleReplyConnectionDelete = () => {
@@ -74,6 +104,7 @@ class ReplyPage extends React.Component {
                 : this.handleReplyConnectionDelete
             }
             disabled={isReplyLoading}
+            linkToReply={false}
           />
         </ul>
         {isDeleted ? <p className="deleted-prompt">此回應已被作者刪除。</p> : ''}
@@ -99,10 +130,14 @@ class ReplyPage extends React.Component {
 
     return (
       <section className="section">
-        <h2>這則回應也被用在這些文章</h2>
+        <h2>這則回應也被加在這些文章</h2>
         <div>
           {otherReplyConnections.map(conn =>
-            <ArticleItem key={conn.get('id')} article={conn.get('article')} />
+            <UsedArticleItem
+              key={conn.get('id')}
+              article={conn.get('article')}
+              replyConnection={conn}
+            />
           )}
         </div>
         <style jsx>{detailStyle}</style>
