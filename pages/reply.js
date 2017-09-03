@@ -12,6 +12,7 @@ import { nl2br } from '../util/text';
 
 import app from '../components/App';
 import ReplyConnection from '../components/ReplyConnection';
+import ArticleItem from '../components/ArticleItem';
 
 import { detailStyle } from './article.styles';
 
