@@ -24,7 +24,12 @@ function RelatedReplyItem({ reply, articleId, onConnect }) {
         <ExpandableText>{replyVersion.get('text')}</ExpandableText>
       </section>
       <footer>
-        <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
+        <Link
+          href={`/reply?id=${reply.get('id')}`}
+          as={`/reply/${reply.get('id')}`}
+        >
+          <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
+        </Link>
         ・<button type="button" value={reply.get('id')} onClick={onConnect}>
           將這份回應加進此文章的回應
         </button>
