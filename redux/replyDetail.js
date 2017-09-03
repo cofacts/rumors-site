@@ -36,6 +36,7 @@ export const load = id => dispatch => {
           article {
             id
             text
+            replyCount
           }
           user {
             name

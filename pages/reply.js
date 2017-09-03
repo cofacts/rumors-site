@@ -38,6 +38,21 @@ class ReplyPage extends React.Component {
     );
   };
 
+  renderArticleLink = () => {
+    const { originalReplyConnection } = this.props;
+    const originalArticle = originalReplyConnection.get('article');
+
+    const prompt = originalArticle.get('replyCount') > 1
+      ? `查看文章與其他 ${originalArticle.get('replyCount') - 1} 則回覆`
+      : '查看文章頁面';
+
+    return (
+      <Link href={`/article/${originalArticle.get('id')}`}>
+        <a>{prompt} &gt;</a>
+      </Link>
+    );
+  };
+
   renderReply = () => {
     const { originalReplyConnection, isReplyLoading } = this.props;
     const isDeleted = originalReplyConnection.get('status') === 'DELETED';
@@ -85,9 +100,7 @@ class ReplyPage extends React.Component {
         <section className="section">
           <header className="header">
             <h2>訊息原文</h2>
-            <Link href={`/article/${originalArticle.get('id')}`}>
-              <a>查看文章頁面 &gt;</a>
-            </Link>
+            {this.renderArticleLink()}
           </header>
           <div className="message">{nl2br(originalArticle.get('text'))}</div>
         </section>
