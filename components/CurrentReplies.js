@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import { USER_REFERENCE } from '../constants/urls';
@@ -75,12 +76,15 @@ class ReplyItem extends React.PureComponent {
 
   renderFooter = () => {
     const { replyConnection, disabled, actionText } = this.props;
+    const replyId = replyConnection.getIn(['reply', 'id']);
     const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
     const createdAt = moment(replyVersion.get('createdAt'));
     const feedbackString = this.getFeedbackString();
     return (
       <footer>
-        <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
+        <Link href={`/reply?id=${replyId}`} as={`/reply/${replyId}`}>
+          <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
+        </Link>
         {feedbackString ? ` ・ ${feedbackString}` : ''}
         {replyConnection.get('canUpdateStatus')
           ? [

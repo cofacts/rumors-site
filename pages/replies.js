@@ -14,6 +14,7 @@ import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import app from '../components/App';
 import ListPage from '../components/ListPage';
 import Pagination from '../components/Pagination';
+import ReplyItem from '../components/ReplyItem';
 
 import { mainStyle } from './index.styles';
 
@@ -40,7 +41,10 @@ class ReplyList extends ListPage {
   };
 
   renderOrderBy = () => {
-    const { query: { orderBy } } = this.props;
+    const { query: { orderBy, q } } = this.props;
+    if (q) {
+      return <span> Relevance</span>;
+    }
 
     return (
       <select
@@ -111,19 +115,22 @@ class ReplyList extends ListPage {
   };
 
   renderList = () => {
-    const { replies = null, totalCount } = this.props;
+    const { replies = null, totalCount, query: { mine } } = this.props;
     return (
       <div>
         <p>{totalCount} replies</p>
         {this.renderPagination()}
-        <div>
-          <pre>
-            {JSON.stringify(replies, null, '  ')}
-          </pre>
-
+        <div className="reply-list">
+          {replies.map(reply =>
+            <ReplyItem key={reply.get('id')} reply={reply} showUser={!mine} />
+          )}
         </div>
         {this.renderPagination()}
-
+        <style jsx>{`
+          .reply-list {
+            padding: 0;
+          }
+        `}</style>
       </div>
     );
   };
@@ -148,11 +155,6 @@ class ReplyList extends ListPage {
         {isLoading ? <p>Loading...</p> : this.renderList()}
 
         <style jsx>{mainStyle}</style>
-        <style jsx>{`
-          .article-list {
-            padding: 0;
-          }
-        `}</style>
       </main>
     );
   }

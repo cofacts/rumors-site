@@ -1,3 +1,10 @@
+export const TYPE_ICON = {
+  NOT_ARTICLE: '⚠️️',
+  OPINIONATED: '💬',
+  NOT_RUMOR: '⭕',
+  RUMOR: '❌',
+};
+
 export const TYPE_NAME = {
   NOT_ARTICLE: '⚠️️ 不在查證範圍',
   OPINIONATED: '💬 含有個人意見',
