@@ -85,6 +85,27 @@ class ReplyPage extends React.Component {
     );
   };
 
+  renderUsedArticles() {
+    const { reply, originalReplyConnection } = this.props;
+    const otherReplyConnections = reply
+      .get('replyConnections')
+      .filter(conn => conn.get('id') !== originalReplyConnection.get('id'));
+
+    if (!otherReplyConnections.size) return null;
+
+    return (
+      <section className="section">
+        <h2>這則回應也被用在這些文章</h2>
+        <div>
+          {otherReplyConnections.map(conn =>
+            <ArticleItem key={conn.get('id')} article={conn.get('article')} />
+          )}
+        </div>
+        <style jsx>{detailStyle}</style>
+      </section>
+    );
+  }
+
   render() {
     const { isLoading, reply, originalReplyConnection } = this.props;
     const currentVersion = reply.getIn(['versions', 0]);
@@ -113,6 +134,7 @@ class ReplyPage extends React.Component {
         </section>
 
         {this.renderReply()}
+        {this.renderUsedArticles()}
 
         <style jsx>{detailStyle}</style>
       </div>

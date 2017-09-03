@@ -42,14 +42,6 @@ function getRatingString(replyConnections) {
   return resultStrings.join('、');
 }
 
-function RelatedArticleItem({ article }) {
-  return (
-    <li>
-      <ArticleItem article={article} />
-    </li>
-  );
-}
-
 class ArticlePage extends React.Component {
   handleConnect = ({ target: { value: replyId } }) => {
     const { dispatch, query: { id } } = this.props;
@@ -189,14 +181,11 @@ class ArticlePage extends React.Component {
         {relatedArticles.size
           ? <section className="section">
               <h2>你可能也會對這些類似文章有興趣</h2>
-              <ul className="items">
+              <div>
                 {relatedArticles.map(article =>
-                  <RelatedArticleItem
-                    key={article.get('id')}
-                    article={article}
-                  />
+                  <ArticleItem key={article.get('id')} article={article} />
                 )}
-              </ul>
+              </div>
             </section>
           : ''}
 
