@@ -45,7 +45,7 @@ export default class ListPage extends React.Component {
 
   handleKeywordKeyup = e => {
     if (e.which === 13) {
-      return this.handleKeywordChange(e);
+      e.target.blur(); // Triggers onBlur
     }
   };
 }
