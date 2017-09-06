@@ -37,7 +37,9 @@ export default class ListPage extends React.Component {
   };
 
   handleKeywordChange = e => {
+    const { q = '' } = this.props.query;
     const { value } = e.target;
+    if (q === value) return;
     this.goToQuery({
       q: value,
     });
@@ -45,7 +47,7 @@ export default class ListPage extends React.Component {
 
   handleKeywordKeyup = e => {
     if (e.which === 13) {
-      return this.handleKeywordChange(e);
+      e.target.blur(); // Triggers onBlur
     }
   };
 }

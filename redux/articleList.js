@@ -23,13 +23,13 @@ let isInCooldown = false;
 let lastStringifiedFilter;
 export const load = ({
   q,
-  filter = 'all',
-  orderBy = 'replyRequestCount',
+  filter = 'unsolved',
+  orderBy = 'createdAt',
   before,
   after,
 }) => dispatch => {
-  filter = getFilterObject(filter, q);
-  const stringifiedFilter = JSON.stringify(filter);
+  const filterObject = getFilterObject(filter, q);
+  const stringifiedFilter = JSON.stringify(filterObject);
 
   if (lastStringifiedFilter !== stringifiedFilter) {
     // Invalidate costy field cache when filter changes
@@ -82,7 +82,7 @@ export const load = ({
         `}
     }
   }`({
-    filter,
+    filter: filterObject,
     orderBy: orderByArray,
     before,
     after,
@@ -164,15 +164,21 @@ export default createReducer(
         .set('edges', payload.get('edges'))
         .set(
           'firstCursor',
-          payload.getIn(['pageInfo', 'firstCursor']) || state.get('firstCursor')
+          payload.getIn(['pageInfo', 'firstCursor']) === undefined
+            ? state.get('firstCursor')
+            : payload.getIn(['pageInfo', 'firstCursor'])
         )
         .set(
           'lastCursor',
-          payload.getIn(['pageInfo', 'lastCursor']) || state.get('lastCursor')
+          payload.getIn(['pageInfo', 'lastCursor']) === undefined
+            ? state.get('lastCursor')
+            : payload.getIn(['pageInfo', 'lastCursor'])
         )
         .set(
           'totalCount',
-          payload.get('totalCount') || state.get('totalCount')
+          payload.get('totalCount') === undefined
+            ? state.get('totalCount')
+            : payload.get('totalCount')
         ),
     [LOAD_AUTH_FIELDS]: (state, { payload }) =>
       state.set(

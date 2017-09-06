@@ -11,24 +11,24 @@ export default function Pagination({
 }) {
   return (
     <p>
-      {firstCursor === firstCursorOfPage
-        ? ''
-        : <Link
+      {firstCursor && firstCursor !== firstCursorOfPage
+        ? <Link
             href={url.format({
               query: { ...query, before: firstCursorOfPage, after: undefined },
             })}
           >
             <a>Prev</a>
-          </Link>}
-      {lastCursor === lastCursorOfPage
-        ? ''
-        : <Link
+          </Link>
+        : ''}
+      {lastCursor && lastCursor !== lastCursorOfPage
+        ? <Link
             href={url.format({
               query: { ...query, after: lastCursorOfPage, before: undefined },
             })}
           >
             <a>Next</a>
-          </Link>}
+          </Link>
+        : ''}
       <style jsx>{`
         a {
           padding: 8px;
