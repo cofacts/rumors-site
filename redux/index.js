@@ -6,12 +6,14 @@ import thunk from 'redux-thunk';
 import articleList from './articleList';
 import replyList from './replyList';
 import articleDetail from './articleDetail';
+import replyDetail from './replyDetail';
 import auth from './auth';
 
 const reducers = combineReducers({
   articleList,
   replyList,
   articleDetail,
+  replyDetail,
   auth,
 });
 
