@@ -175,6 +175,7 @@ class ArticlePage extends React.Component {
           <RelatedReplies
             onConnect={this.handleConnect}
             relatedReplies={relatedReplies}
+            relatedArticles={relatedArticles}
           />
         </section>
 

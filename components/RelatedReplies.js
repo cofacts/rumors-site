@@ -4,14 +4,18 @@ import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import Link from 'next/link';
 
-function RelatedReplyItem({ reply, articleId, onConnect }) {
+function RelatedReplyItem({ reply, articleId, articleText, onConnect }) {
   const replyVersion = reply.getIn(['versions', 0]);
   const createdAt = moment(replyVersion.get('createdAt'));
+  const slicedArticleText = articleText.slice(0, 100);
+  const articleTooltip = slicedArticleText === articleText
+    ? articleText
+    : `${slicedArticleText}...`;
   return (
     <li className="root">
       <header className="section">
         <Link href={`/article?id=${articleId}`} as={`/article/${articleId}`}>
-          <a>
+          <a title={articleTooltip}>
             其他文章
           </a>
         </Link>
@@ -60,7 +64,11 @@ function RelatedReplyItem({ reply, articleId, onConnect }) {
   );
 }
 
-export default function RelatedReplies({ relatedReplies, onConnect }) {
+export default function RelatedReplies({
+  relatedReplies,
+  relatedArticles,
+  onConnect,
+}) {
   if (!relatedReplies.size) {
     return <p>目前沒有相關的回應</p>;
   }
@@ -72,6 +80,9 @@ export default function RelatedReplies({ relatedReplies, onConnect }) {
           key={`${reply.get('id')}-${reply.get('articleId')}`}
           reply={reply}
           articleId={reply.get('articleId')}
+          articleText={relatedArticles
+            .find(article => article.get('id') === reply.get('articleId'))
+            .get('text', '')}
           onConnect={onConnect}
         />
       )}
