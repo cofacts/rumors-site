@@ -30,8 +30,8 @@ function RelatedReplyItem({
         ：<strong title={TYPE_DESC[replyVersion.get('type')]}>
           {TYPE_NAME[replyVersion.get('type')]}
         </strong>
-        關聯度
-        ：<i>{similarityPercentage}%</i>
+        （關聯度
+        ：<i>{similarityPercentage}%</i>）
       </header>
       <section className="section">
         <ExpandableText>{replyVersion.get('text')}</ExpandableText>
