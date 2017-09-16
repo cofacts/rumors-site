@@ -2,11 +2,13 @@
 //
 
 const Koa = require('koa');
-const Router = require('koa-router');
 const next = require('next');
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' });
 const handle = app.getRequestHandler();
+
+const routes = require('./routes')
+const handler = routes.getRequestHandler(app)
 
 // viewPath: mapped client-side route
 //
@@ -17,30 +19,22 @@ const render = viewPath => ctx => {
 
 app.prepare().then(() => {
   const server = new Koa();
-  const router = new Router();
 
   // Server-side routing
   //
 
-  router.get('/article/:id', render('/article'));
-  router.get('/reply/:id', render('/reply'));
-
-  router.get('*', ctx => {
-    handle(ctx.req, ctx.res);
-    ctx.respond = false;
-  });
-
   /* Required for hot-reload to work. */
   server.use(async (ctx, next) => {
+    ctx.respond = false
     ctx.res.statusCode = 200;
+    handler(ctx.req, ctx.res)
     await next();
   });
 
-  server.use(router.routes());
-  server.use(router.allowedMethods());
-
   const port = process.env.PORT || 3000;
-  server.listen(port, () => {
-    console.log('Listening port', port); // eslint-disable-line
+  server.listen(port, (err) => {
+    if (err) throw err
+      console.log('Listening port', port); // eslint-disable-line
   });
+  
 });
