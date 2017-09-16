@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import moment from 'moment';
 import Head from 'next/head';
+import stringSimilarity from 'string-similarity';
 import { nl2br } from '../util/text';
 
 import app from '../components/App';
@@ -128,6 +129,10 @@ class ArticlePage extends React.Component {
 
     const structuredData = this.getStructuredData();
 
+    const articleText = article.get('text', '');
+    const getArticleSimilarity = relatedArticleText =>
+      stringSimilarity.compareTwoStrings(articleText, relatedArticleText);
+
     return (
       <div className="root">
         <Head>
@@ -176,6 +181,7 @@ class ArticlePage extends React.Component {
             onConnect={this.handleConnect}
             relatedReplies={relatedReplies}
             relatedArticles={relatedArticles}
+            getArticleSimilarity={getArticleSimilarity}
           />
         </section>
 
