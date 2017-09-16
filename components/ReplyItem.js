@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '../routes';
 import moment from 'moment';
 import { listItemStyle } from './ListItem.styles';
 import { TYPE_ICON, TYPE_NAME } from '../constants/replyType';
@@ -10,10 +10,7 @@ export default function ReplyItem({ reply, showUser = true }) {
   const createdAt = moment(currentVersion.get('createdAt'));
 
   return (
-    <Link
-      href={`/reply?id=${reply.get('id')}`}
-      as={`/reply/${reply.get('id')}`}
-    >
+    <Link route='reply' params={{id: reply.get('id')}}>
       <a className="item">
         <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
         <div className="item-content">

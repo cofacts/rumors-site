@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '../routes';
 import url from 'url';
 
 export default function Pagination({
@@ -13,7 +13,7 @@ export default function Pagination({
     <p>
       {firstCursor && firstCursor !== firstCursorOfPage
         ? <Link
-            href={url.format({
+            route={url.format({
               query: { ...query, before: firstCursorOfPage, after: undefined },
             })}
           >
@@ -22,7 +22,7 @@ export default function Pagination({
         : ''}
       {lastCursor && lastCursor !== lastCursorOfPage
         ? <Link
-            href={url.format({
+            route={url.format({
               query: { ...query, after: lastCursorOfPage, before: undefined },
             })}
           >

@@ -2,7 +2,7 @@ import React from 'react';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import moment from 'moment';
 import ExpandableText from './ExpandableText';
-import Link from 'next/link';
+import { Link } from '../routes';
 
 function RelatedReplyItem({
   reply,
@@ -21,7 +21,7 @@ function RelatedReplyItem({
   return (
     <li className="root">
       <header className="section">
-        <Link href={`/article?id=${articleId}`} as={`/article/${articleId}`}>
+        <Link route='article' params={{id: articleId}}>
           <a title={articleTooltip}>
             其他文章
           </a>
@@ -37,10 +37,7 @@ function RelatedReplyItem({
         <ExpandableText>{replyVersion.get('text')}</ExpandableText>
       </section>
       <footer>
-        <Link
-          href={`/reply?id=${reply.get('id')}`}
-          as={`/reply/${reply.get('id')}`}
-        >
+        <Link route='reply' params={{id: reply.get('id')}}>
           <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
         </Link>
         ・<button type="button" value={reply.get('id')} onClick={onConnect}>

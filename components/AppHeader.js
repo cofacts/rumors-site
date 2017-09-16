@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { EDITOR_FACEBOOK_GROUP } from '../constants/urls';
-import Link from 'next/link';
+import { Link } from '../routes';
 import { showDialog, logout } from '../redux/auth';
 
 function AppHeader({ user, onLoginClick, onLogoutClick }) {
   return (
     <header className="root">
-      <Link href="/"><a className="logo"><h1>真的假的</h1></a></Link>
+      <Link route="home"><a className="logo"><h1>真的假的</h1></a></Link>
       <nav>
-        <Link href="/"><a>文章</a></Link>
-        <Link href="/replies"><a>回應</a></Link>
+        <Link route="home"><a>文章</a></Link>
+        <Link route="replies"><a>回應</a></Link>
       </nav>
       <a
         href={EDITOR_FACEBOOK_GROUP}
@@ -22,7 +22,7 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
       </a>
       {user
         ? <div className="user">
-            <Link href="/replies?mine=1">
+            <Link route="/replies?mine=1">
               <a className="user-link">
                 <img src={user.get('avatarUrl')} alt="avatar" />
                 <span className="user-name">{user.get('name')}</span>
