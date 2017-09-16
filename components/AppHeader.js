@@ -58,7 +58,6 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
         .user {
           display: flex;
           align-items: center;
-
         }
         .user-link {
           display: flex;

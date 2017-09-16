@@ -4,14 +4,25 @@ import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import Link from 'next/link';
 
-function RelatedReplyItem({ reply, articleId, onConnect }) {
+function RelatedReplyItem({
+  reply,
+  articleId,
+  articleText,
+  similarity,
+  onConnect,
+}) {
   const replyVersion = reply.getIn(['versions', 0]);
   const createdAt = moment(replyVersion.get('createdAt'));
+  const slicedArticleText = articleText.slice(0, 100);
+  const articleTooltip = slicedArticleText === articleText
+    ? articleText
+    : `${slicedArticleText}...`;
+  const similarityPercentage = Math.round(similarity * 100);
   return (
     <li className="root">
       <header className="section">
         <Link href={`/article?id=${articleId}`} as={`/article/${articleId}`}>
-          <a>
+          <a title={articleTooltip}>
             其他文章
           </a>
         </Link>
@@ -19,6 +30,8 @@ function RelatedReplyItem({ reply, articleId, onConnect }) {
         ：<strong title={TYPE_DESC[replyVersion.get('type')]}>
           {TYPE_NAME[replyVersion.get('type')]}
         </strong>
+        關聯度
+        ：<i>{similarityPercentage}%</i>
       </header>
       <section className="section">
         <ExpandableText>{replyVersion.get('text')}</ExpandableText>
@@ -60,21 +73,34 @@ function RelatedReplyItem({ reply, articleId, onConnect }) {
   );
 }
 
-export default function RelatedReplies({ relatedReplies, onConnect }) {
+export default function RelatedReplies({
+  relatedReplies,
+  relatedArticles,
+  getArticleSimilarity,
+  onConnect,
+}) {
   if (!relatedReplies.size) {
     return <p>目前沒有相關的回應</p>;
   }
 
   return (
     <ul className="items">
-      {relatedReplies.map(reply =>
-        <RelatedReplyItem
-          key={`${reply.get('id')}-${reply.get('articleId')}`}
-          reply={reply}
-          articleId={reply.get('articleId')}
-          onConnect={onConnect}
-        />
-      )}
+      {relatedReplies.map(reply => {
+        const articleText = relatedArticles
+          .find(article => article.get('id') === reply.get('articleId'))
+          .get('text', '');
+        const similarity = getArticleSimilarity(articleText);
+        return (
+          <RelatedReplyItem
+            key={`${reply.get('id')}-${reply.get('articleId')}`}
+            reply={reply}
+            articleId={reply.get('articleId')}
+            articleText={articleText}
+            similarity={similarity}
+            onConnect={onConnect}
+          />
+        );
+      })}
       <style jsx>{`
         .items {
           list-style-type: none;

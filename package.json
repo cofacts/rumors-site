@@ -43,7 +43,8 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-duck": "^1.0.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "string-similarity": "^1.2.0"
   },
   "devDependencies": {
     "autotrack": "^2.4.1",
