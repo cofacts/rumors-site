@@ -10,7 +10,7 @@ export default function ReplyItem({ reply, showUser = true }) {
   const createdAt = moment(currentVersion.get('createdAt'));
 
   return (
-    <Link route='reply' params={{id: reply.get('id')}}>
+    <Link route="reply" params={{ id: reply.get('id') }}>
       <a className="item">
         <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
         <div className="item-content">

@@ -87,7 +87,10 @@ export default class ReplyConnection extends React.PureComponent {
     return (
       <footer>
         {linkToReply
-          ? <Link route='reply' params={{id: replyConnection.getIn(['reply', 'id'])}}>
+          ? <Link
+              route="reply"
+              params={{ id: replyConnection.getIn(['reply', 'id']) }}
+            >
               <a>{timeEl}</a>
             </Link>
           : timeEl}

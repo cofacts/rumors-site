@@ -22,7 +22,7 @@ function UsedArticleItem({ article, replyConnection }) {
   const otherReplyCount = article.get('replyCount') - 1;
 
   return (
-    <Link route='article' params={{id: article.get('id')}}>
+    <Link route="article" params={{ id: article.get('id') }}>
       <a className="item">
         <div className="item-text">{article.get('text')}</div>
         <div className="info">
@@ -75,7 +75,7 @@ class ReplyPage extends React.Component {
       : '查看文章頁面';
 
     return (
-      <Link route='article' params={{id: article.get('id')}}>
+      <Link route="article" params={{ id: originalArticle.get('id') }}>
 
         <a>{prompt} &gt;</a>
       </Link>

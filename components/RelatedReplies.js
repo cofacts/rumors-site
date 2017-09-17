@@ -21,7 +21,7 @@ function RelatedReplyItem({
   return (
     <li className="root">
       <header className="section">
-        <Link route='article' params={{id: articleId}}>
+        <Link route="article" params={{ id: articleId }}>
           <a title={articleTooltip}>
             其他文章
           </a>
@@ -37,7 +37,7 @@ function RelatedReplyItem({
         <ExpandableText>{replyVersion.get('text')}</ExpandableText>
       </section>
       <footer>
-        <Link route='reply' params={{id: reply.get('id')}}>
+        <Link route="reply" params={{ id: reply.get('id') }}>
           <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
         </Link>
         ・<button type="button" value={reply.get('id')} onClick={onConnect}>
