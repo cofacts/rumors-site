@@ -1,4 +1,7 @@
 # rumors-site
+
+[![Build Status](https://travis-ci.org/cofacts/rumors-site.svg?branch=master)](https://travis-ci.org/cofacts/rumors-site)
+
 Rumors list / creation UI, with server-side rendering
 
 ## Development
