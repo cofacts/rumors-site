@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '../routes';
 import { Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import { USER_REFERENCE } from '../constants/urls';
@@ -88,8 +88,8 @@ export default class ReplyConnection extends React.PureComponent {
       <footer>
         {linkToReply
           ? <Link
-              href={`/reply?id=${replyConnection.getIn(['reply', 'id'])}`}
-              as={`/reply/${replyConnection.getIn(['reply', 'id'])}`}
+              route="reply"
+              params={{ id: replyConnection.getIn(['reply', 'id']) }}
             >
               <a>{timeEl}</a>
             </Link>
