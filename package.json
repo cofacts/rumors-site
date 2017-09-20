@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "babel-node server",
     "lint": "eslint --fix .",
+    "lint:check": "eslint .",
     "build": "docker build -t mrorz/rumors-site:latest .",
     "build:next": "next build",
     "build:server": "babel server.js -o server.dist.js",
