@@ -1,11 +1,45 @@
 import React from 'react';
 
-export function shortenUrl(s, maxLength) {
+/**
+ * Traverses elem tree for strings, returns callback(string)
+ * @param {*} elem
+ * @param {Function} callback
+ */
+function traverseForStrings(elem, callback) {
+  switch (true) {
+    case typeof elem === 'string':
+      return callback(elem);
+    case elem instanceof Array: {
+      return elem.map(el => traverseForStrings(el, callback));
+    }
+    case React.isValidElement(elem): {
+      const children = React.Children.toArray(elem.props.children);
+      const newChildren = children.map(childElem =>
+        traverseForStrings(childElem, callback)
+      );
+
+      // No need to clone element if new children is identical with the original
+      //
+      if (
+        children.length === newChildren.length &&
+        children.every((child, idx) => child === newChildren[idx])
+      ) {
+        return elem;
+      }
+
+      return React.cloneElement(elem, {}, newChildren);
+    }
+    default:
+      return null;
+  }
+}
+
+function shortenUrl(s, maxLength) {
   try {
     s = decodeURIComponent(s);
   } catch (e) {
     // Probably malformed URI components.
-    // Do nothing, just use original s
+    // Do nothing, just use original string
   }
   return s.length <= maxLength
     ? s
@@ -13,16 +47,31 @@ export function shortenUrl(s, maxLength) {
 }
 
 const urlRegExp = /(https?:\/\/\S+)/;
-export function linkify(str, maxLength = 80) {
-  if (!str) return '';
-  return str
-    .split(urlRegExp)
-    .map(
+
+/**
+ * Wrap <a> around hyperlinks inside a react element or string.
+ *
+ * @param {*} elem React element, string, array of string & react elements
+ * @param {<maxLength: Number, blank: Boolean>} options
+ */
+export function linkify(elem, { maxLength = 80, props = {} } = {}) {
+  return traverseForStrings(elem, str => {
+    if (!str) return null;
+    const tokenized = str.split(urlRegExp).map(
       (s, i) =>
         s.match(urlRegExp)
-          ? <a key={`link${i}`} href={s}>{shortenUrl(s, maxLength)}</a>
+          ? <a key={`link${i}`} href={s} {...props}>
+              {shortenUrl(s, maxLength)}
+            </a>
           : s
     );
+
+    // If the tokenized contains only string, join into one single string.
+    //
+    return tokenized.every(token => typeof token === 'string')
+      ? tokenized.join()
+      : tokenized;
+  });
 }
 
 const newLineRegExp = /(\r\n|\r|\n)/g;
