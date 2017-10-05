@@ -46,6 +46,12 @@ function shortenUrl(s, maxLength) {
     : `${s.slice(0, maxLength / 2)}⋯${s.slice(-maxLength / 2)}`;
 }
 
+function flatternPureStrings(tokens) {
+  return tokens.every(token => typeof token === 'string')
+    ? tokens.join()
+    : tokens;
+}
+
 const urlRegExp = /(https?:\/\/\S+)/;
 
 /**
@@ -56,7 +62,8 @@ const urlRegExp = /(https?:\/\/\S+)/;
  */
 export function linkify(elem, { maxLength = 80, props = {} } = {}) {
   return traverseForStrings(elem, str => {
-    if (!str) return null;
+    if (!str) return str;
+
     const tokenized = str.split(urlRegExp).map(
       (s, i) =>
         s.match(urlRegExp)
@@ -66,20 +73,40 @@ export function linkify(elem, { maxLength = 80, props = {} } = {}) {
           : s
     );
 
-    // If the tokenized contains only string, join into one single string.
-    //
-    return tokenized.every(token => typeof token === 'string')
-      ? tokenized.join()
-      : tokenized;
+    return flatternPureStrings(tokenized);
   });
 }
 
-const newLineRegExp = /(\r\n|\r|\n)/g;
-export function nl2br(text = '') {
-  return text
-    .split(newLineRegExp)
-    .map(
-      (line, idx) =>
-        line.match(newLineRegExp) ? <br key={`br${idx}`} /> : linkify(line)
-    );
+const newLinePattern = '(\r\n|\r|\n)';
+// Spaces around new line pattern should be safe to trim, because we are placing <br>
+// on the newLinePattern.
+const newLineRegExp = RegExp(` *${newLinePattern} *`, 'g');
+const leadingAndTrailingNewLineRegExp = RegExp(
+  `^ *${newLinePattern}+ *| *${newLinePattern}+ *$`,
+  'g'
+);
+
+/**
+ * Place <br> for each line break.
+ * Automatically trims away leading & trailing line breaks.
+ *
+ * @param {*} elem React element, string, array of string & react elements
+ */
+export function nl2br(elem) {
+  return traverseForStrings(elem, str => {
+    if (!str) return str;
+
+    const tokenized = str
+      .replace(leadingAndTrailingNewLineRegExp, '')
+      .split(newLineRegExp)
+      .filter(token => token !== '') // Filter out empty strings
+      .map(
+        (line, idx) =>
+          line.match(newLineRegExp) ? <br key={`br${idx}`} /> : line
+      );
+
+    // If the tokenized contains only string, join into one single string.
+    //
+    return flatternPureStrings(tokenized);
+  });
 }

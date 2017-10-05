@@ -70,4 +70,49 @@ describe('text', () => {
       ).toMatchSnapshot();
     });
   });
+
+  describe('nl2br', () => {
+    it('does nothing on strings, arrays and elements without line breaks', () => {
+      expect(nl2br('foo')).toBe('foo');
+
+      const singleLevelElem = <p>foo</p>;
+      expect(nl2br(singleLevelElem)).toBe(singleLevelElem);
+
+      const nestedElem = <p>foo <span> bar </span> foo2</p>;
+      expect(nl2br(nestedElem)).toBe(nestedElem);
+
+      const array = ['foo', 'bar', <span key="elem">lala</span>];
+      expect(nl2br(array)).toEqual(array);
+    });
+
+    it('inserts <br> on line breaks in strings, with ending <br>s trimmed', () => {
+      expect(nl2br('Foo\nBar')).toMatchSnapshot();
+
+      expect(
+        nl2br(`   \n
+
+          This should be first line with empty next line
+
+          This should be second line with no <br> afterwards   \n
+
+        `)
+      ).toMatchSnapshot();
+    });
+
+    it('inserts <br> on line breaks within elements', () => {
+      expect(
+        nl2br(
+          <p>
+            {`   \n
+
+              This should be first line
+
+              This should be second line with no <br> afterwards   \n
+
+            `}
+          </p>
+        )
+      ).toMatchSnapshot();
+    });
+  });
 });

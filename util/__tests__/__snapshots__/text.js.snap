@@ -99,3 +99,29 @@ Array [
   "",
 ]
 `;
+
+exports[`text nl2br inserts <br> on line breaks in strings, with ending <br>s trimmed 1`] = `
+Array [
+  "Foo",
+  <br />,
+  "Bar",
+]
+`;
+
+exports[`text nl2br inserts <br> on line breaks in strings, with ending <br>s trimmed 2`] = `
+Array [
+  "This should be first line with empty next line",
+  <br />,
+  <br />,
+  "This should be second line with no <br> afterwards",
+]
+`;
+
+exports[`text nl2br inserts <br> on line breaks within elements 1`] = `
+<p>
+  This should be first line
+  <br />
+  <br />
+  This should be second line with no &lt;br&gt; afterwards
+</p>
+`;
