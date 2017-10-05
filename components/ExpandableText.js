@@ -1,5 +1,5 @@
 import React from 'react';
-import { nl2br } from '../util/text';
+import { nl2br, linkify } from '../util/text';
 
 export default class ExpandableText extends React.Component {
   static defaultProps = {
@@ -26,7 +26,7 @@ export default class ExpandableText extends React.Component {
   render() {
     const { children, lines } = this.props;
     const { isExpanded } = this.state;
-    const sentences = nl2br(children);
+    const sentences = nl2br(linkify(children));
 
     if (sentences.length <= lines) {
       return (
