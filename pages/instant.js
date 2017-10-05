@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import gql from '../util/gql';
-import style from '../components/App.css';
+import style from '../components/App/App.css';
 import querystring from 'querystring';
 
 const POLLING_INTERVAL = 5000;
@@ -234,14 +234,14 @@ class FullScreenResizer extends React.PureComponent {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-
             transition: opacity .25s;
           }
           .hidden {
             opacity: 0;
           }
           .scaler {
-            height: 768px; /* Fixed as in design mockup */
+            height: 768px;
+            /* Fixed as in design mockup */
             padding: 0 44px;
           }
         `}</style>
