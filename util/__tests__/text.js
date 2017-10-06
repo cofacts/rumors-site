@@ -1,5 +1,5 @@
 import React from 'react';
-import { linkify, nl2br } from '../text';
+import { linkify, nl2br, truncate } from '../text';
 
 describe('text', () => {
   describe('linkify', () => {
@@ -116,6 +116,46 @@ describe('text', () => {
           '\n15少年集體性侵驢子　全染上狂犬病',
         ])
       ).toMatchSnapshot();
+    });
+  });
+
+  describe('truncate', () => {
+    it('does nothing if wordCount is infinity', () => {
+      expect(truncate('12345')).toBe('12345');
+
+      const singleLevelElem = <p>This is not truncated</p>;
+      expect(singleLevelElem).toBe(singleLevelElem);
+    });
+
+    it('truncates strings', () => {
+      const moreElem = <button key="btn">...more</button>;
+
+      expect(truncate('12345', { moreElem, wordCount: 3 })).toEqual([
+        '123',
+        moreElem,
+      ]);
+    });
+
+    it('truncates nested DOM', () => {
+      const moreElem = <button key="btn">...more</button>;
+      const inputElem = (
+        <div>
+          12
+          <p>
+            34
+            <a href="">56</a>
+            78
+            <a href="">90</a>
+            12
+          </p>
+          34
+        </div>
+      );
+
+      expect(truncate(inputElem, { moreElem, wordCount: 3 })).toMatchSnapshot();
+      expect(truncate(inputElem, { moreElem, wordCount: 5 })).toMatchSnapshot();
+      expect(truncate(inputElem, { moreElem, wordCount: 7 })).toMatchSnapshot();
+      expect(truncate(inputElem, { moreElem, wordCount: 9 })).toMatchSnapshot();
     });
   });
 });

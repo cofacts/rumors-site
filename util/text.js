@@ -1,5 +1,25 @@
 import React from 'react';
 
+const BREAK = { $$BREAK: true };
+
+/**
+ * Invokes traverseForStrings for each item in elems.
+ * When `BREAK` is received, break traversal immediately.
+ *
+ * @param {*} elem Array of elements to traverse
+ * @param {Function} callback passed to traverseForStrings()
+ */
+function traverseElems(elems, callback) {
+  const result = [];
+  for (let i = 0; i < elems.length; i += 1) {
+    const returnValue = traverseForStrings(elems[i], callback);
+    if (returnValue === BREAK) break;
+    result.push(returnValue);
+  }
+
+  return result;
+}
+
 /**
  * Traverses elem tree for strings, returns callback(string)
  * @param {*} elem
@@ -9,14 +29,13 @@ function traverseForStrings(elem, callback) {
   switch (true) {
     case typeof elem === 'string':
       return callback(elem);
-    case elem instanceof Array: {
-      return elem.map(el => traverseForStrings(el, callback));
-    }
+
+    case elem instanceof Array:
+      return traverseElems(elem, callback);
+
     case React.isValidElement(elem): {
       const children = React.Children.toArray(elem.props.children);
-      const newChildren = children.map(childElem =>
-        traverseForStrings(childElem, callback)
-      );
+      const newChildren = traverseElems(children, callback);
 
       // No need to clone element if new children is identical with the original
       //
@@ -104,4 +123,37 @@ export function nl2br(elem) {
     //
     return flatternPureStrings(tokenized);
   });
+}
+
+/**
+ * Truncates the given elem to the specified wordCount.
+ * When truncated, appends moreElem to the end of the string.
+ *
+ * @param {*} elem React element, string, array of string & react elements
+ * @param {<wordCount: Number, moreElem: ReactElement>} options
+ */
+export function truncate(elem, { wordCount = Infinity, moreElem = null } = {}) {
+  let currentWordCount = 0;
+  const result = traverseForStrings(elem, str => {
+    if (currentWordCount >= wordCount) return BREAK;
+
+    currentWordCount += str.length;
+    const exceededCount = currentWordCount - wordCount;
+
+    return exceededCount <= 0 ? str : str.slice(0, -exceededCount);
+  });
+
+  switch (true) {
+    // Not exceeding wordCount, just return the original element
+    case currentWordCount <= wordCount:
+      return elem;
+
+    // If the result is an array, append moreElem
+    case result instanceof Array:
+      return result.concat(moreElem);
+
+    // Others, including result being a string or React Element.
+    default:
+      return [result, moreElem];
+  }
 }

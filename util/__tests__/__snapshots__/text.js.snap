@@ -139,3 +139,87 @@ Array [
   ],
 ]
 `;
+
+exports[`text truncate truncates nested DOM 1`] = `
+Array [
+  <div>
+    12
+    <p>
+      3
+      <a
+        href=""
+      />
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
+
+exports[`text truncate truncates nested DOM 2`] = `
+Array [
+  <div>
+    12
+    <p>
+      34
+      <a
+        href=""
+      >
+        5
+      </a>
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
+
+exports[`text truncate truncates nested DOM 3`] = `
+Array [
+  <div>
+    12
+    <p>
+      34
+      <a
+        href=""
+      >
+        56
+      </a>
+      7
+      <a
+        href=""
+      />
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
+
+exports[`text truncate truncates nested DOM 4`] = `
+Array [
+  <div>
+    12
+    <p>
+      34
+      <a
+        href=""
+      >
+        56
+      </a>
+      78
+      <a
+        href=""
+      >
+        9
+      </a>
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
