@@ -125,3 +125,17 @@ exports[`text nl2br inserts <br> on line breaks within elements 1`] = `
   This should be second line with no &lt;br&gt; afterwards
 </p>
 `;
+
+exports[`text nl2br preserves line ends on the end of tag 1`] = `
+Array [
+  <a
+    href=""
+  >
+    http://www.appledaily.com.tw/realtimenews/article/new/20170817/1184132/
+  </a>,
+  Array [
+    <br />,
+    "15少年集體性侵驢子　全染上狂犬病",
+  ],
+]
+`;

@@ -81,10 +81,6 @@ const newLinePattern = '(\r\n|\r|\n)';
 // Spaces around new line pattern should be safe to trim, because we are placing <br>
 // on the newLinePattern.
 const newLineRegExp = RegExp(` *${newLinePattern} *`, 'g');
-const leadingAndTrailingNewLineRegExp = RegExp(
-  `^ *${newLinePattern}+ *| *${newLinePattern}+ *$`,
-  'g'
-);
 
 /**
  * Place <br> for each line break.
@@ -97,7 +93,6 @@ export function nl2br(elem) {
     if (!str) return str;
 
     const tokenized = str
-      .replace(leadingAndTrailingNewLineRegExp, '')
       .split(newLineRegExp)
       .filter(token => token !== '') // Filter out empty strings
       .map(

@@ -89,13 +89,9 @@ describe('text', () => {
       expect(nl2br('Foo\nBar')).toMatchSnapshot();
 
       expect(
-        nl2br(`   \n
+        nl2br(`This should be first line with empty next line
 
-          This should be first line with empty next line
-
-          This should be second line with no <br> afterwards   \n
-
-        `)
+          This should be second line with no <br> afterwards`)
       ).toMatchSnapshot();
     });
 
@@ -103,15 +99,22 @@ describe('text', () => {
       expect(
         nl2br(
           <p>
-            {`   \n
+            {`This should be first line
 
-              This should be first line
-
-              This should be second line with no <br> afterwards   \n
-
-            `}
+              This should be second line with no <br> afterwards`}
           </p>
         )
+      ).toMatchSnapshot();
+    });
+
+    it('preserves line ends on the end of tag', () => {
+      expect(
+        nl2br([
+          <a href="" key="link">
+            http://www.appledaily.com.tw/realtimenews/article/new/20170817/1184132/
+          </a>,
+          '\n15少年集體性侵驢子　全染上狂犬病',
+        ])
       ).toMatchSnapshot();
     });
   });
