@@ -1,48 +1,29 @@
 import React from 'react';
-import { nl2br, linkify } from '../util/text';
+import { truncate } from '../util/text';
 
 export default class ExpandableText extends React.Component {
   static defaultProps = {
     children: '',
-    lines: 3,
+    wordCount: 140,
   };
 
-  constructor({ children }) {
-    super();
-
-    if (typeof children !== 'string') {
-      throw new Error('<ExpandableText> only accepts string children.');
-    }
-
-    this.state = {
-      isExpanded: false,
-    };
-  }
+  state = {
+    isExpanded: false,
+  };
 
   toggleExapnd = () => {
-    this.setState({ isExpanded: !this.state.isExpanded });
+    this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }));
   };
 
-  render() {
-    const { children, lines } = this.props;
+  renderToggleButton = () => {
     const { isExpanded } = this.state;
-    const sentences = nl2br(linkify(children));
-
-    if (sentences.length <= lines) {
-      return (
-        <div>
-          {sentences}
-        </div>
-      );
-    }
-
     return (
-      <div>
-        {isExpanded ? sentences : sentences.slice(0, lines)}
-
-        <button className="more" onClick={this.toggleExapnd}>
-          {isExpanded ? '隱藏全文' : '閱讀更多'}
-        </button>
+      <button
+        key="expandable-text-more-button"
+        className="more"
+        onClick={this.toggleExapnd}
+      >
+        {isExpanded ? '隱藏全文' : '閱讀更多'}
         <style jsx>{`
           .more {
             border: 0;
@@ -50,6 +31,31 @@ export default class ExpandableText extends React.Component {
             text-decoration: underline;
           }
         `}</style>
+      </button>
+    );
+  };
+
+  render() {
+    const { children, wordCount } = this.props;
+    const { isExpanded } = this.state;
+
+    // Note: if "children" is short enough, this.state.isExpanded should never be true.
+    //
+    if (isExpanded) {
+      return (
+        <div>
+          {children}
+          {this.renderToggleButton()}
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        {truncate(children, {
+          wordCount,
+          moreElem: this.renderToggleButton(),
+        })}
       </div>
     );
   }

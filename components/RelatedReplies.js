@@ -2,6 +2,7 @@ import React from 'react';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import moment from 'moment';
 import ExpandableText from './ExpandableText';
+import { linkify, nl2br } from '../util/text';
 import { Link } from '../routes';
 
 function RelatedReplyItem({
@@ -34,7 +35,9 @@ function RelatedReplyItem({
         ：<i>{similarityPercentage}%</i>）
       </header>
       <section className="section">
-        <ExpandableText>{replyVersion.get('text')}</ExpandableText>
+        <ExpandableText>
+          {nl2br(linkify(replyVersion.get('text')))}
+        </ExpandableText>
       </section>
       <footer>
         <Link route="reply" params={{ id: reply.get('id') }}>
