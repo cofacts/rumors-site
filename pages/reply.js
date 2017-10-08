@@ -9,7 +9,7 @@ import {
   updateReplyConnectionStatus,
 } from '../redux/replyDetail';
 import Head from 'next/head';
-import { nl2br } from '../util/text';
+import { nl2br, linkify } from '../util/text';
 
 import app from '../components/App';
 import ReplyConnection from '../components/ReplyConnection';
@@ -164,7 +164,13 @@ class ReplyPage extends React.Component {
             <h2>訊息原文</h2>
             {this.renderArticleLink()}
           </header>
-          <div className="message">{nl2br(originalArticle.get('text'))}</div>
+          <div className="message">
+            {nl2br(
+              linkify(originalArticle.get('text'), {
+                props: { target: '_blank' },
+              })
+            )}
+          </div>
         </section>
 
         {this.renderReply()}

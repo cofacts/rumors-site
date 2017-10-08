@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import moment from 'moment';
 import Head from 'next/head';
 import stringSimilarity from 'string-similarity';
-import { nl2br } from '../util/text';
+import { nl2br, linkify } from '../util/text';
 
 import app from '../components/App';
 import ArticleInfo from '../components/ArticleInfo';
@@ -153,7 +153,11 @@ class ArticlePage extends React.Component {
             <h2>訊息原文</h2>
             <ArticleInfo article={article} />
           </header>
-          <div className="message">{nl2br(article.get('text'))}</div>
+          <div className="message">
+            {nl2br(
+              linkify(article.get('text'), { props: { target: '_blank' } })
+            )}
+          </div>
         </section>
 
         <section

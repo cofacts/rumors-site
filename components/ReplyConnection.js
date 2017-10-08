@@ -5,7 +5,7 @@ import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import { USER_REFERENCE } from '../constants/urls';
 import moment from 'moment';
 import ExpandableText from './ExpandableText';
-import { nl2br } from '../util/text';
+import { nl2br, linkify } from '../util/text';
 import { sectionStyle } from './ReplyConnection.styles';
 
 export default class ReplyConnection extends React.PureComponent {
@@ -128,7 +128,7 @@ export default class ReplyConnection extends React.PureComponent {
         <h3>
           {replyType === 'OPINIONATED' ? '不同意見' : '出處'}
         </h3>
-        {reference ? nl2br(reference) : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
+        {reference ? nl2br(linkify(reference)) : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
         <style jsx>{sectionStyle}</style>
       </section>
     );
@@ -151,7 +151,9 @@ export default class ReplyConnection extends React.PureComponent {
         </header>
         <section className="section">
           <h3>理由</h3>
-          <ExpandableText>{replyVersion.get('text')}</ExpandableText>
+          <ExpandableText>
+            {nl2br(linkify(replyVersion.get('text')))}
+          </ExpandableText>
         </section>
 
         {this.renderReference()}

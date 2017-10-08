@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`text linkify attach link on arrays containing elements that has link 1`] = `
+Array [
+  Array [
+    "Please go to ",
+    <a
+      href="http://google.com"
+    >
+      http://google.com
+    </a>,
+    "",
+  ],
+  <span>
+    Please go to 
+    <a
+      href="http://google.com"
+    >
+      http://google.com
+    </a>
+    
+  </span>,
+]
+`;
+
+exports[`text linkify attach link on nested elements containing links 1`] = `
+<span>
+  Please go to 
+  <span>
+    
+    <a
+      href="http://google.com"
+    >
+      http://google.com
+    </a>
+    
+  </span>
+   lalala
+</span>
+`;
+
+exports[`text linkify attach link on simple elements containing links 1`] = `
+<span>
+  Please go to 
+  <a
+    href="http://google.com"
+  >
+    http://google.com
+  </a>
+  
+</span>
+`;
+
+exports[`text linkify attach link on strings containing links 1`] = `
+Array [
+  "Please go to ",
+  <a
+    href="http://google.com"
+  >
+    http://google.com
+  </a>,
+  "",
+]
+`;
+
+exports[`text linkify decodes URI encoded URLs 1`] = `
+Array [
+  "Please go to ",
+  <a
+    href="http://www.rumtoast.com/5444/line%E7%BE%A4%E7%B5%84%E8%A1%8C%E5%8B%95%E6%A2%9D%E7%A2%BC%E9%82%80%E8%AB%8B-%E4%B8%80%E5%AE%9A%E8%A6%81%E9%97%9C%E6%8E%89%EF%BC%8C%E4%B8%8D%E7%84%B6%E9%A7%AD%E5%AE%A2%E6%9C%83%E5%85%A5%E4%BE%B5"
+  >
+    http://www.rumtoast.com/5444/line群組行動條碼邀請-一定要關掉，不然駭客會入侵
+  </a>,
+  "",
+]
+`;
+
+exports[`text linkify decodes URLS that is too long 1`] = `
+Array [
+  "Please go to ",
+  <a
+    href="http://www.rumtoast.com/5444/line%E7%BE%A4%E7%B5%84%E8%A1%8C%E5%8B%95%E6%A2%9D%E7%A2%BC%E9%82%80%E8%AB%8B-%E4%B8%80%E5%AE%9A%E8%A6%81%E9%97%9C%E6%8E%89%EF%BC%8C%E4%B8%8D%E7%84%B6%E9%A7%AD%E5%AE%A2%E6%9C%83%E5%85%A5%E4%BE%B5"
+  >
+    http:⋯駭客會入侵
+  </a>,
+  "",
+]
+`;
+
+exports[`text linkify sets prop to link 1`] = `
+Array [
+  "Please go to ",
+  <a
+    href="http://google.com"
+    target="_blank"
+  >
+    http://google.com
+  </a>,
+  "",
+]
+`;
+
+exports[`text nl2br inserts <br> on line breaks in strings, with ending <br>s trimmed 1`] = `
+Array [
+  "Foo",
+  <br />,
+  "Bar",
+]
+`;
+
+exports[`text nl2br inserts <br> on line breaks in strings, with ending <br>s trimmed 2`] = `
+Array [
+  "This should be first line with empty next line",
+  <br />,
+  <br />,
+  "This should be second line with no <br> afterwards",
+]
+`;
+
+exports[`text nl2br inserts <br> on line breaks within elements 1`] = `
+<p>
+  This should be first line
+  <br />
+  <br />
+  This should be second line with no &lt;br&gt; afterwards
+</p>
+`;
+
+exports[`text nl2br preserves line ends on the end of tag 1`] = `
+Array [
+  <a
+    href=""
+  >
+    http://www.appledaily.com.tw/realtimenews/article/new/20170817/1184132/
+  </a>,
+  Array [
+    <br />,
+    "15少年集體性侵驢子　全染上狂犬病",
+  ],
+]
+`;
+
+exports[`text truncate truncates nested DOM 1`] = `
+Array [
+  <div>
+    12
+    <p>
+      3
+      <a
+        href=""
+      />
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
+
+exports[`text truncate truncates nested DOM 2`] = `
+Array [
+  <div>
+    12
+    <p>
+      34
+      <a
+        href=""
+      >
+        5
+      </a>
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
+
+exports[`text truncate truncates nested DOM 3`] = `
+Array [
+  <div>
+    12
+    <p>
+      34
+      <a
+        href=""
+      >
+        56
+      </a>
+      7
+      <a
+        href=""
+      />
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;
+
+exports[`text truncate truncates nested DOM 4`] = `
+Array [
+  <div>
+    12
+    <p>
+      34
+      <a
+        href=""
+      >
+        56
+      </a>
+      78
+      <a
+        href=""
+      >
+        9
+      </a>
+    </p>
+  </div>,
+  <button>
+    ...more
+  </button>,
+]
+`;

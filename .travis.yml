@@ -6,3 +6,8 @@ cache: yarn
 
 script:
   - npm run lint:check
+  - npm run test -- --coverage
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+

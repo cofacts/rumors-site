@@ -1,5 +1,5 @@
 import React from 'react';
-import { EDITOR_FACEBOOK_GROUP } from '../constants/urls';
+import { EDITOR_FACEBOOK_GROUP } from '../../constants/urls';
 
 export default function AppFooter() {
   return (
