@@ -1,5 +1,5 @@
 import React from 'react';
-import { EDITOR_FACEBOOK_GROUP } from '../../constants/urls';
+import { EDITOR_FACEBOOK_GROUP, CONTACT_EMAIL } from '../../constants/urls';
 
 export default function AppFooter() {
   return (
@@ -14,16 +14,21 @@ export default function AppFooter() {
           alt="Powered by g0v"
         />
       </a>
-      ・
-      <a href={EDITOR_FACEBOOK_GROUP} target="_blank" rel="noopener noreferrer">
-        編輯求助區
-      </a>
+      <p>
+        <a
+          href={EDITOR_FACEBOOK_GROUP}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          編輯求助區
+        </a>
+        ・
+        <a href={`mailto:${CONTACT_EMAIL}`}>連絡信箱</a>
+      </p>
       <style jsx>{`
         footer {
           margin: 0 20px 44px;
-          align-items: center;
-          justify-content: center;
-          display: flex;
+          text-align: center;
         }
         img {
           width: 100%;
