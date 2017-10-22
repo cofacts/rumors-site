@@ -31,6 +31,7 @@ const fragments = {
   `,
   replyConnectionAndUserFields: `
     fragment userFields on User {
+      id
       name
       avatarUrl
     }
@@ -42,19 +43,18 @@ const fragments = {
         id
         versions(limit: 1) {
           user {
-            name
-            avatarUrl
+            ...userFields
           }
           type
           text
           reference
-          createdAt
         }
       }
       feedbacks {
         score
       }
       user { ...userFields }
+      createdAt
     }
   `,
 };
