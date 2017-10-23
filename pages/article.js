@@ -120,7 +120,10 @@ class ArticlePage extends React.Component {
   };
 
   renderTabMenu = () => {
+    const { data } = this.props;
     const { tab } = this.state;
+    const relatedReplyCount = data.get('relatedReplies').size;
+
     return (
       <ul className="tabs">
         <li
@@ -133,7 +136,7 @@ class ArticlePage extends React.Component {
           onClick={this.handleTabChange('related')}
           className={`tab ${tab === 'related' ? 'active' : ''}`}
         >
-          使用相關回應
+          使用相關回應 <span className="badge">{relatedReplyCount}</span>
         </li>
         <li
           onClick={this.handleTabChange('search')}
@@ -158,6 +161,8 @@ class ArticlePage extends React.Component {
             padding: 16px 24px;
             border: 1px solid #ccc;
             background: #eee;
+            display: flex;
+            align-items: center;
           }
           .tab:hover {
             background: #f8f8f8;
@@ -168,6 +173,14 @@ class ArticlePage extends React.Component {
           .tab.active {
             border-bottom-color: transparent;
             background: #fff;
+          }
+          .badge {
+            background: #999;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 100%;
+            font-size: 0.75em;
+            margin-left: 8px;
           }
           .empty {
             flex: 1;
