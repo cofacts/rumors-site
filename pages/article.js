@@ -20,7 +20,7 @@ import {
   updateReplyConnectionStatus,
 } from '../redux/articleDetail';
 
-import { detailStyle } from './article.styles';
+import { detailStyle, tabMenuStyle } from './article.styles';
 
 function getRatingString(replyConnections) {
   const resultStrings = [];
@@ -146,47 +146,7 @@ class ArticlePage extends React.Component {
         </li>*/}
         <li className="empty" />
 
-        <style jsx>{`
-          .tabs {
-            display: flex;
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0;
-            padding: 0;
-          }
-          .tabs li {
-            list-style: none;
-          }
-          .tab {
-            padding: 16px 24px;
-            border: 1px solid #ccc;
-            background: #eee;
-            display: flex;
-            align-items: center;
-          }
-          .tab:hover {
-            background: #f8f8f8;
-          }
-          .tab + .tab {
-            border-left: 0;
-          }
-          .tab.active {
-            border-bottom-color: transparent;
-            background: #fff;
-          }
-          .badge {
-            background: #999;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 100%;
-            font-size: 0.75em;
-            margin-left: 8px;
-          }
-          .empty {
-            flex: 1;
-            border-bottom: 1px solid #ccc;
-          }
-        `}</style>
+        <style jsx>{tabMenuStyle}</style>
       </ul>
     );
   };
