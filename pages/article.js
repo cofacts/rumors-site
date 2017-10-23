@@ -138,12 +138,12 @@ class ArticlePage extends React.Component {
         >
           使用相關回應 <span className="badge">{relatedReplyCount}</span>
         </li>
-        <li
+        {/*<li
           onClick={this.handleTabChange('search')}
           className={`tab ${tab === 'search' ? 'active' : ''}`}
         >
           搜尋
-        </li>
+        </li>*/}
         <li className="empty" />
 
         <style jsx>{`
