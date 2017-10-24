@@ -30,7 +30,7 @@ export const detailStyle = `
 export const tabMenuStyle = `
   .tabs {
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     margin: 0;
     padding: 0;
@@ -39,7 +39,7 @@ export const tabMenuStyle = `
     list-style: none;
   }
   .tab {
-    padding: 16px 24px;
+    padding: 16px 20px;
     border: 1px solid #ccc;
     background: #eee;
     display: flex;
@@ -55,11 +55,15 @@ export const tabMenuStyle = `
     border-bottom-color: transparent;
     background: #fff;
   }
+  .tab.disabled {
+    color: #bbb;
+    pointer-events: none;
+  }
   .badge {
     background: #999;
     color: #fff;
     padding: 2px 8px;
-    border-radius: 100%;
+    border-radius: 20px;
     font-size: 0.75em;
     margin-left: 8px;
   }

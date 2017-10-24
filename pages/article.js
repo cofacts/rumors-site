@@ -130,13 +130,19 @@ class ArticlePage extends React.Component {
           onClick={this.handleTabChange('new')}
           className={`tab ${tab === 'new' ? 'active' : ''}`}
         >
-          撰寫新回應
+          撰寫回應
         </li>
         <li
           onClick={this.handleTabChange('related')}
-          className={`tab ${tab === 'related' ? 'active' : ''}`}
+          className={`tab ${tab === 'related'
+            ? 'active'
+            : ''} ${relatedReplyCount === 0 ? 'disabled' : ''}`}
         >
-          使用相關回應 <span className="badge">{relatedReplyCount}</span>
+          {relatedReplyCount === 0
+            ? '無相關回應'
+            : <span>
+                使用相關回應 <span className="badge">{relatedReplyCount}</span>
+              </span>}
         </li>
         {/*<li
           onClick={this.handleTabChange('search')}
@@ -246,6 +252,7 @@ class ArticlePage extends React.Component {
         </section>
 
         <section className="section">
+          <h2>增加新回應</h2>
           {this.renderTabMenu()}
           <div className="tab-content">
             {this.renderNewReplyTab()}
@@ -266,7 +273,7 @@ class ArticlePage extends React.Component {
         <style jsx>{detailStyle}</style>
         <style jsx>{`
           .tab-content {
-            padding: 24px;
+            padding: 20px;
             border: 1px solid #ccc;
             border-top: 0;
           }
