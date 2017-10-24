@@ -67,4 +67,4 @@ export const tabMenuStyle = `
     flex: 1;
     border-bottom: 1px solid #ccc;
   }
-`
+`;
