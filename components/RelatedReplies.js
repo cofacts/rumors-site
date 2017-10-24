@@ -4,6 +4,7 @@ import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import { linkify, nl2br } from '../util/text';
 import { Link } from '../routes';
+import { sectionStyle } from './ReplyConnection.styles';
 
 function RelatedReplyItem({
   reply,
@@ -14,27 +15,36 @@ function RelatedReplyItem({
 }) {
   const replyVersion = reply.getIn(['versions', 0]);
   const createdAt = moment(replyVersion.get('createdAt'));
-  const slicedArticleText = articleText.slice(0, 100);
-  const articleTooltip = slicedArticleText === articleText
-    ? articleText
-    : `${slicedArticleText}...`;
   const similarityPercentage = Math.round(similarity * 100);
   return (
     <li className="root">
       <header className="section">
         <Link route="article" params={{ id: articleId }}>
-          <a title={articleTooltip}>
-            其他文章
-          </a>
-        </Link>
-        被標記為
-        ：<strong title={TYPE_DESC[replyVersion.get('type')]}>
+          <a>相關訊息</a>
+        </Link>被標示為：<strong title={TYPE_DESC[replyVersion.get('type')]}>
           {TYPE_NAME[replyVersion.get('type')]}
         </strong>
-        （關聯度
-        ：<i>{similarityPercentage}%</i>）
       </header>
       <section className="section">
+        <h3>
+          相關訊息原文<span className="similarity">
+            （關聯度 ：<strong>{similarityPercentage} %</strong>）
+          </span>
+        </h3>
+        <blockquote>
+          <ExpandableText wordCount={40}>
+            {/*
+              Don't need nl2br here, because the user just need a glimpse on the content.
+              Line breaks won't help the users.
+            */}
+            {linkify(articleText)}
+          </ExpandableText>
+        </blockquote>
+      </section>
+      <section className="section">
+        <h3>
+          回應
+        </h3>
         <ExpandableText>
           {nl2br(linkify(replyVersion.get('text')))}
         </ExpandableText>
@@ -60,15 +70,18 @@ function RelatedReplyItem({
         .root:hover {
           background: rgba(0, 0, 0, .05);
         }
-        h3 {
-          margin: 0;
+        blockquote {
+          font-size: 13px;
+          color: #999;
+          border-left: #ccc 2px solid;
+          padding-left: 8px;
+          margin-left: 0;
         }
-        .section {
-          padding-bottom: 8px;
-          margin-bottom: 8px;
-          border-bottom: 1px dotted rgba(0, 0, 0, .2);
+        .similarity {
+          font-weight: normal;
         }
       `}</style>
+      <style jsx>{sectionStyle}</style>
     </li>
   );
 }
