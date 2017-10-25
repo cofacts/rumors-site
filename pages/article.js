@@ -20,7 +20,7 @@ import {
   updateReplyConnectionStatus,
 } from '../redux/articleDetail';
 
-import { detailStyle } from './article.styles';
+import { detailStyle, tabMenuStyle } from './article.styles';
 
 function getRatingString(replyConnections) {
   const resultStrings = [];
@@ -44,6 +44,10 @@ function getRatingString(replyConnections) {
 }
 
 class ArticlePage extends React.Component {
+  state = {
+    tab: 'new', // 'new, 'related', 'search'
+  };
+
   handleConnect = ({ target: { value: replyId } }) => {
     const { dispatch, query: { id } } = this.props;
     return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
@@ -68,6 +72,10 @@ class ArticlePage extends React.Component {
     return dispatch(
       updateReplyConnectionStatus(id, replyConnectionId, 'NORMAL')
     ).then(this.scrollToReplySection);
+  };
+
+  handleTabChange = tab => () => {
+    this.setState({ tab });
   };
 
   scrollToReplySection = () => {
@@ -111,13 +119,86 @@ class ArticlePage extends React.Component {
     };
   };
 
+  renderTabMenu = () => {
+    const { data } = this.props;
+    const { tab } = this.state;
+    const relatedReplyCount = data.get('relatedReplies').size;
+
+    return (
+      <ul className="tabs">
+        <li
+          onClick={this.handleTabChange('new')}
+          className={`tab ${tab === 'new' ? 'active' : ''}`}
+        >
+          撰寫回應
+        </li>
+        <li
+          onClick={this.handleTabChange('related')}
+          className={`tab ${tab === 'related'
+            ? 'active'
+            : ''} ${relatedReplyCount === 0 ? 'disabled' : ''}`}
+        >
+          {relatedReplyCount === 0
+            ? '無相關回應'
+            : <span>
+                使用相關回應 <span className="badge">{relatedReplyCount}</span>
+              </span>}
+        </li>
+        {/*<li
+          onClick={this.handleTabChange('search')}
+          className={`tab ${tab === 'search' ? 'active' : ''}`}
+        >
+          搜尋
+        </li>*/}
+        <li className="empty" />
+
+        <style jsx>{tabMenuStyle}</style>
+      </ul>
+    );
+  };
+
+  renderNewReplyTab = () => {
+    const { data, isReplyLoading } = this.props;
+    const { tab } = this.state;
+
+    const article = data.get('article');
+    const relatedArticles = data.get('relatedArticles');
+    const relatedReplies = data.get('relatedReplies');
+
+    const articleText = article.get('text', '');
+    const getArticleSimilarity = relatedArticleText =>
+      stringSimilarity.compareTwoStrings(articleText, relatedArticleText);
+
+    switch (tab) {
+      case 'new':
+        return (
+          <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
+        );
+
+      case 'related':
+        return (
+          <RelatedReplies
+            onConnect={this.handleConnect}
+            relatedReplies={relatedReplies}
+            relatedArticles={relatedArticles}
+            getArticleSimilarity={getArticleSimilarity}
+          />
+        );
+
+      case 'search':
+        return <p>TODO</p>;
+
+      default:
+        return null;
+    }
+  };
+
   render() {
     const { data, isLoading, isReplyLoading } = this.props;
 
     const article = data.get('article');
     const replyConnections = data.get('replyConnections');
     const relatedArticles = data.get('relatedArticles');
-    const relatedReplies = data.get('relatedReplies');
 
     if (isLoading && article === null) {
       return <div>Loading...</div>;
@@ -128,10 +209,6 @@ class ArticlePage extends React.Component {
     }
 
     const structuredData = this.getStructuredData();
-
-    const articleText = article.get('text', '');
-    const getArticleSimilarity = relatedArticleText =>
-      stringSimilarity.compareTwoStrings(articleText, relatedArticleText);
 
     return (
       <div className="root">
@@ -175,18 +252,11 @@ class ArticlePage extends React.Component {
         </section>
 
         <section className="section">
-          <h2>撰寫新回應</h2>
-          <ReplyForm onSubmit={this.handleSubmit} disabled={isReplyLoading} />
-        </section>
-
-        <section className="section">
-          <h2>相關文章回應</h2>
-          <RelatedReplies
-            onConnect={this.handleConnect}
-            relatedReplies={relatedReplies}
-            relatedArticles={relatedArticles}
-            getArticleSimilarity={getArticleSimilarity}
-          />
+          <h2>增加新回應</h2>
+          {this.renderTabMenu()}
+          <div className="tab-content">
+            {this.renderNewReplyTab()}
+          </div>
         </section>
 
         {relatedArticles.size
@@ -201,6 +271,13 @@ class ArticlePage extends React.Component {
           : ''}
 
         <style jsx>{detailStyle}</style>
+        <style jsx>{`
+          .tab-content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: 0;
+          }
+        `}</style>
       </div>
     );
   }
