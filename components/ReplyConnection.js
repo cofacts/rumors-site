@@ -76,8 +76,7 @@ export default class ReplyConnection extends React.PureComponent {
 
   renderFooter = () => {
     const { replyConnection, disabled, actionText, linkToReply } = this.props;
-    const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
-    const createdAt = moment(replyVersion.get('createdAt'));
+    const createdAt = moment(replyConnection.get('createdAt'));
     const feedbackString = this.getFeedbackString();
 
     const timeEl = (
@@ -112,6 +111,36 @@ export default class ReplyConnection extends React.PureComponent {
     );
   };
 
+  renderAuthor = () => {
+    const { replyConnection } = this.props;
+    const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
+    const connectionAuthor = replyConnection.get('user');
+    const replyAuthor = replyVersion.get('user');
+
+    const connectionAuthorName = connectionAuthor
+      ? connectionAuthor.get('name')
+      : '有人';
+
+    if (replyAuthor && connectionAuthor.get('id') !== replyAuthor.get('id')) {
+      return (
+        <span>
+          {connectionAuthorName}
+          使用{' '}
+          <Link
+            route="reply"
+            params={{ id: replyConnection.getIn(['reply', 'id']) }}
+          >
+            <a>
+              {replyAuthor.get('name')} 的回應
+            </a>
+          </Link>來
+        </span>
+      );
+    }
+
+    return connectionAuthorName;
+  };
+
   renderReference = () => {
     const { replyConnection } = this.props;
     const replyType = replyConnection.getIn(['reply', 'versions', 0, 'type']);
@@ -138,12 +167,11 @@ export default class ReplyConnection extends React.PureComponent {
     const { replyConnection } = this.props;
     const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
     const replyType = replyVersion.get('type');
-    const connectionAuthor = replyConnection.get('user');
 
     return (
       <li className="root">
         <header className="section">
-          {connectionAuthor ? connectionAuthor.get('name') : '有人'}
+          {this.renderAuthor()}
           標記此篇為：<strong title={TYPE_DESC[replyType]}>
             {TYPE_NAME[replyType]}
           </strong>
