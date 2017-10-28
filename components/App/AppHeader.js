@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { EDITOR_FACEBOOK_GROUP, EDITOR_REFERENCE } from '../../constants/urls';
+import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from '../../constants/urls';
 import { Link } from '../../routes';
 import { showDialog, logout } from '../../redux/auth';
 
@@ -20,12 +20,12 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           FB 編輯求助區
         </a>
         <a
-          href={EDITOR_REFERENCE}
+          href={PROJECT_HACKFOLDR}
           target="_blank"
           rel="noopener noreferrer"
           className="nav-item hidden-xs"
         >
-          編輯手冊
+          專案介紹
         </a>
       </nav>
       {user
