@@ -6,7 +6,7 @@ import {
   TYPE_SUGGESTION_OPTIONS,
 } from '../constants/replyType';
 
-import { QUICKSTART, EDITOR_REFERENCE } from '../constants/urls';
+import { EDITOR_FACEBOOK_GROUP, EDITOR_REFERENCE } from '../constants/urls';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 const formInitialState = {
@@ -138,11 +138,7 @@ export default class ReplyForm extends React.PureComponent {
       return (
         <p>
           查證範圍請參考{' '}
-          <a
-            href={`${EDITOR_REFERENCE}#${TYPE_NAME[replyType]}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={EDITOR_REFERENCE} target="_blank">
             《Cofacts 編輯規則》
           </a>。
         </p>
@@ -187,7 +183,11 @@ export default class ReplyForm extends React.PureComponent {
         >
           Cofacts 編輯規則
         </a>、
-        <a href={QUICKSTART} target="_blank" rel="noopener noreferrer">
+        <a
+          href={EDITOR_FACEBOOK_GROUP}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Facebook 編輯求助區
         </a>
         歡迎您 :)

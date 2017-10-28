@@ -1,5 +1,5 @@
 import React from 'react';
-import { EDITOR_FACEBOOK_GROUP, CONTACT_EMAIL } from '../../constants/urls';
+import { PROJECT_HACKFOLDR, CONTACT_EMAIL } from '../../constants/urls';
 
 export default function AppFooter() {
   return (
@@ -15,12 +15,8 @@ export default function AppFooter() {
         />
       </a>
       <p>
-        <a
-          href={EDITOR_FACEBOOK_GROUP}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          編輯求助區
+        <a href={PROJECT_HACKFOLDR} target="_blank">
+          專案介紹
         </a>
         ・
         <a href={`mailto:${CONTACT_EMAIL}`}>連絡信箱</a>
