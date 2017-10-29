@@ -18,10 +18,10 @@ export const loadAction = {
             id: 'article1',
             replyConnections: [
               {
-                id: 'article1-reply1',
+                id: 'article1-relatedReply1',
                 canUpdateStatus: false,
                 reply: {
-                  id: 'reply1',
+                  id: 'relatedReply1',
                   versions: [
                     {
                       type: 'RUMOR',
@@ -31,14 +31,27 @@ export const loadAction = {
                 },
               },
               {
-                id: 'article1-reply2',
+                id: 'article1-relatedReply2',
                 canUpdateStatus: false,
                 reply: {
-                  id: 'reply2',
+                  id: 'relatedReply2',
                   versions: [
                     {
                       type: 'RUMOR',
                       text: '喝冰水跟罹癌根本是兩回事',
+                    },
+                  ],
+                },
+              },
+              {
+                id: 'article1-reply1',
+                canUpdateStatus: false,
+                reply: {
+                  id: 'reply1', // Already added to article (exists in replyConnections)
+                  versions: [
+                    {
+                      type: 'NOT_ARTICLE',
+                      text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
                     },
                   ],
                 },
@@ -53,11 +66,11 @@ export const loadAction = {
             text: '~~黎建南給退休軍公教人員的一封公開信~~',
             replyConnections: [
               {
-                id: 'article2-reply1',
+                id: 'article2-relatedReply1',
                 canUpdateStatus: false,
                 reply: {
                   // This is duplicated with related article 1
-                  id: 'reply1',
+                  id: 'relatedReply1',
                   versions: [
                     {
                       type: 'RUMOR',
@@ -74,22 +87,15 @@ export const loadAction = {
     replyRequestCount: 1,
     replyConnections: [
       {
-        id: 'AV9mEFX2yCdS-nWhuiPu__AV9mJJ5qyCdS-nWhuiPz',
+        id: 'article1-reply1',
         canUpdateStatus: true,
         status: 'NORMAL',
         reply: {
-          id: 'AV9mJJ5qyCdS-nWhuiPz',
+          id: 'reply1',
           versions: [
             {
-              user: {
-                id: 'AVqVwjqQyrDaTqlmmp_a',
-                name: null,
-                avatarUrl: null,
-              },
               type: 'NOT_ARTICLE',
               text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
-              reference: '',
-              createdAt: '2017-10-29T03:19:56.776Z',
             },
           ],
         },
@@ -114,7 +120,7 @@ export const reloadRepliesAction = {
   payload: fromJS({
     replyConnections: [
       {
-        id: 'AV9mEFX2yCdS-nWhuiPu__AV9mN3dDyCdS-nWhuiP3',
+        id: 'reply1',
         canUpdateStatus: true,
         status: 'NORMAL',
         reply: {
@@ -142,7 +148,7 @@ export const reloadRepliesAction = {
         createdAt: '2017-10-29T03:40:31.942Z',
       },
       {
-        id: 'AV9mEFX2yCdS-nWhuiPu__AV9mJJ5qyCdS-nWhuiPz',
+        id: 'reply2',
         canUpdateStatus: true,
         status: 'NORMAL',
         reply: {

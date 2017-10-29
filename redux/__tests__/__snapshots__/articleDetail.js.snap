@@ -11,22 +11,15 @@ Immutable.Map {
   },
   "replyConnections": Immutable.List [
     Immutable.Map {
-      "id": "AV9mEFX2yCdS-nWhuiPu__AV9mJJ5qyCdS-nWhuiPz",
+      "id": "article1-reply1",
       "canUpdateStatus": true,
       "status": "NORMAL",
       "reply": Immutable.Map {
-        "id": "AV9mJJ5qyCdS-nWhuiPz",
+        "id": "reply1",
         "versions": Immutable.List [
           Immutable.Map {
-            "user": Immutable.Map {
-              "id": "AVqVwjqQyrDaTqlmmp_a",
-              "name": null,
-              "avatarUrl": null,
-            },
             "type": "NOT_ARTICLE",
             "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-            "reference": "",
-            "createdAt": "2017-10-29T03:19:56.776Z",
           },
         ],
       },
@@ -44,10 +37,10 @@ Immutable.Map {
       "id": "article1",
       "replyConnections": Immutable.List [
         Immutable.Map {
-          "id": "article1-reply1",
+          "id": "article1-relatedReply1",
           "canUpdateStatus": false,
           "reply": Immutable.Map {
-            "id": "reply1",
+            "id": "relatedReply1",
             "versions": Immutable.List [
               Immutable.Map {
                 "type": "RUMOR",
@@ -57,14 +50,27 @@ Immutable.Map {
           },
         },
         Immutable.Map {
-          "id": "article1-reply2",
+          "id": "article1-relatedReply2",
           "canUpdateStatus": false,
           "reply": Immutable.Map {
-            "id": "reply2",
+            "id": "relatedReply2",
             "versions": Immutable.List [
               Immutable.Map {
                 "type": "RUMOR",
                 "text": "喝冰水跟罹癌根本是兩回事",
+              },
+            ],
+          },
+        },
+        Immutable.Map {
+          "id": "article1-reply1",
+          "canUpdateStatus": false,
+          "reply": Immutable.Map {
+            "id": "reply1",
+            "versions": Immutable.List [
+              Immutable.Map {
+                "type": "NOT_ARTICLE",
+                "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
               },
             ],
           },
@@ -76,10 +82,10 @@ Immutable.Map {
       "text": "~~黎建南給退休軍公教人員的一封公開信~~",
       "replyConnections": Immutable.List [
         Immutable.Map {
-          "id": "article2-reply1",
+          "id": "article2-relatedReply1",
           "canUpdateStatus": false,
           "reply": Immutable.Map {
-            "id": "reply1",
+            "id": "relatedReply1",
             "versions": Immutable.List [
               Immutable.Map {
                 "type": "RUMOR",
@@ -93,7 +99,7 @@ Immutable.Map {
   ],
   "relatedReplies": Immutable.List [
     Immutable.Map {
-      "id": "reply1",
+      "id": "relatedReply1",
       "versions": Immutable.List [
         Immutable.Map {
           "type": "RUMOR",
@@ -103,7 +109,7 @@ Immutable.Map {
       "articleId": "article1",
     },
     Immutable.Map {
-      "id": "reply2",
+      "id": "relatedReply2",
       "versions": Immutable.List [
         Immutable.Map {
           "type": "RUMOR",
@@ -113,7 +119,7 @@ Immutable.Map {
       "articleId": "article1",
     },
     Immutable.Map {
-      "id": "reply1",
+      "id": "relatedReply1",
       "versions": Immutable.List [
         Immutable.Map {
           "type": "RUMOR",
@@ -129,22 +135,15 @@ Immutable.Map {
 exports[`reducer: articleDetail handles LOAD_AUTH 1`] = `
 Immutable.List [
   Immutable.Map {
-    "id": "AV9mEFX2yCdS-nWhuiPu__AV9mJJ5qyCdS-nWhuiPz",
+    "id": "article1-reply1",
     "canUpdateStatus": true,
     "status": "NORMAL",
     "reply": Immutable.Map {
-      "id": "AV9mJJ5qyCdS-nWhuiPz",
+      "id": "reply1",
       "versions": Immutable.List [
         Immutable.Map {
-          "user": Immutable.Map {
-            "id": "AVqVwjqQyrDaTqlmmp_a",
-            "name": null,
-            "avatarUrl": null,
-          },
           "type": "NOT_ARTICLE",
           "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-          "reference": "",
-          "createdAt": "2017-10-29T03:19:56.776Z",
         },
       ],
     },
@@ -178,7 +177,7 @@ Immutable.Map {
   },
   "replyConnections": Immutable.List [
     Immutable.Map {
-      "id": "AV9mEFX2yCdS-nWhuiPu__AV9mN3dDyCdS-nWhuiP3",
+      "id": "reply1",
       "canUpdateStatus": true,
       "status": "NORMAL",
       "reply": Immutable.Map {
@@ -206,7 +205,7 @@ Immutable.Map {
       "createdAt": "2017-10-29T03:40:31.942Z",
     },
     Immutable.Map {
-      "id": "AV9mEFX2yCdS-nWhuiPu__AV9mJJ5qyCdS-nWhuiPz",
+      "id": "reply2",
       "canUpdateStatus": true,
       "status": "NORMAL",
       "reply": Immutable.Map {
@@ -239,10 +238,10 @@ Immutable.Map {
       "id": "article1",
       "replyConnections": Immutable.List [
         Immutable.Map {
-          "id": "article1-reply1",
+          "id": "article1-relatedReply1",
           "canUpdateStatus": false,
           "reply": Immutable.Map {
-            "id": "reply1",
+            "id": "relatedReply1",
             "versions": Immutable.List [
               Immutable.Map {
                 "type": "RUMOR",
@@ -252,14 +251,27 @@ Immutable.Map {
           },
         },
         Immutable.Map {
-          "id": "article1-reply2",
+          "id": "article1-relatedReply2",
           "canUpdateStatus": false,
           "reply": Immutable.Map {
-            "id": "reply2",
+            "id": "relatedReply2",
             "versions": Immutable.List [
               Immutable.Map {
                 "type": "RUMOR",
                 "text": "喝冰水跟罹癌根本是兩回事",
+              },
+            ],
+          },
+        },
+        Immutable.Map {
+          "id": "article1-reply1",
+          "canUpdateStatus": false,
+          "reply": Immutable.Map {
+            "id": "reply1",
+            "versions": Immutable.List [
+              Immutable.Map {
+                "type": "NOT_ARTICLE",
+                "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
               },
             ],
           },
@@ -271,10 +283,10 @@ Immutable.Map {
       "text": "~~黎建南給退休軍公教人員的一封公開信~~",
       "replyConnections": Immutable.List [
         Immutable.Map {
-          "id": "article2-reply1",
+          "id": "article2-relatedReply1",
           "canUpdateStatus": false,
           "reply": Immutable.Map {
-            "id": "reply1",
+            "id": "relatedReply1",
             "versions": Immutable.List [
               Immutable.Map {
                 "type": "RUMOR",
@@ -288,7 +300,7 @@ Immutable.Map {
   ],
   "relatedReplies": Immutable.List [
     Immutable.Map {
-      "id": "reply1",
+      "id": "relatedReply1",
       "versions": Immutable.List [
         Immutable.Map {
           "type": "RUMOR",
@@ -298,7 +310,7 @@ Immutable.Map {
       "articleId": "article1",
     },
     Immutable.Map {
-      "id": "reply2",
+      "id": "relatedReply2",
       "versions": Immutable.List [
         Immutable.Map {
           "type": "RUMOR",
@@ -308,7 +320,7 @@ Immutable.Map {
       "articleId": "article1",
     },
     Immutable.Map {
-      "id": "reply1",
+      "id": "relatedReply1",
       "versions": Immutable.List [
         Immutable.Map {
           "type": "RUMOR",
