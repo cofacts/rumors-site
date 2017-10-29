@@ -162,7 +162,6 @@ class ArticlePage extends React.Component {
     const { tab } = this.state;
 
     const article = data.get('article');
-    const relatedArticles = data.get('relatedArticles');
     const relatedReplies = data.get('relatedReplies');
 
     const articleText = article.get('text', '');
@@ -180,7 +179,6 @@ class ArticlePage extends React.Component {
           <RelatedReplies
             onConnect={this.handleConnect}
             relatedReplies={relatedReplies}
-            relatedArticles={relatedArticles}
             getArticleSimilarity={getArticleSimilarity}
           />
         );

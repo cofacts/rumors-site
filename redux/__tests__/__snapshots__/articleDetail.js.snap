@@ -3,11 +3,11 @@
 exports[`reducer: articleDetail handles LOAD 1`] = `
 Immutable.Map {
   "article": Immutable.Map {
+    "id": "AV9mEFX2yCdS-nWhuiPu",
     "replyRequestCount": 1,
+    "createdAt": "2017-10-29T02:57:47.509Z",
     "user": null,
     "text": "請問這偏文章是正確嗎？",
-    "id": "AV9mEFX2yCdS-nWhuiPu",
-    "createdAt": "2017-10-29T02:57:47.509Z",
   },
   "replyConnections": Immutable.List [
     Immutable.Map {
@@ -35,66 +35,10 @@ Immutable.Map {
   "relatedArticles": Immutable.List [
     Immutable.Map {
       "id": "article1",
-      "replyConnections": Immutable.List [
-        Immutable.Map {
-          "id": "article1-relatedReply1",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "relatedReply1",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "RUMOR",
-                "text": "醫師聽聞後都斥為無稽之談",
-              },
-            ],
-          },
-        },
-        Immutable.Map {
-          "id": "article1-relatedReply2",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "relatedReply2",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "RUMOR",
-                "text": "喝冰水跟罹癌根本是兩回事",
-              },
-            ],
-          },
-        },
-        Immutable.Map {
-          "id": "article1-reply1",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "reply1",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "NOT_ARTICLE",
-                "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-              },
-            ],
-          },
-        },
-      ],
     },
     Immutable.Map {
       "id": "article2",
       "text": "~~黎建南給退休軍公教人員的一封公開信~~",
-      "replyConnections": Immutable.List [
-        Immutable.Map {
-          "id": "article2-relatedReply1",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "relatedReply1",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "RUMOR",
-                "text": "醫師聽聞後都斥為無稽之談",
-              },
-            ],
-          },
-        },
-      ],
     },
   ],
   "relatedReplies": Immutable.List [
@@ -106,7 +50,9 @@ Immutable.Map {
           "text": "醫師聽聞後都斥為無稽之談",
         },
       ],
-      "articleId": "article1",
+      "article": Immutable.Map {
+        "id": "article1",
+      },
     },
     Immutable.Map {
       "id": "relatedReply2",
@@ -116,7 +62,9 @@ Immutable.Map {
           "text": "喝冰水跟罹癌根本是兩回事",
         },
       ],
-      "articleId": "article1",
+      "article": Immutable.Map {
+        "id": "article1",
+      },
     },
     Immutable.Map {
       "id": "relatedReply1",
@@ -126,7 +74,10 @@ Immutable.Map {
           "text": "醫師聽聞後都斥為無稽之談",
         },
       ],
-      "articleId": "article2",
+      "article": Immutable.Map {
+        "id": "article2",
+        "text": "~~黎建南給退休軍公教人員的一封公開信~~",
+      },
     },
   ],
 }
@@ -169,11 +120,11 @@ Immutable.Map {
 exports[`reducer: articleDetail handles partial LOAD 1`] = `
 Immutable.Map {
   "article": Immutable.Map {
+    "id": "AV9mEFX2yCdS-nWhuiPu",
     "replyRequestCount": 1,
+    "createdAt": "2017-10-29T02:57:47.509Z",
     "user": null,
     "text": "請問這偏文章是正確嗎？",
-    "id": "AV9mEFX2yCdS-nWhuiPu",
-    "createdAt": "2017-10-29T02:57:47.509Z",
   },
   "replyConnections": Immutable.List [
     Immutable.Map {
@@ -236,66 +187,10 @@ Immutable.Map {
   "relatedArticles": Immutable.List [
     Immutable.Map {
       "id": "article1",
-      "replyConnections": Immutable.List [
-        Immutable.Map {
-          "id": "article1-relatedReply1",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "relatedReply1",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "RUMOR",
-                "text": "醫師聽聞後都斥為無稽之談",
-              },
-            ],
-          },
-        },
-        Immutable.Map {
-          "id": "article1-relatedReply2",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "relatedReply2",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "RUMOR",
-                "text": "喝冰水跟罹癌根本是兩回事",
-              },
-            ],
-          },
-        },
-        Immutable.Map {
-          "id": "article1-reply1",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "reply1",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "NOT_ARTICLE",
-                "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-              },
-            ],
-          },
-        },
-      ],
     },
     Immutable.Map {
       "id": "article2",
       "text": "~~黎建南給退休軍公教人員的一封公開信~~",
-      "replyConnections": Immutable.List [
-        Immutable.Map {
-          "id": "article2-relatedReply1",
-          "canUpdateStatus": false,
-          "reply": Immutable.Map {
-            "id": "relatedReply1",
-            "versions": Immutable.List [
-              Immutable.Map {
-                "type": "RUMOR",
-                "text": "醫師聽聞後都斥為無稽之談",
-              },
-            ],
-          },
-        },
-      ],
     },
   ],
   "relatedReplies": Immutable.List [
@@ -307,7 +202,9 @@ Immutable.Map {
           "text": "醫師聽聞後都斥為無稽之談",
         },
       ],
-      "articleId": "article1",
+      "article": Immutable.Map {
+        "id": "article1",
+      },
     },
     Immutable.Map {
       "id": "relatedReply2",
@@ -317,7 +214,9 @@ Immutable.Map {
           "text": "喝冰水跟罹癌根本是兩回事",
         },
       ],
-      "articleId": "article1",
+      "article": Immutable.Map {
+        "id": "article1",
+      },
     },
     Immutable.Map {
       "id": "relatedReply1",
@@ -327,7 +226,10 @@ Immutable.Map {
           "text": "醫師聽聞後都斥為無稽之談",
         },
       ],
-      "articleId": "article2",
+      "article": Immutable.Map {
+        "id": "article2",
+        "text": "~~黎建南給退休軍公教人員的一封公開信~~",
+      },
     },
   ],
 }

@@ -88,7 +88,6 @@ function RelatedReplyItem({
 
 export default function RelatedReplies({
   relatedReplies,
-  relatedArticles,
   getArticleSimilarity,
   onConnect,
 }) {
@@ -99,15 +98,14 @@ export default function RelatedReplies({
   return (
     <ul className="items">
       {relatedReplies.map(reply => {
-        const articleText = relatedArticles
-          .find(article => article.get('id') === reply.get('articleId'))
-          .get('text', '');
+        const articleId = reply.getIn(['article', 'id']);
+        const articleText = reply.getIn(['article', 'text']);
         const similarity = getArticleSimilarity(articleText);
         return (
           <RelatedReplyItem
-            key={`${reply.get('id')}-${reply.get('articleId')}`}
+            key={`${reply.get('id')}-${articleId}`}
             reply={reply}
-            articleId={reply.get('articleId')}
+            articleId={articleId}
             articleText={articleText}
             similarity={similarity}
             onConnect={onConnect}
