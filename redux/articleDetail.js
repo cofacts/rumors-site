@@ -232,22 +232,29 @@ export default createReducer(
             replies =>
               !relatedArticleEdges.size
                 ? replies
-                : relatedArticleEdges.flatMap(edge =>
-                    edge
-                      .getIn(['node', 'replyConnections'])
-                      .map(conn =>
-                        conn
-                          .get('reply')
-                          .set(
-                            'article',
-                            edge.get('node').remove('replyConnections')
-                          )
-                      )
-                      .filter(reply => {
-                        // Filter-out replies that is already re-used.
-                        return reply && !replyIds.contains(reply.get('id'));
-                      })
-                  )
+                : relatedArticleEdges
+                    .flatMap(edge =>
+                      edge
+                        .getIn(['node', 'replyConnections'])
+                        .map(conn =>
+                          conn
+                            .get('reply')
+                            .set(
+                              'article',
+                              edge.get('node').remove('replyConnections')
+                            )
+                        )
+                        .filter(reply => {
+                          // Filter-out replies that is already re-used.
+                          return reply && !replyIds.contains(reply.get('id'));
+                        })
+                    )
+                    // De-duping replies using replyId, taking the reply with more relavant article
+                    // (which should come first)
+                    //
+                    .groupBy(reply => reply.get('id'))
+                    .map(replyGroup => replyGroup.first())
+                    .toList()
           )
       );
     },

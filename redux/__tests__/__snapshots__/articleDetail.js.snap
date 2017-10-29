@@ -66,19 +66,6 @@ Immutable.Map {
         "id": "article1",
       },
     },
-    Immutable.Map {
-      "id": "relatedReply1",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "RUMOR",
-          "text": "醫師聽聞後都斥為無稽之談",
-        },
-      ],
-      "article": Immutable.Map {
-        "id": "article2",
-        "text": "~~黎建南給退休軍公教人員的一封公開信~~",
-      },
-    },
   ],
 }
 `;
@@ -216,19 +203,6 @@ Immutable.Map {
       ],
       "article": Immutable.Map {
         "id": "article1",
-      },
-    },
-    Immutable.Map {
-      "id": "relatedReply1",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "RUMOR",
-          "text": "醫師聽聞後都斥為無稽之談",
-        },
-      ],
-      "article": Immutable.Map {
-        "id": "article2",
-        "text": "~~黎建南給退休軍公教人員的一封公開信~~",
       },
     },
   ],
