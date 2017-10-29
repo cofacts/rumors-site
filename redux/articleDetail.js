@@ -184,7 +184,7 @@ export const submitReply = params => dispatch => {
 // Reducer
 //
 
-const initialState = fromJS({
+export const initialState = fromJS({
   state: { isLoading: false, isAuthLoading: false, isReplyLoading: false },
   data: {
     // data from server
