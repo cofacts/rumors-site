@@ -95,7 +95,7 @@ class Index extends ListPage {
       <div>
         <p>{totalCount} articles</p>
         {this.renderPagination()}
-        <div className="article-list">
+        <ul className="article-list">
           {articles.map(article =>
             <ArticleItem
               key={article.get('id')}
@@ -103,11 +103,12 @@ class Index extends ListPage {
               requestedForReply={authFields.get(article.get('id'))}
             />
           )}
-        </div>
+        </ul>
         {this.renderPagination()}
         <style jsx>{`
           .article-list {
             padding: 0;
+            list-style: none;
           }
         `}</style>
       </div>
@@ -120,9 +121,9 @@ class Index extends ListPage {
     return (
       <main>
         <Head>
-          <title>文章列表</title>
+          <title>真的假的 - 轉傳訊息查證</title>
         </Head>
-
+        <h2>文章列表</h2>
         {this.renderSearch()}
         <br />
 
