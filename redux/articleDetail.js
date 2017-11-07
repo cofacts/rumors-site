@@ -1,5 +1,5 @@
 import { createDuck } from 'redux-duck';
-import { fromJS, Map, List, OrderedMap, Set } from 'immutable';
+import { fromJS, Map, List, Set } from 'immutable';
 import { waitForAuth } from './auth';
 import gql from '../util/gql';
 import NProgress from 'nprogress';
@@ -184,7 +184,7 @@ export const submitReply = params => dispatch => {
 // Reducer
 //
 
-const initialState = fromJS({
+export const initialState = fromJS({
   state: { isLoading: false, isAuthLoading: false, isReplyLoading: false },
   data: {
     // data from server
@@ -201,19 +201,8 @@ export default createReducer(
       state.setIn(['state', key], value),
 
     [LOAD]: (state, { payload }) => {
-      const articleEdges =
+      const relatedArticleEdges =
         payload.getIn(['relatedArticles', 'edges']) || List();
-      const replyConnections = OrderedMap(
-        articleEdges
-          .flatMap(edge =>
-            (edge.getIn(['node', 'replyConnections']) || List()).map(conn =>
-              // we need to encode articleId into each replyConnection,
-              // so that we can show link to the article in the related reply item.
-              conn.set('articleId', edge.getIn(['node', 'id']))
-            )
-          )
-          .map(conn => [conn.get('id'), conn])
-      ).toList();
 
       const replyIds = Set(
         (payload.get('replyConnections') || List())
@@ -225,34 +214,47 @@ export default createReducer(
           .updateIn(['data', 'article'], article =>
             (article || Map())
               .merge(
-                payload.filterNot(
-                  (v, key) =>
-                    key === 'replyConnections' || key === 'relatedArticles'
-                )
+                payload.remove('replyConnections').remove('relatedArticles')
               )
           )
           .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
           .updateIn(
             ['data', 'relatedArticles'],
             articles =>
-              !articleEdges.size
+              !relatedArticleEdges.size
                 ? articles
-                : articleEdges.map(edge => edge.get('node'))
+                : relatedArticleEdges.map(edge =>
+                    edge.get('node').remove('replyConnections')
+                  )
           )
           .updateIn(
             ['data', 'relatedReplies'],
             replies =>
-              !replyConnections.size
+              !relatedArticleEdges.size
                 ? replies
-                : replyConnections
-                    .map(conn =>
-                      // get reply and articleId
-                      conn.get('reply').set('articleId', conn.get('articleId'))
+                : relatedArticleEdges
+                    .flatMap(edge =>
+                      edge
+                        .getIn(['node', 'replyConnections'])
+                        .map(conn =>
+                          conn
+                            .get('reply')
+                            .set(
+                              'article',
+                              edge.get('node').remove('replyConnections')
+                            )
+                        )
+                        .filter(reply => {
+                          // Filter-out replies that is already re-used.
+                          return reply && !replyIds.contains(reply.get('id'));
+                        })
                     )
-                    .filter(reply => {
-                      // Filter-out replies that is already re-used.
-                      return !replyIds.contains(reply.get('id'));
-                    })
+                    // De-duping replies using replyId, taking the reply with more relavant article
+                    // (which should come first)
+                    //
+                    .groupBy(reply => reply.get('id'))
+                    .map(replyGroup => replyGroup.first())
+                    .toList()
           )
       );
     },

@@ -6,13 +6,9 @@ import { linkify, nl2br } from '../util/text';
 import { Link } from '../routes';
 import { sectionStyle } from './ReplyConnection.styles';
 
-function RelatedReplyItem({
-  reply,
-  articleId,
-  articleText,
-  similarity,
-  onConnect,
-}) {
+function RelatedReplyItem({ reply, similarity, onConnect }) {
+  const articleId = reply.getIn(['article', 'id']);
+  const articleText = reply.getIn(['article', 'text']);
   const replyVersion = reply.getIn(['versions', 0]);
   const createdAt = moment(replyVersion.get('createdAt'));
   const similarityPercentage = Math.round(similarity * 100);
@@ -88,7 +84,6 @@ function RelatedReplyItem({
 
 export default function RelatedReplies({
   relatedReplies,
-  relatedArticles,
   getArticleSimilarity,
   onConnect,
 }) {
@@ -99,16 +94,13 @@ export default function RelatedReplies({
   return (
     <ul className="items">
       {relatedReplies.map(reply => {
-        const articleText = relatedArticles
-          .find(article => article.get('id') === reply.get('articleId'))
-          .get('text', '');
-        const similarity = getArticleSimilarity(articleText);
+        const similarity = getArticleSimilarity(
+          reply.getIn(['article', 'text'])
+        );
         return (
           <RelatedReplyItem
-            key={`${reply.get('id')}-${reply.get('articleId')}`}
+            key={`${reply.get('id')}`}
             reply={reply}
-            articleId={reply.get('articleId')}
-            articleText={articleText}
             similarity={similarity}
             onConnect={onConnect}
           />
