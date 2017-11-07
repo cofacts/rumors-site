@@ -9,9 +9,9 @@ export default function ArticleItem({ article }) {
       <li className="item">
         <a>
           <div className="item-text">{article.get('text')}</div>
-          <ArticleInfo article={article} /> 
+          <ArticleInfo article={article} />
         </a>
-        
+
         <style jsx>{listItemStyle}</style>
       </li>
     </Link>
