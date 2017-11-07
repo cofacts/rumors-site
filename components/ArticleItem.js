@@ -6,14 +6,14 @@ import { listItemStyle } from './ListItem.styles';
 export default function ArticleItem({ article }) {
   return (
     <Link route="article" params={{ id: article.get('id') }}>
-      <a className="item">
-        <li>
+      <li className="item">
+        <a>
           <div className="item-text">{article.get('text')}</div>
-          <ArticleInfo article={article} />
-        </li>
-
+          <ArticleInfo article={article} /> 
+        </a>
+        
         <style jsx>{listItemStyle}</style>
-      </a>
+      </li>
     </Link>
   );
 }
