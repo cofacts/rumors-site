@@ -214,7 +214,7 @@ class ArticlePage extends React.Component {
     return (
       <div className="root">
         <Head>
-          <title>{slicedArticleTitle}⋯⋯ | 真的假的</title>
+          <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
         </Head>
 
         {structuredData

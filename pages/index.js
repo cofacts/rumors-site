@@ -121,7 +121,7 @@ class Index extends ListPage {
     return (
       <main>
         <Head>
-          <title>真的假的 - 轉傳訊息查證</title>
+          <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
         <h2>文章列表</h2>
         {this.renderSearch()}
