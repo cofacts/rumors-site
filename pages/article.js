@@ -228,7 +228,7 @@ class ArticlePage extends React.Component {
 
         <section className="section">
           <header className="header">
-            <h2>訊息原文 - {slicedArticleTitle}...</h2>
+            <h2>訊息原文</h2>
             <ArticleInfo article={article} />
           </header>
           <article className="message">
