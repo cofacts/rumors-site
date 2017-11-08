@@ -143,7 +143,7 @@ class ReplyList extends ListPage {
         <Head>
           <title>回應列表</title>
         </Head>
-
+        <h2>回應列表</h2>
         {this.renderSearch()}
         <br />
 

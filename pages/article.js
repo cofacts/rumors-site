@@ -207,11 +207,12 @@ class ArticlePage extends React.Component {
     }
 
     const structuredData = this.getStructuredData();
+    const slicedArticleTitle = article.get('text').slice(0, 15);
 
     return (
       <div className="root">
         <Head>
-          <title>{article.get('text').slice(0, 15)}⋯⋯ - 文章</title>
+          <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
         </Head>
 
         {structuredData
@@ -228,11 +229,11 @@ class ArticlePage extends React.Component {
             <h2>訊息原文</h2>
             <ArticleInfo article={article} />
           </header>
-          <div className="message">
+          <article className="message">
             {nl2br(
               linkify(article.get('text'), { props: { target: '_blank' } })
             )}
-          </div>
+          </article>
         </section>
 
         <section

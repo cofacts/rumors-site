@@ -5,6 +5,7 @@ export const listItemStyle = `
     border-top: 1px solid rgba(0, 0, 0, .2);
     text-decoration: none;
     color: rgba(0, 0, 0, .88);
+    cursor: pointer;
   }
   .item:hover {
     color: rgba(0, 0, 0, .56);
@@ -16,5 +17,9 @@ export const listItemStyle = `
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
   }
 `;
