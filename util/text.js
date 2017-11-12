@@ -85,11 +85,13 @@ export function linkify(elem, { maxLength = 80, props = {} } = {}) {
 
     const tokenized = str.split(urlRegExp).map(
       (s, i) =>
-        s.match(urlRegExp)
-          ? <a key={`link${i}`} href={s} {...props}>
-              {shortenUrl(s, maxLength)}
-            </a>
-          : s
+        s.match(urlRegExp) ? (
+          <a key={`link${i}`} href={s} {...props}>
+            {shortenUrl(s, maxLength)}
+          </a>
+        ) : (
+          s
+        )
     );
 
     return flatternPureStrings(tokenized);

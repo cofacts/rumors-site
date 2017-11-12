@@ -38,9 +38,7 @@ function RelatedReplyItem({ reply, similarity, onConnect }) {
         </blockquote>
       </section>
       <section className="section">
-        <h3>
-          回應
-        </h3>
+        <h3>回應</h3>
         <ExpandableText>
           {nl2br(linkify(replyVersion.get('text')))}
         </ExpandableText>
@@ -64,7 +62,7 @@ function RelatedReplyItem({ reply, similarity, onConnect }) {
           border-top: 1px solid #ccc;
         }
         .root:hover {
-          background: rgba(0, 0, 0, .05);
+          background: rgba(0, 0, 0, 0.05);
         }
         blockquote {
           font-size: 13px;

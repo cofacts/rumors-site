@@ -51,7 +51,8 @@ export const loadAction = {
                   versions: [
                     {
                       type: 'NOT_ARTICLE',
-                      text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+                      text:
+                        '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
                     },
                   ],
                 },
@@ -95,7 +96,8 @@ export const loadAction = {
           versions: [
             {
               type: 'NOT_ARTICLE',
-              text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+              text:
+                '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
             },
           ],
         },
@@ -133,7 +135,8 @@ export const reloadRepliesAction = {
                 avatarUrl: null,
               },
               type: 'NOT_ARTICLE',
-              text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+              text:
+                '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
               reference: '',
               createdAt: '2017-10-29T03:40:31.938Z',
             },
@@ -161,7 +164,8 @@ export const reloadRepliesAction = {
                 avatarUrl: null,
               },
               type: 'NOT_ARTICLE',
-              text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+              text:
+                '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
               reference: '',
               createdAt: '2017-10-29T03:19:56.776Z',
             },

@@ -71,15 +71,17 @@ export const load = ({
         cursor
       }
 
-      ${isInCooldown
-        ? ''
-        : /* costy fields */ `
+      ${
+        isInCooldown
+          ? ''
+          : /* costy fields */ `
           pageInfo {
             firstCursor
             lastCursor
           }
           totalCount
-        `}
+        `
+      }
     }
   }`({
     filter: filterObject,
@@ -108,27 +110,29 @@ export const loadAuthFields = ({
   waitForAuth.then(() => {
     if (!getState().auth.get('user')) return;
 
-    return gql`query(
-      $filter: ListArticleFilter,
-      $orderBy: [ListArticleOrderBy],
-      $before: String,
-      $after: String,
-    ) {
-      ListArticles(
-        filter: $filter
-        orderBy: $orderBy
-        before: $before
-        after: $after
-        first: 25
+    return gql`
+      query(
+        $filter: ListArticleFilter
+        $orderBy: [ListArticleOrderBy]
+        $before: String
+        $after: String
       ) {
-        edges {
-          node {
-            id
-            requestedForReply
+        ListArticles(
+          filter: $filter
+          orderBy: $orderBy
+          before: $before
+          after: $after
+          first: 25
+        ) {
+          edges {
+            node {
+              id
+              requestedForReply
+            }
           }
         }
       }
-    }`({
+    `({
       filter: getFilterObject(filter, q),
       orderBy: [{ [orderBy]: 'DESC' }],
       before,

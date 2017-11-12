@@ -15,7 +15,6 @@ function LoginModal({ isDialogShown, onModalClose }) {
     <Modal onClose={onModalClose}>
       <div className="root">
         <h1>Login / Signup</h1>
-
         <a href={`${API_URL}/login/facebook?redirect=${redirectUrl}`}>
           Facebook
         </a>・

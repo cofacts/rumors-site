@@ -41,7 +41,7 @@ class DeletedItems extends React.Component {
       >
         <h1>被刪除的回應</h1>
         <ul className="items">
-          {items.map(conn =>
+          {items.map(conn => (
             <ReplyConnection
               key={conn.get('id')}
               replyConnection={conn}
@@ -49,7 +49,7 @@ class DeletedItems extends React.Component {
               disabled={disabled}
               actionText="恢復回應"
             />
-          )}
+          ))}
         </ul>
         <style jsx>{`
           h1 {
@@ -85,7 +85,7 @@ class DeletedItems extends React.Component {
           }
           .prompt {
             font-size: 12px;
-            color: rgba(0, 0, 0, .5);
+            color: rgba(0, 0, 0, 0.5);
           }
         `}</style>
       </li>
@@ -118,14 +118,14 @@ export default function CurrentReplies({
 
   return (
     <ul className="items">
-      {validConnections.map(conn =>
+      {validConnections.map(conn => (
         <ReplyConnection
           key={conn.get('id')}
           replyConnection={conn}
           onAction={onDelete}
           disabled={disabled}
         />
-      )}
+      ))}
       <DeletedItems
         items={deletedConnections}
         onRestore={onRestore}

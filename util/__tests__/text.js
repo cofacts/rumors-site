@@ -9,7 +9,11 @@ describe('text', () => {
       const singleLevelElem = <p>foo</p>;
       expect(linkify(singleLevelElem)).toBe(singleLevelElem);
 
-      const nestedElem = <p>foo <span> bar </span> foo2</p>;
+      const nestedElem = (
+        <p>
+          foo <span> bar </span> foo2
+        </p>
+      );
       expect(linkify(nestedElem)).toBe(nestedElem);
 
       const array = ['foo', 'bar', <span key="elem">lala</span>];
@@ -78,7 +82,11 @@ describe('text', () => {
       const singleLevelElem = <p>foo</p>;
       expect(nl2br(singleLevelElem)).toBe(singleLevelElem);
 
-      const nestedElem = <p>foo <span> bar </span> foo2</p>;
+      const nestedElem = (
+        <p>
+          foo <span> bar </span> foo2
+        </p>
+      );
       expect(nl2br(nestedElem)).toBe(nestedElem);
 
       const array = ['foo', 'bar', <span key="elem">lala</span>];
