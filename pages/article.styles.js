@@ -1,4 +1,4 @@
-import css from 'styled-jsx/css';
+import css from 'styled-jsx/css'; // eslint-disable-line import/no-unresolved
 
 export const detailStyle = css`
   .root {
