@@ -6,8 +6,10 @@ Rumors list / creation UI, with server-side rendering
 
 ## Development
 
+This project uses NodeJS 8+ and npm 5+.
+
 ``` bash
-$ yarn
+$ npm install
 $ npm run dev
 
 # Instead of production api server, you could use local server https://github.com/MrOrz/rumors-api

@@ -1,4 +1,6 @@
-export const sectionStyle = `
+import css from 'styled-jsx/css';
+
+export const sectionStyle = css`
   .section {
     padding-bottom: 8px;
     margin-bottom: 8px;

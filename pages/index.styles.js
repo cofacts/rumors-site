@@ -1,4 +1,6 @@
-export const mainStyle = `
+import css from 'styled-jsx/css';
+
+export const mainStyle = css`
   main {
     padding: 24px;
   }

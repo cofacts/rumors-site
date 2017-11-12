@@ -1,4 +1,6 @@
-export const listItemStyle = `
+import css from 'styled-jsx/css';
+
+export const listItemStyle = css`
   .item {
     display: block;
     padding: 8px 0;
