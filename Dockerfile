@@ -4,7 +4,7 @@ WORKDIR /srv/www
 # make node_modules cached.
 # Src: https://nodesource.com/blog/8-protips-to-start-killing-it-when-dockerizing-node-js/
 #
-COPY package.json package.lock ./
+COPY package.json package-lock.json ./
 RUN npm install
 
 # server.js seldom changes, but requires to be built within docker

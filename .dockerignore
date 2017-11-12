@@ -8,7 +8,7 @@
 !.babelrc
 !config.js
 !package.json
-!yarn.lock
+!package-lock.json
 !server.js
 !postcss.config.js
 !next.config.js
