@@ -6,7 +6,9 @@ export default function Modal({ children, style = {}, onClose = () => {} }) {
       <div className="backdrop" onClick={onClose} />
       <div className="modal" style={style}>
         {children}
-        <div className="close" onClick={onClose}>X</div>
+        <div className="close" onClick={onClose}>
+          X
+        </div>
       </div>
 
       <style jsx>{`
@@ -20,7 +22,7 @@ export default function Modal({ children, style = {}, onClose = () => {} }) {
         }
         .backdrop {
           position: absolute;
-          background: rgba(255, 255, 255, .5);
+          background: rgba(255, 255, 255, 0.5);
           left: 0;
           top: 0;
           right: 0;
@@ -33,7 +35,7 @@ export default function Modal({ children, style = {}, onClose = () => {} }) {
           transform: translate(-50%, 0);
           background: #fff;
           border-radius: 3px;
-          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30),
+          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
             0 15px 12px rgba(0, 0, 0, 0.22);
           z-index: 1;
         }

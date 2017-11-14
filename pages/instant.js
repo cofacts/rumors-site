@@ -145,9 +145,7 @@ function Hit({ number = 0, top = '', bottom = '' }) {
 function Instant({ number = 0, total = 0 }) {
   return (
     <FullScreenResizer listen={number}>
-      <div className="present">
-        目前已回覆 {total} 篇文章
-      </div>
+      <div className="present">目前已回覆 {total} 篇文章</div>
       <div className="verb">增加了</div>
       <div className="number">{number}</div>
       <div className="paragraph">篇新回覆文章</div>
@@ -234,7 +232,7 @@ class FullScreenResizer extends React.PureComponent {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: opacity .25s;
+            transition: opacity 0.25s;
           }
           .hidden {
             opacity: 0;
@@ -263,7 +261,7 @@ function Loading({ show }) {
           bottom: 0;
           background: #fff;
           opacity: 1;
-          transition: opacity .2s;
+          transition: opacity 0.2s;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -290,9 +288,8 @@ export default class InstantWrapper extends React.Component {
     this.periodicallyUpdateNumber().then(count => {
       // If startFrom is not specified in hash, set startFrom to the count.
       //
-      const startFrom = queryParams && queryParams.startFrom
-        ? queryParams.startFrom
-        : count;
+      const startFrom =
+        queryParams && queryParams.startFrom ? queryParams.startFrom : count;
       this.setState({ startFrom, isBootstrapping: false });
       location.hash = querystring.stringify({ startFrom });
     });
@@ -301,7 +298,7 @@ export default class InstantWrapper extends React.Component {
   updateNumber = () => {
     return gql`
       {
-        ListArticles(filter: {replyCount: {GT: 0}}) {
+        ListArticles(filter: { replyCount: { GT: 0 } }) {
           totalCount
         }
       }
@@ -342,9 +339,11 @@ export default class InstantWrapper extends React.Component {
             }}
           />
         </Head>
-        {specialProps
-          ? <Hit number={number} {...specialProps} />
-          : <Instant number={number} total={current} />}
+        {specialProps ? (
+          <Hit number={number} {...specialProps} />
+        ) : (
+          <Instant number={number} total={current} />
+        )}
         <Loading show={isBootstrapping} />
       </div>
     );

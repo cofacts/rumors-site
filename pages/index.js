@@ -62,9 +62,21 @@ class Index extends ListPage {
         selectedValue={filter || 'unsolved'}
         Component="ul"
       >
-        <li><label><Radio value="unsolved" />Not replied yet</label></li>
-        <li><label><Radio value="solved" />Replied</label></li>
-        <li><label><Radio value="all" />All</label></li>
+        <li>
+          <label>
+            <Radio value="unsolved" />Not replied yet
+          </label>
+        </li>
+        <li>
+          <label>
+            <Radio value="solved" />Replied
+          </label>
+        </li>
+        <li>
+          <label>
+            <Radio value="all" />All
+          </label>
+        </li>
       </RadioGroup>
     );
   };
@@ -96,13 +108,13 @@ class Index extends ListPage {
         <p>{totalCount} articles</p>
         {this.renderPagination()}
         <ul className="article-list">
-          {articles.map(article =>
+          {articles.map(article => (
             <ArticleItem
               key={article.get('id')}
               article={article}
               requestedForReply={authFields.get(article.get('id'))}
             />
-          )}
+          ))}
         </ul>
         {this.renderPagination()}
         <style jsx>{`
@@ -126,15 +138,11 @@ class Index extends ListPage {
         <h2>文章列表</h2>
         {this.renderSearch()}
         <br />
-
         Order By:
         {this.renderOrderBy()}
         {this.renderFilter()}
-
         {isLoading ? <p>Loading...</p> : this.renderList()}
-
         <style jsx>{mainStyle}</style>
-
       </main>
     );
   }
@@ -143,8 +151,9 @@ class Index extends ListPage {
 function mapStateToProps({ articleList }) {
   return {
     isLoading: articleList.getIn(['state', 'isLoading']),
-    articles: (articleList.get('edges') || List())
-      .map(edge => edge.get('node')),
+    articles: (articleList.get('edges') || List()).map(edge =>
+      edge.get('node')
+    ),
     authFields: articleList.get('authFields'),
     totalCount: articleList.get('totalCount'),
     firstCursor: articleList.get('firstCursor'),

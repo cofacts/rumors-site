@@ -81,15 +81,19 @@ class ReplyList extends ListPage {
         selectedValue={filter || 'all'}
         Component="ul"
       >
-        <li><label><Radio value="all" />All</label></li>
-        {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type =>
+        <li>
+          <label>
+            <Radio value="all" />All
+          </label>
+        </li>
+        {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (
           <li key={type}>
             <label>
               <Radio value={type} title={TYPE_DESC[type]} />
               {TYPE_NAME[type]}
             </label>
           </li>
-        )}
+        ))}
       </RadioGroup>
     );
   };
@@ -121,9 +125,9 @@ class ReplyList extends ListPage {
         <p>{totalCount} replies</p>
         {this.renderPagination()}
         <div className="reply-list">
-          {replies.map(reply =>
+          {replies.map(reply => (
             <ReplyItem key={reply.get('id')} reply={reply} showUser={!mine} />
-          )}
+          ))}
         </div>
         {this.renderPagination()}
         <style jsx>{`
@@ -146,14 +150,11 @@ class ReplyList extends ListPage {
         <h2>回應列表</h2>
         {this.renderSearch()}
         <br />
-
         Order By:
         {this.renderOrderBy()}
         {this.renderFilter()}
         {this.renderMyReplyOnlyCheckbox()}
-
         {isLoading ? <p>Loading...</p> : this.renderList()}
-
         <style jsx>{mainStyle}</style>
       </main>
     );

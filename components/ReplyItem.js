@@ -15,16 +15,20 @@ export default function ReplyItem({ reply, showUser = true }) {
         <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
         <div className="item-content">
           <div className="item-text">
-            {showUser ? `${currentVersion.getIn(['user', 'name'], '有人')}：` : ''}
+            {showUser
+              ? `${currentVersion.getIn(['user', 'name'], '有人')}：`
+              : ''}
             {currentVersion.get('text')}
           </div>
           <div className="item-info">
             使用於 {reply.get('replyConnectionCount')} 篇
-            {createdAt.isValid()
-              ? <span title={createdAt.format('lll')}>
-                  ・{createdAt.fromNow()}
-                </span>
-              : ''}
+            {createdAt.isValid() ? (
+              <span title={createdAt.format('lll')}>
+                ・{createdAt.fromNow()}
+              </span>
+            ) : (
+              ''
+            )}
           </div>
         </div>
         <style jsx>{listItemStyle}</style>
@@ -38,7 +42,7 @@ export default function ReplyItem({ reply, showUser = true }) {
           }
           .item-info {
             font-size: 0.8em;
-            color: rgba(0, 0, 0, .5);
+            color: rgba(0, 0, 0, 0.5);
           }
         `}</style>
       </a>

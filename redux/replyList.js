@@ -74,15 +74,17 @@ export const load = ({
         cursor
       }
 
-      ${isInCooldown
-        ? ''
-        : /* costy fields */ `
+      ${
+        isInCooldown
+          ? ''
+          : /* costy fields */ `
           pageInfo {
             firstCursor
             lastCursor
           }
           totalCount
-        `}
+        `
+      }
     }
   }`({
     filter,
@@ -119,13 +121,12 @@ export default createReducer(
       state
         .set(
           'edges',
-          (payload.get('edges') || List())
-            .map(edge =>
-              edge.setIn(
-                ['node', 'replyConnectionCount'],
-                (edge.getIn(['node', 'replyConnections']) || List()).size
-              )
+          (payload.get('edges') || List()).map(edge =>
+            edge.setIn(
+              ['node', 'replyConnectionCount'],
+              (edge.getIn(['node', 'replyConnections']) || List()).size
             )
+          )
         )
         .set(
           'firstCursor',

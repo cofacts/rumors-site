@@ -85,14 +85,16 @@ export default class ReplyConnection extends React.PureComponent {
 
     return (
       <footer>
-        {linkToReply
-          ? <Link
-              route="reply"
-              params={{ id: replyConnection.getIn(['reply', 'id']) }}
-            >
-              <a>{timeEl}</a>
-            </Link>
-          : timeEl}
+        {linkToReply ? (
+          <Link
+            route="reply"
+            params={{ id: replyConnection.getIn(['reply', 'id']) }}
+          >
+            <a>{timeEl}</a>
+          </Link>
+        ) : (
+          timeEl
+        )}
 
         {feedbackString ? ` ・ ${feedbackString}` : ''}
         {replyConnection.get('canUpdateStatus')
@@ -130,9 +132,7 @@ export default class ReplyConnection extends React.PureComponent {
             route="reply"
             params={{ id: replyConnection.getIn(['reply', 'id']) }}
           >
-            <a>
-              {replyAuthor.get('name')} 的回應
-            </a>
+            <a>{replyAuthor.get('name')} 的回應</a>
           </Link>來
         </span>
       );
@@ -154,10 +154,10 @@ export default class ReplyConnection extends React.PureComponent {
     ]);
     return (
       <section className="section">
-        <h3>
-          {replyType === 'OPINIONATED' ? '不同意見' : '出處'}
-        </h3>
-        {reference ? nl2br(linkify(reference)) : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
+        <h3>{replyType === 'OPINIONATED' ? '不同意見' : '出處'}</h3>
+        {reference
+          ? nl2br(linkify(reference))
+          : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
         <style jsx>{sectionStyle}</style>
       </section>
     );
@@ -197,7 +197,7 @@ export default class ReplyConnection extends React.PureComponent {
             border-top: 1px solid #ccc;
           }
           .root:hover {
-            background: rgba(0, 0, 0, .05);
+            background: rgba(0, 0, 0, 0.05);
           }
         `}</style>
         <style jsx>{sectionStyle}</style>

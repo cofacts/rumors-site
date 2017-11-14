@@ -91,9 +91,11 @@ export default class ReplyForm extends React.PureComponent {
     return (
       <p>
         <select name="type" value={replyType} onChange={this.handleTypeChange}>
-          {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type =>
-            <option key={type} value={type}>{TYPE_NAME[type]}</option>
-          )}
+          {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (
+            <option key={type} value={type}>
+              {TYPE_NAME[type]}
+            </option>
+          ))}
         </select>
         <span>：{TYPE_DESC[replyType]}</span>
       </p>
@@ -107,7 +109,7 @@ export default class ReplyForm extends React.PureComponent {
     return (
       <p>
         常用回應樣板 ——&nbsp;
-        {TYPE_SUGGESTION_OPTIONS[replyType].map(({ label, value }) =>
+        {TYPE_SUGGESTION_OPTIONS[replyType].map(({ label, value }) => (
           <button
             key={label}
             className="suggestion"
@@ -117,7 +119,7 @@ export default class ReplyForm extends React.PureComponent {
           >
             {label}
           </button>
-        )}
+        ))}
         <style jsx>{`
           .suggestion {
             background: transparent;
@@ -212,9 +214,7 @@ export default class ReplyForm extends React.PureComponent {
         {this.renderTypeSelect()}
 
         <div>
-          <label htmlFor="text">
-            {TYPE_INSTRUCTION[replyType]}
-          </label>
+          <label htmlFor="text">{TYPE_INSTRUCTION[replyType]}</label>
           <br />
           {this.renderSuggestions()}
           <textarea

@@ -1,11 +1,11 @@
-FROM kkarczmarczyk/node-yarn:6.9
+FROM node:8
 WORKDIR /srv/www
 
 # make node_modules cached.
 # Src: https://nodesource.com/blog/8-protips-to-start-killing-it-when-dockerizing-node-js/
 #
-COPY package.json yarn.lock ./
-RUN yarn --pure-lockfile
+COPY package.json package-lock.json ./
+RUN npm install
 
 # server.js seldom changes, but requires to be built within docker
 # to make its path correct

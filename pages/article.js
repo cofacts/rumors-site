@@ -134,15 +134,17 @@ class ArticlePage extends React.Component {
         </li>
         <li
           onClick={this.handleTabChange('related')}
-          className={`tab ${tab === 'related'
-            ? 'active'
-            : ''} ${relatedReplyCount === 0 ? 'disabled' : ''}`}
+          className={`tab ${tab === 'related' ? 'active' : ''} ${
+            relatedReplyCount === 0 ? 'disabled' : ''
+          }`}
         >
-          {relatedReplyCount === 0
-            ? '無相關回應'
-            : <span>
-                使用相關回應 <span className="badge">{relatedReplyCount}</span>
-              </span>}
+          {relatedReplyCount === 0 ? (
+            '無相關回應'
+          ) : (
+            <span>
+              使用相關回應 <span className="badge">{relatedReplyCount}</span>
+            </span>
+          )}
         </li>
         {/*<li
           onClick={this.handleTabChange('search')}
@@ -215,14 +217,16 @@ class ArticlePage extends React.Component {
           <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
         </Head>
 
-        {structuredData
-          ? <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify(structuredData),
-              }}
-            />
-          : ''}
+        {structuredData ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(structuredData),
+            }}
+          />
+        ) : (
+          ''
+        )}
 
         <section className="section">
           <header className="header">
@@ -253,21 +257,21 @@ class ArticlePage extends React.Component {
         <section className="section">
           <h2>增加新回應</h2>
           {this.renderTabMenu()}
-          <div className="tab-content">
-            {this.renderNewReplyTab()}
-          </div>
+          <div className="tab-content">{this.renderNewReplyTab()}</div>
         </section>
 
-        {relatedArticles.size
-          ? <section className="section">
-              <h2>你可能也會對這些類似文章有興趣</h2>
-              <div>
-                {relatedArticles.map(article =>
-                  <ArticleItem key={article.get('id')} article={article} />
-                )}
-              </div>
-            </section>
-          : ''}
+        {relatedArticles.size ? (
+          <section className="section">
+            <h2>你可能也會對這些類似文章有興趣</h2>
+            <div>
+              {relatedArticles.map(article => (
+                <ArticleItem key={article.get('id')} article={article} />
+              ))}
+            </div>
+          </section>
+        ) : (
+          ''
+        )}
 
         <style jsx>{detailStyle}</style>
         <style jsx>{`

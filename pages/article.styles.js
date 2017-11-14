@@ -1,4 +1,6 @@
-export const detailStyle = `
+import css from 'styled-jsx/css'; // eslint-disable-line import/no-unresolved
+
+export const detailStyle = css`
   .root {
     padding: 24px;
   }
@@ -27,7 +29,7 @@ export const detailStyle = `
   }
 `;
 
-export const tabMenuStyle = `
+export const tabMenuStyle = css`
   .tabs {
     display: flex;
     font-size: 16px;

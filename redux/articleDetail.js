@@ -132,13 +132,13 @@ const reloadReply = articleId => dispatch =>
 export const connectReply = (articleId, replyId) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
-  return gql`mutation($articleId: String!, $replyId: String!) {
-    CreateReplyConnection(
-      articleId: $articleId, replyId: $replyId,
-    ) {
-      id
+  return gql`
+    mutation($articleId: String!, $replyId: String!) {
+      CreateReplyConnection(articleId: $articleId, replyId: $replyId) {
+        id
+      }
     }
-  }`({ articleId, replyId }).then(() => {
+  `({ articleId, replyId }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
   });
@@ -151,14 +151,16 @@ export const updateReplyConnectionStatus = (
 ) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
-  return gql`mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum! ) {
-    UpdateReplyConnectionStatus(
-      replyConnectionId: $replyConnectionId
-      status: $status
-    ) {
-      id
+  return gql`
+    mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum!) {
+      UpdateReplyConnectionStatus(
+        replyConnectionId: $replyConnectionId
+        status: $status
+      ) {
+        id
+      }
     }
-  }`({ replyConnectionId, status }).then(() => {
+  `({ replyConnectionId, status }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
   });
@@ -167,15 +169,23 @@ export const updateReplyConnectionStatus = (
 export const submitReply = params => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
-  return gql`mutation(
-    $articleId: String!, $text: String!, $type: ReplyTypeEnum!, $reference: String
-  ) {
-    CreateReply(
-      articleId: $articleId, text: $text, type: $type, reference: $reference
+  return gql`
+    mutation(
+      $articleId: String!
+      $text: String!
+      $type: ReplyTypeEnum!
+      $reference: String
     ) {
-      id
+      CreateReply(
+        articleId: $articleId
+        text: $text
+        type: $type
+        reference: $reference
+      ) {
+        id
+      }
     }
-  }`(params).then(() => {
+  `(params).then(() => {
     dispatch(reloadReply(params.articleId));
     NProgress.done();
   });
@@ -205,17 +215,17 @@ export default createReducer(
         payload.getIn(['relatedArticles', 'edges']) || List();
 
       const replyIds = Set(
-        (payload.get('replyConnections') || List())
-          .map(conn => conn.getIn(['reply', 'id']))
+        (payload.get('replyConnections') || List()).map(conn =>
+          conn.getIn(['reply', 'id'])
+        )
       );
 
       return state.withMutations(s =>
         s
           .updateIn(['data', 'article'], article =>
-            (article || Map())
-              .merge(
-                payload.remove('replyConnections').remove('relatedArticles')
-              )
+            (article || Map()).merge(
+              payload.remove('replyConnections').remove('relatedArticles')
+            )
           )
           .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
           .updateIn(

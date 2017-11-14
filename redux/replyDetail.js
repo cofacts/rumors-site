@@ -84,14 +84,16 @@ export const updateReplyConnectionStatus = (
 ) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
-  return gql`mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum! ) {
-    UpdateReplyConnectionStatus(
-      replyConnectionId: $replyConnectionId
-      status: $status
-    ) {
-      id
+  return gql`
+    mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum!) {
+      UpdateReplyConnectionStatus(
+        replyConnectionId: $replyConnectionId
+        status: $status
+      ) {
+        id
+      }
     }
-  }`({ replyConnectionId, status }).then(() => {
+  `({ replyConnectionId, status }).then(() => {
     // FIXME:
     // Immediate load(replyId) will not get updated reply connection status.
     // Super wierd.

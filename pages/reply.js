@@ -27,7 +27,8 @@ function UsedArticleItem({ article, replyConnection }) {
         <div className="item-text">{article.get('text')}</div>
         <div className="info">
           {replyConnection.getIn(['user', 'name'])} 在{' '}
-          <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span> 加的
+          <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>{' '}
+          加的
           {otherReplyCount ? ` · 另有 ${otherReplyCount} 篇回應` : ''}
         </div>
 
@@ -35,7 +36,7 @@ function UsedArticleItem({ article, replyConnection }) {
         <style jsx>{`
           .info {
             font-size: 0.8em;
-            color: rgba(0, 0, 0, .5);
+            color: rgba(0, 0, 0, 0.5);
           }
         `}</style>
       </a>
@@ -70,13 +71,13 @@ class ReplyPage extends React.Component {
     const { originalReplyConnection } = this.props;
     const originalArticle = originalReplyConnection.get('article');
 
-    const prompt = originalArticle.get('replyCount') > 1
-      ? `查看文章與其他 ${originalArticle.get('replyCount') - 1} 則回覆`
-      : '查看文章頁面';
+    const prompt =
+      originalArticle.get('replyCount') > 1
+        ? `查看文章與其他 ${originalArticle.get('replyCount') - 1} 則回覆`
+        : '查看文章頁面';
 
     return (
       <Link route="article" params={{ id: originalArticle.get('id') }}>
-
         <a>{prompt} &gt;</a>
       </Link>
     );
@@ -102,12 +103,16 @@ class ReplyPage extends React.Component {
             linkToReply={false}
           />
         </ul>
-        {isDeleted ? <p className="deleted-prompt">此回應已被作者刪除。</p> : ''}
+        {isDeleted ? (
+          <p className="deleted-prompt">此回應已被作者刪除。</p>
+        ) : (
+          ''
+        )}
         <style jsx>{detailStyle}</style>
         <style jsx>{`
           .deleted-prompt {
             font-size: 12px;
-            color: rgba(0, 0, 0, .5);
+            color: rgba(0, 0, 0, 0.5);
             font-style: italic;
           }
         `}</style>
@@ -127,13 +132,13 @@ class ReplyPage extends React.Component {
       <section className="section">
         <h2>這則回應也被加在這些文章</h2>
         <div>
-          {otherReplyConnections.map(conn =>
+          {otherReplyConnections.map(conn => (
             <UsedArticleItem
               key={conn.get('id')}
               article={conn.get('article')}
               replyConnection={conn}
             />
-          )}
+          ))}
         </div>
         <style jsx>{detailStyle}</style>
       </section>

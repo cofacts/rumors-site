@@ -7,10 +7,18 @@ import { showDialog, logout } from '../../redux/auth';
 function AppHeader({ user, onLoginClick, onLogoutClick }) {
   return (
     <header className="root">
-      <Link route="home"><a className="logo hidden-xs"><h1>真的假的</h1></a></Link>
+      <Link route="home">
+        <a className="logo hidden-xs">
+          <h1>真的假的</h1>
+        </a>
+      </Link>
       <nav className="nav">
-        <Link route="home"><a className="nav-item">文章</a></Link>
-        <Link route="replies"><a className="nav-item">回應</a></Link>
+        <Link route="home">
+          <a className="nav-item">文章</a>
+        </Link>
+        <Link route="replies">
+          <a className="nav-item">回應</a>
+        </Link>
         <a
           href={EDITOR_FACEBOOK_GROUP}
           target="_blank"
@@ -28,17 +36,23 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           專案介紹
         </a>
       </nav>
-      {user
-        ? <div className="user">
-            <Link route="/replies?mine=1">
-              <a className="user-link">
-                <img src={user.get('avatarUrl')} alt="avatar" />
-                <span className="user-name hidden-xs">{user.get('name')}</span>
-              </a>
-            </Link>
-            <button type="button" onClick={onLogoutClick}>Logout</button>
-          </div>
-        : <button type="button" onClick={onLoginClick}>Login</button>}
+      {user ? (
+        <div className="user">
+          <Link route="/replies?mine=1">
+            <a className="user-link">
+              <img src={user.get('avatarUrl')} alt="avatar" />
+              <span className="user-name hidden-xs">{user.get('name')}</span>
+            </a>
+          </Link>
+          <button type="button" onClick={onLogoutClick}>
+            Logout
+          </button>
+        </div>
+      ) : (
+        <button type="button" onClick={onLoginClick}>
+          Login
+        </button>
+      )}
       <style jsx>{`
         .root {
           display: flex;

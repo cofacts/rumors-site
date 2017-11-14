@@ -33,9 +33,15 @@ export const hideDialog = () =>
 export const load = () => dispatch => {
   dispatch(setState({ key: 'isLoading', value: true }));
 
-  return gql`{
-    GetUser { id, name, avatarUrl }
-  }`().then(resp => {
+  return gql`
+    {
+      GetUser {
+        id
+        name
+        avatarUrl
+      }
+    }
+  `().then(resp => {
     const user = resp.getIn(['data', 'GetUser']);
     dispatch(setState({ key: 'isLoading', value: false }));
     dispatch(createAction(LOAD)(user));
@@ -48,12 +54,14 @@ export const load = () => dispatch => {
 export const logout = () => dispatch => {
   dispatch(setState({ key: 'isLoading', value: true }));
 
-  return fetchAPI('/logout').then(resp => resp.json()).then(({ success }) => {
-    dispatch(setState({ key: 'isLoading', value: false }));
-    if (success) {
-      dispatch(createAction(RESET)());
-    }
-  });
+  return fetchAPI('/logout')
+    .then(resp => resp.json())
+    .then(({ success }) => {
+      dispatch(setState({ key: 'isLoading', value: false }));
+      if (success) {
+        dispatch(createAction(RESET)());
+      }
+    });
 };
 
 // Reducer

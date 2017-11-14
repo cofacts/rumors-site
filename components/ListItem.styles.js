@@ -1,14 +1,16 @@
-export const listItemStyle = `
+import css from 'styled-jsx/css'; // eslint-disable-line import/no-unresolved
+
+export const listItemStyle = css`
   .item {
     display: block;
     padding: 8px 0;
-    border-top: 1px solid rgba(0, 0, 0, .2);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
     text-decoration: none;
-    color: rgba(0, 0, 0, .88);
+    color: rgba(0, 0, 0, 0.88);
     cursor: pointer;
   }
   .item:hover {
-    color: rgba(0, 0, 0, .56);
+    color: rgba(0, 0, 0, 0.56);
   }
   .item:first-child {
     border: 0;
@@ -18,7 +20,7 @@ export const listItemStyle = `
     white-space: nowrap;
     overflow: hidden;
   }
-  a{
+  a {
     text-decoration: none;
     color: inherit;
   }
