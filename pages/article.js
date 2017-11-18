@@ -18,6 +18,7 @@ import {
   submitReply,
   connectReply,
   updateReplyConnectionStatus,
+  voteReply,
 } from '../redux/articleDetail';
 
 import { detailStyle, tabMenuStyle } from './article.styles';
@@ -72,6 +73,11 @@ class ArticlePage extends React.Component {
     return dispatch(
       updateReplyConnectionStatus(id, replyConnectionId, 'NORMAL')
     ).then(this.scrollToReplySection);
+  };
+
+  handleReplyConnectionVote = (replyConnectionId, vote) => {
+    const { dispatch, query: { id } } = this.props;
+    return dispatch(voteReply(id, replyConnectionId, vote));
   };
 
   handleTabChange = tab => () => {
@@ -251,6 +257,7 @@ class ArticlePage extends React.Component {
             disabled={isReplyLoading}
             onDelete={this.handleReplyConnectionDelete}
             onRestore={this.handleReplyConnectionRestore}
+            onVote={this.handleReplyConnectionVote}
           />
         </section>
 

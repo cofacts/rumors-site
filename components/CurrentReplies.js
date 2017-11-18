@@ -98,6 +98,7 @@ export default function CurrentReplies({
   disabled = false,
   onDelete = () => {},
   onRestore = () => {},
+  onVote = () => {},
 }) {
   if (!replyConnections.size) {
     return <p>目前尚無回應</p>;
@@ -123,6 +124,7 @@ export default function CurrentReplies({
           key={conn.get('id')}
           replyConnection={conn}
           onAction={onDelete}
+          onVote={onVote}
           disabled={disabled}
         />
       ))}

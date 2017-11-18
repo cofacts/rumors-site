@@ -191,6 +191,24 @@ export const submitReply = params => dispatch => {
   });
 };
 
+export const voteReply = (articleId, replyConnectionId, vote) => dispatch => {
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
+  NProgress.start();
+  return gql`
+    mutation($replyConnectionId: String!, $vote: FeedbackVote!) {
+      CreateOrUpdateReplyConnectionFeedback(
+        replyConnectionId: $replyConnectionId
+        vote: $vote
+      ) {
+        feedbackCount
+      }
+    }
+  `({ replyConnectionId, vote }).then(() => {
+    dispatch(reloadReply(articleId));
+    NProgress.done();
+  });
+};
+
 // Reducer
 //
 
