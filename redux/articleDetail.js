@@ -51,6 +51,9 @@ const fragments = {
         }
       }
       feedbacks {
+        user{
+          id
+        }
         score
       }
       user { ...userFields }

@@ -50,6 +50,7 @@ export default class ReplyConnection extends React.PureComponent {
 
   renderFooter = () => {
     const {
+      authId,
       replyConnection,
       disabled,
       actionText,
@@ -86,7 +87,11 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
-        <ReplyFeedback replyConnection={replyConnection} onVote={onVote} />
+        <ReplyFeedback
+          authId={authId}
+          replyConnection={replyConnection}
+          onVote={onVote}
+        />
       </footer>
     );
   };

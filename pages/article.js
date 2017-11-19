@@ -200,7 +200,7 @@ class ArticlePage extends React.Component {
   };
 
   render() {
-    const { data, isLoading, isReplyLoading } = this.props;
+    const { data, isLoading, isReplyLoading, authId } = this.props;
 
     const article = data.get('article');
     const replyConnections = data.get('replyConnections');
@@ -253,6 +253,7 @@ class ArticlePage extends React.Component {
         >
           <h2>現有回應</h2>
           <CurrentReplies
+            authId={authId}
             replyConnections={replyConnections}
             disabled={isReplyLoading}
             onDelete={this.handleReplyConnectionDelete}
@@ -300,8 +301,9 @@ function bootstrapFn(dispatch, { query: { id } }) {
   return dispatch(loadAuth(id));
 }
 
-function mapStateToProps({ articleDetail }) {
+function mapStateToProps({ articleDetail, auth }) {
   return {
+    authId: auth.getIn(['user', 'id']),
     isLoading: articleDetail.getIn(['state', 'isLoading']),
     isReplyLoading: articleDetail.getIn(['state', 'isReplyLoading']),
     data: articleDetail.get('data'),
