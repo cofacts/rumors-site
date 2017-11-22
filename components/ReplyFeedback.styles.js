@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css'; // eslint-disable-line import/no-unresolved
 
 export const feedbackStyle = css`
-  .ReplyFeedback {
+  .reply-feedback {
     float: right;
     display: flex;
     flex-direction: row;
@@ -9,17 +9,17 @@ export const feedbackStyle = css`
     color: gray;
   }
 
-  .vote_num {
+  .vote-num {
     font-weight: bold;
     margin-left: 0.5em;
   }
 
-  .btn_vote {
+  .btn-vote {
     font-size: 1rem;
     line-height: 100%;
     cursor: pointer;
   }
-  .btn_vote:disabled {
+  .btn-vote:disabled {
     cursor: not-allowed;
   }
 
@@ -28,20 +28,20 @@ export const feedbackStyle = css`
     padding: 0.3em;
     transition: 0.1s linear;
   }
-  .btn_vote:not(:disabled).icon:hover {
+  .btn-vote:not(:disabled).icon:hover {
     fill: orange;
     transform: scale(1.3);
   }
-  .icon_circle {
+  .icon-circle {
     width: 1em;
   }
-  .icon_corss {
+  .icon-cross {
     width: 1em;
   }
-  .icon_circle.active {
+  .icon-circle.active {
     fill: #6dc00c;
   }
-  .icon_corss.active {
+  .icon-cross.active {
     fill: red;
   }
 
