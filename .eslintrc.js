@@ -20,6 +20,7 @@ module.exports = {
       "singleQuote": true,
     }],
     'no-console': ['error', { allow: ['warn', 'error'] }], // no console.log, but can use .warn and .error.
+    'no-debugger': ['error', { allow: ['warn', 'error'] }], // no debugger, but can use .warn and .error.
   },
   env: {
     browser: true,
