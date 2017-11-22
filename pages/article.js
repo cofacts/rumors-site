@@ -18,6 +18,7 @@ import {
   submitReply,
   connectReply,
   updateReplyConnectionStatus,
+  reset,
 } from '../redux/articleDetail';
 
 import { detailStyle, tabMenuStyle } from './article.styles';
@@ -118,6 +119,11 @@ class ArticlePage extends React.Component {
       },
     };
   };
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(reset());
+  }
 
   renderTabMenu = () => {
     const { data } = this.props;

@@ -112,7 +112,7 @@ export const loadAuth = id => dispatch => {
     });
 };
 
-export const reset = () => createAction(RESET);
+export const reset = createAction(RESET);
 
 const reloadReply = articleId => dispatch =>
   gql`
