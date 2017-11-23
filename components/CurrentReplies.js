@@ -94,10 +94,12 @@ class DeletedItems extends React.Component {
 }
 
 export default function CurrentReplies({
+  authId,
   replyConnections,
   disabled = false,
   onDelete = () => {},
   onRestore = () => {},
+  onVote = () => {},
 }) {
   if (!replyConnections.size) {
     return <p>目前尚無回應</p>;
@@ -120,9 +122,11 @@ export default function CurrentReplies({
     <ul className="items">
       {validConnections.map(conn => (
         <ReplyConnection
+          authId={authId}
           key={conn.get('id')}
           replyConnection={conn}
           onAction={onDelete}
+          onVote={onVote}
           disabled={disabled}
         />
       ))}

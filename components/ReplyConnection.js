@@ -7,42 +7,16 @@ import moment from 'moment';
 import ExpandableText from './ExpandableText';
 import { nl2br, linkify } from '../util/text';
 import { sectionStyle } from './ReplyConnection.styles';
+import ReplyFeedback from './ReplyFeedback';
 
 export default class ReplyConnection extends React.PureComponent {
   static defaultProps = {
     replyConnection: Map(),
     disabled: false,
     onAction() {},
+    onVote() {},
     actionText: '刪除回應',
     linkToReply: true,
-  };
-
-  getFeedbackString = () => {
-    const { positiveCount, negativeCount } = this.props.replyConnection
-      .get('feedbacks')
-      .reduce(
-        (agg, feedback) => {
-          switch (feedback.get('score')) {
-            case 1:
-              agg.positiveCount += 1;
-              break;
-            case -1:
-              agg.negativeCount += 1;
-          }
-          return agg;
-        },
-        { positiveCount: 0, negativeCount: 0 }
-      );
-
-    const results = [];
-    if (positiveCount) {
-      results.push(`${positiveCount} 人覺得有回答到原文`);
-    }
-    if (negativeCount) {
-      results.push(`${negativeCount} 人覺得沒回答到原文`);
-    }
-
-    return results.join('、');
   };
 
   handleAction = () => {
@@ -75,9 +49,15 @@ export default class ReplyConnection extends React.PureComponent {
   };
 
   renderFooter = () => {
-    const { replyConnection, disabled, actionText, linkToReply } = this.props;
+    const {
+      authId,
+      replyConnection,
+      disabled,
+      actionText,
+      linkToReply,
+      onVote,
+    } = this.props;
     const createdAt = moment(replyConnection.get('createdAt'));
-    const feedbackString = this.getFeedbackString();
 
     const timeEl = (
       <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
@@ -95,8 +75,6 @@ export default class ReplyConnection extends React.PureComponent {
         ) : (
           timeEl
         )}
-
-        {feedbackString ? ` ・ ${feedbackString}` : ''}
         {replyConnection.get('canUpdateStatus')
           ? [
               ` ・ `,
@@ -109,6 +87,11 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
+        <ReplyFeedback
+          authId={authId}
+          replyConnection={replyConnection}
+          onVote={onVote}
+        />
       </footer>
     );
   };

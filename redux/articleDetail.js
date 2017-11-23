@@ -51,6 +51,9 @@ const fragments = {
         }
       }
       feedbacks {
+        user{
+          id
+        }
         score
       }
       user { ...userFields }
@@ -187,6 +190,24 @@ export const submitReply = params => dispatch => {
     }
   `(params).then(() => {
     dispatch(reloadReply(params.articleId));
+    NProgress.done();
+  });
+};
+
+export const voteReply = (articleId, replyConnectionId, vote) => dispatch => {
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
+  NProgress.start();
+  return gql`
+    mutation($replyConnectionId: String!, $vote: FeedbackVote!) {
+      CreateOrUpdateReplyConnectionFeedback(
+        replyConnectionId: $replyConnectionId
+        vote: $vote
+      ) {
+        feedbackCount
+      }
+    }
+  `({ replyConnectionId, vote }).then(() => {
+    dispatch(reloadReply(articleId));
     NProgress.done();
   });
 };
