@@ -24,11 +24,12 @@ let lastStringifiedFilter;
 export const load = ({
   q,
   filter = 'unsolved',
+  replyRequestCount = '',
   orderBy = 'createdAt',
   before,
   after,
 }) => dispatch => {
-  const filterObject = getFilterObject(filter, q);
+  const filterObject = getFilterObject(filter, q, replyRequestCount);
   const stringifiedFilter = JSON.stringify(filterObject);
 
   if (lastStringifiedFilter !== stringifiedFilter) {
@@ -104,6 +105,7 @@ export const loadAuthFields = ({
   q,
   filter = 'all',
   orderBy = 'replyRequestCount',
+  replyRequestCount = '',
   before,
   after,
 }) => (dispatch, getState) => {
@@ -133,7 +135,7 @@ export const loadAuthFields = ({
         }
       }
     `({
-      filter: getFilterObject(filter, q),
+      filter: getFilterObject(filter, q, replyRequestCount),
       orderBy: [{ [orderBy]: 'DESC' }],
       before,
       after,
@@ -205,10 +207,14 @@ function resetCooldown() {
   isInCooldown = false;
 }
 
-function getFilterObject(filter, q) {
+function getFilterObject(filter, q, replyRequestCount) {
   const filterObj = {};
   if (q) {
     filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
+  }
+
+  if (replyRequestCount) {
+    filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
   }
 
   if (filter === 'solved') {
