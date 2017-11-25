@@ -22,6 +22,7 @@
   "dependencies": {
     "autoprefixer": "^7.1.6",
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-assets": "^0.2.0",
     "babel-plugin-transform-css-import-to-string": "^0.0.2",
     "babel-plugin-transform-inline-environment-variables": "^0.2.0",
     "babel-runtime": "^6.26.0",
