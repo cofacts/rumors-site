@@ -2,7 +2,7 @@
 !constants/*
 !components/*
 !pages/*
-!redux/*
+!ducks/*
 !util/*
 !static/*
 !.babelrc

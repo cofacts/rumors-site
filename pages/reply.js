@@ -7,15 +7,15 @@ import {
   load,
   loadAuth,
   updateReplyConnectionStatus,
-} from '../redux/replyDetail';
+} from '../ducks/replyDetail';
 import Head from 'next/head';
 import { nl2br, linkify } from '../util/text';
 
-import app from '../components/App';
-import ReplyConnection from '../components/ReplyConnection';
+import app from 'components/App';
+import ReplyConnection from 'components/ReplyConnection';
 
 import { detailStyle } from './article.styles';
-import { listItemStyle } from '../components/ListItem.styles';
+import { listItemStyle } from 'components/ListItem.styles';
 
 function UsedArticleItem({ article, replyConnection }) {
   const createdAt = moment(replyConnection.get('createdAt'));

@@ -4,9 +4,9 @@
     ["env", {
       "targets": {
         "browsers": ["last 2 versions"],
-        "node": "current",
+        "node": "current"
       }
-    }],
+    }]
   ],
   "plugins": [
     "styled-jsx/babel",
@@ -15,6 +15,25 @@
     [ // https://github.com/zeit/next.js/blob/master/examples/with-global-stylesheet/.babelrc
       "wrap-in-js",
       { "extensions": ["css$"] }
+    ],
+    [
+      "transform-assets", 
+      {
+        "extensions": ["txt", "svg", "png"],
+        "regExp": ".*/components/(.+)",
+        "name": "/static/[1]?[sha512:hash:base64:7]"
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "components": "./components",
+          "pages": "./pages",
+          "ducks": "./ducks"
+        }
+      }
     ]
   ]
 }
