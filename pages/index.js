@@ -22,6 +22,27 @@ class Index extends ListPage {
     this.props.dispatch(loadAuthFields(this.props.query));
   }
 
+  handleReplyRequestCountCheck = e => {
+    // Sets / clears reply request as checkbox is changed
+    if (e.target.checked) {
+      this.goToQuery({
+        replyRequestCount: 1,
+      });
+    } else {
+      this.goToQuery({
+        replyRequestCount: '',
+      });
+    }
+  };
+
+  handleReplyRequestCountChange = e => {
+    const { target: { value } } = e;
+
+    this.goToQuery({
+      replyRequestCount: value,
+    });
+  };
+
   renderSearch = () => {
     const { query: { q } } = this.props;
     return (
@@ -55,29 +76,45 @@ class Index extends ListPage {
   };
 
   renderFilter = () => {
-    const { query: { filter } } = this.props;
+    const { query: { filter, replyRequestCount } } = this.props;
     return (
-      <RadioGroup
-        onChange={this.handleFilterChange}
-        selectedValue={filter || 'unsolved'}
-        Component="ul"
-      >
-        <li>
-          <label>
-            <Radio value="unsolved" />Not replied yet
-          </label>
-        </li>
-        <li>
-          <label>
-            <Radio value="solved" />Replied
-          </label>
-        </li>
-        <li>
-          <label>
-            <Radio value="all" />All
-          </label>
-        </li>
-      </RadioGroup>
+      <div>
+        <RadioGroup
+          onChange={this.handleFilterChange}
+          selectedValue={filter || 'unsolved'}
+          Component="ul"
+        >
+          <li>
+            <label>
+              <Radio value="unsolved" />Not replied yet
+            </label>
+          </li>
+          <li>
+            <label>
+              <Radio value="solved" />Replied
+            </label>
+          </li>
+          <li>
+            <label>
+              <Radio value="all" />All
+            </label>
+          </li>
+        </RadioGroup>
+        <label>
+          <input
+            type="checkbox"
+            checked={replyRequestCount}
+            onChange={this.handleReplyRequestCountCheck}
+          />{' '}
+          Show articles with more than{' '}
+          <input
+            type="number"
+            value={replyRequestCount}
+            onChange={this.handleReplyRequestCountChange}
+          />{' '}
+          reply request(s)
+        </label>
+      </div>
     );
   };
 
