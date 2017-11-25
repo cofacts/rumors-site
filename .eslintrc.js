@@ -28,4 +28,9 @@ module.exports = {
     jest: true,
     node: true,
   },
+  settings: {
+    'import/resolver': {
+      'babel-module': {}
+    }
+  }
 };

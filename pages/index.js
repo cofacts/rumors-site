@@ -8,11 +8,11 @@ import Head from 'next/head';
 import { List } from 'immutable';
 import { RadioGroup, Radio } from 'react-radio-group';
 
-import app from '../components/App';
-import ListPage from '../components/ListPage';
-import Pagination from '../components/Pagination';
-import ArticleItem from '../components/ArticleItem';
-import { load, loadAuthFields } from '../redux/articleList';
+import app from 'components/App';
+import ListPage from 'components/ListPage';
+import Pagination from 'components/Pagination';
+import ArticleItem from 'components/ArticleItem';
+import { load, loadAuthFields } from 'ducks/articleList';
 
 import { mainStyle } from './index.styles';
 

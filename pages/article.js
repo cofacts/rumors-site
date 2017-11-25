@@ -6,12 +6,12 @@ import Head from 'next/head';
 import stringSimilarity from 'string-similarity';
 import { nl2br, linkify } from '../util/text';
 
-import app from '../components/App';
-import ArticleInfo from '../components/ArticleInfo';
-import ArticleItem from '../components/ArticleItem';
-import CurrentReplies from '../components/CurrentReplies';
-import RelatedReplies from '../components/RelatedReplies';
-import ReplyForm from '../components/ReplyForm';
+import app from 'components/App';
+import ArticleInfo from 'components/ArticleInfo';
+import ArticleItem from 'components/ArticleItem';
+import CurrentReplies from 'components/CurrentReplies';
+import RelatedReplies from 'components/RelatedReplies';
+import ReplyForm from 'components/ReplyForm';
 import {
   load,
   loadAuth,
@@ -20,7 +20,7 @@ import {
   updateReplyConnectionStatus,
   voteReply,
   reset,
-} from '../redux/articleDetail';
+} from 'ducks/articleDetail';
 
 import { detailStyle, tabMenuStyle } from './article.styles';
 

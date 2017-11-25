@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Modal from './';
-import { hideDialog } from '../../redux/auth';
+import { hideDialog } from 'ducks/auth';
 const { API_URL } = require('../../config');
 
 function LoginModal({ isDialogShown, onModalClose }) {

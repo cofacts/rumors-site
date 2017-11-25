@@ -7,14 +7,14 @@ import { compose } from 'redux';
 import Head from 'next/head';
 import { List } from 'immutable';
 import { RadioGroup, Radio } from 'react-radio-group';
-import { load } from '../redux/replyList';
+import { load } from 'ducks/replyList';
 
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 
-import app from '../components/App';
-import ListPage from '../components/ListPage';
-import Pagination from '../components/Pagination';
-import ReplyItem from '../components/ReplyItem';
+import app from 'components/App';
+import ListPage from 'components/ListPage';
+import Pagination from 'components/Pagination';
+import ReplyItem from 'components/ReplyItem';
 
 import { mainStyle } from './index.styles';
 
