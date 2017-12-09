@@ -17,10 +17,54 @@ import { load, loadAuthFields } from 'ducks/articleList';
 import { mainStyle } from './index.styles';
 
 class Index extends ListPage {
+  state = {
+    localEditorHelperList: {
+      "demoId": {// ID of articles state which already read or replied
+        read: true,
+        notArticleReplied: false, // false || 
+      },
+    },
+  };
+
   componentDidMount() {
     // Browser-only
     this.props.dispatch(loadAuthFields(this.props.query));
+    this.initLocalEditorHelperList();
   }
+
+  initLocalEditorHelperList = () => {
+    if (localStorage) {
+      const localEditorHelperList = JSON.parse(
+        localStorage.getItem('localEditorHelperList')
+      );
+      localEditorHelperList &&
+        this.setState({
+          localEditorHelperList,
+        });
+    }
+  };
+
+  handleLocalEditorHelperList = ({ id, read, notArticleReplied }) => {
+    this.setState({
+        localEditorHelperList: Object.assign(
+          {},
+          this.state.localEditorHelperList,
+          {
+            [id]: {
+              read,
+              notArticleReplied,
+            },
+          }
+        ),
+      },
+      () => {
+        localStorage.setItem(
+          'localEditorHelperList',
+          JSON.stringify(this.state.localEditorHelperList)
+        );
+      }
+    );
+  };
 
   handleReplyRequestCountCheck = e => {
     // Sets / clears reply request as checkbox is changed
@@ -146,19 +190,26 @@ class Index extends ListPage {
   };
 
   renderList = () => {
+    const {localEditorHelperList} = this.state;
     const { articles = null, totalCount, authFields } = this.props;
     return (
       <div>
         <p>{totalCount} articles</p>
         {this.renderPagination()}
         <ul className="article-list">
-          {articles.map(article => (
-            <ArticleItem
-              key={article.get('id')}
-              article={article}
-              requestedForReply={authFields.get(article.get('id'))}
-            />
-          ))}
+          {articles.map(article => {
+            const id = article.get('id');
+            const EditorHelperState = localEditorHelperList[id];
+            return (
+              <ArticleItem
+                key={id}
+                article={article}
+                requestedForReply={authFields.get(article.get('id'))}
+                handleLocalEditorHelperList={this.handleLocalEditorHelperList}
+                {...EditorHelperState}
+              />
+            );
+          })}
         </ul>
         {this.renderPagination()}
         <style jsx>{`
