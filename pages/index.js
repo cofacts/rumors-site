@@ -98,7 +98,7 @@ class Index extends ListPage {
             checked={+replyRequestCount === 1}
             onChange={this.handleReplyRequestCountCheck}
           />{' '}
-          僅列出至少有 1 人回報的文章
+          列出包括僅有 1 人回報的文章
         </label>
         <style jsx>{`
           .reply-request-count {
