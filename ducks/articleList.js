@@ -24,7 +24,7 @@ let lastStringifiedFilter;
 export const load = ({
   q,
   filter = 'unsolved',
-  replyRequestCount = '',
+  replyRequestCount = 2,
   orderBy = 'createdAt',
   before,
   after,
@@ -105,7 +105,7 @@ export const loadAuthFields = ({
   q,
   filter = 'all',
   orderBy = 'replyRequestCount',
-  replyRequestCount = '',
+  replyRequestCount = 2,
   before,
   after,
 }) => (dispatch, getState) => {

@@ -72,21 +72,13 @@ class Index extends ListPage {
     // Sets / clears reply request as checkbox is changed
     if (e.target.checked) {
       this.goToQuery({
-        replyRequestCount: 2,
+        replyRequestCount: 1,
       });
     } else {
       this.goToQuery({
-        replyRequestCount: '',
+        replyRequestCount: 2,
       });
     }
-  };
-
-  handleReplyRequestCountChange = e => {
-    const { target: { value } } = e;
-
-    this.goToQuery({
-      replyRequestCount: value,
-    });
   };
 
   renderSearch = () => {
@@ -149,18 +141,10 @@ class Index extends ListPage {
         <label>
           <input
             type="checkbox"
-            checked={replyRequestCount}
+            checked={+replyRequestCount === 1}
             onChange={this.handleReplyRequestCountCheck}
           />{' '}
-          僅列出至少有{' '}
-          <input
-            className="reply-request-count"
-            type="number"
-            value={replyRequestCount}
-            onChange={this.handleReplyRequestCountChange}
-            min={2}
-          />{' '}
-          人回報的文章
+          列出包括僅有 1 人回報的文章
         </label>
         <style jsx>{`
           .reply-request-count {
