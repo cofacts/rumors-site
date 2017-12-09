@@ -70,9 +70,10 @@ export default class ArticleItemWidget extends PureComponent {
       name: 'notArticle',
       description: '非查證',
       color: 'orange',
-      extendComponent: <NotArticleExtendSelection replyToNotArticle={this.replyToNotArticle} />,
-      onClick: event => {
-        console.log('toggle')
+      extendComponent: (
+        <NotArticleExtendSelection replyToNotArticle={this.replyToNotArticle} />
+      ),
+      onClick: () => {
         this.setState({
           notArticleSelectionDisplay: !this.state.notArticleSelectionDisplay,
         });
@@ -84,7 +85,7 @@ export default class ArticleItemWidget extends PureComponent {
     super(props);
 
     this.initialTagsState = {};
-    const name_list = this.tags.forEach(section => {
+    this.tags.forEach(section => {
       this.initialTagsState[`${section.name}Hover`] = false;
     });
 

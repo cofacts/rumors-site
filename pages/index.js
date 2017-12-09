@@ -19,9 +19,10 @@ import { mainStyle } from './index.styles';
 class Index extends ListPage {
   state = {
     localEditorHelperList: {
-      "demoId": {// ID of articles state which already read or replied
+      demoId: {
+        // ID of articles state which already read or replied
         read: true,
-        notArticleReplied: false, // false || 
+        notArticleReplied: false, // false ||
       },
     },
   };
@@ -45,7 +46,8 @@ class Index extends ListPage {
   };
 
   handleLocalEditorHelperList = ({ id, read, notArticleReplied }) => {
-    this.setState({
+    this.setState(
+      {
         localEditorHelperList: Object.assign(
           {},
           this.state.localEditorHelperList,
@@ -190,7 +192,7 @@ class Index extends ListPage {
   };
 
   renderList = () => {
-    const {localEditorHelperList} = this.state;
+    const { localEditorHelperList } = this.state;
     const { articles = null, totalCount, authFields } = this.props;
     return (
       <div>

@@ -9,7 +9,7 @@ const NotArticleExtendSelection = ({ replyToNotArticle }) => {
         <li
           key={'op' + index}
           className="option"
-          onClick={event => {
+          onClick={() => {
             replyToNotArticle(value);
           }}
           onTouchStart={event => event.stopPropagation()} // prevent it trigger ul onTouchStart openBar
