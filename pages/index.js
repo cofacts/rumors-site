@@ -206,6 +206,7 @@ class Index extends ListPage {
               <ArticleItem
                 key={id}
                 article={article}
+                isLogin={authFields.size !== 0}
                 requestedForReply={authFields.get(article.get('id'))}
                 handleLocalEditorHelperList={this.handleLocalEditorHelperList}
                 {...EditorHelperState}

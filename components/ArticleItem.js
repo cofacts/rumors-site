@@ -10,6 +10,7 @@ export default function ArticleItem({
   read = false, // from localEditorHelperList, it only provide after did mount
   notArticleReplied = false, // same as top
   handleLocalEditorHelperList,
+  isLogin,
 }) {
   const id = article.get('id');
   return (
@@ -23,12 +24,14 @@ export default function ArticleItem({
         <a>
           <div className="item-text">{article.get('text')}</div>
           <ArticleInfo article={article} />
-          <ArticleItemWidget
-            id={id}
-            read={read}
-            notArticleReplied={notArticleReplied}
-            handleLocalEditorHelperList={handleLocalEditorHelperList}
-          />
+          {isLogin && (
+            <ArticleItemWidget
+              id={id}
+              read={read}
+              notArticleReplied={notArticleReplied}
+              handleLocalEditorHelperList={handleLocalEditorHelperList}
+            />
+          )}
         </a>
       </Link>
 
