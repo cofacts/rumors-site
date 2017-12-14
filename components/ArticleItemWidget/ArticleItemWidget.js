@@ -58,33 +58,6 @@ export default class ArticleItemWidget extends PureComponent {
     });
   };
 
-  // the tags config
-  tags = [
-    {
-      name: 'read',
-      description: '已讀',
-      color: '#cfcfcf',
-      onClick: event => {
-        event && event.preventDefault();
-        this.handleRead();
-        this.resetWidgetUI();
-      },
-    },
-    {
-      name: 'notArticle',
-      description: '非查證',
-      color: 'orange',
-      extendComponent: (
-        <NotArticleExtendSelection replyToNotArticle={this.replyToNotArticle} />
-      ),
-      onClick: () => {
-        this.setState({
-          notArticleSelectionDisplay: !this.state.notArticleSelectionDisplay,
-        });
-      },
-    },
-  ];
-
   handleReadClick = event => {
     event && event.preventDefault();
     this.handleRead();
