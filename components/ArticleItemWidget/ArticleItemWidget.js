@@ -4,17 +4,16 @@ import NProgress from 'nprogress';
 import cx from 'classnames';
 
 import gql from '../../util/gql';
-import { articleItemWidgetStyle } from './ArticleItemWidget.styles';
 
+import WidgetItem from './WidgetItem.js';
 import NotArticleExtendSelection from './NotArticleExtendSelection.js';
 
 // TODO: Click out for touch
 
-// without state for tags (like: hover, show, hide...)
 const initialState = {
   barOpen: false,
   notArticleSelectionDisplay: false,
-  touchTarget: false, // record the target now touch(move!) over by dom id, not touch start.
+  hoverTargetName: false, // record the target now mouseEnter or touch(move!) over by dom id, not touch start.
 };
 
 export default class ArticleItemWidget extends PureComponent {
@@ -25,8 +24,13 @@ export default class ArticleItemWidget extends PureComponent {
       PropTypes.bool,
       PropTypes.string, // TYPE_SUGGESTION_OPTIONS in replyType.js
     ]),
-    handleLocalEditorHelperList: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = Object.assign({}, initialState);
+  }
 
   replyToNotArticle = text => {
     const { id } = this.props;
@@ -81,16 +85,17 @@ export default class ArticleItemWidget extends PureComponent {
     },
   ];
 
-  constructor(props) {
-    super(props);
+  handleReadClick = event => {
+    event && event.preventDefault();
+    this.handleRead();
+    this.resetWidgetUI();
+  };
 
-    this.initialTagsState = {};
-    this.tags.forEach(section => {
-      this.initialTagsState[`${section.name}Hover`] = false;
+  handleNotArticleClick = () => {
+    this.setState({
+      notArticleSelectionDisplay: !this.state.notArticleSelectionDisplay,
     });
-
-    this.state = Object.assign({}, initialState, this.initialTagsState);
-  }
+  };
 
   componentDidMount = () => {
     this.preventMobileLongPressMenu();
@@ -112,28 +117,26 @@ export default class ArticleItemWidget extends PureComponent {
 
   // close widget bar and tags extend component
   resetWidgetUI = () => {
-    this.setState(Object.assign({}, initialState, this.initialTagsState));
+    this.setState(initialState);
   };
 
   openBar = () => {
     this.setState({
       barOpen: true,
-      readHover: true, //for mobile, explain in onTouchMoveTip function
-      touchTarget: 'read',
+      hoverTargetName: 'read', //for mobile, explain in onTouchMoveTip function
     });
   };
 
   hoverTag = event => {
     const name = event.currentTarget.attributes['name'].value;
     this.setState({
-      [`${name}Hover`]: true,
+      hoverTargetName: name,
     });
   };
 
-  unHoverTag = event => {
-    const name = event.currentTarget.attributes['name'].value;
+  unHoverTag = () => {
     this.setState({
-      [`${name}Hover`]: false,
+      hoverTargetName: false,
     });
   };
 
@@ -154,7 +157,7 @@ export default class ArticleItemWidget extends PureComponent {
         this.setState(
           Object.assign({}, this.initialTagsState, {
             [`${target_name}Hover`]: true,
-            touchTarget: target_name,
+            hoverTargetName: target_name,
           })
         );
     } catch (error) {
@@ -166,7 +169,7 @@ export default class ArticleItemWidget extends PureComponent {
   onBarTouchEnd = event => {
     this.preventAll(event);
     const target = this.tags.find(select => {
-      return select.name === this.state.touchTarget;
+      return select.name === this.state.hoverTargetName;
     });
     target && target.onClick();
   };
@@ -183,13 +186,8 @@ export default class ArticleItemWidget extends PureComponent {
   };
 
   handleRead = () => {
-    const {
-      id,
-      handleLocalEditorHelperList,
-      read,
-      notArticleReplied,
-    } = this.props;
-    handleLocalEditorHelperList({
+    const { id, onChange, read, notArticleReplied } = this.props;
+    onChange({
       id,
       read: !read,
       notArticleReplied,
@@ -197,8 +195,8 @@ export default class ArticleItemWidget extends PureComponent {
   };
 
   handleNotArticleReply = type => {
-    const { id, handleLocalEditorHelperList, read } = this.props;
-    handleLocalEditorHelperList({
+    const { id, onChange, read } = this.props;
+    onChange({
       id,
       read,
       notArticleReplied: type,
@@ -206,7 +204,7 @@ export default class ArticleItemWidget extends PureComponent {
   };
 
   render() {
-    const { barOpen, notArticleSelectionDisplay } = this.state;
+    const { barOpen, notArticleSelectionDisplay, hoverTargetName } = this.state;
     return (
       <ul
         className={cx('bar', {
@@ -221,34 +219,50 @@ export default class ArticleItemWidget extends PureComponent {
         onTouchMove={this.onTouchMoveTip}
         onTouchEnd={this.onBarTouchEnd}
       >
-        {this.tags.map((tag, index) => {
-          return (
-            <li
-              key={tag.name}
-              id={tag.name}
-              name={tag.name}
-              data-description={tag.description}
-              onMouseEnter={this.hoverTag}
-              onMouseLeave={this.unHoverTag}
-              onClick={tag.onClick}
-              onTouchStart={event => event.preventDefault()}
-              className={cx({ active: this.state[`${tag.name}Hover`] })}
-              style={{
-                '--index': index,
-                '--color': tag.color,
-              }}
-            >
-              <div
-                id={tag.name}
-                className={cx('tag', { active: tag.active })}
-              />
-              {notArticleSelectionDisplay &&
-                tag.extendComponent &&
-                tag.extendComponent}
-            </li>
-          );
-        })}
-        <style jsx>{articleItemWidgetStyle}</style>
+        <WidgetItem
+          name="read"
+          description="已讀"
+          color="#cfcfcf"
+          hover={hoverTargetName === 'read'}
+          index={0}
+          onClick={this.handleReadClick}
+          onMouseEnter={this.hoverTag}
+          onMouseLeave={this.unHoverTag}
+        />
+        <WidgetItem
+          name="notArticle"
+          description="非查證"
+          color="orange"
+          hover={hoverTargetName === 'notArticle'}
+          index={1}
+          onClick={this.handleNotArticleClick}
+          onMouseEnter={this.hoverTag}
+          onMouseLeave={this.unHoverTag}
+        >
+          {notArticleSelectionDisplay && (
+            <NotArticleExtendSelection
+              replyToNotArticle={this.replyToNotArticle}
+            />
+          )}
+        </WidgetItem>
+        <style jsx>{`
+          ul {
+            --selection-size: 0.8em;
+            position: absolute;
+            right: 0;
+            /* variable from listItem.styles.js */
+            bottom: var(--list-item-padding);
+            height: calc(var(--font-size) * 2);
+          }
+          ul.active {
+            /* give additional space for hover */
+            width: 50%;
+          }
+          ul.active :global(.tag) {
+            transform: translateX(calc(var(--index) * -2.3em)) scale(1.2);
+            opacity: 1;
+          }
+        `}</style>
       </ul>
     );
   }

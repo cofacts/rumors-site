@@ -18,7 +18,7 @@ export default function ArticleInfo({ article }) {
       )}
       <style jsx>{`
         .root {
-          font-size: 0.8em;
+          font-size: var(--font-size);
           color: rgba(0, 0, 0, 0.5);
         }
       `}</style>

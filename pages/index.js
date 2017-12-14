@@ -47,18 +47,15 @@ class Index extends ListPage {
 
   handleLocalEditorHelperList = ({ id, read, notArticleReplied }) => {
     this.setState(
-      {
-        localEditorHelperList: Object.assign(
-          {},
-          this.state.localEditorHelperList,
-          {
-            [id]: {
-              read,
-              notArticleReplied,
-            },
-          }
-        ),
-      },
+      ({ localEditorHelperList }) => ({
+        localEditorHelperList: {
+          ...localEditorHelperList,
+          [id]: {
+            read,
+            notArticleReplied,
+          },
+        },
+      }),
       () => {
         localStorage.setItem(
           'localEditorHelperList',
@@ -185,7 +182,6 @@ class Index extends ListPage {
         <ul className="article-list">
           {articles.map(article => {
             const id = article.get('id');
-            const EditorHelperState = localEditorHelperList[id];
             return (
               <ArticleItem
                 key={id}
@@ -193,7 +189,7 @@ class Index extends ListPage {
                 isLogin={authFields.size !== 0}
                 requestedForReply={authFields.get(article.get('id'))}
                 handleLocalEditorHelperList={this.handleLocalEditorHelperList}
-                {...EditorHelperState}
+                {...localEditorHelperList[id]}
               />
             );
           })}

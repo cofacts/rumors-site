@@ -17,7 +17,7 @@ export default function ArticleItem({
     <li
       className={cx('item', {
         read: read,
-        notArticle: notArticleReplied,
+        'not-article': notArticleReplied,
       })}
     >
       <Link route="article" params={{ id }}>
@@ -29,7 +29,7 @@ export default function ArticleItem({
               id={id}
               read={read}
               notArticleReplied={notArticleReplied}
-              handleLocalEditorHelperList={handleLocalEditorHelperList}
+              onChange={handleLocalEditorHelperList}
             />
           )}
         </a>

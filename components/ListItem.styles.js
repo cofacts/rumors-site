@@ -2,7 +2,7 @@ import css from 'styled-jsx/css'; // eslint-disable-line import/no-unresolved
 
 export const listItemStyle = css`
   .item {
-    --font-size: 0.8em;
+    --font-size: 0.8em; // for ArticleInfo && articleItemWidget layout
     --list-item-padding: 8px;
     display: block;
     position: relative;
@@ -16,7 +16,7 @@ export const listItemStyle = css`
     background-color: #f1f1f1;
     color: rgba(0, 0, 0, 0.3);
   }
-  .item.notArticle {
+  .item.not-article {
     background-color: #feff3b45;
   }
   .item:hover {
