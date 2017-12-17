@@ -65,9 +65,9 @@ export default class ArticleItemWidget extends PureComponent {
   };
 
   handleNotArticleClick = () => {
-    this.setState({
-      notArticleSelectionDisplay: !this.state.notArticleSelectionDisplay,
-    });
+    this.setState(({ notArticleSelectionDisplay }) => ({
+      notArticleSelectionDisplay: !notArticleSelectionDisplay,
+    }));
   };
 
   componentDidMount = () => {
