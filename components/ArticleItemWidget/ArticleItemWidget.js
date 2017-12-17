@@ -27,12 +27,19 @@ export default class ArticleItemWidget extends PureComponent {
     onChange: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({}, initialState);
-  }
+  state = initialState;
 
-  replyToNotArticle = text => {
+  componentDidMount = () => {
+    this.preventMobileMenuLongPress();
+  };
+
+  preventMobileMenuLongPress = () => {
+    this.refWidget.addEventListener('contextmenu', event =>
+      event.preventDefault()
+    );
+  };
+
+  handleNotArticleReply = text => {
     const { id } = this.props;
     NProgress.start();
     gql`
@@ -52,8 +59,8 @@ export default class ArticleItemWidget extends PureComponent {
         }
       }
     `({ articleId: id, type: 'NOT_ARTICLE', text }).then(() => {
-      this.handleNotArticleReply(text);
-      this.resetWidgetUI();
+      this.handleNotArticleSave(text);
+      this.handleWidgetUIReset();
       NProgress.done();
     });
   };
@@ -61,23 +68,13 @@ export default class ArticleItemWidget extends PureComponent {
   handleReadClick = event => {
     event && event.preventDefault();
     this.handleRead();
-    this.resetWidgetUI();
+    this.handleWidgetUIReset();
   };
 
   handleNotArticleClick = () => {
     this.setState(({ notArticleSelectionDisplay }) => ({
       notArticleSelectionDisplay: !notArticleSelectionDisplay,
     }));
-  };
-
-  componentDidMount = () => {
-    this.preventMobileLongPressMenu();
-  };
-
-  preventMobileLongPressMenu = () => {
-    this.refWidget.addEventListener('contextmenu', event =>
-      event.preventDefault()
-    );
   };
 
   preventAll = event => {
@@ -89,25 +86,25 @@ export default class ArticleItemWidget extends PureComponent {
   };
 
   // close widget bar and tags extend component
-  resetWidgetUI = () => {
+  handleWidgetUIReset = () => {
     this.setState(initialState);
   };
 
-  openBar = () => {
+  handleBarOpen = () => {
     this.setState({
       barOpen: true,
       hoverTargetName: 'read', //for mobile, explain in onTouchMoveTip function
     });
   };
 
-  hoverTag = event => {
+  handleTagHover = event => {
     const name = event.currentTarget.attributes['name'].value;
     this.setState({
       hoverTargetName: name,
     });
   };
 
-  unHoverTag = () => {
+  handleTagUnHover = () => {
     this.setState({
       hoverTargetName: false,
     });
@@ -118,7 +115,7 @@ export default class ArticleItemWidget extends PureComponent {
    * so it's hard to done with like mouse enter/leave strategy
    * then I use onTouchMove to dynamic check which tag was touch over
    */
-  onTouchMoveTip = event => {
+  handleBarTouchMove = event => {
     var changedTouch = event.changedTouches[0];
     var elem = document.elementFromPoint(
       changedTouch.clientX,
@@ -127,31 +124,30 @@ export default class ArticleItemWidget extends PureComponent {
     try {
       var target_name = elem.attributes['name'].value;
       target_name &&
-        this.setState(
-          Object.assign({}, this.initialTagsState, {
-            [`${target_name}Hover`]: true,
-            hoverTargetName: target_name,
-          })
-        );
+        this.setState({
+          hoverTargetName: target_name,
+        });
     } catch (error) {
       // touch move not on the widget tag
     }
   };
 
   // trigger the onClick function in tags config, when finger touch end with tag elm
-  onBarTouchEnd = event => {
+  handleBarTouchEnd = event => {
     this.preventAll(event);
-    const target = this.tags.find(select => {
-      return select.name === this.state.hoverTargetName;
-    });
-    target && target.onClick();
+    switch (this.state.hoverTargetName) {
+      case 'read':
+        return this.handleReadClick();
+      case 'notArticle':
+        return this.handleNotArticleClick();
+    }
   };
 
-  onMouseLeave = () => {
-    this.closeNotArticleSelection();
+  handleMouseLeave = () => {
+    this.handleNotArticleSelectionClose();
   };
 
-  closeNotArticleSelection = () => {
+  handleNotArticleSelectionClose = () => {
     this.setState({
       barOpen: false,
       notArticleSelectionDisplay: false,
@@ -167,7 +163,7 @@ export default class ArticleItemWidget extends PureComponent {
     });
   };
 
-  handleNotArticleReply = type => {
+  handleNotArticleSave = type => {
     const { id, onChange, read } = this.props;
     onChange({
       id,
@@ -186,11 +182,11 @@ export default class ArticleItemWidget extends PureComponent {
         ref={widget => (this.refWidget = widget)}
         style={{ zIndex: notArticleSelectionDisplay ? 2 : 1 }} //or the extend component will cover by next ul
         onClick={this.preventAll}
-        onMouseEnter={this.openBar}
-        onMouseLeave={this.onMouseLeave}
-        onTouchStart={this.openBar}
-        onTouchMove={this.onTouchMoveTip}
-        onTouchEnd={this.onBarTouchEnd}
+        onMouseEnter={this.handleBarOpen}
+        onMouseLeave={this.handleMouseLeave}
+        onTouchStart={this.handleBarOpen}
+        onTouchMove={this.handleBarTouchMove}
+        onTouchEnd={this.handleBarTouchEnd}
       >
         <WidgetItem
           name="read"
@@ -199,8 +195,8 @@ export default class ArticleItemWidget extends PureComponent {
           hover={hoverTargetName === 'read'}
           index={0}
           onClick={this.handleReadClick}
-          onMouseEnter={this.hoverTag}
-          onMouseLeave={this.unHoverTag}
+          onMouseEnter={this.handleTagHover}
+          onMouseLeave={this.handleTagUnHover}
         />
         <WidgetItem
           name="notArticle"
@@ -209,13 +205,11 @@ export default class ArticleItemWidget extends PureComponent {
           hover={hoverTargetName === 'notArticle'}
           index={1}
           onClick={this.handleNotArticleClick}
-          onMouseEnter={this.hoverTag}
-          onMouseLeave={this.unHoverTag}
+          onMouseEnter={this.handleTagHover}
+          onMouseLeave={this.handleTagUnHover}
         >
           {notArticleSelectionDisplay && (
-            <NotArticleExtendSelection
-              replyToNotArticle={this.replyToNotArticle}
-            />
+            <NotArticleExtendSelection onSelect={this.handleNotArticleReply} />
           )}
         </WidgetItem>
         <style jsx>{`

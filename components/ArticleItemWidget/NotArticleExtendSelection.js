@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TYPE_SUGGESTION_OPTIONS } from '../../constants/replyType';
 
-const NotArticleExtendSelection = ({ replyToNotArticle }) => {
+const NotArticleExtendSelection = ({ onSelect }) => {
   return (
     <ul className="extend">
       {TYPE_SUGGESTION_OPTIONS.NOT_ARTICLE.map(({ label, value }, index) => (
@@ -10,7 +10,7 @@ const NotArticleExtendSelection = ({ replyToNotArticle }) => {
           key={'op' + index}
           className="option"
           onClick={() => {
-            replyToNotArticle(value);
+            onSelect(value);
           }}
           onTouchStart={event => event.stopPropagation()} // prevent it trigger ul onTouchStart openBar
           onTouchEnd={event => event.stopPropagation()} // prevent it trigger ul onBarTouchEnd
