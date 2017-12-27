@@ -14,6 +14,11 @@ $ npm run dev
 
 # Instead of production api server, you could use local server https://github.com/MrOrz/rumors-api
 $ USE_LOCAL=1 npm run dev
+
+# Before you pull request, please lint your code first
+$ npm run lint 
+# fix eslint 
+$ npm run lint:fix
 ```
 
 ### ENV vars and Cache issue
