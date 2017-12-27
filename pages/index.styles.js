@@ -10,3 +10,9 @@ export const mainStyle = css`
     }
   }
 `;
+
+export const hintStyle = css`
+  .hint {
+    color: #aaa;
+  }
+`;

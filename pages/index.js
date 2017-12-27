@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Head from 'next/head';
 import { List } from 'immutable';
+import { Link } from '../routes';
 import { RadioGroup, Radio } from 'react-radio-group';
 
 import app from 'components/App';
@@ -14,7 +15,7 @@ import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
 import { load, loadAuthFields } from 'ducks/articleList';
 
-import { mainStyle } from './index.styles';
+import { mainStyle, hintStyle } from './index.styles';
 
 class Index extends ListPage {
   state = {
@@ -206,7 +207,7 @@ class Index extends ListPage {
   };
 
   render() {
-    const { isLoading = false } = this.props;
+    const { isLoading = false, query: { replyRequestCount } } = this.props;
 
     return (
       <main>
@@ -220,6 +221,16 @@ class Index extends ListPage {
         {this.renderOrderBy()}
         {this.renderFilter()}
         {isLoading ? <p>Loading...</p> : this.renderList()}
+        <span />
+        {+replyRequestCount !== 1 ? (
+          <span className="hint">
+            預設僅會顯示 2 人以上回報的文章。
+            <Link route="home" params={{ replyRequestCount: 1 }}>
+              <a>按這裡加入僅 1 人回報的文章</a>
+            </Link>
+          </span>
+        ) : null}
+        <style jsx>{hintStyle}</style>
         <style jsx>{mainStyle}</style>
       </main>
     );
