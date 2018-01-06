@@ -11,12 +11,15 @@ import ArticleInfo from 'components/ArticleInfo';
 import ArticleItem from 'components/ArticleItem';
 import CurrentReplies from 'components/CurrentReplies';
 import RelatedReplies from 'components/RelatedReplies';
+import ReplySearch from 'components/ReplySearch/ReplySearch.js';
 import ReplyForm from 'components/ReplyForm';
 import {
   load,
   loadAuth,
   submitReply,
   connectReply,
+  searchReplies,
+  searchRepiedArticle,
   updateReplyConnectionStatus,
   voteReply,
   reset,
@@ -47,12 +50,29 @@ function getRatingString(replyConnections) {
 
 class ArticlePage extends React.Component {
   state = {
-    tab: 'new', // 'new, 'related', 'search'
+    tab: 'search', // 'new, 'related', 'search'
   };
 
   handleConnect = ({ target: { value: replyId } }) => {
     const { dispatch, query: { id } } = this.props;
     return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
+  };
+
+  handleSearchReply = ({ target: { value: queryString } },after) => {
+    const { dispatch, query: { id } } = this.props;
+    dispatch(
+      searchReplies({ q: queryString, after })
+      // .then(() => {
+      //   console.log('success replies');
+      // })
+    );
+
+    return dispatch(
+      searchRepiedArticle({ q: queryString })
+      // .then(() => {
+      //   console.log('success artilce re');
+      // })
+    );
   };
 
   handleSubmit = reply => {
@@ -158,12 +178,12 @@ class ArticlePage extends React.Component {
             </span>
           )}
         </li>
-        {/*<li
+        <li
           onClick={this.handleTabChange('search')}
           className={`tab ${tab === 'search' ? 'active' : ''}`}
         >
           搜尋
-        </li>*/}
+        </li>
         <li className="empty" />
 
         <style jsx>{tabMenuStyle}</style>
@@ -176,6 +196,8 @@ class ArticlePage extends React.Component {
     const { tab } = this.state;
 
     const article = data.get('article');
+    const searchArticle = data.get('searchArticle')
+    const searchReply = data.get('searchReply')
     const relatedReplies = data.get('relatedReplies');
 
     const articleText = article.get('text', '');
@@ -198,7 +220,14 @@ class ArticlePage extends React.Component {
         );
 
       case 'search':
-        return <p>TODO</p>;
+        return (
+          <ReplySearch
+            onConnect={this.handleConnect}
+            onSearch={this.handleSearchReply}
+            article={searchArticle}
+            reply={searchReply}
+          />
+        );
 
       default:
         return null;
