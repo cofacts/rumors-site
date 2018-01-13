@@ -5,7 +5,7 @@ node_js: '8'
 cache: yarn
 
 script:
-  - npm run lint:check
+  - npm run lint
   - npm run test -- --coverage
 
 after_success:

@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "babel-node server",
-    "lint": "eslint --fix .",
-    "lint:check": "eslint .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "jest .",
     "build": "docker build -t mrorz/rumors-site:latest .",
     "build:next": "next build",
