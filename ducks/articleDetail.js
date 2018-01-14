@@ -91,6 +91,7 @@ export const load = id => dispatch => {
     ${fragments.articleFields}
     ${fragments.replyConnectionAndUserFields}
   `({ id }).then(resp => {
+    console.log(resp.toJS());
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isLoading', value: false }));
   });
@@ -230,10 +231,21 @@ export const searchReplies = ({ q, after }) => (dispatch, getState) => {
         first: 25
       ) {
         edges {
+          cursor
           node {
             id
+            versions {
+              text
+              type
+              createdAt
+            }
+            replyConnections {
+              article {
+                id
+                text
+              }
+            }
           }
-          cursor
         }
       }
     }
@@ -250,7 +262,6 @@ export const searchReplies = ({ q, after }) => (dispatch, getState) => {
     first: 25,
     after,
   }).then(resp => {
-    console.log(resp.toJS());
     dispatch(
       createAction(LOAD_SEARCH_OF_REPLIES)(
         resp.getIn(['data', 'ListReplies', 'edges'], List())
@@ -260,7 +271,6 @@ export const searchReplies = ({ q, after }) => (dispatch, getState) => {
 };
 
 export const searchRepiedArticle = ({ q, after }) => (dispatch, getState) => {
-  console.log(q);
   return gql`
     query(
       $filter: ListArticleFilter
@@ -277,9 +287,18 @@ export const searchRepiedArticle = ({ q, after }) => (dispatch, getState) => {
       ) {
         edges {
           node {
-            id
+            text
+            replyCount
+            replyConnections {
+              id
+              reply {
+                versions {
+                  text
+                  createdAt
+                }
+              }
+            }
           }
-          cursor
         }
       }
     }
@@ -396,16 +415,28 @@ export default createReducer(
     },
 
     [LOAD_SEARCH_OF_REPLIES]: (state, { payload }) => {
-      // TODO: 下次繼續
-      return state.updateIn(['data', 'searchReply'], searchReply => payload);
+      const reconstructSearchReplyMap = payload.map(reply => {
+        const article = reply.getIn([
+          'node',
+          'replyConnections',
+          '0',
+          'article',
+        ]);
+        const version = reply.getIn(['node', 'versions']);
+        return Map()
+          .setIn(['id'], reply.getIn(['node', 'id']))
+          .setIn(['article'], article)
+          .setIn(['versions'], version);
+      });
+      return state.setIn(['data', 'searchReply'], reconstructSearchReplyMap);
     },
 
     [LOAD_SEARCH_OF_ARTICLES]: (state, { payload }) => {
-      // TODO: 下次繼續
-      return state.updateIn(
-        ['data', 'searchArticle'],
-        searchArticle => payload
-      );
+      const reconstructSearchReplyMap = payload.map(article => {
+        return article.getIn(['node']);
+      });
+
+      return state.setIn(['data', 'searchArticle'], reconstructSearchReplyMap);
     },
 
     [RESET]: state => state.set('data', initialState.get('data')),

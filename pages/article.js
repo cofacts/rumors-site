@@ -58,21 +58,10 @@ class ArticlePage extends React.Component {
     return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
   };
 
-  handleSearchReply = ({ target: { value: queryString } },after) => {
-    const { dispatch, query: { id } } = this.props;
-    dispatch(
-      searchReplies({ q: queryString, after })
-      // .then(() => {
-      //   console.log('success replies');
-      // })
-    );
-
-    return dispatch(
-      searchRepiedArticle({ q: queryString })
-      // .then(() => {
-      //   console.log('success artilce re');
-      // })
-    );
+  handleSearchReply = ({ target: { value: queryString } }, after) => {
+    const { dispatch } = this.props;
+    dispatch(searchReplies({ q: queryString, after }));
+    dispatch(searchRepiedArticle({ q: queryString }));
   };
 
   handleSubmit = reply => {
@@ -196,8 +185,8 @@ class ArticlePage extends React.Component {
     const { tab } = this.state;
 
     const article = data.get('article');
-    const searchArticle = data.get('searchArticle')
-    const searchReply = data.get('searchReply')
+    const searchArticle = data.get('searchArticle');
+    const searchReply = data.get('searchReply');
     const relatedReplies = data.get('relatedReplies');
 
     const articleText = article.get('text', '');
