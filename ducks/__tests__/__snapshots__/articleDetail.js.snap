@@ -67,6 +67,8 @@ Immutable.Map {
       },
     },
   ],
+  "searchArticles": Immutable.List [],
+  "searchReplies": Immutable.List [],
 }
 `;
 
@@ -206,5 +208,7 @@ Immutable.Map {
       },
     },
   ],
+  "searchArticles": Immutable.List [],
+  "searchReplies": Immutable.List [],
 }
 `;
