@@ -91,7 +91,6 @@ export const load = id => dispatch => {
     ${fragments.articleFields}
     ${fragments.replyConnectionAndUserFields}
   `({ id }).then(resp => {
-    console.log(resp.toJS());
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isLoading', value: false }));
   });
@@ -215,19 +214,17 @@ export const voteReply = (articleId, replyConnectionId, vote) => dispatch => {
   });
 };
 
-export const searchReplies = ({ q, after }) => (dispatch, getState) => {
+export const searchReplies = ({ q }) => dispatch => {
   return gql`
     query(
       $filter: ListReplyFilter
       $orderBy: [ListReplyOrderBy]
       $before: String
-      $after: String
     ) {
       ListReplies(
         filter: $filter
         orderBy: $orderBy
         before: $before
-        after: $after
         first: 25
       ) {
         edges {
@@ -260,7 +257,6 @@ export const searchReplies = ({ q, after }) => (dispatch, getState) => {
       _score: 'DESC',
     },
     first: 25,
-    after,
   }).then(resp => {
     dispatch(
       createAction(LOAD_SEARCH_OF_REPLIES)(
@@ -270,31 +266,32 @@ export const searchReplies = ({ q, after }) => (dispatch, getState) => {
   });
 };
 
-export const searchRepiedArticle = ({ q, after }) => (dispatch, getState) => {
+export const searchRepiedArticle = ({ q }) => dispatch => {
   return gql`
     query(
       $filter: ListArticleFilter
       $orderBy: [ListArticleOrderBy]
       $before: String
-      $after: String
     ) {
       ListArticles(
         filter: $filter
         orderBy: $orderBy
         before: $before
-        after: $after
         first: 25
       ) {
         edges {
           node {
+            id
             text
             replyCount
+            createdAt
             replyConnections {
-              id
               reply {
+                id
                 versions {
                   text
                   createdAt
+                  type
                 }
               }
             }
@@ -314,7 +311,6 @@ export const searchRepiedArticle = ({ q, after }) => (dispatch, getState) => {
       _score: 'DESC',
     },
     first: 25,
-    after,
   }).then(resp => {
     dispatch(
       createAction(LOAD_SEARCH_OF_ARTICLES)(
@@ -335,8 +331,8 @@ export const initialState = fromJS({
     replyConnections: [], // reply & its connection to this article
     relatedArticles: [],
     relatedReplies: [], // related articles' replies
-    searchArticle: [],
-    searchReply: [],
+    searchArticles: [],
+    searchReplies: [],
   },
 });
 
@@ -415,7 +411,7 @@ export default createReducer(
     },
 
     [LOAD_SEARCH_OF_REPLIES]: (state, { payload }) => {
-      const reconstructSearchReplyMap = payload.map(reply => {
+      const reconstructSearchRepliesList = payload.map(reply => {
         const article = reply.getIn([
           'node',
           'replyConnections',
@@ -428,15 +424,21 @@ export default createReducer(
           .setIn(['article'], article)
           .setIn(['versions'], version);
       });
-      return state.setIn(['data', 'searchReply'], reconstructSearchReplyMap);
+      return state.setIn(
+        ['data', 'searchReplies'],
+        reconstructSearchRepliesList
+      );
     },
 
     [LOAD_SEARCH_OF_ARTICLES]: (state, { payload }) => {
-      const reconstructSearchReplyMap = payload.map(article => {
+      const reconstructSearchArticlesList = payload.map(article => {
         return article.getIn(['node']);
       });
 
-      return state.setIn(['data', 'searchArticle'], reconstructSearchReplyMap);
+      return state.setIn(
+        ['data', 'searchArticles'],
+        reconstructSearchArticlesList
+      );
     },
 
     [RESET]: state => state.set('data', initialState.get('data')),

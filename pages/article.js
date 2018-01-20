@@ -185,9 +185,9 @@ class ArticlePage extends React.Component {
     const { tab } = this.state;
 
     const article = data.get('article');
-    const searchArticle = data.get('searchArticle');
-    const searchReply = data.get('searchReply');
     const relatedReplies = data.get('relatedReplies');
+    const searchArticles = data.get('searchArticles');
+    const searchReplies = data.get('searchReplies');
 
     const articleText = article.get('text', '');
     const getArticleSimilarity = relatedArticleText =>
@@ -213,8 +213,8 @@ class ArticlePage extends React.Component {
           <ReplySearch
             onConnect={this.handleConnect}
             onSearch={this.handleSearchReply}
-            article={searchArticle}
-            reply={searchReply}
+            articles={searchArticles}
+            replies={searchReplies}
           />
         );
 
