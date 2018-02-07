@@ -107,6 +107,26 @@ export const updateReplyConnectionStatus = (
   });
 };
 
+export const voteReply = (replyId, replyConnectionId, vote) => dispatch => {
+  dispatch(setState({ key: 'isReplyLoading', value: true }));
+  NProgress.start();
+  return gql`
+    mutation($replyConnectionId: String!, $vote: FeedbackVote!) {
+      CreateOrUpdateReplyConnectionFeedback(
+        replyConnectionId: $replyConnectionId
+        vote: $vote
+      ) {
+        feedbackCount
+      }
+    }
+  `({ replyConnectionId, vote }).then(() => {
+    dispatch(load(replyId)).then(() => {
+      dispatch(setState({ key: 'isReplyLoading', value: false }));
+    });
+    NProgress.done();
+  });
+};
+
 export const reset = () => createAction(RESET);
 
 // Reducer
@@ -131,7 +151,6 @@ export default createReducer(
         .getIn(['replyConnections'])
         .sortBy(item => item.get('createdAt'))
         .first();
-
       return state
         .setIn(['data', 'reply'], payload)
         .setIn(

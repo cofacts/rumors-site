@@ -7,6 +7,7 @@ import {
   load,
   loadAuth,
   updateReplyConnectionStatus,
+  voteReply,
 } from '../ducks/replyDetail';
 import Head from 'next/head';
 import { nl2br, linkify } from '../util/text';
@@ -83,6 +84,11 @@ class ReplyPage extends React.Component {
     );
   };
 
+  handleReplyConnectionVote = (replyConnectionId, vote) => {
+    const { dispatch, query: { id } } = this.props;
+    return dispatch(voteReply(id, replyConnectionId, vote));
+  };
+
   renderReply = () => {
     const { originalReplyConnection, isReplyLoading } = this.props;
     const isDeleted = originalReplyConnection.get('status') === 'DELETED';
@@ -94,6 +100,7 @@ class ReplyPage extends React.Component {
           <ReplyConnection
             replyConnection={originalReplyConnection}
             actionText={isDeleted ? '恢復回應' : '刪除回應'}
+            onVote={this.handleReplyConnectionVote}
             onAction={
               isDeleted
                 ? this.handleReplyConnectionRestore
