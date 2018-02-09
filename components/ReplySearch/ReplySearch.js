@@ -133,12 +133,12 @@ export default class ReplySearch extends PureComponent {
         </label>
 
         {articles.size || replies.size ? (
-          <React.Fragment>
+          <Fragment>
             {this.renderTabMenu()}
             <div key="tab-content" className="tab-content">
               {this.renderSearchReplyTab()}
             </div>
-          </React.Fragment>
+          </Fragment>
         ) : (
           search && (
             <div className="search-none">{`- 找無${
