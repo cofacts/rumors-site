@@ -99,14 +99,15 @@ export default class ReplyConnection extends React.PureComponent {
   renderAuthor = () => {
     const { replyConnection } = this.props;
     const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
-    const connectionAuthor = replyConnection.get('user');
-    const replyAuthor = replyVersion.get('user');
+    const connectionAuthor = replyConnection.get('user') || Map();
+    const replyAuthor = replyVersion.get('user') || Map();
 
-    const connectionAuthorName = connectionAuthor
-      ? connectionAuthor.get('name')
-      : '有人';
+    const connectionAuthorName = connectionAuthor.get('name') || '有人';
 
-    if (replyAuthor && connectionAuthor.get('id') !== replyAuthor.get('id')) {
+    if (
+      replyAuthor.get('name') &&
+      connectionAuthor.get('id') !== replyAuthor.get('id')
+    ) {
       return (
         <span>
           {connectionAuthorName}
