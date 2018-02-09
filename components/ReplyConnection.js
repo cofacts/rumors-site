@@ -31,20 +31,20 @@ export default class ReplyConnection extends React.PureComponent {
     if (replyType !== 'NOT_ARTICLE') return null;
 
     return (
-      <span>
+      <aside className="not-in-range-info">
         ／ 查證範圍請參考
         <a href={USER_REFERENCE} target="_blank" rel="noopener noreferrer">
           《使用者指南》
         </a>。
         <style jsx>{`
-          span {
+          .not-in-range-info {
             display: inline-block; /* line-break as a whole in small screen */
             margin-left: 0.5em;
             font-size: 12px;
             opacity: 0.75;
           }
         `}</style>
-      </span>
+      </aside>
     );
   };
 
