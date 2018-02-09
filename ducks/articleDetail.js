@@ -13,6 +13,8 @@ const LOAD = defineType('LOAD');
 const LOAD_AUTH = defineType('LOAD_AUTH');
 const SET_STATE = defineType('SET_STATE');
 const RESET = defineType('RESET');
+const LOAD_SEARCH_OF_ARTICLES = defineType('LOAD_SEARCH_OF_ARTICLES');
+const LOAD_SEARCH_OF_REPLIES = defineType('LOAD_SEARCH_OF_REPLIES');
 
 // Action creators
 //
@@ -212,6 +214,112 @@ export const voteReply = (articleId, replyConnectionId, vote) => dispatch => {
   });
 };
 
+export const searchReplies = ({ q }) => dispatch => {
+  return gql`
+    query(
+      $filter: ListReplyFilter
+      $orderBy: [ListReplyOrderBy]
+      $before: String
+    ) {
+      ListReplies(
+        filter: $filter
+        orderBy: $orderBy
+        before: $before
+        first: 25
+      ) {
+        edges {
+          cursor
+          node {
+            id
+            versions {
+              text
+              type
+              createdAt
+            }
+            replyConnections {
+              article {
+                id
+                text
+              }
+            }
+          }
+        }
+      }
+    }
+  `({
+    filter: {
+      moreLikeThis: {
+        like: q,
+        minimumShouldMatch: '0',
+      },
+    },
+    orderBy: {
+      _score: 'DESC',
+    },
+    first: 25,
+  }).then(resp => {
+    dispatch(
+      createAction(LOAD_SEARCH_OF_REPLIES)(
+        resp.getIn(['data', 'ListReplies', 'edges'], List())
+      )
+    );
+  });
+};
+
+export const searchRepiedArticle = ({ q }) => dispatch => {
+  return gql`
+    query(
+      $filter: ListArticleFilter
+      $orderBy: [ListArticleOrderBy]
+      $before: String
+    ) {
+      ListArticles(
+        filter: $filter
+        orderBy: $orderBy
+        before: $before
+        first: 25
+      ) {
+        edges {
+          node {
+            id
+            text
+            replyCount
+            createdAt
+            replyConnections {
+              reply {
+                id
+                versions {
+                  text
+                  createdAt
+                  type
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `({
+    filter: {
+      moreLikeThis: {
+        like: q,
+        minimumShouldMatch: '0',
+      },
+      replyCount: { GT: '1' },
+    },
+    orderBy: {
+      _score: 'DESC',
+    },
+    first: 25,
+  }).then(resp => {
+    dispatch(
+      createAction(LOAD_SEARCH_OF_ARTICLES)(
+        resp.getIn(['data', 'ListArticles', 'edges'], List())
+      )
+    );
+  });
+};
+
 // Reducer
 //
 
@@ -223,6 +331,8 @@ export const initialState = fromJS({
     replyConnections: [], // reply & its connection to this article
     relatedArticles: [],
     relatedReplies: [], // related articles' replies
+    searchArticles: [],
+    searchReplies: [],
   },
 });
 
@@ -297,6 +407,31 @@ export default createReducer(
       }, {});
       return state.updateIn(['data', 'replyConnections'], replyConnections =>
         replyConnections.map(conn => conn.merge(idAuthMap[conn.get('id')]))
+      );
+    },
+
+    [LOAD_SEARCH_OF_REPLIES]: (state, { payload }) => {
+      const reconstructSearchRepliesList = payload.map(reply => {
+        return Map({
+          id: reply.getIn(['node', 'id']),
+          article: reply.getIn(['node', 'replyConnections', 0, 'article']),
+          versions: reply.getIn(['node', 'versions']),
+        });
+      });
+      return state.setIn(
+        ['data', 'searchReplies'],
+        reconstructSearchRepliesList
+      );
+    },
+
+    [LOAD_SEARCH_OF_ARTICLES]: (state, { payload }) => {
+      const reconstructSearchArticlesList = payload.map(article => {
+        return article.getIn(['node']);
+      });
+
+      return state.setIn(
+        ['data', 'searchArticles'],
+        reconstructSearchArticlesList
       );
     },
 

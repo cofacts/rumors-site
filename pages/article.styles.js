@@ -22,6 +22,7 @@ export const detailStyle = css`
     background: #eee;
     border-radius: 3px;
     padding: 24px;
+    word-break: break-all;
   }
   .items {
     list-style-type: none;
