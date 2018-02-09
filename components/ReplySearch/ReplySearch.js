@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import stringSimilarity from 'string-similarity';
 import RelatedReplies from '../RelatedReplies';
@@ -96,10 +96,10 @@ export default class ReplySearch extends PureComponent {
 
   renderSearchReplyTab = () => {
     const { articles, replies, onConnect } = this.props;
-    const { tab } = this.state;
+    const { tab, search } = this.state;
 
     const getArticleSimilarity = relatedArticleText =>
-      stringSimilarity.compareTwoStrings(this.search, relatedArticleText);
+      stringSimilarity.compareTwoStrings(search, relatedArticleText);
 
     switch (tab) {
       case 'reply':
@@ -132,18 +132,20 @@ export default class ReplySearch extends PureComponent {
           <input id="replySeach" type="search" onKeyUp={this.handleSearch} />
         </label>
 
-        {articles.size || replies.size
-          ? [
-              this.renderTabMenu(),
-              <div key="tab-content" className="tab-content">
-                {this.renderSearchReplyTab()}
-              </div>,
-            ]
-          : search && (
-              <div className="search-none">{`- 找無${
-                search
-              }相關的回覆與文章 -`}</div>
-            )}
+        {articles.size || replies.size ? (
+          <React.Fragment>
+            {this.renderTabMenu()}
+            <div key="tab-content" className="tab-content">
+              {this.renderSearchReplyTab()}
+            </div>
+          </React.Fragment>
+        ) : (
+          search && (
+            <div className="search-none">{`- 找無${
+              search
+            }相關的回覆與文章 -`}</div>
+          )
+        )}
 
         <style jsx>{`
           .tab-content {

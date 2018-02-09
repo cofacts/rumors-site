@@ -412,17 +412,11 @@ export default createReducer(
 
     [LOAD_SEARCH_OF_REPLIES]: (state, { payload }) => {
       const reconstructSearchRepliesList = payload.map(reply => {
-        const article = reply.getIn([
-          'node',
-          'replyConnections',
-          '0',
-          'article',
-        ]);
-        const version = reply.getIn(['node', 'versions']);
-        return Map()
-          .setIn(['id'], reply.getIn(['node', 'id']))
-          .setIn(['article'], article)
-          .setIn(['versions'], version);
+        return Map({
+          id: reply.getIn(['node', 'id']),
+          article: reply.getIn(['node', 'replyConnections', 0, 'article']),
+          versions: reply.getIn(['node', 'versions']),
+        });
       });
       return state.setIn(
         ['data', 'searchReplies'],
