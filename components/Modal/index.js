@@ -1,17 +1,6 @@
 import React, { PureComponent } from 'react';
 
 export default class Modal extends PureComponent {
-  componentDidMount = () => {
-    // prevent body scroll with the modal scroll
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-  };
-
-  componentWillUnmount = () => {
-    document.body.style.overflow = 'initial';
-    document.body.style.position = 'initial';
-  };
-
   render() {
     const { children, style = {}, onClose = () => {} } = this.props;
     return (
