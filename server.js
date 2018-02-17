@@ -5,11 +5,19 @@ const Koa = require('koa');
 const next = require('next');
 const Rollbar = require('rollbar');
 
+// Server related config & credentials
+//
+const serverConfig = {
+  ROLLBAR_SERVER_TOKEN: process.env.ROLLBAR_SERVER_TOKEN,
+  ROLLBAR_ENV: process.env.ROLLBAR_ENV || 'localhost',
+  PORT: process.env.PORT || 3000,
+};
+
 const rollbar = new Rollbar({
-  accessToken: process.env.ROLLBAR_SERVER_TOKEN,
+  accessToken: serverConfig.ROLLBAR_SERVER_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
-  environment: process.env.ROLLBAR_ENV || 'localhost',
+  environment: serverConfig.ROLLBAR_ENV,
 });
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' });
@@ -41,9 +49,8 @@ app.prepare().then(() => {
     await next();
   });
 
-  const port = process.env.PORT || 3000;
-  server.listen(port, err => {
+  server.listen(serverConfig.PORT, err => {
     if (err) throw err;
-      console.log('Listening port', port); // eslint-disable-line
+      console.log('Listening port', serverConfig.PORT); // eslint-disable-line
   });
 });
