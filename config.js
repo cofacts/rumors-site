@@ -7,10 +7,10 @@ import { config } from './package.json';
 
 const common = {
   AUTOTRACK_FILENAME: config.autotrackFileName,
-  API_URL: 'https://cofacts-api.hacktabl.org', // Default to staging
-  APP_ID: 'DEV',
 };
 
+// During production webpack build, dead-code elimination will remove other environment's settings.
+//
 switch (process.env.BUILD_TARGET) {
   case 'production':
     module.exports = {
@@ -35,9 +35,14 @@ switch (process.env.BUILD_TARGET) {
     module.exports = {
       ...common,
       API_URL: 'http://localhost:5000',
+      APP_ID: 'DEV',
     };
     break;
 
   default:
-    module.exports = common;
+    module.exports = {
+      ...common,
+      API_URL: 'https://cofacts-api.hacktabl.org', // Default to staging
+      APP_ID: 'DEV',
+    };
 }

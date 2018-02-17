@@ -7,11 +7,16 @@ WORKDIR /srv/www
 COPY package.json package-lock.json ./
 RUN npm install
 
+# Setup environment for client/server build and server execution
+#
+ARG BUILD_TARGET
+ENV NODE_ENV=production BUILD_TARGET=${BUILD_TARGET}
+
 # server.js seldom changes, but requires to be built within docker
 # to make its path correct
 #
 COPY server.js .babelrc ./
-RUN NODE_ENV=production npm run build:server
+RUN npm run build:server
 
 # Other files, so that other files do not interfere with node_modules cache
 #
@@ -20,7 +25,7 @@ COPY . .
 # Generate .next, which includes absolute path to package so it must be done
 # within container.
 #
-RUN NODE_ENV=production npm run build:next
+RUN npm run build:next
 
 EXPOSE 3000
 
