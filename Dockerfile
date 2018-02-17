@@ -1,5 +1,7 @@
 FROM node:8
 WORKDIR /srv/www
+EXPOSE 3000
+ENTRYPOINT npm start
 
 # make node_modules cached.
 # Src: https://nodesource.com/blog/8-protips-to-start-killing-it-when-dockerizing-node-js/
@@ -26,7 +28,3 @@ COPY . .
 # within container.
 #
 RUN npm run build:next
-
-EXPOSE 3000
-
-ENTRYPOINT npm start
