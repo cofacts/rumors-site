@@ -85,9 +85,9 @@ class ArticlePage extends React.Component {
     ).then(this.scrollToReplySection);
   };
 
-  handleReplyConnectionVote = (replyConnectionId, vote) => {
+  handleReplyConnectionVote = (conn, vote) => {
     const { dispatch, query: { id } } = this.props;
-    return dispatch(voteReply(id, replyConnectionId, vote));
+    return dispatch(voteReply(id, conn.get('replyId'), vote));
   };
 
   handleTabChange = tab => () => {
