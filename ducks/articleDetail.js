@@ -31,13 +31,13 @@ const fragments = {
       }
     }
   `,
-  replyConnectionAndUserFields: `
+  articleReplyAndUserFields: `
     fragment userFields on User {
       id
       name
       avatarUrl
     }
-    fragment replyConnectionFields on ReplyConnection {
+    fragment articleReplyFields on ArticleReply {
       id
       canUpdateStatus
       status
@@ -74,14 +74,14 @@ export const load = id => dispatch => {
       GetArticle(id: $id) {
         ...articleFields
         user { ...userFields }
-        replyConnections { ...replyConnectionFields }
+        replyConnections: articleReplies { ...articleReplyFields }
         relatedArticles(filter: {replyCount: {GT: 0}}) {
           edges {
             node {
               ...articleFields
               user { ...userFields }
               replyCount
-              replyConnections { ...replyConnectionFields }
+              replyConnections: articleReplies { ...articleReplyFields }
             }
             score
           }
@@ -89,7 +89,7 @@ export const load = id => dispatch => {
       }
     }
     ${fragments.articleFields}
-    ${fragments.replyConnectionAndUserFields}
+    ${fragments.articleReplyAndUserFields}
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isLoading', value: false }));
@@ -103,7 +103,7 @@ export const loadAuth = id => dispatch => {
       gql`
         query($id: String!) {
           GetArticle(id: $id) {
-            replyConnections {
+            replyConnections: articleReplies {
               id
               canUpdateStatus
             }
@@ -124,11 +124,11 @@ const reloadReply = articleId => dispatch =>
     query($id: String!) {
       GetArticle(id: $id) {
         replyConnections {
-          ...replyConnectionFields
+          ...articleReplyFields
         }
       }
     }
-    ${fragments.replyConnectionAndUserFields}
+    ${fragments.articleReplyAndUserFields}
   `({ id: articleId }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isReplyLoading', value: false }));
@@ -236,7 +236,7 @@ export const searchReplies = ({ q }) => dispatch => {
               type
               createdAt
             }
-            replyConnections {
+            replyConnections: articleReplies {
               article {
                 id
                 text
