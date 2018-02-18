@@ -125,7 +125,7 @@ const reloadReply = articleId => dispatch =>
   gql`
     query($id: String!) {
       GetArticle(id: $id) {
-        replyConnections {
+        replyConnections: articleReplies {
           ...articleReplyFields
         }
       }
@@ -292,7 +292,7 @@ export const searchRepiedArticle = ({ q }) => dispatch => {
             text
             replyCount
             createdAt
-            replyConnections {
+            replyConnections: articleReplies {
               reply {
                 id
                 versions {
