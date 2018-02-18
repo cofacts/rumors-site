@@ -11,7 +11,8 @@ Immutable.Map {
   },
   "replyConnections": Immutable.List [
     Immutable.Map {
-      "id": "article1-reply1",
+      "articleId": "article1",
+      "replyId": "reply1",
       "canUpdateStatus": true,
       "status": "NORMAL",
       "reply": Immutable.Map {
@@ -75,7 +76,8 @@ Immutable.Map {
 exports[`reducer: articleDetail handles LOAD_AUTH 1`] = `
 Immutable.List [
   Immutable.Map {
-    "id": "article1-reply1",
+    "articleId": "article1",
+    "replyId": "reply1",
     "canUpdateStatus": true,
     "status": "NORMAL",
     "reply": Immutable.Map {
