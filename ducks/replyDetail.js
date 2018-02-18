@@ -31,13 +31,15 @@ export const load = id => dispatch => {
           reference
           createdAt
         }
-        replyConnections {
+        replyConnections: articleReplies {
           id
+          articleId
           article {
             id
             text
             replyCount
           }
+          replyId
           user {
             name
           }
@@ -63,8 +65,10 @@ export const loadAuth = id => dispatch => {
       gql`
         query($id: String!) {
           GetReply(id: $id) {
-            replyConnections {
+            replyConnections: articleReplies {
               id
+              articleId
+              replyId
               canUpdateStatus
             }
           }
@@ -77,23 +81,28 @@ export const loadAuth = id => dispatch => {
     });
 };
 
-export const updateReplyConnectionStatus = (
+export const updateArticleReplyStatus = (
+  articleId,
   replyId,
-  replyConnectionId,
   status
 ) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum!) {
-      UpdateReplyConnectionStatus(
-        replyConnectionId: $replyConnectionId
+    mutation(
+      $articleId: String!
+      $replyId: String!
+      $status: ArticleReplyStatusEnum!
+    ) {
+      UpdateArticleReplyStatus(
+        articleId: $articleId
+        replyId: $replyId
         status: $status
       ) {
         id
       }
     }
-  `({ replyConnectionId, status }).then(() => {
+  `({ articleId, replyId, status }).then(() => {
     // FIXME:
     // Immediate load(replyId) will not get updated reply connection status.
     // Super wierd.

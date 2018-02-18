@@ -20,7 +20,7 @@ import {
   connectReply,
   searchReplies,
   searchRepiedArticle,
-  updateReplyConnectionStatus,
+  updateArticleReplyStatus,
   voteReply,
   reset,
 } from 'ducks/articleDetail';
@@ -71,17 +71,17 @@ class ArticlePage extends React.Component {
     );
   };
 
-  handleReplyConnectionDelete = replyConnectionId => {
+  handleReplyConnectionDelete = conn => {
     const { dispatch, query: { id } } = this.props;
     return dispatch(
-      updateReplyConnectionStatus(id, replyConnectionId, 'DELETED')
+      updateArticleReplyStatus(id, conn.get('replyId'), 'DELETED')
     );
   };
 
-  handleReplyConnectionRestore = replyConnectionId => {
+  handleReplyConnectionRestore = conn => {
     const { dispatch, query: { id } } = this.props;
     return dispatch(
-      updateReplyConnectionStatus(id, replyConnectionId, 'NORMAL')
+      updateArticleReplyStatus(id, conn.get('replyId'), 'NORMAL')
     ).then(this.scrollToReplySection);
   };
 

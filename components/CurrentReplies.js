@@ -43,7 +43,7 @@ class DeletedItems extends React.Component {
         <ul className="items">
           {items.map(conn => (
             <ReplyConnection
-              key={conn.get('id')}
+              key={`${conn.get('articleId')}__${conn.get('replyId')}`}
               replyConnection={conn}
               onAction={this.handleRestore}
               disabled={disabled}
@@ -123,7 +123,7 @@ export default function CurrentReplies({
       {validConnections.map(conn => (
         <ReplyConnection
           authId={authId}
-          key={conn.get('id')}
+          key={`${conn.get('articleId')}__${conn.get('replyId')}`}
           replyConnection={conn}
           onAction={onDelete}
           onVote={onVote}

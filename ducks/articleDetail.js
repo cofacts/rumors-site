@@ -38,9 +38,10 @@ const fragments = {
       avatarUrl
     }
     fragment articleReplyFields on ArticleReply {
-      id
       canUpdateStatus
       status
+      articleId
+      replyId
       reply {
         id
         versions(limit: 1) {
@@ -104,7 +105,8 @@ export const loadAuth = id => dispatch => {
         query($id: String!) {
           GetArticle(id: $id) {
             replyConnections: articleReplies {
-              id
+              articleId
+              replyId
               canUpdateStatus
             }
           }
@@ -149,23 +151,28 @@ export const connectReply = (articleId, replyId) => dispatch => {
   });
 };
 
-export const updateReplyConnectionStatus = (
+export const updateArticleReplyStatus = (
   articleId,
-  replyConnectionId,
+  replyId,
   status
 ) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum!) {
-      UpdateReplyConnectionStatus(
-        replyConnectionId: $replyConnectionId
+    mutation(
+      $articleId: String!
+      $replyId: String!
+      $status: ArticleReplyStatusEnum!
+    ) {
+      UpdateArticleReplyStatus(
+        articleId: $articleId
+        replyId: $replyId
         status: $status
       ) {
         id
       }
     }
-  `({ replyConnectionId, status }).then(() => {
+  `({ articleId, replyId, status }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
   });
@@ -402,11 +409,11 @@ export default createReducer(
 
     [LOAD_AUTH]: (state, { payload }) => {
       const idAuthMap = payload.get('replyConnections').reduce((agg, conn) => {
-        agg[conn.get('id')] = conn;
+        agg[conn.get('replyId')] = conn;
         return agg;
       }, {});
       return state.updateIn(['data', 'replyConnections'], replyConnections =>
-        replyConnections.map(conn => conn.merge(idAuthMap[conn.get('id')]))
+        replyConnections.map(conn => conn.merge(idAuthMap[conn.get('replyId')]))
       );
     },
 
