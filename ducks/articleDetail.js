@@ -141,7 +141,7 @@ export const connectReply = (articleId, replyId) => dispatch => {
   NProgress.start();
   return gql`
     mutation($articleId: String!, $replyId: String!) {
-      CreateReplyConnection(articleId: $articleId, replyId: $replyId) {
+      CreateArticleReply(articleId: $articleId, replyId: $replyId) {
         id
       }
     }
