@@ -32,7 +32,6 @@ export const load = id => dispatch => {
           createdAt
         }
         replyConnections: articleReplies {
-          id
           articleId
           article {
             id
