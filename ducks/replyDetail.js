@@ -65,7 +65,6 @@ export const loadAuth = id => dispatch => {
         query($id: String!) {
           GetReply(id: $id) {
             replyConnections: articleReplies {
-              id
               articleId
               replyId
               canUpdateStatus
@@ -98,7 +97,7 @@ export const updateArticleReplyStatus = (
         replyId: $replyId
         status: $status
       ) {
-        id
+        status
       }
     }
   `({ articleId, replyId, status }).then(() => {

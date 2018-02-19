@@ -169,7 +169,7 @@ export const updateArticleReplyStatus = (
         replyId: $replyId
         status: $status
       ) {
-        id
+        status
       }
     }
   `({ articleId, replyId, status }).then(() => {
