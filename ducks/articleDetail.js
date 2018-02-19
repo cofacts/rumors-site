@@ -142,7 +142,7 @@ export const connectReply = (articleId, replyId) => dispatch => {
   return gql`
     mutation($articleId: String!, $replyId: String!) {
       CreateArticleReply(articleId: $articleId, replyId: $replyId) {
-        id
+        articleId
       }
     }
   `({ articleId, replyId }).then(() => {
