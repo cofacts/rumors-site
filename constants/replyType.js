@@ -40,7 +40,7 @@ export const TYPE_SUGGESTION_OPTIONS = {
       value: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
     },
     { label: '商業促銷', value: '這是商業活動廣告，活動期間到⋯⋯' },
-    { label: '僅含失效連結', value: '訊息僅含有失效連結，無從查證。' },
+    { label: '無查證需要', value: '訊息與謠言查證無關。' },
     { label: '聊天', value: '送出文章的人在嘗試與機器人聊天。' },
     { label: '意見回饋', value: '對 Cofacts 真的假的的建言。' },
     { label: '無意義測試', value: '測試用之無意義訊息。' },
