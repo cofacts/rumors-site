@@ -69,7 +69,7 @@ export const load = ({
             type
             createdAt
           }
-          replyConnections(status: NORMAL) { id }
+          replyConnections: articleReplies(status: NORMAL) { replyId }
         }
         cursor
       }

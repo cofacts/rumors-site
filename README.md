@@ -10,20 +10,22 @@ This project uses NodeJS 8+ and npm 5+.
 
 ``` bash
 $ npm install
-$ npm run dev
+$ npm run dev # Then visit http://localhost:3000
 
-# Instead of production api server, you could use local server https://github.com/MrOrz/rumors-api
-$ USE_LOCAL=1 npm run dev
+# By default the site will connect to staging API server.
+# If you started your own API server using docker-compose in https://github.com/MrOrz/rumors-api,
+# Use this instead:
+$ BUILD_TARGET=local npm run dev
 
 # Before you pull request, please lint your code first
-$ npm run lint 
-# fix eslint 
+$ npm run lint
+# fix eslint
 $ npm run lint:fix
 ```
 
 ### ENV vars and Cache issue
 
-If you found that `USE_LOCAL` does not work (i.e. the server still sends to production server even when `USE_LOCAL` is set), try removing `node_modules/.cache`. This is [an known issue](https://github.com/zeit/next.js/issues/1103).
+If you found that `BUILD_TARGET` does not work (i.e. the server still sends to production server even when `BUILD_TARGET` is set), try removing `node_modules/.cache`. This is [an known issue](https://github.com/zeit/next.js/issues/1103).
 
 ### styled-jsx syntax highlighting
 
@@ -34,7 +36,11 @@ See: https://github.com/zeit/styled-jsx#syntax-highlighting
 Build docker image
 
 ```
+# Production build
 $ npm run build
+
+# Staging build
+$ npm run build:staging
 ```
 
 Run the docker image on local machine, then visit `http://localhost:3000`.
@@ -45,7 +51,11 @@ $ docker run --rm -p 3000:3000 -e "PORT=3000" mrorz/rumors-site
 
 Push to dockerhub
 ```
+# Production
 $ docker push mrorz/rumors-site
+
+# Staging
+$ docker push mrorz/rumors-site:staging
 ```
 
 ## Design and Mockups

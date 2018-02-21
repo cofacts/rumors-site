@@ -21,7 +21,7 @@ export default class ReplyConnection extends React.PureComponent {
 
   handleAction = () => {
     const { replyConnection, onAction } = this.props;
-    return onAction(replyConnection.get('id'));
+    return onAction(replyConnection);
   };
 
   renderHint = () => {

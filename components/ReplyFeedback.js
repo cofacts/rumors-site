@@ -25,12 +25,12 @@ export default class ReplyFeedback extends PureComponent {
 
   handleUpVote = () => {
     const { replyConnection, onVote } = this.props;
-    return onVote(replyConnection.get('id'), 'UPVOTE');
+    return onVote(replyConnection, 'UPVOTE');
   };
 
   handleDownVote = () => {
     const { replyConnection, onVote } = this.props;
-    return onVote(replyConnection.get('id'), 'DOWNVOTE');
+    return onVote(replyConnection, 'DOWNVOTE');
   };
 
   getFeedbackScore = () => {
