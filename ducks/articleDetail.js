@@ -31,16 +31,17 @@ const fragments = {
       }
     }
   `,
-  replyConnectionAndUserFields: `
+  articleReplyAndUserFields: `
     fragment userFields on User {
       id
       name
       avatarUrl
     }
-    fragment replyConnectionFields on ReplyConnection {
-      id
+    fragment articleReplyFields on ArticleReply {
       canUpdateStatus
       status
+      articleId
+      replyId
       reply {
         id
         versions(limit: 1) {
@@ -74,14 +75,14 @@ export const load = id => dispatch => {
       GetArticle(id: $id) {
         ...articleFields
         user { ...userFields }
-        replyConnections { ...replyConnectionFields }
+        replyConnections: articleReplies { ...articleReplyFields }
         relatedArticles(filter: {replyCount: {GT: 0}}) {
           edges {
             node {
               ...articleFields
               user { ...userFields }
               replyCount
-              replyConnections { ...replyConnectionFields }
+              replyConnections: articleReplies { ...articleReplyFields }
             }
             score
           }
@@ -89,7 +90,7 @@ export const load = id => dispatch => {
       }
     }
     ${fragments.articleFields}
-    ${fragments.replyConnectionAndUserFields}
+    ${fragments.articleReplyAndUserFields}
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isLoading', value: false }));
@@ -103,8 +104,9 @@ export const loadAuth = id => dispatch => {
       gql`
         query($id: String!) {
           GetArticle(id: $id) {
-            replyConnections {
-              id
+            replyConnections: articleReplies {
+              articleId
+              replyId
               canUpdateStatus
             }
           }
@@ -123,12 +125,12 @@ const reloadReply = articleId => dispatch =>
   gql`
     query($id: String!) {
       GetArticle(id: $id) {
-        replyConnections {
-          ...replyConnectionFields
+        replyConnections: articleReplies {
+          ...articleReplyFields
         }
       }
     }
-    ${fragments.replyConnectionAndUserFields}
+    ${fragments.articleReplyAndUserFields}
   `({ id: articleId }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isReplyLoading', value: false }));
@@ -139,8 +141,8 @@ export const connectReply = (articleId, replyId) => dispatch => {
   NProgress.start();
   return gql`
     mutation($articleId: String!, $replyId: String!) {
-      CreateReplyConnection(articleId: $articleId, replyId: $replyId) {
-        id
+      CreateArticleReply(articleId: $articleId, replyId: $replyId) {
+        articleId
       }
     }
   `({ articleId, replyId }).then(() => {
@@ -149,23 +151,28 @@ export const connectReply = (articleId, replyId) => dispatch => {
   });
 };
 
-export const updateReplyConnectionStatus = (
+export const updateArticleReplyStatus = (
   articleId,
-  replyConnectionId,
+  replyId,
   status
 ) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum!) {
-      UpdateReplyConnectionStatus(
-        replyConnectionId: $replyConnectionId
+    mutation(
+      $articleId: String!
+      $replyId: String!
+      $status: ArticleReplyStatusEnum!
+    ) {
+      UpdateArticleReplyStatus(
+        articleId: $articleId
+        replyId: $replyId
         status: $status
       ) {
-        id
+        status
       }
     }
-  `({ replyConnectionId, status }).then(() => {
+  `({ articleId, replyId, status }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
   });
@@ -196,19 +203,20 @@ export const submitReply = params => dispatch => {
   });
 };
 
-export const voteReply = (articleId, replyConnectionId, vote) => dispatch => {
+export const voteReply = (articleId, replyId, vote) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($replyConnectionId: String!, $vote: FeedbackVote!) {
-      CreateOrUpdateReplyConnectionFeedback(
-        replyConnectionId: $replyConnectionId
+    mutation($articleId: String!, $replyId: String!, $vote: FeedbackVote!) {
+      CreateOrUpdateArticleReplyFeedback(
+        articleId: $articleId
+        replyId: $replyId
         vote: $vote
       ) {
         feedbackCount
       }
     }
-  `({ replyConnectionId, vote }).then(() => {
+  `({ articleId, replyId, vote }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
   });
@@ -236,7 +244,7 @@ export const searchReplies = ({ q }) => dispatch => {
               type
               createdAt
             }
-            replyConnections {
+            replyConnections: articleReplies {
               article {
                 id
                 text
@@ -285,7 +293,7 @@ export const searchRepiedArticle = ({ q }) => dispatch => {
             text
             replyCount
             createdAt
-            replyConnections {
+            replyConnections: articleReplies {
               reply {
                 id
                 versions {
@@ -358,7 +366,15 @@ export default createReducer(
               payload.remove('replyConnections').remove('relatedArticles')
             )
           )
-          .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
+          .setIn(
+            ['data', 'replyConnections'],
+            payload
+              .get('replyConnections')
+              .sort(
+                (a, b) =>
+                  new Date(b.get('createdAt')) - new Date(a.get('createdAt'))
+              )
+          )
           .updateIn(
             ['data', 'relatedArticles'],
             articles =>
@@ -402,11 +418,11 @@ export default createReducer(
 
     [LOAD_AUTH]: (state, { payload }) => {
       const idAuthMap = payload.get('replyConnections').reduce((agg, conn) => {
-        agg[conn.get('id')] = conn;
+        agg[conn.get('replyId')] = conn;
         return agg;
       }, {});
       return state.updateIn(['data', 'replyConnections'], replyConnections =>
-        replyConnections.map(conn => conn.merge(idAuthMap[conn.get('id')]))
+        replyConnections.map(conn => conn.merge(idAuthMap[conn.get('replyId')]))
       );
     },
 

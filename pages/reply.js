@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import {
   load,
   loadAuth,
-  updateReplyConnectionStatus,
+  updateArticleReplyStatus,
   voteReply,
 } from '../ducks/replyDetail';
 import Head from 'next/head';
@@ -49,9 +49,9 @@ class ReplyPage extends React.Component {
   handleReplyConnectionDelete = () => {
     const { dispatch, originalReplyConnection, query: { id } } = this.props;
     return dispatch(
-      updateReplyConnectionStatus(
+      updateArticleReplyStatus(
+        originalReplyConnection.get('articleId'),
         id,
-        originalReplyConnection.get('id'),
         'DELETED'
       )
     );
@@ -60,9 +60,9 @@ class ReplyPage extends React.Component {
   handleReplyConnectionRestore = () => {
     const { dispatch, originalReplyConnection, query: { id } } = this.props;
     return dispatch(
-      updateReplyConnectionStatus(
+      updateArticleReplyStatus(
+        originalReplyConnection.get('articleId'),
         id,
-        originalReplyConnection.get('id'),
         'NORMAL'
       )
     );
@@ -84,9 +84,9 @@ class ReplyPage extends React.Component {
     );
   };
 
-  handleReplyConnectionVote = (replyConnectionId, vote) => {
+  handleReplyConnectionVote = (conn, vote) => {
     const { dispatch, query: { id } } = this.props;
-    return dispatch(voteReply(id, replyConnectionId, vote));
+    return dispatch(voteReply(conn.get('articleId'), id, vote));
   };
 
   renderReply = () => {

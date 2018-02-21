@@ -18,7 +18,8 @@ export const loadAction = {
             id: 'article1',
             replyConnections: [
               {
-                id: 'article1-relatedReply1',
+                articleId: 'article1',
+                replyId: 'relatedReply1',
                 canUpdateStatus: false,
                 reply: {
                   id: 'relatedReply1',
@@ -31,7 +32,8 @@ export const loadAction = {
                 },
               },
               {
-                id: 'article1-relatedReply2',
+                articleId: 'article1',
+                replyId: 'relatedReply2',
                 canUpdateStatus: false,
                 reply: {
                   id: 'relatedReply2',
@@ -44,7 +46,8 @@ export const loadAction = {
                 },
               },
               {
-                id: 'article1-reply1',
+                articleId: 'article1',
+                replyId: 'reply1',
                 canUpdateStatus: false,
                 reply: {
                   id: 'reply1', // Already added to article (exists in replyConnections)
@@ -67,7 +70,8 @@ export const loadAction = {
             text: '~~黎建南給退休軍公教人員的一封公開信~~',
             replyConnections: [
               {
-                id: 'article2-relatedReply1',
+                articleId: 'article2',
+                replyId: 'relatedReply1',
                 canUpdateStatus: false,
                 reply: {
                   // This is duplicated with related article 1
@@ -88,7 +92,8 @@ export const loadAction = {
     replyRequestCount: 1,
     replyConnections: [
       {
-        id: 'article1-reply1',
+        articleId: 'article1',
+        replyId: 'reply1',
         canUpdateStatus: true,
         status: 'NORMAL',
         reply: {
@@ -188,7 +193,8 @@ export const loadAuthAction = {
   payload: fromJS({
     replyConnections: [
       {
-        id: 'AV9mEFX2yCdS-nWhuiPu__AV9mJJ5qyCdS-nWhuiPz',
+        articleId: 'AV9mEFX2yCdS-nWhuiPu',
+        replyId: 'AV9mJJ5qyCdS-nWhuiPz',
         canUpdateStatus: true,
       },
     ],

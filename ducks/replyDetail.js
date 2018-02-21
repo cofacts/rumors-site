@@ -31,13 +31,14 @@ export const load = id => dispatch => {
           reference
           createdAt
         }
-        replyConnections {
-          id
+        replyConnections: articleReplies {
+          articleId
           article {
             id
             text
             replyCount
           }
+          replyId
           user {
             name
           }
@@ -63,8 +64,9 @@ export const loadAuth = id => dispatch => {
       gql`
         query($id: String!) {
           GetReply(id: $id) {
-            replyConnections {
-              id
+            replyConnections: articleReplies {
+              articleId
+              replyId
               canUpdateStatus
             }
           }
@@ -77,23 +79,28 @@ export const loadAuth = id => dispatch => {
     });
 };
 
-export const updateReplyConnectionStatus = (
+export const updateArticleReplyStatus = (
+  articleId,
   replyId,
-  replyConnectionId,
   status
 ) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($replyConnectionId: String!, $status: ReplyConnectionStatusEnum!) {
-      UpdateReplyConnectionStatus(
-        replyConnectionId: $replyConnectionId
+    mutation(
+      $articleId: String!
+      $replyId: String!
+      $status: ArticleReplyStatusEnum!
+    ) {
+      UpdateArticleReplyStatus(
+        articleId: $articleId
+        replyId: $replyId
         status: $status
       ) {
-        id
+        status
       }
     }
-  `({ replyConnectionId, status }).then(() => {
+  `({ articleId, replyId, status }).then(() => {
     // FIXME:
     // Immediate load(replyId) will not get updated reply connection status.
     // Super wierd.
@@ -107,19 +114,20 @@ export const updateReplyConnectionStatus = (
   });
 };
 
-export const voteReply = (replyId, replyConnectionId, vote) => dispatch => {
+export const voteReply = (articleId, replyId, vote) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($replyConnectionId: String!, $vote: FeedbackVote!) {
-      CreateOrUpdateReplyConnectionFeedback(
-        replyConnectionId: $replyConnectionId
+    mutation($articleId: String!, $replyId: String!, $vote: FeedbackVote!) {
+      CreateOrUpdateArticleReplyFeedback(
+        articleId: $articleId
+        replyId: $replyId
         vote: $vote
       ) {
         feedbackCount
       }
     }
-  `({ replyConnectionId, vote }).then(() => {
+  `({ articleId, replyId, vote }).then(() => {
     dispatch(load(replyId)).then(() => {
       dispatch(setState({ key: 'isReplyLoading', value: false }));
     });
