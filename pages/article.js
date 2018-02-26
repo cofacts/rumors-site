@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import moment from 'moment';
 import Head from 'next/head';
 import stringSimilarity from 'string-similarity';
 import { nl2br, linkify } from '../util/text';
@@ -26,27 +25,6 @@ import {
 } from 'ducks/articleDetail';
 
 import { detailStyle, tabMenuStyle } from './article.styles';
-
-function getRatingString(replyConnections) {
-  const resultStrings = [];
-  const { NOT_RUMOR, RUMOR } = replyConnections.reduce(
-    (agg, conn) => {
-      agg[conn.getIn(['reply', 'versions', 0, 'type'])] += 1;
-      return agg;
-    },
-    { NOT_RUMOR: 0, RUMOR: 0, NOT_ARTICLE: 0, OPINIONATED: 0 }
-  );
-
-  if (RUMOR) {
-    resultStrings.push(`${RUMOR} 人認為含有不實訊息`);
-  }
-
-  if (NOT_RUMOR) {
-    resultStrings.push(`${NOT_RUMOR} 人認為含有真實訊息`);
-  }
-
-  return resultStrings.join('、');
-}
 
 class ArticlePage extends React.Component {
   state = {
@@ -97,42 +75,6 @@ class ArticlePage extends React.Component {
   scrollToReplySection = () => {
     if (!this._replySectionEl) return;
     this._replySectionEl.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  getStructuredData = () => {
-    const { data } = this.props;
-    const article = data.get('article');
-    const ratingString = getRatingString(data.get('replyConnections'));
-    if (!ratingString) return null;
-
-    // Ref: https://developers.google.com/search/docs/data-types/factcheck
-    //
-
-    return {
-      '@context': 'http://schema.org',
-      '@type': 'ClaimReview',
-      datePublished: moment(article.get('updatedAt')).format('YYYY-MM-DD'),
-      url: `https://cofacts.g0v.tw/article/${article.get('id')}`,
-      itemReviewed: {
-        '@type': 'CreativeWork',
-        author: {
-          '@type': 'Organization',
-          name: 'Internet',
-        },
-      },
-      claimReviewed: article.get('text'),
-      author: {
-        '@type': 'Organization',
-        name: 'Cofacts editors',
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '-1',
-        bestRating: '-1',
-        worstRating: '-1',
-        alternateName: ratingString,
-      },
-    };
   };
 
   componentWillUnmount() {
@@ -238,7 +180,6 @@ class ArticlePage extends React.Component {
       return <div>Article not found.</div>;
     }
 
-    const structuredData = this.getStructuredData();
     const slicedArticleTitle = article.get('text').slice(0, 15);
 
     return (
@@ -246,17 +187,6 @@ class ArticlePage extends React.Component {
         <Head>
           <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
         </Head>
-
-        {structuredData ? (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(structuredData),
-            }}
-          />
-        ) : (
-          ''
-        )}
 
         <section className="section">
           <header className="header">
