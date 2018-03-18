@@ -4,6 +4,7 @@
 const Koa = require('koa');
 const next = require('next');
 const Rollbar = require('rollbar');
+const send = require('koa-send');
 
 // Server related config & credentials
 //
@@ -35,6 +36,15 @@ app.prepare().then(() => {
       await next();
     } catch (err) {
       rollbar.error(err, ctx.request);
+    }
+  });
+
+  //
+  server.use(async (ctx, next) => {
+    if ('/' === ctx.path) {
+      await send(ctx, './static/index.html');
+    } else {
+      await next();
     }
   });
 

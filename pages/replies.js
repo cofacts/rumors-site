@@ -16,7 +16,7 @@ import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
 import ReplyItem from 'components/ReplyItem';
 
-import { mainStyle } from './index.styles';
+import { mainStyle } from './articles.styles';
 
 class ReplyList extends ListPage {
   handleMyReplyOnlyCheck = e => {
