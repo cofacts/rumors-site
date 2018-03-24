@@ -15,7 +15,8 @@
     "build:next": "next build",
     "build:server": "babel server.js -o server.dist.js",
     "init:autotrack": "autotrack -o static/$npm_package_config_autotrackFileName -p eventTracker,outboundLinkTracker,urlChangeTracker",
-    "start": "NODE_ENV=production node server.dist.js"
+    "start": "NODE_ENV=production node server.dist.js",
+    "landing": "cp -R ../grants-landing-template/static/* static/"
   },
   "config": {
     "autotrackFileName": "autotrack.custom.js"
