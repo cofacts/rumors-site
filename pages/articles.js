@@ -15,7 +15,7 @@ import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
 import { load, loadAuthFields } from 'ducks/articleList';
 
-import { mainStyle, hintStyle } from './index.styles';
+import { mainStyle, hintStyle } from './articles.styles';
 
 class Index extends ListPage {
   state = {

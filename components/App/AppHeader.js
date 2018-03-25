@@ -7,13 +7,11 @@ import { showDialog, logout } from 'ducks/auth';
 function AppHeader({ user, onLoginClick, onLogoutClick }) {
   return (
     <header className="root">
-      <Link route="home">
-        <a className="logo hidden-xs">
-          <h1>真的假的</h1>
-        </a>
-      </Link>
+      <a className="logo hidden-xs" href="/">
+        <h1>真的假的</h1>
+      </a>
       <nav className="nav">
-        <Link route="home">
+        <Link route="articles">
           <a className="nav-item">文章</a>
         </Link>
         <Link route="replies">
