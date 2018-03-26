@@ -94,6 +94,29 @@ class Index extends ListPage {
     );
   };
 
+  renderDescriptionOfSearchedArticle = () => {
+    const { query: { searchUserByArticleId }, articles } = this.props;
+    const searchedArticle = articles.find(
+      article => article.get('id') === searchUserByArticleId
+    );
+    return (
+      <span>
+        與<mark>{searchedArticle ? searchedArticle.get('text') : ''}</mark>{' '}
+        此篇文章相同回報者的列表
+        <style jsx>{`
+          mark {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 15em;
+            display: inline-block;
+            vertical-align: bottom;
+          }
+        `}</style>
+      </span>
+    );
+  };
+
   renderOrderBy = () => {
     const { query: { orderBy, q } } = this.props;
     if (q) {
@@ -207,7 +230,10 @@ class Index extends ListPage {
   };
 
   render() {
-    const { isLoading = false, query: { replyRequestCount } } = this.props;
+    const {
+      isLoading = false,
+      query: { replyRequestCount, searchUserByArticleId },
+    } = this.props;
 
     return (
       <main>
@@ -215,6 +241,9 @@ class Index extends ListPage {
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
         <h2>文章列表</h2>
+        <h3>
+          {searchUserByArticleId && this.renderDescriptionOfSearchedArticle()}
+        </h3>
         {this.renderSearch()}
         <br />
         Order By:

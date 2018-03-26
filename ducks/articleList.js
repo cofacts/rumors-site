@@ -23,13 +23,19 @@ let isInCooldown = false;
 let lastStringifiedFilter;
 export const load = ({
   q,
+  searchUserByArticleId,
   filter = 'unsolved',
   replyRequestCount = 2,
   orderBy = 'createdAt',
   before,
   after,
 }) => dispatch => {
-  const filterObject = getFilterObject(filter, q, replyRequestCount);
+  const filterObject = getFilterObject(
+    filter,
+    q,
+    replyRequestCount,
+    searchUserByArticleId
+  );
   const stringifiedFilter = JSON.stringify(filterObject);
 
   if (lastStringifiedFilter !== stringifiedFilter) {
@@ -207,7 +213,7 @@ function resetCooldown() {
   isInCooldown = false;
 }
 
-function getFilterObject(filter, q, replyRequestCount) {
+function getFilterObject(filter, q, replyRequestCount, searchUserByArticleId) {
   const filterObj = {};
   if (q) {
     filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
@@ -221,6 +227,10 @@ function getFilterObject(filter, q, replyRequestCount) {
     filterObj.replyCount = { GT: 0 };
   } else if (filter === 'unsolved') {
     filterObj.replyCount = { EQ: 0 };
+  }
+
+  if (searchUserByArticleId) {
+    filterObj.fromUserOfArticleId = searchUserByArticleId;
   }
 
   // Return filterObj only when it is populated.
