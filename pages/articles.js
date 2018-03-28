@@ -225,7 +225,7 @@ class Index extends ListPage {
         {+replyRequestCount !== 1 ? (
           <span className="hint">
             預設僅會顯示 2 人以上回報的文章。
-            <Link route="home" params={{ replyRequestCount: 1 }}>
+            <Link route="articles" params={{ replyRequestCount: 1 }}>
               <a>按這裡加入僅 1 人回報的文章</a>
             </Link>
           </span>
