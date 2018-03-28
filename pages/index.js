@@ -101,8 +101,8 @@ class Index extends ListPage {
     );
     return (
       <span>
-        與<mark>{searchedArticle ? searchedArticle.get('text') : ''}</mark>{' '}
-        此篇文章相同回報者的列表
+        和<mark>{searchedArticle ? searchedArticle.get('text') : ''}</mark>{' '}
+        此篇相同回報者的文章列表
         <style jsx>{`
           mark {
             text-overflow: ellipsis;
@@ -244,7 +244,7 @@ class Index extends ListPage {
         <h3>
           {searchUserByArticleId && this.renderDescriptionOfSearchedArticle()}
         </h3>
-        {this.renderSearch()}
+        {!searchUserByArticleId && this.renderSearch()}
         <br />
         Order By:
         {this.renderOrderBy()}
