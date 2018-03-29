@@ -102,7 +102,9 @@ export const load = ({
       isInCooldown = true;
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
-    dispatch(createAction(LOAD)(resp.getIn(['data', 'ListArticles'], List())));
+    dispatch(
+      createAction(LOAD)(resp.getIn(['data', 'ListArticles']) || List())
+    );
     dispatch(setState({ key: 'isLoading', value: false }));
   });
 };

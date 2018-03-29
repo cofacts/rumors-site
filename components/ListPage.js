@@ -36,6 +36,15 @@ export default class ListPage extends React.Component {
     });
   };
 
+  handleSearchByArticleIdChange = e => {
+    const { searchUserByArticleId = '' } = this.props.query;
+    const { value } = e.target;
+    if (searchUserByArticleId === value) return;
+    this.goToQuery({
+      searchUserByArticleId: value,
+    });
+  };
+
   handleKeywordChange = e => {
     const { q = '' } = this.props.query;
     const { value } = e.target;

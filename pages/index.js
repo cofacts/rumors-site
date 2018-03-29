@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 // https://github.com/yannickcr/eslint-plugin-react/issues/1200
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Head from 'next/head';
@@ -80,17 +80,44 @@ class Index extends ListPage {
   };
 
   renderSearch = () => {
-    const { query: { q } } = this.props;
+    const { query: { q, searchUserByArticleId } } = this.props;
     return (
-      <label>
-        Search For:
-        <input
-          type="search"
-          onBlur={this.handleKeywordChange}
-          onKeyUp={this.handleKeywordKeyup}
-          defaultValue={q}
-        />
-      </label>
+      <Fragment>
+        <div>
+          <label className="label-search">Search For：</label>
+          <input
+            type="search"
+            onBlur={this.handleKeywordChange}
+            onKeyUp={this.handleKeywordKeyup}
+            defaultValue={q}
+          />
+        </div>
+        <div>
+          <label className="label-search label-article-id">
+            Author of article：
+          </label>
+          <input
+            type="search"
+            onBlur={this.handleSearchByArticleIdChange}
+            onKeyUp={this.handleKeywordKeyup}
+            defaultValue={searchUserByArticleId}
+            placeholder="Article ID"
+          />
+        </div>
+        <style jsx>{`
+          input::placeholder {
+            color: #b4b4b4;
+          }
+          .label-search {
+            display: inline-block;
+            width: 9em;
+            margin: 0 0 15px 0;
+          }
+          .label-article-id {
+            color: gray;
+          }
+        `}</style>
+      </Fragment>
     );
   };
 
@@ -101,7 +128,12 @@ class Index extends ListPage {
     );
     return (
       <span>
-        和<mark>{searchedArticle ? searchedArticle.get('text') : ''}</mark>{' '}
+        和{' '}
+        <mark>
+          {searchedArticle
+            ? searchedArticle.get('text')
+            : `Article ID: ${searchUserByArticleId}`}
+        </mark>{' '}
         此篇相同回報者的文章列表
         <style jsx>{`
           mark {
@@ -244,8 +276,7 @@ class Index extends ListPage {
         <h3>
           {searchUserByArticleId && this.renderDescriptionOfSearchedArticle()}
         </h3>
-        {!searchUserByArticleId && this.renderSearch()}
-        <br />
+        {this.renderSearch()}
         Order By:
         {this.renderOrderBy()}
         {this.renderFilter()}
