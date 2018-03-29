@@ -15,7 +15,7 @@ import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
 import { load, loadAuthFields } from 'ducks/articleList';
 
-import { mainStyle, hintStyle } from './index.styles';
+import { mainStyle, hintStyle } from './articles.styles';
 
 class Index extends ListPage {
   state = {
@@ -285,7 +285,7 @@ class Index extends ListPage {
         {+replyRequestCount !== 1 ? (
           <span className="hint">
             預設僅會顯示 2 人以上回報的文章。
-            <Link route="home" params={{ replyRequestCount: 1 }}>
+            <Link route="articles" params={{ replyRequestCount: 1 }}>
               <a>按這裡加入僅 1 人回報的文章</a>
             </Link>
           </span>

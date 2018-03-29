@@ -31,11 +31,27 @@ If you found that `BUILD_TARGET` does not work (i.e. the server still sends to p
 
 See: https://github.com/zeit/styled-jsx#syntax-highlighting
 
+## Landing Page (Makeshift)
+
+We build a temporary landing page in the repo [grants-landing-template](github.com/cofacts/grants-landing-template).
+
+When the landing page repo is in the same directory of this repo, run the command below to update the landing page in this repo:
+
+``` bash
+grants-landing-template $ npm start
+# After the landing page is compiled, ctrl-c
+
+grants-landing-template $ cd ../rumors-site
+
+rumors-site $ npm run landing
+```
+
+
 ## Deploy
 
 Build docker image
 
-```
+``` bash
 # Production build
 $ npm run build
 
@@ -45,12 +61,12 @@ $ npm run build:staging
 
 Run the docker image on local machine, then visit `http://localhost:3000`.
 
-```
+``` bash
 $ docker run --rm -p 3000:3000 -e "PORT=3000" mrorz/rumors-site
 ```
 
 Push to dockerhub
-```
+``` bash
 # Production
 $ docker push mrorz/rumors-site
 

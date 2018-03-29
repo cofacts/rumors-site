@@ -1,0 +1,163 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  font-family: wt011, Helvetica, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 900;
+}
+nav {
+  text-shadow: 0 0 2px rgba(0,0,0,0.3);
+  font-size: 0.9em;
+}
+.jumbotron {
+  height: 100%;
+  max-height: 640px;
+  margin-bottom: 0;
+  position: relative;
+  background: url("img/jumbotron.jpg") center center no-repeat #222;
+  background-size: cover;
+  border-radius: 0;
+}
+.jumbotron .text-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 210px;
+}
+.jumbotron .emphasis {
+  font-style: normal;
+  color: #ffc107;
+}
+.section {
+  padding: 80px 20px;
+}
+.section .inner {
+  margin: 0 auto;
+  max-width: 1024px;
+}
+h2 {
+  margin-bottom: 50px;
+}
+.huge {
+  font-size: 3em;
+  font-weight: 900;
+}
+.section-line {
+  padding: 0 40px;
+}
+.section-line .inner {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+.section-line .content {
+  padding: 40px 0;
+  min-width: 50%;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.phone-container {
+  margin: 0 20px;
+  max-width: 100%;
+  width: 360px;
+  overflow: hidden;
+}
+.phone-container .phone-img {
+  width: 100%;
+  padding-bottom: 150%;
+  background: url("img/phone.png") top left;
+  background-size: cover;
+  position: relative;
+}
+.phone-container video {
+  position: absolute;
+  width: 78%;
+  left: 11%;
+  top: 14%;
+}
+.section-why {
+  background: #fff url("img/cofacts-db-bg.jpg") bottom left no-repeat;
+}
+.section-why p {
+  background: rgba(255,255,255,0.6);
+}
+.section-photos {
+  padding: 0;
+}
+.section-photos .inner {
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+.section-photos .photo {
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+  width: 33%;
+  height: 270px;
+  background-color: #000;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+.section-photos .photo .mask {
+  content: " ";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+  opacity: 0.5;
+}
+.section-photos .photo:hover .mask {
+  opacity: 0;
+}
+.section-features {
+  padding-top: 90px;
+}
+.section-features .icon {
+  font-size: 90px;
+  margin-bottom: 40px;
+}
+.section-features p {
+  font-size: 0.9em;
+  color: #555;
+}
+.section-contribute {
+  background: #fff url("img/giraffe.jpg") bottom right no-repeat;
+  background-size: 150px auto;
+}
+.section-footer a {
+  color: #9be;
+}
+.sep.gap-sm {
+  margin: 15px 0;
+}
+.sep.gap {
+  margin: 30px 0;
+}
+.sep.gap-lg {
+  margin: 60px 0;
+}
+.sep.light {
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+.sep.dark {
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+.sep.light-dark {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
