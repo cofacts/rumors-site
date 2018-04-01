@@ -131,6 +131,9 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
                 property="og:image"
                 content="https://cofacts.g0v.tw/static/og-41.jpg"
               />
+              <meta property="og:image:type" content="image/jpg" />
+              <meta property="og:image:width" content="1280" />
+              <meta property="og:image:height" content="800" />
               <script
                 async
                 src="https://www.google-analytics.com/analytics.js"
