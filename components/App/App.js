@@ -17,6 +17,7 @@ import moment from 'moment';
 import 'moment/locale/zh-tw';
 import style from './App.css';
 import NProgress from 'nprogress';
+import ParanoidModal from '../Modal/ParanoidModal';
 const { GA_TRACKER, AUTOTRACK_FILENAME } = require('../../config');
 
 let isBootstrapping = true;
@@ -45,6 +46,10 @@ const SITE_STRUCTURED_DATA = JSON.stringify({
 //
 export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
   return class App extends React.Component {
+    state = {
+      showParanoidModal: isBootstrapping,
+    };
+
     static async getInitialProps(ctx) {
       const store = configure();
 
@@ -93,7 +98,13 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
       }
     }
 
+    handleParanoidModalClose = () => {
+      this.setState({ showParanoidModal: false });
+    };
+
     render() {
+      const { showParanoidModal } = this.state;
+
       return (
         <Provider store={this.store}>
           <div>
@@ -126,6 +137,9 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
             <Component {...this.props} />
             <LoginModal />
             <AppFooter />
+            {showParanoidModal && (
+              <ParanoidModal onModalClose={this.handleParanoidModalClose} />
+            )}
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: SITE_STRUCTURED_DATA }}
