@@ -127,6 +127,10 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
               `,
                 }}
               />
+              <meta
+                property="og:image"
+                content="https://cofacts.g0v.tw/static/og-41.jpg"
+              />
               <script
                 async
                 src="https://www.google-analytics.com/analytics.js"
