@@ -94,7 +94,6 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
             <Component {...this.props} />
             <LoginModal />
             <AppFooter />
-
           </div>
         </Provider>
       );

@@ -36,14 +36,14 @@ class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-            ga('create', '${GA_TRACKER}', 'auto');
-            ga('require', 'eventTracker');
-            ga('require', 'outboundLinkTracker');
-            ga('require', 'urlChangeTracker');
+                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+                ga('create', '${GA_TRACKER}', 'auto');
+                ga('require', 'eventTracker');
+                ga('require', 'outboundLinkTracker');
+                ga('require', 'urlChangeTracker');
 
-            ga('send', 'pageview');
-          `,
+                ga('send', 'pageview');
+              `,
             }}
           />
           <script async src="https://www.google-analytics.com/analytics.js" />
