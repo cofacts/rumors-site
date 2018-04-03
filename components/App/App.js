@@ -6,6 +6,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import Router from 'next/router';
+import getConfig from 'next/config';
 import { fromJS } from 'immutable';
 import { setLogin } from '../../util/gql';
 import configure from 'ducks';
@@ -17,7 +18,8 @@ import moment from 'moment';
 import 'moment/locale/zh-tw';
 import style from './App.css';
 import NProgress from 'nprogress';
-const { GA_TRACKER, AUTOTRACK_FILENAME } = require('../../config');
+
+const { publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME } } = getConfig();
 
 let isBootstrapping = true;
 moment.locale('zh-tw');
