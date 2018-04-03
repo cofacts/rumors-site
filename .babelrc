@@ -1,37 +1,16 @@
 {
-  "presets": [
-    "next/babel",
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions"],
-        "node": "current"
-      }
-    }]
-  ],
+  "presets": ["next/babel"],
   "plugins": [
-    "styled-jsx/babel",
-    "transform-class-properties",
-    "transform-inline-environment-variables", // inline all process.env.XXX so that they are available in FE as well
-    [ // https://github.com/zeit/next.js/blob/master/examples/with-global-stylesheet/.babelrc
-      "wrap-in-js",
-      { "extensions": ["css$"] }
-    ],
-    [
-      "transform-assets", 
-      {
-        "extensions": ["txt", "svg", "png"],
-        "regExp": ".*/components/(.+)",
-        "name": "/static/[1]?[sha512:hash:base64:7]"
-      }
-    ],
     [
       "module-resolver",
       {
         "root": ["./"],
         "alias": {
           "components": "./components",
+          "constants": "./constants",
           "pages": "./pages",
-          "ducks": "./ducks"
+          "ducks": "./ducks",
+          "routes": "./routes"
         }
       }
     ]

@@ -16,8 +16,11 @@ import AppFooter from './AppFooter';
 import LoginModal from '../Modal/LoginModal';
 import moment from 'moment';
 import 'moment/locale/zh-tw';
-import style from './App.css';
 import NProgress from 'nprogress';
+
+import 'normalize.css';
+import 'nprogress/nprogress.css';
+import './App.css';
 
 const { publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME } } = getConfig();
 
@@ -100,7 +103,6 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
         <Provider store={this.store}>
           <div>
             <Head>
-              <style dangerouslySetInnerHTML={{ __html: style }} />
               <meta
                 name="viewport"
                 content="width=device-width,initial-scale=1.0"

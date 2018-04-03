@@ -7,18 +7,12 @@ ENTRYPOINT npm start
 # Src: https://nodesource.com/blog/8-protips-to-start-killing-it-when-dockerizing-node-js/
 #
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 
 # Setup environment for client/server build and server execution
 #
 ARG BUILD_TARGET
 ENV NODE_ENV=production BUILD_TARGET=${BUILD_TARGET}
-
-# server.js seldom changes, but requires to be built within docker
-# to make its path correct
-#
-COPY server.js .babelrc ./
-RUN npm run build:server
 
 # Other files, so that other files do not interfere with node_modules cache
 #
