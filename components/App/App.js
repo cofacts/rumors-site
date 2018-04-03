@@ -3,10 +3,8 @@
 // Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/pages/index.js
 //
 import React from 'react';
-import Head from 'next/head';
 import { Provider } from 'react-redux';
 import Router from 'next/router';
-import getConfig from 'next/config';
 import { fromJS } from 'immutable';
 import { setLogin } from '../../util/gql';
 import configure from 'ducks';
@@ -22,8 +20,6 @@ import 'normalize.css';
 import 'nprogress/nprogress.css';
 import './App.css';
 
-const { publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME } } = getConfig();
-
 let isBootstrapping = true;
 moment.locale('zh-tw');
 
@@ -33,14 +29,6 @@ Router.onRouteChangeStart = () => {
 Router.onRouteChangeComplete = () => {
   NProgress.done();
 };
-
-const SITE_STRUCTURED_DATA = JSON.stringify({
-  '@context': 'http://schema.org',
-  '@type': 'WebSite',
-  name: 'Cofacts',
-  alternateName: '真的假的——轉傳訊息查證',
-  url: 'https://cofacts.g0v.tw',
-});
 
 // Wraps the app with <Provider />, and invoke
 // initFn(dispatch, context passed in getInitialProps)
@@ -102,38 +90,11 @@ export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
       return (
         <Provider store={this.store}>
           <div>
-            <Head>
-              <meta
-                name="viewport"
-                content="width=device-width,initial-scale=1.0"
-              />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                ga('create', '${GA_TRACKER}', 'auto');
-                ga('require', 'eventTracker');
-                ga('require', 'outboundLinkTracker');
-                ga('require', 'urlChangeTracker');
-
-                ga('send', 'pageview');
-              `,
-                }}
-              />
-              <script
-                async
-                src="https://www.google-analytics.com/analytics.js"
-              />
-              <script async src={`/static/${AUTOTRACK_FILENAME}`} />
-            </Head>
             <AppHeader />
             <Component {...this.props} />
             <LoginModal />
             <AppFooter />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: SITE_STRUCTURED_DATA }}
-            />
+
           </div>
         </Provider>
       );
