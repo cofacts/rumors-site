@@ -14,5 +14,14 @@
         }
       }
     ]
-  ]
+  ],
+
+  // https://github.com/zeit/next.js/tree/master/examples/with-jest
+  "env": {
+    "test": {
+      "presets": [
+        ["next/babel", { "preset-env": { "modules": "commonjs" } }]
+      ]
+    }
+  }
 }
