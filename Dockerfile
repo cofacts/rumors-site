@@ -7,7 +7,7 @@ ENTRYPOINT npm start
 # Src: https://nodesource.com/blog/8-protips-to-start-killing-it-when-dockerizing-node-js/
 #
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
 # Setup environment for client/server build and server execution
 #
