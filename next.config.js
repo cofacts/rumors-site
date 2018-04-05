@@ -2,6 +2,7 @@
 //
 const { config } = require('./package.json');
 const withCSS = require('@zeit/next-css');
+const withImages = require('next-images');
 
 let envConfig = {};
 
@@ -37,9 +38,11 @@ switch (process.env.BUILD_TARGET) {
     };
 }
 
-module.exports = withCSS({
-  publicRuntimeConfig: {
-    AUTOTRACK_FILENAME: config.autotrackFileName,
-    ...envConfig,
-  },
-});
+module.exports = withImages(
+  withCSS({
+    publicRuntimeConfig: {
+      AUTOTRACK_FILENAME: config.autotrackFileName,
+      ...envConfig,
+    },
+  })
+);
