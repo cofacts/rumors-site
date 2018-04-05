@@ -14,7 +14,7 @@ const SITE_STRUCTURED_DATA = JSON.stringify({
 });
 
 class MyDocument extends Document {
-  getInitialProps({ renderPage }) {
+  static getInitialProps({ renderPage }) {
     // https://github.com/zeit/next.js/#custom-document
     //
     const { html, head, errorHtml, chunks } = renderPage();
