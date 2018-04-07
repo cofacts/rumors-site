@@ -68,7 +68,7 @@ $ docker run --rm -p 3000:3000 -e "PORT=3000" mrorz/rumors-site
 Push to dockerhub
 ``` bash
 # Production
-$ docker push mrorz/rumors-site
+$ docker push mrorz/rumors-site:latest
 
 # Staging
 $ docker push mrorz/rumors-site:staging
