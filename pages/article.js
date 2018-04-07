@@ -202,7 +202,7 @@ class ArticlePage extends React.Component {
           <footer>
             <Link
               href={{
-                pathname: '/',
+                pathname: '/articles',
                 query: {
                   searchUserByArticleId: article.get('id'),
                   filter: 'all',
