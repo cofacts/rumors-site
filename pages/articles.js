@@ -17,7 +17,7 @@ import { load, loadAuthFields } from 'ducks/articleList';
 
 import { mainStyle, hintStyle } from './articles.styles';
 
-class Index extends ListPage {
+class Articles extends ListPage {
   state = {
     localEditorHelperList: {
       demoId: {
@@ -255,4 +255,4 @@ function mapStateToProps({ articleList }) {
 export default compose(
   app((dispatch, { query }) => dispatch(load(query))),
   connect(mapStateToProps)
-)(Index);
+)(Articles);

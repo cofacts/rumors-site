@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from '../../constants/urls';
-import { Link } from '../../routes';
+import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
+import { Link } from 'routes';
 import { showDialog, logout } from 'ducks/auth';
 
 function AppHeader({ user, onLoginClick, onLogoutClick }) {

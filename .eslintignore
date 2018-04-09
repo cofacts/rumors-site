@@ -1,4 +1,3 @@
-server.dist.js
 static/*
 node_modules/*
 .next
