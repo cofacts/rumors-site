@@ -1,6 +1,5 @@
 .next
 node_modules
 *.log
-server.dist.js
 coverage
 .vscode

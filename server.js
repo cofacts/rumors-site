@@ -14,10 +14,12 @@ const serverConfig = {
   PORT: process.env.PORT || 3000,
 };
 
+const enableRollbar = !!serverConfig.ROLLBAR_SERVER_TOKEN;
 const rollbar = new Rollbar({
+  enabled: enableRollbar,
+  captureUncaught: enableRollbar,
+  captureUnhandledRejections: enableRollbar,
   accessToken: serverConfig.ROLLBAR_SERVER_TOKEN,
-  captureUncaught: true,
-  captureUnhandledRejections: true,
   environment: serverConfig.ROLLBAR_ENV,
 });
 

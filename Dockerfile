@@ -14,12 +14,6 @@ RUN npm install
 ARG BUILD_TARGET
 ENV NODE_ENV=production BUILD_TARGET=${BUILD_TARGET}
 
-# server.js seldom changes, but requires to be built within docker
-# to make its path correct
-#
-COPY server.js .babelrc ./
-RUN npm run build:server
-
 # Other files, so that other files do not interfere with node_modules cache
 #
 COPY . .
