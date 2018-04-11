@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
 import { Link } from 'routes';
 import { showDialog, logout } from 'ducks/auth';
+import UserName from './UserName';
 
-function AppHeader({ user, onLoginClick, onLogoutClick }) {
+function AppHeader({ user, isLoadingAuth, onLoginClick, onLogoutClick }) {
   return (
     <header className="root">
       <a className="logo hidden-xs" href="/">
@@ -34,23 +35,12 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           專案介紹
         </a>
       </nav>
-      {user ? (
-        <div className="user">
-          <Link route="/replies?mine=1">
-            <a className="user-link">
-              <img src={user.get('avatarUrl')} alt="avatar" />
-              <span className="user-name hidden-xs">{user.get('name')}</span>
-            </a>
-          </Link>
-          <button type="button" onClick={onLogoutClick}>
-            Logout
-          </button>
-        </div>
-      ) : (
-        <button type="button" onClick={onLoginClick}>
-          Login
-        </button>
-      )}
+      <UserName
+        isLoading={isLoadingAuth}
+        user={user}
+        onLoginClick={onLoginClick}
+        onLogoutClick={onLogoutClick}
+      />
       <style jsx>{`
         .root {
           display: flex;
@@ -68,25 +58,10 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
           padding: 8px;
           border-left: 1px dashed #ccc;
         }
-        .user {
-          display: flex;
-          align-items: center;
-        }
-        .user-link {
-          display: flex;
-        }
-        .user-name {
-          margin: 0 16px;
-        }
-        .hidden-xs {
-          display: none;
-        }
+
         @media screen and (min-width: 768px) {
           .root {
             padding: 0 40px;
-          }
-          .hidden-xs {
-            display: block;
           }
         }
       `}</style>
@@ -97,6 +72,7 @@ function AppHeader({ user, onLoginClick, onLogoutClick }) {
 function mapStateToProps({ auth }) {
   return {
     user: auth.get('user'),
+    isLoadingAuth: auth.getIn(['state', 'isLoading']),
   };
 }
 
