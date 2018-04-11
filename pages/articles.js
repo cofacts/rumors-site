@@ -80,44 +80,23 @@ class Articles extends ListPage {
   };
 
   renderSearch = () => {
-    const { query: { q, searchUserByArticleId } } = this.props;
+    const { query: { q } } = this.props;
     return (
-      <Fragment>
-        <div>
-          <label className="label-search">Search For：</label>
-          <input
-            type="search"
-            onBlur={this.handleKeywordChange}
-            onKeyUp={this.handleKeywordKeyup}
-            defaultValue={q}
-          />
-        </div>
-        <div>
-          <label className="label-search label-article-id">
-            Author of article：
-          </label>
-          <input
-            type="search"
-            onBlur={this.handleSearchByArticleIdChange}
-            onKeyUp={this.handleKeywordKeyup}
-            defaultValue={searchUserByArticleId}
-            placeholder="Article ID"
-          />
-        </div>
+      <label className="label-search">
+        Search For: {" "}
+        <input
+          type="search"
+          onBlur={this.handleKeywordChange}
+          onKeyUp={this.handleKeywordKeyup}
+          defaultValue={q}
+        />
         <style jsx>{`
-          input::placeholder {
-            color: #b4b4b4;
-          }
-          .label-search {
-            display: inline-block;
-            width: 9em;
-            margin: 0 0 15px 0;
-          }
-          .label-article-id {
-            color: gray;
-          }
+         .label-search{
+           display: block;
+           margin-bottom: 1em;
+         }
         `}</style>
-      </Fragment>
+      </label>
     );
   };
 
@@ -127,25 +106,26 @@ class Articles extends ListPage {
       article => article.get('id') === searchUserByArticleId
     );
     return (
-      <span>
+      <Fragment>
         和{' '}
         <mark>
           {searchedArticle
             ? searchedArticle.get('text')
             : `Article ID: ${searchUserByArticleId}`}
         </mark>{' '}
-        此篇相同回報者的文章列表
+        此篇相同回報者之文章列表
         <style jsx>{`
           mark {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            max-width: 15em;
+            max-width: 14em;
             display: inline-block;
             vertical-align: bottom;
+            padding: 0 0.3em;
           }
         `}</style>
-      </span>
+      </Fragment>
     );
   };
 
@@ -272,12 +252,9 @@ class Articles extends ListPage {
         <Head>
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
-        <h2>文章列表</h2>
-        <h3>
-          {searchUserByArticleId && this.renderDescriptionOfSearchedArticle()}
-        </h3>
+        <h2>{ searchUserByArticleId ? this.renderDescriptionOfSearchedArticle() : "文章列表" }</h2>
         {this.renderSearch()}
-        Order By:
+        Order By:{" "}
         {this.renderOrderBy()}
         {this.renderFilter()}
         {isLoading ? <p>Loading...</p> : this.renderList()}
