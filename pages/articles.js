@@ -83,7 +83,7 @@ class Articles extends ListPage {
     const { query: { q } } = this.props;
     return (
       <label className="label-search">
-        Search For: {" "}
+        Search For:{' '}
         <input
           type="search"
           onBlur={this.handleKeywordChange}
@@ -91,10 +91,10 @@ class Articles extends ListPage {
           defaultValue={q}
         />
         <style jsx>{`
-         .label-search{
-           display: block;
-           margin-bottom: 1em;
-         }
+          .label-search {
+            display: block;
+            margin-bottom: 1em;
+          }
         `}</style>
       </label>
     );
@@ -252,10 +252,13 @@ class Articles extends ListPage {
         <Head>
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
-        <h2>{ searchUserByArticleId ? this.renderDescriptionOfSearchedArticle() : "文章列表" }</h2>
+        <h2>
+          {searchUserByArticleId
+            ? this.renderDescriptionOfSearchedArticle()
+            : '文章列表'}
+        </h2>
         {this.renderSearch()}
-        Order By:{" "}
-        {this.renderOrderBy()}
+        Order By: {this.renderOrderBy()}
         {this.renderFilter()}
         {isLoading ? <p>Loading...</p> : this.renderList()}
         <span />
