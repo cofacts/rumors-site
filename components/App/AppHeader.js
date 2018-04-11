@@ -5,7 +5,13 @@ import { Link } from 'routes';
 import { showDialog, logout } from 'ducks/auth';
 import UserName from './UserName';
 
-function AppHeader({ user, isLoadingAuth, onLoginClick, onLogoutClick }) {
+function AppHeader({
+  user,
+  isLoadingAuth,
+  onLoginClick,
+  onLogoutClick,
+  onUserNameUpdate,
+}) {
   return (
     <header className="root">
       <a className="logo hidden-xs" href="/">
@@ -40,6 +46,7 @@ function AppHeader({ user, isLoadingAuth, onLoginClick, onLogoutClick }) {
         user={user}
         onLoginClick={onLoginClick}
         onLogoutClick={onLogoutClick}
+        onUpdate={onUserNameUpdate}
       />
       <style jsx>{`
         .root {
@@ -83,6 +90,9 @@ function mapDispatchToProps(dispatch) {
     },
     onLogoutClick() {
       dispatch(logout());
+    },
+    onUserNameUpdate(name) {
+      console.log('New name', name);
     },
   };
 }
