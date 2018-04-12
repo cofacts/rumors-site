@@ -73,7 +73,7 @@ export const logout = () => dispatch => {
 export const updateName = newName => dispatch => {
   dispatch(setState({ key: 'isLoading', value: true }));
 
-  // TODO: Do real action here
+  // TODO: Replace with gql`` call once the API is ready
   setTimeout(() => {
     dispatch(setState({ key: 'isLoading', value: false }));
     dispatch(createAction(UPDATE_NAME)(newName));
