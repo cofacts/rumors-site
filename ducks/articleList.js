@@ -23,13 +23,19 @@ let isInCooldown = false;
 let lastStringifiedFilter;
 export const load = ({
   q,
+  searchUserByArticleId,
   filter = 'unsolved',
   replyRequestCount = 2,
   orderBy = 'createdAt',
   before,
   after,
 }) => dispatch => {
-  const filterObject = getFilterObject(filter, q, replyRequestCount);
+  const filterObject = getFilterObject(
+    filter,
+    q,
+    replyRequestCount,
+    searchUserByArticleId
+  );
   const stringifiedFilter = JSON.stringify(filterObject);
 
   if (lastStringifiedFilter !== stringifiedFilter) {
@@ -96,7 +102,9 @@ export const load = ({
       isInCooldown = true;
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
-    dispatch(createAction(LOAD)(resp.getIn(['data', 'ListArticles'], List())));
+    dispatch(
+      createAction(LOAD)(resp.getIn(['data', 'ListArticles']) || List())
+    );
     dispatch(setState({ key: 'isLoading', value: false }));
   });
 };
@@ -168,24 +176,9 @@ export default createReducer(
     [LOAD]: (state, { payload }) =>
       state
         .set('edges', payload.get('edges'))
-        .set(
-          'firstCursor',
-          payload.getIn(['pageInfo', 'firstCursor']) === undefined
-            ? state.get('firstCursor')
-            : payload.getIn(['pageInfo', 'firstCursor'])
-        )
-        .set(
-          'lastCursor',
-          payload.getIn(['pageInfo', 'lastCursor']) === undefined
-            ? state.get('lastCursor')
-            : payload.getIn(['pageInfo', 'lastCursor'])
-        )
-        .set(
-          'totalCount',
-          payload.get('totalCount') === undefined
-            ? state.get('totalCount')
-            : payload.get('totalCount')
-        ),
+        .set('firstCursor', payload.getIn(['pageInfo', 'firstCursor']))
+        .set('lastCursor', payload.getIn(['pageInfo', 'lastCursor']))
+        .set('totalCount', payload.get('totalCount') || 0),
     [LOAD_AUTH_FIELDS]: (state, { payload }) =>
       state.set(
         'authFields',
@@ -207,7 +200,7 @@ function resetCooldown() {
   isInCooldown = false;
 }
 
-function getFilterObject(filter, q, replyRequestCount) {
+function getFilterObject(filter, q, replyRequestCount, searchUserByArticleId) {
   const filterObj = {};
   if (q) {
     filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
@@ -221,6 +214,10 @@ function getFilterObject(filter, q, replyRequestCount) {
     filterObj.replyCount = { GT: 0 };
   } else if (filter === 'unsolved') {
     filterObj.replyCount = { EQ: 0 };
+  }
+
+  if (searchUserByArticleId) {
+    filterObj.fromUserOfArticleId = searchUserByArticleId;
   }
 
   // Return filterObj only when it is populated.

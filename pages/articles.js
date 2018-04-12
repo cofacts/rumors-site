@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 // https://github.com/yannickcr/eslint-plugin-react/issues/1200
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Head from 'next/head';
@@ -82,15 +82,50 @@ class Articles extends ListPage {
   renderSearch = () => {
     const { query: { q } } = this.props;
     return (
-      <label>
-        Search For:
+      <label className="label-search">
+        Search For:{' '}
         <input
           type="search"
           onBlur={this.handleKeywordChange}
           onKeyUp={this.handleKeywordKeyup}
           defaultValue={q}
         />
+        <style jsx>{`
+          .label-search {
+            display: block;
+            margin-bottom: 1em;
+          }
+        `}</style>
       </label>
+    );
+  };
+
+  renderDescriptionOfSearchedArticle = () => {
+    const { query: { searchUserByArticleId }, articles } = this.props;
+    const searchedArticle = articles.find(
+      article => article.get('id') === searchUserByArticleId
+    );
+    return (
+      <Fragment>
+        和{' '}
+        <mark>
+          {searchedArticle
+            ? searchedArticle.get('text')
+            : `Article ID: ${searchUserByArticleId}`}
+        </mark>{' '}
+        此篇相同回報者之文章列表
+        <style jsx>{`
+          mark {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 14em;
+            display: inline-block;
+            vertical-align: bottom;
+            padding: 0 0.3em;
+          }
+        `}</style>
+      </Fragment>
     );
   };
 
@@ -207,18 +242,23 @@ class Articles extends ListPage {
   };
 
   render() {
-    const { isLoading = false, query: { replyRequestCount } } = this.props;
+    const {
+      isLoading = false,
+      query: { replyRequestCount, searchUserByArticleId },
+    } = this.props;
 
     return (
       <main>
         <Head>
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
-        <h2>文章列表</h2>
+        <h2>
+          {searchUserByArticleId
+            ? this.renderDescriptionOfSearchedArticle()
+            : '文章列表'}
+        </h2>
         {this.renderSearch()}
-        <br />
-        Order By:
-        {this.renderOrderBy()}
+        Order By: {this.renderOrderBy()}
         {this.renderFilter()}
         {isLoading ? <p>Loading...</p> : this.renderList()}
         <span />
