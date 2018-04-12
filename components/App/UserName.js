@@ -1,5 +1,56 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'routes';
+
+class UserNameForm extends PureComponent {
+  static defaultProps = {
+    name: '',
+    onSubmit() {},
+    onCancel() {},
+  };
+
+  componentDidMount() {
+    if (this.inputEl) {
+      this.inputEl.select();
+    }
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (!this.inputEl) return;
+    this.props.onSubmit(this.inputEl.value);
+  };
+
+  render() {
+    const { name, onCancel } = this.props;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          className="name-input"
+          type="text"
+          defaultValue={name}
+          ref={el => (this.inputEl = el)}
+        />
+        <button className="submit" type="submit">
+          Save
+        </button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+
+        <style jsx>{`
+          .name-input {
+            width: 6em;
+          }
+
+          .submit {
+            margin: 0 8px;
+          }
+        `}</style>
+      </form>
+    );
+  }
+}
 
 class UserName extends PureComponent {
   static defaultProps = {
@@ -17,10 +68,7 @@ class UserName extends PureComponent {
     this.setState({ isEditingUserName: true });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const name = e.target.userName.value;
+  handleSubmit = name => {
     this.props.onUpdate(name);
     this.handleCancel();
   };
@@ -29,57 +77,45 @@ class UserName extends PureComponent {
     this.setState({ isEditingUserName: false });
   };
 
-  renderUserName = () => {
-    const { user } = this.props;
-
-    return (
-      <Fragment>
-        <Link route="/replies?mine=1">
-          <a className="user-link">
-            <img src={user.get('avatarUrl')} alt="avatar" />
-            <span className="user-name hidden-xs">{user.get('name')}</span>
-          </a>
-        </Link>
-        <small onClick={this.handleEdit}>(Edit)</small>
-      </Fragment>
-    );
-  };
-
-  renderUserNameForm = () => {
-    const { user } = this.props;
-
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input name="userName" type="text" defaultValue={user.get('name')} />
-        <button type="submit">Save</button>
-        <button type="button" onClick={this.handleCancel}>
-          Cancel
-        </button>
-      </form>
-    );
-  };
-
   renderInfo = () => {
-    const { onLogoutClick } = this.props;
-    const { isEditingUserName } = this.state;
+    const { onLogoutClick, user } = this.props;
 
     return (
       <div className="user">
-        {isEditingUserName ? this.renderUserNameForm() : this.renderUserName()}
+        <Link route="/replies?mine=1">
+          <a>{user.get('name')}</a>
+        </Link>
+
+        <button className="edit" onClick={this.handleEdit}>
+          <img
+            src={require('./images/edit.svg')}
+            width={12}
+            height={12}
+            alt="edit"
+          />
+        </button>
 
         <button type="button" onClick={onLogoutClick}>
           Logout
         </button>
+
         <style jsx>{`
           .user {
             display: flex;
             align-items: center;
           }
-          .user-link {
-            display: flex;
+
+          .edit {
+            padding: 4px;
+            margin: 0 12px 0 4px;
+            opacity: 0.4;
+            cursor: pointer;
+            border: 0;
+            background: transparent;
           }
-          .user-name {
-            margin: 0 16px;
+
+          .edit:hover {
+            opacity: 0.7;
           }
         `}</style>
       </div>
@@ -98,8 +134,18 @@ class UserName extends PureComponent {
 
   render() {
     const { user, isLoading } = this.props;
+    const { isEditingUserName } = this.state;
 
     if (isLoading) return 'Loading...';
+
+    if (isEditingUserName)
+      return (
+        <UserNameForm
+          name={user.get('name')}
+          onSubmit={this.handleSubmit}
+          onCancel={this.handleCancel}
+        />
+      );
 
     if (user) return this.renderInfo();
 
