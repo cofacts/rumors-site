@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
 import { Link } from 'routes';
-import { showDialog, logout } from 'ducks/auth';
+import { showDialog, logout, updateName } from 'ducks/auth';
 import UserName from './UserName';
 
 function AppHeader({
@@ -92,7 +92,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(logout());
     },
     onUserNameUpdate(name) {
-      console.log('New name', name);
+      dispatch(updateName(name));
     },
   };
 }
