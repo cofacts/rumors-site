@@ -74,10 +74,18 @@ export const updateName = newName => dispatch => {
   dispatch(setState({ key: 'isLoading', value: true }));
 
   // TODO: Replace with gql`` call once the API is ready
-  setTimeout(() => {
+  gql`
+    mutation($name: String!) {
+      user: UpdateUser(name: $name) {
+        name
+      }
+    }
+  `({
+    name: newName,
+  }).then(resp => {
     dispatch(setState({ key: 'isLoading', value: false }));
-    dispatch(createAction(UPDATE_NAME)(newName));
-  }, 500);
+    dispatch(createAction(UPDATE_NAME)(resp.getIn(['data', 'user', 'name'])));
+  });
 };
 
 // Reducer
