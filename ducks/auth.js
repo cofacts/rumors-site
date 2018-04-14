@@ -13,6 +13,7 @@ const { defineType, createAction, createReducer } = createDuck('auth');
 const LOAD = defineType('LOAD');
 const RESET = defineType('RESET');
 const SET_STATE = defineType('SET_STATE');
+const UPDATE_NAME = defineType('UPDATE_NAME');
 
 // Hacks (?)
 //
@@ -64,6 +65,28 @@ export const logout = () => dispatch => {
     });
 };
 
+/**
+ * Updates editor's nickname
+ *
+ * @param {string} newName the new user name
+ */
+export const updateName = newName => dispatch => {
+  dispatch(setState({ key: 'isLoading', value: true }));
+
+  gql`
+    mutation($name: String!) {
+      user: UpdateUser(name: $name) {
+        name
+      }
+    }
+  `({
+    name: newName,
+  }).then(resp => {
+    dispatch(setState({ key: 'isLoading', value: false }));
+    dispatch(createAction(UPDATE_NAME)(resp.getIn(['data', 'user', 'name'])));
+  });
+};
+
 // Reducer
 //
 const initialState = fromJS({
@@ -78,6 +101,8 @@ const reducer = createReducer(
   {
     [SET_STATE]: commonSetState,
     [LOAD]: (state, { payload }) => state.set('user', payload),
+    [UPDATE_NAME]: (state, { payload }) =>
+      state.setIn(['user', 'name'], payload),
     [RESET]: state => state.set('user', initialState.get('user')),
   },
   initialState
