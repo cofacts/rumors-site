@@ -73,7 +73,6 @@ export const logout = () => dispatch => {
 export const updateName = newName => dispatch => {
   dispatch(setState({ key: 'isLoading', value: true }));
 
-  // TODO: Replace with gql`` call once the API is ready
   gql`
     mutation($name: String!) {
       user: UpdateUser(name: $name) {
