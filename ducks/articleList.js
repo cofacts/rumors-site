@@ -176,9 +176,24 @@ export default createReducer(
     [LOAD]: (state, { payload }) =>
       state
         .set('edges', payload.get('edges'))
-        .set('firstCursor', payload.getIn(['pageInfo', 'firstCursor']))
-        .set('lastCursor', payload.getIn(['pageInfo', 'lastCursor']))
-        .set('totalCount', payload.get('totalCount') || 0),
+        .set(
+          'firstCursor',
+          payload.getIn(['pageInfo', 'firstCursor']) === undefined
+            ? state.get('firstCursor')
+            : payload.getIn(['pageInfo', 'firstCursor'])
+        )
+        .set(
+          'lastCursor',
+          payload.getIn(['pageInfo', 'lastCursor']) === undefined
+            ? state.get('lastCursor')
+            : payload.getIn(['pageInfo', 'lastCursor'])
+        )
+        .set(
+          'totalCount',
+          payload.get('totalCount') === undefined
+            ? state.get('totalCount')
+            : payload.get('totalCount')
+        ),
     [LOAD_AUTH_FIELDS]: (state, { payload }) =>
       state.set(
         'authFields',
