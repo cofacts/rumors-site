@@ -154,21 +154,20 @@ class ReplyPage extends React.Component {
 
   render() {
     const { isLoading, reply, originalReplyConnection } = this.props;
-    const currentVersion = reply.getIn(['versions', 0]);
     const originalArticle = originalReplyConnection.get('article');
 
-    if (isLoading && currentVersion === null) {
+    if (isLoading && reply === null) {
       return <div>Loading...</div>;
     }
 
-    if (currentVersion === null) {
+    if (reply === null) {
       return <div>Reply not found.</div>;
     }
 
     return (
       <div className="root">
         <Head>
-          <title>{currentVersion.get('text').slice(0, 15)}⋯⋯ - 回應</title>
+          <title>{reply.get('text').slice(0, 15)}⋯⋯ - 回應</title>
         </Head>
 
         <section className="section">

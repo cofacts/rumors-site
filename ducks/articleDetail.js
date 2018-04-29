@@ -44,14 +44,12 @@ const fragments = {
       replyId
       reply {
         id
-        versions(limit: 1) {
-          user {
-            ...userFields
-          }
-          type
-          text
-          reference
+        user {
+          ...userFields
         }
+        type
+        text
+        reference
       }
       feedbacks {
         user{
@@ -239,11 +237,9 @@ export const searchReplies = ({ q }) => dispatch => {
           cursor
           node {
             id
-            versions {
-              text
-              type
-              createdAt
-            }
+            text
+            type
+            createdAt
             replyConnections: articleReplies {
               article {
                 id
@@ -296,11 +292,9 @@ export const searchRepiedArticle = ({ q }) => dispatch => {
             replyConnections: articleReplies {
               reply {
                 id
-                versions {
-                  text
-                  createdAt
-                  type
-                }
+                text
+                createdAt
+                type
               }
             }
           }
@@ -431,7 +425,7 @@ export default createReducer(
         return Map({
           id: reply.getIn(['node', 'id']),
           article: reply.getIn(['node', 'replyConnections', 0, 'article']),
-          versions: reply.getIn(['node', 'versions']),
+          reply: reply,
         });
       });
       return state.setIn(

@@ -5,9 +5,8 @@ import { listItemStyle } from './ListItem.styles';
 import { TYPE_ICON, TYPE_NAME } from '../constants/replyType';
 
 export default function ReplyItem({ reply, showUser = true }) {
-  const currentVersion = reply.getIn(['versions', 0]);
-  const replyType = currentVersion.get('type');
-  const createdAt = moment(currentVersion.get('createdAt'));
+  const replyType = reply.get('type');
+  const createdAt = moment(reply.get('createdAt'));
 
   return (
     <Link route="reply" params={{ id: reply.get('id') }}>
@@ -15,10 +14,8 @@ export default function ReplyItem({ reply, showUser = true }) {
         <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
         <div className="item-content">
           <div className="item-text">
-            {showUser
-              ? `${currentVersion.getIn(['user', 'name'], '有人')}：`
-              : ''}
-            {currentVersion.get('text')}
+            {showUser ? `${reply.getIn(['user', 'name'], '有人')}：` : ''}
+            {reply.get('text')}
           </div>
           <div className="item-info">
             使用於 {reply.get('replyConnectionCount')} 篇

@@ -23,12 +23,8 @@ export const loadAction = {
                 canUpdateStatus: false,
                 reply: {
                   id: 'relatedReply1',
-                  versions: [
-                    {
-                      type: 'RUMOR',
-                      text: '醫師聽聞後都斥為無稽之談',
-                    },
-                  ],
+                  type: 'RUMOR',
+                  text: '醫師聽聞後都斥為無稽之談',
                 },
               },
               {
@@ -37,12 +33,8 @@ export const loadAction = {
                 canUpdateStatus: false,
                 reply: {
                   id: 'relatedReply2',
-                  versions: [
-                    {
-                      type: 'RUMOR',
-                      text: '喝冰水跟罹癌根本是兩回事',
-                    },
-                  ],
+                  type: 'RUMOR',
+                  text: '喝冰水跟罹癌根本是兩回事',
                 },
               },
               {
@@ -51,13 +43,9 @@ export const loadAction = {
                 canUpdateStatus: false,
                 reply: {
                   id: 'reply1', // Already added to article (exists in replyConnections)
-                  versions: [
-                    {
-                      type: 'NOT_ARTICLE',
-                      text:
-                        '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
-                    },
-                  ],
+                  type: 'NOT_ARTICLE',
+                  text:
+                    '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
                 },
               },
             ],
@@ -76,12 +64,8 @@ export const loadAction = {
                 reply: {
                   // This is duplicated with related article 1
                   id: 'relatedReply1',
-                  versions: [
-                    {
-                      type: 'RUMOR',
-                      text: '醫師聽聞後都斥為無稽之談',
-                    },
-                  ],
+                  type: 'RUMOR',
+                  text: '醫師聽聞後都斥為無稽之談',
                 },
               },
             ],
@@ -98,13 +82,8 @@ export const loadAction = {
         status: 'NORMAL',
         reply: {
           id: 'reply1',
-          versions: [
-            {
-              type: 'NOT_ARTICLE',
-              text:
-                '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
-            },
-          ],
+          type: 'NOT_ARTICLE',
+          text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
         },
         feedbacks: [],
         user: {
@@ -132,20 +111,15 @@ export const reloadRepliesAction = {
         status: 'NORMAL',
         reply: {
           id: 'AV9mN3dDyCdS-nWhuiP3',
-          versions: [
-            {
-              user: {
-                id: 'AVqVwjqQyrDaTqlmmp_a',
-                name: null,
-                avatarUrl: null,
-              },
-              type: 'NOT_ARTICLE',
-              text:
-                '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
-              reference: '',
-              createdAt: '2017-10-29T03:40:31.938Z',
-            },
-          ],
+          user: {
+            id: 'AVqVwjqQyrDaTqlmmp_a',
+            name: null,
+            avatarUrl: null,
+          },
+          type: 'NOT_ARTICLE',
+          text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+          reference: '',
+          createdAt: '2017-10-29T03:40:31.938Z',
         },
         feedbacks: [],
         user: {
@@ -161,20 +135,15 @@ export const reloadRepliesAction = {
         status: 'NORMAL',
         reply: {
           id: 'AV9mJJ5qyCdS-nWhuiPz',
-          versions: [
-            {
-              user: {
-                id: 'AVqVwjqQyrDaTqlmmp_a',
-                name: null,
-                avatarUrl: null,
-              },
-              type: 'NOT_ARTICLE',
-              text:
-                '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
-              reference: '',
-              createdAt: '2017-10-29T03:19:56.776Z',
-            },
-          ],
+          user: {
+            id: 'AVqVwjqQyrDaTqlmmp_a',
+            name: null,
+            avatarUrl: null,
+          },
+          type: 'NOT_ARTICLE',
+          text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+          reference: '',
+          createdAt: '2017-10-29T03:19:56.776Z',
         },
         feedbacks: [],
         user: {

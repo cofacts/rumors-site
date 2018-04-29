@@ -62,13 +62,11 @@ export const load = ({
       edges {
         node {
           id
-          versions(limit: 1) {
-            user { name }
-            reference
-            text
-            type
-            createdAt
-          }
+          user { name }
+          reference
+          text
+          type
+          createdAt
           replyConnections: articleReplies(status: NORMAL) { replyId }
         }
         cursor
