@@ -13,17 +13,18 @@ export default function RepliesModal({ replies, onConnect, onModalClose }) {
       <ul className="items">
         {replies.map(reply => {
           const replyId = reply.getIn(['reply', 'id']);
+          const replyType = reply.getIn(['reply', 'type']);
           const createdAt = moment(reply.get('createdAt'));
           return (
             <li key={replyId} className="root">
               <header className="section">
-                被標示為：<strong title={TYPE_DESC[reply.get('type')]}>
-                  {TYPE_NAME[reply.get('type')]}
+                被標示為：<strong title={TYPE_DESC[replyType]}>
+                  {TYPE_NAME[replyType]}
                 </strong>
               </header>
               <section className="section">
                 <ExpandableText wordCount={40}>
-                  {nl2br(linkify(reply.get('text')))}
+                  {nl2br(linkify(reply.getIn(['reply', 'text'])))}
                 </ExpandableText>
               </section>
               <footer>
