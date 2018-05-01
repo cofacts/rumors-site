@@ -21,6 +21,8 @@ $ BUILD_TARGET=local npm run dev
 $ npm run lint
 # fix eslint
 $ npm run lint:fix
+# run test
+$ npm t
 ```
 
 ### ENV vars and Cache issue
