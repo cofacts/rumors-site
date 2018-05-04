@@ -203,17 +203,15 @@ class UserName extends PureComponent {
     if (user) {
       return (
         <div>
-          <div>
-            {isEditingUserName ? (
-              <UserNameForm
-                name={user.get('name')}
-                onSubmit={this.handleSubmit}
-                onCancel={this.handleCancel}
-              />
-            ) : (
-              this.renderInfo()
-            )}
-          </div>
+          {isEditingUserName ? (
+            <UserNameForm
+              name={user.get('name')}
+              onSubmit={this.handleSubmit}
+              onCancel={this.handleCancel}
+            />
+          ) : (
+            this.renderInfo()
+          )}
           {this.renderLevel()}
         </div>
       );
