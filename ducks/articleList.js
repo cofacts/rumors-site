@@ -90,6 +90,12 @@ export const load = ({
         `
       }
     }
+    notRepliedArticles: ListArticles(filter: {replyCount: {EQ: 0}}) {
+      totalCount
+    }
+    repliedArticles: ListArticles(filter: {replyCount: {GT: 0}}) {
+      totalCount
+    }
   }`({
     filter: filterObject,
     orderBy: orderByArray,
@@ -103,7 +109,15 @@ export const load = ({
       setTimeout(resetCooldown, COSTY_FIELD_COOLDOWN);
     }
     dispatch(
-      createAction(LOAD)(resp.getIn(['data', 'ListArticles']) || List())
+      createAction(LOAD)({
+        articles: resp.getIn(['data', 'ListArticles']) || List(),
+        notRepliedCount: resp.getIn([
+          'data',
+          'notRepliedArticles',
+          'totalCount',
+        ]),
+        repliedCount: resp.getIn(['data', 'repliedArticles', 'totalCount']),
+      })
     );
     dispatch(setState({ key: 'isLoading', value: false }));
   });
@@ -167,15 +181,19 @@ const initialState = fromJS({
   lastCursor: null,
   totalCount: null,
   authFields: {},
+  stats: {
+    repliedCount: 0,
+    notRepliedCount: 0,
+  },
 });
 
 export default createReducer(
   {
     [SET_STATE]: commonSetState,
 
-    [LOAD]: (state, { payload }) =>
+    [LOAD]: (state, { payload: { articles, notRepliedCount, repliedCount } }) =>
       state
-        .set('edges', payload.get('edges'))
+        .set('edges', articles.get('edges'))
         /**
          * firstCursor, lastCursor, totalCount will not update when [isInCooldown] equal to true.
          * It's meaning to filter settings not changed,
@@ -184,22 +202,24 @@ export default createReducer(
          */
         .set(
           'firstCursor',
-          payload.getIn(['pageInfo', 'firstCursor']) === undefined
+          articles.getIn(['pageInfo', 'firstCursor']) === undefined
             ? state.get('firstCursor')
-            : payload.getIn(['pageInfo', 'firstCursor'])
+            : articles.getIn(['pageInfo', 'firstCursor'])
         )
         .set(
           'lastCursor',
-          payload.getIn(['pageInfo', 'lastCursor']) === undefined
+          articles.getIn(['pageInfo', 'lastCursor']) === undefined
             ? state.get('lastCursor')
-            : payload.getIn(['pageInfo', 'lastCursor'])
+            : articles.getIn(['pageInfo', 'lastCursor'])
         )
         .set(
           'totalCount',
-          payload.get('totalCount') === undefined
+          articles.get('totalCount') === undefined
             ? state.get('totalCount')
-            : payload.get('totalCount')
-        ),
+            : articles.get('totalCount')
+        )
+        .setIn(['stats', 'repliedCount'], repliedCount)
+        .setIn(['stats', 'notRepliedCount'], notRepliedCount),
     [LOAD_AUTH_FIELDS]: (state, { payload }) =>
       state.set(
         'authFields',
