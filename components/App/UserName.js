@@ -132,22 +132,46 @@ class UserName extends PureComponent {
     );
   };
 
+  renderLevel = () => {
+    const { user } = this.props;
+    const currentExp =
+      user.getIn(['points', 'total']) - user.getIn(['points', 'currentLevel']);
+    const levelExp =
+      (user.getIn(['points', 'nextLevel']) || Infinity) -
+      user.getIn(['points', 'currentLevel']);
+
+    return (
+      <div className="level-info">
+        Lv. {user.get('level')}
+        ({currentExp}/{levelExp})
+      </div>
+    );
+  };
+
   render() {
     const { user, isLoading } = this.props;
     const { isEditingUserName } = this.state;
 
     if (isLoading) return 'Loading...';
 
-    if (isEditingUserName)
+    if (user) {
       return (
-        <UserNameForm
-          name={user.get('name')}
-          onSubmit={this.handleSubmit}
-          onCancel={this.handleCancel}
-        />
+        <div>
+          <div>
+            {isEditingUserName ? (
+              <UserNameForm
+                name={user.get('name')}
+                onSubmit={this.handleSubmit}
+                onCancel={this.handleCancel}
+              />
+            ) : (
+              this.renderInfo()
+            )}
+          </div>
+          {this.renderLevel()}
+        </div>
       );
-
-    if (user) return this.renderInfo();
+    }
 
     return this.renderLogin();
   }

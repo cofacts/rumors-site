@@ -1,7 +1,7 @@
 import { createDuck } from 'redux-duck';
 import { fromJS } from 'immutable';
 import NProgress from 'nprogress';
-import { waitForAuth } from './auth';
+import { waitForAuth, loadLevel } from './auth';
 import gql from '../util/gql';
 
 const { defineType, createAction, createReducer } = createDuck('replyDetail');
@@ -99,6 +99,7 @@ export const updateArticleReplyStatus = (
       }
     }
   `({ articleId, replyId, status }).then(() => {
+    dispatch(loadLevel());
     // FIXME:
     // Immediate load(replyId) will not get updated reply connection status.
     // Super wierd.

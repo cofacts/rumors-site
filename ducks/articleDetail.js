@@ -3,6 +3,7 @@ import { fromJS, Map, List, Set } from 'immutable';
 import { waitForAuth } from './auth';
 import gql from '../util/gql';
 import NProgress from 'nprogress';
+import { loadLevel } from './auth';
 
 const { defineType, createAction, createReducer } = createDuck('articleDetail');
 
@@ -145,6 +146,7 @@ export const connectReply = (articleId, replyId) => dispatch => {
     }
   `({ articleId, replyId }).then(() => {
     dispatch(reloadReply(articleId));
+    dispatch(loadLevel());
     NProgress.done();
   });
 };
@@ -172,6 +174,7 @@ export const updateArticleReplyStatus = (
     }
   `({ articleId, replyId, status }).then(() => {
     dispatch(reloadReply(articleId));
+    dispatch(loadLevel());
     NProgress.done();
   });
 };
@@ -197,6 +200,7 @@ export const submitReply = params => dispatch => {
     }
   `(params).then(() => {
     dispatch(reloadReply(params.articleId));
+    dispatch(loadLevel());
     NProgress.done();
   });
 };
