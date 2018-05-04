@@ -1,6 +1,37 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'routes';
 
+import LEVEL_NAMES from 'constants/levelNames';
+
+class ProgressBar extends PureComponent {
+  static defaultProps = {
+    ratio: 0, // 0 ~ 1
+  };
+  render() {
+    const { ratio, ...progressProps } = this.props;
+
+    return (
+      <div className="progress" {...progressProps}>
+        <i style={{ width: `${ratio * 100}%` }} />
+        <style jsx>{`
+          .progress {
+            border: 1px solid khaki;
+            padding: 1px;
+            height: 8px;
+            border-radius: 3px;
+          }
+
+          i {
+            display: block;
+            height: 100%;
+            background: khaki;
+          }
+        `}</style>
+      </div>
+    );
+  }
+}
+
 class UserNameForm extends PureComponent {
   static defaultProps = {
     name: '',
@@ -141,9 +172,24 @@ class UserName extends PureComponent {
       user.getIn(['points', 'currentLevel']);
 
     return (
-      <div className="level-info">
-        Lv. {user.get('level')}
-        ({currentExp}/{levelExp})
+      <div>
+        <p className="level-info">
+          Lv. {user.get('level')}{' '}
+          <small>{LEVEL_NAMES[user.get('level')]}</small>
+        </p>
+        <ProgressBar
+          ratio={currentExp / levelExp}
+          title={`${currentExp} / ${levelExp}`}
+        />
+        <style jsx>{`
+          .level-info {
+            margin: 0;
+          }
+
+          .level-info small {
+            margin-left: 8px;
+          }
+        `}</style>
       </div>
     );
   };
