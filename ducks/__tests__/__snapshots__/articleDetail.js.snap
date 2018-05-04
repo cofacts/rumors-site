@@ -17,12 +17,8 @@ Immutable.Map {
       "status": "NORMAL",
       "reply": Immutable.Map {
         "id": "reply1",
-        "versions": Immutable.List [
-          Immutable.Map {
-            "type": "NOT_ARTICLE",
-            "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-          },
-        ],
+        "type": "NOT_ARTICLE",
+        "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
       },
       "feedbacks": Immutable.List [],
       "user": Immutable.Map {
@@ -45,24 +41,16 @@ Immutable.Map {
   "relatedReplies": Immutable.List [
     Immutable.Map {
       "id": "relatedReply1",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "RUMOR",
-          "text": "醫師聽聞後都斥為無稽之談",
-        },
-      ],
+      "type": "RUMOR",
+      "text": "醫師聽聞後都斥為無稽之談",
       "article": Immutable.Map {
         "id": "article1",
       },
     },
     Immutable.Map {
       "id": "relatedReply2",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "RUMOR",
-          "text": "喝冰水跟罹癌根本是兩回事",
-        },
-      ],
+      "type": "RUMOR",
+      "text": "喝冰水跟罹癌根本是兩回事",
       "article": Immutable.Map {
         "id": "article1",
       },
@@ -82,12 +70,8 @@ Immutable.List [
     "status": "NORMAL",
     "reply": Immutable.Map {
       "id": "reply1",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "NOT_ARTICLE",
-          "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-        },
-      ],
+      "type": "NOT_ARTICLE",
+      "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
     },
     "feedbacks": Immutable.List [],
     "user": Immutable.Map {
@@ -124,19 +108,15 @@ Immutable.Map {
       "status": "NORMAL",
       "reply": Immutable.Map {
         "id": "AV9mN3dDyCdS-nWhuiP3",
-        "versions": Immutable.List [
-          Immutable.Map {
-            "user": Immutable.Map {
-              "id": "AVqVwjqQyrDaTqlmmp_a",
-              "name": null,
-              "avatarUrl": null,
-            },
-            "type": "NOT_ARTICLE",
-            "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-            "reference": "",
-            "createdAt": "2017-10-29T03:40:31.938Z",
-          },
-        ],
+        "user": Immutable.Map {
+          "id": "AVqVwjqQyrDaTqlmmp_a",
+          "name": null,
+          "avatarUrl": null,
+        },
+        "type": "NOT_ARTICLE",
+        "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
+        "reference": "",
+        "createdAt": "2017-10-29T03:40:31.938Z",
       },
       "feedbacks": Immutable.List [],
       "user": Immutable.Map {
@@ -152,19 +132,15 @@ Immutable.Map {
       "status": "NORMAL",
       "reply": Immutable.Map {
         "id": "AV9mJJ5qyCdS-nWhuiPz",
-        "versions": Immutable.List [
-          Immutable.Map {
-            "user": Immutable.Map {
-              "id": "AVqVwjqQyrDaTqlmmp_a",
-              "name": null,
-              "avatarUrl": null,
-            },
-            "type": "NOT_ARTICLE",
-            "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
-            "reference": "",
-            "createdAt": "2017-10-29T03:19:56.776Z",
-          },
-        ],
+        "user": Immutable.Map {
+          "id": "AVqVwjqQyrDaTqlmmp_a",
+          "name": null,
+          "avatarUrl": null,
+        },
+        "type": "NOT_ARTICLE",
+        "text": "文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。",
+        "reference": "",
+        "createdAt": "2017-10-29T03:19:56.776Z",
       },
       "feedbacks": Immutable.List [],
       "user": Immutable.Map {
@@ -187,24 +163,16 @@ Immutable.Map {
   "relatedReplies": Immutable.List [
     Immutable.Map {
       "id": "relatedReply1",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "RUMOR",
-          "text": "醫師聽聞後都斥為無稽之談",
-        },
-      ],
+      "type": "RUMOR",
+      "text": "醫師聽聞後都斥為無稽之談",
       "article": Immutable.Map {
         "id": "article1",
       },
     },
     Immutable.Map {
       "id": "relatedReply2",
-      "versions": Immutable.List [
-        Immutable.Map {
-          "type": "RUMOR",
-          "text": "喝冰水跟罹癌根本是兩回事",
-        },
-      ],
+      "type": "RUMOR",
+      "text": "喝冰水跟罹癌根本是兩回事",
       "article": Immutable.Map {
         "id": "article1",
       },

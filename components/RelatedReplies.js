@@ -9,16 +9,15 @@ import { sectionStyle } from './ReplyConnection.styles';
 function RelatedReplyItem({ reply, similarity, onConnect }) {
   const articleId = reply.getIn(['article', 'id']);
   const articleText = reply.getIn(['article', 'text']);
-  const replyVersion = reply.getIn(['versions', 0]);
-  const createdAt = moment(replyVersion.get('createdAt'));
+  const createdAt = moment(reply.get('createdAt'));
   const similarityPercentage = Math.round(similarity * 100);
   return (
     <li className="root">
       <header className="section">
         <Link route="article" params={{ id: articleId }}>
           <a>相關訊息</a>
-        </Link>被標示為：<strong title={TYPE_DESC[replyVersion.get('type')]}>
-          {TYPE_NAME[replyVersion.get('type')]}
+        </Link>被標示為：<strong title={TYPE_DESC[reply.get('type')]}>
+          {TYPE_NAME[reply.get('type')]}
         </strong>
       </header>
       <section className="section">
@@ -39,9 +38,7 @@ function RelatedReplyItem({ reply, similarity, onConnect }) {
       </section>
       <section className="section">
         <h3>回應</h3>
-        <ExpandableText>
-          {nl2br(linkify(replyVersion.get('text')))}
-        </ExpandableText>
+        <ExpandableText>{nl2br(linkify(reply.get('text')))}</ExpandableText>
       </section>
       <footer>
         <Link route="reply" params={{ id: reply.get('id') }}>

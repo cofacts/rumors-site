@@ -25,12 +25,10 @@ export const load = id => dispatch => {
   return gql`
     query($id: String!) {
       GetReply(id: $id) {
-        versions(limit: 1) {
-          type
-          text
-          reference
-          createdAt
-        }
+        type
+        text
+        reference
+        createdAt
         replyConnections: articleReplies {
           articleId
           article {

@@ -26,7 +26,7 @@ export default class ReplyConnection extends React.PureComponent {
 
   renderHint = () => {
     const { replyConnection } = this.props;
-    const replyType = replyConnection.getIn(['reply', 'versions', 0, 'type']);
+    const replyType = replyConnection.getIn(['reply', 'type']);
 
     if (replyType !== 'NOT_ARTICLE') return null;
 
@@ -98,9 +98,9 @@ export default class ReplyConnection extends React.PureComponent {
 
   renderAuthor = () => {
     const { replyConnection } = this.props;
-    const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
+    const reply = replyConnection.get('reply');
     const connectionAuthor = replyConnection.get('user') || Map();
-    const replyAuthor = replyVersion.get('user') || Map();
+    const replyAuthor = reply.get('user') || Map();
 
     const connectionAuthorName = connectionAuthor.get('name') || '有人';
 
@@ -127,15 +127,10 @@ export default class ReplyConnection extends React.PureComponent {
 
   renderReference = () => {
     const { replyConnection } = this.props;
-    const replyType = replyConnection.getIn(['reply', 'versions', 0, 'type']);
+    const replyType = replyConnection.getIn(['reply', 'type']);
     if (replyType === 'NOT_ARTICLE') return null;
 
-    const reference = replyConnection.getIn([
-      'reply',
-      'versions',
-      0,
-      'reference',
-    ]);
+    const reference = replyConnection.getIn(['reply', 'reference']);
     return (
       <section className="section">
         <h3>{replyType === 'OPINIONATED' ? '不同意見' : '出處'}</h3>
@@ -149,8 +144,8 @@ export default class ReplyConnection extends React.PureComponent {
 
   render() {
     const { replyConnection } = this.props;
-    const replyVersion = replyConnection.getIn(['reply', 'versions', 0]);
-    const replyType = replyVersion.get('type');
+    const reply = replyConnection.get('reply');
+    const replyType = reply.get('type');
 
     return (
       <li className="root">
@@ -163,9 +158,7 @@ export default class ReplyConnection extends React.PureComponent {
         </header>
         <section className="section">
           <h3>理由</h3>
-          <ExpandableText>
-            {nl2br(linkify(replyVersion.get('text')))}
-          </ExpandableText>
+          <ExpandableText>{nl2br(linkify(reply.get('text')))}</ExpandableText>
         </section>
 
         {this.renderReference()}
