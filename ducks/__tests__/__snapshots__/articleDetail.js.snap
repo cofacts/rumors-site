@@ -41,29 +41,23 @@ Immutable.Map {
   ],
   "relatedReplies": Immutable.List [
     Immutable.Map {
-      "articleId": "article1",
-      "replyId": "relatedReply1",
-      "canUpdateStatus": false,
+      "article": Immutable.Map {
+        "id": "article1",
+      },
       "reply": Immutable.Map {
         "id": "relatedReply1",
         "type": "RUMOR",
         "text": "醫師聽聞後都斥為無稽之談",
       },
+    },
+    Immutable.Map {
       "article": Immutable.Map {
         "id": "article1",
       },
-    },
-    Immutable.Map {
-      "articleId": "article1",
-      "replyId": "relatedReply2",
-      "canUpdateStatus": false,
       "reply": Immutable.Map {
         "id": "relatedReply2",
         "type": "RUMOR",
         "text": "喝冰水跟罹癌根本是兩回事",
-      },
-      "article": Immutable.Map {
-        "id": "article1",
       },
     },
   ],
@@ -177,19 +171,6 @@ line://ch/1454987169/coupon/sticker/grant
 ",
       "type": "NOT_RUMOR",
       "createdAt": "2018-02-07T13:04:18.065Z",
-      "replyConnections": Immutable.List [
-        Immutable.Map {
-          "article": Immutable.Map {
-            "id": "AWFwXCyvhutQxxU6trWK",
-            "text": "上面 這隻熊點他可以下載是隱藏版新圖
-如不能下載點以下連結
-line://ch/1454987169/coupon/sticker/grant
-台北捷運伴你同行
-是真的！
-(  隱藏版的免付費貼圖 )",
-          },
-        },
-      ],
     },
   },
   Immutable.Map {
@@ -206,27 +187,6 @@ line://ch/1454987169/coupon/sticker/grant",
 該連結直接導向至貼圖下載頁面，應不需加入任何可疑廣告群組。",
       "type": "NOT_RUMOR",
       "createdAt": "2018-02-07T06:06:02.197Z",
-      "replyConnections": Immutable.List [
-        Immutable.Map {
-          "article": Immutable.Map {
-            "id": "AWFu2p62hutQxxU6trSv",
-            "text": "請下載台北捷運公司貼圖
-
-line://ch/1454987169/coupon/sticker/grant",
-          },
-        },
-        Immutable.Map {
-          "article": Immutable.Map {
-            "id": "AWFvYRb3hutQxxU6trUF",
-            "text": "免費下載貼圖
-
-台北捷運伴你同行
-line://ch/1454987169/coupon/sticker/grant
-
-這是真的哦！",
-          },
-        },
-      ],
     },
   },
 ]
@@ -311,29 +271,23 @@ Immutable.Map {
   ],
   "relatedReplies": Immutable.List [
     Immutable.Map {
-      "articleId": "article1",
-      "replyId": "relatedReply1",
-      "canUpdateStatus": false,
+      "article": Immutable.Map {
+        "id": "article1",
+      },
       "reply": Immutable.Map {
         "id": "relatedReply1",
         "type": "RUMOR",
         "text": "醫師聽聞後都斥為無稽之談",
       },
+    },
+    Immutable.Map {
       "article": Immutable.Map {
         "id": "article1",
       },
-    },
-    Immutable.Map {
-      "articleId": "article1",
-      "replyId": "relatedReply2",
-      "canUpdateStatus": false,
       "reply": Immutable.Map {
         "id": "relatedReply2",
         "type": "RUMOR",
         "text": "喝冰水跟罹癌根本是兩回事",
-      },
-      "article": Immutable.Map {
-        "id": "article1",
       },
     },
   ],

@@ -379,7 +379,7 @@ export default createReducer(
                   )
           )
           .updateIn(
-            ['data', 'relatedReplies'],
+            ['data', 'relatedReplies'], // articleAndReply structure
             replies =>
               !relatedArticleEdges.size
                 ? replies
@@ -388,10 +388,12 @@ export default createReducer(
                       edge
                         .getIn(['node', 'replyConnections'])
                         .map(conn =>
-                          conn.set(
-                            'article',
-                            edge.get('node').remove('replyConnections')
-                          )
+                          Map({
+                            article: edge
+                              .get('node')
+                              .remove('replyConnections'),
+                            reply: conn.get('reply'),
+                          })
                         )
                         .filter(articleAndReply => {
                           const reply = articleAndReply.get('reply');
@@ -425,7 +427,7 @@ export default createReducer(
       const reconstructSearchRepliesList = payload.map(reply => {
         return Map({
           article: reply.getIn(['node', 'replyConnections', 0, 'article']),
-          reply: reply.get('node'),
+          reply: reply.get('node').remove('replyConnections'),
         });
       });
       return state.setIn(
