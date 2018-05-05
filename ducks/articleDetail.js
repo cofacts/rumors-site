@@ -1,9 +1,8 @@
 import { createDuck } from 'redux-duck';
 import { fromJS, Map, List, Set } from 'immutable';
-import { waitForAuth } from './auth';
+import { waitForAuth, loadLevel } from './auth';
 import gql from '../util/gql';
 import NProgress from 'nprogress';
-import { loadLevel } from './auth';
 
 const { defineType, createAction, createReducer } = createDuck('articleDetail');
 
