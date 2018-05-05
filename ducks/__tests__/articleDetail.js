@@ -4,6 +4,8 @@ import {
   loadAction,
   reloadRepliesAction,
   loadAuthAction,
+  searchRepliesAction,
+  searchRepiedArticleAction,
 } from '../fixtures/articleDetail';
 
 describe('reducer: articleDetail', () => {
@@ -32,6 +34,24 @@ describe('reducer: articleDetail', () => {
       articleDetail(stateAfterLoad, loadAuthAction).getIn([
         'data',
         'replyConnections',
+      ])
+    ).toMatchSnapshot();
+  });
+
+  it('handles LOAD_SEARCH_OF_REPLIES', () => {
+    expect(
+      articleDetail(initialState, searchRepliesAction).getIn([
+        'data',
+        'searchReplies',
+      ])
+    ).toMatchSnapshot();
+  });
+
+  it('handles LOAD_SEARCH_OF_ARTICLES', () => {
+    expect(
+      articleDetail(initialState, searchRepiedArticleAction).getIn([
+        'data',
+        'searchArticles',
       ])
     ).toMatchSnapshot();
   });

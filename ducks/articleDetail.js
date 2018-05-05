@@ -332,9 +332,9 @@ export const initialState = fromJS({
     article: null,
     replyConnections: [], // reply & its connection to this article
     relatedArticles: [],
-    relatedReplies: [], // related articles' replies
+    relatedReplies: [], // related list of {article, reply}
     searchArticles: [],
-    searchReplies: [],
+    searchReplies: [], // list of {article, reply}
   },
 });
 
@@ -388,22 +388,23 @@ export default createReducer(
                       edge
                         .getIn(['node', 'replyConnections'])
                         .map(conn =>
-                          conn
-                            .get('reply')
-                            .set(
-                              'article',
-                              edge.get('node').remove('replyConnections')
-                            )
+                          conn.set(
+                            'article',
+                            edge.get('node').remove('replyConnections')
+                          )
                         )
-                        .filter(reply => {
+                        .filter(articleAndReply => {
+                          const reply = articleAndReply.get('reply');
                           // Filter-out replies that is already re-used.
                           return reply && !replyIds.contains(reply.get('id'));
                         })
                     )
-                    // De-duping replies using replyId, taking the reply with more relavant article
+                    // De-duping replies using replyId, taking the reply with the most relavant article
                     // (which should come first)
                     //
-                    .groupBy(reply => reply.get('id'))
+                    .groupBy(articleAndReply =>
+                      articleAndReply.getIn(['reply', 'id'])
+                    )
                     .map(replyGroup => replyGroup.first())
                     .toList()
           )
@@ -423,9 +424,8 @@ export default createReducer(
     [LOAD_SEARCH_OF_REPLIES]: (state, { payload }) => {
       const reconstructSearchRepliesList = payload.map(reply => {
         return Map({
-          id: reply.getIn(['node', 'id']),
           article: reply.getIn(['node', 'replyConnections', 0, 'article']),
-          reply: reply,
+          reply: reply.get('node'),
         });
       });
       return state.setIn(
