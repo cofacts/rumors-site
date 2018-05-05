@@ -13,7 +13,7 @@ const { defineType, createAction, createReducer } = createDuck('auth');
 const LOAD = defineType('LOAD');
 const RESET = defineType('RESET');
 const SET_STATE = defineType('SET_STATE');
-const UPDATE_NAME = defineType('UPDATE_NAME');
+const UPDATE_USER = defineType('UPDATE_USER');
 
 // Hacks (?)
 //
@@ -31,6 +31,15 @@ export const showDialog = () => setState({ key: 'isDialogShown', value: true });
 export const hideDialog = () =>
   setState({ key: 'isDialogShown', value: false });
 
+const levelFields = `
+  level
+  points {
+    total
+    currentLevel
+    nextLevel
+  }
+`;
+
 export const load = () => dispatch => {
   dispatch(setState({ key: 'isLoading', value: true }));
 
@@ -40,6 +49,7 @@ export const load = () => dispatch => {
         id
         name
         avatarUrl
+        ${levelFields}
       }
     }
   `().then(resp => {
@@ -75,7 +85,7 @@ export const updateName = newName => dispatch => {
 
   gql`
     mutation($name: String!) {
-      user: UpdateUser(name: $name) {
+      UpdateUser(name: $name) {
         name
       }
     }
@@ -83,7 +93,25 @@ export const updateName = newName => dispatch => {
     name: newName,
   }).then(resp => {
     dispatch(setState({ key: 'isLoading', value: false }));
-    dispatch(createAction(UPDATE_NAME)(resp.getIn(['data', 'user', 'name'])));
+    dispatch(createAction(UPDATE_USER)(resp.getIn(['data', 'UpdateUser'])));
+  });
+};
+
+/**
+ * Update level & point data
+ */
+export const loadLevel = () => dispatch => {
+  dispatch(setState({ key: 'isLoading', value: true }));
+
+  return gql`
+    {
+      GetUser {
+        ${levelFields}
+      }
+    }
+  `().then(resp => {
+    dispatch(setState({ key: 'isLoading', value: false }));
+    dispatch(createAction(UPDATE_USER)(resp.getIn(['data', 'GetUser'])));
   });
 };
 
@@ -101,8 +129,7 @@ const reducer = createReducer(
   {
     [SET_STATE]: commonSetState,
     [LOAD]: (state, { payload }) => state.set('user', payload),
-    [UPDATE_NAME]: (state, { payload }) =>
-      state.setIn(['user', 'name'], payload),
+    [UPDATE_USER]: (state, { payload }) => state.mergeIn(['user'], payload),
     [RESET]: state => state.set('user', initialState.get('user')),
   },
   initialState

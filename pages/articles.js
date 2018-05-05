@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 // https://github.com/yannickcr/eslint-plugin-react/issues/1200
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Head from 'next/head';
@@ -13,6 +13,7 @@ import app from 'components/App';
 import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
+import FullSiteArticleStats from 'components/FullSiteArticleStats';
 import { load, loadAuthFields } from 'ducks/articleList';
 
 import { mainStyle, hintStyle } from './articles.styles';
@@ -100,13 +101,31 @@ class Articles extends ListPage {
     );
   };
 
-  renderDescriptionOfSearchedArticle = () => {
+  renderHeader = () => {
+    const { stats } = this.props;
+
+    return (
+      <h2 className="header">
+        文章列表
+        <FullSiteArticleStats stats={stats} />
+        <style jsx>{`
+          .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        `}</style>
+      </h2>
+    );
+  };
+
+  renderSearchedArticleHeader = () => {
     const { query: { searchUserByArticleId }, articles } = this.props;
     const searchedArticle = articles.find(
       article => article.get('id') === searchUserByArticleId
     );
     return (
-      <Fragment>
+      <h2>
         和{' '}
         <mark>
           {searchedArticle
@@ -125,7 +144,7 @@ class Articles extends ListPage {
             padding: 0 0.3em;
           }
         `}</style>
-      </Fragment>
+      </h2>
     );
   };
 
@@ -252,11 +271,9 @@ class Articles extends ListPage {
         <Head>
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
-        <h2>
-          {searchUserByArticleId
-            ? this.renderDescriptionOfSearchedArticle()
-            : '文章列表'}
-        </h2>
+        {searchUserByArticleId
+          ? this.renderSearchedArticleHeader()
+          : this.renderHeader()}
         {this.renderSearch()}
         Order By: {this.renderOrderBy()}
         {this.renderFilter()}
@@ -283,6 +300,7 @@ function mapStateToProps({ articleList }) {
     articles: (articleList.get('edges') || List()).map(edge =>
       edge.get('node')
     ),
+    stats: articleList.get('stats'),
     authFields: articleList.get('authFields'),
     totalCount: articleList.get('totalCount'),
     firstCursor: articleList.get('firstCursor'),

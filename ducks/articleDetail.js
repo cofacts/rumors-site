@@ -1,6 +1,6 @@
 import { createDuck } from 'redux-duck';
 import { fromJS, Map, List, Set } from 'immutable';
-import { waitForAuth } from './auth';
+import { waitForAuth, loadLevel } from './auth';
 import gql from '../util/gql';
 import NProgress from 'nprogress';
 
@@ -145,6 +145,7 @@ export const connectReply = (articleId, replyId) => dispatch => {
     }
   `({ articleId, replyId }).then(() => {
     dispatch(reloadReply(articleId));
+    dispatch(loadLevel());
     NProgress.done();
   });
 };
@@ -172,6 +173,7 @@ export const updateArticleReplyStatus = (
     }
   `({ articleId, replyId, status }).then(() => {
     dispatch(reloadReply(articleId));
+    dispatch(loadLevel());
     NProgress.done();
   });
 };
@@ -197,6 +199,7 @@ export const submitReply = params => dispatch => {
     }
   `(params).then(() => {
     dispatch(reloadReply(params.articleId));
+    dispatch(loadLevel());
     NProgress.done();
   });
 };
