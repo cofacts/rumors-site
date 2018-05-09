@@ -170,12 +170,12 @@ class ReplyRequestReason extends PureComponent {
     const replyRequestReason = replyRequest.get("reason");
     return (
        (isArticleCreator || replyRequestReason) &&
-      <footer>
+      <div className="container-request-user">
         { replyRequestReason && this.renderBlockReason()}
         { isArticleCreator && <LinkAutherList/>}
 
         <style jsx>{`
-          footer {
+          .container-request-user {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -185,7 +185,7 @@ class ReplyRequestReason extends PureComponent {
             padding: 0.2em 0.5em;
           }
         `}</style>
-      </footer>
+      </div>
     );
   }
 }
