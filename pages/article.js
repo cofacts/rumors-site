@@ -34,7 +34,10 @@ class ArticlePage extends React.Component {
   };
 
   handleConnect = ({ target: { value: replyId } }) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
   };
 
@@ -45,21 +48,30 @@ class ArticlePage extends React.Component {
   };
 
   handleSubmit = reply => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(submitReply({ ...reply, articleId: id })).then(
       this.scrollToReplySection
     );
   };
 
   handleReplyConnectionDelete = conn => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'DELETED')
     );
   };
 
   handleReplyConnectionRestore = conn => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'NORMAL')
     ).then(this.scrollToReplySection);
@@ -76,7 +88,10 @@ class ArticlePage extends React.Component {
   };
 
   handleReplyConnectionVote = (conn, vote) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(voteReply(id, conn.get('replyId'), vote));
   };
 
@@ -193,7 +208,7 @@ class ArticlePage extends React.Component {
     }
 
     const slicedArticleTitle = article.get('text').slice(0, 15);
-    
+
     return (
       <div className="root">
         <Head>
@@ -210,6 +225,7 @@ class ArticlePage extends React.Component {
               linkify(article.get('text'), { props: { target: '_blank' } })
             )}
           </article>
+          <footer>
           {article.get('replyRequests').map((replyRequest, index) => {
             return (
               <ReplyRequestReason
@@ -222,6 +238,7 @@ class ArticlePage extends React.Component {
               />
             );
           })}
+          </footer>
         </section>
 
         <section
