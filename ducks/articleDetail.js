@@ -14,6 +14,7 @@ const LOAD_AUTH = defineType('LOAD_AUTH');
 const SET_STATE = defineType('SET_STATE');
 const RESET = defineType('RESET');
 const LOAD_SEARCH_OF_ARTICLES = defineType('LOAD_SEARCH_OF_ARTICLES');
+const UPDATE_REPLY_REQUESTS = defineType('UPDATE_REPLY_REQUESTS');
 const LOAD_SEARCH_OF_REPLIES = defineType('LOAD_SEARCH_OF_REPLIES');
 
 // Action creators
@@ -29,6 +30,14 @@ const fragments = {
       references {
         type
       }
+    }
+  `,
+  replyRequestsFields: `
+    fragment replyRequestsFields on ReplyRequest{
+      id
+      reason
+      positiveFeedbackCount
+      negativeFeedbackCount
     }
   `,
   articleReplyAndUserFields: `
@@ -72,15 +81,26 @@ export const load = id => dispatch => {
     query($id: String!) {
       GetArticle(id: $id) {
         ...articleFields
-        user { ...userFields }
-        replyConnections: articleReplies { ...articleReplyFields }
-        relatedArticles(filter: {replyCount: {GT: 0}}) {
+        user {
+          ...userFields
+        }
+        replyRequests {
+          ...replyRequestsFields
+        }
+        replyConnections: articleReplies {
+          ...articleReplyFields
+        }
+        relatedArticles(filter: { replyCount: { GT: 0 } }) {
           edges {
             node {
               ...articleFields
-              user { ...userFields }
+              user {
+                ...userFields
+              }
               replyCount
-              replyConnections: articleReplies { ...articleReplyFields }
+              replyConnections: articleReplies {
+                ...articleReplyFields
+              }
             }
             score
           }
@@ -88,6 +108,7 @@ export const load = id => dispatch => {
       }
     }
     ${fragments.articleFields}
+    ${fragments.replyRequestsFields}
     ${fragments.articleReplyAndUserFields}
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
@@ -216,6 +237,39 @@ export const voteReply = (articleId, replyId, vote) => dispatch => {
     }
   `({ articleId, replyId, vote }).then(() => {
     dispatch(reloadReply(articleId));
+    NProgress.done();
+  });
+};
+
+export const updateReplyRequest = createAction(UPDATE_REPLY_REQUESTS);
+
+export const voteReplyRequest = (
+  articleId,
+  replyRequestId,
+  vote,
+  index
+) => dispatch => {
+  dispatch(setState({ key: 'isLoading', value: true }));
+  NProgress.start();
+  return gql`
+    mutation($replyRequestId: String!, $vote: FeedbackVote!) {
+      CreateOrUpdateReplyRequestFeedback(
+        replyRequestId: $replyRequestId
+        vote: $vote
+      ) {
+        positiveFeedbackCount
+        negativeFeedbackCount
+      }
+    }
+  `({ replyRequestId, vote }).then(res => {
+    dispatch(
+      updateReplyRequest({
+        feedbackCounts: res
+          .getIn(['data', 'CreateOrUpdateReplyRequestFeedback'])
+          .set('ownVote', vote),
+        index,
+      })
+    );
     NProgress.done();
   });
 };
@@ -433,6 +487,13 @@ export default createReducer(
         reconstructSearchRepliesList
       );
     },
+
+    [UPDATE_REPLY_REQUESTS]: (state, { payload }) =>
+      state.updateIn(['data', 'article', 'replyRequests'], replyRequests =>
+        replyRequests.update(payload.index, replyRequest =>
+          replyRequest.merge(payload.feedbackCounts)
+        )
+      ),
 
     [LOAD_SEARCH_OF_ARTICLES]: (state, { payload }) => {
       const reconstructSearchArticlesList = payload.map(article => {
