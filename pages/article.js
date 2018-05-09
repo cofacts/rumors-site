@@ -226,18 +226,18 @@ class ArticlePage extends React.Component {
             )}
           </article>
           <footer>
-          {article.get('replyRequests').map((replyRequest, index) => {
-            return (
-              <ReplyRequestReason
-                key={`reason-${index}`}
-                index={index}
-                articleId={article.get('id')}
-                replyRequest={replyRequest}
-                isArticleCreator={index === 0}
-                onVoteReason={this.handleVoteReplyRequest}
-              />
-            );
-          })}
+            {article.get('replyRequests').map((replyRequest, index) => {
+              return (
+                <ReplyRequestReason
+                  key={`reason-${index}`}
+                  index={index}
+                  articleId={article.get('id')}
+                  replyRequest={replyRequest}
+                  isArticleCreator={index === 0}
+                  onVoteReason={this.handleVoteReplyRequest}
+                />
+              );
+            })}
           </footer>
         </section>
 
