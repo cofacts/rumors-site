@@ -13,6 +13,7 @@ import CurrentReplies from 'components/CurrentReplies';
 import RelatedReplies from 'components/RelatedReplies';
 import ReplySearch from 'components/ReplySearch/ReplySearch.js';
 import ReplyForm from 'components/ReplyForm';
+import GoogleWebsiteTranslator from 'components/GoogleWebsiteTranslator';
 import {
   load,
   loadAuth,
@@ -39,15 +40,27 @@ class ArticlePage extends React.Component {
 
   handleSearchReply = ({ target: { value: queryString } }, after) => {
     const { dispatch } = this.props;
-    dispatch(searchReplies({ q: queryString, after }));
-    dispatch(searchRepiedArticle({ q: queryString }));
+    dispatch(
+      searchReplies({
+        q: queryString,
+        after,
+      })
+    );
+    dispatch(
+      searchRepiedArticle({
+        q: queryString,
+      })
+    );
   };
 
   handleSubmit = reply => {
     const { dispatch, query: { id } } = this.props;
-    return dispatch(submitReply({ ...reply, articleId: id })).then(
-      this.scrollToReplySection
-    );
+    return dispatch(
+      submitReply({
+        ...reply,
+        articleId: id,
+      })
+    ).then(this.scrollToReplySection);
   };
 
   handleReplyConnectionDelete = conn => {
@@ -70,12 +83,16 @@ class ArticlePage extends React.Component {
   };
 
   handleTabChange = tab => () => {
-    this.setState({ tab });
+    this.setState({
+      tab,
+    });
   };
 
   scrollToReplySection = () => {
     if (!this._replySectionEl) return;
-    this._replySectionEl.scrollIntoView({ behavior: 'smooth' });
+    this._replySectionEl.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
 
   componentWillUnmount() {
@@ -117,7 +134,6 @@ class ArticlePage extends React.Component {
           搜尋
         </li>
         <li className="empty" />
-
         <style jsx>{tabMenuStyle}</style>
       </ul>
     );
@@ -188,7 +204,7 @@ class ArticlePage extends React.Component {
         <Head>
           <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
         </Head>
-
+        <GoogleWebsiteTranslator />
         <section className="section">
           <header className="header">
             <h2>訊息原文</h2>
@@ -196,7 +212,11 @@ class ArticlePage extends React.Component {
           </header>
           <article className="message">
             {nl2br(
-              linkify(article.get('text'), { props: { target: '_blank' } })
+              linkify(article.get('text'), {
+                props: {
+                  target: '_blank',
+                },
+              })
             )}
           </article>
           <footer>
@@ -214,7 +234,6 @@ class ArticlePage extends React.Component {
             </Link>
           </footer>
         </section>
-
         <section
           id="current-replies"
           className="section"
@@ -230,13 +249,11 @@ class ArticlePage extends React.Component {
             onVote={this.handleReplyConnectionVote}
           />
         </section>
-
         <section className="section">
           <h2>增加新回應</h2>
           {this.renderTabMenu()}
           <div className="tab-content">{this.renderNewReplyTab()}</div>
         </section>
-
         {relatedArticles.size ? (
           <section className="section">
             <h2>你可能也會對這些類似文章有興趣</h2>
@@ -249,21 +266,22 @@ class ArticlePage extends React.Component {
         ) : (
           ''
         )}
-
         <style jsx>{detailStyle}</style>
-        <style jsx>{`
-          .tab-content {
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-top: 0;
-          }
-          footer {
-            text-align: right;
-          }
-          .link-auther {
-            color: #5e7d8f;
-          }
-        `}</style>
+        <style jsx>
+          {`
+            .tab-content {
+              padding: 20px;
+              border: 1px solid #ccc;
+              border-top: 0;
+            }
+            footer {
+              text-align: right;
+            }
+            .link-auther {
+              color: #5e7d8f;
+            }
+          `}
+        </style>
       </div>
     );
   }

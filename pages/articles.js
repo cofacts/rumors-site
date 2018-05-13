@@ -14,6 +14,7 @@ import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
 import FullSiteArticleStats from 'components/FullSiteArticleStats';
+import GoogleWebsiteTranslator from 'components/GoogleWebsiteTranslator';
 import { load, loadAuthFields } from 'ducks/articleList';
 
 import { mainStyle, hintStyle } from './articles.styles';
@@ -91,12 +92,14 @@ class Articles extends ListPage {
           onKeyUp={this.handleKeywordKeyup}
           defaultValue={q}
         />
-        <style jsx>{`
-          .label-search {
-            display: block;
-            margin-bottom: 1em;
-          }
-        `}</style>
+        <style jsx>
+          {`
+            .label-search {
+              display: block;
+              margin-bottom: 1em;
+            }
+          `}
+        </style>
       </label>
     );
   };
@@ -198,11 +201,13 @@ class Articles extends ListPage {
           />{' '}
           列出包括僅有 1 人回報的文章
         </label>
-        <style jsx>{`
-          .reply-request-count {
-            width: 2em;
-          }
-        `}</style>
+        <style jsx>
+          {`
+            .reply-request-count {
+              width: 2em;
+            }
+          `}
+        </style>
       </div>
     );
   };
@@ -250,12 +255,14 @@ class Articles extends ListPage {
           })}
         </ul>
         {this.renderPagination()}
-        <style jsx>{`
-          .article-list {
-            padding: 0;
-            list-style: none;
-          }
-        `}</style>
+        <style jsx>
+          {`
+            .article-list {
+              padding: 0;
+              list-style: none;
+            }
+          `}
+        </style>
       </div>
     );
   };
@@ -271,11 +278,12 @@ class Articles extends ListPage {
         <Head>
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
+        <GoogleWebsiteTranslator />
         {searchUserByArticleId
           ? this.renderSearchedArticleHeader()
           : this.renderHeader()}
-        {this.renderSearch()}
-        Order By: {this.renderOrderBy()}
+        {this.renderSearch()} Order By:
+        {this.renderOrderBy()}
         {this.renderFilter()}
         {isLoading ? <p>Loading...</p> : this.renderList()}
         <span />
