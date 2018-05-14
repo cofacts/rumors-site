@@ -13,7 +13,6 @@ import CurrentReplies from 'components/CurrentReplies';
 import RelatedReplies from 'components/RelatedReplies';
 import ReplySearch from 'components/ReplySearch/ReplySearch.js';
 import ReplyForm from 'components/ReplyForm';
-import GoogleWebsiteTranslator from 'components/GoogleWebsiteTranslator';
 import {
   load,
   loadAuth,
@@ -204,7 +203,6 @@ class ArticlePage extends React.Component {
         <Head>
           <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
         </Head>
-        <GoogleWebsiteTranslator />
         <section className="section">
           <header className="header">
             <h2>訊息原文</h2>

@@ -14,7 +14,6 @@ import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
 import FullSiteArticleStats from 'components/FullSiteArticleStats';
-import GoogleWebsiteTranslator from 'components/GoogleWebsiteTranslator';
 import { load, loadAuthFields } from 'ducks/articleList';
 
 import { mainStyle, hintStyle } from './articles.styles';
@@ -278,7 +277,6 @@ class Articles extends ListPage {
         <Head>
           <title>Cofacts 真的假的 - 轉傳訊息查證</title>
         </Head>
-        <GoogleWebsiteTranslator />
         {searchUserByArticleId
           ? this.renderSearchedArticleHeader()
           : this.renderHeader()}
