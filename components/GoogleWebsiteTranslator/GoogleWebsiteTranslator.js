@@ -20,6 +20,7 @@ export default class GoogleWebsiteTranslator extends PureComponent {
         includedLanguages: 'en,zh-TW',
         layout:
           window.google.translate.TranslateElement.FloatPosition.BOTTOM_RIGHT,
+        disableAutoTranslation: true, // Only translate when needed, to avoid conflict with React.js
       },
       'google_translate_element'
     );
