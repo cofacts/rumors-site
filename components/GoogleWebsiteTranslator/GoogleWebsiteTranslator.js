@@ -7,14 +7,14 @@ export default class GoogleWebsiteTranslator extends PureComponent {
   }
 
   addGoogleTranslatorScript = () => {
-    var newScript = document.createElement('script');
+    const newScript = document.createElement('script');
     newScript.src =
       '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     this.refContainer.appendChild(newScript);
   };
 
-  googleTranslateElementInit() {
-    new window.google.translate.TranslateElement(
+  googleTranslateElementInit = () => {
+    this.translateInstance = new window.google.translate.TranslateElement(
       {
         pageLanguage: 'zh-TW',
         includedLanguages: 'en,zh-TW',
@@ -23,6 +23,12 @@ export default class GoogleWebsiteTranslator extends PureComponent {
       },
       'google_translate_element'
     );
+  };
+
+  componentWillUnmount() {
+    if (this.translateInstance) {
+      this.translateInstance.dispose();
+    }
   }
 
   render() {
