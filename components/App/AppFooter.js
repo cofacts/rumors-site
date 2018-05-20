@@ -1,5 +1,6 @@
 import React from 'react';
 import { PROJECT_HACKFOLDR, CONTACT_EMAIL } from '../../constants/urls';
+import GoogleWebsiteTranslator from 'components/GoogleWebsiteTranslator';
 
 export default function AppFooter() {
   return (
@@ -21,6 +22,7 @@ export default function AppFooter() {
         ・
         <a href={`mailto:${CONTACT_EMAIL}`}>連絡信箱</a>
       </p>
+      <GoogleWebsiteTranslator />
       <style jsx>{`
         footer {
           margin: 0 20px 44px;
