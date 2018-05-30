@@ -1,3 +1,3 @@
-import ReplyRequestReason from './ReplyRequestReason.jsx';
+import ReplyRequestReason from './ReplyRequestReason.js';
 
 export default ReplyRequestReason;
