@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import Head from 'next/head';
 import stringSimilarity from 'string-similarity';
 import { nl2br, linkify } from '../util/text';
-import { Link } from '../routes';
 
 import app from 'components/App';
 import ArticleInfo from 'components/ArticleInfo';
@@ -13,6 +12,7 @@ import CurrentReplies from 'components/CurrentReplies';
 import RelatedReplies from 'components/RelatedReplies';
 import ReplySearch from 'components/ReplySearch/ReplySearch.js';
 import ReplyForm from 'components/ReplyForm';
+import ReplyRequestReason from 'components/ReplyRequestReason';
 import {
   load,
   loadAuth,
@@ -23,6 +23,7 @@ import {
   updateArticleReplyStatus,
   voteReply,
   reset,
+  voteReplyRequest,
 } from 'ducks/articleDetail';
 
 import { detailStyle, tabMenuStyle } from './article.styles';
@@ -74,6 +75,13 @@ class ArticlePage extends React.Component {
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'NORMAL')
     ).then(this.scrollToReplySection);
+  };
+
+  handleVoteReplyRequest = (replyRequestId, voteType, indexOfReplyRequests) => {
+    const { dispatch, query: { id } } = this.props;
+    dispatch(
+      voteReplyRequest(id, replyRequestId, voteType, indexOfReplyRequests)
+    );
   };
 
   handleReplyConnectionVote = (conn, vote) => {
@@ -218,18 +226,18 @@ class ArticlePage extends React.Component {
             )}
           </article>
           <footer>
-            <Link
-              href={{
-                pathname: '/articles',
-                query: {
-                  searchUserByArticleId: article.get('id'),
-                  filter: 'all',
-                  replyRequestCount: 1,
-                },
-              }}
-            >
-              <a className="link-auther">查看該用戶回報的所有文章</a>
-            </Link>
+            {article.get('replyRequests').map((replyRequest, index) => {
+              return (
+                <ReplyRequestReason
+                  key={`reason-${index}`}
+                  index={index}
+                  articleId={article.get('id')}
+                  replyRequest={replyRequest}
+                  isArticleCreator={index === 0}
+                  onVoteReason={this.handleVoteReplyRequest}
+                />
+              );
+            })}
           </footer>
         </section>
         <section
@@ -265,21 +273,13 @@ class ArticlePage extends React.Component {
           ''
         )}
         <style jsx>{detailStyle}</style>
-        <style jsx>
-          {`
-            .tab-content {
-              padding: 20px;
-              border: 1px solid #ccc;
-              border-top: 0;
-            }
-            footer {
-              text-align: right;
-            }
-            .link-auther {
-              color: #5e7d8f;
-            }
-          `}
-        </style>
+        <style jsx>{`
+          .tab-content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: 0;
+          }
+        `}</style>
       </div>
     );
   }
