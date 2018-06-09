@@ -1,8 +1,9 @@
-{
+module.exports = {
   "presets": ["next/babel"],
   "plugins": [
     [
       "module-resolver",
+      // https://github.com/zeit/next.js/blob/master/examples/with-absolute-imports/.babelrc
       {
         "root": ["./"],
         "alias": {
