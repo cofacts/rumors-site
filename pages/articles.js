@@ -81,7 +81,9 @@ class Articles extends ListPage {
   };
 
   renderSearch = () => {
-    const { query: { q } } = this.props;
+    const {
+      query: { q },
+    } = this.props;
     return (
       <label className="label-search">
         Search For:{' '}
@@ -122,7 +124,10 @@ class Articles extends ListPage {
   };
 
   renderSearchedArticleHeader = () => {
-    const { query: { searchUserByArticleId }, articles } = this.props;
+    const {
+      query: { searchUserByArticleId },
+      articles,
+    } = this.props;
     const searchedArticle = articles.find(
       article => article.get('id') === searchUserByArticleId
     );
@@ -151,7 +156,9 @@ class Articles extends ListPage {
   };
 
   renderOrderBy = () => {
-    const { query: { orderBy, q } } = this.props;
+    const {
+      query: { orderBy, q },
+    } = this.props;
     if (q) {
       return <span> Relevance</span>;
     }
@@ -168,7 +175,9 @@ class Articles extends ListPage {
   };
 
   renderFilter = () => {
-    const { query: { filter, replyRequestCount } } = this.props;
+    const {
+      query: { filter, replyRequestCount },
+    } = this.props;
     return (
       <div>
         <RadioGroup

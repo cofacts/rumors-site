@@ -35,7 +35,10 @@ export default class ReplySearch extends PureComponent {
   };
 
   handleSearch = event => {
-    const { target: { value }, key } = event;
+    const {
+      target: { value },
+      key,
+    } = event;
 
     if (key === 'Enter') {
       this.setState({ search: value });
@@ -141,9 +144,7 @@ export default class ReplySearch extends PureComponent {
           </Fragment>
         ) : (
           search && (
-            <div className="search-none">{`- 找無${
-              search
-            }相關的回覆與文章 -`}</div>
+            <div className="search-none">{`- 找無${search}相關的回覆與文章 -`}</div>
           )
         )}
 

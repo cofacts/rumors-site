@@ -26,7 +26,9 @@ class ReplyList extends ListPage {
   };
 
   renderSearch = () => {
-    const { query: { q } } = this.props;
+    const {
+      query: { q },
+    } = this.props;
     return (
       <label>
         Search For:
@@ -41,7 +43,9 @@ class ReplyList extends ListPage {
   };
 
   renderOrderBy = () => {
-    const { query: { orderBy, q } } = this.props;
+    const {
+      query: { orderBy, q },
+    } = this.props;
     if (q) {
       return <span> Relevance</span>;
     }
@@ -58,7 +62,10 @@ class ReplyList extends ListPage {
   };
 
   renderMyReplyOnlyCheckbox() {
-    const { isLoggedIn, query: { mine } } = this.props;
+    const {
+      isLoggedIn,
+      query: { mine },
+    } = this.props;
     if (!isLoggedIn) return null;
 
     return (
@@ -74,7 +81,9 @@ class ReplyList extends ListPage {
   }
 
   renderFilter = () => {
-    const { query: { filter } } = this.props;
+    const {
+      query: { filter },
+    } = this.props;
     return (
       <RadioGroup
         onChange={this.handleFilterChange}
@@ -119,7 +128,11 @@ class ReplyList extends ListPage {
   };
 
   renderList = () => {
-    const { replies = null, totalCount, query: { mine } } = this.props;
+    const {
+      replies = null,
+      totalCount,
+      query: { mine },
+    } = this.props;
     return (
       <div>
         <p>{totalCount} replies</p>
@@ -187,6 +200,7 @@ function bootstrapFn(dispatch, { query }) {
   return dispatch(load(query));
 }
 
-export default compose(app(initFn, bootstrapFn), connect(mapStateToProps))(
-  ReplyList
-);
+export default compose(
+  app(initFn, bootstrapFn),
+  connect(mapStateToProps)
+)(ReplyList);

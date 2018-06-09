@@ -47,7 +47,11 @@ function UsedArticleItem({ article, replyConnection }) {
 
 class ReplyPage extends React.Component {
   handleReplyConnectionDelete = () => {
-    const { dispatch, originalReplyConnection, query: { id } } = this.props;
+    const {
+      dispatch,
+      originalReplyConnection,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(
         originalReplyConnection.get('articleId'),
@@ -58,7 +62,11 @@ class ReplyPage extends React.Component {
   };
 
   handleReplyConnectionRestore = () => {
-    const { dispatch, originalReplyConnection, query: { id } } = this.props;
+    const {
+      dispatch,
+      originalReplyConnection,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(
         originalReplyConnection.get('articleId'),
@@ -85,7 +93,10 @@ class ReplyPage extends React.Component {
   };
 
   handleReplyConnectionVote = (conn, vote) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(voteReply(conn.get('articleId'), id, vote));
   };
 
@@ -214,6 +225,7 @@ function mapStateToProps({ replyDetail }) {
   };
 }
 
-export default compose(app(initFn, bootstrapFn), connect(mapStateToProps))(
-  ReplyPage
-);
+export default compose(
+  app(initFn, bootstrapFn),
+  connect(mapStateToProps)
+)(ReplyPage);

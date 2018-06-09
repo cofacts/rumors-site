@@ -34,7 +34,10 @@ class ArticlePage extends React.Component {
   };
 
   handleConnect = ({ target: { value: replyId } }) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
   };
 
@@ -54,7 +57,10 @@ class ArticlePage extends React.Component {
   };
 
   handleSubmit = reply => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       submitReply({
         ...reply,
@@ -64,28 +70,40 @@ class ArticlePage extends React.Component {
   };
 
   handleReplyConnectionDelete = conn => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'DELETED')
     );
   };
 
   handleReplyConnectionRestore = conn => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'NORMAL')
     ).then(this.scrollToReplySection);
   };
 
   handleVoteReplyRequest = (replyRequestId, voteType, indexOfReplyRequests) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     dispatch(
       voteReplyRequest(id, replyRequestId, voteType, indexOfReplyRequests)
     );
   };
 
   handleReplyConnectionVote = (conn, vote) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(voteReply(id, conn.get('replyId'), vote));
   };
 
@@ -301,6 +319,7 @@ function mapStateToProps({ articleDetail, auth }) {
   };
 }
 
-export default compose(app(initFn, bootstrapFn), connect(mapStateToProps))(
-  ArticlePage
-);
+export default compose(
+  app(initFn, bootstrapFn),
+  connect(mapStateToProps)
+)(ArticlePage);
