@@ -9,18 +9,12 @@ export default class ReplyFeedback extends PureComponent {
     onVote: PropTypes.func.isRequired,
   };
 
-  state = {
-    isOwnReply: false,
-  };
-
-  componentWillUpdate = nextProps => {
-    // check is own reply or not
-    if (!this.props.authId && nextProps.authId) {
-      const replyUserId = this.props.replyConnection.getIn(['user', 'id']);
-      this.setState({
-        isOwnReply: replyUserId === nextProps.authId,
-      });
-    }
+  /**
+   * @returns {boolean} if the reply connection is created by the current user
+   */
+  isOwnReply = () => {
+    const { replyConnection, authId } = this.props;
+    return authId === replyConnection.getIn(['user', 'id']);
   };
 
   handleUpVote = () => {
@@ -34,11 +28,11 @@ export default class ReplyFeedback extends PureComponent {
   };
 
   getFeedbackScore = () => {
-    const { isOwnReply } = this.state;
     return this.props.replyConnection.get('feedbacks').reduce(
       (agg, feedback) => {
         const isOwnFeedback =
-          !isOwnReply && feedback.getIn(['user', 'id']) === this.props.authId;
+          !this.isOwnReply() &&
+          feedback.getIn(['user', 'id']) === this.props.authId;
 
         switch (feedback.get('score')) {
           case 1:
@@ -57,8 +51,8 @@ export default class ReplyFeedback extends PureComponent {
   };
 
   render() {
-    const { isOwnReply } = this.state;
     const { positiveCount, negativeCount, ownVote } = this.getFeedbackScore();
+    const isOwnReply = this.isOwnReply();
     return (
       <div className="reply-feedback">
         {!isOwnReply && <label>是否有幫助？</label>}
