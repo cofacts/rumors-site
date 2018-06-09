@@ -94,7 +94,6 @@ class DeletedItems extends React.Component {
 }
 
 export default function CurrentReplies({
-  authId,
   replyConnections,
   disabled = false,
   onDelete = () => {},
@@ -122,7 +121,6 @@ export default function CurrentReplies({
     <ul className="items">
       {validConnections.map(conn => (
         <ReplyConnection
-          authId={authId}
           key={`${conn.get('articleId')}__${conn.get('replyId')}`}
           replyConnection={conn}
           onAction={onDelete}
