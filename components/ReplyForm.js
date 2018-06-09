@@ -140,7 +140,7 @@ export default class ReplyForm extends React.PureComponent {
       return (
         <p>
           查證範圍請參考{' '}
-          <a href={EDITOR_REFERENCE} target="_blank">
+          <a href={EDITOR_REFERENCE} target="_blank" rel="noopener noreferrer">
             《Cofacts 編輯規則》
           </a>。
         </p>
