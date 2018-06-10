@@ -1,26 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { feedbackStyle } from './ReplyFeedback.styles';
 
-export default class ReplyFeedback extends PureComponent {
+class ReplyFeedback extends Component {
   static propTypes = {
-    authId: PropTypes.string,
     replyConnection: PropTypes.object.isRequired,
     onVote: PropTypes.func.isRequired,
-  };
-
-  state = {
-    isOwnReply: false,
-  };
-
-  componentWillUpdate = nextProps => {
-    // check is own reply or not
-    if (!this.props.authId && nextProps.authId) {
-      const replyUserId = this.props.replyConnection.getIn(['user', 'id']);
-      this.setState({
-        isOwnReply: replyUserId === nextProps.authId,
-      });
-    }
   };
 
   handleUpVote = () => {
@@ -34,11 +20,11 @@ export default class ReplyFeedback extends PureComponent {
   };
 
   getFeedbackScore = () => {
-    const { isOwnReply } = this.state;
-    return this.props.replyConnection.get('feedbacks').reduce(
+    const { replyConnection, currentUserId } = this.props;
+
+    return replyConnection.get('feedbacks').reduce(
       (agg, feedback) => {
-        const isOwnFeedback =
-          !isOwnReply && feedback.getIn(['user', 'id']) === this.props.authId;
+        const isOwnFeedback = feedback.getIn(['user', 'id']) === currentUserId;
 
         switch (feedback.get('score')) {
           case 1:
@@ -57,16 +43,20 @@ export default class ReplyFeedback extends PureComponent {
   };
 
   render() {
-    const { isOwnReply } = this.state;
+    const { currentUserId, replyConnection } = this.props;
     const { positiveCount, negativeCount, ownVote } = this.getFeedbackScore();
+
+    const isOwnArticleReply =
+      currentUserId === replyConnection.getIn(['user', 'id']);
+
     return (
       <div className="reply-feedback">
-        {!isOwnReply && <label>是否有幫助？</label>}
+        {!isOwnArticleReply && <label>是否有幫助？</label>}
         <span className="vote-num">{positiveCount}</span>
         <button
           className="btn-vote"
           onClick={this.handleUpVote}
-          disabled={isOwnReply}
+          disabled={isOwnArticleReply}
         >
           <svg
             className={`icon icon-circle ${ownVote === 1 && 'active'}`}
@@ -80,7 +70,7 @@ export default class ReplyFeedback extends PureComponent {
         <button
           className="btn-vote"
           onClick={this.handleDownVote}
-          disabled={isOwnReply}
+          disabled={isOwnArticleReply}
         >
           <svg
             className={`icon icon-cross ${ownVote === -1 && 'active'}`}
@@ -95,3 +85,11 @@ export default class ReplyFeedback extends PureComponent {
     );
   }
 }
+
+function mapStateToProps({ auth }) {
+  return {
+    currentUserId: auth.getIn(['user', 'id']),
+  };
+}
+
+export default connect(mapStateToProps)(ReplyFeedback);

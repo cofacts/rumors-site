@@ -34,7 +34,10 @@ class ArticlePage extends React.Component {
   };
 
   handleConnect = ({ target: { value: replyId } }) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(connectReply(id, replyId)).then(this.scrollToReplySection);
   };
 
@@ -54,7 +57,10 @@ class ArticlePage extends React.Component {
   };
 
   handleSubmit = reply => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       submitReply({
         ...reply,
@@ -64,28 +70,40 @@ class ArticlePage extends React.Component {
   };
 
   handleReplyConnectionDelete = conn => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'DELETED')
     );
   };
 
   handleReplyConnectionRestore = conn => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(
       updateArticleReplyStatus(id, conn.get('replyId'), 'NORMAL')
     ).then(this.scrollToReplySection);
   };
 
   handleVoteReplyRequest = (replyRequestId, voteType, indexOfReplyRequests) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     dispatch(
       voteReplyRequest(id, replyRequestId, voteType, indexOfReplyRequests)
     );
   };
 
   handleReplyConnectionVote = (conn, vote) => {
-    const { dispatch, query: { id } } = this.props;
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
     return dispatch(voteReply(id, conn.get('replyId'), vote));
   };
 
@@ -190,7 +208,7 @@ class ArticlePage extends React.Component {
   };
 
   render() {
-    const { data, isLoading, isReplyLoading, authId } = this.props;
+    const { data, isLoading, isReplyLoading } = this.props;
 
     const article = data.get('article');
     const replyConnections = data.get('replyConnections');
@@ -247,7 +265,6 @@ class ArticlePage extends React.Component {
         >
           <h2>現有回應</h2>
           <CurrentReplies
-            authId={authId}
             replyConnections={replyConnections}
             disabled={isReplyLoading}
             onDelete={this.handleReplyConnectionDelete}
@@ -292,15 +309,15 @@ function bootstrapFn(dispatch, { query: { id } }) {
   return dispatch(loadAuth(id));
 }
 
-function mapStateToProps({ articleDetail, auth }) {
+function mapStateToProps({ articleDetail }) {
   return {
-    authId: auth.getIn(['user', 'id']),
     isLoading: articleDetail.getIn(['state', 'isLoading']),
     isReplyLoading: articleDetail.getIn(['state', 'isReplyLoading']),
     data: articleDetail.get('data'),
   };
 }
 
-export default compose(app(initFn, bootstrapFn), connect(mapStateToProps))(
-  ArticlePage
-);
+export default compose(
+  app(initFn, bootstrapFn),
+  connect(mapStateToProps)
+)(ArticlePage);

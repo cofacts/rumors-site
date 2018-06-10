@@ -38,10 +38,14 @@ export const load = id => dispatch => {
           }
           replyId
           user {
+            id
             name
           }
           feedbacks {
             score
+            user {
+              id
+            }
           }
           status
           canUpdateStatus

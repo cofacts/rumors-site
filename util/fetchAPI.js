@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import getConfig from 'next/config';
-const { publicRuntimeConfig: { API_URL, APP_ID } } = getConfig();
+const {
+  publicRuntimeConfig: { API_URL, APP_ID },
+} = getConfig();
 
 export default function(endpoint = '/', args = {}) {
   return fetch(`${API_URL}${endpoint}`, {

@@ -4,7 +4,9 @@ import getConfig from 'next/config';
 import Modal from './';
 import { hideDialog } from 'ducks/auth';
 
-const { publicRuntimeConfig: { API_URL } } = getConfig();
+const {
+  publicRuntimeConfig: { API_URL },
+} = getConfig();
 
 function LoginModal({ isDialogShown, onModalClose }) {
   if (!isDialogShown) return null;
@@ -48,4 +50,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginModal);

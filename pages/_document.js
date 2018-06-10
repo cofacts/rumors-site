@@ -3,7 +3,9 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import flush from 'styled-jsx/server';
 
-const { publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME } } = getConfig();
+const {
+  publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME },
+} = getConfig();
 
 const SITE_STRUCTURED_DATA = JSON.stringify({
   '@context': 'http://schema.org',

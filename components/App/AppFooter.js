@@ -16,7 +16,7 @@ export default function AppFooter() {
         />
       </a>
       <p>
-        <a href={PROJECT_HACKFOLDR} target="_blank">
+        <a href={PROJECT_HACKFOLDR} target="_blank" rel="noopener noreferrer">
           專案介紹
         </a>
         ・
