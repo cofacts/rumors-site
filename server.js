@@ -45,10 +45,7 @@ app.prepare().then(() => {
   server.use(async (ctx, next) => {
     switch (ctx.path) {
       case '/': {
-        const lang = (ctx.acceptsLanguages(['zh', 'en']) || 'en').replace(
-          'zh',
-          'tw'
-        );
+        const lang = ctx.acceptsLanguages(['zh', 'en']) || 'en';
         await send(ctx, `./static/index-${lang}.html`);
         break;
       }
