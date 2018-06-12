@@ -21,7 +21,7 @@
     "autotrackFileName": "autotrack.custom.js"
   },
   "dependencies": {
-    "@zeit/next-css": "^0.1.5",
+    "@zeit/next-css": "^0.2.0",
     "babel-eslint": "^8.2.2",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
