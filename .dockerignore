@@ -5,7 +5,7 @@
 !ducks/*
 !util/*
 !static/*
-!.babelrc
+!.babelrc.js
 !config.js
 !package.json
 !package-lock.json
