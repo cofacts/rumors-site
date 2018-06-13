@@ -43,10 +43,20 @@ app.prepare().then(() => {
 
   //
   server.use(async (ctx, next) => {
-    if ('/' === ctx.path) {
-      await send(ctx, './static/index.html');
-    } else {
-      await next();
+    switch (ctx.path) {
+      case '/': {
+        const lang = ctx.acceptsLanguages(['zh', 'en']) || 'en';
+        await send(ctx, `./static/index-${lang}.html`);
+        break;
+      }
+      case '/en':
+        await send(ctx, './static/index-en.html');
+        break;
+      case '/tw':
+        await send(ctx, './static/index-tw.html');
+        break;
+      default:
+        await next();
     }
   });
 
