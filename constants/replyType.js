@@ -17,7 +17,7 @@ export const TYPE_DESC = {
   NOT_RUMOR: '轉傳訊息或網路文章有一部分內容查證屬實。',
   OPINIONATED:
     '轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論、尚無共識的研究、對政策的推論等等。',
-  RUMOR: '轉傳訊息或網路文章部分含有有一資訊。',
+  RUMOR: '轉傳訊息或網路文章有一部分含有不實資訊。',
 };
 
 export const TYPE_INSTRUCTION = {
