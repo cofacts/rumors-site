@@ -38,6 +38,7 @@ const levelFields = `
     currentLevel
     nextLevel
   }
+  repliedArticleCount
 `;
 
 export const load = () => dispatch => {
