@@ -111,7 +111,10 @@ class Articles extends ListPage {
     return (
       <h2 className="header">
         文章列表
-        <FullSiteArticleStats stats={stats} repliedArticleCount={repliedArticleCount}/>
+        <FullSiteArticleStats
+          stats={stats}
+          repliedArticleCount={repliedArticleCount}
+        />
         <style jsx>{`
           .header {
             display: flex;
@@ -322,7 +325,7 @@ function mapStateToProps({ articleList, auth }) {
     lastCursor: articleList.get('lastCursor'),
     firstCursorOfPage: articleList.getIn(['edges', 0, 'cursor']),
     lastCursorOfPage: articleList.getIn(['edges', -1, 'cursor']),
-    repliedArticleCount: auth.getIn(['user', 'repliedArticleCount'])
+    repliedArticleCount: auth.getIn(['user', 'repliedArticleCount']),
   };
 }
 
