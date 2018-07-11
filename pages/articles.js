@@ -106,12 +106,15 @@ class Articles extends ListPage {
   };
 
   renderHeader = () => {
-    const { stats } = this.props;
+    const { stats, repliedArticleCount } = this.props;
 
     return (
       <h2 className="header">
         文章列表
-        <FullSiteArticleStats stats={stats} />
+        <FullSiteArticleStats
+          stats={stats}
+          repliedArticleCount={repliedArticleCount}
+        />
         <style jsx>{`
           .header {
             display: flex;
@@ -309,7 +312,7 @@ class Articles extends ListPage {
   }
 }
 
-function mapStateToProps({ articleList }) {
+function mapStateToProps({ articleList, auth }) {
   return {
     isLoading: articleList.getIn(['state', 'isLoading']),
     articles: (articleList.get('edges') || List()).map(edge =>
@@ -322,6 +325,7 @@ function mapStateToProps({ articleList }) {
     lastCursor: articleList.get('lastCursor'),
     firstCursorOfPage: articleList.getIn(['edges', 0, 'cursor']),
     lastCursorOfPage: articleList.getIn(['edges', -1, 'cursor']),
+    repliedArticleCount: auth.getIn(['user', 'repliedArticleCount']),
   };
 }
 

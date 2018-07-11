@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'routes';
-
 import LEVEL_NAMES from 'constants/levelNames';
 
 class ProgressBar extends PureComponent {
