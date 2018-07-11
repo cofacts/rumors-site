@@ -22,8 +22,7 @@ function FullSiteArticleStats({ stats, repliedArticleCount }) {
           <div className="progress">
             <i
               style={{
-                width: `${(stats.get('notRepliedCount') /
-                  (stats.get('notRepliedCount') + stats.get('repliedCount'))) *
+                width: `${(repliedArticleCount / stats.get('repliedCount')) *
                   100}%`,
               }}
             />
