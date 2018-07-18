@@ -53,7 +53,7 @@ app.prepare().then(() => {
         await send(ctx, './static/index-en.html');
         break;
       case '/tw':
-        await send(ctx, './static/index-tw.html');
+        await send(ctx, './static/index-zh.html');
         break;
       default:
         await next();
