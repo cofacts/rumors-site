@@ -6,7 +6,7 @@ import { Link } from '../../routes';
 const UPVOTE = 'UPVOTE';
 const DOWNVOTE = 'DOWNVOTE';
 
-const LinkAutherList = ({ articleId }) => (
+const LinkAuthorList = ({ articleId }) => (
   <Link
     href={{
       pathname: '/articles',
@@ -17,10 +17,10 @@ const LinkAutherList = ({ articleId }) => (
       },
     }}
   >
-    <a className="link-auther">
+    <a className="link-author">
       查看該用戶回報的所有文章
       <style jsx>{`
-        .link-auther {
+        .link-author {
           color: #5e7d8f;
           align-self: flex-end;
           white-space: nowrap;
@@ -105,10 +105,6 @@ class ReplyRequestReason extends PureComponent {
             fill: gray;
             margin-right: 0.3em;
           }
-          .link-auther {
-            color: #5e7d8f;
-            align-self: flex-end;
-          }
           .btn-vote {
             position: relative;
           }
@@ -181,7 +177,7 @@ class ReplyRequestReason extends PureComponent {
       (isArticleCreator || replyRequestReason) && (
         <div className="container-request-user">
           {replyRequestReason && this.renderBlockReason()}
-          {isArticleCreator && <LinkAutherList articleId={articleId} />}
+          {isArticleCreator && <LinkAuthorList articleId={articleId} />}
 
           <style jsx>{`
             .container-request-user {
