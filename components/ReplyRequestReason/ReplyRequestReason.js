@@ -98,6 +98,8 @@ class ReplyRequestReason extends PureComponent {
           }
           .reason {
             flex-grow: 1;
+            max-width: calc(100% - 5em);
+            word-break: break-all; /* someone would paste URL link and make flex content overflow */
           }
           .svg-user {
             flex: 0 0 2.5em;
@@ -183,6 +185,7 @@ class ReplyRequestReason extends PureComponent {
             .container-request-user {
               display: flex;
               flex-direction: row;
+              flex-wrap: wrap;
               align-items: center;
               justify-content: flex-end;
               border: 2px dashed #ccc;
