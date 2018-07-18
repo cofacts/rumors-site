@@ -175,13 +175,13 @@ class ReplyRequestReason extends PureComponent {
   };
 
   render() {
-    const { isArticleCreator, replyRequest } = this.props;
+    const { isArticleCreator, replyRequest, articleId } = this.props;
     const replyRequestReason = replyRequest.get('reason');
     return (
       (isArticleCreator || replyRequestReason) && (
         <div className="container-request-user">
           {replyRequestReason && this.renderBlockReason()}
-          {isArticleCreator && <LinkAutherList />}
+          {isArticleCreator && <LinkAutherList articleId={articleId} />}
 
           <style jsx>{`
             .container-request-user {
