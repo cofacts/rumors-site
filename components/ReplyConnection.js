@@ -8,7 +8,7 @@ import ExpandableText from './ExpandableText';
 import { nl2br, linkify } from '../util/text';
 import { sectionStyle } from './ReplyConnection.styles';
 import ReplyFeedback from './ReplyFeedback';
-
+import EditorName from './EditorName';
 export default class ReplyConnection extends React.PureComponent {
   static defaultProps = {
     replyConnection: Map(),
@@ -97,7 +97,13 @@ export default class ReplyConnection extends React.PureComponent {
     const connectionAuthor = replyConnection.get('user') || Map();
     const replyAuthor = reply.get('user') || Map();
 
-    const connectionAuthorName = connectionAuthor.get('name') || '有人';
+    const connectionAuthorName =
+      (
+        <EditorName
+          editorName={connectionAuthor.get('name')}
+          editorLevel={connectionAuthor.get('level')}
+        />
+      ) || '有人';
 
     if (
       replyAuthor.get('name') &&
@@ -111,7 +117,13 @@ export default class ReplyConnection extends React.PureComponent {
             route="reply"
             params={{ id: replyConnection.getIn(['reply', 'id']) }}
           >
-            <a>{replyAuthor.get('name')} 的回應</a>
+            <a>
+              <EditorName
+                editorName={replyAuthor.get('name')}
+                editorLevel={replyAuthor.get('level')}
+              />{' '}
+              的回應
+            </a>
           </Link>來
         </span>
       );

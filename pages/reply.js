@@ -14,6 +14,7 @@ import { nl2br, linkify } from '../util/text';
 
 import app from 'components/App';
 import ReplyConnection from 'components/ReplyConnection';
+import EditorName from 'components/EditorName';
 
 import { detailStyle } from './article.styles';
 import { listItemStyle } from 'components/ListItem.styles';
@@ -21,14 +22,18 @@ import { listItemStyle } from 'components/ListItem.styles';
 function UsedArticleItem({ article, replyConnection }) {
   const createdAt = moment(replyConnection.get('createdAt'));
   const otherReplyCount = article.get('replyCount') - 1;
+  const userName = replyConnection.getIn(['user', 'name']);
+  const userLevel = replyConnection.getIn(['user', 'level']);
 
   return (
     <Link route="article" params={{ id: article.get('id') }}>
-      <a className="item">
+      <a classLevel="item">
         <div className="item-text">{article.get('text')}</div>
         <div className="info">
-          {replyConnection.getIn(['user', 'name'])} 在{' '}
-          <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>{' '}
+          <EditorName editorName={userName} editorLevel={userLevel} />
+          在 <span title={createdAt.format('lll')}>
+            {createdAt.fromNow()}
+          </span>{' '}
           加的
           {otherReplyCount ? ` · 另有 ${otherReplyCount} 篇回應` : ''}
         </div>
