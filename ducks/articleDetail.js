@@ -45,6 +45,7 @@ const fragments = {
       id
       name
       avatarUrl
+      level
     }
     fragment articleReplyFields on ArticleReply {
       canUpdateStatus

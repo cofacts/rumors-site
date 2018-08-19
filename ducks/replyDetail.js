@@ -40,6 +40,7 @@ export const load = id => dispatch => {
           user {
             id
             name
+            level
           }
           feedbacks {
             score

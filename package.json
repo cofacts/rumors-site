@@ -38,6 +38,7 @@
     "react-dom": "^16.2.0",
     "react-radio-group": "^3.0.2",
     "react-redux": "^5.0.6",
+    "react-tooltip": "^3.6.1",
     "redux": "^4.0.0",
     "redux-duck": "^1.0.2",
     "redux-thunk": "^2.2.0",

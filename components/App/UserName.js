@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'routes';
 import LEVEL_NAMES from 'constants/levelNames';
+import Modal from '../Modal';
 
 class ProgressBar extends PureComponent {
   static defaultProps = {
@@ -92,6 +93,7 @@ class UserName extends PureComponent {
 
   state = {
     isEditingUserName: false,
+    showLevelUpPopup: false,
   };
 
   handleEdit = () => {
@@ -192,7 +194,15 @@ class UserName extends PureComponent {
       </div>
     );
   };
-
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.user &&
+      prevProps.user.get('level') !== this.props.user.get('level')
+    ) {
+      // show level up popup
+      this.setState({ showLevelUpPopup: true });
+    }
+  }
   render() {
     const { user, isLoading } = this.props;
     const { isEditingUserName } = this.state;
@@ -212,6 +222,21 @@ class UserName extends PureComponent {
             this.renderInfo()
           )}
           {this.renderLevel()}
+          {this.state.showLevelUpPopup && (
+            <Modal
+              onClose={() => {
+                this.setState({ showLevelUpPopup: false });
+              }}
+            >
+              <p
+                style={{
+                  padding: '30px 30px 20px',
+                }}
+              >
+                恭喜! 您升等了!
+              </p>
+            </Modal>
+          )}
         </div>
       );
     }
