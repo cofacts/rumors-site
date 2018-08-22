@@ -7,13 +7,14 @@ const {
   publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME },
 } = getConfig();
 
-const SITE_STRUCTURED_DATA = JSON.stringify({
-  '@context': 'http://schema.org',
-  '@type': 'WebSite',
-  name: 'Cofacts',
-  alternateName: '真的假的——轉傳訊息查證',
-  url: 'https://cofacts.g0v.tw',
-});
+// issue #128
+// const SITE_STRUCTURED_DATA = JSON.stringify({
+//   '@context': 'http://schema.org',
+//   '@type': 'WebSite',
+//   name: 'Cofacts',
+//   alternateName: '真的假的——轉傳訊息查證',
+//   url: 'https://cofacts.g0v.tw',
+// });
 
 class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -54,10 +55,12 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script
+          {/* issue #128
+            <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: SITE_STRUCTURED_DATA }}
-          />
+            />
+          */}
         </body>
       </html>
     );
