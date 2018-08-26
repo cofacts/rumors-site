@@ -26,7 +26,9 @@ export const loadAction = {
                   id: 'relatedReply1',
                   type: 'RUMOR',
                   text: '醫師聽聞後都斥為無稽之談',
+                  createdAt: '2017-10-29T03:19:56.782Z',
                 },
+                createdAt: '2017-11-15T08:08:08.782Z',
               },
               {
                 articleId: 'article1',
@@ -36,7 +38,9 @@ export const loadAction = {
                   id: 'relatedReply2',
                   type: 'RUMOR',
                   text: '喝冰水跟罹癌根本是兩回事',
+                  createdAt: '2017-10-30T05:34:56.782Z',
                 },
+                createdAt: '2017-11-17T20:21:56.309Z',
               },
               {
                 articleId: 'article1',
@@ -47,7 +51,9 @@ export const loadAction = {
                   type: 'NOT_ARTICLE',
                   text:
                     '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+                  createdAt: '2017-08-30T08:09:10.111Z',
                 },
+                createdAt: '2017-10-29T03:19:56.782Z',
               },
             ],
           },
@@ -67,7 +73,9 @@ export const loadAction = {
                   id: 'relatedReply1',
                   type: 'RUMOR',
                   text: '醫師聽聞後都斥為無稽之談',
+                  createdAt: '2017-10-29T03:19:56.782Z',
                 },
+                createdAt: '2017-10-30T12:19:00.335Z',
               },
             ],
           },
@@ -85,6 +93,7 @@ export const loadAction = {
           id: 'reply1',
           type: 'NOT_ARTICLE',
           text: '文字長度太短，疑似為使用者手動輸入之查詢語句，不像轉傳文章。',
+          createdAt: '2017-08-30T08:09:10.111Z',
         },
         feedbacks: [],
         user: {
