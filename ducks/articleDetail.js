@@ -450,7 +450,9 @@ export default createReducer(
                             article: edge
                               .get('node')
                               .remove('replyConnections'),
-                            reply: conn.get('reply'),
+                            reply: conn
+                              .get('reply')
+                              .set('createdAt', conn.get('createdAt')),
                           })
                         )
                         .filter(articleAndReply => {
