@@ -55,6 +55,9 @@ app.prepare().then(() => {
       case '/tw':
         await send(ctx, './static/index-zh.html');
         break;
+      case '/workshop':
+        ctx.redirect('https://via.hypothes.is/https://g0v.hackmd.io/s/S1-Vd4RFm');
+        break;
       default:
         await next();
     }
