@@ -197,6 +197,7 @@ class UserName extends PureComponent {
   componentDidUpdate(prevProps) {
     if (
       prevProps.user &&
+      this.props.user &&
       prevProps.user.get('level') !== this.props.user.get('level')
     ) {
       // show level up popup
