@@ -60,6 +60,11 @@ app.prepare().then(() => {
           'https://via.hypothes.is/https://g0v.hackmd.io/s/r1NGjuG5m'
         );
         break;
+      case '/analytics':
+        ctx.redirect(
+          'https://datastudio.google.com/u/0/reporting/18J8jZYumsoaCPBk9bdRd97GKvi_W5v-r/page/mVfZ'
+        );
+        break;
       default:
         await next();
     }
