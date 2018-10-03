@@ -57,7 +57,7 @@ app.prepare().then(() => {
         break;
       case '/workshop':
         ctx.redirect(
-          'https://via.hypothes.is/https://g0v.hackmd.io/s/S1-Vd4RFm'
+          'https://via.hypothes.is/https://g0v.hackmd.io/s/r1NGjuG5m'
         );
         break;
       default:
