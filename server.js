@@ -62,8 +62,11 @@ app.prepare().then(() => {
         break;
       case '/analytics':
         ctx.redirect(
-          'https://datastudio.google.com/u/0/reporting/18J8jZYumsoaCPBk9bdRd97GKvi_W5v-r/page/mVfZ'
+          'https://datastudio.google.com/open/18J8jZYumsoaCPBk9bdRd97GKvi_W5v-r'
         );
+        break;
+      case '/hack':
+        ctx.redirect('https://beta.hackfoldr.org/cofacts');
         break;
       default:
         await next();
