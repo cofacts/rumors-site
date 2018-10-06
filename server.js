@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // https://github.com/zeit/next.js/blob/master/examples/custom-server-koa/server.js
 //
 
@@ -5,25 +7,17 @@ const Koa = require('koa');
 const next = require('next');
 const Rollbar = require('rollbar');
 const send = require('koa-send');
-const getConfig = require('next/config');
-
-const { serverRuntimeConfig } = getConfig();
 
 // Server related config & credentials
 //
-const serverConfig = {
-  ROLLBAR_SERVER_TOKEN: serverRuntimeConfig.SERVER_ROLLBAR_SERVER_TOKEN,
-  ROLLBAR_ENV: serverRuntimeConfig.SERVER_ROLLBAR_ENV || 'localhost',
-  PORT: serverRuntimeConfig.SERVER_PORT || 3000,
-};
 
-const enableRollbar = !!serverConfig.ROLLBAR_SERVER_TOKEN;
+const enableRollbar = !!process.env.ROLLBAR_SERVER_TOKEN;
 const rollbar = new Rollbar({
   enabled: enableRollbar,
   captureUncaught: enableRollbar,
   captureUnhandledRejections: enableRollbar,
-  accessToken: serverConfig.ROLLBAR_SERVER_TOKEN,
-  environment: serverConfig.ROLLBAR_ENV,
+  accessToken: process.env.ROLLBAR_SERVER_TOKEN,
+  environment: process.env.ROLLBAR_ENV || 'localhost',
 });
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' });
@@ -87,8 +81,8 @@ app.prepare().then(() => {
     await next();
   });
 
-  server.listen(serverConfig.PORT, err => {
+  server.listen(process.env.PORT, err => {
     if (err) throw err;
-      console.log('Listening port', serverConfig.PORT); // eslint-disable-line
+      console.log('Listening port', process.env.PORT); // eslint-disable-line
   });
 });

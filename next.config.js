@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 // https://github.com/zeit/next-plugins/tree/master/packages/next-css
 //
 const { config } = require('./package.json');
