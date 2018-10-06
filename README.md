@@ -18,11 +18,6 @@ This project uses NodeJS 8+ and npm 5+.
 $ npm install
 $ npm run dev # Then visit http://localhost:3000
 
-# By default the site will connect to staging API server.
-# If you started your own API server using docker-compose in https://github.com/MrOrz/rumors-api,
-# Use this instead:
-$ BUILD_TARGET=local npm run dev
-
 # Before you pull request, please lint your code first
 $ npm run lint
 # fix eslint
@@ -50,10 +45,9 @@ grants-landing-template $ cd ../rumors-site
 rumors-site $ npm run landing
 ```
 
-
 ## Deploy
 
-Build docker image
+Build docker image. These images are the same, just tagged differently.
 
 ``` bash
 # Production build
