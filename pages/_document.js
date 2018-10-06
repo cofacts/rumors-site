@@ -4,7 +4,7 @@ import getConfig from 'next/config';
 import flush from 'styled-jsx/server';
 
 const {
-  publicRuntimeConfig: { GA_TRACKER, AUTOTRACK_FILENAME },
+  publicRuntimeConfig: { PUBLIC_GA_TRACKER, AUTOTRACK_FILENAME },
 } = getConfig();
 
 // issue #128
@@ -40,7 +40,7 @@ class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
                 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                ga('create', '${GA_TRACKER}', 'auto');
+                ga('create', '${PUBLIC_GA_TRACKER}', 'auto');
                 ga('require', 'eventTracker');
                 ga('require', 'outboundLinkTracker');
                 ga('require', 'urlChangeTracker');

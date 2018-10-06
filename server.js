@@ -5,13 +5,16 @@ const Koa = require('koa');
 const next = require('next');
 const Rollbar = require('rollbar');
 const send = require('koa-send');
+const getConfig = require('next/config');
+
+const { serverRuntimeConfig } = getConfig();
 
 // Server related config & credentials
 //
 const serverConfig = {
-  ROLLBAR_SERVER_TOKEN: process.env.ROLLBAR_SERVER_TOKEN,
-  ROLLBAR_ENV: process.env.ROLLBAR_ENV || 'localhost',
-  PORT: process.env.PORT || 3000,
+  ROLLBAR_SERVER_TOKEN: serverRuntimeConfig.SERVER_ROLLBAR_SERVER_TOKEN,
+  ROLLBAR_ENV: serverRuntimeConfig.SERVER_ROLLBAR_ENV || 'localhost',
+  PORT: serverRuntimeConfig.SERVER_PORT || 3000,
 };
 
 const enableRollbar = !!serverConfig.ROLLBAR_SERVER_TOKEN;

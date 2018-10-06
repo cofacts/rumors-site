@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/cofacts/rumors-site.svg?branch=master)](https://travis-ci.org/cofacts/rumors-site) [![Coverage Status](https://coveralls.io/repos/github/cofacts/rumors-site/badge.svg?branch=master)](https://coveralls.io/github/cofacts/rumors-site?branch=master)
 
-Rumors list / creation UI, with server-side rendering
+Rumors list / creation UI, with server-side rendering.
+
+## Configuration
+
+For development, copy `.env.sample` to `.env` and make necessary changes.
+
+For production via [rumros-deploy](http://github.com/cofacts/rumors-deploy), do setups in `docker-compose.yml`.
 
 ## Development
 
@@ -25,15 +31,11 @@ $ npm run lint:fix
 $ npm t
 ```
 
-### ENV vars and Cache issue
-
-If you found that `BUILD_TARGET` does not work (i.e. the server still sends to production server even when `BUILD_TARGET` is set), try removing `node_modules/.cache`. This is [an known issue](https://github.com/zeit/next.js/issues/1103).
-
 ### styled-jsx syntax highlighting
 
 See: https://github.com/zeit/styled-jsx#syntax-highlighting
 
-## Landing Page (Makeshift)
+### Landing Page (Makeshift)
 
 We build a temporary landing page in the repo [grants-landing-template](github.com/cofacts/grants-landing-template).
 

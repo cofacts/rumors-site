@@ -24,6 +24,7 @@
     "@zeit/next-css": "^0.2.0",
     "babel-eslint": "^8.2.2",
     "classnames": "^2.2.5",
+    "dotenv": "^6.0.0",
     "immutable": "^3.8.2",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.4.1",
