@@ -9,11 +9,6 @@ ENTRYPOINT npm start
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Setup environment for client/server build and server execution
-#
-ARG BUILD_TARGET
-ENV NODE_ENV=production BUILD_TARGET=${BUILD_TARGET}
-
 # Other files, so that other files do not interfere with node_modules cache
 #
 COPY . .

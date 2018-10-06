@@ -1,15 +1,15 @@
 import fetch from 'isomorphic-fetch';
 import getConfig from 'next/config';
 const {
-  publicRuntimeConfig: { API_URL, APP_ID },
+  publicRuntimeConfig: { PUBLIC_API_URL, PUBLIC_APP_ID },
 } = getConfig();
 
 export default function(endpoint = '/', args = {}) {
-  return fetch(`${API_URL}${endpoint}`, {
+  return fetch(`${PUBLIC_API_URL}${endpoint}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-app-id': APP_ID,
+      'x-app-id': PUBLIC_APP_ID,
       ...args.headers,
     },
     credentials: 'include',

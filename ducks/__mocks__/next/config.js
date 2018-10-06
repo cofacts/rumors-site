@@ -2,7 +2,7 @@
 
 function getConfig() {
   return {
-    publicRuntimeConfig: { API_URL: 'API_URL', APP_ID: 'APP_ID' },
+    publicRuntimeConfig: { PUBLIC_API_URL: 'API_URL', PUBLIC_APP_ID: 'APP_ID' },
   };
 }
 

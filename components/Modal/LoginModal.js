@@ -5,7 +5,7 @@ import Modal from './';
 import { hideDialog } from 'ducks/auth';
 
 const {
-  publicRuntimeConfig: { API_URL },
+  publicRuntimeConfig: { PUBLIC_API_URL },
 } = getConfig();
 
 function LoginModal({ isDialogShown, onModalClose }) {
@@ -19,13 +19,15 @@ function LoginModal({ isDialogShown, onModalClose }) {
     <Modal onClose={onModalClose}>
       <div className="root">
         <h1>Login / Signup</h1>
-        <a href={`${API_URL}/login/facebook?redirect=${redirectUrl}`}>
+        <a href={`${PUBLIC_API_URL}/login/facebook?redirect=${redirectUrl}`}>
           Facebook
         </a>・
-        <a href={`${API_URL}/login/twitter?redirect=${redirectUrl}`}>
+        <a href={`${PUBLIC_API_URL}/login/twitter?redirect=${redirectUrl}`}>
           Twitter
         </a>・
-        <a href={`${API_URL}/login/github?redirect=${redirectUrl}`}>Github</a>
+        <a href={`${PUBLIC_API_URL}/login/github?redirect=${redirectUrl}`}>
+          Github
+        </a>
       </div>
       <style jsx>{`
         .root {
