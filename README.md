@@ -8,7 +8,7 @@ Rumors list / creation UI, with server-side rendering.
 
 For development, copy `.env.sample` to `.env` and make necessary changes.
 
-For production via [rumros-deploy](http://github.com/cofacts/rumors-deploy), do setups in `docker-compose.yml`.
+For production via [rumors-deploy](http://github.com/cofacts/rumors-deploy), do setups in `docker-compose.yml`.
 
 ## Development
 
