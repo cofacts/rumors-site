@@ -8,27 +8,48 @@ import { List, Map } from 'immutable';
 function Hyperlink({ hyperlink = Map() }) {
   const title = hyperlink.get('title');
   const summary = (hyperlink.get('summary') || '').slice(0, 200);
+  const topImageUrl = hyperlink.get('topImageUrl');
 
   return (
     <article className="link">
-      <h1 title={title}>{title}</h1>
-      <a
-        className="url"
-        href={hyperlink.get('url')}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {hyperlink.get('url')}
-      </a>
-      <p className="summary" title={summary}>
-        {summary}
-      </p>
+      {topImageUrl && (
+        <figure
+          className="preview"
+          style={{ backgroundImage: `url(${topImageUrl})` }}
+        />
+      )}
+      <div className="info">
+        <h1 title={title}>{title}</h1>
+        <a
+          className="url"
+          href={hyperlink.get('url')}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {hyperlink.get('url')}
+        </a>
+        <p className="summary" title={summary}>
+          {summary}
+        </p>
+      </div>
       <style jsx>{`
         .link {
-          max-width: 240px;
-          padding: 16px;
+          display: flex;
           border: 1px solid rgba(0, 0, 0, 0.2);
           margin: 0 8px 8px 0;
+        }
+
+        .preview {
+          margin: 0;
+          width: 144px;
+          border-right: 1px solid rgba(0, 0, 0, 0.2);
+          background: #ccc center center no-repeat;
+          background-size: cover;
+        }
+
+        .info {
+          padding: 16px;
+          max-width: 240px;
         }
 
         .link h1 {
