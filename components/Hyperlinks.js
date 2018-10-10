@@ -6,11 +6,20 @@ import { List, Map } from 'immutable';
  * @param {Map} props.hyperlink -
  */
 function Hyperlink({ hyperlink = Map() }) {
+  const title = hyperlink.get('title');
   const summary = (hyperlink.get('summary') || '').slice(0, 200);
+
   return (
     <article className="link">
-      <h1>{hyperlink.get('title')}</h1>
-      <p className="url">{hyperlink.get('url')}</p>
+      <h1 title={title}>{title}</h1>
+      <a
+        className="url"
+        href={hyperlink.get('url')}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {hyperlink.get('url')}
+      </a>
       <p className="summary" title={summary}>
         {summary}
       </p>
@@ -31,6 +40,7 @@ function Hyperlink({ hyperlink = Map() }) {
         }
 
         .url {
+          display: block;
           font-size: 12px;
           white-space: nowrap;
           overflow: hidden;
