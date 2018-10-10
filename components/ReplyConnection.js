@@ -9,6 +9,8 @@ import { nl2br, linkify } from '../util/text';
 import { sectionStyle } from './ReplyConnection.styles';
 import ReplyFeedback from './ReplyFeedback';
 import EditorName from './EditorName';
+import Hyperlinks from './Hyperlinks';
+
 export default class ReplyConnection extends React.PureComponent {
   static defaultProps = {
     replyConnection: Map(),
@@ -144,6 +146,10 @@ export default class ReplyConnection extends React.PureComponent {
         {reference
           ? nl2br(linkify(reference))
           : '⚠️️ 此回應沒有出處，請自行斟酌回應真實性。'}
+
+        <Hyperlinks
+          hyperlinks={replyConnection.getIn(['reply', 'hyperlinks'])}
+        />
         <style jsx>{sectionStyle}</style>
       </section>
     );
