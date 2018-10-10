@@ -3,12 +3,32 @@ import { List, Map } from 'immutable';
 
 /**
  *
- * @param {Map} props.hyperlink -
+ * @param {string} error - One of ResolveError https://github.com/cofacts/url-resolver/blob/master/src/typeDefs/ResolveError.graphql
+ */
+function getErrorText(error) {
+  switch (error) {
+    case 'NAME_NOT_RESOLVED':
+      return 'Domain name cannot be resolved';
+    case 'UNSUPPORTED':
+    case 'INVALID_URL':
+      return 'URL is malformed or not supported';
+    case 'NOT_REACHABLE':
+      return 'Cannot get data from URL';
+    case 'HTTPS_ERROR':
+      return 'Target site contains HTTPS error';
+    default:
+      return 'Unknown error';
+  }
+}
+
+/**
+ * @param {Map} props.hyperlink
  */
 function Hyperlink({ hyperlink = Map() }) {
   const title = hyperlink.get('title');
   const summary = (hyperlink.get('summary') || '').slice(0, 200);
   const topImageUrl = hyperlink.get('topImageUrl');
+  const error = hyperlink.get('error');
 
   return (
     <article className="link">
@@ -31,6 +51,7 @@ function Hyperlink({ hyperlink = Map() }) {
         <p className="summary" title={summary}>
           {summary}
         </p>
+        {error && <p className="error">{getErrorText(error)}</p>}
       </div>
       <style jsx>{`
         .link {
@@ -76,6 +97,12 @@ function Hyperlink({ hyperlink = Map() }) {
           max-height: 40px;
           overflow: hidden;
           margin: 0;
+        }
+
+        .error {
+          color: firebrick;
+          font-size: 12px;
+          font-style: italic;
         }
       `}</style>
     </article>
