@@ -29,12 +29,18 @@ export const load = id => dispatch => {
         text
         reference
         createdAt
+        hyperlinks {
+          ...hyperlinkFields
+        }
         replyConnections: articleReplies {
           articleId
           article {
             id
             text
             replyCount
+            hyperlinks {
+              ...hyperlinkFields
+            }
           }
           replyId
           user {
@@ -53,6 +59,11 @@ export const load = id => dispatch => {
           createdAt
         }
       }
+    }
+    fragment hyperlinkFields on Hyperlink {
+      title
+      url
+      summary
     }
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetReply'])));

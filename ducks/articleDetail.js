@@ -30,6 +30,9 @@ const fragments = {
       references {
         type
       }
+      hyperlinks {
+        ...hyperlinkFields
+      }
     }
   `,
   replyRequestsFields: `
@@ -60,6 +63,9 @@ const fragments = {
         type
         text
         reference
+        hyperlinks {
+          ...hyperlinkFields
+        }
       }
       feedbacks {
         user{
@@ -69,6 +75,13 @@ const fragments = {
       }
       user { ...userFields }
       createdAt
+    }
+  `,
+  hyperlinkFields: `
+    fragment hyperlinkFields on Hyperlink {
+      title
+      url
+      summary
     }
   `,
 };
@@ -111,6 +124,7 @@ export const load = id => dispatch => {
     ${fragments.articleFields}
     ${fragments.replyRequestsFields}
     ${fragments.articleReplyAndUserFields}
+    ${fragments.hyperlinkFields}
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isLoading', value: false }));
@@ -151,6 +165,7 @@ const reloadReply = articleId => dispatch =>
       }
     }
     ${fragments.articleReplyAndUserFields}
+    ${fragments.hyperlinkFields}
   `({ id: articleId }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetArticle'])));
     dispatch(setState({ key: 'isReplyLoading', value: false }));

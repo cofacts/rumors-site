@@ -13,6 +13,7 @@ import RelatedReplies from 'components/RelatedReplies';
 import ReplySearch from 'components/ReplySearch/ReplySearch.js';
 import ReplyForm from 'components/ReplyForm';
 import ReplyRequestReason from 'components/ReplyRequestReason';
+import Hyperlinks from 'components/Hyperlinks';
 import {
   load,
   loadAuth,
@@ -242,6 +243,7 @@ class ArticlePage extends React.Component {
                 },
               })
             )}
+            <Hyperlinks hyperlinks={article.get('hyperlinks')} />
           </article>
           <footer>
             {article.get('replyRequests').map((replyRequest, index) => {

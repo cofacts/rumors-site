@@ -15,6 +15,7 @@ import { nl2br, linkify } from '../util/text';
 import app from 'components/App';
 import ReplyConnection from 'components/ReplyConnection';
 import EditorName from 'components/EditorName';
+import Hyperlinks from 'components/Hyperlinks';
 
 import { detailStyle } from './article.styles';
 import { listItemStyle } from 'components/ListItem.styles';
@@ -197,6 +198,7 @@ class ReplyPage extends React.Component {
                 props: { target: '_blank' },
               })
             )}
+            <Hyperlinks hyperlinks={originalArticle.get('hyperlinks')} />
           </div>
         </section>
 
