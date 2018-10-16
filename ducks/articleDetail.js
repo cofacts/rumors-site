@@ -82,6 +82,8 @@ const fragments = {
       title
       url
       summary
+      topImageUrl
+      error
     }
   `,
 };

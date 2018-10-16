@@ -64,6 +64,8 @@ export const load = id => dispatch => {
       title
       url
       summary
+      topImageUrl
+      error
     }
   `({ id }).then(resp => {
     dispatch(loadData(resp.getIn(['data', 'GetReply'])));
