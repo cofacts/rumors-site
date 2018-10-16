@@ -113,7 +113,7 @@ function Hyperlink({ hyperlink = Map() }) {
  * @param {List} props.hyperlinks
  */
 function Hyperlinks({ hyperlinks = List() }) {
-  if (hyperlinks.size === 0) return null;
+  if (!hyperlinks || hyperlinks.size === 0) return null;
 
   return (
     <section className="links">
