@@ -3,6 +3,7 @@ import Head from 'next/head';
 import gql from '../util/gql';
 import style from '../components/App/App.css';
 import querystring from 'querystring';
+import PockyGatheringAnimation from '../components/gathering/PockyGatheringAnimation/PockyGatheringAnimation';
 
 const POLLING_INTERVAL = 5000;
 
@@ -344,6 +345,7 @@ export default class InstantWrapper extends React.Component {
         ) : (
           <Instant number={number} total={current} />
         )}
+        <PockyGatheringAnimation number={number} />
         <Loading show={isBootstrapping} />
       </div>
     );
