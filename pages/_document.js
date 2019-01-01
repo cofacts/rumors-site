@@ -1,7 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
-import flush from 'styled-jsx/server';
 
 const {
   publicRuntimeConfig: { PUBLIC_GA_TRACKER, AUTOTRACK_FILENAME },
@@ -17,21 +16,10 @@ const {
 // });
 
 class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    // https://github.com/zeit/next.js/#custom-document
-    //
-    const { html, head, errorHtml, chunks } = renderPage();
-    const styles = flush();
-    return { html, head, errorHtml, chunks, styles };
-  }
-
   render() {
     return (
       <html>
         <Head>
-          {/* Ref: https://github.com/zeit/next-plugins/tree/master/packages/next-css */}
-          <link rel="stylesheet" href="/_next/static/style.css" />
-
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1.0"

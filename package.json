@@ -44,8 +44,7 @@
     "redux-duck": "^1.0.2",
     "redux-thunk": "^2.2.0",
     "rollbar": "^2.3.8",
-    "string-similarity": "^3.0.0",
-    "styled-jsx": "^3.0.0"
+    "string-similarity": "^3.0.0"
   },
   "devDependencies": {
     "autotrack": "^2.4.1",
