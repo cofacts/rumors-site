@@ -16,7 +16,7 @@ import NProgress from 'nprogress';
 
 import 'normalize.css';
 import 'nprogress/nprogress.css';
-import './App.css';
+import './AppLayout.css';
 
 let isBootstrapping = true;
 moment.locale('zh-tw');

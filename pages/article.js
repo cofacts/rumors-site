@@ -4,7 +4,7 @@ import Head from 'next/head';
 import stringSimilarity from 'string-similarity';
 import { nl2br, linkify } from '../util/text';
 
-import AppLayout from 'components/App';
+import AppLayout from 'components/AppLayout';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleItem from 'components/ArticleItem';
 import CurrentReplies from 'components/CurrentReplies';
