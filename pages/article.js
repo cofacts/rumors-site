@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import Head from 'next/head';
 import stringSimilarity from 'string-similarity';
 import { nl2br, linkify } from '../util/text';
 
-import app from 'components/App';
+import AppLayout from 'components/App';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleItem from 'components/ArticleItem';
 import CurrentReplies from 'components/CurrentReplies';
@@ -33,6 +32,16 @@ class ArticlePage extends React.Component {
   state = {
     tab: 'search', // 'new, 'related', 'search'
   };
+
+  static async getInitialProps({ store: { dispatch }, query: { id } }) {
+    await dispatch(load(id));
+    return { id };
+  }
+
+  componentDidMount() {
+    const { id, dispatch } = this.props;
+    return dispatch(loadAuth(id));
+  }
 
   handleConnect = ({ target: { value: replyId } }) => {
     const {
@@ -226,89 +235,84 @@ class ArticlePage extends React.Component {
     const slicedArticleTitle = article.get('text').slice(0, 15);
 
     return (
-      <div className="root">
-        <Head>
-          <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
-        </Head>
-        <section className="section">
-          <header className="header">
-            <h2>訊息原文</h2>
-            <ArticleInfo article={article} />
-          </header>
-          <article className="message">
-            {nl2br(
-              linkify(article.get('text'), {
-                props: {
-                  target: '_blank',
-                },
-              })
-            )}
-            <Hyperlinks hyperlinks={article.get('hyperlinks')} />
-          </article>
-          <footer>
-            {article.get('replyRequests').map((replyRequest, index) => {
-              return (
-                <ReplyRequestReason
-                  key={`reason-${index}`}
-                  index={index}
-                  articleId={article.get('id')}
-                  replyRequest={replyRequest}
-                  isArticleCreator={index === 0}
-                  onVoteReason={this.handleVoteReplyRequest}
-                />
-              );
-            })}
-          </footer>
-        </section>
-        <section
-          id="current-replies"
-          className="section"
-          ref={replySectionEl => (this._replySectionEl = replySectionEl)}
-        >
-          <h2>現有回應</h2>
-          <CurrentReplies
-            replyConnections={replyConnections}
-            disabled={isReplyLoading}
-            onDelete={this.handleReplyConnectionDelete}
-            onRestore={this.handleReplyConnectionRestore}
-            onVote={this.handleReplyConnectionVote}
-          />
-        </section>
-        <section className="section">
-          <h2>增加新回應</h2>
-          {this.renderTabMenu()}
-          <div className="tab-content">{this.renderNewReplyTab()}</div>
-        </section>
-        {relatedArticles.size ? (
+      <AppLayout>
+        <div className="root">
+          <Head>
+            <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
+          </Head>
           <section className="section">
-            <h2>你可能也會對這些類似文章有興趣</h2>
-            <div>
-              {relatedArticles.map(article => (
-                <ArticleItem key={article.get('id')} article={article} />
-              ))}
-            </div>
+            <header className="header">
+              <h2>訊息原文</h2>
+              <ArticleInfo article={article} />
+            </header>
+            <article className="message">
+              {nl2br(
+                linkify(article.get('text'), {
+                  props: {
+                    target: '_blank',
+                  },
+                })
+              )}
+              <Hyperlinks hyperlinks={article.get('hyperlinks')} />
+            </article>
+            <footer>
+              {article.get('replyRequests').map((replyRequest, index) => {
+                return (
+                  <ReplyRequestReason
+                    key={`reason-${index}`}
+                    index={index}
+                    articleId={article.get('id')}
+                    replyRequest={replyRequest}
+                    isArticleCreator={index === 0}
+                    onVoteReason={this.handleVoteReplyRequest}
+                  />
+                );
+              })}
+            </footer>
           </section>
-        ) : (
-          ''
-        )}
-        <style jsx>{detailStyle}</style>
-        <style jsx>{`
-          .tab-content {
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-top: 0;
-          }
-        `}</style>
-      </div>
+          <section
+            id="current-replies"
+            className="section"
+            ref={replySectionEl => (this._replySectionEl = replySectionEl)}
+          >
+            <h2>現有回應</h2>
+            <CurrentReplies
+              replyConnections={replyConnections}
+              disabled={isReplyLoading}
+              onDelete={this.handleReplyConnectionDelete}
+              onRestore={this.handleReplyConnectionRestore}
+              onVote={this.handleReplyConnectionVote}
+            />
+          </section>
+          <section className="section">
+            <h2>增加新回應</h2>
+            {this.renderTabMenu()}
+            <div className="tab-content">{this.renderNewReplyTab()}</div>
+          </section>
+          {relatedArticles.size ? (
+            <section className="section">
+              <h2>你可能也會對這些類似文章有興趣</h2>
+              <div>
+                {relatedArticles.map(article => (
+                  <ArticleItem key={article.get('id')} article={article} />
+                ))}
+              </div>
+            </section>
+          ) : (
+            ''
+          )}
+          <style jsx>{detailStyle}</style>
+          <style jsx>{`
+            .tab-content {
+              padding: 20px;
+              border: 1px solid #ccc;
+              border-top: 0;
+            }
+          `}</style>
+        </div>
+      </AppLayout>
     );
   }
-}
-
-function initFn(dispatch, { query: { id } }) {
-  return dispatch(load(id));
-}
-function bootstrapFn(dispatch, { query: { id } }) {
-  return dispatch(loadAuth(id));
 }
 
 function mapStateToProps({ articleDetail }) {
@@ -319,7 +323,4 @@ function mapStateToProps({ articleDetail }) {
   };
 }
 
-export default compose(
-  app(initFn, bootstrapFn),
-  connect(mapStateToProps)
-)(ArticlePage);
+export default connect(mapStateToProps)(ArticlePage);

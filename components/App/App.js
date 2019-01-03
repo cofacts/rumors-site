@@ -2,12 +2,10 @@
 //
 // Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/pages/index.js
 //
-import React from 'react';
-import { Provider } from 'react-redux';
+import React, { Fragment } from 'react';
 import Router from 'next/router';
-import { fromJS } from 'immutable';
 import { setLogin } from '../../util/gql';
-import configure from 'ducks';
+import { connect } from 'react-redux';
 import { showDialog, load } from 'ducks/auth';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
@@ -30,73 +28,36 @@ Router.onRouteChangeComplete = () => {
   NProgress.done();
 };
 
-// Wraps the app with <Provider />, and invoke
-// initFn(dispatch, context passed in getInitialProps)
-// when getInitialProps() is invoked.
-// When loaded for the first time in browser,
-// bootstrapFn() is invoked.
-//
-export default (initFn = () => {}, bootstrapFn = () => {}) => Component => {
-  return class App extends React.Component {
-    static async getInitialProps(ctx) {
-      const store = configure();
+class AppLayout extends React.Component {
+  constructor(props) {
+    super(props);
 
-      await initFn(store.dispatch, ctx);
-
-      return {
-        // passed to browser by next.js's mechanism
-        //
-        initialState: store.getState(),
-
-        // Other stuff inside getInitialProps' context
-        //
-        pathname: ctx.pathname,
-        query: ctx.query,
-        err: ctx.error,
-      };
+    if (typeof window !== 'undefined') {
+      setLogin(() => props.dispatch(showDialog()));
     }
+  }
 
-    constructor(props) {
-      super(props);
-
-      this.store = configure(
-        // Convert back the rehydrated state to ImmutableJS objects.
-        //
-        Object.keys(props.initialState).reduce(
-          (obj, key) => ({
-            ...obj,
-            [key]: fromJS(props.initialState[key]),
-          }),
-          {}
-        )
-      );
-
-      if (typeof window !== 'undefined') {
-        setLogin(() => this.store.dispatch(showDialog()));
-      }
+  componentDidMount() {
+    // Bootstrapping: Load auth
+    //
+    if (isBootstrapping) {
+      this.props.dispatch(load());
+      isBootstrapping = false;
     }
+  }
 
-    componentDidMount() {
-      // Bootstrapping: Load auth
-      //
-      if (isBootstrapping) {
-        this.store.dispatch(load());
-        bootstrapFn(this.store.dispatch, this.props);
-        isBootstrapping = false;
-      }
-    }
+  render() {
+    const { children } = this.props;
 
-    render() {
-      return (
-        <Provider store={this.store}>
-          <div>
-            <AppHeader />
-            <Component {...this.props} />
-            <LoginModal />
-            <AppFooter />
-          </div>
-        </Provider>
-      );
-    }
-  };
-};
+    return (
+      <Fragment>
+        <AppHeader />
+        {children}
+        <LoginModal />
+        <AppFooter />
+      </Fragment>
+    );
+  }
+}
+
+export default connect()(AppLayout);

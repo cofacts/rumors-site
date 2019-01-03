@@ -19,28 +19,6 @@ const reducers = combineReducers({
 
 const enhancer = composeWithDevTools(applyMiddleware(thunk));
 
-// Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/store.js
-//
-let store = null;
-
-export default function configure(initialState) {
-  // Server side, always return a new store
-  //
-  if (typeof window === 'undefined') {
-    return createStore(reducers, initialState, enhancer);
-  }
-
-  if (store) return store;
-
-  store = createStore(reducers, initialState, enhancer);
-
-  if (typeof module !== 'undefined' && module.hot) {
-    module.hot.accept('./', () => {
-      const nextReducer = require('./').default;
-
-      store.replaceReducer(nextReducer);
-    });
-  }
-
-  return store;
+export default function makeStore(initialState) {
+  return createStore(reducers, initialState, enhancer);
 }
