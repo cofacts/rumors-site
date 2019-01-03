@@ -3,13 +3,12 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import Head from 'next/head';
 import { List } from 'immutable';
 import { Link } from '../routes';
 import { RadioGroup, Radio } from 'react-radio-group';
 
-import app from 'components/App';
+import AppLayout from 'components/AppLayout';
 import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
 import ArticleItem from 'components/ArticleItem';
@@ -28,6 +27,11 @@ class Articles extends ListPage {
       },
     },
   };
+
+  static async getInitialProps({ store, query }) {
+    await store.dispatch(load(query));
+    return { query };
+  }
 
   componentDidMount() {
     // Browser-only
@@ -285,29 +289,31 @@ class Articles extends ListPage {
     } = this.props;
 
     return (
-      <main>
-        <Head>
-          <title>Cofacts 真的假的 - 轉傳訊息查證</title>
-        </Head>
-        {searchUserByArticleId
-          ? this.renderSearchedArticleHeader()
-          : this.renderHeader()}
-        {this.renderSearch()} Order By:
-        {this.renderOrderBy()}
-        {this.renderFilter()}
-        {isLoading ? <p>Loading...</p> : this.renderList()}
-        <span />
-        {+replyRequestCount !== 1 ? (
-          <span className="hint">
-            預設僅會顯示 2 人以上回報的文章。
-            <Link route="articles" params={{ replyRequestCount: 1 }}>
-              <a>按這裡加入僅 1 人回報的文章</a>
-            </Link>
-          </span>
-        ) : null}
-        <style jsx>{hintStyle}</style>
-        <style jsx>{mainStyle}</style>
-      </main>
+      <AppLayout>
+        <main>
+          <Head>
+            <title>Cofacts 真的假的 - 轉傳訊息查證</title>
+          </Head>
+          {searchUserByArticleId
+            ? this.renderSearchedArticleHeader()
+            : this.renderHeader()}
+          {this.renderSearch()} Order By:
+          {this.renderOrderBy()}
+          {this.renderFilter()}
+          {isLoading ? <p>Loading...</p> : this.renderList()}
+          <span />
+          {+replyRequestCount !== 1 ? (
+            <span className="hint">
+              預設僅會顯示 2 人以上回報的文章。
+              <Link route="articles" params={{ replyRequestCount: 1 }}>
+                <a>按這裡加入僅 1 人回報的文章</a>
+              </Link>
+            </span>
+          ) : null}
+          <style jsx>{hintStyle}</style>
+          <style jsx>{mainStyle}</style>
+        </main>
+      </AppLayout>
     );
   }
 }
@@ -329,7 +335,4 @@ function mapStateToProps({ articleList, auth }) {
   };
 }
 
-export default compose(
-  app((dispatch, { query }) => dispatch(load(query))),
-  connect(mapStateToProps)
-)(Articles);
+export default connect(mapStateToProps)(Articles);

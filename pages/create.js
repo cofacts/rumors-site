@@ -3,7 +3,7 @@ import gql from '../util/gql';
 import Head from 'next/head';
 import Router from 'next/router';
 
-import app from 'components/App';
+import AppLayout from 'components/AppLayout';
 
 class CreateArticlePage extends React.Component {
   state = {
@@ -53,37 +53,39 @@ class CreateArticlePage extends React.Component {
     const { isSubmitting } = this.state;
 
     return (
-      <div className="root">
-        <Head>
-          <title>送出新訊息到資料庫 | Cofacts 真的假的</title>
-        </Head>
-        <form onSubmit={this.handleSubmit}>
-          <h2>訊息原文</h2>
-          <textarea name="text" rows="6" />
-          <h2>理由</h2>
-          <textarea name="reason" row="2" />
-          <h2>訊息來源網址</h2>
-          <input type="text" name="references" />
+      <AppLayout>
+        <div className="root">
+          <Head>
+            <title>送出新訊息到資料庫 | Cofacts 真的假的</title>
+          </Head>
+          <form onSubmit={this.handleSubmit}>
+            <h2>訊息原文</h2>
+            <textarea name="text" rows="6" />
+            <h2>理由</h2>
+            <textarea name="reason" row="2" />
+            <h2>訊息來源網址</h2>
+            <input type="text" name="references" />
 
-          <hr />
+            <hr />
 
-          <button type="submit" disabled={isSubmitting}>
-            送出新訊息
-          </button>
-        </form>
-        <style jsx>{`
-          .root {
-            padding: 0 40px 40px;
-          }
+            <button type="submit" disabled={isSubmitting}>
+              送出新訊息
+            </button>
+          </form>
+          <style jsx>{`
+            .root {
+              padding: 0 40px 40px;
+            }
 
-          textarea,
-          input {
-            width: 100%;
-          }
-        `}</style>
-      </div>
+            textarea,
+            input {
+              width: 100%;
+            }
+          `}</style>
+        </div>
+      </AppLayout>
     );
   }
 }
 
-export default app()(CreateArticlePage);
+export default CreateArticlePage;
