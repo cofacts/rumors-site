@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import gql from '../util/gql';
-import style from '../components/App/App.css';
+import style from '../components/AppLayout/AppLayout.css';
 import querystring from 'querystring';
 
 const POLLING_INTERVAL = 5000;
