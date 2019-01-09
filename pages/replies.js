@@ -3,7 +3,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import Head from 'next/head';
 import { List } from 'immutable';
 import { RadioGroup, Radio } from 'react-radio-group';
@@ -11,7 +10,7 @@ import { load } from 'ducks/replyList';
 
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 
-import app from 'components/App';
+import AppLayout from 'components/AppLayout';
 import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
 import ReplyItem from 'components/ReplyItem';
@@ -19,6 +18,22 @@ import ReplyItem from 'components/ReplyItem';
 import { mainStyle } from './articles.styles';
 
 class ReplyList extends ListPage {
+  static async getInitialProps({ store, query, isServer }) {
+    // Load on server-side render only when query.mine is not set.
+    // This makes sure that reply list can be crawled by search engines too, and it can load fast
+    if (query.mine && isServer) return;
+    await store.dispatch(load(query));
+    return { query };
+  }
+
+  componentDidMount() {
+    const { query, dispatch } = this.props;
+
+    // Pick up initial data loading when server-side render skips
+    if (!query.mine) return;
+    return dispatch(load(query));
+  }
+
   handleMyReplyOnlyCheck = e => {
     this.goToQuery({
       mine: e.target.checked ? 1 : undefined,
@@ -156,20 +171,22 @@ class ReplyList extends ListPage {
     const { isLoading = false } = this.props;
 
     return (
-      <main>
-        <Head>
-          <title>回應列表</title>
-        </Head>
-        <h2>回應列表</h2>
-        {this.renderSearch()}
-        <br />
-        Order By:
-        {this.renderOrderBy()}
-        {this.renderFilter()}
-        {this.renderMyReplyOnlyCheckbox()}
-        {isLoading ? <p>Loading...</p> : this.renderList()}
-        <style jsx>{mainStyle}</style>
-      </main>
+      <AppLayout>
+        <main>
+          <Head>
+            <title>回應列表</title>
+          </Head>
+          <h2>回應列表</h2>
+          {this.renderSearch()}
+          <br />
+          Order By:
+          {this.renderOrderBy()}
+          {this.renderFilter()}
+          {this.renderMyReplyOnlyCheckbox()}
+          {isLoading ? <p>Loading...</p> : this.renderList()}
+          <style jsx>{mainStyle}</style>
+        </main>
+      </AppLayout>
     );
   }
 }
@@ -187,20 +204,4 @@ function mapStateToProps({ replyList, auth }) {
   };
 }
 
-function initFn(dispatch, { query }) {
-  // Load on server-side render only when query.mine is not set.
-  // This makes sure that reply list can be crawled by search engines too, and it can load fast
-  if (query.mine && typeof window === 'undefined') return;
-  return dispatch(load(query));
-}
-
-function bootstrapFn(dispatch, { query }) {
-  // Pick up initial data loading when server-side render skips
-  if (!query.mine) return;
-  return dispatch(load(query));
-}
-
-export default compose(
-  app(initFn, bootstrapFn),
-  connect(mapStateToProps)
-)(ReplyList);
+export default connect(mapStateToProps)(ReplyList);

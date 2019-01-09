@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import { Link } from '../routes';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import {
   load,
   loadAuth,
@@ -12,7 +11,7 @@ import {
 import Head from 'next/head';
 import { nl2br, linkify } from '../util/text';
 
-import app from 'components/App';
+import AppLayout from 'components/AppLayout';
 import ReplyConnection from 'components/ReplyConnection';
 import EditorName from 'components/EditorName';
 import Hyperlinks from 'components/Hyperlinks';
@@ -52,6 +51,21 @@ function UsedArticleItem({ article, replyConnection }) {
 }
 
 class ReplyPage extends React.Component {
+  static async getInitialProps({ store, query }) {
+    await store.dispatch(load(query.id));
+
+    return { query };
+  }
+
+  componentDidMount() {
+    const {
+      dispatch,
+      query: { id },
+    } = this.props;
+
+    return dispatch(loadAuth(id));
+  }
+
   handleReplyConnectionDelete = () => {
     const {
       dispatch,
@@ -182,41 +196,35 @@ class ReplyPage extends React.Component {
     }
 
     return (
-      <div className="root">
-        <Head>
-          <title>{reply.get('text').slice(0, 15)}⋯⋯ - 回應</title>
-        </Head>
+      <AppLayout>
+        <div className="root">
+          <Head>
+            <title>{reply.get('text').slice(0, 15)}⋯⋯ - 回應</title>
+          </Head>
 
-        <section className="section">
-          <header className="header">
-            <h2>訊息原文</h2>
-            {this.renderArticleLink()}
-          </header>
-          <div className="message">
-            {nl2br(
-              linkify(originalArticle.get('text'), {
-                props: { target: '_blank' },
-              })
-            )}
-            <Hyperlinks hyperlinks={originalArticle.get('hyperlinks')} />
-          </div>
-        </section>
+          <section className="section">
+            <header className="header">
+              <h2>訊息原文</h2>
+              {this.renderArticleLink()}
+            </header>
+            <div className="message">
+              {nl2br(
+                linkify(originalArticle.get('text'), {
+                  props: { target: '_blank' },
+                })
+              )}
+              <Hyperlinks hyperlinks={originalArticle.get('hyperlinks')} />
+            </div>
+          </section>
 
-        {this.renderReply()}
-        {this.renderUsedArticles()}
+          {this.renderReply()}
+          {this.renderUsedArticles()}
 
-        <style jsx>{detailStyle}</style>
-      </div>
+          <style jsx>{detailStyle}</style>
+        </div>
+      </AppLayout>
     );
   }
-}
-
-function initFn(dispatch, { query: { id } }) {
-  return dispatch(load(id));
-}
-
-function bootstrapFn(dispatch, { query: { id } }) {
-  return dispatch(loadAuth(id));
 }
 
 function mapStateToProps({ replyDetail }) {
@@ -232,7 +240,4 @@ function mapStateToProps({ replyDetail }) {
   };
 }
 
-export default compose(
-  app(initFn, bootstrapFn),
-  connect(mapStateToProps)
-)(ReplyPage);
+export default connect(mapStateToProps)(ReplyPage);
