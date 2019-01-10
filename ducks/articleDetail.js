@@ -435,15 +435,7 @@ export default createReducer(
               payload.remove('replyConnections').remove('relatedArticles')
             )
           )
-          .setIn(
-            ['data', 'replyConnections'],
-            payload
-              .get('replyConnections')
-              .sort(
-                (a, b) =>
-                  new Date(b.get('createdAt')) - new Date(a.get('createdAt'))
-              )
-          )
+          .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
           .updateIn(
             ['data', 'relatedArticles'],
             articles =>
