@@ -23,6 +23,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.0",
     "babel-eslint": "^10.0.0",
+    "balloon-css": "^0.5.0",
     "classnames": "^2.2.5",
     "dotenv": "^6.0.0",
     "immutable": "^3.8.2",
