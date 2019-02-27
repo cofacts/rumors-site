@@ -23,6 +23,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.0",
     "babel-eslint": "^10.0.0",
+    "balloon-css": "^0.5.0",
     "classnames": "^2.2.5",
     "dotenv": "^6.0.0",
     "immutable": "^3.8.2",
@@ -41,7 +42,6 @@
     "react-dom": "^16.2.0",
     "react-radio-group": "^3.0.2",
     "react-redux": "^6.0.0",
-    "react-tooltip": "^3.6.1",
     "redux": "^4.0.0",
     "redux-duck": "^1.0.2",
     "redux-thunk": "^2.2.0",
