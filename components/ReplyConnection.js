@@ -88,7 +88,15 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
+        <button key="copy" onClick={() => {}} className="btn-copy">
+          複製到剪貼簿
+        </button>
         <ReplyFeedback replyConnection={replyConnection} onVote={onVote} />
+        <style jsx>{`
+          .btn-copy {
+            margin-left: 10px;
+          }
+        `}</style>
       </footer>
     );
   };
