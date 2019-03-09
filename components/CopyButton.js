@@ -25,7 +25,6 @@ export default class CopyButton extends React.PureComponent {
         key="copy"
         onClick={() => {}}
         className="btn-copy"
-        data-clipboard-target="#testCopyTarget"
       >
         複製到剪貼簿
         <style jsx>{`
