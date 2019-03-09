@@ -10,6 +10,7 @@ import { sectionStyle } from './ReplyConnection.styles';
 import ReplyFeedback from './ReplyFeedback';
 import EditorName from './EditorName';
 import Hyperlinks from './Hyperlinks';
+import CopyButton from './CopyButton';
 
 export default class ReplyConnection extends React.PureComponent {
   static defaultProps = {
@@ -88,15 +89,12 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
-        <button key="copy" onClick={() => {}} className="btn-copy">
-          複製到剪貼簿
-        </button>
+        <CopyButton />
+        <p id="testCopyTarget">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere,
+          laborum.
+        </p>
         <ReplyFeedback replyConnection={replyConnection} onVote={onVote} />
-        <style jsx>{`
-          .btn-copy {
-            margin-left: 10px;
-          }
-        `}</style>
       </footer>
     );
   };
@@ -179,7 +177,9 @@ export default class ReplyConnection extends React.PureComponent {
         </header>
         <section className="section">
           <h3>理由</h3>
-          <ExpandableText>{nl2br(linkify(reply.get('text')))}</ExpandableText>
+          <ExpandableText id="foo">
+            {nl2br(linkify(reply.get('text')))}
+          </ExpandableText>
         </section>
 
         {this.renderReference()}
