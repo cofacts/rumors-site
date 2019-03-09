@@ -177,9 +177,7 @@ export default class ReplyConnection extends React.PureComponent {
         </header>
         <section className="section">
           <h3>理由</h3>
-          <ExpandableText id="foo">
-            {nl2br(linkify(reply.get('text')))}
-          </ExpandableText>
+          <ExpandableText>{nl2br(linkify(reply.get('text')))}</ExpandableText>
         </section>
 
         {this.renderReference()}
