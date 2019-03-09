@@ -65,7 +65,7 @@ function Hyperlink({ hyperlink = Map() }) {
 
         .preview__container {
           display: flex;
-          border-left: 3px solid rgba(0,0,0,0.2);
+          border-left: 3px solid rgba(0, 0, 0, 0.2);
           padding-left: 10px;
           padding-right: 15px;
           min-height: 40px;
