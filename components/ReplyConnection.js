@@ -65,6 +65,13 @@ export default class ReplyConnection extends React.PureComponent {
       <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
     );
 
+    const reply = replyConnection.get('reply');
+    const copyText = `
+      以上圖片含有不實訊息
+      【理由】${nl2br(linkify(reply.get('text')))} 
+      ↓詳細解釋↓
+    `;
+
     return (
       <footer>
         {linkToReply ? (
@@ -89,11 +96,7 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
-        <CopyButton content={`我從外面來`} />
-        <p id="testCopyTarget">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere,
-          laborum.
-        </p>
+        <CopyButton content={copyText} />
         <ReplyFeedback replyConnection={replyConnection} onVote={onVote} />
       </footer>
     );
