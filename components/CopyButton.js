@@ -1,5 +1,7 @@
 import React from 'react';
 import ClipboardJS from 'clipboard';
+import 'balloon-css/balloon.css';
+import levelNames from "../constants/levelNames";
 
 export default class CopyButton extends React.PureComponent {
   constructor(props) {
@@ -13,8 +15,21 @@ export default class CopyButton extends React.PureComponent {
   };
 
   componentDidMount() {
+
     this.clipboardRef.current = new ClipboardJS(this.copyBtnRef.current, {
       text: () => this.props.content,
+    });
+    this.clipboardRef.current.on('success', () => {
+      // this.setState({ isSuccessMsgShow: true });
+      const copyBtnRef = this.copyBtnRef.current;
+      copyBtnRef.setAttribute('data-balloon', '複製成功！');
+      copyBtnRef.setAttribute('data-balloon-visible', '');
+      copyBtnRef.setAttribute('data-balloon-pos', 'up');
+      setTimeout(function() {
+        copyBtnRef.removeAttribute('data-balloon');
+        copyBtnRef.removeAttribute('data-balloon-visible');
+        copyBtnRef.removeAttribute('data-balloon-pos');
+      }, 3000);
     });
   }
 
