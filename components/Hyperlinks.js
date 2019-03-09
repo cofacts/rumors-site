@@ -32,53 +32,63 @@ function Hyperlink({ hyperlink = Map() }) {
 
   return (
     <article className="link">
-      {topImageUrl && (
-        <figure
-          className="preview"
-          style={{ backgroundImage: `url(${topImageUrl})` }}
-        />
-      )}
-      <div className="info">
-        <h1 title={title}>{title}</h1>
-        <a
-          className="url"
-          href={hyperlink.get('url')}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {hyperlink.get('url')}
-        </a>
-        <p className="summary" title={summary}>
+      <h1 title={title}>{title}</h1>
+      <a
+        className="url"
+        href={hyperlink.get('url')}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {hyperlink.get('url')}
+      </a>
+      <div className="preview__container">
+        <p className="preview__summary" title={summary}>
           {summary}
         </p>
+        {topImageUrl && (
+          <figure
+            className="preview__img"
+            style={{ backgroundImage: `url(${topImageUrl})` }}
+          />
+        )}
         {error && <p className="error">{getErrorText(error)}</p>}
       </div>
+
       <style jsx>{`
         .link {
-          display: flex;
           border: 1px solid rgba(0, 0, 0, 0.2);
+          padding: 12px 8px;
           margin: 0 8px 8px 0;
+          width: 100%;
+          overflow: hidden;
         }
 
-        .preview {
+        .preview__container {
+          display: flex;
+          border-left: 3px solid rgba(0, 0, 0, 0.2);
+          padding-left: 10px;
+          padding-right: 15px;
+          min-height: 40px;
+          justify-content: space-between;
+        }
+
+        .preview__img {
           margin: 0;
-          width: 144px;
+          max-height: 60px;
+          min-width: 60px;
           border-right: 1px solid rgba(0, 0, 0, 0.2);
           background: #ccc center center no-repeat;
           background-size: cover;
-        }
-
-        .info {
-          padding: 16px;
-          max-width: 240px;
+          border-radius: 3px;
         }
 
         .link h1 {
           font-size: 14px;
-          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
           margin: 0;
+          max-width: inherit;
         }
 
         .url {
@@ -88,15 +98,17 @@ function Hyperlink({ hyperlink = Map() }) {
           overflow: hidden;
           text-overflow: ellipsis;
           color: #999;
-          margin: 8px 0;
+          margin-bottom: 8px;
         }
 
-        .summary {
+        .preview__summary {
           font-size: 12px;
           color: #333;
           max-height: 40px;
           overflow: hidden;
           margin: 0;
+          display: flex;
+          margin-right: 10px;
         }
 
         .error {
@@ -125,6 +137,7 @@ function Hyperlinks({ hyperlinks = List() }) {
           display: flex;
           flex-flow: row wrap;
           margin: 16px 0 8px;
+          max-width: 100%;
         }
       `}</style>
     </section>
