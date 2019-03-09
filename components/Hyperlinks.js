@@ -51,9 +51,9 @@ function Hyperlink({ hyperlink = Map() }) {
             style={{ backgroundImage: `url(${topImageUrl})` }}
           />
         )}
+        {error && <p className="error">{getErrorText(error)}</p>}
       </div>
 
-      {error && <p className="error">{getErrorText(error)}</p>}
       <style jsx>{`
         .link {
           border: 1px solid rgba(0, 0, 0, 0.2);
