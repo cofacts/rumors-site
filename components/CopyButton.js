@@ -4,7 +4,7 @@ import ClipboardJS from 'clipboard';
 export default class CopyButton extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.btnRef = React.createRef();
+    this.copyBtnRef = React.createRef();
     this.clipboardRef = React.createRef();
   }
 
@@ -13,7 +13,7 @@ export default class CopyButton extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.clipboardRef.current = new ClipboardJS(this.btnRef.current, {
+    this.clipboardRef.current = new ClipboardJS(this.copyBtnRef.current, {
       text: () => this.props.content,
     });
   }
@@ -21,7 +21,7 @@ export default class CopyButton extends React.PureComponent {
   render() {
     return (
       <button
-        ref={this.btnRef}
+        ref={this.copyBtnRef}
         key="copy"
         onClick={() => {}}
         className="btn-copy"
