@@ -66,11 +66,14 @@ export default class ReplyConnection extends React.PureComponent {
     );
 
     const reply = replyConnection.get('reply');
-    const copyText = `
-      以上圖片含有不實訊息
-      【理由】${nl2br(linkify(reply.get('text')))} 
-      ↓詳細解釋↓
-    `;
+    const copyText =
+      typeof window !== 'undefined'
+        ? `${TYPE_NAME[reply.get('type')]}
+        【理由】${reply.get('text')} 
+        ↓詳細解釋↓
+        ${window.location.href}
+      `
+        : '';
 
     return (
       <footer>
