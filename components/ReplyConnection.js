@@ -89,7 +89,7 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
-        <CopyButton />
+        <CopyButton content={`我從外面來`} />
         <p id="testCopyTarget">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere,
           laborum.
