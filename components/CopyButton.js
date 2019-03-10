@@ -1,7 +1,6 @@
 import React from 'react';
 import ClipboardJS from 'clipboard';
 import 'balloon-css/balloon.css';
-import levelNames from "../constants/levelNames";
 
 export default class CopyButton extends React.PureComponent {
   constructor(props) {
@@ -13,23 +12,26 @@ export default class CopyButton extends React.PureComponent {
   static defaultProps = {
     content: '',
   };
+  state = {
+    btnAttributes: {},
+  };
 
   componentDidMount() {
-
     this.clipboardRef.current = new ClipboardJS(this.copyBtnRef.current, {
       text: () => this.props.content,
     });
     this.clipboardRef.current.on('success', () => {
-      // this.setState({ isSuccessMsgShow: true });
-      const copyBtnRef = this.copyBtnRef.current;
-      copyBtnRef.setAttribute('data-balloon', '複製成功！');
-      copyBtnRef.setAttribute('data-balloon-visible', '');
-      copyBtnRef.setAttribute('data-balloon-pos', 'up');
+      const self = this;
+      this.setState({
+        btnAttributes: {
+          'data-balloon': '複製成功！',
+          'data-balloon-visible': '',
+          'data-balloon-pos': 'up',
+        }});
+
       setTimeout(function() {
-        copyBtnRef.removeAttribute('data-balloon');
-        copyBtnRef.removeAttribute('data-balloon-visible');
-        copyBtnRef.removeAttribute('data-balloon-pos');
-      }, 3000);
+        self.setState({ btnAttributes: {} });
+      }, 1000);
     });
   }
 
@@ -40,6 +42,7 @@ export default class CopyButton extends React.PureComponent {
         key="copy"
         onClick={() => {}}
         className="btn-copy"
+        { ...this.state.btnAttributes }
       >
         複製到剪貼簿
         <style jsx>{`
