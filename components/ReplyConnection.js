@@ -68,11 +68,9 @@ export default class ReplyConnection extends React.PureComponent {
     const reply = replyConnection.get('reply');
     const copyText =
       typeof window !== 'undefined'
-        ? `${TYPE_NAME[reply.get('type')]}
-        【理由】${reply.get('text')} 
-        ↓詳細解釋↓
-        ${window.location.href}
-      `
+        ? `${TYPE_NAME[reply.get('type')]} \n【理由】${reply
+            .get('text')
+            .trim()}\n↓詳細解釋↓\n${window.location.href}`
         : '';
 
     return (
