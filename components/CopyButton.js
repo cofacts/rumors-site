@@ -13,7 +13,7 @@ export default class CopyButton extends React.PureComponent {
     content: '',
   };
   state = {
-    btnAttributes: {},
+    tooltipAttrs: {},
   };
 
   componentDidMount() {
@@ -23,14 +23,14 @@ export default class CopyButton extends React.PureComponent {
     this.clipboardRef.current.on('success', () => {
       const self = this;
       this.setState({
-        btnAttributes: {
+        tooltipAttrs: {
           'data-balloon': '複製成功！',
           'data-balloon-visible': '',
           'data-balloon-pos': 'up',
         }});
 
       setTimeout(function() {
-        self.setState({ btnAttributes: {} });
+        self.setState({ tooltipAttrs: {} });
       }, 1000);
     });
   }
@@ -42,7 +42,7 @@ export default class CopyButton extends React.PureComponent {
         key="copy"
         onClick={() => {}}
         className="btn-copy"
-        { ...this.state.btnAttributes }
+        { ...this.state.tooltipAttrs }
       >
         複製到剪貼簿
         <style jsx>{`
