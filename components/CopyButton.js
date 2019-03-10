@@ -27,7 +27,8 @@ export default class CopyButton extends React.PureComponent {
           'data-balloon': '複製成功！',
           'data-balloon-visible': '',
           'data-balloon-pos': 'up',
-        }});
+        },
+      });
 
       setTimeout(function() {
         self.setState({ tooltipAttrs: {} });
@@ -36,13 +37,12 @@ export default class CopyButton extends React.PureComponent {
   }
 
   render() {
+    const { tooltipAttrs } = this.state;
     return (
       <button
         ref={this.copyBtnRef}
-        key="copy"
-        onClick={() => {}}
         className="btn-copy"
-        { ...this.state.tooltipAttrs }
+        {...tooltipAttrs}
       >
         複製到剪貼簿
         <style jsx>{`
