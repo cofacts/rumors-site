@@ -60,6 +60,7 @@ function Hyperlink({ hyperlink = Map() }) {
           padding: 12px 8px;
           margin: 0 8px 8px 0;
           width: 100%;
+          max-width: 450px;
           overflow: hidden;
         }
 
