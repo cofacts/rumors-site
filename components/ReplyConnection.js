@@ -67,18 +67,24 @@ export default class ReplyConnection extends React.PureComponent {
 
     const reply = replyConnection.get('reply');
 
-    const hyperlinks = replyConnection.getIn(['reply', 'hyperlinks']) || List();
-    const linksForPrint = hyperlinks
-      .map(item => item.get('url'))
-      .toJS()
-      .join('\n');
-    const reference = !hyperlinks.isEmpty() ? `\n↓出處↓\n${linksForPrint}` : '';
+    const getReferenceText = () => {
+      const hyperlinks =
+        replyConnection.getIn(['reply', 'hyperlinks']) || List();
+      if (hyperlinks.isEmpty()) {
+        return '';
+      }
+      const linksStr = hyperlinks
+        .map(item => item.get('url'))
+        .toJS()
+        .join('\n');
+      return `\n↓出處↓\n${linksStr}`;
+    };
 
     const copyText =
       typeof window !== 'undefined'
         ? `${TYPE_NAME[reply.get('type')]} \n【理由】${reply
             .get('text')
-            .trim()}\n↓詳細解釋↓\n${window.location.href}${reference}`
+            .trim()}\n↓詳細解釋↓\n${window.location.href}${getReferenceText()}`
         : '';
 
     return (
