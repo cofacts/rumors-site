@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '../routes';
-import { Map } from 'immutable';
+import { List, Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import { USER_REFERENCE } from '../constants/urls';
 import moment from 'moment';
@@ -66,11 +66,19 @@ export default class ReplyConnection extends React.PureComponent {
     );
 
     const reply = replyConnection.get('reply');
+
+    const hyperlinks = replyConnection.getIn(['reply', 'hyperlinks']) || List();
+    const linksForPrint = hyperlinks
+      .map(item => item.get('url'))
+      .toJS()
+      .join('\n');
+    const reference = !hyperlinks.isEmpty() ? `\n↓出處↓\n${linksForPrint}` : '';
+
     const copyText =
       typeof window !== 'undefined'
         ? `${TYPE_NAME[reply.get('type')]} \n【理由】${reply
             .get('text')
-            .trim()}\n↓詳細解釋↓\n${window.location.href}`
+            .trim()}\n↓詳細解釋↓\n${window.location.href}${reference}`
         : '';
 
     return (
