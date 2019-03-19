@@ -68,16 +68,8 @@ export default class ReplyConnection extends React.PureComponent {
     const reply = replyConnection.get('reply');
 
     const getReferenceText = () => {
-      const hyperlinks =
-        replyConnection.getIn(['reply', 'hyperlinks']) || List();
-      if (hyperlinks.isEmpty()) {
-        return '';
-      }
-      const linksStr = hyperlinks
-        .map(item => item.get('url'))
-        .toJS()
-        .join('\n');
-      return `\n↓出處↓\n${linksStr}`;
+      const hyperlinks = reply.get('reference');
+      return `\n↓出處↓\n${hyperlinks}`;
     };
 
     const copyText =
