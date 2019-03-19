@@ -6,7 +6,6 @@ export default class CopyButton extends React.PureComponent {
   constructor(props) {
     super(props);
     this.copyBtnRef = React.createRef();
-    this.clipboardRef = React.createRef();
   }
 
   static defaultProps = {
@@ -17,10 +16,10 @@ export default class CopyButton extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.clipboardRef.current = new ClipboardJS(this.copyBtnRef.current, {
+    const clipboard = new ClipboardJS(this.copyBtnRef.current, {
       text: () => this.props.content,
     });
-    this.clipboardRef.current.on('success', () => {
+    clipboard.on('success', () => {
       const self = this;
       this.setState({
         tooltipAttrs: {
