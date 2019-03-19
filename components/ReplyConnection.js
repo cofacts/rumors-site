@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '../routes';
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 import { USER_REFERENCE } from '../constants/urls';
 import moment from 'moment';
