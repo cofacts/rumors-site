@@ -10,6 +10,7 @@ import { sectionStyle } from './ReplyConnection.styles';
 import ReplyFeedback from './ReplyFeedback';
 import EditorName from './EditorName';
 import Hyperlinks from './Hyperlinks';
+import CopyButton from './CopyButton';
 
 export default class ReplyConnection extends React.PureComponent {
   static defaultProps = {
@@ -64,6 +65,20 @@ export default class ReplyConnection extends React.PureComponent {
       <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>
     );
 
+    const reply = replyConnection.get('reply');
+
+    const getReferenceText = () => {
+      const hyperlinks = reply.get('reference');
+      return `\n↓出處↓\n${hyperlinks}`;
+    };
+
+    const copyText =
+      typeof window !== 'undefined'
+        ? `${TYPE_NAME[reply.get('type')]} \n【理由】${reply
+            .get('text')
+            .trim()}\n↓詳細解釋↓\n${window.location.href}${getReferenceText()}`
+        : '';
+
     return (
       <footer>
         {linkToReply ? (
@@ -88,6 +103,7 @@ export default class ReplyConnection extends React.PureComponent {
               </button>,
             ]
           : ''}
+        <CopyButton content={copyText} />
         <ReplyFeedback replyConnection={replyConnection} onVote={onVote} />
       </footer>
     );
