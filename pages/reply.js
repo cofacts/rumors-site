@@ -162,7 +162,11 @@ class ReplyPage extends React.Component {
     const { reply, originalReplyConnection } = this.props;
     const otherReplyConnections = reply
       .get('replyConnections')
-      .filter(conn => conn.get('id') !== originalReplyConnection.get('id'));
+      .filter(
+        conn =>
+          conn.getIn(['article', 'id']) !==
+          originalReplyConnection.getIn(['article', 'id'])
+      );
 
     if (!otherReplyConnections.size) return null;
 
