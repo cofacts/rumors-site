@@ -142,7 +142,8 @@ export default class ReplyForm extends React.PureComponent {
           查證範圍請參考{' '}
           <a href={EDITOR_REFERENCE} target="_blank" rel="noopener noreferrer">
             《Cofacts 編輯規則》
-          </a>。
+          </a>
+          。
         </p>
       );
     }
@@ -178,13 +179,11 @@ export default class ReplyForm extends React.PureComponent {
   renderHelp() {
     return (
       <span className="help">
-        不知道從何下手嗎？<a
-          href={EDITOR_REFERENCE}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        不知道從何下手嗎？
+        <a href={EDITOR_REFERENCE} target="_blank" rel="noopener noreferrer">
           Cofacts 編輯規則
-        </a>、
+        </a>
+        、
         <a
           href={EDITOR_FACEBOOK_GROUP}
           target="_blank"

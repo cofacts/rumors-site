@@ -107,7 +107,8 @@ class ReplyList extends ListPage {
       >
         <li>
           <label>
-            <Radio value="all" />All
+            <Radio value="all" />
+            All
           </label>
         </li>
         {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (

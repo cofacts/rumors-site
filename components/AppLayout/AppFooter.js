@@ -19,8 +19,7 @@ export default function AppFooter() {
         <a href={PROJECT_HACKFOLDR} target="_blank" rel="noopener noreferrer">
           專案介紹
         </a>
-        ・
-        <a href={`mailto:${CONTACT_EMAIL}`}>連絡信箱</a>
+        ・<a href={`mailto:${CONTACT_EMAIL}`}>連絡信箱</a>
       </p>
       <GoogleWebsiteTranslator />
       <style jsx>{`

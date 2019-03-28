@@ -194,17 +194,20 @@ class Articles extends ListPage {
         >
           <li>
             <label>
-              <Radio value="unsolved" />Not replied yet
+              <Radio value="unsolved" />
+              Not replied yet
             </label>
           </li>
           <li>
             <label>
-              <Radio value="solved" />Replied
+              <Radio value="solved" />
+              Replied
             </label>
           </li>
           <li>
             <label>
-              <Radio value="all" />All
+              <Radio value="all" />
+              All
             </label>
           </li>
         </RadioGroup>

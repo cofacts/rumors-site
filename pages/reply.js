@@ -30,10 +30,8 @@ function UsedArticleItem({ article, replyConnection }) {
       <a classLevel="item">
         <div className="item-text">{article.get('text')}</div>
         <div className="info">
-          <EditorName editorName={userName} editorLevel={userLevel} />
-          在 <span title={createdAt.format('lll')}>
-            {createdAt.fromNow()}
-          </span>{' '}
+          <EditorName editorName={userName} editorLevel={userLevel} />在{' '}
+          <span title={createdAt.format('lll')}>{createdAt.fromNow()}</span>{' '}
           加的
           {otherReplyCount ? ` · 另有 ${otherReplyCount} 篇回應` : ''}
         </div>
