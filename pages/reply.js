@@ -112,12 +112,12 @@ class ReplyPage extends React.Component {
     );
   };
 
-  handleReplyConnectionVote = (conn, vote) => {
+  handleReplyConnectionVote = (conn, vote, comment) => {
     const {
       dispatch,
       query: { id },
     } = this.props;
-    return dispatch(voteReply(conn.get('articleId'), id, vote));
+    return dispatch(voteReply(conn.get('articleId'), id, vote, comment));
   };
 
   renderReply = () => {

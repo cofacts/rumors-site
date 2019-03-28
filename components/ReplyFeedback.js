@@ -16,7 +16,8 @@ class ReplyFeedback extends Component {
 
   handleDownVote = () => {
     const { replyConnection, onVote } = this.props;
-    return onVote(replyConnection, 'DOWNVOTE');
+    const comment = window.prompt('請問您為什麼覺得好心人的回應沒有幫助？');
+    return onVote(replyConnection, 'DOWNVOTE', comment);
   };
 
   getFeedbackScore = () => {
