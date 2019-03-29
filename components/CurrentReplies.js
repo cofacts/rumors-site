@@ -75,8 +75,7 @@ class DeletedItems extends React.Component {
           有{' '}
           <a href="javascript:;" onClick={this.handleOpen}>
             {items.length} 則回應
-          </a>
-          被作者自行刪除。
+          </a>被作者自行刪除。
         </span>
         {this.renderModal()}
 

@@ -436,12 +436,14 @@ export default createReducer(
             )
           )
           .setIn(['data', 'replyConnections'], payload.get('replyConnections'))
-          .updateIn(['data', 'relatedArticles'], articles =>
-            !relatedArticleEdges.size
-              ? articles
-              : relatedArticleEdges.map(edge =>
-                  edge.get('node').remove('replyConnections')
-                )
+          .updateIn(
+            ['data', 'relatedArticles'],
+            articles =>
+              !relatedArticleEdges.size
+                ? articles
+                : relatedArticleEdges.map(edge =>
+                    edge.get('node').remove('replyConnections')
+                  )
           )
           .updateIn(
             ['data', 'relatedReplies'], // articleAndReply structure

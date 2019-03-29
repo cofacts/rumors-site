@@ -20,16 +20,13 @@ function RelatedReplyItem({ article, reply, similarity, onConnect }) {
       <header className="section">
         <Link route="article" params={{ id: articleId }}>
           <a>相關訊息</a>
-        </Link>
-        被標示為：
-        <strong title={TYPE_DESC[reply.get('type')]}>
+        </Link>被標示為：<strong title={TYPE_DESC[reply.get('type')]}>
           {TYPE_NAME[reply.get('type')]}
         </strong>
       </header>
       <section className="section">
         <h3>
-          相關訊息原文
-          <span className="similarity">
+          相關訊息原文<span className="similarity">
             （關聯度 ：<strong>{similarityPercentage} %</strong>）
           </span>
         </h3>
@@ -51,8 +48,7 @@ function RelatedReplyItem({ article, reply, similarity, onConnect }) {
         <Link route="reply" params={{ id: reply.get('id') }}>
           <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
         </Link>
-        ・
-        <button type="button" value={reply.get('id')} onClick={onConnect}>
+        ・<button type="button" value={reply.get('id')} onClick={onConnect}>
           將這份回應加進此文章的回應
         </button>
       </footer>

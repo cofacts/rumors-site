@@ -135,12 +135,7 @@ export const voteReply = (articleId, replyId, vote, comment) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation(
-      $articleId: String!
-      $replyId: String!
-      $vote: FeedbackVote!
-      $comment: String
-    ) {
+    mutation($articleId: String!, $replyId: String!, $vote: FeedbackVote!, $comment: String) {
       CreateOrUpdateArticleReplyFeedback(
         articleId: $articleId
         replyId: $replyId

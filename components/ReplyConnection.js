@@ -38,8 +38,7 @@ export default class ReplyConnection extends React.PureComponent {
         ／ 查證範圍請參考
         <a href={USER_REFERENCE} target="_blank" rel="noopener noreferrer">
           《使用者指南》
-        </a>
-        。
+        </a>。
         <style jsx>{`
           .not-in-range-info {
             display: inline-block; /* line-break as a whole in small screen */
@@ -143,8 +142,7 @@ export default class ReplyConnection extends React.PureComponent {
               />{' '}
               的回應
             </a>
-          </Link>
-          來
+          </Link>來
         </span>
       );
     }
@@ -182,8 +180,9 @@ export default class ReplyConnection extends React.PureComponent {
       <li className="root">
         <header className="section">
           {this.renderAuthor()}
-          標記此篇為：
-          <strong title={TYPE_DESC[replyType]}>{TYPE_NAME[replyType]}</strong>
+          標記此篇為：<strong title={TYPE_DESC[replyType]}>
+            {TYPE_NAME[replyType]}
+          </strong>
           {this.renderHint()}
         </header>
         <section className="section">

@@ -83,14 +83,15 @@ export function linkify(elem, { maxLength = 80, props = {} } = {}) {
   return traverseForStrings(elem, str => {
     if (!str) return str;
 
-    const tokenized = str.split(urlRegExp).map((s, i) =>
-      s.match(urlRegExp) ? (
-        <a key={`link${i}`} href={s} {...props}>
-          {shortenUrl(s, maxLength)}
-        </a>
-      ) : (
-        s
-      )
+    const tokenized = str.split(urlRegExp).map(
+      (s, i) =>
+        s.match(urlRegExp) ? (
+          <a key={`link${i}`} href={s} {...props}>
+            {shortenUrl(s, maxLength)}
+          </a>
+        ) : (
+          s
+        )
     );
 
     return flatternPureStrings(tokenized);
@@ -115,8 +116,9 @@ export function nl2br(elem) {
     const tokenized = str
       .split(newLineRegExp)
       .filter(token => token !== '') // Filter out empty strings
-      .map((line, idx) =>
-        line.match(newLineRegExp) ? <br key={`br${idx}`} /> : line
+      .map(
+        (line, idx) =>
+          line.match(newLineRegExp) ? <br key={`br${idx}`} /> : line
       );
 
     // If the tokenized contains only string, join into one single string.

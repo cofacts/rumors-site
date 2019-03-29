@@ -18,8 +18,7 @@ export default function RepliesModal({ replies, onConnect, onModalClose }) {
           return (
             <li key={replyId} className="root">
               <header className="section">
-                被標示為：
-                <strong title={TYPE_DESC[replyType]}>
+                被標示為：<strong title={TYPE_DESC[replyType]}>
                   {TYPE_NAME[replyType]}
                 </strong>
               </header>
@@ -32,8 +31,7 @@ export default function RepliesModal({ replies, onConnect, onModalClose }) {
                 <Link route="reply" params={{ id: replyId }}>
                   <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
                 </Link>
-                ・
-                <button type="button" value={replyId} onClick={onConnect}>
+                ・<button type="button" value={replyId} onClick={onConnect}>
                   將這份回應加進此文章的回應
                 </button>
               </footer>

@@ -21,12 +21,10 @@ function LoginModal({ isDialogShown, onModalClose }) {
         <h1>Login / Signup</h1>
         <a href={`${PUBLIC_API_URL}/login/facebook?redirect=${redirectUrl}`}>
           Facebook
-        </a>
-        ・
+        </a>・
         <a href={`${PUBLIC_API_URL}/login/twitter?redirect=${redirectUrl}`}>
           Twitter
-        </a>
-        ・
+        </a>・
         <a href={`${PUBLIC_API_URL}/login/github?redirect=${redirectUrl}`}>
           Github
         </a>
