@@ -94,9 +94,9 @@ class ArticlePage extends React.Component {
     );
   };
 
-  handleReplyConnectionVote = (conn, vote) => {
+  handleReplyConnectionVote = (conn, vote, comment) => {
     const { dispatch, id } = this.props;
-    return dispatch(voteReply(id, conn.get('replyId'), vote));
+    return dispatch(voteReply(id, conn.get('replyId'), vote, comment));
   };
 
   handleTabChange = tab => () => {

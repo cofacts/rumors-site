@@ -243,20 +243,26 @@ export const submitReply = params => dispatch => {
   });
 };
 
-export const voteReply = (articleId, replyId, vote) => dispatch => {
+export const voteReply = (articleId, replyId, vote, comment) => dispatch => {
   dispatch(setState({ key: 'isReplyLoading', value: true }));
   NProgress.start();
   return gql`
-    mutation($articleId: String!, $replyId: String!, $vote: FeedbackVote!) {
+    mutation(
+      $articleId: String!
+      $replyId: String!
+      $vote: FeedbackVote!
+      $comment: String
+    ) {
       CreateOrUpdateArticleReplyFeedback(
         articleId: $articleId
         replyId: $replyId
         vote: $vote
+        comment: $comment
       ) {
         feedbackCount
       }
     }
-  `({ articleId, replyId, vote }).then(() => {
+  `({ articleId, replyId, vote, comment }).then(() => {
     dispatch(reloadReply(articleId));
     NProgress.done();
   });
