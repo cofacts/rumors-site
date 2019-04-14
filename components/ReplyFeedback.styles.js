@@ -14,6 +14,12 @@ export const feedbackStyle = css`
     margin-left: 0.5em;
   }
 
+  .down-vote-switch {
+    color: rgb(0, 0, 238);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
   .down-vote-modal {
     padding: 0 40px 30px;
     min-width: 300px;
