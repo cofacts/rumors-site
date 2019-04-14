@@ -14,6 +14,21 @@ export const feedbackStyle = css`
     margin-left: 0.5em;
   }
 
+  .down-vote-modal {
+    padding: 0 40px 30px;
+    min-width: 300px;
+    max-width: 400px;
+    color: #000000;
+  }
+
+  .down-vote-title {
+    margin-top: 22px;
+  }
+
+  .down-vote-reasons {
+    list-style-type: disc;
+  }
+
   .btn-vote {
     font-size: 1rem;
     line-height: 100%;

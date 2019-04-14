@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { feedbackStyle } from './ReplyFeedback.styles';
+import Modal from './Modal';
 
 class ReplyFeedback extends Component {
   static propTypes = {
     replyConnection: PropTypes.object.isRequired,
     onVote: PropTypes.func.isRequired,
   };
-
   handleUpVote = () => {
     const { replyConnection, onVote } = this.props;
     return onVote(replyConnection, 'UPVOTE');
@@ -88,6 +88,15 @@ class ReplyFeedback extends Component {
         <span>
           (<a href="#">Why?</a>)
         </span>
+        <Modal>
+          <div className="down-vote-modal">
+            <h3 className="down-vote-title">使用者覺得沒有幫助的原因</h3>
+            <ul className="down-vote-reasons">
+              <li>userName: comment 1</li>
+              <li>userName2: comment 2</li>
+            </ul>
+          </div>
+        </Modal>
         <style jsx>{feedbackStyle}</style>
       </div>
     );
