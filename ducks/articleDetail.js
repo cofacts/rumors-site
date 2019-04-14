@@ -72,6 +72,7 @@ const fragments = {
           id
         }
         score
+        comment
       }
       user { ...userFields }
       createdAt
