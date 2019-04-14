@@ -58,14 +58,25 @@ class ReplyFeedback extends Component {
     );
   };
 
+  renderDownVoteReasons = () => {
+    const { replyConnection } = this.props;
+    const reasons = replyConnection
+      .get('feedbacks')
+      .filter(feedback => !!feedback.get('comment'))
+      .map((feedback, index) => (
+        <li key={index}>
+          {feedback.getIn(['user', 'name']) || '其他使用者'}：{feedback.get(
+            'comment'
+          )}
+        </li>
+      ));
+    return reasons;
+  };
+
   render() {
     const { downVoteModalOpen } = this.state;
     const { currentUserId, replyConnection } = this.props;
     const { positiveCount, negativeCount, ownVote } = this.getFeedbackScore();
-
-    const result = replyConnection.get('feedbacks').map((feedback) => {
-        console.log(feedback.get('comment'))
-      });
 
     const isOwnArticleReply =
       currentUserId === replyConnection.getIn(['user', 'id']);
@@ -111,8 +122,7 @@ class ReplyFeedback extends Component {
             <div className="down-vote-modal">
               <h3 className="down-vote-title">使用者覺得沒有幫助的原因</h3>
               <ul className="down-vote-reasons">
-                <li>userName： comment 1</li>
-                <li>userName2： comment 2</li>
+                {this.renderDownVoteReasons()}
               </ul>
             </div>
           </Modal>
