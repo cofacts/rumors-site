@@ -58,17 +58,15 @@ class ReplyFeedback extends Component {
     );
   };
 
-  getIsShowReasonSwitch = () => {
-    const { replyConnection } = this.props;
-    const isAnyDownVote = replyConnection
-      .get('feedbacks')
-      .some(feedback => !!feedback.get('comment'));
-    return { isAnyDownVote };
-  };
+  render() {
+    const { downVoteModalOpen } = this.state;
+    const { currentUserId, replyConnection } = this.props;
+    const { positiveCount, negativeCount, ownVote } = this.getFeedbackScore();
 
-  renderDownVoteReasons = () => {
-    const { replyConnection } = this.props;
-    const reasons = replyConnection
+    const isOwnArticleReply =
+      currentUserId === replyConnection.getIn(['user', 'id']);
+
+    const downVoteReasons = replyConnection
       .get('feedbacks')
       .filter(feedback => !!feedback.get('comment'))
       .map((feedback, index) => (
@@ -78,17 +76,6 @@ class ReplyFeedback extends Component {
           )}
         </li>
       ));
-    return reasons;
-  };
-
-  render() {
-    const { downVoteModalOpen } = this.state;
-    const { currentUserId, replyConnection } = this.props;
-    const { positiveCount, negativeCount, ownVote } = this.getFeedbackScore();
-    const { isAnyDownVote } = this.getIsShowReasonSwitch();
-
-    const isOwnArticleReply =
-      currentUserId === replyConnection.getIn(['user', 'id']);
 
     return (
       <div className="reply-feedback">
@@ -121,7 +108,7 @@ class ReplyFeedback extends Component {
             <path d="M231.6 256l130.1-130.1c4.7-4.7 4.7-12.3 0-17l-22.6-22.6c-4.7-4.7-12.3-4.7-17 0L192 216.4 61.9 86.3c-4.7-4.7-12.3-4.7-17 0l-22.6 22.6c-4.7 4.7-4.7 12.3 0 17L152.4 256 22.3 386.1c-4.7 4.7-4.7 12.3 0 17l22.6 22.6c4.7 4.7 12.3 4.7 17 0L192 295.6l130.1 130.1c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17L231.6 256z" />
           </svg>
         </button>
-        {isAnyDownVote && (
+        {downVoteReasons.size > 0 && (
           <span>
             (<span className="down-vote-switch" onClick={this.handleModalOpen}>
               Why?
@@ -132,9 +119,7 @@ class ReplyFeedback extends Component {
           <Modal onClose={this.handleModalClose}>
             <div className="down-vote-modal">
               <h3 className="down-vote-title">使用者覺得沒有幫助的原因</h3>
-              <ul className="down-vote-reasons">
-                {this.renderDownVoteReasons()}
-              </ul>
+              <ul className="down-vote-reasons">{downVoteReasons}</ul>
             </div>
           </Modal>
         )}
