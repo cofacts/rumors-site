@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { feedbackStyle } from './ReplyFeedback.styles';
+import Modal from './Modal';
 
 class ReplyFeedback extends Component {
   static propTypes = {
     replyConnection: PropTypes.object.isRequired,
     onVote: PropTypes.func.isRequired,
   };
-
+  state = {
+    downVoteModalOpen: false,
+  };
   handleUpVote = () => {
     const { replyConnection, onVote } = this.props;
     return onVote(replyConnection, 'UPVOTE');
@@ -18,6 +21,18 @@ class ReplyFeedback extends Component {
     const { replyConnection, onVote } = this.props;
     const comment = window.prompt('請問您為什麼覺得好心人的回應沒有幫助？');
     return onVote(replyConnection, 'DOWNVOTE', comment);
+  };
+
+  handleModalOpen = () => {
+    this.setState({
+      downVoteModalOpen: true,
+    });
+  };
+
+  handleModalClose = () => {
+    this.setState({
+      downVoteModalOpen: false,
+    });
   };
 
   getFeedbackScore = () => {
@@ -44,11 +59,23 @@ class ReplyFeedback extends Component {
   };
 
   render() {
+    const { downVoteModalOpen } = this.state;
     const { currentUserId, replyConnection } = this.props;
     const { positiveCount, negativeCount, ownVote } = this.getFeedbackScore();
 
     const isOwnArticleReply =
       currentUserId === replyConnection.getIn(['user', 'id']);
+
+    const downVoteReasons = replyConnection
+      .get('feedbacks')
+      .filter(feedback => !!feedback.get('comment'))
+      .map((feedback, index) => (
+        <li key={index}>
+          {feedback.getIn(['user', 'name']) || '其他使用者'}：{feedback.get(
+            'comment'
+          )}
+        </li>
+      ));
 
     return (
       <div className="reply-feedback">
@@ -81,6 +108,21 @@ class ReplyFeedback extends Component {
             <path d="M231.6 256l130.1-130.1c4.7-4.7 4.7-12.3 0-17l-22.6-22.6c-4.7-4.7-12.3-4.7-17 0L192 216.4 61.9 86.3c-4.7-4.7-12.3-4.7-17 0l-22.6 22.6c-4.7 4.7-4.7 12.3 0 17L152.4 256 22.3 386.1c-4.7 4.7-4.7 12.3 0 17l22.6 22.6c4.7 4.7 12.3 4.7 17 0L192 295.6l130.1 130.1c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17L231.6 256z" />
           </svg>
         </button>
+        {downVoteReasons.size > 0 && (
+          <span>
+            (<span className="down-vote-switch" onClick={this.handleModalOpen}>
+              Why?
+            </span>)
+          </span>
+        )}
+        {downVoteModalOpen && (
+          <Modal onClose={this.handleModalClose}>
+            <div className="down-vote-modal">
+              <h3 className="down-vote-title">使用者覺得沒有幫助的原因</h3>
+              <ul className="down-vote-reasons">{downVoteReasons}</ul>
+            </div>
+          </Modal>
+        )}
         <style jsx>{feedbackStyle}</style>
       </div>
     );
