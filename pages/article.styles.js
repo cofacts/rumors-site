@@ -15,7 +15,10 @@ export const detailStyle = css`
   .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    flex-flow: row wrap;
+  }
+  .header > :global(iframe) {
+    margin: 0 16px 0 auto;
   }
   .message {
     border: 1px solid #ccc;

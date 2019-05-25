@@ -13,6 +13,7 @@ import ReplySearch from 'components/ReplySearch/ReplySearch.js';
 import ReplyForm from 'components/ReplyForm';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import Hyperlinks from 'components/Hyperlinks';
+import Trendline from 'components/Trendline';
 import {
   load,
   loadAuth,
@@ -225,6 +226,7 @@ class ArticlePage extends React.Component {
           <section className="section">
             <header className="header">
               <h2>訊息原文</h2>
+              <Trendline id={article.get('id')} />
               <ArticleInfo article={article} />
             </header>
             <article className="message">
