@@ -17,7 +17,7 @@ export const detailStyle = css`
     align-items: center;
     flex-flow: row wrap;
   }
-  .header > :global(iframe) {
+  .header > .trendline {
     margin: 0 16px 0 auto;
   }
   .message {

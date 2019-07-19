@@ -226,7 +226,9 @@ class ArticlePage extends React.Component {
           <section className="section">
             <header className="header">
               <h2>訊息原文</h2>
-              <Trendline id={article.get('id')} />
+              <div className="trendline">
+                <Trendline id={article.get('id')} />
+              </div>
               <ArticleInfo article={article} />
             </header>
             <article className="message">
