@@ -1,0 +1,20 @@
+{
+  "name": "rumors-site",
+  "version": "0.0.1",
+  "description": "Rumors list / creation UI, with server-side rendering",
+  "main": "index.js",
+  "author": "MrOrz",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "docker build -t mrorz/rumors-site:latest .",
+    "build:staging": "docker build -t mrorz/rumors-site:staging .",
+    "build:next": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.0.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

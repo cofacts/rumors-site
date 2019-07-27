@@ -1,0 +1,15 @@
+*
+!constants/*
+!components/*
+!pages/*
+!ducks/*
+!util/*
+!static/*
+!.babelrc.js
+!config.js
+!package.json
+!package-lock.json
+!server.js
+!postcss.config.js
+!next.config.js
+!routes.js
