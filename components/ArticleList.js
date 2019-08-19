@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
 const LIST_ARTICLE_QUERY = gql`
   {
@@ -20,14 +20,13 @@ const LIST_ARTICLE_QUERY = gql`
 `
 
 function ArticleList() {
-  return <Query query={LIST_ARTICLE_QUERY}>{({loading, data}) => (
-    loading ? (
-      <p>Loading</p>
-    ):(
-      <pre>{JSON.stringify(data)}</pre>
-    )
+  const {loading, data} = useQuery(LIST_ARTICLE_QUERY);
 
-  )}</Query>
+  return loading ? (
+    <p>Loading</p>
+  ):(
+    <pre>{JSON.stringify(data, null, '  ')}</pre>
+  )
 }
 
 export default ArticleList;
