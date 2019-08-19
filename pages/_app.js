@@ -1,16 +1,30 @@
 import App, { Container } from 'next/app'
 import React from 'react'
 import { ApolloProvider } from '@apollo/react-hooks'
+import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import withApolloClient from '../lib/withApolloClient'
+import theme from '../lib/theme';
 
 class MyApp extends App {
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
+
   render () {
     const { Component, pageProps, apolloClient } = this.props
     return (
       <Container>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ApolloProvider client={apolloClient}>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </ThemeProvider>
       </Container>
     )
   }
