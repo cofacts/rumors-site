@@ -1,4 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
+import Link from 'next/link'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ArticleList from "../components/ArticleList";
@@ -10,15 +11,15 @@ function Home() {
         <Typography variant="h6" color="inherit">
           Cofacts
         </Typography>
+
       </Toolbar>
     </AppBar>
-
-    <ArticleList />
-    <style jsx>{`
-      div {
-        color: red;
-      }
-    `}</style>
+    INDEX!
+    <p>
+      <Link href="/articles">
+        <a>List page</a>
+      </Link>
+    </p>
   </div>;
 }
 
