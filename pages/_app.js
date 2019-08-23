@@ -1,9 +1,7 @@
 import App, { Container } from 'next/app'
 import React from 'react'
-import { ApolloProvider } from '@apollo/react-hooks'
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import withApolloClient from '../lib/withApolloClient'
 import theme from '../lib/theme';
 
 class MyApp extends App {
@@ -21,13 +19,11 @@ class MyApp extends App {
       <Container>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <ApolloProvider client={apolloClient}>
-            <Component {...pageProps} />
-          </ApolloProvider>
+          <Component {...pageProps} />
         </ThemeProvider>
       </Container>
     )
   }
 }
 
-export default withApolloClient(MyApp)
+export default MyApp;
