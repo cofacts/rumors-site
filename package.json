@@ -10,7 +10,8 @@
     "build": "docker build -t mrorz/rumors-site:latest .",
     "build:staging": "docker build -t mrorz/rumors-site:staging .",
     "build:next": "next build",
-    "start": "next start"
+    "start": "next start",
+    "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
@@ -23,9 +24,14 @@
     "graphql": "^14.4.2",
     "immer": "^3.2.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.0.2",
-    "next-apollo": "file:../next-apollo/next-apollo-3.0.3.tgz",
+    "next": "^9.0.4",
+    "next-apollo": "^3.1.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "ttag": "^1.7.17"
+  },
+  "devDependencies": {
+    "babel-plugin-ttag": "^1.7.23",
+    "ttag-cli": "^1.7.22"
   }
 }
