@@ -5,7 +5,7 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import theme from '../lib/theme';
 
 const { publicRuntimeConfig } = getConfig();
-const LANG = (publicRuntimeConfig.PUBLIC_LOCALE || 'en').replace('_', '-')
+const LANG = (publicRuntimeConfig.PUBLIC_LOCALE || 'en').replace('_', '-');
 
 class MyDocument extends Document {
   render() {

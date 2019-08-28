@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
@@ -284,37 +284,43 @@ const GET_ARTICLE_COUNT = gql`
       totalCount
     }
   }
-`
+`;
 
 function InstantPage() {
   const [startFrom, setStartFrom] = useState(null);
-  const [loadArticleCount, { loading, data }] =
-    useLazyQuery(GET_ARTICLE_COUNT, {
+  const [loadArticleCount, { loading, data }] = useLazyQuery(
+    GET_ARTICLE_COUNT,
+    {
       pollInterval: POLLING_INTERVAL,
-      onCompleted({ListArticles: {totalCount}}) {
+      onCompleted({ ListArticles: { totalCount } }) {
         // Avoid initializing startFrom twice
-        if(startFrom) return;
+        if (startFrom) return;
 
         const queryParams = querystring.parse(location.hash.slice(1));
         // If startFrom is not specified in hash, set startFrom to the count.
         //
         const startFrom =
-          queryParams && queryParams.startFrom ? queryParams.startFrom : totalCount;
+          queryParams && queryParams.startFrom
+            ? queryParams.startFrom
+            : totalCount;
         setStartFrom(startFrom);
         location.hash = querystring.stringify({ startFrom });
-      }
-    });
+      },
+    }
+  );
 
   useEffect(() => {
     // Kick-off data loading
     loadArticleCount();
   }, []);
 
-  if(loading || !startFrom) {
-    return <Loading show />
+  if (loading || !startFrom) {
+    return <Loading show />;
   }
 
-  const {ListArticles: {totalCount}} = data;
+  const {
+    ListArticles: { totalCount },
+  } = data;
 
   const number = totalCount - startFrom;
   const specialProps = getSpecialProps(number);
@@ -325,8 +331,9 @@ function InstantPage() {
         <title>{number} 篇新回覆文章 - cofacts</title>
         <style jsx global>{`
           html {
-            font-family: 蘋方-繁, "PingFang TC", 思源黑體, "Source Han Sans", "Noto Sans CJK TC", sans-serif;
-            color: rgba(0,0,0,0.76);
+            font-family: 蘋方-繁, 'PingFang TC', 思源黑體, 'Source Han Sans',
+              'Noto Sans CJK TC', sans-serif;
+            color: rgba(0, 0, 0, 0.76);
             overflow: hidden;
             height: 100%;
           }

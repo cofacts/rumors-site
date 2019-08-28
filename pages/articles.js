@@ -1,5 +1,5 @@
 import withData from '../lib/apollo';
-import ArticleList from "../components/ArticleList";
+import ArticleList from '../components/ArticleList';
 
 function ArticleListPage() {
   return <ArticleList />;

@@ -1,5 +1,5 @@
-import App from 'next/app'
-import React from 'react'
+import App from 'next/app';
+import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../lib/theme';
@@ -13,14 +13,14 @@ class MyApp extends App {
     }
   }
 
-  render () {
-    const { Component, pageProps, apolloClient } = this.props
+  render() {
+    const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-    )
+    );
   }
 }
 
