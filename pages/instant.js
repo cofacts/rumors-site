@@ -291,8 +291,10 @@ function InstantPage() {
   const [loadArticleCount, { loading, data }] =
     useLazyQuery(GET_ARTICLE_COUNT, {
       pollInterval: POLLING_INTERVAL,
-      onCompleted({data: {ListArticles: {totalCount}}}) {
+      onCompleted({ListArticles: {totalCount}}) {
+        // Avoid initializing startFrom twice
         if(startFrom) return;
+
         const queryParams = querystring.parse(location.hash.slice(1));
         // If startFrom is not specified in hash, set startFrom to the count.
         //
@@ -333,9 +335,8 @@ function InstantPage() {
       {specialProps ? (
         <Hit number={number} {...specialProps} />
       ) : (
-        <Instant number={number} total={current} />
+        <Instant number={number} total={totalCount} />
       )}
-      <Loading show={isBootstrapping} />
     </div>
   );
 }
