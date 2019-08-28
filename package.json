@@ -10,6 +10,8 @@
     "build": "docker build -t mrorz/rumors-site:latest .",
     "build:staging": "docker build -t mrorz/rumors-site:staging .",
     "build:next": "next build",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "start": "next start",
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages"
   },
@@ -31,7 +33,18 @@
     "ttag": "^1.7.17"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-ttag": "^1.7.23",
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-import-resolver-babel-module": "^5.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
     "ttag-cli": "^1.7.22"
   }
 }
