@@ -12,6 +12,7 @@
     "build:next": "next build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "test": "jest",
     "start": "next start",
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages"
   },
