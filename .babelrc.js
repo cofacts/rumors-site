@@ -15,7 +15,7 @@ module.exports = {
         }
       }
     ], [
-      'ttag', {resolve: {translations: `i18n/${process.env.PUBLIC_LOCALE}.po`}}
+      'ttag', {resolve: {translations: `i18n/${process.env.LOCALE}.po`}}
     ]
   ]
 }
