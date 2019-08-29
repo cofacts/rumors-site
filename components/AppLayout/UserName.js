@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'routes';
+import { Link } from 'next/link';
 import LEVEL_NAMES from 'constants/levelNames';
-import Modal from '../Modal';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 class ProgressBar extends PureComponent {
   static defaultProps = {
@@ -109,6 +113,10 @@ class UserName extends PureComponent {
     this.setState({ isEditingUserName: false });
   };
 
+  handleUpgradeModalClose = () => {
+    this.setState({ showLevelUpPopup: false });
+  };
+
   renderInfo = () => {
     const { onLogoutClick, user } = this.props;
 
@@ -118,14 +126,14 @@ class UserName extends PureComponent {
           <a>{user.get('name')}</a>
         </Link>
 
-        <button className="edit" onClick={this.handleEdit}>
+        <Button className="edit" onClick={this.handleEdit}>
           <img
             src={require('./images/edit.svg')}
             width={12}
             height={12}
             alt="edit"
           />
-        </button>
+        </Button>
 
         <button type="button" onClick={onLogoutClick}>
           Logout
@@ -135,15 +143,6 @@ class UserName extends PureComponent {
           .user {
             display: flex;
             align-items: center;
-          }
-
-          .edit {
-            padding: 4px;
-            margin: 0 12px 0 4px;
-            opacity: 0.4;
-            cursor: pointer;
-            border: 0;
-            background: transparent;
           }
 
           .edit:hover {
@@ -157,11 +156,7 @@ class UserName extends PureComponent {
   renderLogin = () => {
     const { onLoginClick } = this.props;
 
-    return (
-      <button type="button" onClick={onLoginClick}>
-        Login
-      </button>
-    );
+    return <Button onClick={onLoginClick}>Login</Button>;
   };
 
   renderLevel = () => {
@@ -223,21 +218,19 @@ class UserName extends PureComponent {
             this.renderInfo()
           )}
           {this.renderLevel()}
-          {this.state.showLevelUpPopup && (
-            <Modal
-              onClose={() => {
-                this.setState({ showLevelUpPopup: false });
-              }}
-            >
-              <p
-                style={{
-                  padding: '30px 30px 20px',
-                }}
-              >
-                恭喜! 您升等了!
-              </p>
-            </Modal>
-          )}
+          <Dialog
+            open={this.state.showLevelUpPopup}
+            onClose={this.handleUpgradeModalClose}
+          >
+            <DialogContent>
+              <DialogContentText>恭喜! 您升等了!</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleUpgradeModalClose} color="primary">
+                關閉
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       );
     }
