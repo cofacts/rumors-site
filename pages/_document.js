@@ -1,10 +1,8 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/styles';
-import theme from '../lib/theme';
+import theme from 'lib/theme';
 
-const { publicRuntimeConfig } = getConfig();
 const LANG = (process.env.LOCALE || 'en').replace('_', '-');
 
 class MyDocument extends Document {

@@ -12,6 +12,7 @@ module.exports = {
           "components": "./components",
           "constants": "./constants",
           "pages": "./pages",
+          "lib": "./lib",
         }
       }
     ], [
