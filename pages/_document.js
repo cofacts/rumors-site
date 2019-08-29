@@ -26,6 +26,13 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <style jsx global>{`
+            html {
+              font-family: 思源黑體, 'Source Han Sans', 'Noto Sans CJK TC',
+                蘋方-繁, 'PingFang TC', 微軟正黑體, 'Microsoft JhengHei',
+                sans-serif;
+            }
+          `}</style>
         </body>
       </html>
     );

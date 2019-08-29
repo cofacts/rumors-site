@@ -331,8 +331,6 @@ function InstantPage() {
         <title>{number} 篇新回覆文章 - cofacts</title>
         <style jsx global>{`
           html {
-            font-family: 蘋方-繁, 'PingFang TC', 思源黑體, 'Source Han Sans',
-              'Noto Sans CJK TC', sans-serif;
             color: rgba(0, 0, 0, 0.76);
             overflow: hidden;
             height: 100%;
