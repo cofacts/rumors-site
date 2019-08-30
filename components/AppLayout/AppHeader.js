@@ -3,13 +3,7 @@ import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
 import { Link } from 'next/link';
 import UserName from './UserName';
 
-function AppHeader({
-  user,
-  isLoadingAuth,
-  onLoginClick,
-  onLogoutClick,
-  onUserNameUpdate,
-}) {
+function AppHeader() {
   return (
     <header className="root">
       <a className="logo hidden-xs" href="/">
