@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
-import { Link } from 'routes';
-import { showDialog, logout, updateName } from 'ducks/auth';
+import { Link } from 'next/link';
 import UserName from './UserName';
 
 function AppHeader({
@@ -41,13 +39,7 @@ function AppHeader({
           專案介紹
         </a>
       </nav>
-      <UserName
-        isLoading={isLoadingAuth}
-        user={user}
-        onLoginClick={onLoginClick}
-        onLogoutClick={onLogoutClick}
-        onUpdate={onUserNameUpdate}
-      />
+      <UserName />
       <style jsx>{`
         .root {
           display: flex;
@@ -76,28 +68,4 @@ function AppHeader({
   );
 }
 
-function mapStateToProps({ auth }) {
-  return {
-    user: auth.get('user'),
-    isLoadingAuth: auth.getIn(['state', 'isLoading']),
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onLoginClick() {
-      dispatch(showDialog());
-    },
-    onLogoutClick() {
-      dispatch(logout());
-    },
-    onUserNameUpdate(name) {
-      dispatch(updateName(name));
-    },
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppHeader);
+export default AppHeader;
