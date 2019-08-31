@@ -82,7 +82,7 @@ function LevelProgressBar({ user }) {
   return (
     <div>
       <p className="level-info">
-        Lv. {user.get('level')} <small>{LEVEL_NAMES[user.get('level')]}</small>
+        Lv. {user.level} <small>{LEVEL_NAMES[user.level]}</small>
       </p>
       <ProgressBar
         ratio={currentExp / levelExp}
@@ -205,7 +205,7 @@ function UserName() {
             <a>{user.name}</a>
           </Link>
 
-          <IconButton onClick={this.handleEdit}>
+          <IconButton onClick={handleUserNameEdit}>
             <EditIcon />
           </IconButton>
 
@@ -223,7 +223,7 @@ function UserName() {
           <DialogContentText>恭喜! 您升等了!</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleUpgradeModalClose} color="primary">
+          <Button onClick={() => setLevelUpPopupShow(false)} color="primary">
             關閉
           </Button>
         </DialogActions>
