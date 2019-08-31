@@ -1,13 +1,18 @@
 import React, { PureComponent, useState, useCallback, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
-import { Link } from 'next/link';
+import Link from 'next/link';
 import LEVEL_NAMES from 'constants/levelNames';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+
+import LoginModal from './LoginModal';
+import fetchAPI from 'lib/fetchAPI';
 
 const USER_QUERY = gql`
   query UserLevelQuery {
@@ -33,6 +38,10 @@ const SET_NAME = gql`
     }
   }
 `;
+
+const logout = () => {
+  return fetchAPI('/logout').then(resp => resp.json());
+};
 
 class ProgressBar extends PureComponent {
   static defaultProps = {
@@ -162,7 +171,7 @@ function UserName() {
 
     if (prevLevel !== null) setLevelUpPopupShow(true);
     setPrevLevel(data.GetUser.level);
-  }, [data && data.GetUser.level]);
+  }, [data && data.GetUser && data.GetUser.level]);
 
   const handleUserNameEdit = useCallback(name => {
     setName({ name });
@@ -175,16 +184,7 @@ function UserName() {
     return (
       <>
         <Button onClick={() => setLoginShow(true)}>Login</Button>
-        <Dialog open={showLogin} onClose={() => setLoginShow(false)}>
-          <DialogContent>
-            <DialogContentText>恭喜! 您升等了!</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setLevelUpPopupShow(false)} color="primary">
-              關閉
-            </Button>
-          </DialogActions>
-        </Dialog>
+        {showLogin && <LoginModal onClose={() => setLoginShow(false)} />}
       </>
     );
   }
@@ -201,22 +201,17 @@ function UserName() {
         />
       ) : (
         <div className="user">
-          <Link route="/replies?mine=1">
+          <Link href="/replies?mine=1">
             <a>{user.name}</a>
           </Link>
 
-          <Button className="edit" onClick={this.handleEdit}>
-            <img
-              src={require('./images/edit.svg')}
-              width={12}
-              height={12}
-              alt="edit"
-            />
-          </Button>
+          <IconButton onClick={this.handleEdit}>
+            <EditIcon />
+          </IconButton>
 
-          <button type="button" onClick={onLogoutClick}>
+          <Button type="button" onClick={logout}>
             Logout
-          </button>
+          </Button>
         </div>
       )}
       <LevelProgressBar user={user} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
-import { Link } from 'next/link';
+import Link from 'next/link';
 import UserName from './UserName';
 
 function AppHeader() {
@@ -10,10 +10,10 @@ function AppHeader() {
         <h1>真的假的</h1>
       </a>
       <nav className="nav">
-        <Link route="articles">
+        <Link href="articles">
           <a className="nav-item">文章</a>
         </Link>
-        <Link route="replies">
+        <Link href="replies">
           <a className="nav-item">回應</a>
         </Link>
         <a

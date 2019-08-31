@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
-// import AppHeader from './AppHeader';
+import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 
 const useStyles = makeStyles({
@@ -33,7 +33,7 @@ function AppLayout({ children }) {
 
   return (
     <Fragment>
-      {/* <AppHeader /> */}
+      <AppHeader />
       {isRouteChanging && <LinearProgress classes={classes} />}
       {children}
       <AppFooter />
