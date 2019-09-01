@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
+import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
 const useStyles = makeStyles({
   root: {
@@ -37,6 +38,7 @@ function AppLayout({ children }) {
       {isRouteChanging && <LinearProgress classes={classes} />}
       {children}
       <AppFooter />
+      <GoogleWebsiteTranslator />
     </Fragment>
   );
 }

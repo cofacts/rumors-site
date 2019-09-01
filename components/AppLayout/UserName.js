@@ -1,4 +1,5 @@
 import React, { PureComponent, useState, useCallback, useEffect } from 'react';
+import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Link from 'next/link';
@@ -131,12 +132,12 @@ class UserNameForm extends PureComponent {
           defaultValue={name}
           ref={el => (this.inputEl = el)}
         />
-        <button className="submit" type="submit">
-          Save
-        </button>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
+        <Button className="submit" type="submit" variant="contained">
+          {t`Save`}
+        </Button>
+        <Button type="button" onClick={onCancel}>
+          {t`Cancel`}
+        </Button>
 
         <style jsx>{`
           .name-input {
@@ -183,7 +184,7 @@ function UserName() {
   if (!data || !data.GetUser) {
     return (
       <>
-        <Button onClick={() => setLoginShow(true)}>Login</Button>
+        <Button onClick={() => setLoginShow(true)}>{t`Login`}</Button>
         {showLogin && <LoginModal onClose={() => setLoginShow(false)} />}
       </>
     );
@@ -197,7 +198,7 @@ function UserName() {
         <UserNameForm
           name={user.name}
           onSubmit={handleUserNameEdit}
-          onCancel={() => editingUserName(false)}
+          onCancel={() => setUserNameEdit(false)}
         />
       ) : (
         <div className="user">
@@ -205,12 +206,12 @@ function UserName() {
             <a>{user.name}</a>
           </Link>
 
-          <IconButton onClick={handleUserNameEdit}>
+          <IconButton onClick={() => setUserNameEdit(true)}>
             <EditIcon />
           </IconButton>
 
           <Button type="button" onClick={logout}>
-            Logout
+            {t`Logout`}
           </Button>
         </div>
       )}
@@ -220,11 +221,11 @@ function UserName() {
         onClose={() => setLevelUpPopupShow(false)}
       >
         <DialogContent>
-          <DialogContentText>恭喜! 您升等了!</DialogContentText>
+          <DialogContentText>{t`Congratulations! You have leveled up!`}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setLevelUpPopupShow(false)} color="primary">
-            關閉
+            {t`Close`}
           </Button>
         </DialogActions>
       </Dialog>

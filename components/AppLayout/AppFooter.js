@@ -1,6 +1,6 @@
 import React from 'react';
+import { t } from 'ttag';
 import { PROJECT_HACKFOLDR, CONTACT_EMAIL } from 'constants/urls';
-import GoogleWebsiteTranslator from 'components/GoogleWebsiteTranslator';
 
 export default function AppFooter() {
   return (
@@ -17,11 +17,10 @@ export default function AppFooter() {
       </a>
       <p>
         <a href={PROJECT_HACKFOLDR} target="_blank" rel="noopener noreferrer">
-          專案介紹
+          {t`About`}
         </a>
-        ・<a href={`mailto:${CONTACT_EMAIL}`}>連絡信箱</a>
+        ・<a href={`mailto:${CONTACT_EMAIL}`}>{t`Contact`}</a>
       </p>
-      <GoogleWebsiteTranslator />
       <style jsx>{`
         footer {
           margin: 0 20px 44px;

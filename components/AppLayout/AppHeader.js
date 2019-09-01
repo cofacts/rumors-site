@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from 'ttag';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
 import Link from 'next/link';
 import UserName from './UserName';
@@ -7,14 +8,14 @@ function AppHeader() {
   return (
     <header className="root">
       <a className="logo hidden-xs" href="/">
-        <h1>真的假的</h1>
+        <h1>{t`Cofacts`}</h1>
       </a>
       <nav className="nav">
         <Link href="articles">
-          <a className="nav-item">文章</a>
+          <a className="nav-item">{t`Collected Messages`}</a>
         </Link>
         <Link href="replies">
-          <a className="nav-item">回應</a>
+          <a className="nav-item">{t`Replies`}</a>
         </Link>
         <a
           href={EDITOR_FACEBOOK_GROUP}
@@ -22,7 +23,7 @@ function AppHeader() {
           rel="noopener noreferrer"
           className="nav-item hidden-xs"
         >
-          FB 編輯求助區
+          {t`Editor forum`}
         </a>
         <a
           href={PROJECT_HACKFOLDR}
@@ -30,7 +31,7 @@ function AppHeader() {
           rel="noopener noreferrer"
           className="nav-item hidden-xs"
         >
-          專案介紹
+          {t`About`}
         </a>
       </nav>
       <UserName />
