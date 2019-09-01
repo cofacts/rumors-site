@@ -6,6 +6,7 @@ cache: yarn
 
 script:
   - npm run lint
+  - npm run i18n:validate
   - npm run test -- --coverage
 
 after_success:

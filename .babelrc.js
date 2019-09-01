@@ -1,28 +1,22 @@
+require('dotenv').config();
+
 module.exports = {
   "presets": ["next/babel"],
   "plugins": [
     [
       "module-resolver",
-      // https://github.com/zeit/next.js/blob/master/examples/with-absolute-imports/.babelrc
+      // https://github.com/tleunen/babel-plugin-module-resolver#getting-started
       {
         "root": ["./"],
         "alias": {
           "components": "./components",
           "constants": "./constants",
           "pages": "./pages",
-          "ducks": "./ducks",
-          "routes": "./routes"
+          "lib": "./lib",
         }
       }
+    ], [
+      'ttag', {resolve: {translations: `i18n/${process.env.LOCALE}.po`}}
     ]
-  ],
-
-  // https://github.com/zeit/next.js/tree/master/examples/with-jest
-  "env": {
-    "test": {
-      "presets": [
-        ["next/babel", { "preset-env": { "modules": "commonjs" } }]
-      ]
-    }
-  }
+  ]
 }
