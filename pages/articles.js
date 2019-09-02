@@ -115,21 +115,31 @@ function ArticleListPage({ query }) {
 
   return (
     <AppLayout>
-      <p>
-        {ngettext(
-          msgid`${messageCount} collected message`,
-          `${messageCount} collected messages`,
-          messageCount
-        )}
-      </p>
-      <ul className="article-list">
-        {articleEdges.map(({ node: article }) => {
-          const { id } = article;
-          return <ArticleItem key={id} article={article} />;
-        })}
-      </ul>
+      <main>
+        <p>
+          {ngettext(
+            msgid`${messageCount} collected message`,
+            `${messageCount} collected messages`,
+            messageCount
+          )}
+        </p>
+        <ul className="article-list">
+          {articleEdges.map(({ node: article }) => {
+            const { id } = article;
+            return <ArticleItem key={id} article={article} />;
+          })}
+        </ul>
+      </main>
       <style jsx>
         {`
+          main {
+            padding: 24px;
+          }
+          @media screen and (min-width: 768px) {
+            main {
+              padding: 40px;
+            }
+          }
           .article-list {
             padding: 0;
             list-style: none;
