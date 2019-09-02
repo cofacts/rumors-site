@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
+import Pagination from 'components/Pagination';
 import withData from 'lib/apollo';
 
 const LIST_ARTICLES = gql`
@@ -93,7 +94,7 @@ function query2OrderBy({ q, orderBy = 'createdAt' } = {}) {
 }
 
 function ArticleListPage({ query }) {
-  const { loading, data, fetchMore } = useQuery(LIST_ARTICLES, {
+  const { loading, data } = useQuery(LIST_ARTICLES, {
     variables: {
       filter: query2Filter(query),
       orderBy: query2OrderBy(query),
@@ -123,6 +124,11 @@ function ArticleListPage({ query }) {
             messageCount
           )}
         </p>
+        <Pagination
+          query={query}
+          pageInfo={data.ListArticles.pageInfo}
+          edges={articleEdges}
+        />
         <ul className="article-list">
           {articleEdges.map(({ node: article }) => {
             const { id } = article;
