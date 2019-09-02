@@ -1,18 +1,17 @@
 import React from 'react';
-import moment from 'moment';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import isValid from 'date-fns/isValid';
+import format from 'date-fns/format';
 
 export default function ArticleInfo({ article }) {
-  const createdAt = moment(article.get('createdAt'));
   return (
     <div className="root">
-      {article.get('replyRequestCount')} 人回報
-      {article.get('replyCount') > 0 ? (
-        <span>・{article.get('replyCount')} 則回應</span>
-      ) : (
-        ''
-      )}
-      {createdAt.isValid() ? (
-        <span title={createdAt.format('lll')}>・{createdAt.fromNow()}</span>
+      {article.replyRequestCount} 人回報
+      {article.replyCount > 0 ? <span>・{article.replyCount} 則回應</span> : ''}
+      {isValid(article.createdAt) ? (
+        <span title={format(article.createdAt, 'Pp')}>
+          ・{formatDistanceToNow(article.createdAt)}
+        </span>
       ) : (
         ''
       )}
