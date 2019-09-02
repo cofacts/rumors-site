@@ -62,3 +62,20 @@ msgstr "關閉"
 #: components/AppLayout/AppHeader.js:18
 msgid "Replies"
 msgstr "回應列表"
+
+#: components/ArticleInfo.js:12
+#, javascript-format
+msgid "${ replyRequestCount } occurence"
+msgid_plural "${ replyRequestCount } occurences"
+msgstr[0] "被回報 ${ replyRequestCount } 次"
+
+#: components/ArticleInfo.js:20
+msgid "${ replyCount } response"
+msgid_plural "${ replyCount } responses"
+msgstr[0] "${ replyCount } 份回應"
+
+#: pages/articles.js:120
+#, javascript-format
+msgid "${ messageCount } collected message"
+msgid_plural "${ messageCount } collected messages"
+msgstr[0] "${ messageCount } 份回報訊息"
