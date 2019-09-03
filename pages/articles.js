@@ -111,30 +111,25 @@ function ArticleListPage({ query }) {
     );
   }
 
-  const articleEdges = data.ListArticles.edges;
-  const messageCount = data.ListArticles.totalCount;
+  const { pageInfo, edges, totalCount } = data.ListArticles;
 
   return (
     <AppLayout>
       <main>
         <p>
           {ngettext(
-            msgid`${messageCount} collected message`,
-            `${messageCount} collected messages`,
-            messageCount
+            msgid`${totalCount} collected message`,
+            `${totalCount} collected messages`,
+            totalCount
           )}
         </p>
-        <Pagination
-          query={query}
-          pageInfo={data.ListArticles.pageInfo}
-          edges={articleEdges}
-        />
+        <Pagination query={query} pageInfo={pageInfo} edges={edges} />
         <ul className="article-list">
-          {articleEdges.map(({ node: article }) => {
-            const { id } = article;
-            return <ArticleItem key={id} article={article} />;
+          {edges.map(({ node }) => {
+            return <ArticleItem key={node.id} article={node} />;
           })}
         </ul>
+        <Pagination query={query} pageInfo={pageInfo} edges={edges} />
       </main>
       <style jsx>
         {`
