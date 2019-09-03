@@ -74,8 +74,8 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:120
+#: pages/articles.js:139
 #, javascript-format
-msgid "${ totalCount } collected message"
-msgid_plural "${ totalCount } collected messages"
-msgstr[0] "${ totalCount } 份回報訊息"
+msgid "${ statsData.totalCount } collected message"
+msgid_plural "${ statsData.totalCount } collected messages"
+msgstr[0] "${ statsData.totalCount } 份回報訊息"

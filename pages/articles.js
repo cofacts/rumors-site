@@ -34,6 +34,16 @@ const LIST_ARTICLES = gql`
         }
         cursor
       }
+    }
+  }
+`;
+
+const LIST_STAT = gql`
+  query ListArticlesStat(
+    $filter: ListArticleFilter
+    $orderBy: [ListArticleOrderBy]
+  ) {
+    ListArticles(filter: $filter, orderBy: $orderBy, first: 25) {
       pageInfo {
         firstCursor
         lastCursor
@@ -94,42 +104,63 @@ function query2OrderBy({ q, orderBy = 'createdAt' } = {}) {
 }
 
 function ArticleListPage({ query }) {
-  const { loading, data } = useQuery(LIST_ARTICLES, {
+  const listQueryVars = {
+    filter: query2Filter(query),
+    orderBy: query2OrderBy(query),
+  };
+
+  const {
+    loading,
+    data: { ListArticles: articleData },
+  } = useQuery(LIST_ARTICLES, {
     variables: {
-      filter: query2Filter(query),
-      orderBy: query2OrderBy(query),
+      ...listQueryVars,
       before: query.before,
       after: query.after,
     },
   });
 
-  if (loading) {
-    return (
-      <AppLayout>
-        <p>Loading...</p>
-      </AppLayout>
-    );
-  }
-
-  const { pageInfo, edges, totalCount } = data.ListArticles;
+  // Separate these stats query so that it will be cached by apollo-client and sends no network request
+  // on page change, but still works when filter options are updated.
+  //
+  const {
+    loading: statsLoading,
+    data: { ListArticles: statsData },
+  } = useQuery(LIST_STAT, {
+    variables: listQueryVars,
+  });
 
   return (
     <AppLayout>
       <main>
         <p>
-          {ngettext(
-            msgid`${totalCount} collected message`,
-            `${totalCount} collected messages`,
-            totalCount
-          )}
+          {statsLoading
+            ? 'Loading...'
+            : ngettext(
+                msgid`${statsData.totalCount} collected message`,
+                `${statsData.totalCount} collected messages`,
+                statsData.totalCount
+              )}
         </p>
-        <Pagination query={query} pageInfo={pageInfo} edges={edges} />
-        <ul className="article-list">
-          {edges.map(({ node }) => {
-            return <ArticleItem key={node.id} article={node} />;
-          })}
-        </ul>
-        <Pagination query={query} pageInfo={pageInfo} edges={edges} />
+        <Pagination
+          query={query}
+          pageInfo={statsData && statsData.pageInfo}
+          edges={articleData && articleData.edges}
+        />
+        {loading ? (
+          'Loading....'
+        ) : (
+          <ul className="article-list">
+            {articleData.edges.map(({ node }) => {
+              return <ArticleItem key={node.id} article={node} />;
+            })}
+          </ul>
+        )}
+        <Pagination
+          query={query}
+          pageInfo={statsData && statsData.pageInfo}
+          edges={articleData && articleData.edges}
+        />
       </main>
       <style jsx>
         {`
