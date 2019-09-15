@@ -253,12 +253,16 @@ function ArticleListPage({ query }) {
         label={t`Include messages reported only 1 time`}
       />
       <div>
-        <SortInput
-          orderBy={query.orderBy}
-          onChange={orderBy =>
-            goToUrlQueryAndResetPagination({ ...query, orderBy })
-          }
-        />
+        {query.q ? (
+          t`Sort by Relevance`
+        ) : (
+          <SortInput
+            orderBy={query.orderBy}
+            onChange={orderBy =>
+              goToUrlQueryAndResetPagination({ ...query, orderBy })
+            }
+          />
+        )}
       </div>
       <p>
         {statsLoading
