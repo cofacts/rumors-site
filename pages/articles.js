@@ -7,9 +7,11 @@ import { useQuery } from '@apollo/react-hooks';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
+import SortIcon from '@material-ui/icons/Sort';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -19,6 +21,10 @@ import withData from 'lib/apollo';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
+
+const DEFAULT_ORDER_BY = 'lastRequestedAt';
+const DEFAULT_TYPE_FILTER = 'unsolved';
+const DEFAULT_REPLY_REQUEST_COUNT = 2;
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -71,9 +77,9 @@ const LIST_STAT = gql`
  * @returns {object} ListArticleFilter
  */
 function urlQuery2Filter({
-  filter,
+  filter = DEFAULT_TYPE_FILTER,
   q,
-  replyRequestCount,
+  replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
   searchUserByArticleId,
 } = {}) {
   const filterObj = {};
@@ -81,7 +87,7 @@ function urlQuery2Filter({
     filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
   }
 
-  filterObj.replyRequestCount = { GT: (replyRequestCount || 2) - 1 };
+  filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
 
   if (filter === 'solved') {
     filterObj.replyCount = { GT: 0 };
@@ -104,7 +110,7 @@ function urlQuery2Filter({
  * @param {object} urlQuery - URL query object
  * @returns {object[]} ListArticleOrderBy array
  */
-function urlQuery2OrderBy({ q, orderBy = 'createdAt' } = {}) {
+function urlQuery2OrderBy({ q, orderBy = DEFAULT_ORDER_BY } = {}) {
   // If there is query text, sort by _score first
 
   if (q) {
@@ -123,7 +129,7 @@ function goToUrlQueryAndResetPagination(urlQuery) {
   Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
 }
 
-function ArticleFilter({ filter = 'unsolved', onChange = () => {} }) {
+function ArticleFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
   return (
     <ButtonGroup size="small" variant="outlined">
       <Button
@@ -149,16 +155,39 @@ function SearchInput({ q = '', onChange = () => {} }) {
   }, []);
 
   return (
-    <Input
+    <TextField
       defaultValue={q}
       onBlur={handleSubmit}
       onKeyUp={handleKeyUp}
-      startAdornment={
-        <InputAdornment position="start">
-          <SearchIcon />
-        </InputAdornment>
-      }
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        ),
+      }}
     />
+  );
+}
+
+function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
+  return (
+    <TextField
+      label={t`Sort by`}
+      select
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SortIcon />
+          </InputAdornment>
+        ),
+      }}
+      value={orderBy}
+      onChange={e => onChange(e.target.value)}
+    >
+      <MenuItem value="lastRequestedAt">{t`Most recently asked`}</MenuItem>
+      <MenuItem value="replyRequestCount">{t`Most asked`}</MenuItem>
+    </TextField>
   );
 }
 
@@ -223,6 +252,14 @@ function ArticleListPage({ query }) {
         }
         label={t`Include messages reported only 1 time`}
       />
+      <div>
+        <SortInput
+          orderBy={query.orderBy}
+          onChange={orderBy =>
+            goToUrlQueryAndResetPagination({ ...query, orderBy })
+          }
+        />
+      </div>
       <p>
         {statsLoading
           ? 'Loading...'
