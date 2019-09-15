@@ -158,7 +158,7 @@ function UserName() {
   const [showLevelUpPopup, setLevelUpPopupShow] = useState(false);
   const [showLogin, setLoginShow] = useState(false);
   const [editingUserName, setUserNameEdit] = useState(false);
-  const [loadUser, { loading, data }] = useLazyQuery(USER_QUERY);
+  const [loadUser, { loading, data, refetch }] = useLazyQuery(USER_QUERY);
   const [setName, { loading: loadingNameUpdate }] = useMutation(SET_NAME);
 
   // load user on mount
@@ -166,18 +166,18 @@ function UserName() {
 
   // toggle level popup level update
   useEffect(() => {
-    if (!data || !data.GetUser || prevLevel === data.GetUser.level) return;
+    if (!data?.GetUser?.level) return;
 
     // level update
 
     if (prevLevel !== null) setLevelUpPopupShow(true);
     setPrevLevel(data.GetUser.level);
-  }, [data && data.GetUser && data.GetUser.level]);
+  }, [data?.GetUser?.level]);
 
   const handleUserNameEdit = useCallback(name => {
-    setName({ name });
+    setName({ variables: { name } });
     setUserNameEdit(false);
-  });
+  }, []);
 
   if (loading || loadingNameUpdate) return 'Loading...';
 
@@ -210,7 +210,7 @@ function UserName() {
             <EditIcon />
           </IconButton>
 
-          <Button type="button" onClick={logout}>
+          <Button type="button" onClick={() => logout().then(() => refetch())}>
             {t`Logout`}
           </Button>
         </div>
