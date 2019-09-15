@@ -58,10 +58,10 @@ const LIST_STAT = gql`
 `;
 
 /**
- * @param {object} query
+ * @param {object} urlQuery - URL query object
  * @returns {object} ListArticleFilter
  */
-function query2Filter({
+function urlQuery2Filter({
   filter,
   q,
   replyRequestCount,
@@ -94,10 +94,10 @@ function query2Filter({
 }
 
 /**
- * @param {object} query
+ * @param {object} urlQuery - URL query object
  * @returns {object[]} ListArticleOrderBy array
  */
-function query2OrderBy({ q, orderBy = 'createdAt' } = {}) {
+function urlQuery2OrderBy({ q, orderBy = 'createdAt' } = {}) {
   // If there is query text, sort by _score first
 
   if (q) {
@@ -108,10 +108,10 @@ function query2OrderBy({ q, orderBy = 'createdAt' } = {}) {
 }
 
 /**
- * @param {object} query
+ * @param {object} urlQuery
  */
-function goToQuery(query) {
-  Router.push(`${location.pathname}${url.format({ query })}`);
+function goToUrlQuery(urlQuery) {
+  Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
 }
 
 function ArticleFilter({ filter = 'unsolved', onChange = () => {} }) {
@@ -135,8 +135,8 @@ function ArticleFilter({ filter = 'unsolved', onChange = () => {} }) {
 
 function ArticleListPage({ query }) {
   const listQueryVars = {
-    filter: query2Filter(query),
-    orderBy: query2OrderBy(query),
+    filter: urlQuery2Filter(query),
+    orderBy: urlQuery2OrderBy(query),
   };
 
   const {
@@ -165,7 +165,7 @@ function ArticleListPage({ query }) {
       <main>
         <ArticleFilter
           filter={query.filter}
-          onChange={newFilter => goToQuery({ ...query, filter: newFilter })}
+          onChange={newFilter => goToUrlQuery({ ...query, filter: newFilter })}
         />
         <p>
           {statsLoading
