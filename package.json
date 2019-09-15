@@ -37,6 +37,7 @@
     "ttag": "^1.7.17"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-ttag": "^1.7.23",
