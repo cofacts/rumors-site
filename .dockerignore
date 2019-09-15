@@ -3,7 +3,7 @@
 !components/*
 !pages/*
 !ducks/*
-!util/*
+!lib/*
 !static/*
 !.babelrc.js
 !config.js
