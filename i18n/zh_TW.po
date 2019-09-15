@@ -74,8 +74,32 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:139
+#: pages/articles.js:229
 #, javascript-format
 msgid "${ statsData.totalCount } collected message"
 msgid_plural "${ statsData.totalCount } collected messages"
 msgstr[0] "${ statsData.totalCount } 份回報訊息"
+
+#: pages/articles.js:133
+msgid "Not replied"
+msgstr "尚未回覆"
+
+#: pages/articles.js:136
+msgid "Replied"
+msgstr "已回覆"
+
+#: pages/articles.js:139
+msgid "All"
+msgstr "全部"
+
+#: pages/articles.js:224
+msgid "Include messages reported only 1 time"
+msgstr "加列僅被回報 1 次的訊息"
+
+#: pages/articles.js:257
+msgid "Shows messages reported multiple times by default."
+msgstr "預設僅會列出被回報數次的訊息。"
+
+#: pages/articles.js:267
+msgid "Click here to include messages only reported 1 time."
+msgstr "按這裡加入僅被回報 1 次的訊息。"
