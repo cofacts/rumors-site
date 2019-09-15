@@ -1,7 +1,11 @@
 import gql from 'graphql-tag';
-import { ngettext, msgid } from 'ttag';
+import { t, ngettext, msgid } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
+import Router from 'next/router';
+import url from 'url';
 
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
@@ -103,6 +107,32 @@ function query2OrderBy({ q, orderBy = 'createdAt' } = {}) {
   return [{ [orderBy]: 'DESC' }];
 }
 
+/**
+ * @param {object} query
+ */
+function goToQuery(query) {
+  Router.push(`${location.pathname}${url.format({ query })}`);
+}
+
+function ArticleFilter({ filter = 'unsolved', onChange = () => {} }) {
+  return (
+    <ButtonGroup size="small" variant="outlined">
+      <Button
+        disabled={filter === 'unsolved'}
+        onClick={() => onChange('unsolved')}
+      >
+        {t`Not replied`}
+      </Button>
+      <Button disabled={filter === 'solved'} onClick={() => onChange('solved')}>
+        {t`Replied`}
+      </Button>
+      <Button disabled={filter === 'all'} onClick={() => onChange('all')}>
+        {t`All`}
+      </Button>
+    </ButtonGroup>
+  );
+}
+
 function ArticleListPage({ query }) {
   const listQueryVars = {
     filter: query2Filter(query),
@@ -133,6 +163,10 @@ function ArticleListPage({ query }) {
   return (
     <AppLayout>
       <main>
+        <ArticleFilter
+          filter={query.filter}
+          onChange={newFilter => goToQuery({ ...query, filter: newFilter })}
+        />
         <p>
           {statsLoading
             ? 'Loading...'
