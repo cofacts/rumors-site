@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import AppHeader from './AppHeader';
@@ -36,7 +37,7 @@ function AppLayout({ children }) {
     <Fragment>
       <AppHeader />
       {isRouteChanging && <LinearProgress classes={classes} />}
-      {children}
+      <Container>{children}</Container>
       <AppFooter />
       <GoogleWebsiteTranslator />
     </Fragment>
