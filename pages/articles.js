@@ -11,6 +11,9 @@ import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Typography from '@material-ui/core/Typography';
 
 import withData from 'lib/apollo';
 import AppLayout from 'components/AppLayout';
@@ -78,9 +81,7 @@ function urlQuery2Filter({
     filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
   }
 
-  if (replyRequestCount) {
-    filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
-  }
+  filterObj.replyRequestCount = { GT: (replyRequestCount || 2) - 1 };
 
   if (filter === 'solved') {
     filterObj.replyCount = { GT: 0 };
@@ -188,6 +189,8 @@ function ArticleListPage({ query }) {
     variables: listQueryVars,
   });
 
+  const showOneTimeMessages = +query.replyRequestCount === 1;
+
   return (
     <AppLayout>
       <Grid container spacing={2}>
@@ -206,6 +209,20 @@ function ArticleListPage({ query }) {
           />
         </Grid>
       </Grid>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={showOneTimeMessages}
+            onChange={e =>
+              goToUrlQueryAndResetPagination({
+                ...query,
+                replyRequestCount: e.target.checked ? 1 : 2,
+              })
+            }
+          />
+        }
+        label={t`Include messages reported only 1 time`}
+      />
       <p>
         {statsLoading
           ? 'Loading...'
@@ -235,6 +252,22 @@ function ArticleListPage({ query }) {
             pageInfo={statsData?.pageInfo}
             edges={articleData?.edges}
           />
+          {!showOneTimeMessages && (
+            <Typography variant="body2" component="p">
+              {t`Shows messages reported multiple times by default.`}{' '}
+              <a
+                href="javascript:;"
+                onClick={() =>
+                  goToUrlQueryAndResetPagination({
+                    ...query,
+                    replyRequestCount: 1,
+                  })
+                }
+              >
+                {t`Click here to include messages only reported 1 time.`}
+              </a>
+            </Typography>
+          )}
         </>
       )}
       <style jsx>
