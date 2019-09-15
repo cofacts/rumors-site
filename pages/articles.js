@@ -1,15 +1,21 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
-import { useQuery } from '@apollo/react-hooks';
 import Router from 'next/router';
 import url from 'url';
+import { useCallback } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+import Grid from '@material-ui/core/Grid';
+
+import withData from 'lib/apollo';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
-import withData from 'lib/apollo';
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -135,6 +141,26 @@ function ArticleFilter({ filter = 'unsolved', onChange = () => {} }) {
   );
 }
 
+function SearchInput({ q = '', onChange = () => {} }) {
+  const handleSubmit = useCallback(e => onChange(e.target.value), [onChange]);
+  const handleKeyUp = useCallback(e => {
+    e.which === 13 && e.target.blur();
+  }, []);
+
+  return (
+    <Input
+      defaultValue={q}
+      onBlur={handleSubmit}
+      onKeyUp={handleKeyUp}
+      startAdornment={
+        <InputAdornment position="start">
+          <SearchIcon />
+        </InputAdornment>
+      }
+    />
+  );
+}
+
 function ArticleListPage({ query }) {
   const listQueryVars = {
     filter: urlQuery2Filter(query),
@@ -164,52 +190,55 @@ function ArticleListPage({ query }) {
 
   return (
     <AppLayout>
-      <main>
-        <ArticleFilter
-          filter={query.filter}
-          onChange={newFilter =>
-            goToUrlQueryAndResetPagination({ ...query, filter: newFilter })
-          }
-        />
-        <p>
-          {statsLoading
-            ? 'Loading...'
-            : ngettext(
-                msgid`${statsData.totalCount} collected message`,
-                `${statsData.totalCount} collected messages`,
-                statsData.totalCount
-              )}
-        </p>
-        <Pagination
-          query={query}
-          pageInfo={statsData && statsData.pageInfo}
-          edges={articleData && articleData.edges}
-        />
-        {loading ? (
-          'Loading....'
-        ) : (
+      <Grid container spacing={2}>
+        <Grid item>
+          <ArticleFilter
+            filter={query.filter}
+            onChange={filter =>
+              goToUrlQueryAndResetPagination({ ...query, filter })
+            }
+          />
+        </Grid>
+        <Grid item>
+          <SearchInput
+            q={query.q}
+            onChange={q => goToUrlQueryAndResetPagination({ ...query, q })}
+          />
+        </Grid>
+      </Grid>
+      <p>
+        {statsLoading
+          ? 'Loading...'
+          : ngettext(
+              msgid`${statsData.totalCount} collected message`,
+              `${statsData.totalCount} collected messages`,
+              statsData.totalCount
+            )}
+      </p>
+
+      {loading ? (
+        'Loading....'
+      ) : (
+        <>
+          <Pagination
+            query={query}
+            pageInfo={statsData?.pageInfo}
+            edges={articleData?.edges}
+          />
           <ul className="article-list">
             {articleData.edges.map(({ node }) => {
               return <ArticleItem key={node.id} article={node} />;
             })}
           </ul>
-        )}
-        <Pagination
-          query={query}
-          pageInfo={statsData && statsData.pageInfo}
-          edges={articleData && articleData.edges}
-        />
-      </main>
+          <Pagination
+            query={query}
+            pageInfo={statsData?.pageInfo}
+            edges={articleData?.edges}
+          />
+        </>
+      )}
       <style jsx>
         {`
-          main {
-            padding: 24px;
-          }
-          @media screen and (min-width: 768px) {
-            main {
-              padding: 40px;
-            }
-          }
           .article-list {
             padding: 0;
             list-style: none;
