@@ -110,7 +110,9 @@ function urlQuery2OrderBy({ q, orderBy = 'createdAt' } = {}) {
 /**
  * @param {object} urlQuery
  */
-function goToUrlQuery(urlQuery) {
+function goToUrlQueryAndResetPagination(urlQuery) {
+  delete urlQuery.before;
+  delete urlQuery.after;
   Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
 }
 
@@ -165,7 +167,9 @@ function ArticleListPage({ query }) {
       <main>
         <ArticleFilter
           filter={query.filter}
-          onChange={newFilter => goToUrlQuery({ ...query, filter: newFilter })}
+          onChange={newFilter =>
+            goToUrlQueryAndResetPagination({ ...query, filter: newFilter })
+          }
         />
         <p>
           {statsLoading
