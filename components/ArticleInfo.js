@@ -1,4 +1,4 @@
-import React from 'react';
+import gql from 'graphql-tag';
 import { ngettext, msgid } from 'ttag';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import isValid from 'date-fns/isValid';
@@ -42,3 +42,13 @@ export default function ArticleInfo({ article }) {
     </div>
   );
 }
+
+ArticleInfo.fragments = {
+  articleInfo: gql`
+    fragment ArticleInfo on Article {
+      replyRequestCount
+      replyCount
+      createdAt
+    }
+  `,
+};

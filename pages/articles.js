@@ -42,19 +42,13 @@ const LIST_ARTICLES = gql`
     ) {
       edges {
         node {
-          id
-          text
-          replyCount
-          replyRequestCount
-          createdAt
-          references {
-            type
-          }
+          ...ArticleItem
         }
         cursor
       }
     }
   }
+  ${ArticleItem.fragments.articleItem}
 `;
 
 const LIST_STAT = gql`
