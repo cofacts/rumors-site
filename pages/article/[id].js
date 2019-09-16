@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import AppLayout from 'components/AppLayout';
@@ -31,10 +30,9 @@ const LOAD_ARTICLE = gql`
   ${Hyperlinks.fragments.hyperlink}
 `;
 
-function ArticlePage() {
-  const router = useRouter();
+function ArticlePage({ query }) {
   const { data, loading } = useQuery(LOAD_ARTICLE, {
-    variables: { id: router.query.id },
+    variables: { id: query.id },
   });
 
   if (loading) {
@@ -101,5 +99,7 @@ function ArticlePage() {
     </AppLayout>
   );
 }
+
+ArticlePage.getInitialProps = ({ query }) => ({ query });
 
 export default withData(ArticlePage);
