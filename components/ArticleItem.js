@@ -19,7 +19,7 @@ export default function ArticleItem({
         'not-article': notArticleReplied,
       })}
     >
-      <Link href={`article/${article.id}`}>
+      <Link href="/article/[id]" as={`/article/${article.id}`}>
         <a>
           <div className="item-text">{article.text}</div>
           <ArticleInfo article={article} />
