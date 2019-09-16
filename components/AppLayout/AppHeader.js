@@ -11,10 +11,10 @@ function AppHeader() {
         <h1>{t`Cofacts`}</h1>
       </a>
       <nav className="nav">
-        <Link href="articles">
+        <Link href="/articles">
           <a className="nav-item">{t`Collected Messages`}</a>
         </Link>
-        <Link href="replies">
+        <Link href="/replies">
           <a className="nav-item">{t`Replies`}</a>
         </Link>
         <a
