@@ -1,63 +1,47 @@
-// Wrapper for all pages.
-//
-// Ref: https://github.com/zeit/next.js/blob/master/examples/with-redux/pages/index.js
-//
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
-import { setLogin } from '../../util/gql';
-import { connect } from 'react-redux';
-import { showDialog, load } from 'ducks/auth';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
-import LoginModal from '../Modal/LoginModal';
-import moment from 'moment';
-import 'moment/locale/zh-tw';
-import NProgress from 'nprogress';
+import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
-import 'normalize.css';
-import 'nprogress/nprogress.css';
-import './AppLayout.css';
+const useStyles = makeStyles({
+  root: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
+});
 
-let isBootstrapping = true;
-moment.locale('zh-tw');
+function AppLayout({ children }) {
+  const [isRouteChanging, setRouteChanging] = useState(false);
+  const classes = useStyles();
 
-Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+  useEffect(() => {
+    const handleRouteChangeStart = () => setRouteChanging(true);
+    const handleRouteChangeComplete = () => setRouteChanging(false);
 
-class AppLayout extends React.Component {
-  constructor(props) {
-    super(props);
+    Router.events.on('routeChangeStart', handleRouteChangeStart);
+    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
-    if (typeof window !== 'undefined') {
-      setLogin(() => props.dispatch(showDialog()));
-    }
-  }
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChangeStart);
+      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+  }, []);
 
-  componentDidMount() {
-    // Bootstrapping: Load auth
-    //
-    if (isBootstrapping) {
-      this.props.dispatch(load());
-      isBootstrapping = false;
-    }
-  }
-
-  render() {
-    const { children } = this.props;
-
-    return (
-      <Fragment>
-        <AppHeader />
-        {children}
-        <LoginModal />
-        <AppFooter />
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <AppHeader />
+      {isRouteChanging && <LinearProgress classes={classes} />}
+      <Container>{children}</Container>
+      <AppFooter />
+      <GoogleWebsiteTranslator />
+    </Fragment>
+  );
 }
 
-export default connect()(AppLayout);
+export default AppLayout;

@@ -1,7 +1,48 @@
-import React, { PureComponent } from 'react';
-import { Link } from 'routes';
+import React, { PureComponent, useState, useCallback, useEffect } from 'react';
+import { t } from 'ttag';
+import gql from 'graphql-tag';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
+import Link from 'next/link';
 import LEVEL_NAMES from 'constants/levelNames';
-import Modal from '../Modal';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+
+import LoginModal from './LoginModal';
+import fetchAPI from 'lib/fetchAPI';
+
+const USER_QUERY = gql`
+  query UserLevelQuery {
+    GetUser {
+      id
+      name
+      avatarUrl
+      level
+      points {
+        total
+        currentLevel
+        nextLevel
+      }
+    }
+  }
+`;
+
+const SET_NAME = gql`
+  mutation SetUserName($name: String!) {
+    UpdateUser(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+const logout = () => {
+  return fetchAPI('/logout').then(resp => resp.json());
+};
 
 class ProgressBar extends PureComponent {
   static defaultProps = {
@@ -30,6 +71,35 @@ class ProgressBar extends PureComponent {
       </div>
     );
   }
+}
+
+function LevelProgressBar({ user }) {
+  if (!user) return null;
+
+  const currentExp = user.points.total - user.points.currentLevel;
+  const levelExp =
+    (user.points.nextLevel || Infinity) - user.points.currentLevel;
+
+  return (
+    <div>
+      <p className="level-info">
+        Lv. {user.level} <small>{LEVEL_NAMES[user.level]}</small>
+      </p>
+      <ProgressBar
+        ratio={currentExp / levelExp}
+        title={`${currentExp} / ${levelExp}`}
+      />
+      <style jsx>{`
+        .level-info {
+          margin: 0;
+        }
+
+        .level-info small {
+          margin-left: 8px;
+        }
+      `}</style>
+    </div>
+  );
 }
 
 class UserNameForm extends PureComponent {
@@ -62,12 +132,12 @@ class UserNameForm extends PureComponent {
           defaultValue={name}
           ref={el => (this.inputEl = el)}
         />
-        <button className="submit" type="submit">
-          Save
-        </button>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
+        <Button className="submit" type="submit" variant="contained">
+          {t`Save`}
+        </Button>
+        <Button type="button" onClick={onCancel}>
+          {t`Cancel`}
+        </Button>
 
         <style jsx>{`
           .name-input {
@@ -83,167 +153,95 @@ class UserNameForm extends PureComponent {
   }
 }
 
-class UserName extends PureComponent {
-  static defaultProps = {
-    onLoginClick() {},
-    onLogoutClick() {},
-    onUpdate() {},
-    user: null, // Should be user after logged in
-  };
+function UserName() {
+  const [prevLevel, setPrevLevel] = useState(null);
+  const [showLevelUpPopup, setLevelUpPopupShow] = useState(false);
+  const [showLogin, setLoginShow] = useState(false);
+  const [editingUserName, setUserNameEdit] = useState(false);
+  const [loadUser, { loading, data, refetch }] = useLazyQuery(USER_QUERY);
+  const [setName, { loading: loadingNameUpdate }] = useMutation(SET_NAME);
 
-  state = {
-    isEditingUserName: false,
-    showLevelUpPopup: false,
-  };
+  // load user on mount
+  useEffect(() => loadUser(), []);
 
-  handleEdit = () => {
-    this.setState({ isEditingUserName: true });
-  };
+  // toggle level popup level update
+  useEffect(() => {
+    if (!data?.GetUser?.level) return;
 
-  handleSubmit = name => {
-    this.props.onUpdate(name);
-    this.handleCancel();
-  };
+    // level update
 
-  handleCancel = () => {
-    this.setState({ isEditingUserName: false });
-  };
+    if (prevLevel !== null) setLevelUpPopupShow(true);
+    setPrevLevel(data.GetUser.level);
+  }, [data?.GetUser?.level]);
 
-  renderInfo = () => {
-    const { onLogoutClick, user } = this.props;
+  const handleUserNameEdit = useCallback(name => {
+    setName({ variables: { name } });
+    setUserNameEdit(false);
+  }, []);
 
+  if (loading || loadingNameUpdate) return 'Loading...';
+
+  if (!data || !data.GetUser) {
     return (
-      <div className="user">
-        <Link route="/replies?mine=1">
-          <a>{user.get('name')}</a>
-        </Link>
-
-        <button className="edit" onClick={this.handleEdit}>
-          <img
-            src={require('./images/edit.svg')}
-            width={12}
-            height={12}
-            alt="edit"
-          />
-        </button>
-
-        <button type="button" onClick={onLogoutClick}>
-          Logout
-        </button>
-
-        <style jsx>{`
-          .user {
-            display: flex;
-            align-items: center;
-          }
-
-          .edit {
-            padding: 4px;
-            margin: 0 12px 0 4px;
-            opacity: 0.4;
-            cursor: pointer;
-            border: 0;
-            background: transparent;
-          }
-
-          .edit:hover {
-            opacity: 0.7;
-          }
-        `}</style>
-      </div>
+      <>
+        <Button onClick={() => setLoginShow(true)}>{t`Login`}</Button>
+        {showLogin && <LoginModal onClose={() => setLoginShow(false)} />}
+      </>
     );
-  };
+  }
 
-  renderLogin = () => {
-    const { onLoginClick } = this.props;
+  const { GetUser: user } = data;
 
-    return (
-      <button type="button" onClick={onLoginClick}>
-        Login
-      </button>
-    );
-  };
-
-  renderLevel = () => {
-    const { user } = this.props;
-    const currentExp =
-      user.getIn(['points', 'total']) - user.getIn(['points', 'currentLevel']);
-    const levelExp =
-      (user.getIn(['points', 'nextLevel']) || Infinity) -
-      user.getIn(['points', 'currentLevel']);
-
-    return (
-      <div>
-        <p className="level-info">
-          Lv. {user.get('level')}{' '}
-          <small>{LEVEL_NAMES[user.get('level')]}</small>
-        </p>
-        <ProgressBar
-          ratio={currentExp / levelExp}
-          title={`${currentExp} / ${levelExp}`}
+  return (
+    <div>
+      {editingUserName ? (
+        <UserNameForm
+          name={user.name}
+          onSubmit={handleUserNameEdit}
+          onCancel={() => setUserNameEdit(false)}
         />
-        <style jsx>{`
-          .level-info {
-            margin: 0;
-          }
+      ) : (
+        <div className="user">
+          <Link href="/replies?mine=1">
+            <a>{user.name}</a>
+          </Link>
 
-          .level-info small {
-            margin-left: 8px;
-          }
-        `}</style>
-      </div>
-    );
-  };
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.user &&
-      this.props.user &&
-      prevProps.user.get('level') !== this.props.user.get('level')
-    ) {
-      // show level up popup
-      this.setState({ showLevelUpPopup: true });
-    }
-  }
-  render() {
-    const { user, isLoading } = this.props;
-    const { isEditingUserName } = this.state;
+          <IconButton onClick={() => setUserNameEdit(true)}>
+            <EditIcon />
+          </IconButton>
 
-    if (isLoading) return 'Loading...';
-
-    if (user) {
-      return (
-        <div>
-          {isEditingUserName ? (
-            <UserNameForm
-              name={user.get('name')}
-              onSubmit={this.handleSubmit}
-              onCancel={this.handleCancel}
-            />
-          ) : (
-            this.renderInfo()
-          )}
-          {this.renderLevel()}
-          {this.state.showLevelUpPopup && (
-            <Modal
-              onClose={() => {
-                this.setState({ showLevelUpPopup: false });
-              }}
-            >
-              <p
-                style={{
-                  padding: '30px 30px 20px',
-                }}
-              >
-                恭喜! 您升等了!
-              </p>
-            </Modal>
-          )}
+          <Button type="button" onClick={() => logout().then(() => refetch())}>
+            {t`Logout`}
+          </Button>
         </div>
-      );
-    }
+      )}
+      <LevelProgressBar user={user} />
+      <Dialog
+        open={showLevelUpPopup}
+        onClose={() => setLevelUpPopupShow(false)}
+      >
+        <DialogContent>
+          <DialogContentText>{t`Congratulations! You have leveled up!`}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setLevelUpPopupShow(false)} color="primary">
+            {t`Close`}
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-    return this.renderLogin();
-  }
+      <style jsx>{`
+        .user {
+          display: flex;
+          align-items: center;
+        }
+
+        .edit:hover {
+          opacity: 0.7;
+        }
+      `}</style>
+    </div>
+  );
 }
 
 export default UserName;

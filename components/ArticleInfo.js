@@ -1,18 +1,35 @@
 import React from 'react';
-import moment from 'moment';
+import { ngettext, msgid } from 'ttag';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import isValid from 'date-fns/isValid';
+import format from 'date-fns/format';
 
 export default function ArticleInfo({ article }) {
-  const createdAt = moment(article.get('createdAt'));
+  const createdAt = new Date(article.createdAt);
+  const { replyRequestCount, replyCount } = article;
   return (
     <div className="root">
-      {article.get('replyRequestCount')} 人回報
-      {article.get('replyCount') > 0 ? (
-        <span>・{article.get('replyCount')} 則回應</span>
+      {ngettext(
+        msgid`${replyRequestCount} occurence`,
+        `${replyRequestCount} occurences`,
+        replyRequestCount
+      )}
+      {article.replyCount > 0 ? (
+        <span>
+          ・
+          {ngettext(
+            msgid`${replyCount} response`,
+            `${replyCount} responses`,
+            replyCount
+          )}
+        </span>
       ) : (
         ''
       )}
-      {createdAt.isValid() ? (
-        <span title={createdAt.format('lll')}>・{createdAt.fromNow()}</span>
+      {isValid(createdAt) ? (
+        <span title={format(createdAt, 'Pp')}>
+          ・{formatDistanceToNow(createdAt)}
+        </span>
       ) : (
         ''
       )}

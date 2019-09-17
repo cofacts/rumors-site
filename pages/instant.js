@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import gql from 'graphql-tag';
+import { useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import gql from '../util/gql';
-import style from '../components/AppLayout/AppLayout.css';
 import querystring from 'querystring';
+
+import withData from '../lib/apollo';
 
 const POLLING_INTERVAL = 5000;
 
@@ -276,76 +278,72 @@ function Loading({ show }) {
   );
 }
 
-export default class InstantWrapper extends React.Component {
-  state = {
-    current: 0, // current number of replied articles
-    startFrom: null, // start number of replied articles to compare from
-    isBootstrapping: true,
-  };
+const GET_ARTICLE_COUNT = gql`
+  query GetArticleCount {
+    ListArticles(filter: { replyCount: { GT: 0 } }) {
+      totalCount
+    }
+  }
+`;
 
-  componentDidMount() {
-    const queryParams = querystring.parse(location.hash.slice(1));
-    this.periodicallyUpdateNumber().then(count => {
-      // If startFrom is not specified in hash, set startFrom to the count.
-      //
-      const startFrom =
-        queryParams && queryParams.startFrom ? queryParams.startFrom : count;
-      this.setState({ startFrom, isBootstrapping: false });
-      location.hash = querystring.stringify({ startFrom });
-    });
+function InstantPage() {
+  const [startFrom, setStartFrom] = useState(null);
+  const [loadArticleCount, { loading, data }] = useLazyQuery(
+    GET_ARTICLE_COUNT,
+    {
+      pollInterval: POLLING_INTERVAL,
+      onCompleted({ ListArticles: { totalCount } }) {
+        // Avoid initializing startFrom twice
+        if (startFrom) return;
+
+        const queryParams = querystring.parse(location.hash.slice(1));
+        // If startFrom is not specified in hash, set startFrom to the count.
+        //
+        const startFrom =
+          queryParams && queryParams.startFrom
+            ? queryParams.startFrom
+            : totalCount;
+        setStartFrom(startFrom);
+        location.hash = querystring.stringify({ startFrom });
+      },
+    }
+  );
+
+  useEffect(() => {
+    // Kick-off data loading
+    loadArticleCount();
+  }, []);
+
+  if (loading || !startFrom) {
+    return <Loading show />;
   }
 
-  updateNumber = () => {
-    return gql`
-      {
-        ListArticles(filter: { replyCount: { GT: 0 } }) {
-          totalCount
-        }
-      }
-    `().then(data => {
-      const totalCount = data.getIn(['data', 'ListArticles', 'totalCount'], 0);
-      this.setState({ current: totalCount });
-      return totalCount;
-    });
-  };
+  const {
+    ListArticles: { totalCount },
+  } = data;
 
-  periodicallyUpdateNumber = () =>
-    this.updateNumber().then(count => {
-      clearTimeout(this._timer);
-      this._timer = setTimeout(this.periodicallyUpdateNumber, POLLING_INTERVAL);
-      return count;
-    });
+  const number = totalCount - startFrom;
+  const specialProps = getSpecialProps(number);
 
-  render() {
-    const { current, startFrom, isBootstrapping } = this.state;
-    const number = current - startFrom;
-    const specialProps = getSpecialProps(number);
-
-    return (
-      <div>
-        <Head>
-          <title>{number} 篇新回覆文章 - cofacts</title>
-          <style dangerouslySetInnerHTML={{ __html: style }} />
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `
-            html {
-              font-family: 蘋方-繁, "PingFang TC", 思源黑體, "Source Han Sans", "Noto Sans CJK TC", sans-serif;
-              color: rgba(0,0,0,0.76);
-              overflow: hidden;
-              height: 100%;
-            }
-          `,
-            }}
-          />
-        </Head>
-        {specialProps ? (
-          <Hit number={number} {...specialProps} />
-        ) : (
-          <Instant number={number} total={current} />
-        )}
-        <Loading show={isBootstrapping} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Head>
+        <title>{number} 篇新回覆文章 - cofacts</title>
+        <style jsx global>{`
+          html {
+            color: rgba(0, 0, 0, 0.76);
+            overflow: hidden;
+            height: 100%;
+          }
+        `}</style>
+      </Head>
+      {specialProps ? (
+        <Hit number={number} {...specialProps} />
+      ) : (
+        <Instant number={number} total={totalCount} />
+      )}
+    </div>
+  );
 }
+
+export default withData(InstantPage);
