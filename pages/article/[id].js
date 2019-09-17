@@ -3,11 +3,12 @@ import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 
+import withData from 'lib/apollo';
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleInfo from 'components/ArticleInfo';
 import Trendline from 'components/Trendline';
-import withData from 'lib/apollo';
+import ReplyRequestReason from 'components/ReplyRequestReason';
 
 import { nl2br, linkify } from 'lib/text';
 
@@ -25,9 +26,13 @@ const LOAD_ARTICLE = gql`
       hyperlinks {
         ...HyperlinkData
       }
+      replyRequests {
+        ...ReplyRequestInfo
+      }
     }
   }
   ${Hyperlinks.fragments.hyperlink}
+  ${ReplyRequestReason.fragments.ReplyRequestInfo}
 `;
 
 function ArticlePage({ query }) {
@@ -70,6 +75,16 @@ function ArticlePage({ query }) {
           )}
           <Hyperlinks hyperlinks={article.hyperlinks} />
         </article>
+        <footer>
+          {article.replyRequests.map((replyRequest, idx) => (
+            <ReplyRequestReason
+              key={replyRequest.id}
+              articleId={article.id}
+              replyRequest={replyRequest}
+              isArticleCreator={idx === 0}
+            />
+          ))}
+        </footer>
       </section>
 
       <style jsx>{`
