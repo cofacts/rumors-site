@@ -20,6 +20,7 @@ const ReplyRequestInfo = gql`
 
 const ReplyRequestInfoForUser = gql`
   fragment ReplyRequestInfoForUser on ReplyRequest {
+    id
     ownVote
   }
 `;
