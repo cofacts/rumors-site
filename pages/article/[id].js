@@ -1,6 +1,8 @@
 import gql from 'graphql-tag';
+import { useEffect, useMemo } from 'react';
 import { t } from 'ttag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import merge from 'lodash/merge';
 import Head from 'next/head';
 
 import withData from 'lib/apollo';
@@ -35,10 +37,39 @@ const LOAD_ARTICLE = gql`
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
 `;
 
+const LOAD_ARTICLE_FOR_USER = gql`
+  query LoadArticlePageForUser($id: String!) {
+    GetArticle(id: $id) {
+      id # Required, https://github.com/apollographql/apollo-client/issues/2510
+      replyRequests {
+        ...ReplyRequestInfoForUser
+      }
+    }
+  }
+  ${ReplyRequestReason.fragments.ReplyRequestInfoForUser}
+`;
+
 function ArticlePage({ query }) {
+  const articleVars = { id: query.id };
+
   const { data, loading } = useQuery(LOAD_ARTICLE, {
-    variables: { id: query.id },
+    variables: articleVars,
   });
+  const [loadArticleForUser, { data: dataForUser }] = useLazyQuery(
+    LOAD_ARTICLE_FOR_USER,
+    {
+      variables: articleVars,
+    }
+  );
+
+  const article = useMemo(
+    () => merge({}, data?.GetArticle, dataForUser?.GetArticle),
+    [data, dataForUser]
+  );
+
+  useEffect(() => {
+    loadArticleForUser();
+  }, []);
 
   if (loading) {
     return <AppLayout>Loading...</AppLayout>;
@@ -47,8 +78,6 @@ function ArticlePage({ query }) {
   if (!data?.GetArticle) {
     return <AppLayout>Article not found.</AppLayout>;
   }
-
-  const article = data.GetArticle;
 
   const slicedArticleTitle = article.text.slice(0, 15);
 
