@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { t } from 'ttag';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import merge from 'lodash/merge';
@@ -67,6 +67,8 @@ function ArticlePage({ query }) {
     [data, dataForUser]
   );
 
+  const replySectionRef = useRef(null);
+
   useEffect(() => {
     loadArticleForUser();
   }, []);
@@ -114,6 +116,10 @@ function ArticlePage({ query }) {
             />
           ))}
         </footer>
+      </section>
+
+      <section className="section" id="current-replies" ref={replySectionRef}>
+        <h2>{t`Replies to the message`}</h2>
       </section>
 
       <style jsx>{`
