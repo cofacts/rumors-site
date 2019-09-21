@@ -1,12 +1,13 @@
 import gql from 'graphql-tag';
-import { ngettext, msgid } from 'ttag';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { t, ngettext, msgid } from 'ttag';
 import isValid from 'date-fns/isValid';
-import format from 'date-fns/format';
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 
 export default function ArticleInfo({ article }) {
   const createdAt = new Date(article.createdAt);
   const { replyRequestCount, replyCount } = article;
+  const timeAgoStr = formatDistanceToNow(createdAt);
+
   return (
     <div className="root">
       {ngettext(
@@ -27,9 +28,7 @@ export default function ArticleInfo({ article }) {
         ''
       )}
       {isValid(createdAt) ? (
-        <span title={format(createdAt, 'Pp')}>
-          ・{formatDistanceToNow(createdAt)}
-        </span>
+        <span title={format(createdAt)}>・{t`${timeAgoStr} ago`}</span>
       ) : (
         ''
       )}
