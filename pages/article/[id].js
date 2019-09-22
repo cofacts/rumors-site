@@ -10,6 +10,7 @@ import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleInfo from 'components/ArticleInfo';
 import Trendline from 'components/Trendline';
+import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 
 import { nl2br, linkify } from 'lib/text';
@@ -31,10 +32,14 @@ const LOAD_ARTICLE = gql`
       replyRequests {
         ...ReplyRequestInfo
       }
+      articleReplies {
+        ...ArticleReplyData
+      }
     }
   }
-  ${Hyperlinks.fragments.hyperlink}
+  ${Hyperlinks.fragments.HyperlinkData}
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
+  ${CurrentReplies.fragments.ArticleReplyData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -44,9 +49,13 @@ const LOAD_ARTICLE_FOR_USER = gql`
       replyRequests {
         ...ReplyRequestInfoForUser
       }
+      articleReplies {
+        ...ArticleReplyForUser
+      }
     }
   }
   ${ReplyRequestReason.fragments.ReplyRequestInfoForUser}
+  ${CurrentReplies.fragments.ArticleReplyForUser}
 `;
 
 function ArticlePage({ query }) {
@@ -120,6 +129,7 @@ function ArticlePage({ query }) {
 
       <section className="section" id="current-replies" ref={replySectionRef}>
         <h2>{t`Replies to the message`}</h2>
+        <CurrentReplies articleReplies={article.articleReplies} />
       </section>
 
       <style jsx>{`

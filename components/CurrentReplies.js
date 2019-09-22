@@ -1,6 +1,8 @@
 import React from 'react';
+import { t, jt, ngettext, msgid } from 'ttag';
+
 import Modal from './Modal';
-import ReplyConnection from './ReplyConnection';
+import ArticleReply from './ArticleReply';
 
 class DeletedItems extends React.Component {
   static defaultProps = {
@@ -39,15 +41,15 @@ class DeletedItems extends React.Component {
           transform: 'none',
         }}
       >
-        <h1>被刪除的回應</h1>
+        <h1>{t`Deleted replies`}</h1>
         <ul className="items">
-          {items.map(conn => (
-            <ReplyConnection
-              key={`${conn.get('articleId')}__${conn.get('replyId')}`}
-              replyConnection={conn}
+          {items.map(ar => (
+            <ArticleReply
+              key={`${ar.articleId}__${ar.replyId}`}
+              articleReply={ar}
               onAction={this.handleRestore}
               disabled={disabled}
-              actionText="恢復回應"
+              actionText={t`Restore`}
             />
           ))}
         </ul>
@@ -69,14 +71,19 @@ class DeletedItems extends React.Component {
 
     if (!items || !items.length) return null;
 
+    const replyLink = (
+      <a key="replies" href="javascript:;" onClick={this.handleOpen}>
+        {ngettext(
+          msgid`${items.length} reply`,
+          `${items.length} replies`,
+          items.length
+        )}
+      </a>
+    );
+
     return (
       <li>
-        <span className="prompt">
-          有{' '}
-          <a href="javascript:;" onClick={this.handleOpen}>
-            {items.length} 則回應
-          </a>被作者自行刪除。
-        </span>
+        <span className="prompt">{jt`There are ${replyLink} deleted by its author.`}</span>
         {this.renderModal()}
 
         <style jsx>{`
@@ -93,43 +100,41 @@ class DeletedItems extends React.Component {
   }
 }
 
-export default function CurrentReplies({
-  replyConnections,
+function CurrentReplies({
+  articleReplies = [],
   disabled = false,
   onDelete = () => {},
   onRestore = () => {},
-  onVote = () => {},
 }) {
-  if (!replyConnections.size) {
-    return <p>目前尚無回應</p>;
+  if (articleReplies.length === 0) {
+    return <p>{t`There is no existing replies for now.`}</p>;
   }
 
-  const { validConnections, deletedConnections } = replyConnections.reduce(
-    (agg, conn) => {
-      if (conn.get('status') === 'DELETED') {
-        agg.deletedConnections.push(conn);
+  const { validArticleReplies, deletedArticleReplies } = articleReplies.reduce(
+    (agg, ar) => {
+      if (ar.status === 'DELETED') {
+        agg.deletedArticleReplies.push(ar);
       } else {
-        agg.validConnections.push(conn);
+        agg.validArticleReplies.push(ar);
       }
 
       return agg;
     },
-    { validConnections: [], deletedConnections: [] }
+    { validArticleReplies: [], deletedArticleReplies: [] }
   );
 
   return (
     <ul className="items">
-      {validConnections.map(conn => (
-        <ReplyConnection
-          key={`${conn.get('articleId')}__${conn.get('replyId')}`}
-          replyConnection={conn}
+      {validArticleReplies.map(ar => (
+        <ArticleReply
+          key={`${ar.articleId}__${ar.replyId}`}
+          articleReply={ar}
           onAction={onDelete}
-          onVote={onVote}
           disabled={disabled}
         />
       ))}
       <DeletedItems
-        items={deletedConnections}
+        items={deletedArticleReplies}
         onRestore={onRestore}
         disabled={disabled}
       />
@@ -142,3 +147,9 @@ export default function CurrentReplies({
     </ul>
   );
 }
+
+CurrentReplies.fragments = {
+  ...ArticleReply.fragments,
+};
+
+export default CurrentReplies;

@@ -1,8 +1,9 @@
 import React from 'react';
 import ClipboardJS from 'clipboard';
-import 'balloon-css/balloon.css';
+import { t } from 'ttag';
+import Snackbar from '@material-ui/core/Snackbar';
 
-export default class CopyButton extends React.PureComponent {
+class CopyButton extends React.PureComponent {
   constructor(props) {
     super(props);
     this.copyBtnRef = React.createRef();
@@ -12,7 +13,7 @@ export default class CopyButton extends React.PureComponent {
     content: '',
   };
   state = {
-    tooltipAttrs: {},
+    showCopySnack: false,
   };
 
   componentDidMount() {
@@ -20,26 +21,25 @@ export default class CopyButton extends React.PureComponent {
       text: () => this.props.content,
     });
     clipboard.on('success', () => {
-      const self = this;
-      this.setState({
-        tooltipAttrs: {
-          'data-balloon': '複製成功！',
-          'data-balloon-visible': '',
-          'data-balloon-pos': 'up',
-        },
-      });
-
-      setTimeout(function() {
-        self.setState({ tooltipAttrs: {} });
-      }, 1000);
+      this.setState({ showCopySnack: true });
     });
   }
 
+  handleClose = () => {
+    this.setState({ showCopySnack: false });
+  };
+
   render() {
-    const { tooltipAttrs } = this.state;
+    const { showCopySnack } = this.state;
+
     return (
-      <button ref={this.copyBtnRef} className="btn-copy" {...tooltipAttrs}>
-        複製到剪貼簿
+      <button ref={this.copyBtnRef} className="btn-copy">
+        {t`Copy`}
+        <Snackbar
+          open={showCopySnack}
+          onClose={this.handleClose}
+          message={t`Copied to clipboard.`}
+        ></Snackbar>
         <style jsx>{`
           .btn-copy {
             margin-left: 10px;
@@ -49,3 +49,5 @@ export default class CopyButton extends React.PureComponent {
     );
   }
 }
+
+export default CopyButton;
