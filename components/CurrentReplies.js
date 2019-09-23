@@ -128,6 +128,7 @@ function CurrentReplies({
       {validArticleReplies.map(ar => (
         <ArticleReply
           key={`${ar.articleId}__${ar.replyId}`}
+          actionText={t`Delete`}
           articleReply={ar}
           onAction={onDelete}
           disabled={disabled}
