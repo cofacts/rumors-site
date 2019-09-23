@@ -52,7 +52,9 @@ const ArticleReplyForUser = gql`
     articleId
     replyId
     canUpdateStatus
+    ...ArticleReplyFeedbackForUser
   }
+  ${ReplyFeedback.fragments.ArticleReplyFeedbackForUser}
 `;
 
 class ArticleReply extends React.PureComponent {

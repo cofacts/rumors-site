@@ -35,6 +35,14 @@ const ArticleReplyFeedbackData = gql`
   }
 `;
 
+const ArticleReplyFeedbackForUser = gql`
+  fragment ArticleReplyFeedbackForUser on ArticleReply {
+    articleId
+    replyId
+    ownVote
+  }
+`;
+
 const VOTE_REPLY = gql`
   mutation VoteReply(
     $articleId: String!
@@ -49,9 +57,11 @@ const VOTE_REPLY = gql`
       comment: $comment
     ) {
       ...ArticleReplyFeedbackData
+      ...ArticleReplyFeedbackForUser
     }
   }
   ${ArticleReplyFeedbackData}
+  ${ArticleReplyFeedbackForUser}
 `;
 
 function ReplyFeedback({
@@ -160,6 +170,7 @@ function ReplyFeedback({
 
 ReplyFeedback.fragments = {
   ArticleReplyFeedbackData,
+  ArticleReplyFeedbackForUser,
 };
 
 export default ReplyFeedback;
