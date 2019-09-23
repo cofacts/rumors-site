@@ -1,8 +1,19 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
 
 import Modal from './Modal';
 import ArticleReply from './ArticleReply';
+
+const CurrentRepliesData = gql`
+  fragment CurrentRepliesData on ArticleReply {
+    articleId
+    replyId
+    status
+    ...ArticleReplyData
+  }
+  ${ArticleReply.fragments.ArticleReplyData}
+`;
 
 class DeletedItems extends React.Component {
   static defaultProps = {
@@ -150,7 +161,8 @@ function CurrentReplies({
 }
 
 CurrentReplies.fragments = {
-  ...ArticleReply.fragments,
+  CurrentRepliesData,
+  ArticleReplyForUser: ArticleReply.fragments.ArticleReplyForUser,
 };
 
 export default CurrentReplies;

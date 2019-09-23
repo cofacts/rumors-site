@@ -33,13 +33,13 @@ const LOAD_ARTICLE = gql`
         ...ReplyRequestInfo
       }
       articleReplies {
-        ...ArticleReplyData
+        ...CurrentRepliesData
       }
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
-  ${CurrentReplies.fragments.ArticleReplyData}
+  ${CurrentReplies.fragments.CurrentRepliesData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`

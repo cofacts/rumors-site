@@ -16,6 +16,7 @@ import CopyButton from './CopyButton';
 
 const ArticleReplyData = gql`
   fragment ArticleReplyData on ArticleReply {
+    # articleId and replyId are required to identify ArticleReply instances
     articleId
     replyId
     canUpdateStatus
@@ -45,6 +46,7 @@ const ArticleReplyData = gql`
 
 const ArticleReplyForUser = gql`
   fragment ArticleReplyForUser on ArticleReply {
+    # articleId and replyId are required to identify ArticleReply instances
     articleId
     replyId
     canUpdateStatus
@@ -125,18 +127,17 @@ class ArticleReply extends React.PureComponent {
         ) : (
           timeEl
         )}
-        {articleReply.canUpdateStatus
-          ? [
-              ` ・ `,
-              <button
-                key="delete"
-                disabled={disabled}
-                onClick={this.handleAction}
-              >
-                {actionText}
-              </button>,
-            ]
-          : ''}
+        {articleReply.canUpdateStatus ? (
+          <>
+            {' '}
+            ・{' '}
+            <button disabled={disabled} onClick={this.handleAction}>
+              {actionText}
+            </button>
+          </>
+        ) : (
+          ''
+        )}
         <CopyButton content={copyText} />
         <ReplyFeedback articleReply={articleReply} />
       </footer>
