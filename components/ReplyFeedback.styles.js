@@ -39,10 +39,10 @@ export const feedbackStyle = css`
     transform: scale(1.3);
   }
   .icon-circle {
-    width: 1em;
+    width: 28px;
   }
   .icon-cross {
-    width: 1em;
+    width: 28px;
   }
   .icon-circle.active {
     fill: #6dc00c;

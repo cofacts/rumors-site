@@ -40,8 +40,10 @@ const ArticleReplyData = gql`
       name
       level
     }
+    ...ArticleReplyFeedbackData
   }
   ${Hyperlinks.fragments.HyperlinkData}
+  ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
 `;
 
 const ArticleReplyForUser = gql`
