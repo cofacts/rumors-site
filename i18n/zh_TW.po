@@ -35,27 +35,27 @@ msgstr "訊息列表"
 msgid "Editor forum"
 msgstr "編輯討論區"
 
-#: components/AppLayout/UserName.js:136
+#: components/AppLayout/UserName.js:137
 msgid "Save"
 msgstr "儲存"
 
-#: components/AppLayout/UserName.js:139
+#: components/AppLayout/UserName.js:140
 msgid "Cancel"
 msgstr "取消"
 
-#: components/AppLayout/UserName.js:187
+#: components/AppLayout/UserName.js:188
 msgid "Login"
 msgstr "登入"
 
-#: components/AppLayout/UserName.js:214
+#: components/AppLayout/UserName.js:215
 msgid "Logout"
 msgstr "登出"
 
-#: components/AppLayout/UserName.js:224
+#: components/AppLayout/UserName.js:225
 msgid "Congratulations! You have leveled up!"
 msgstr "恭喜！您升級了！"
 
-#: components/AppLayout/UserName.js:228
+#: components/AppLayout/UserName.js:229
 msgid "Close"
 msgstr "關閉"
 
@@ -63,13 +63,13 @@ msgstr "關閉"
 msgid "Replies"
 msgstr "回應列表"
 
-#: components/ArticleInfo.js:12
+#: components/ArticleInfo.js:13
 #, javascript-format
 msgid "${ replyRequestCount } occurence"
 msgid_plural "${ replyRequestCount } occurences"
 msgstr[0] "被回報 ${ replyRequestCount } 次"
 
-#: components/ArticleInfo.js:20
+#: components/ArticleInfo.js:21
 msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
@@ -120,10 +120,126 @@ msgstr "最多人詢問"
 msgid "Sort by Relevance"
 msgstr "以相關度排序"
 
-#: pages/article/[id].js:91
+#: pages/article/[id].js:102
 msgid "Reported Message"
 msgstr "使用者回報訊息"
 
-#: components/ReplyRequestReason/ReplyRequestReason.js:53
+#: components/ReplyRequestReason/ReplyRequestReason.js:54
 msgid "All messages reported by this user"
 msgstr "所有這個使用者回報的訊息"
+
+#: components/ArticleInfo.js:31
+#: components/ArticleReply.js:109
+#, javascript-format
+msgid "${ timeAgoStr } ago"
+msgstr "${ timeAgoStr }前"
+
+#: components/ArticleReply.js:85
+msgid "“Editor Manual”"
+msgstr "《編輯指南》"
+
+#: components/ArticleReply.js:91
+#, javascript-format
+msgid "Please refer to ${ refLink } for what to fact-check."
+msgstr "查證範圍請參考${ refLink }"
+
+#: components/ArticleReply.js:116
+#: components/ArticleReply.js:228
+msgid "Reason"
+msgstr "理由"
+
+#: components/ArticleReply.js:118
+msgid "Details"
+msgstr "詳細解釋"
+
+#: components/ArticleReply.js:120
+#: components/ArticleReply.js:197
+msgid "Reference"
+msgstr "出處"
+
+#: components/ArticleReply.js:162
+#: components/ReplyFeedback.js:146
+msgid "Someone"
+msgstr "有人"
+
+#: components/ArticleReply.js:173
+#, javascript-format
+msgid "${ originalAuthorElem }'s reply"
+msgstr "${ originalAuthorElem } 的回應"
+
+#: components/ArticleReply.js:180
+#, javascript-format
+msgid "${ articleReplyAuthorName } uses ${ originalAuthorsReply } to"
+msgstr "${ articleReplyAuthorName } 使用 ${ originalAuthorsReply }"
+
+#: components/ArticleReply.js:197
+msgid "Different opinion"
+msgstr "不同意見"
+
+#: components/ArticleReply.js:201
+msgid "There is no reference for this reply. Its truthfulness may be doubtful."
+msgstr "這則回應沒有出處，請自行斟酌其真實性。"
+
+#: components/ArticleReply.js:224
+#, javascript-format
+msgid "${ authorElem } mark the message as ${ typeElem }"
+msgstr "${ authorElem } 標記此篇為 ${ typeElem }"
+
+#: components/CopyButton.js:37
+msgid "Copy"
+msgstr "複製"
+
+#: components/CopyButton.js:41
+msgid "Copied to clipboard."
+msgstr "已複製到剪貼簿。"
+
+#: components/CurrentReplies.js:50
+msgid "Deleted replies"
+msgstr "已刪除的回應"
+
+#: components/CurrentReplies.js:58
+msgid "Restore"
+msgstr "恢復"
+
+#: components/CurrentReplies.js:82
+#, javascript-format
+msgid "${ items.length } reply"
+msgid_plural "${ items.length } replies"
+msgstr[0] " ${ items.length } 則回應"
+
+#: components/CurrentReplies.js:92
+msgid "There are ${ replyLink } deleted by its author."
+msgstr "有${ replyLink }被作者自行刪除。"
+
+#: components/CurrentReplies.js:116
+msgid "There is no existing replies for now."
+msgstr "目前沒有已撰寫的回應。"
+
+#: components/CurrentReplies.js:137
+msgid "Delete"
+msgstr "刪除"
+
+#: components/EditorName.js:8
+#, javascript-format
+msgid "Lv.${ editorLevel } ${ levelName }"
+msgstr "第 ${ editorLevel } 等 - ${ levelName }"
+
+#: pages/article/[id].js:131
+msgid "Replies to the message"
+msgstr "現有回應"
+
+#: components/ReplyFeedback.js:79
+msgid "Is the reply helpful?"
+msgstr "這則回應是否有幫助？"
+
+#: components/ReplyFeedback.js:101
+msgid "Please share with us why you think this reply is not useful"
+msgstr "請告訴我們為什麼您覺得好心人的回應沒有幫助？"
+
+#: components/ReplyFeedback.js:124
+msgid "Why?"
+msgstr "Why?"
+
+#: components/ReplyFeedback.js:136
+msgid "Reasons why users think it's not useful"
+msgstr "覺得沒幫助的理由"
