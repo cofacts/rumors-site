@@ -11,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Avatar from '@material-ui/core/Avatar';
 import PersonIcon from '@material-ui/icons/Person';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { feedbackStyle } from './ReplyFeedback.styles';
 import useCurrentUser from 'lib/useCurrentUser';
@@ -76,9 +77,12 @@ function ReplyFeedback({
   } = {},
 }) {
   const [downVoteDialogOpen, setDownVoteDialogOpen] = useState(false);
+  const [showReorderSnack, setReorderSnackShow] = useState(false);
   const currentUser = useCurrentUser();
   const [voteReply, { loading: isVotingReply }] = useMutation(VOTE_REPLY, {
     refetchQueries: ['LoadArticlePage'], // Update article reply order
+    awaitRefetchQueries: true,
+    onCompleted: () => setReorderSnackShow(true),
   });
 
   const isOwnArticleReply = currentUser?.id === user.id;
@@ -163,6 +167,11 @@ function ReplyFeedback({
           </List>
         </Dialog>
       )}
+      <Snackbar
+        open={showReorderSnack}
+        onClose={() => setReorderSnackShow(false)}
+        message={t`Thank you for the feedback.`}
+      ></Snackbar>
       <style jsx>{feedbackStyle}</style>
     </div>
   );

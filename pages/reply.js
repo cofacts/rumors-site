@@ -1,4 +1,6 @@
 import React from 'react';
+import { t } from 'ttag';
+
 import moment from 'moment';
 import { Link } from '../routes';
 import { connect } from 'react-redux';
@@ -12,7 +14,7 @@ import Head from 'next/head';
 import { nl2br, linkify } from '../util/text';
 
 import AppLayout from 'components/AppLayout';
-import ReplyConnection from 'components/ReplyConnection';
+import ArticleReply from 'components/ArticleReply';
 import EditorName from 'components/EditorName';
 import Hyperlinks from 'components/Hyperlinks';
 
@@ -128,9 +130,9 @@ class ReplyPage extends React.Component {
       <section className="section">
         <h2>本則回應</h2>
         <ul className="items">
-          <ReplyConnection
-            replyConnection={originalReplyConnection}
-            actionText={isDeleted ? '恢復回應' : '刪除回應'}
+          <ArticleReply
+            articleReply={originalReplyConnection}
+            actionText={isDeleted ? t`Restore` : t`Delete`}
             onVote={this.handleReplyConnectionVote}
             onAction={
               isDeleted
