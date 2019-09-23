@@ -67,7 +67,9 @@ function ReplyFeedback({
 }) {
   const [downVoteDialogOpen, setDownVoteDialogOpen] = useState(false);
   const currentUser = useCurrentUser();
-  const [voteReply, { loading: isVotingReply }] = useMutation(VOTE_REPLY);
+  const [voteReply, { loading: isVotingReply }] = useMutation(VOTE_REPLY, {
+    refetchQueries: ['LoadArticlePage'], // Update article reply order
+  });
 
   const isOwnArticleReply = currentUser?.id === user.id;
   const downVoteReasons = (feedbacks || []).filter(
