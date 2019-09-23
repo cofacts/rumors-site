@@ -9,6 +9,11 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import PersonIcon from '@material-ui/icons/Person';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -77,6 +82,7 @@ function ReplyFeedback({
   } = {},
 }) {
   const [downVoteDialogOpen, setDownVoteDialogOpen] = useState(false);
+  const [reasonDialogOpen, setReasonDialogOpen] = useState(false);
   const [showReorderSnack, setReorderSnackShow] = useState(false);
   const currentUser = useCurrentUser();
   const [voteReply, { loading: isVotingReply }] = useMutation(VOTE_REPLY, {
@@ -112,14 +118,7 @@ function ReplyFeedback({
       <span className="vote-num">{negativeFeedbackCount}</span>
       <button
         className="btn-vote"
-        onClick={() => {
-          const comment = window.prompt(
-            t`Please share with us why you think this reply is not useful`
-          );
-          voteReply({
-            variables: { articleId, replyId, vote: 'DOWNVOTE', comment },
-          });
-        }}
+        onClick={() => setReasonDialogOpen(true)}
         disabled={isOwnArticleReply || isVotingReply}
       >
         <svg
@@ -146,10 +145,10 @@ function ReplyFeedback({
       {downVoteDialogOpen && (
         <Dialog
           onClose={() => setDownVoteDialogOpen(false)}
-          aria-labelledby="simple-dialog-title"
+          aria-labelledby="donevote-dialog-title"
           open
         >
-          <DialogTitle id="simple-dialog-title">{t`Reasons why users think it's not useful`}</DialogTitle>
+          <DialogTitle id="donevote-dialog-title">{t`Reasons why users think it's not useful`}</DialogTitle>
           <List>
             {downVoteReasons.map((feedback, index) => (
               <ListItem key={index}>
@@ -165,6 +164,46 @@ function ReplyFeedback({
               </ListItem>
             ))}
           </List>
+        </Dialog>
+      )}
+      {reasonDialogOpen && (
+        <Dialog
+          onClose={() => setReasonDialogOpen(false)}
+          aria-labelledby="reason-dialog-title"
+          open
+        >
+          <form
+            onSubmit={e => {
+              const comment = e.target.reason.value;
+              voteReply({
+                variables: { articleId, replyId, vote: 'DOWNVOTE', comment },
+              });
+              setReasonDialogOpen(false);
+            }}
+          >
+            <DialogTitle id="reason-dialog-title">{t`Reasons why you think it's not useful`}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {t`Please share with us why you think this reply is not useful`}
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                name="reason"
+                multiline
+                rows="3"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setReasonDialogOpen(false)}>
+                {t`Cancel`}
+              </Button>
+              <Button color="primary" type="submit">
+                {t`Submit`}
+              </Button>
+            </DialogActions>
+          </form>
         </Dialog>
       )}
       <Snackbar
