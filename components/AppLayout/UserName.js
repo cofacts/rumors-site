@@ -12,15 +12,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
-import { CurrentUser } from 'lib/useCurrentUser';
 import LoginModal from './LoginModal';
 import fetchAPI from 'lib/fetchAPI';
 
 const USER_QUERY = gql`
   query UserLevelQuery {
     GetUser {
-      ...CurrentUser
-      avatarUrl
+      id
+      name
       level
       points {
         total
@@ -29,7 +28,6 @@ const USER_QUERY = gql`
       }
     }
   }
-  ${CurrentUser}
 `;
 
 const SET_NAME = gql`
