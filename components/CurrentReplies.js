@@ -2,7 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
 
-import Modal from './Modal';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+
 import ArticleReply from './ArticleReply';
 
 const CurrentRepliesData = gql`
@@ -40,19 +42,12 @@ class DeletedItems extends React.Component {
   };
 
   renderModal = () => {
-    if (!this.state.showModal) return null;
     const { items, disabled } = this.props;
+    const { showModal } = this.state;
 
     return (
-      <Modal
-        onClose={this.handleClose}
-        style={{
-          left: '40px',
-          right: '40px',
-          transform: 'none',
-        }}
-      >
-        <h1>{t`Deleted replies`}</h1>
+      <Dialog onClose={this.handleClose} open={showModal}>
+        <DialogTitle>{t`Deleted replies`}</DialogTitle>
         <ul className="items">
           {items.map(ar => (
             <ArticleReply
@@ -73,7 +68,7 @@ class DeletedItems extends React.Component {
             padding-left: 0;
           }
         `}</style>
-      </Modal>
+      </Dialog>
     );
   };
 
