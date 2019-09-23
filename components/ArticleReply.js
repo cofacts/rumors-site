@@ -26,6 +26,7 @@ const ArticleReplyData = gql`
       text
       reference
       user {
+        id
         name
         level
       }
@@ -34,6 +35,7 @@ const ArticleReplyData = gql`
       }
     }
     user {
+      id
       name
       level
     }
