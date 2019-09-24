@@ -74,7 +74,7 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:229
+#: pages/articles.js:264
 #, javascript-format
 msgid "${ statsData.totalCount } collected message"
 msgid_plural "${ statsData.totalCount } collected messages"
@@ -92,14 +92,38 @@ msgstr "已回覆"
 msgid "All"
 msgstr "全部"
 
-#: pages/articles.js:224
+#: pages/articles.js:247
 msgid "Include messages reported only 1 time"
 msgstr "加列僅被回報 1 次的訊息"
 
-#: pages/articles.js:257
+#: pages/articles.js:292
 msgid "Shows messages reported multiple times by default."
 msgstr "預設僅會列出被回報數次的訊息。"
 
-#: pages/articles.js:267
+#: pages/articles.js:302
 msgid "Click here to include messages only reported 1 time."
 msgstr "按這裡加入僅被回報 1 次的訊息。"
+
+#: pages/articles.js:170
+msgid "Sort by"
+msgstr "排序方式"
+
+#: pages/articles.js:182
+msgid "Most recently asked"
+msgstr "最近被查詢"
+
+#: pages/articles.js:183
+msgid "Most asked"
+msgstr "最多人詢問"
+
+#: pages/articles.js:251
+msgid "Sort by Relevance"
+msgstr "以相關度排序"
+
+#: pages/article/[id].js:91
+msgid "Reported Message"
+msgstr "使用者回報訊息"
+
+#: components/ReplyRequestReason/ReplyRequestReason.js:53
+msgid "All messages reported by this user"
+msgstr "所有這個使用者回報的訊息"

@@ -1,4 +1,4 @@
-import React from 'react';
+import gql from 'graphql-tag';
 import Link from 'next/link';
 import ArticleInfo from './ArticleInfo';
 import { listItemStyle } from './ListItem.styles';
@@ -19,7 +19,7 @@ export default function ArticleItem({
         'not-article': notArticleReplied,
       })}
     >
-      <Link href={`article/${article.id}`}>
+      <Link href="/article/[id]" as={`/article/${article.id}`}>
         <a>
           <div className="item-text">{article.text}</div>
           <ArticleInfo article={article} />
@@ -38,3 +38,14 @@ export default function ArticleItem({
     </li>
   );
 }
+
+ArticleItem.fragments = {
+  articleItem: gql`
+    fragment ArticleItem on Article {
+      id
+      text
+      ...ArticleInfo
+    }
+    ${ArticleInfo.fragments.articleInfo}
+  `,
+};
