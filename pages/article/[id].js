@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { t } from 'ttag';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import merge from 'lodash/merge';
@@ -12,6 +12,7 @@ import ArticleInfo from 'components/ArticleInfo';
 import Trendline from 'components/Trendline';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
+import NewReplySection from 'components/NewReplySection';
 
 import { nl2br, linkify } from 'lib/text';
 
@@ -82,6 +83,11 @@ function ArticlePage({ query }) {
     loadArticleForUser();
   }, []);
 
+  const handleNewReplySubmit = useCallback(() => {
+    if (!replySectionRef.current) return;
+    replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   if (loading) {
     return <AppLayout>Loading...</AppLayout>;
   }
@@ -130,6 +136,11 @@ function ArticlePage({ query }) {
       <section className="section" id="current-replies" ref={replySectionRef}>
         <h2>{t`Replies to the message`}</h2>
         <CurrentReplies articleReplies={article.articleReplies} />
+      </section>
+
+      <section className="section">
+        <h2>{t`Add a new reply`}</h2>
+        <NewReplySection onSubmit={handleNewReplySubmit} />
       </section>
 
       <style jsx>{`
