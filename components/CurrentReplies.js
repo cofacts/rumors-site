@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
+import { useMutation } from '@apollo/react-hooks';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,6 +16,24 @@ const CurrentRepliesData = gql`
     ...ArticleReplyData
   }
   ${ArticleReply.fragments.ArticleReplyData}
+`;
+
+const UPDATE_ARTICLE_REPLY_STATUS = gql`
+  mutation UpdateArticleReplyStatus(
+    $articleId: String!
+    $replyId: String!
+    $status: ArticleReplyStatusEnum!
+  ) {
+    UpdateArticleReplyStatus(
+      articleId: $articleId
+      replyId: $replyId
+      status: $status
+    ) {
+      articleId
+      replyId
+      status
+    }
+  }
 `;
 
 class DeletedItems extends React.Component {
@@ -106,12 +125,31 @@ class DeletedItems extends React.Component {
   }
 }
 
-function CurrentReplies({
-  articleReplies = [],
-  disabled = false,
-  onDelete = () => {},
-  onRestore = () => {},
-}) {
+function CurrentReplies({ articleReplies = [] }) {
+  const [
+    updateArticleReplyStatus,
+    { loading: updatingArticleReplyStatus },
+  ] = useMutation(UPDATE_ARTICLE_REPLY_STATUS);
+
+  const handleDelete = useCallback(
+    ({ articleId, replyId }) => {
+      updateArticleReplyStatus({
+        variables: { articleId, replyId, status: 'DELETED' },
+      });
+    },
+    [updateArticleReplyStatus]
+  );
+
+  const handleRestore = useCallback(
+    ({ articleId, replyId }) => {
+      updateArticleReplyStatus({
+        variables: { articleId, replyId, status: 'NORMAL' },
+        refetchQueries: ['LoadArticlePage'],
+      });
+    },
+    [updateArticleReplyStatus]
+  );
+
   if (articleReplies.length === 0) {
     return <p>{t`There is no existing replies for now.`}</p>;
   }
@@ -136,14 +174,14 @@ function CurrentReplies({
           key={`${ar.articleId}__${ar.replyId}`}
           actionText={t`Delete`}
           articleReply={ar}
-          onAction={onDelete}
-          disabled={disabled}
+          onAction={handleDelete}
+          disabled={updatingArticleReplyStatus}
         />
       ))}
       <DeletedItems
         items={deletedArticleReplies}
-        onRestore={onRestore}
-        disabled={disabled}
+        onRestore={handleRestore}
+        disabled={updatingArticleReplyStatus}
       />
       <style jsx>{`
         .items {
