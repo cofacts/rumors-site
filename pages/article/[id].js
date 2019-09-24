@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { t } from 'ttag';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import merge from 'lodash/merge';
@@ -10,6 +10,7 @@ import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleInfo from 'components/ArticleInfo';
 import Trendline from 'components/Trendline';
+import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 
 import { nl2br, linkify } from 'lib/text';
@@ -31,10 +32,14 @@ const LOAD_ARTICLE = gql`
       replyRequests {
         ...ReplyRequestInfo
       }
+      articleReplies {
+        ...CurrentRepliesData
+      }
     }
   }
-  ${Hyperlinks.fragments.hyperlink}
+  ${Hyperlinks.fragments.HyperlinkData}
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
+  ${CurrentReplies.fragments.CurrentRepliesData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -44,9 +49,13 @@ const LOAD_ARTICLE_FOR_USER = gql`
       replyRequests {
         ...ReplyRequestInfoForUser
       }
+      articleReplies {
+        ...ArticleReplyForUser
+      }
     }
   }
   ${ReplyRequestReason.fragments.ReplyRequestInfoForUser}
+  ${CurrentReplies.fragments.ArticleReplyForUser}
 `;
 
 function ArticlePage({ query }) {
@@ -66,6 +75,8 @@ function ArticlePage({ query }) {
     () => merge({}, data?.GetArticle, dataForUser?.GetArticle),
     [data, dataForUser]
   );
+
+  const replySectionRef = useRef(null);
 
   useEffect(() => {
     loadArticleForUser();
@@ -114,6 +125,11 @@ function ArticlePage({ query }) {
             />
           ))}
         </footer>
+      </section>
+
+      <section className="section" id="current-replies" ref={replySectionRef}>
+        <h2>{t`Replies to the message`}</h2>
+        <CurrentReplies articleReplies={article.articleReplies} />
       </section>
 
       <style jsx>{`

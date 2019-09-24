@@ -138,7 +138,7 @@ function Hyperlinks({ hyperlinks = [] }) {
 }
 
 Hyperlinks.fragments = {
-  hyperlink: gql`
+  HyperlinkData: gql`
     fragment HyperlinkData on Hyperlink {
       title
       url

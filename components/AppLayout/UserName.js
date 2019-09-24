@@ -20,7 +20,6 @@ const USER_QUERY = gql`
     GetUser {
       id
       name
-      avatarUrl
       level
       points {
         total
