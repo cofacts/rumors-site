@@ -1,3 +1,4 @@
+import { t } from 'ttag';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,7 +10,7 @@ function LoginModal({ onClose }) {
   );
   return (
     <Dialog open onClose={onClose}>
-      <DialogTitle>Login / Signup</DialogTitle>
+      <DialogTitle>{t`Login / Signup`}</DialogTitle>
       <DialogContent>
         <a
           href={`${process.env.API_URL}/login/facebook?redirect=${redirectUrl}`}
