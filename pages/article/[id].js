@@ -140,7 +140,10 @@ function ArticlePage({ query }) {
 
       <section className="section">
         <h2>{t`Add a new reply`}</h2>
-        <NewReplySection onSubmit={handleNewReplySubmit} />
+        <NewReplySection
+          articleId={article.id}
+          onSubmissionComplete={handleNewReplySubmit}
+        />
       </section>
 
       <style jsx>{`

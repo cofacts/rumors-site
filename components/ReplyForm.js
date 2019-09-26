@@ -41,6 +41,19 @@ export default class ReplyForm extends React.PureComponent {
     });
   }
 
+  /**
+   * Clears form and localStorage. Invoked by ReplyForm's parent component.
+   *
+   * @public
+   */
+  clear = () => {
+    delete localStorage.replyType;
+    delete localStorage.reference;
+    delete localStorage.text;
+
+    this.setState(formInitialState);
+  };
+
   set(key, value) {
     this.setState({ [key]: value });
 
@@ -68,13 +81,6 @@ export default class ReplyForm extends React.PureComponent {
 
     if (disabled) return;
     onSubmit({ type: replyType, reference, text });
-
-    // Clean up localStorage
-    delete localStorage.replyType;
-    delete localStorage.reference;
-    delete localStorage.text;
-
-    this.setState(formInitialState);
   };
 
   handleSuggestionAdd = e => {
