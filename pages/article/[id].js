@@ -1,8 +1,7 @@
 import gql from 'graphql-tag';
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { t } from 'ttag';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
-import merge from 'lodash/merge';
 import Head from 'next/head';
 
 import withData from 'lib/apollo';
@@ -65,17 +64,10 @@ function ArticlePage({ query }) {
   const { data, loading } = useQuery(LOAD_ARTICLE, {
     variables: articleVars,
   });
-  const [loadArticleForUser, { data: dataForUser }] = useLazyQuery(
-    LOAD_ARTICLE_FOR_USER,
-    {
-      variables: articleVars,
-    }
-  );
-
-  const article = useMemo(
-    () => merge({}, data?.GetArticle, dataForUser?.GetArticle),
-    [data, dataForUser]
-  );
+  const [loadArticleForUser] = useLazyQuery(LOAD_ARTICLE_FOR_USER, {
+    variables: articleVars,
+    fetchPolicy: 'network-only',
+  });
 
   const replySectionRef = useRef(null);
 
@@ -92,7 +84,9 @@ function ArticlePage({ query }) {
     return <AppLayout>Loading...</AppLayout>;
   }
 
-  if (!data?.GetArticle) {
+  const article = data?.GetArticle;
+
+  if (!article) {
     return <AppLayout>Article not found.</AppLayout>;
   }
 

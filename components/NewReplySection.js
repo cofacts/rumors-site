@@ -35,7 +35,7 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
   const currentUser = useCurrentUser();
   const replyFormRef = useRef();
   const [createReply, { loading: creatingReply }] = useMutation(CREATE_REPLY, {
-    refetchQueries: ['LoadArticlePage', 'LoadArticlePageForUser'],
+    refetchQueries: ['LoadArticlePage'],
     awaitRefetchQueries: true,
     onCompleted(data) {
       onSubmissionComplete(data.CreateReply.id); // Notify upper component of submission
