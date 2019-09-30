@@ -5,6 +5,7 @@ import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 
 import withData from 'lib/apollo';
+import useCurrentUser from 'lib/useCurrentUser';
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleInfo from 'components/ArticleInfo';
@@ -64,16 +65,24 @@ function ArticlePage({ query }) {
   const { data, loading } = useQuery(LOAD_ARTICLE, {
     variables: articleVars,
   });
-  const [loadArticleForUser] = useLazyQuery(LOAD_ARTICLE_FOR_USER, {
+  const [
+    loadArticleForUser,
+    { refetch: refetchArticleForUser, called: articleForUserCalled },
+  ] = useLazyQuery(LOAD_ARTICLE_FOR_USER, {
     variables: articleVars,
     fetchPolicy: 'network-only',
   });
+  const currentUser = useCurrentUser();
 
   const replySectionRef = useRef(null);
 
   useEffect(() => {
-    loadArticleForUser();
-  }, []);
+    if (!articleForUserCalled) {
+      loadArticleForUser();
+    } else {
+      refetchArticleForUser();
+    }
+  }, [currentUser]);
 
   const handleNewReplySubmit = useCallback(() => {
     if (!replySectionRef.current) return;
