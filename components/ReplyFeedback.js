@@ -21,16 +21,24 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { feedbackStyle } from './ReplyFeedback.styles';
 import useCurrentUser from 'lib/useCurrentUser';
 
-const ArticleReplyFeedbackData = gql`
-  fragment ArticleReplyFeedbackData on ArticleReply {
+// Subset of fields that needs to be updated after login
+//
+const ArticleReplyFeedbackForUser = gql`
+  fragment ArticleReplyFeedbackForUser on ArticleReply {
     articleId
     replyId
+    ownVote
+  }
+`;
+
+const ArticleReplyFeedbackData = gql`
+  fragment ArticleReplyFeedbackData on ArticleReply {
+    ...ArticleReplyFeedbackForUser
     user {
       id
     }
     positiveFeedbackCount
     negativeFeedbackCount
-    ownVote
     feedbacks {
       id
       user {
@@ -39,14 +47,7 @@ const ArticleReplyFeedbackData = gql`
       comment
     }
   }
-`;
-
-const ArticleReplyFeedbackForUser = gql`
-  fragment ArticleReplyFeedbackForUser on ArticleReply {
-    articleId
-    replyId
-    ownVote
-  }
+  ${ArticleReplyFeedbackForUser}
 `;
 
 const VOTE_REPLY = gql`
@@ -63,11 +64,9 @@ const VOTE_REPLY = gql`
       comment: $comment
     ) {
       ...ArticleReplyFeedbackData
-      ...ArticleReplyFeedbackForUser
     }
   }
   ${ArticleReplyFeedbackData}
-  ${ArticleReplyFeedbackForUser}
 `;
 
 function ReplyFeedback({

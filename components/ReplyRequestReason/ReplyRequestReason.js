@@ -9,20 +9,23 @@ import PropTypes from 'prop-types';
 const UPVOTE = 'UPVOTE';
 const DOWNVOTE = 'DOWNVOTE';
 
-const ReplyRequestInfo = gql`
-  fragment ReplyRequestInfo on ReplyRequest {
-    id
-    reason
-    positiveFeedbackCount
-    negativeFeedbackCount
-  }
-`;
-
+// Subset of fields that needs to be updated after login
+//
 const ReplyRequestInfoForUser = gql`
   fragment ReplyRequestInfoForUser on ReplyRequest {
     id
     ownVote
   }
+`;
+
+const ReplyRequestInfo = gql`
+  fragment ReplyRequestInfo on ReplyRequest {
+    ...ReplyRequestInfoForUser
+    reason
+    positiveFeedbackCount
+    negativeFeedbackCount
+  }
+  ${ReplyRequestInfoForUser}
 `;
 
 const UPDATE_VOTE = gql`
@@ -32,11 +35,9 @@ const UPDATE_VOTE = gql`
       vote: $vote
     ) {
       ...ReplyRequestInfo
-      ...ReplyRequestInfoForUser
     }
   }
   ${ReplyRequestInfo}
-  ${ReplyRequestInfoForUser}
 `;
 
 const AuthorArticleLink = ({ articleId }) => (
@@ -187,12 +188,12 @@ function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
           opacity: 1;
         }
         .btn-up-vote::after {
-          content: '覺得合理';
+          content: ${t`The reason is reasonable`};
           bottom: 100%;
           transform: translateY(100%);
         }
         .btn-down-vote::after {
-          content: '覺得不合理';
+          content: ${t`The reason is not reasonable`};
           top: 100%;
           transform: translateY(-100%);
         }

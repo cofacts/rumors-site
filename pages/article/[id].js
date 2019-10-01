@@ -1,17 +1,18 @@
 import gql from 'graphql-tag';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { t } from 'ttag';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
-import merge from 'lodash/merge';
 import Head from 'next/head';
 
 import withData from 'lib/apollo';
+import useCurrentUser from 'lib/useCurrentUser';
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleInfo from 'components/ArticleInfo';
 import Trendline from 'components/Trendline';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
+import NewReplySection from 'components/NewReplySection';
 
 import { nl2br, linkify } from 'lib/text';
 
@@ -64,29 +65,37 @@ function ArticlePage({ query }) {
   const { data, loading } = useQuery(LOAD_ARTICLE, {
     variables: articleVars,
   });
-  const [loadArticleForUser, { data: dataForUser }] = useLazyQuery(
-    LOAD_ARTICLE_FOR_USER,
-    {
-      variables: articleVars,
-    }
-  );
-
-  const article = useMemo(
-    () => merge({}, data?.GetArticle, dataForUser?.GetArticle),
-    [data, dataForUser]
-  );
+  const [
+    loadArticleForUser,
+    { refetch: refetchArticleForUser, called: articleForUserCalled },
+  ] = useLazyQuery(LOAD_ARTICLE_FOR_USER, {
+    variables: articleVars,
+    fetchPolicy: 'network-only',
+  });
+  const currentUser = useCurrentUser();
 
   const replySectionRef = useRef(null);
 
   useEffect(() => {
-    loadArticleForUser();
+    if (!articleForUserCalled) {
+      loadArticleForUser();
+    } else {
+      refetchArticleForUser();
+    }
+  }, [currentUser]);
+
+  const handleNewReplySubmit = useCallback(() => {
+    if (!replySectionRef.current) return;
+    replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   if (loading) {
     return <AppLayout>Loading...</AppLayout>;
   }
 
-  if (!data?.GetArticle) {
+  const article = data?.GetArticle;
+
+  if (!article) {
     return <AppLayout>Article not found.</AppLayout>;
   }
 
@@ -130,6 +139,14 @@ function ArticlePage({ query }) {
       <section className="section" id="current-replies" ref={replySectionRef}>
         <h2>{t`Replies to the message`}</h2>
         <CurrentReplies articleReplies={article.articleReplies} />
+      </section>
+
+      <section className="section">
+        <h2>{t`Add a new reply`}</h2>
+        <NewReplySection
+          articleId={article.id}
+          onSubmissionComplete={handleNewReplySubmit}
+        />
       </section>
 
       <style jsx>{`
