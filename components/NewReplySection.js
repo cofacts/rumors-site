@@ -10,6 +10,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
+import RelatedReplies from './RelatedReplies';
 
 const CREATE_REPLY = gql`
   mutation CreateReplyInArticlePage(
@@ -29,7 +30,12 @@ const CREATE_REPLY = gql`
   }
 `;
 
-function NewReplySection({ articleId, onSubmissionComplete }) {
+function NewReplySection({
+  articleId,
+  existingReplyIds,
+  relatedArticles,
+  onSubmissionComplete,
+}) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [flashMessage, setFlashMessage] = useState(0);
   const currentUser = useCurrentUser();
@@ -58,6 +64,9 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
     [createReply]
   );
 
+  // TODO
+  const handleConnect = () => {};
+
   if (!currentUser) {
     return <p>{t`Please login first.`}</p>;
   }
@@ -81,6 +90,13 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
           ref={replyFormRef}
           onSubmit={handleSubmit}
           disabled={creatingReply}
+        />
+      )}
+      {selectedTab === 1 && (
+        <RelatedReplies
+          onConnect={handleConnect}
+          relatedArticles={relatedArticles}
+          existingReplyIds={existingReplyIds}
         />
       )}
       <Snackbar

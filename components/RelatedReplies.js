@@ -1,35 +1,54 @@
 import React from 'react';
-import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
-import moment from 'moment';
+import gql from 'graphql-tag';
+
+import { TYPE_NAME, TYPE_DESC } from 'constants/replyType';
 import ExpandableText from './ExpandableText';
-import { linkify, nl2br } from '../util/text';
-import { Link } from '../routes';
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import { linkify, nl2br } from 'lib/text';
+import Link from 'next/link';
 import { sectionStyle } from './ReplyConnection.styles';
+
+const RelatedReplyData = gql`
+  fragment RelatedReplyData on Article {
+    relatedArticles(filter: { replyCount: { GT: 0 } }) {
+      edges {
+        node {
+          id
+          text
+          articleReplies {
+            articleId
+            replyId
+            reply {
+              id
+              createdAt
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 /**
  * @param {Map} props.article - {id, text} of the article text
  * @param {Map} props.reply - {id, type, createdAt, text} of the reply
  */
-function RelatedReplyItem({ article, reply, similarity, onConnect }) {
-  const articleId = article.get('id');
-  const articleText = article.get('text');
-  const createdAt = moment(reply.get('createdAt'));
-  const similarityPercentage = Math.round(similarity * 100);
+function RelatedReplyItem({ article, reply, onConnect }) {
+  const articleId = article.id;
+  const articleText = article.text;
+  const createdAt = new Date(reply.createdAt);
   return (
     <li className="root">
       <header className="section">
         <Link route="article" params={{ id: articleId }}>
           <a>相關訊息</a>
-        </Link>被標示為：<strong title={TYPE_DESC[reply.get('type')]}>
-          {TYPE_NAME[reply.get('type')]}
-        </strong>
+        </Link>
+        被標示為：
+        <strong title={TYPE_DESC[reply.type]}>{TYPE_NAME[reply.type]}</strong>
       </header>
       <section className="section">
-        <h3>
-          相關訊息原文<span className="similarity">
-            （關聯度 ：<strong>{similarityPercentage} %</strong>）
-          </span>
-        </h3>
+        <h3>相關訊息原文</h3>
         <blockquote>
           <ExpandableText wordCount={40}>
             {/*
@@ -42,13 +61,14 @@ function RelatedReplyItem({ article, reply, similarity, onConnect }) {
       </section>
       <section className="section">
         <h3>回應</h3>
-        <ExpandableText>{nl2br(linkify(reply.get('text')))}</ExpandableText>
+        <ExpandableText>{nl2br(linkify(reply.text))}</ExpandableText>
       </section>
       <footer>
-        <Link route="reply" params={{ id: reply.get('id') }}>
-          <a title={createdAt.format('lll')}>{createdAt.fromNow()}</a>
+        <Link route="reply" params={{ id: reply.id }}>
+          <a title={format(createdAt)}>{formatDistanceToNow(createdAt)}</a>
         </Link>
-        ・<button type="button" value={reply.get('id')} onClick={onConnect}>
+        ・
+        <button type="button" value={reply.id} onClick={onConnect}>
           將這份回應加進此文章的回應
         </button>
       </footer>
@@ -81,28 +101,19 @@ function RelatedReplyItem({ article, reply, similarity, onConnect }) {
   );
 }
 
-export default function RelatedReplies({
-  relatedReplies,
-  getArticleSimilarity,
-  onConnect,
-}) {
-  if (!relatedReplies.size) {
+function RelatedReplies({ relatedArticleReplies = [], onConnect }) {
+  if (!relatedArticleReplies.length) {
     return <p>目前沒有相關的回應</p>;
   }
 
   return (
     <ul className="items">
-      {relatedReplies.map(articleAndReply => {
-        const article = articleAndReply.get('article');
-        const reply = articleAndReply.get('reply');
-
-        const similarity = getArticleSimilarity(article.get('text'));
+      {relatedArticleReplies.map(({ article, reply }) => {
         return (
           <RelatedReplyItem
-            key={`${article.get('id')}/${reply.get('id')}`}
+            key={`${article.id}/${reply.id}`}
             article={article}
             reply={reply}
-            similarity={similarity}
             onConnect={onConnect}
           />
         );
@@ -116,3 +127,9 @@ export default function RelatedReplies({
     </ul>
   );
 }
+
+RelatedReplies.fragments = {
+  RelatedReplyData,
+};
+
+export default RelatedReplies;
