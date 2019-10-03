@@ -16,6 +16,7 @@ const RelatedArticleReplyData = gql`
       id
       createdAt
       type
+      text
     }
     article {
       id
@@ -35,7 +36,7 @@ function RelatedReplyItem({ article, reply, onConnect }) {
   return (
     <li className="root">
       <header className="section">
-        <Link route="article" params={{ id: articleId }}>
+        <Link href="/article/[id]" as={`/article/${articleId}`}>
           <a>相關訊息</a>
         </Link>
         被標示為：
@@ -58,7 +59,7 @@ function RelatedReplyItem({ article, reply, onConnect }) {
         <ExpandableText>{nl2br(linkify(reply.text))}</ExpandableText>
       </section>
       <footer>
-        <Link route="reply" params={{ id: reply.id }}>
+        <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
           <a title={format(createdAt)}>{formatDistanceToNow(createdAt)}</a>
         </Link>
         ・
