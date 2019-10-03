@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
@@ -11,6 +11,22 @@ import Snackbar from '@material-ui/core/Snackbar';
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
 import RelatedReplies from './RelatedReplies';
+
+const RelatedArticleData = gql`
+  fragment RelatedArticleData on Article {
+    relatedArticles(filter: { replyCount: { GT: 0 } }) {
+      edges {
+        node {
+          id
+          articleReplies {
+            ...RelatedArticleReplyData
+          }
+        }
+      }
+    }
+  }
+  ${RelatedReplies.fragments.RelatedArticleReplyData}
+`;
 
 const CREATE_REPLY = gql`
   mutation CreateReplyInArticlePage(
@@ -64,6 +80,33 @@ function NewReplySection({
     [createReply]
   );
 
+  // Convert relatedArticles field into list of article replies with replyIds not in
+  // existingReplyIds, and their replyIds are unique among each item.
+  //
+  // Sorted by article relevance.
+  //
+  const relatedArticleReplies = useMemo(() => {
+    const existingReplyIdMap = (existingReplyIds || []).reduce(
+      (map, replyId) => {
+        map[replyId] = true;
+        return map;
+      },
+      {}
+    );
+
+    const articleReplies = [];
+    (relatedArticles.edges || []).forEach(({ node }) => {
+      node.articleReplies.forEach(articleReply => {
+        if (existingReplyIdMap[articleReply.replyId]) return;
+
+        articleReplies.push(articleReply);
+        existingReplyIdMap[articleReply.replyId] = true;
+      });
+    });
+
+    return articleReplies;
+  }, [relatedArticles, existingReplyIds]);
+
   // TODO
   const handleConnect = () => {};
 
@@ -95,7 +138,7 @@ function NewReplySection({
       {selectedTab === 1 && (
         <RelatedReplies
           onConnect={handleConnect}
-          relatedArticles={relatedArticles}
+          relatedArticleReplies={relatedArticleReplies}
           existingReplyIds={existingReplyIds}
         />
       )}
@@ -107,5 +150,9 @@ function NewReplySection({
     </>
   );
 }
+
+NewReplySection.fragments = {
+  RelatedArticleData,
+};
 
 export default NewReplySection;

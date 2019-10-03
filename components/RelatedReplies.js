@@ -8,24 +8,18 @@ import { linkify, nl2br } from 'lib/text';
 import Link from 'next/link';
 import { sectionStyle } from './ReplyConnection.styles';
 
-const RelatedReplyData = gql`
-  fragment RelatedReplyData on Article {
-    relatedArticles(filter: { replyCount: { GT: 0 } }) {
-      edges {
-        node {
-          id
-          text
-          articleReplies {
-            articleId
-            replyId
-            reply {
-              id
-              createdAt
-              type
-            }
-          }
-        }
-      }
+const RelatedArticleReplyData = gql`
+  fragment RelatedReplyData on ArticleReply {
+    articleId
+    replyId
+    reply {
+      id
+      createdAt
+      type
+    }
+    article {
+      id
+      text
     }
   }
 `;
@@ -129,7 +123,7 @@ function RelatedReplies({ relatedArticleReplies = [], onConnect }) {
 }
 
 RelatedReplies.fragments = {
-  RelatedReplyData,
+  RelatedArticleReplyData,
 };
 
 export default RelatedReplies;
