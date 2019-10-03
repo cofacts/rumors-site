@@ -140,9 +140,8 @@ function NewReplySection({
       )}
       {selectedTab === 1 && (
         <RelatedReplies
-          onConnect={handleConnect}
           relatedArticleReplies={relatedArticleReplies}
-          existingReplyIds={existingReplyIds}
+          onConnect={handleConnect}
         />
       )}
       <Snackbar
