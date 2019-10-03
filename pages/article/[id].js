@@ -36,6 +36,7 @@ const LOAD_ARTICLE = gql`
       articleReplies {
         ...CurrentRepliesData
       }
+      ...RelatedArticleData
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}

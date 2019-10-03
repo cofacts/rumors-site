@@ -120,7 +120,10 @@ function NewReplySection({
         <Tab label={t`New Reply`} />
         <Tab
           label={
-            <Badge color="secondary" badgeContent={4}>
+            <Badge
+              color="secondary"
+              badgeContent={relatedArticleReplies.length}
+            >
               {t`Reuse existing reply`}
             </Badge>
           }

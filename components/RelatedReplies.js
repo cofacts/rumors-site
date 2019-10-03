@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { sectionStyle } from './ReplyConnection.styles';
 
 const RelatedArticleReplyData = gql`
-  fragment RelatedReplyData on ArticleReply {
+  fragment RelatedArticleReplyData on ArticleReply {
     articleId
     replyId
     reply {
