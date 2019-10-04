@@ -46,6 +46,14 @@ const CREATE_REPLY = gql`
   }
 `;
 
+const CONNECT_REPLY = gql`
+  mutation ConnectReplyInArticlePage($articleId: String!, $replyId: String!) {
+    CreateArticleReply(articleId: $articleId, replyId: $replyId) {
+      articleId
+    }
+  }
+`;
+
 function NewReplySection({
   articleId,
   existingReplyIds,
@@ -59,8 +67,8 @@ function NewReplySection({
   const [createReply, { loading: creatingReply }] = useMutation(CREATE_REPLY, {
     refetchQueries: ['LoadArticlePage'],
     awaitRefetchQueries: true,
-    onCompleted(data) {
-      onSubmissionComplete(data.CreateReply.id); // Notify upper component of submission
+    onCompleted() {
+      onSubmissionComplete(); // Notify upper component of submission
       if (replyFormRef.current) {
         replyFormRef.current.clear();
       }
@@ -71,6 +79,21 @@ function NewReplySection({
       setFlashMessage(error.toString());
     },
   });
+  const [connectReply, { loading: connectingReply }] = useMutation(
+    CONNECT_REPLY,
+    {
+      refetchQueries: ['LoadArticlePage'],
+      awaitRefetchQueries: true,
+      onCompleted() {
+        onSubmissionComplete(); // Notify upper component of submission
+        setFlashMessage(t`Your have attached the reply to this message.`);
+      },
+      onError(error) {
+        console.error(error);
+        setFlashMessage(error.toString());
+      },
+    }
+  );
 
   const handleTabChange = useCallback((e, v) => setSelectedTab(v), []);
   const handleSubmit = useCallback(
@@ -107,8 +130,9 @@ function NewReplySection({
     return articleReplies;
   }, [relatedArticles, existingReplyIds]);
 
-  // TODO
-  const handleConnect = () => {};
+  const handleConnect = replyId => {
+    connectReply({ variables: { articleId, replyId } });
+  };
 
   if (!currentUser) {
     return <p>{t`Please login first.`}</p>;
@@ -142,6 +166,7 @@ function NewReplySection({
         <RelatedReplies
           relatedArticleReplies={relatedArticleReplies}
           onConnect={handleConnect}
+          disabled={connectingReply}
         />
       )}
       <Snackbar

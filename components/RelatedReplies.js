@@ -26,17 +26,17 @@ const RelatedArticleReplyData = gql`
 `;
 
 /**
- * @param {Map} props.article - {id, text} of the article text
- * @param {Map} props.reply - {id, type, createdAt, text} of the reply
+ * @param {object} props.article - {id, text} of the article text
+ * @param {object} props.reply - {id, type, createdAt, text} of the reply
+ * @param {function} props.onConnect - (replyId) => undefined
+ * @param {boolean} props.disabled - if we should disable the connect button
  */
-function RelatedReplyItem({ article, reply, onConnect }) {
-  const articleId = article.id;
-  const articleText = article.text;
+function RelatedReplyItem({ article, reply, onConnect, disabled }) {
   const createdAt = new Date(reply.createdAt);
   return (
     <li className="root">
       <header className="section">
-        <Link href="/article/[id]" as={`/article/${articleId}`}>
+        <Link href="/article/[id]" as={`/article/${article.id}`}>
           <a>相關訊息</a>
         </Link>
         被標示為：
@@ -50,7 +50,7 @@ function RelatedReplyItem({ article, reply, onConnect }) {
               Don't need nl2br here, because the user just need a glimpse on the content.
               Line breaks won't help the users.
             */}
-            {linkify(articleText)}
+            {linkify(article.text)}
           </ExpandableText>
         </blockquote>
       </section>
@@ -63,7 +63,11 @@ function RelatedReplyItem({ article, reply, onConnect }) {
           <a title={format(createdAt)}>{formatDistanceToNow(createdAt)}</a>
         </Link>
         ・
-        <button type="button" value={reply.id} onClick={onConnect}>
+        <button
+          type="button"
+          onClick={() => onConnect(reply.id)}
+          disabled={disabled}
+        >
           將這份回應加進此文章的回應
         </button>
       </footer>
@@ -96,7 +100,12 @@ function RelatedReplyItem({ article, reply, onConnect }) {
   );
 }
 
-function RelatedReplies({ relatedArticleReplies = [], onConnect }) {
+function RelatedReplies({
+  articleId = '',
+  relatedArticleReplies = [],
+  onConnect,
+  disabled = false,
+}) {
   if (!relatedArticleReplies.length) {
     return <p>目前沒有相關的回應</p>;
   }
@@ -107,9 +116,11 @@ function RelatedReplies({ relatedArticleReplies = [], onConnect }) {
         return (
           <RelatedReplyItem
             key={`${article.id}/${reply.id}`}
+            targetArticleId={articleId}
             article={article}
             reply={reply}
             onConnect={onConnect}
+            disabled={disabled}
           />
         );
       })}
