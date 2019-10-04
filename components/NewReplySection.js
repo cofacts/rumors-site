@@ -11,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
 import RelatedReplies from './RelatedReplies';
+import ReplySearch from './ReplySearch';
 
 const RelatedArticleData = gql`
   fragment RelatedArticleData on Article {
@@ -168,6 +169,9 @@ function NewReplySection({
           onConnect={handleConnect}
           disabled={connectingReply}
         />
+      )}
+      {selectedTab === 2 && (
+        <ReplySearch onConnect={handleConnect} disabled={connectingReply} />
       )}
       <Snackbar
         open={!!flashMessage}

@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import stringSimilarity from 'string-similarity';
 import RelatedReplies from '../RelatedReplies';
 import SearchArticleItem from './SearchArticleItem.js';
 
@@ -28,7 +27,44 @@ const SearchArticles = ({ onConnect, searchArticles }) => {
   );
 };
 
-export default class ReplySearch extends PureComponent {
+function ReplySearch() {
+  return (
+    <div>
+      <label htmlFor="replySeach">
+        搜尋相關回應：
+        <input id="replySeach" type="search" onKeyUp={this.handleSearch} />
+      </label>
+
+      {articles.size || replies.size ? (
+        <Fragment>
+          {this.renderTabMenu()}
+          <div key="tab-content" className="tab-content">
+            {this.renderSearchReplyTab()}
+          </div>
+        </Fragment>
+      ) : (
+        search && (
+          <div className="search-none">{`- 找無${search}相關的回覆與文章 -`}</div>
+        )
+      )}
+
+      <style jsx>{`
+        .tab-content {
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-top: 0;
+        }
+        .search-none {
+          margin-top: 20px;
+          color: gray;
+          text-align: center;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+class ReplySearch extends PureComponent {
   state = {
     tab: false, // reply || article
     search: '',
@@ -109,8 +145,7 @@ export default class ReplySearch extends PureComponent {
         return (
           <RelatedReplies
             onConnect={onConnect}
-            relatedReplies={replies}
-            getArticleSimilarity={getArticleSimilarity}
+            relatedArticleReplies={replies}
           />
         );
 
@@ -164,10 +199,3 @@ export default class ReplySearch extends PureComponent {
     );
   }
 }
-
-ReplySearch.propTypes = {
-  onConnect: PropTypes.func.isRequired, // get replyId by event.target.value for reply connection
-  onSearch: PropTypes.func.isRequired,
-  articles: PropTypes.object.isRequired,
-  replies: PropTypes.object.isRequired,
-};
