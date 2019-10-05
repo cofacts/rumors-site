@@ -7,8 +7,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 
-import useArticleRepliesInList from 'lib/useArticleRepliesInList';
-import RelatedReplies from '../RelatedReplies';
+import RelatedReplies, { getDedupedArticleReplies } from '../RelatedReplies';
 import SearchArticleItem from './SearchArticleItem.js';
 import { Typography } from '@material-ui/core';
 
@@ -109,7 +108,7 @@ function ReplySearch({
     loadSearchResults({ variables: { query } });
   };
 
-  const articleReplies = useArticleRepliesInList(
+  const articleReplies = getDedupedArticleReplies(
     data?.ListReplies,
     existingReplyIds
   );

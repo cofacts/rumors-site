@@ -8,10 +8,9 @@ import Tab from '@material-ui/core/Tab';
 import Badge from '@material-ui/core/Badge';
 import Snackbar from '@material-ui/core/Snackbar';
 
-import useArticleRepliesInList from 'lib/useArticleRepliesInList';
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
-import RelatedReplies from './RelatedReplies';
+import RelatedReplies, { getDedupedArticleReplies } from './RelatedReplies';
 import ReplySearch from './ReplySearch';
 
 const RelatedArticleData = gql`
@@ -105,7 +104,7 @@ function NewReplySection({
     [createReply]
   );
 
-  const relatedArticleReplies = useArticleRepliesInList(
+  const relatedArticleReplies = getDedupedArticleReplies(
     relatedArticles,
     existingReplyIds
   );
