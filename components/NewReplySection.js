@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useMemo } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Badge from '@material-ui/core/Badge';
 import Snackbar from '@material-ui/core/Snackbar';
 
+import useArticleRepliesInList from 'lib/useArticleRepliesInList';
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
 import RelatedReplies from './RelatedReplies';
@@ -104,32 +105,10 @@ function NewReplySection({
     [createReply]
   );
 
-  // Convert relatedArticles field into list of article replies with replyIds not in
-  // existingReplyIds, and their replyIds are unique among each item.
-  //
-  // Sorted by article relevance.
-  //
-  const relatedArticleReplies = useMemo(() => {
-    const existingReplyIdMap = (existingReplyIds || []).reduce(
-      (map, replyId) => {
-        map[replyId] = true;
-        return map;
-      },
-      {}
-    );
-
-    const articleReplies = [];
-    (relatedArticles.edges || []).forEach(({ node }) => {
-      node.articleReplies.forEach(articleReply => {
-        if (existingReplyIdMap[articleReply.replyId]) return;
-
-        articleReplies.push(articleReply);
-        existingReplyIdMap[articleReply.replyId] = true;
-      });
-    });
-
-    return articleReplies;
-  }, [relatedArticles, existingReplyIds]);
+  const relatedArticleReplies = useArticleRepliesInList(
+    relatedArticles,
+    existingReplyIds
+  );
 
   const handleConnect = replyId => {
     connectReply({ variables: { articleId, replyId } });
@@ -171,7 +150,11 @@ function NewReplySection({
         />
       )}
       {selectedTab === 2 && (
-        <ReplySearch onConnect={handleConnect} disabled={connectingReply} />
+        <ReplySearch
+          existingReplyIds={existingReplyIds}
+          onConnect={handleConnect}
+          disabled={connectingReply}
+        />
       )}
       <Snackbar
         open={!!flashMessage}
