@@ -26,10 +26,7 @@ const SEARCH = gql`
           type
           createdAt
           articleReplies {
-            article {
-              id
-              text
-            }
+            ...RelatedArticleReplyData
           }
         }
       }
@@ -62,6 +59,7 @@ const SEARCH = gql`
       }
     }
   }
+  {...RelatedReplies.fragments.RelatedArticleReplyData}
 `;
 
 const SearchArticles = ({ onConnect, searchArticles }) => {
