@@ -1,9 +1,69 @@
-import React, { PureComponent, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useLazyQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import { t } from 'ttag';
+
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
+
+import useArticleRepliesInList from 'lib/useArticleRepliesInList';
 import RelatedReplies from '../RelatedReplies';
 import SearchArticleItem from './SearchArticleItem.js';
+import { Typography } from '@material-ui/core';
 
-import { tabMenuStyle } from '../../pages/article.styles';
+const SEARCH = gql`
+  query SearchArticleAndReply($query: String!) {
+    ListReplies(
+      filter: { moreLikeThis: { like: $query, minimumShouldMatch: "0" } }
+      orderBy: { _score: DESC }
+      first: 25
+    ) {
+      edges {
+        cursor
+        node {
+          id
+          text
+          type
+          createdAt
+          articleReplies {
+            article {
+              id
+              text
+            }
+          }
+        }
+      }
+    }
+    ListArticles(
+      filter: {
+        moreLikeThis: { like: $query, minimumShouldMatch: "0" }
+        replyCount: { GT: 1 }
+      }
+      orderBy: { _score: DESC }
+      first: 25
+    ) {
+      edges {
+        node {
+          id
+          text
+          replyCount
+          createdAt
+          articleReplies {
+            articleId
+            replyId
+            reply {
+              id
+              text
+              createdAt
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 const SearchArticles = ({ onConnect, searchArticles }) => {
   return (
@@ -27,175 +87,105 @@ const SearchArticles = ({ onConnect, searchArticles }) => {
   );
 };
 
-function ReplySearch() {
-  return (
-    <div>
-      <label htmlFor="replySeach">
-        搜尋相關回應：
-        <input id="replySeach" type="search" onKeyUp={this.handleSearch} />
-      </label>
+/**
+ * @param {function} props.onConnect - Connect reply handler. (replyId) => undefined
+ * @param {boolean} props.disabled - Disable all connect buttons if true
+ * @param {string[]} props.existingReplyIds
+ */
+function ReplySearch({
+  onConnect = () => {},
+  disabled = false,
+  existingReplyIds = [],
+}) {
+  const [tab, setTab] = useState('reply'); // reply || article
+  const [
+    loadSearchResults,
+    { loading, data, variables, called },
+  ] = useLazyQuery(SEARCH);
 
-      {articles.size || replies.size ? (
-        <Fragment>
-          {this.renderTabMenu()}
-          <div key="tab-content" className="tab-content">
-            {this.renderSearchReplyTab()}
-          </div>
-        </Fragment>
-      ) : (
-        search && (
-          <div className="search-none">{`- 找無${search}相關的回覆與文章 -`}</div>
-        )
-      )}
+  const handleSearch = e => {
+    e.preventDefault;
+    const query = e.target.replySearch.value;
+    loadSearchResults({ variables: { query } });
+  };
+
+  const articleReplies = useArticleRepliesInList(
+    data?.ListReplies,
+    existingReplyIds
+  );
+
+  const articleCount = data?.ListArticles.edges.length || 0;
+
+  let $result = null;
+  if (loading) {
+    $result = (
+      <p>{t`Searching for messages and replies containing “${variables.query}”...`}</p>
+    );
+  } else if (articleReplies.length > 0 || articleCount > 0) {
+    $result = (
+      <>
+        <ButtonGroup size="small" variant="outlined">
+          <Button disabled={tab === 'reply'} onClick={() => setTab('reply')}>
+            <Badge
+              color="primary"
+              variant="dot"
+              invisible={articleReplies.length === 0}
+            >
+              <Typography>{t`Replies`}</Typography>
+            </Badge>
+          </Button>
+          <Button
+            disabled={tab === 'article'}
+            onClick={() => setTab('article')}
+          >
+            <Badge color="primary" variant="dot" invisible={articleCount === 0}>
+              <Typography>{t`Reported messages`}</Typography>
+            </Badge>
+          </Button>
+        </ButtonGroup>
+        {tab === 'article' && (
+          <SearchArticles
+            onConnect={onConnect}
+            searchArticles={data.ListArticles.edges}
+          />
+        )}
+
+        {tab === 'reply' && (
+          <RelatedReplies
+            onConnect={onConnect}
+            relatedArticleReplies={articleReplies}
+            disabled={disabled}
+          />
+        )}
+      </>
+    );
+  } else if (called) {
+    $result = (
+      <div className="search-none">{`- 找無${variables.query}相關的回覆與文章 -`}</div>
+    );
+  }
+
+  return (
+    <>
+      <form onSubmit={handleSearch}>
+        <label>
+          搜尋相關回應：
+          <input name="replySeach" type="search" />
+        </label>
+        <button type="submit">{t`Search`}</button>
+      </form>
+
+      {$result}
 
       <style jsx>{`
-        .tab-content {
-          padding: 20px;
-          border: 1px solid #ccc;
-          border-top: 0;
-        }
         .search-none {
           margin-top: 20px;
           color: gray;
           text-align: center;
         }
       `}</style>
-    </div>
+    </>
   );
 }
 
-class ReplySearch extends PureComponent {
-  state = {
-    tab: false, // reply || article
-    search: '',
-  };
-
-  handleSearch = event => {
-    const {
-      target: { value },
-      key,
-    } = event;
-
-    if (key === 'Enter') {
-      this.setState({ search: value });
-      this.props.onSearch(event);
-    }
-  };
-
-  handleTabChange = tab => () => {
-    this.setState({ tab });
-  };
-
-  renderTabMenu = () => {
-    const { articles, replies } = this.props;
-    const { tab } = this.state;
-    const replisCount = replies.size;
-    const articlesCount = articles.size;
-
-    return (
-      <ul className="tabs">
-        <li
-          onClick={this.handleTabChange('reply')}
-          className={`tab ${tab === 'reply' ? 'active' : ''} ${
-            replisCount === 0 ? 'disabled' : ''
-          }`}
-        >
-          {replisCount === 0 ? (
-            '查無相關文章'
-          ) : (
-            <span>
-              使用相關回應 <span className="badge">{replisCount}</span>
-            </span>
-          )}
-        </li>
-        <li
-          onClick={this.handleTabChange('article')}
-          className={`tab ${tab === 'article' ? 'active' : ''} ${
-            articlesCount === 0 ? 'disabled' : ''
-          }`}
-        >
-          {articlesCount === 0 ? (
-            '查無相關文章'
-          ) : (
-            <span>
-              瀏覽相關文章 <span className="badge">{articlesCount}</span>
-            </span>
-          )}
-        </li>
-        <li className="empty" />
-        <style jsx>{`
-          .tabs {
-            margin-top: 20px;
-          }
-        `}</style>
-        <style jsx>{tabMenuStyle}</style>
-      </ul>
-    );
-  };
-
-  renderSearchReplyTab = () => {
-    const { articles, replies, onConnect } = this.props;
-    const { tab, search } = this.state;
-
-    const getArticleSimilarity = relatedArticleText =>
-      stringSimilarity.compareTwoStrings(search, relatedArticleText);
-
-    switch (tab) {
-      case 'reply':
-        return (
-          <RelatedReplies
-            onConnect={onConnect}
-            relatedArticleReplies={replies}
-          />
-        );
-
-      case 'article':
-        return (
-          <SearchArticles onConnect={onConnect} searchArticles={articles} />
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  render() {
-    const { search } = this.state;
-    const { articles, replies } = this.props;
-
-    return (
-      <div>
-        <label htmlFor="replySeach">
-          搜尋相關回應：
-          <input id="replySeach" type="search" onKeyUp={this.handleSearch} />
-        </label>
-
-        {articles.size || replies.size ? (
-          <Fragment>
-            {this.renderTabMenu()}
-            <div key="tab-content" className="tab-content">
-              {this.renderSearchReplyTab()}
-            </div>
-          </Fragment>
-        ) : (
-          search && (
-            <div className="search-none">{`- 找無${search}相關的回覆與文章 -`}</div>
-          )
-        )}
-
-        <style jsx>{`
-          .tab-content {
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-top: 0;
-          }
-          .search-none {
-            margin-top: 20px;
-            color: gray;
-            text-align: center;
-          }
-        `}</style>
-      </div>
-    );
-  }
-}
+export default ReplySearch;
