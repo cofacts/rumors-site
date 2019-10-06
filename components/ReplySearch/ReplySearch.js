@@ -68,7 +68,7 @@ const SearchArticles = ({ onConnect, searchArticles }) => {
       {searchArticles.map(article => {
         return (
           <SearchArticleItem
-            key={article.get('id')}
+            key={article.id}
             article={article}
             onConnect={onConnect}
           />

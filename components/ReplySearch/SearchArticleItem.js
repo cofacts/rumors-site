@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import moment from 'moment';
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 
-import { nl2br, linkify } from '../../util/text';
+import { nl2br, linkify } from 'lib/text';
 
-import { Link } from '../../routes';
+import Link from 'next/link';
 import ExpandableText from '../ExpandableText';
 import RepliesModal from '../Modal/RepliesModal';
 import { sectionStyle } from '../ReplyConnection.styles';
@@ -33,11 +33,11 @@ export default class SearchArticleItem extends PureComponent {
   render() {
     const { repliesModalOpen } = this.state;
     const { article } = this.props;
-    const createdAt = moment(article.get('createdAt'));
+    const { createdAt } = article;
     return (
       <li className="root">
         <button className="btn-sticky" onClick={this.handleModalOpen}>
-          查看{article.get('replyCount')}則回覆
+          查看{article.replyCount}則回覆
           <svg
             className="icon-extend"
             xmlns="http://www.w3.org/2000/svg"
@@ -47,10 +47,12 @@ export default class SearchArticleItem extends PureComponent {
           </svg>
         </button>
         <header className="section">
-          {createdAt.isValid() ? (
-            <Link route="article" params={{ id: article.get('id') }}>
+          {createdAt ? (
+            <Link route="article" params={{ id: article.id }}>
               <a>
-                <h3 title={createdAt.format('lll')}>{createdAt.fromNow()}</h3>
+                <h3 title={format(createdAt)}>
+                  {formatDistanceToNow(createdAt)}
+                </h3>
               </a>
             </Link>
           ) : (
@@ -58,11 +60,11 @@ export default class SearchArticleItem extends PureComponent {
           )}
         </header>
         <ExpandableText wordCount={40}>
-          {nl2br(linkify(article.get('text')))}
+          {nl2br(linkify(article.text))}
         </ExpandableText>
         {repliesModalOpen && (
           <RepliesModal
-            replies={article.getIn(['replyConnections'])}
+            articleReplies={article.articleReplies}
             onModalClose={this.handleModalClose}
             onConnect={this.handleOnConnect}
           />
