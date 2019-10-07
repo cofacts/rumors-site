@@ -159,7 +159,7 @@ export function getDedupedArticleReplies(searchResult, existingReplyIds) {
   }, {});
 
   const articleReplies = [];
-  (searchResult.edges || []).forEach(({ node }) => {
+  (searchResult?.edges || []).forEach(({ node }) => {
     node.articleReplies.forEach(articleReply => {
       if (existingReplyIdMap[articleReply.replyId]) return;
 

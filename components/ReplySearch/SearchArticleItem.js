@@ -85,12 +85,6 @@ class SearchArticleItem extends PureComponent {
               />
             ))}
           </ul>
-          <style jsx>{`
-            .items {
-              list-style-type: none;
-              padding-left: 0;
-            }
-          `}</style>
         </Dialog>
         <style jsx>{`
           .root {
@@ -120,6 +114,10 @@ class SearchArticleItem extends PureComponent {
             width: auto;
             display: inline-block;
             margin-left: 0.5em;
+          }
+          .items {
+            list-style-type: none;
+            padding-left: 0;
           }
         `}</style>
         <style jsx>{sectionStyle}</style>
