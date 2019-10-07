@@ -85,8 +85,8 @@ function ReplySearch({
   ] = useLazyQuery(SEARCH);
 
   const handleSearch = e => {
-    e.preventDefault;
-    const query = e.target.replySearch.value;
+    e.preventDefault();
+    const query = e.target.elements.replySearch.value;
     loadSearchResults({ variables: { query } });
   };
 
@@ -95,7 +95,7 @@ function ReplySearch({
     existingReplyIds
   );
 
-  const articleCount = data?.ListArticles.edges.length || 0;
+  const articleCount = data?.ListArticles?.edges?.length || 0;
 
   let $result = null;
   if (loading) {
@@ -151,7 +151,7 @@ function ReplySearch({
       <form onSubmit={handleSearch}>
         <label>
           搜尋相關回應：
-          <input name="replySeach" type="search" />
+          <input name="replySearch" type="search" />
         </label>
         <button type="submit">{t`Search`}</button>
       </form>

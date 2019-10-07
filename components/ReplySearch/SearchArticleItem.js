@@ -44,6 +44,8 @@ class SearchArticleItem extends PureComponent {
   render() {
     const { repliesModalOpen } = this.state;
     const { article, disabled } = this.props;
+    const createdAt = new Date(article.createdAt);
+
     return (
       <li className="root">
         <button className="btn-sticky" onClick={this.handleModalOpen}>
@@ -57,17 +59,13 @@ class SearchArticleItem extends PureComponent {
           </svg>
         </button>
         <header className="section">
-          {article.createdAt ? (
-            <Link route="article" params={{ id: article.id }}>
-              <a>
-                <h3 title={format(article.createdAt)}>
-                  {formatDistanceToNow(article.createdAt)}
-                </h3>
-              </a>
-            </Link>
-          ) : (
-            ''
-          )}
+          <Link href="/article/[id]" as={`/article/${article.id}`}>
+            <a>
+              <h3 title={format(createdAt)}>
+                {formatDistanceToNow(createdAt)}
+              </h3>
+            </a>
+          </Link>
         </header>
         <ExpandableText wordCount={40}>
           {nl2br(linkify(article.text))}
