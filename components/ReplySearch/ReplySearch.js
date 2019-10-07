@@ -19,12 +19,8 @@ const SEARCH = gql`
       first: 25
     ) {
       edges {
-        cursor
         node {
           id
-          text
-          type
-          createdAt
           articleReplies {
             ...RelatedArticleReplyData
           }
