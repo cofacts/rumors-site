@@ -1,14 +1,25 @@
 import React, { PureComponent } from 'react';
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import Link from 'next/link';
+import { t } from 'ttag';
+import gql from 'graphql-tag';
 
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import ArticleReply from 'components/ArticleReply';
+
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import { nl2br, linkify } from 'lib/text';
 
-import Link from 'next/link';
 import ExpandableText from '../ExpandableText';
-import RepliesModal from '../Modal/RepliesModal';
 import { sectionStyle } from '../ReplyConnection.styles';
 
-export default class SearchArticleItem extends PureComponent {
+class SearchArticleItem extends PureComponent {
+  static defaultProps = {
+    disabled: false,
+    article: null,
+    onConnect() {},
+  };
+
   state = {
     repliesModalOpen: false,
   };
@@ -32,8 +43,7 @@ export default class SearchArticleItem extends PureComponent {
 
   render() {
     const { repliesModalOpen } = this.state;
-    const { article } = this.props;
-    const { createdAt } = article;
+    const { article, disabled } = this.props;
     return (
       <li className="root">
         <button className="btn-sticky" onClick={this.handleModalOpen}>
@@ -47,11 +57,11 @@ export default class SearchArticleItem extends PureComponent {
           </svg>
         </button>
         <header className="section">
-          {createdAt ? (
+          {article.createdAt ? (
             <Link route="article" params={{ id: article.id }}>
               <a>
-                <h3 title={format(createdAt)}>
-                  {formatDistanceToNow(createdAt)}
+                <h3 title={format(article.createdAt)}>
+                  {formatDistanceToNow(article.createdAt)}
                 </h3>
               </a>
             </Link>
@@ -62,13 +72,26 @@ export default class SearchArticleItem extends PureComponent {
         <ExpandableText wordCount={40}>
           {nl2br(linkify(article.text))}
         </ExpandableText>
-        {repliesModalOpen && (
-          <RepliesModal
-            articleReplies={article.articleReplies}
-            onModalClose={this.handleModalClose}
-            onConnect={this.handleOnConnect}
-          />
-        )}
+        <Dialog onClose={this.handleModalClose} open={repliesModalOpen}>
+          <DialogTitle>{t`Replies of the searched message`}</DialogTitle>
+          <ul className="items">
+            {article.articleReplies.map(ar => (
+              <ArticleReply
+                key={`${ar.articleId}__${ar.replyId}`}
+                articleReply={ar}
+                onAction={this.handleOnConnect}
+                disabled={disabled}
+                actionText={t`Add this reply to message`}
+              />
+            ))}
+          </ul>
+          <style jsx>{`
+            .items {
+              list-style-type: none;
+              padding-left: 0;
+            }
+          `}</style>
+        </Dialog>
         <style jsx>{`
           .root {
             padding: 24px;
@@ -104,3 +127,20 @@ export default class SearchArticleItem extends PureComponent {
     );
   }
 }
+
+SearchArticleItem.fragments = {
+  SearchArticleData: gql`
+    fragment SearchArticleData on Article {
+      id
+      createdAt
+      replyCount
+      text
+      articleReplies {
+        ...ArticleReplyData
+      }
+    }
+    ${ArticleReply.fragments.ArticleReplyData}
+  `,
+};
+
+export default SearchArticleItem;

@@ -41,31 +41,19 @@ const SEARCH = gql`
     ) {
       edges {
         node {
-          id
-          text
-          replyCount
-          createdAt
-          articleReplies {
-            articleId
-            replyId
-            reply {
-              id
-              text
-              createdAt
-              type
-            }
-          }
+          ...SearchArticleData
         }
       }
     }
   }
-  {...RelatedReplies.fragments.RelatedArticleReplyData}
+  ${RelatedReplies.fragments.RelatedArticleReplyData}
+  ${SearchArticleItem.fragments.SearchArticleData}
 `;
 
 const SearchArticles = ({ onConnect, searchArticles }) => {
   return (
     <ul className="items">
-      {searchArticles.map(article => {
+      {searchArticles.map(({ node: article }) => {
         return (
           <SearchArticleItem
             key={article.id}
