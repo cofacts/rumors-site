@@ -36,11 +36,13 @@ const LOAD_ARTICLE = gql`
       articleReplies {
         ...CurrentRepliesData
       }
+      ...RelatedArticleData
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
   ${CurrentReplies.fragments.CurrentRepliesData}
+  ${NewReplySection.fragments.RelatedArticleData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -145,6 +147,10 @@ function ArticlePage({ query }) {
         <h2>{t`Add a new reply`}</h2>
         <NewReplySection
           articleId={article.id}
+          existingReplyIds={(article?.articleReplies || []).map(
+            ({ replyId }) => replyId
+          )}
+          relatedArticles={article?.relatedArticles}
           onSubmissionComplete={handleNewReplySubmit}
         />
       </section>

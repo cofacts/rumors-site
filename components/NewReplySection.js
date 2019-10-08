@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
@@ -10,6 +10,23 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
+import RelatedReplies from './RelatedReplies';
+
+const RelatedArticleData = gql`
+  fragment RelatedArticleData on Article {
+    relatedArticles(filter: { replyCount: { GT: 0 } }) {
+      edges {
+        node {
+          id
+          articleReplies {
+            ...RelatedArticleReplyData
+          }
+        }
+      }
+    }
+  }
+  ${RelatedReplies.fragments.RelatedArticleReplyData}
+`;
 
 const CREATE_REPLY = gql`
   mutation CreateReplyInArticlePage(
@@ -29,7 +46,20 @@ const CREATE_REPLY = gql`
   }
 `;
 
-function NewReplySection({ articleId, onSubmissionComplete }) {
+const CONNECT_REPLY = gql`
+  mutation ConnectReplyInArticlePage($articleId: String!, $replyId: String!) {
+    CreateArticleReply(articleId: $articleId, replyId: $replyId) {
+      articleId
+    }
+  }
+`;
+
+function NewReplySection({
+  articleId,
+  existingReplyIds,
+  relatedArticles,
+  onSubmissionComplete,
+}) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [flashMessage, setFlashMessage] = useState(0);
   const currentUser = useCurrentUser();
@@ -37,8 +67,8 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
   const [createReply, { loading: creatingReply }] = useMutation(CREATE_REPLY, {
     refetchQueries: ['LoadArticlePage'],
     awaitRefetchQueries: true,
-    onCompleted(data) {
-      onSubmissionComplete(data.CreateReply.id); // Notify upper component of submission
+    onCompleted() {
+      onSubmissionComplete(); // Notify upper component of submission
       if (replyFormRef.current) {
         replyFormRef.current.clear();
       }
@@ -49,6 +79,21 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
       setFlashMessage(error.toString());
     },
   });
+  const [connectReply, { loading: connectingReply }] = useMutation(
+    CONNECT_REPLY,
+    {
+      refetchQueries: ['LoadArticlePage'],
+      awaitRefetchQueries: true,
+      onCompleted() {
+        onSubmissionComplete(); // Notify upper component of submission
+        setFlashMessage(t`Your have attached the reply to this message.`);
+      },
+      onError(error) {
+        console.error(error);
+        setFlashMessage(error.toString());
+      },
+    }
+  );
 
   const handleTabChange = useCallback((e, v) => setSelectedTab(v), []);
   const handleSubmit = useCallback(
@@ -57,6 +102,37 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
     },
     [createReply]
   );
+
+  // Convert relatedArticles field into list of article replies with replyIds not in
+  // existingReplyIds, and their replyIds are unique among each item.
+  //
+  // Sorted by article relevance.
+  //
+  const relatedArticleReplies = useMemo(() => {
+    const existingReplyIdMap = (existingReplyIds || []).reduce(
+      (map, replyId) => {
+        map[replyId] = true;
+        return map;
+      },
+      {}
+    );
+
+    const articleReplies = [];
+    (relatedArticles.edges || []).forEach(({ node }) => {
+      node.articleReplies.forEach(articleReply => {
+        if (existingReplyIdMap[articleReply.replyId]) return;
+
+        articleReplies.push(articleReply);
+        existingReplyIdMap[articleReply.replyId] = true;
+      });
+    });
+
+    return articleReplies;
+  }, [relatedArticles, existingReplyIds]);
+
+  const handleConnect = replyId => {
+    connectReply({ variables: { articleId, replyId } });
+  };
 
   if (!currentUser) {
     return <p>{t`Please login first.`}</p>;
@@ -68,7 +144,10 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
         <Tab label={t`New Reply`} />
         <Tab
           label={
-            <Badge color="secondary" badgeContent={4}>
+            <Badge
+              color="secondary"
+              badgeContent={relatedArticleReplies.length}
+            >
               {t`Reuse existing reply`}
             </Badge>
           }
@@ -83,6 +162,13 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
           disabled={creatingReply}
         />
       )}
+      {selectedTab === 1 && (
+        <RelatedReplies
+          relatedArticleReplies={relatedArticleReplies}
+          onConnect={handleConnect}
+          disabled={connectingReply}
+        />
+      )}
       <Snackbar
         open={!!flashMessage}
         onClose={() => setFlashMessage('')}
@@ -91,5 +177,9 @@ function NewReplySection({ articleId, onSubmissionComplete }) {
     </>
   );
 }
+
+NewReplySection.fragments = {
+  RelatedArticleData,
+};
 
 export default NewReplySection;
