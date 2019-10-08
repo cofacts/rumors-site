@@ -36,8 +36,8 @@ class SearchArticleItem extends PureComponent {
     });
   };
 
-  handleOnConnect = event => {
-    this.props.onConnect(event);
+  handleOnConnect = articleReply => {
+    this.props.onConnect(articleReply.replyId);
     this.handleModalClose();
   };
 
@@ -80,6 +80,8 @@ class SearchArticleItem extends PureComponent {
                 onAction={this.handleOnConnect}
                 disabled={disabled}
                 actionText={t`Add this reply to message`}
+                showActionOnlyWhenCanUpdate={false}
+                showFeedback={false}
               />
             ))}
           </ul>
