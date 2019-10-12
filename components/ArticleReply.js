@@ -63,7 +63,9 @@ class ArticleReply extends React.PureComponent {
     disabled: false,
     onAction() {},
     actionText: '',
+    showActionOnlyWhenCanUpdate: true, // If false, show action button for everyone
     linkToReply: true,
+    showFeedback: true,
   };
 
   handleAction = () => {
@@ -104,7 +106,14 @@ class ArticleReply extends React.PureComponent {
   };
 
   renderFooter = () => {
-    const { articleReply, disabled, actionText, linkToReply } = this.props;
+    const {
+      articleReply,
+      disabled,
+      actionText,
+      linkToReply,
+      showActionOnlyWhenCanUpdate,
+      showFeedback,
+    } = this.props;
     const createdAt = new Date(articleReply.createdAt);
     const timeAgoStr = formatDistanceToNow(createdAt);
     const timeEl = (
@@ -131,7 +140,7 @@ class ArticleReply extends React.PureComponent {
         ) : (
           timeEl
         )}
-        {articleReply.canUpdateStatus ? (
+        {articleReply.canUpdateStatus || !showActionOnlyWhenCanUpdate ? (
           <>
             {' '}
             ・{' '}
@@ -143,7 +152,7 @@ class ArticleReply extends React.PureComponent {
           ''
         )}
         <CopyButton content={copyText} />
-        <ReplyFeedback articleReply={articleReply} />
+        {showFeedback && <ReplyFeedback articleReply={articleReply} />}
       </footer>
     );
   };

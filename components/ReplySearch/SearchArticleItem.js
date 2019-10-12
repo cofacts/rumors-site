@@ -1,14 +1,25 @@
 import React, { PureComponent } from 'react';
-import moment from 'moment';
+import Link from 'next/link';
+import { t } from 'ttag';
+import gql from 'graphql-tag';
 
-import { nl2br, linkify } from '../../util/text';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import ArticleReply from 'components/ArticleReply';
 
-import { Link } from '../../routes';
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import { nl2br, linkify } from 'lib/text';
+
 import ExpandableText from '../ExpandableText';
-import RepliesModal from '../Modal/RepliesModal';
 import { sectionStyle } from '../ReplyConnection.styles';
 
-export default class SearchArticleItem extends PureComponent {
+class SearchArticleItem extends PureComponent {
+  static defaultProps = {
+    disabled: false,
+    article: null,
+    onConnect() {},
+  };
+
   state = {
     repliesModalOpen: false,
   };
@@ -25,19 +36,20 @@ export default class SearchArticleItem extends PureComponent {
     });
   };
 
-  handleOnConnect = event => {
-    this.props.onConnect(event);
+  handleOnConnect = articleReply => {
+    this.props.onConnect(articleReply.replyId);
     this.handleModalClose();
   };
 
   render() {
     const { repliesModalOpen } = this.state;
-    const { article } = this.props;
-    const createdAt = moment(article.get('createdAt'));
+    const { article, disabled } = this.props;
+    const createdAt = new Date(article.createdAt);
+
     return (
       <li className="root">
         <button className="btn-sticky" onClick={this.handleModalOpen}>
-          查看{article.get('replyCount')}則回覆
+          查看{article.replyCount}則回覆
           <svg
             className="icon-extend"
             xmlns="http://www.w3.org/2000/svg"
@@ -47,26 +59,33 @@ export default class SearchArticleItem extends PureComponent {
           </svg>
         </button>
         <header className="section">
-          {createdAt.isValid() ? (
-            <Link route="article" params={{ id: article.get('id') }}>
-              <a>
-                <h3 title={createdAt.format('lll')}>{createdAt.fromNow()}</h3>
-              </a>
-            </Link>
-          ) : (
-            ''
-          )}
+          <Link href="/article/[id]" as={`/article/${article.id}`}>
+            <a>
+              <h3 title={format(createdAt)}>
+                {formatDistanceToNow(createdAt)}
+              </h3>
+            </a>
+          </Link>
         </header>
         <ExpandableText wordCount={40}>
-          {nl2br(linkify(article.get('text')))}
+          {nl2br(linkify(article.text))}
         </ExpandableText>
-        {repliesModalOpen && (
-          <RepliesModal
-            replies={article.getIn(['replyConnections'])}
-            onModalClose={this.handleModalClose}
-            onConnect={this.handleOnConnect}
-          />
-        )}
+        <Dialog onClose={this.handleModalClose} open={repliesModalOpen}>
+          <DialogTitle>{t`Replies of the searched message`}</DialogTitle>
+          <ul className="items">
+            {article.articleReplies.map(ar => (
+              <ArticleReply
+                key={`${ar.articleId}__${ar.replyId}`}
+                articleReply={ar}
+                onAction={this.handleOnConnect}
+                disabled={disabled}
+                actionText={t`Add this reply to message`}
+                showActionOnlyWhenCanUpdate={false}
+                showFeedback={false}
+              />
+            ))}
+          </ul>
+        </Dialog>
         <style jsx>{`
           .root {
             padding: 24px;
@@ -96,9 +115,30 @@ export default class SearchArticleItem extends PureComponent {
             display: inline-block;
             margin-left: 0.5em;
           }
+          .items {
+            list-style-type: none;
+            padding-left: 0;
+          }
         `}</style>
         <style jsx>{sectionStyle}</style>
       </li>
     );
   }
 }
+
+SearchArticleItem.fragments = {
+  SearchArticleData: gql`
+    fragment SearchArticleData on Article {
+      id
+      createdAt
+      replyCount
+      text
+      articleReplies {
+        ...ArticleReplyData
+      }
+    }
+    ${ArticleReply.fragments.ArticleReplyData}
+  `,
+};
+
+export default SearchArticleItem;
