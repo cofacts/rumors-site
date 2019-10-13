@@ -40,7 +40,7 @@ export default function ArticleItem({
 }
 
 ArticleItem.fragments = {
-  articleItem: gql`
+  ArticleItem: gql`
     fragment ArticleItem on Article {
       id
       text

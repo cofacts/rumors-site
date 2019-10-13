@@ -48,7 +48,7 @@ const LIST_ARTICLES = gql`
       }
     }
   }
-  ${ArticleItem.fragments.articleItem}
+  ${ArticleItem.fragments.ArticleItem}
 `;
 
 const LIST_STAT = gql`
