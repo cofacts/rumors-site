@@ -13,6 +13,7 @@ import Trendline from 'components/Trendline';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import NewReplySection from 'components/NewReplySection';
+import ArticleItem from 'components/ArticleItem';
 
 import { nl2br, linkify } from 'lib/text';
 
@@ -37,12 +38,20 @@ const LOAD_ARTICLE = gql`
         ...CurrentRepliesData
       }
       ...RelatedArticleData
+      similarArticles: relatedArticles {
+        edges {
+          node {
+            ...ArticleItem
+          }
+        }
+      }
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
   ${CurrentReplies.fragments.CurrentRepliesData}
   ${NewReplySection.fragments.RelatedArticleData}
+  ${ArticleItem.fragments.ArticleItem}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -155,6 +164,17 @@ function ArticlePage({ query }) {
         />
       </section>
 
+      {article?.similarArticles?.edges?.length > 0 && (
+        <section className="section">
+          <h2>{t`You may be interested in the following similar messages`}</h2>
+          <ul className="similar-articles">
+            {article.similarArticles.edges.map(({ node }) => (
+              <ArticleItem key={node.id} article={node} />
+            ))}
+          </ul>
+        </section>
+      )}
+
       <style jsx>{`
         .section {
           margin-bottom: 64px;
@@ -177,6 +197,10 @@ function ArticlePage({ query }) {
         .items {
           list-style-type: none;
           padding-left: 0;
+        }
+        .similar-articles {
+          padding: 0;
+          list-style: none;
         }
       `}</style>
     </AppLayout>
