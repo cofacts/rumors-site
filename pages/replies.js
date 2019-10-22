@@ -2,11 +2,7 @@
 // https://github.com/yannickcr/eslint-plugin-react/issues/1200
 
 import React from 'react';
-import { connect } from 'react-redux';
 import Head from 'next/head';
-import { List } from 'immutable';
-import { RadioGroup, Radio } from 'react-radio-group';
-import { load } from 'ducks/replyList';
 
 import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
 
@@ -16,6 +12,54 @@ import Pagination from 'components/Pagination';
 import ReplyItem from 'components/ReplyItem';
 
 import { mainStyle } from './articles.styles';
+
+const DEFAULT_ORDER_BY = 'createdAt_DESC';
+
+function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
+  return (
+    <TextField
+      label={t`Sort by`}
+      select
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SortIcon />
+          </InputAdornment>
+        ),
+      }}
+      value={orderBy}
+      onChange={e => onChange(e.target.value)}
+    >
+      <MenuItem value="createdAt_DESC">{t`Most recently written`}</MenuItem>
+      <MenuItem value="createdAt_ASC">{t`Least recently written`}</MenuItem>
+    </TextField>
+  );
+}
+
+function ReplyListPage({query}) {
+  return (
+      <AppLayout>
+        <main>
+          <Head>
+            <title>回應列表</title>
+          </Head>
+          <h2>回應列表</h2>
+          {this.renderSearch()}
+          <br />
+          Order By:
+          {this.renderOrderBy()}
+          {this.renderFilter()}
+          {this.renderMyReplyOnlyCheckbox()}
+          {isLoading ? <p>Loading...</p> : this.renderList()}
+          <style jsx>{mainStyle}</style>
+        </main>
+      </AppLayout>
+    );
+}
+
+// Expose path query to component
+ArticleListPage.getInitialProps = ({ query }) => ({ query });
+
 
 class ReplyList extends ListPage {
   static async getInitialProps({ store, query, isServer }) {
