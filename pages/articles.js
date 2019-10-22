@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
 import Router from 'next/router';
 import url from 'url';
-import { useCallback } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -10,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
 import SortIcon from '@material-ui/icons/Sort';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -21,6 +19,7 @@ import withData from 'lib/apollo';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
+import SearchInput from 'components/SearchInput';
 
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
 const DEFAULT_TYPE_FILTER = 'unsolved';
@@ -139,28 +138,6 @@ function ArticleFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
         {t`All`}
       </Button>
     </ButtonGroup>
-  );
-}
-
-function SearchInput({ q = '', onChange = () => {} }) {
-  const handleSubmit = useCallback(e => onChange(e.target.value), [onChange]);
-  const handleKeyUp = useCallback(e => {
-    e.which === 13 && e.target.blur();
-  }, []);
-
-  return (
-    <TextField
-      defaultValue={q}
-      onBlur={handleSubmit}
-      onKeyUp={handleKeyUp}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SearchIcon />
-          </InputAdornment>
-        ),
-      }}
-    />
   );
 }
 
