@@ -3,26 +3,23 @@
 
 import React from 'react';
 import Head from 'next/head';
-import { t, ngettext, msgid } from 'ttag';
+import { t } from 'ttag';
 import url from 'url';
 import Router from 'next/router';
 
-import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
+import { TYPE_NAME } from '../constants/replyType';
 
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SortIcon from '@material-ui/icons/Sort';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
 
 import withData from 'lib/apollo';
 import AppLayout from 'components/AppLayout';
-import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
 import SearchInput from 'components/SearchInput';
 
@@ -82,21 +79,25 @@ function goToUrlQueryAndResetPagination(urlQuery) {
 
 function ReplyFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
   return (
-    <ButtonGroup size="small" variant="outlined">
-      <Button disabled={filter === 'all'} onClick={() => onChange('all')}>
-        {t`All replies`}
-      </Button>
+    <TextField
+      select
+      value={filter}
+      onChange={e => onChange(e.target.value)}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <FilterListIcon />
+          </InputAdornment>
+        ),
+      }}
+    >
+      <MenuItem value="all">{t`All replies`}</MenuItem>
       {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (
-        <Button
-          key={type}
-          disabled={filter === type}
-          onClick={() => onChange(type)}
-          title={TYPE_DESC[type]}
-        >
+        <MenuItem key={type} value={type}>
           {TYPE_NAME[type]}
-        </Button>
+        </MenuItem>
       ))}
-    </ButtonGroup>
+    </TextField>
   );
 }
 
@@ -150,6 +151,9 @@ function ReplyListPage({ query }) {
 
   return (
     <AppLayout>
+      <Head>
+        <title>{t`Reply list`}</title>
+      </Head>
       <Grid container spacing={2}>
         <Grid item>
           <ReplyFilter
