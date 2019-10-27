@@ -1,28 +1,34 @@
-import React from 'react';
-import { Link } from '../routes';
-import moment from 'moment';
+import gql from 'graphql-tag';
+import Link from 'next/link';
+import { t } from 'ttag';
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import isValid from 'date-fns/isValid';
 import { listItemStyle } from './ListItem.styles';
 import { TYPE_ICON, TYPE_NAME } from '../constants/replyType';
 
-export default function ReplyItem({ reply, showUser = true }) {
-  const replyType = reply.get('type');
-  const createdAt = moment(reply.get('createdAt'));
+/**
+ *
+ * @param {ReplyItem} props.reply - see ReplyItem in GraphQL fragment
+ * @param {boolean} showUser
+ */
+function ReplyItem({ reply, showUser = true }) {
+  const { type: replyType } = reply;
+  const createdAt = new Date(reply.createdAt);
+  const timeAgoStr = formatDistanceToNow(createdAt);
 
   return (
-    <Link route="reply" params={{ id: reply.get('id') }}>
+    <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
       <a className="item">
         <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
         <div className="item-content">
           <div className="item-text">
-            {showUser ? `${reply.getIn(['user', 'name'], '有人')}：` : ''}
-            {reply.get('text')}
+            {showUser ? `${reply?.user?.name || '有人'}：` : ''}
+            {reply.text}
           </div>
           <div className="item-info">
-            使用於 {reply.get('replyConnectionCount')} 篇
-            {createdAt.isValid() ? (
-              <span title={createdAt.format('lll')}>
-                ・{createdAt.fromNow()}
-              </span>
+            使用於 {reply.articleReplies.length} 篇
+            {isValid(createdAt) ? (
+              <span title={format(createdAt)}>・{t`${timeAgoStr} ago`}</span>
             ) : (
               ''
             )}
@@ -46,3 +52,22 @@ export default function ReplyItem({ reply, showUser = true }) {
     </Link>
   );
 }
+
+ReplyItem.fragments = {
+  ReplyItem: gql`
+    fragment ReplyItem on Reply {
+      id
+      text
+      type
+      createdAt
+      user {
+        name
+      }
+      articleReplies(status: NORMAL) {
+        articleId
+      }
+    }
+  `,
+};
+
+export default ReplyItem;
