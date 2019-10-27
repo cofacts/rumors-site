@@ -4,7 +4,7 @@ const env = {};
 const publicRuntimeConfig = {};
 const serverRuntimeConfig = {};
 
-Object.keys(parsed).forEach(key => {
+Object.keys(parsed || {}).forEach(key => {
   switch (true) {
     case key.startsWith('SERVER_'):
       serverRuntimeConfig[key] = process.env[key];
