@@ -40,7 +40,7 @@ msgid "Save"
 msgstr "儲存"
 
 #: components/AppLayout/UserName.js:138
-#: components/ReplyFeedback.js:200
+#: components/ReplyFeedback.js:199
 msgid "Cancel"
 msgstr "取消"
 
@@ -61,6 +61,7 @@ msgid "Close"
 msgstr "關閉"
 
 #: components/AppLayout/AppHeader.js:18
+#: components/ReplySearch/ReplySearch.js:115
 msgid "Replies"
 msgstr "回應列表"
 
@@ -75,113 +76,115 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:264
+#: pages/articles.js:241
 #, javascript-format
 msgid "${ statsData.totalCount } collected message"
 msgid_plural "${ statsData.totalCount } collected messages"
 msgstr[0] "${ statsData.totalCount } 份回報訊息"
 
-#: pages/articles.js:133
+#: pages/articles.js:132
 msgid "Not replied"
 msgstr "尚未回覆"
 
-#: pages/articles.js:136
+#: pages/articles.js:135
 msgid "Replied"
 msgstr "已回覆"
 
-#: pages/articles.js:139
+#: pages/articles.js:138
 msgid "All"
 msgstr "全部"
 
-#: pages/articles.js:247
+#: pages/articles.js:224
 msgid "Include messages reported only 1 time"
 msgstr "加列僅被回報 1 次的訊息"
 
-#: pages/articles.js:292
+#: pages/articles.js:269
 msgid "Shows messages reported multiple times by default."
 msgstr "預設僅會列出被回報數次的訊息。"
 
-#: pages/articles.js:302
+#: pages/articles.js:279
 msgid "Click here to include messages only reported 1 time."
 msgstr "按這裡加入僅被回報 1 次的訊息。"
 
-#: pages/articles.js:170
+#: pages/articles.js:147
+#: pages/replies.js:107
 msgid "Sort by"
 msgstr "排序方式"
 
-#: pages/articles.js:182
+#: pages/articles.js:159
 msgid "Most recently asked"
 msgstr "最近被查詢"
 
-#: pages/articles.js:183
+#: pages/articles.js:160
 msgid "Most asked"
 msgstr "最多人詢問"
 
-#: pages/articles.js:251
+#: pages/articles.js:228
+#: pages/replies.js:189
 msgid "Sort by Relevance"
 msgstr "以相關度排序"
 
-#: pages/article/[id].js:102
+#: pages/article/[id].js:122
 msgid "Reported Message"
 msgstr "使用者回報訊息"
 
-#: components/ReplyRequestReason/ReplyRequestReason.js:54
+#: components/ReplyRequestReason/ReplyRequestReason.js:55
 msgid "All messages reported by this user"
 msgstr "所有這個使用者回報的訊息"
 
 #: components/ArticleInfo.js:31
-#: components/ArticleReply.js:111
+#: components/ArticleReply.js:120
 #, javascript-format
 msgid "${ timeAgoStr } ago"
 msgstr "${ timeAgoStr }前"
 
-#: components/ArticleReply.js:87
+#: components/ArticleReply.js:89
 msgid "“Editor Manual”"
 msgstr "《編輯指南》"
 
-#: components/ArticleReply.js:93
+#: components/ArticleReply.js:95
 #, javascript-format
 msgid "Please refer to ${ refLink } for what to fact-check."
 msgstr "查證範圍請參考${ refLink }"
 
-#: components/ArticleReply.js:118
-#: components/ArticleReply.js:230
+#: components/ArticleReply.js:127
+#: components/ArticleReply.js:239
 msgid "Reason"
 msgstr "理由"
 
-#: components/ArticleReply.js:120
+#: components/ArticleReply.js:129
 msgid "Details"
 msgstr "詳細解釋"
 
-#: components/ArticleReply.js:122
-#: components/ArticleReply.js:199
+#: components/ArticleReply.js:131
+#: components/ArticleReply.js:208
 msgid "Reference"
 msgstr "出處"
 
-#: components/ArticleReply.js:164
-#: components/ReplyFeedback.js:161
+#: components/ArticleReply.js:173
+#: components/ReplyFeedback.js:160
 msgid "Someone"
 msgstr "有人"
 
-#: components/ArticleReply.js:175
+#: components/ArticleReply.js:184
 #, javascript-format
 msgid "${ originalAuthorElem }'s reply"
 msgstr "${ originalAuthorElem } 的回應"
 
-#: components/ArticleReply.js:182
+#: components/ArticleReply.js:191
 #, javascript-format
 msgid "${ articleReplyAuthorName } uses ${ originalAuthorsReply } to"
 msgstr "${ articleReplyAuthorName } 使用 ${ originalAuthorsReply }"
 
-#: components/ArticleReply.js:199
+#: components/ArticleReply.js:208
 msgid "Different opinion"
 msgstr "不同意見"
 
-#: components/ArticleReply.js:203
+#: components/ArticleReply.js:212
 msgid "There is no reference for this reply. Its truthfulness may be doubtful."
 msgstr "這則回應沒有出處，請自行斟酌其真實性。"
 
-#: components/ArticleReply.js:226
+#: components/ArticleReply.js:235
 #, javascript-format
 msgid "${ authorElem } mark the message as ${ typeElem }"
 msgstr "${ authorElem } 標記此篇為 ${ typeElem }"
@@ -194,30 +197,30 @@ msgstr "複製"
 msgid "Copied to clipboard."
 msgstr "已複製到剪貼簿。"
 
-#: components/CurrentReplies.js:50
+#: components/CurrentReplies.js:69
 msgid "Deleted replies"
 msgstr "已刪除的回應"
 
-#: components/CurrentReplies.js:58
+#: components/CurrentReplies.js:77
 #: pages/reply.js:135
 msgid "Restore"
 msgstr "恢復"
 
-#: components/CurrentReplies.js:82
+#: components/CurrentReplies.js:101
 #, javascript-format
 msgid "${ items.length } reply"
 msgid_plural "${ items.length } replies"
 msgstr[0] " ${ items.length } 則回應"
 
-#: components/CurrentReplies.js:92
+#: components/CurrentReplies.js:111
 msgid "There are ${ replyLink } deleted by its author."
 msgstr "有${ replyLink }被作者自行刪除。"
 
-#: components/CurrentReplies.js:116
+#: components/CurrentReplies.js:154
 msgid "There is no existing replies for now."
 msgstr "目前沒有已撰寫的回應。"
 
-#: components/CurrentReplies.js:137
+#: components/CurrentReplies.js:175
 #: pages/reply.js:135
 msgid "Delete"
 msgstr "刪除"
@@ -227,34 +230,190 @@ msgstr "刪除"
 msgid "Lv.${ editorLevel } ${ levelName }"
 msgstr "等級 ${ editorLevel }. ${ levelName }"
 
-#: pages/article/[id].js:131
+#: pages/article/[id].js:151
 msgid "Replies to the message"
 msgstr "現有回應"
 
-#: components/ReplyFeedback.js:101
+#: components/ReplyFeedback.js:100
 msgid "Is the reply helpful?"
 msgstr "這則回應是否有幫助？"
 
-#: components/ReplyFeedback.js:187
+#: components/ReplyFeedback.js:186
 msgid "Please share with us why you think this reply is not useful"
 msgstr "請告訴我們為什麼您覺得好心人的回應沒有幫助？"
 
-#: components/ReplyFeedback.js:139
+#: components/ReplyFeedback.js:138
 msgid "Why?"
 msgstr "Why?"
 
-#: components/ReplyFeedback.js:151
+#: components/ReplyFeedback.js:150
 msgid "Reasons why users think it's not useful"
 msgstr "覺得沒幫助的理由"
 
-#: components/ReplyFeedback.js:184
+#: components/ReplyFeedback.js:183
 msgid "Reasons why you think it's not useful"
 msgstr "您覺得沒幫助的理由"
 
-#: components/ReplyFeedback.js:203
+#: components/ReplyFeedback.js:202
 msgid "Submit"
 msgstr "送出"
 
-#: components/ReplyFeedback.js:212
+#: components/ReplyFeedback.js:211
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
+
+#: pages/replies.js:94
+msgid "All replies"
+msgstr "所有回應"
+
+#: pages/replies.js:119
+msgid "Most recently written"
+msgstr "最近寫的"
+
+#: pages/replies.js:120
+msgid "Least recently written"
+msgstr "最久以前寫的"
+
+#: pages/replies.js:155
+#. const {
+#. loading,
+#. data: { ListReplies: replyData },
+#. } = useQuery(LIST_REPLIES, {
+#. variables: {
+#. ...listQueryVars,
+#. before: query.before,
+#. after: query.after,
+#. },
+#. });
+#. Separate these stats query so that it will be cached by apollo-client and sends no network request
+#. on page change, but still works when filter options are updated.
+#.
+#. const {
+#. loading: statsLoading,
+#. data: { ListArticles: statsData },
+#. } = useQuery(LIST_STAT, {
+#. variables: listQueryVars,
+#. });
+msgid "Reply list"
+msgstr "回應列表"
+
+#: pages/replies.js:185
+#. const {
+#. loading,
+#. data: { ListReplies: replyData },
+#. } = useQuery(LIST_REPLIES, {
+#. variables: {
+#. ...listQueryVars,
+#. before: query.before,
+#. after: query.after,
+#. },
+#. });
+#. Separate these stats query so that it will be cached by apollo-client and sends no network request
+#. on page change, but still works when filter options are updated.
+#.
+#. const {
+#. loading: statsLoading,
+#. data: { ListArticles: statsData },
+#. } = useQuery(LIST_STAT, {
+#. variables: listQueryVars,
+#. });
+msgid "Only show replies written by me"
+msgstr "只顯示我寫的回應"
+
+#: pages/article/[id].js:156
+msgid "Add a new reply"
+msgstr "新增回應"
+
+#: pages/article/[id].js:169
+msgid "You may be interested in the following similar messages"
+msgstr "你可能對下面類似訊息感興趣"
+
+#: components/NewReplySection.js:76
+msgid "Your reply has been submitted."
+msgstr "已經送出回應。"
+
+#: components/NewReplySection.js:90
+#. Notify upper component of submission
+msgid "Your have attached the reply to this message."
+msgstr "已經加入回應。"
+
+#: components/NewReplySection.js:117
+msgid "Please login first."
+msgstr "請先登入。"
+
+#: components/NewReplySection.js:123
+msgid "New Reply"
+msgstr "寫新回應"
+
+#: components/NewReplySection.js:130
+msgid "Reuse existing reply"
+msgstr "使用現有回應"
+
+#: components/NewReplySection.js:134
+#: components/ReplySearch/ReplySearch.js:156
+msgid "Search"
+msgstr "搜尋"
+
+#: components/ReplySearch/ReplySearch.js:103
+#, javascript-format
+msgid "Searching for messages and replies containing “${ variables.query }”..."
+msgstr "正在搜尋含有「${ variables.query }」的訊息與回應⋯⋯"
+
+#: components/ReplySearch/ReplySearch.js:123
+msgid "Reported messages"
+msgstr "回報訊息"
+
+#: components/ReplySearch/SearchArticleItem.js:74
+msgid "Replies of the searched message"
+msgstr "搜尋訊息的回應"
+
+#: components/ReplySearch/SearchArticleItem.js:82
+msgid "Add this reply to message"
+msgstr "將回應加入到此訊息"
+
+#: components/ReplyRequestReason/ReplyRequestReason.js:191
+msgid "The reason is reasonable"
+msgstr "理由合理"
+
+#: components/ReplyRequestReason/ReplyRequestReason.js:196
+msgid "The reason is not reasonable"
+msgstr "理由不合理"
+
+#: components/AppLayout/LoginModal.js:13
+msgid "Login / Signup"
+msgstr "登入/註冊"
+
+#: constants/replyType.js:11
+msgid "Invalid request"
+msgstr "不在查證範圍"
+
+#: constants/replyType.js:12
+msgid "Contains personal perspective"
+msgstr "含有個人意見"
+
+#: constants/replyType.js:13
+msgid "Contains true information"
+msgstr "含有正確訊息"
+
+#: constants/replyType.js:14
+msgid "Contains misinformation"
+msgstr "含有不實訊息"
+
+#: constants/replyType.js:18
+msgid "This message cannot or should not be processed by Cofacts editors."
+msgstr "這篇訊息不是編輯能夠處理、或 Cofacts 不應該受理此類文章。"
+
+#: constants/replyType.js:19
+msgid "The message has some of its content proved to be true."
+msgstr "轉傳訊息或網路文章有一部分內容查證屬實。"
+
+#: constants/replyType.js:20
+msgid ""
+"The message contains personal opinion, unproven hypotheses, conspiracy "
+"theories, studies that has not reached concensus, inferences of political "
+"policies, etc."
+msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論、尚無共識的研究、對政策的推論等等。"
+
+#: constants/replyType.js:21
+msgid "This message has some of its content proved to be false."
+msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"

@@ -1,3 +1,5 @@
+import { t } from 'ttag';
+
 export const TYPE_ICON = {
   NOT_ARTICLE: '⚠️️',
   OPINIONATED: '💬',
@@ -6,18 +8,17 @@ export const TYPE_ICON = {
 };
 
 export const TYPE_NAME = {
-  NOT_ARTICLE: '⚠️️ 不在查證範圍',
-  OPINIONATED: '💬 含有個人意見',
-  NOT_RUMOR: '⭕ 含有正確訊息',
-  RUMOR: '❌ 含有不實訊息',
+  NOT_ARTICLE: `${TYPE_ICON.NOT_ARTICLE} ${t`Invalid request`}`,
+  OPINIONATED: `${TYPE_ICON.OPINIONATED} ${t`Contains personal perspective`}`,
+  NOT_RUMOR: `${TYPE_ICON.NOT_RUMOR} ${t`Contains true information`}`,
+  RUMOR: `${TYPE_ICON.RUMOR} ${t`Contains misinformation`}`,
 };
 
 export const TYPE_DESC = {
-  NOT_ARTICLE: '這篇訊息不是編輯能夠處理、或 Cofacts 不應該受理此類文章。',
-  NOT_RUMOR: '轉傳訊息或網路文章有一部分內容查證屬實。',
-  OPINIONATED:
-    '轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論、尚無共識的研究、對政策的推論等等。',
-  RUMOR: '轉傳訊息或網路文章有一部分含有不實資訊。',
+  NOT_ARTICLE: t`This message cannot or should not be processed by Cofacts editors.`,
+  NOT_RUMOR: t`The message has some of its content proved to be true.`,
+  OPINIONATED: t`The message contains personal opinion, unproven hypotheses, conspiracy theories, studies that has not reached concensus, inferences of political policies, etc.`,
+  RUMOR: t`This message has some of its content proved to be false.`,
 };
 
 export const TYPE_INSTRUCTION = {
