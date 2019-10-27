@@ -216,7 +216,7 @@ function ReplyListPage({ query }) {
         <FormControlLabel
           control={
             <Checkbox
-              checked={query.mine}
+              checked={!!query.mine}
               onChange={e =>
                 goToUrlQueryAndResetPagination({
                   ...query,
