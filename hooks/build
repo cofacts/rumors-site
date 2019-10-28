@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build --build-arg app_id=RUMORS_SITE --build-arg locale=en_US -t $IMAGE_NAME:en .
+docker build --build-arg app_id=RUMORS_SITE --build-arg locale=zh_TW -t $IMAGE_NAME:tw .

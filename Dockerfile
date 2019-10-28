@@ -11,13 +11,13 @@ RUN npm install
 #
 COPY . .
 
-ARG locale
-ENV LOCALE=${locale}
+ARG locale=en_US
+ARG app_id=DEV
 
 # Generate .next, which includes absolute path to package so it must be done
 # within container.
 #
-RUN npm run build:next
+RUN LOCALE=${locale} APP_ID=${app_id} npm run build:next
 
 #########################################
 FROM node:12-stretch-slim

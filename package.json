@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "docker build -t mrorz/rumors-site:latest .",
-    "build:staging": "docker build -t mrorz/rumors-site:staging .",
+    "build": "hooks/build",
     "build:next": "next build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
