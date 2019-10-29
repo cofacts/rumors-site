@@ -107,7 +107,7 @@ msgid "Click here to include messages only reported 1 time."
 msgstr "按這裡加入僅被回報 1 次的訊息。"
 
 #: pages/articles.js:147
-#: pages/replies.js:107
+#: pages/replies.js:147
 msgid "Sort by"
 msgstr "排序方式"
 
@@ -120,7 +120,7 @@ msgid "Most asked"
 msgstr "最多人詢問"
 
 #: pages/articles.js:228
-#: pages/replies.js:189
+#: pages/replies.js:233
 msgid "Sort by Relevance"
 msgstr "以相關度排序"
 
@@ -134,6 +134,7 @@ msgstr "所有這個使用者回報的訊息"
 
 #: components/ArticleInfo.js:31
 #: components/ArticleReply.js:120
+#: components/ReplyItem.js:31
 #, javascript-format
 msgid "${ timeAgoStr } ago"
 msgstr "${ timeAgoStr }前"
@@ -262,61 +263,23 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/replies.js:94
+#: pages/replies.js:134
 msgid "All replies"
 msgstr "所有回應"
 
-#: pages/replies.js:119
+#: pages/replies.js:159
 msgid "Most recently written"
 msgstr "最近寫的"
 
-#: pages/replies.js:120
+#: pages/replies.js:160
 msgid "Least recently written"
 msgstr "最久以前寫的"
 
-#: pages/replies.js:155
-#. const {
-#. loading,
-#. data: { ListReplies: replyData },
-#. } = useQuery(LIST_REPLIES, {
-#. variables: {
-#. ...listQueryVars,
-#. before: query.before,
-#. after: query.after,
-#. },
-#. });
-#. Separate these stats query so that it will be cached by apollo-client and sends no network request
-#. on page change, but still works when filter options are updated.
-#.
-#. const {
-#. loading: statsLoading,
-#. data: { ListArticles: statsData },
-#. } = useQuery(LIST_STAT, {
-#. variables: listQueryVars,
-#. });
+#: pages/replies.js:197
 msgid "Reply list"
 msgstr "回應列表"
 
-#: pages/replies.js:185
-#. const {
-#. loading,
-#. data: { ListReplies: replyData },
-#. } = useQuery(LIST_REPLIES, {
-#. variables: {
-#. ...listQueryVars,
-#. before: query.before,
-#. after: query.after,
-#. },
-#. });
-#. Separate these stats query so that it will be cached by apollo-client and sends no network request
-#. on page change, but still works when filter options are updated.
-#.
-#. const {
-#. loading: statsLoading,
-#. data: { ListArticles: statsData },
-#. } = useQuery(LIST_STAT, {
-#. variables: listQueryVars,
-#. });
+#: pages/replies.js:228
 msgid "Only show replies written by me"
 msgstr "只顯示我寫的回應"
 
@@ -417,3 +380,9 @@ msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論
 #: constants/replyType.js:21
 msgid "This message has some of its content proved to be false."
 msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
+
+#: pages/replies.js:247
+#, javascript-format
+msgid "${ statsData.totalCount } reply"
+msgid_plural "${ statsData.totalCount } replies"
+msgstr[0] "${ statsData.totalCount } 份回應"
