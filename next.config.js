@@ -14,17 +14,14 @@ Object.keys(process.env || {}).forEach(key => {
       break;
     case key.startsWith('NODE_'):
     case key.startsWith('__'):
+    case key.startsWith('npm_'):
+    case key === 'PATH':
+    case key === 'NODE':
       // https://github.com/zeit/next.js/blob/master/errors/env-key-not-allowed.md
       break;
     default:
       env[key] = process.env[key];
   }
-});
-
-console.log({
-  env,
-  publicRuntimeConfig,
-  serverRuntimeConfig,
 });
 
 module.exports = {

@@ -11,13 +11,14 @@ RUN npm install
 #
 COPY . .
 
-ARG locale=en_US
-ARG app_id=DEV
+# These will be captured by process.env in next.config.js
+ARG LOCALE=en_US
+ARG APP_ID=DEV
 
 # Generate .next, which includes absolute path to package so it must be done
 # within container.
 #
-RUN LOCALE=${locale} APP_ID=${app_id} npm run build:next
+RUN npm run build:next
 
 #########################################
 FROM node:12-stretch-slim
@@ -29,4 +30,6 @@ ENTRYPOINT npm start
 COPY package.json package-lock.json ./
 RUN npm install --production
 
+# These file may change more often than package.json
+COPY next.config.js ./
 COPY --from=builder /srv/www/.next ./.next
