@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -162,7 +162,9 @@ function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
   );
 }
 
-function ArticleListPage({ query }) {
+function ArticleListPage() {
+  const { query } = useRouter();
+
   const listQueryVars = {
     filter: urlQuery2Filter(query),
     orderBy: urlQuery2OrderBy(query),
@@ -293,8 +295,5 @@ function ArticleListPage({ query }) {
     </AppLayout>
   );
 }
-
-// Expose path query to component
-ArticleListPage.getInitialProps = ({ query }) => ({ query });
 
 export default withData(ArticleListPage);

@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { useEffect, useRef, useCallback } from 'react';
 import { t } from 'ttag';
+import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 
@@ -70,7 +71,8 @@ const LOAD_ARTICLE_FOR_USER = gql`
   ${CurrentReplies.fragments.ArticleReplyForUser}
 `;
 
-function ArticlePage({ query }) {
+function ArticlePage() {
+  const { query } = useRouter();
   const articleVars = { id: query.id };
 
   const { data, loading } = useQuery(LOAD_ARTICLE, {
@@ -206,7 +208,5 @@ function ArticlePage({ query }) {
     </AppLayout>
   );
 }
-
-ArticlePage.getInitialProps = ({ query }) => ({ query });
 
 export default withData(ArticlePage);

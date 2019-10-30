@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import Head from 'next/head';
+import Router, { useRouter } from 'next/router';
 import { t, ngettext, msgid } from 'ttag';
 import url from 'url';
-import Router from 'next/router';
+
 import { useQuery } from '@apollo/react-hooks';
 
 import TextField from '@material-ui/core/TextField';
@@ -162,7 +163,9 @@ function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
   );
 }
 
-function ReplyListPage({ query }) {
+function ReplyListPage() {
+  const { query } = useRouter();
+
   const listQueryVars = {
     filter: urlQuery2Filter(query),
     orderBy: urlQuery2OrderBy(query),
@@ -284,8 +287,5 @@ function ReplyListPage({ query }) {
     </AppLayout>
   );
 }
-
-// Expose path query to component
-ReplyListPage.getInitialProps = ({ query }) => ({ query });
 
 export default withData(ReplyListPage);
