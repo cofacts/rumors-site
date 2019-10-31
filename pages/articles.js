@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
