@@ -1,207 +1,291 @@
-/* eslint-disable react/display-name */
-// https://github.com/yannickcr/eslint-plugin-react/issues/1200
-
+import gql from 'graphql-tag';
 import React from 'react';
-import { connect } from 'react-redux';
 import Head from 'next/head';
-import { List } from 'immutable';
-import { RadioGroup, Radio } from 'react-radio-group';
-import { load } from 'ducks/replyList';
+import { t, ngettext, msgid } from 'ttag';
+import url from 'url';
+import Router from 'next/router';
+import { useQuery } from '@apollo/react-hooks';
 
-import { TYPE_NAME, TYPE_DESC } from '../constants/replyType';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SortIcon from '@material-ui/icons/Sort';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import Grid from '@material-ui/core/Grid';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
+import withData from 'lib/apollo';
+import useCurrentUser from 'lib/useCurrentUser';
 import AppLayout from 'components/AppLayout';
-import ListPage from 'components/ListPage';
 import Pagination from 'components/Pagination';
+import SearchInput from 'components/SearchInput';
 import ReplyItem from 'components/ReplyItem';
+import { TYPE_NAME } from 'constants/replyType';
 
-import { mainStyle } from './articles.styles';
+const DEFAULT_ORDER_BY = 'createdAt_DESC';
+const DEFAULT_TYPE_FILTER = 'all';
 
-class ReplyList extends ListPage {
-  static async getInitialProps({ store, query, isServer }) {
-    // Load on server-side render only when query.mine is not set.
-    // This makes sure that reply list can be crawled by search engines too, and it can load fast
-    if (query.mine && isServer) return;
-    await store.dispatch(load(query));
-    return { query };
-  }
-
-  componentDidMount() {
-    const { query, dispatch } = this.props;
-
-    // Pick up initial data loading when server-side render skips
-    if (!query.mine) return;
-    return dispatch(load(query));
-  }
-
-  handleMyReplyOnlyCheck = e => {
-    this.goToQuery({
-      mine: e.target.checked ? 1 : undefined,
-    });
-  };
-
-  renderSearch = () => {
-    const {
-      query: { q },
-    } = this.props;
-    return (
-      <label>
-        Search For:
-        <input
-          type="search"
-          onBlur={this.handleKeywordChange}
-          onKeyUp={this.handleKeywordKeyup}
-          defaultValue={q}
-        />
-      </label>
-    );
-  };
-
-  renderOrderBy = () => {
-    const {
-      query: { orderBy, q },
-    } = this.props;
-    if (q) {
-      return <span> Relevance</span>;
+const LIST_REPLIES = gql`
+  query ListReplies(
+    $filter: ListReplyFilter
+    $orderBy: [ListReplyOrderBy]
+    $before: String
+    $after: String
+  ) {
+    ListReplies(
+      filter: $filter
+      orderBy: $orderBy
+      before: $before
+      after: $after
+      first: 25
+    ) {
+      edges {
+        node {
+          ...ReplyItem
+        }
+        cursor
+      }
     }
+  }
+  ${ReplyItem.fragments.ReplyItem}
+`;
 
-    return (
-      <select
-        onChange={this.handleOrderByChange}
-        value={orderBy || 'createdAt_DESC'}
-      >
-        <option value="createdAt_DESC">Most recently written</option>
-        <option value="createdAt_ASC">Least recently written</option>
-      </select>
-    );
-  };
+const LIST_STAT = gql`
+  query ListRepliesStat(
+    $filter: ListReplyFilter
+    $orderBy: [ListReplyOrderBy]
+  ) {
+    ListReplies(filter: $filter, orderBy: $orderBy, first: 25) {
+      pageInfo {
+        firstCursor
+        lastCursor
+      }
+      totalCount
+    }
+  }
+`;
 
-  renderMyReplyOnlyCheckbox() {
-    const {
-      isLoggedIn,
-      query: { mine },
-    } = this.props;
-    if (!isLoggedIn) return null;
-
-    return (
-      <label>
-        <input
-          type="checkbox"
-          onChange={this.handleMyReplyOnlyCheck}
-          checked={!!mine}
-        />
-        只顯示我寫的
-      </label>
-    );
+/**
+ * @param {object} urlQuery - URL query object
+ * @returns {object} ListReplyFilter
+ */
+function urlQuery2Filter({ filter = DEFAULT_TYPE_FILTER, q, mine } = {}) {
+  const filterObj = {};
+  if (q) {
+    filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
   }
 
-  renderFilter = () => {
-    const {
-      query: { filter },
-    } = this.props;
-    return (
-      <RadioGroup
-        onChange={this.handleFilterChange}
-        selectedValue={filter || 'all'}
-        Component="ul"
-      >
-        <li>
-          <label>
-            <Radio value="all" />All
-          </label>
-        </li>
-        {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (
-          <li key={type}>
-            <label>
-              <Radio value={type} title={TYPE_DESC[type]} />
-              {TYPE_NAME[type]}
-            </label>
-          </li>
-        ))}
-      </RadioGroup>
-    );
+  if (filter && filter !== 'all') {
+    filterObj.type = filter;
+  }
+
+  if (mine) {
+    filterObj.selfOnly = true;
+  }
+
+  // Return filterObj only when it is populated.
+  if (!Object.keys(filterObj).length) {
+    return undefined;
+  }
+
+  return filterObj;
+}
+
+/**
+ * @param {object} urlQuery - URL query object
+ * @returns {object[]} ListArticleOrderBy array
+ */
+function urlQuery2OrderBy({ q, orderBy = DEFAULT_ORDER_BY } = {}) {
+  const [orderByItem, order] = orderBy.split('_');
+
+  // If there is query text, sort by _score first
+
+  if (q) {
+    return [{ _score: 'DESC' }, { [orderByItem]: order }];
+  }
+
+  return [{ [orderByItem]: order }];
+}
+
+/**
+ * @param {object} urlQuery
+ */
+function goToUrlQueryAndResetPagination(urlQuery) {
+  delete urlQuery.before;
+  delete urlQuery.after;
+  Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
+}
+
+function ReplyFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
+  return (
+    <TextField
+      select
+      value={filter}
+      onChange={e => onChange(e.target.value)}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <FilterListIcon />
+          </InputAdornment>
+        ),
+      }}
+    >
+      <MenuItem value="all">{t`All replies`}</MenuItem>
+      {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (
+        <MenuItem key={type} value={type}>
+          {TYPE_NAME[type]}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+}
+
+function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
+  return (
+    <TextField
+      label={t`Sort by`}
+      select
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SortIcon />
+          </InputAdornment>
+        ),
+      }}
+      value={orderBy}
+      onChange={e => onChange(e.target.value)}
+    >
+      <MenuItem value="createdAt_DESC">{t`Most recently written`}</MenuItem>
+      <MenuItem value="createdAt_ASC">{t`Least recently written`}</MenuItem>
+    </TextField>
+  );
+}
+
+function ReplyListPage({ query }) {
+  const listQueryVars = {
+    filter: urlQuery2Filter(query),
+    orderBy: urlQuery2OrderBy(query),
   };
 
-  renderPagination = () => {
-    const {
-      query = {}, // URL params
-      firstCursor,
-      lastCursor,
-      firstCursorOfPage,
-      lastCursorOfPage,
-    } = this.props;
+  const {
+    loading,
+    data: { ListReplies: replyData },
+  } = useQuery(LIST_REPLIES, {
+    variables: {
+      ...listQueryVars,
+      before: query.before,
+      after: query.after,
+    },
+  });
 
-    return (
-      <Pagination
-        query={query}
-        firstCursor={firstCursor}
-        lastCursor={lastCursor}
-        firstCursorOfPage={firstCursorOfPage}
-        lastCursorOfPage={lastCursorOfPage}
-      />
-    );
-  };
+  // Separate these stats query so that it will be cached by apollo-client and sends no network request
+  // on page change, but still works when filter options are updated.
 
-  renderList = () => {
-    const {
-      replies = null,
-      totalCount,
-      query: { mine },
-    } = this.props;
-    return (
+  const {
+    loading: statsLoading,
+    data: { ListReplies: statsData },
+  } = useQuery(LIST_STAT, {
+    variables: listQueryVars,
+  });
+
+  const currentUser = useCurrentUser();
+
+  return (
+    <AppLayout>
+      <Head>
+        <title>{t`Reply list`}</title>
+      </Head>
+      <Grid container spacing={2}>
+        <Grid item>
+          <ReplyFilter
+            filter={query.filter}
+            onChange={filter =>
+              goToUrlQueryAndResetPagination({ ...query, filter })
+            }
+          />
+        </Grid>
+        <Grid item>
+          <SearchInput
+            q={query.q}
+            onChange={q => goToUrlQueryAndResetPagination({ ...query, q })}
+          />
+        </Grid>
+      </Grid>
+      {currentUser && (
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={!!query.mine}
+              onChange={e =>
+                goToUrlQueryAndResetPagination({
+                  ...query,
+                  mine: e.target.checked ? 1 : undefined,
+                })
+              }
+            />
+          }
+          label={t`Only show replies written by me`}
+        />
+      )}
       <div>
-        <p>{totalCount} replies</p>
-        {this.renderPagination()}
-        <div className="reply-list">
-          {replies.map(reply => (
-            <ReplyItem key={reply.get('id')} reply={reply} showUser={!mine} />
-          ))}
-        </div>
-        {this.renderPagination()}
-        <style jsx>{`
+        {query.q ? (
+          t`Sort by Relevance`
+        ) : (
+          <SortInput
+            orderBy={query.orderBy}
+            onChange={orderBy =>
+              goToUrlQueryAndResetPagination({ ...query, orderBy })
+            }
+          />
+        )}
+      </div>
+
+      <p>
+        {statsLoading
+          ? 'Loading...'
+          : ngettext(
+              msgid`${statsData.totalCount} reply`,
+              `${statsData.totalCount} replies`,
+              statsData.totalCount
+            )}
+      </p>
+
+      {loading ? (
+        'Loading....'
+      ) : (
+        <>
+          <Pagination
+            query={query}
+            pageInfo={statsData?.pageInfo}
+            edges={replyData?.edges}
+          />
+          <ul className="reply-list">
+            {replyData.edges.map(({ node }) => (
+              <ReplyItem key={node.id} reply={node} showUser={!query.mine} />
+            ))}
+          </ul>
+          <Pagination
+            query={query}
+            pageInfo={statsData?.pageInfo}
+            edges={replyData?.edges}
+          />
+        </>
+      )}
+
+      <style jsx>
+        {`
           .reply-list {
             padding: 0;
+            list-style: none;
           }
-        `}</style>
-      </div>
-    );
-  };
-
-  render() {
-    const { isLoading = false } = this.props;
-
-    return (
-      <AppLayout>
-        <main>
-          <Head>
-            <title>回應列表</title>
-          </Head>
-          <h2>回應列表</h2>
-          {this.renderSearch()}
-          <br />
-          Order By:
-          {this.renderOrderBy()}
-          {this.renderFilter()}
-          {this.renderMyReplyOnlyCheckbox()}
-          {isLoading ? <p>Loading...</p> : this.renderList()}
-          <style jsx>{mainStyle}</style>
-        </main>
-      </AppLayout>
-    );
-  }
+        `}
+      </style>
+    </AppLayout>
+  );
 }
 
-function mapStateToProps({ replyList, auth }) {
-  return {
-    isLoggedIn: !!auth.get('user'),
-    isLoading: replyList.getIn(['state', 'isLoading']),
-    replies: (replyList.get('edges') || List()).map(edge => edge.get('node')),
-    totalCount: replyList.get('totalCount'),
-    firstCursor: replyList.get('firstCursor'),
-    lastCursor: replyList.get('lastCursor'),
-    firstCursorOfPage: replyList.getIn(['edges', 0, 'cursor']),
-    lastCursorOfPage: replyList.getIn(['edges', -1, 'cursor']),
-  };
-}
+// Expose path query to component
+ReplyListPage.getInitialProps = ({ query }) => ({ query });
 
-export default connect(mapStateToProps)(ReplyList);
+export default withData(ReplyListPage);
