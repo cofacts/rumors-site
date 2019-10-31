@@ -37,16 +37,21 @@ Build docker image.
 ``` bash
 # build
 $ IMAGE_NAME=rumors-site-test hooks/build
-
 ```
+
+This will build both `$IMAGE_NAME-en` and `$IMAGE_NAME-tw` image.
 
 Run the docker image on local machine, then visit `http://localhost:3000`.
 
 ``` bash
-$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test:en
+# English version:
+$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-en
+
+# zh_TW version:
+$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-tw
 ```
 
-Our docker cloud is set to automatic build the images specified in `hooks/build` script.
+On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `dev` and `master` branch.
 
 ## Design and Mockups
 
