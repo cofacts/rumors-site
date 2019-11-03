@@ -1,3 +1,5 @@
+import { t, jt } from 'ttag';
+
 function Stats() {
   const newMessageCount = (
     <div key="em" className="huge">
@@ -21,28 +23,23 @@ function Stats() {
   );
   const gathering = (
     <a key="link" href="https://cofacts.kktix.cc/">
-      a gathering of editors.
+      {/* we hold ~ */ t`a gathering of editors.`}
     </a>
   );
 
   return (
     <div className="row">
       <div className="col-6 col-md-3">
-        About
-        {newMessageCount} new messages entering our database each week.
+        {jt`About ${newMessageCount} new messages entering our database each week.`}
       </div>
       <div className="col-6 col-md-3">
-        About
-        {userForwardingCount} people forwarding new messages to our database
-        each week.
+        {jt`About ${userForwardingCount} people forwarding new messages to our database each week.`}
       </div>
       <div className="col-6 col-md-3">
-        But less than
-        {editorCount} active editors can help us respond each week.
+        {jt`But less than ${editorCount} active editors can help us respond each week.`}
       </div>
       <div className="col-6 col-md-3">
-        Every
-        {meetupFrequency} months we hold {gathering}
+        {jt`Every ${meetupFrequency} months we hold ${gathering}`}
       </div>
       <style jsx>{`
         .row :global(.huge) {

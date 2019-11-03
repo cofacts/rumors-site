@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
+import { t, jt } from 'ttag';
 
 const DEFAULT_CHARACTOR = {
-  singular: 'someone',
-  plural: 'people',
+  singular: /* Are you aware that ~ is helping with ... */ t`someone`,
+  plural: /* local ~ need your help! */ t`people`,
 };
 
 const RANDOM_CHARACTORS = [
-  { singular: 'your mom', plural: 'moms' },
-  { singular: 'your dad', plural: 'dads' },
-  { singular: 'your sister', plural: 'sis' },
-  { singular: 'your brother', plural: 'bro' },
-  { singular: 'your colleague', plural: 'colleagues' },
-  { singular: 'your child', plural: 'children' },
+  { singular: t`your mom`, plural: t`moms` },
+  { singular: t`your dad`, plural: t`dads` },
+  { singular: t`your sister`, plural: t`sis` },
+  { singular: t`your brother`, plural: t`bro` },
+  { singular: t`your colleague`, plural: t`colleagues` },
+  { singular: t`your child`, plural: t`children` },
 ];
 
 function Jumbotron() {
@@ -51,8 +52,7 @@ function Jumbotron() {
     <div className="jumbotron text-light">
       <div className="text-center">
         <h1 className="mb-2">
-          Are you aware that {someone} is helping the spread of {internetHoaxes}
-          ?
+          {jt`Are you aware that ${someone} is helping the spread of ${internetHoaxes}?`}
         </h1>
         <div
           style={{
@@ -61,9 +61,9 @@ function Jumbotron() {
           }}
         ></div>
         <p>
-          Follow our LINE bot or join as one of our Cofacts editor.
+          {t`Follow our LINE bot or join as one of our Cofacts editor.`}
           <br />
-          Local {someones} need your protection!
+          {jt`Local ${someones} need your protection!`}
         </p>
         <br />
         <a
@@ -71,7 +71,7 @@ function Jumbotron() {
           href="/articles"
           className="btn btn-danger btn-lg"
         >
-          Start busting hoaxes now
+          {t`Start busting hoaxes now`}
         </a>
       </div>
       <style jsx>{`

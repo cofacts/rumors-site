@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import cx from 'clsx';
-// import { t } from 'ttag';
+import { t } from 'ttag';
 
 import { NEWS, Jumbotron, Stats } from 'components/LandingPage';
 
@@ -12,22 +12,16 @@ function Home() {
     setNavCollapsed(s => !s);
   };
 
+  const title = `${t`Cofacts`} - ${t`Collaborative fact-checking system`}`;
+  const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
+
   return (
     <Fragment>
       <Head>
-        <title>Cofacts - Collaborative fact-checking system</title>
-        <meta
-          name="description"
-          content="Cofacts is a collaborative system connecting instant messages and fact-check reports together. It’s a grass-root effort fighting mis/disinformation in Taiwan."
-        />
-        <meta
-          property="og:title"
-          content="Cofacts - Collaborative fact-checking system"
-        />
-        <meta
-          property="og:description"
-          content="Cofacts is a collaborative system connecting instant messages and fact-check reports together. It’s a grass-root effort fighting mis/disinformation in Taiwan."
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta property="og:locale" content={process.env.LOCALE} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://cofacts.g0v.tw" />
@@ -62,7 +56,7 @@ function Home() {
         style={{ backgroundColor: navCollapsed ? 'initial' : '#343a40' }}
       >
         <a href="/" className="navbar-brand">
-          Cofacts
+          {t`Cofacts`}
         </a>
         <button
           type="button"
@@ -77,12 +71,12 @@ function Home() {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <a href="/articles" className="nav-link">
-                Hoax Search
+                {t`Hoax Search`}
               </a>
             </li>
             <li className="nav-item active">
               <a href="/replies" className="nav-link">
-                Response List
+                {t`Response List`}
               </a>
             </li>
             <li className="nav-item active">
@@ -90,12 +84,12 @@ function Home() {
                 href="https://www.facebook.com/groups/cofacts/permalink/1959641497601003/"
                 className="nav-link"
               >
-                Facebook
+                {t`Facebook`}
               </a>
             </li>
             <li className="nav-item active">
               <a href="https://beta.hackfoldr.org/cofacts" className="nav-link">
-                Hackfoldr
+                {t`Hackfoldr`}
               </a>
             </li>
           </ul>
@@ -107,15 +101,15 @@ function Home() {
         <div className="inner">
           <div className="content">
             <h4>
-              Follow our LINE@, and send any suspected hoax, scam, rumor, or
-              urban legend to verify its truth.
+              {t`Follow our LINE@, and send any suspected hoax, scam, rumor, or
+                 urban legend to verify its truth.`}
             </h4>
             <div className="sep light-dark gap-sm"></div>
             <p>
-              Search by ID “@cofacts” or scan our QR Code to follow our Cofacts
-              LINE@ account, forward any possible hoax, scam, rumor, or urban
-              legend sources to it, then our chatbot will help you check the
-              credibility of the source!
+              {t`Search by ID “@cofacts” or scan our QR Code to follow our Cofacts
+                 LINE@ account, forward any possible hoax, scam, rumor, or urban
+                 legend sources to it, then our chatbot will help you check the
+                 credibility of the source!`}
             </p>
             <p>
               <a
@@ -124,7 +118,7 @@ function Home() {
                 rel="noopener noreferrer"
               >
                 <small>
-                  TUTORIAL <i className="fa fa-arrow-right"></i>
+                  {t`TUTORIAL`} <i className="fa fa-arrow-right"></i>
                 </small>
               </a>
             </p>
@@ -148,32 +142,32 @@ function Home() {
       <div className="section section-why bg-light">
         <div className="inner">
           <div className="text-center">
-            <h2>Write your own response and share your wisdom!</h2>
+            <h2>{t`Write your own response and share your wisdom!`}</h2>
           </div>
           <p>
-            The responses a user see are also submitted by other users. Here we
-            do not have all-knowing judges, only citizens who cooperate and
-            contribute. Think others’ response not good enough? Is there
-            something you’d like to find out but it has not been requested yet?
-            Write your own response and help others!
+            {t`The responses a user see are also submitted by other users. Here we
+               do not have all-knowing judges, only citizens who cooperate and
+               contribute. Think others’ response not good enough? Is there
+               something you’d like to find out but it has not been requested yet?
+               Write your own response and help others!`}
           </p>
           <p>
-            Every suspicious source is sent from an user, which is open to
-            public for examination and response. One single request can be
-            responded by different people, allowing each response to take a step
-            closer to unravelling its truth.
+            {t`Every suspicious source is sent from an user, which is open to
+               public for examination and response. One single request can be
+               responded by different people, allowing each response to take a step
+               closer to unravelling its truth.`}
           </p>
           <p className="text-center">
             <a href="/articles" className="btn btn-secondary btn-lg mr-2">
-              HOAX SEARCH <i className="fa fa-database"></i>
+              {t`HOAX SEARCH`} <i className="fa fa-database"></i>
             </a>
           </p>
         </div>
       </div>
       <div className="section section-traction bg-danger text-light">
         <div className="inner text-center">
-          <h2>A war between hoaxes and facts.</h2>
-          <p>The difficulties we face...</p>
+          <h2>{t`A war between hoaxes and facts`}</h2>
+          <p>{t`The difficulties we face...`}</p>
           <div
             style={{
               borderBottom: '1 solid rgba(255,255,255,0.6)',
@@ -240,12 +234,12 @@ function Home() {
       <div className="section section-trivia">
         <div className="inner">
           <div className="text-center">
-            <h2>Features</h2>
+            <h2>{t`Features`}</h2>
           </div>
           <p>
-            Cofacts program encourages people to become part of a chatbot for
-            helping others. With your research, you can add your hoax busting
-            responses into our database to help people acknowledge its lies.
+            {t`Cofacts program encourages people to become part of a chatbot for
+               helping others. With your research, you can add your hoax busting
+               responses into our database to help people acknowledge its lies.`}
           </p>
           <br />
           <div className="row">
@@ -254,7 +248,7 @@ function Home() {
                 <i className="fa mr-2 mt-1 fa-cube"></i>
                 <div className="media-body">
                   <span className="name">
-                    <b>Crowdsourcing</b>
+                    <b>{t`Crowdsourcing`}</b>
                   </span>
                   <p
                     style={{
@@ -263,10 +257,10 @@ function Home() {
                       color: '#444',
                     }}
                   >
-                    Anyone can verify and respond to other’s requests on
-                    possible hoax and upload it into our database. We encourage
-                    citizens to join our program, even invite your mom and dad
-                    to join.
+                    {t`Anyone can verify and respond to other’s requests on
+                       possible hoax and upload it into our database. We encourage
+                       citizens to join our program, even invite your mom and dad
+                       to join.`}
                   </p>
                 </div>
               </div>
@@ -276,7 +270,7 @@ function Home() {
                 <i className="fa mr-2 mt-1 fa-cube"></i>
                 <div className="media-body">
                   <span className="name">
-                    <b>Real-Time Response</b>
+                    <b>{t`Real-Time Response`}</b>
                   </span>
                   <p
                     style={{
@@ -285,11 +279,11 @@ function Home() {
                       color: '#444',
                     }}
                   >
-                    Once someone respond to your pending request, the chatbot
-                    will answer you through LINE. It’s fast and immediate, you
-                    don’t even have to wait. Better yet, you don’t even need to
-                    say ‘thank you’. Ask the bot to verify for you, no need to
-                    feel uncomfortable asking it for favors.
+                    {t`Once someone respond to your pending request, the chatbot
+                       will answer you through LINE. It’s fast and immediate, you
+                       don’t even have to wait. Better yet, you don’t even need to
+                       say ‘thank you’. Ask the bot to verify for you, no need to
+                       feel uncomfortable asking it for favors.`}
                   </p>
                 </div>
               </div>
@@ -299,7 +293,7 @@ function Home() {
                 <i className="fa mr-2 mt-1 fa-cube"></i>
                 <div className="media-body">
                   <span className="name">
-                    <b>Different Views</b>
+                    <b>{t`Different Views`}</b>
                   </span>
                   <p
                     style={{
@@ -308,9 +302,9 @@ function Home() {
                       color: '#444',
                     }}
                   >
-                    Knowing what’s fact and what’s an opinion. Seeing different
-                    sides of the story makes you realize your own blindspot,
-                    allowing everyone to respect each other’s perspectives.
+                    {t`Knowing what’s fact and what’s an opinion. Seeing different
+                       sides of the story makes you realize your own blindspot,
+                       allowing everyone to respect each other’s perspectives.`}
                   </p>
                 </div>
               </div>
@@ -320,7 +314,7 @@ function Home() {
                 <i className="fa mr-2 mt-1 fa-cube"></i>
                 <div className="media-body">
                   <span className="name">
-                    <b>Open Source Authorization</b>
+                    <b>{t`Open Source Authorization`}</b>
                   </span>
                   <p
                     style={{
@@ -329,10 +323,10 @@ function Home() {
                       color: '#444',
                     }}
                   >
-                    Codes of different patches, meeting records and database
-                    statistics are all opened to public. We encourage more open
-                    source data; work and share with others in a transparent
-                    environment, create different possibilities.
+                    {t`Codes of different patches, meeting records and database
+                       statistics are all opened to public. We encourage more open
+                       source data; work and share with others in a transparent
+                       environment, create different possibilities.`}
                   </p>
                 </div>
               </div>
@@ -342,7 +336,7 @@ function Home() {
       </div>
       <div className="section section-media bg-warning text-dark">
         <div className="inner">
-          <h2 className="text-center">See what others have to say.</h2>
+          <h2 className="text-center">{t`See what others have to say`}</h2>
           <ul>
             {NEWS.map(([meta, title, url], idx) => (
               <li key={idx}>
@@ -355,24 +349,24 @@ function Home() {
       <div className="section section-contribute bg-light text-dark">
         <div className="inner">
           <div className="text-center">
-            <h2>Join our open source community.</h2>
+            <h2>{t`Join our open source community`}</h2>
           </div>
           <p>
-            Cofacts needs all of you to help our current program to be more
-            efficient and complete. This collaborate program cannot be completed
-            by a small community, we need everyone to contribute, write codes,
-            bust hoaxes and research. Self-motivated researching and responding
-            is the way to transcend this program into something great.
+            {t`Cofacts needs all of you to help our current program to be more
+               efficient and complete. This collaborate program cannot be completed
+               by a small community, we need everyone to contribute, write codes,
+               bust hoaxes and research. Self-motivated researching and responding
+               is the way to transcend this program into something great.`}
           </p>
-          <p>We welcome everyone to join us, here is what we’re looking for.</p>
+          <p>{t`We welcome everyone to join us, here is what we’re looking for.`}</p>
           <ul>
             <li>
-              People with curiosity and a sense of justice that can help us bust
-              hoaxes and help others.
+              {t`People with curiosity and a sense of justice that can help us bust
+                 hoaxes and help others.`}
             </li>
             <li>
-              Coding is a piece of cake to you? Join us fast and work together
-              with us on our issues.
+              {t`Coding is a piece of cake to you? Join us fast and work together
+                 with us on our issues.`}
             </li>
           </ul>
           <br />
@@ -381,20 +375,21 @@ function Home() {
               href="https://hackmd.io/@B4gs1CECTRyI5Ny7vSy6dQ/SklM4dV9m/https%3A%2F%2Fg0v.hackmd.io%2FWaz-B9sORSOPLp6nAOS82w?type=book&fbclid=IwAR0pNUVLOllNTgoPE8dxbJSt8VCvIeCK_h0MszfAS2aiUFLj3XFfTfKXM4Q"
               className="btn btn-secondary btn-lg mr-2"
             >
-              I want to learn how to use Cofacts{' '}
+              {t`I want to learn how to use Cofacts`}{' '}
               <i className="fa fa-user-plus"></i>
             </a>
             <a
               href="https://hackmd.io/s/SyMRyrfEl"
               className="btn btn-secondary btn-lg mr-2"
             >
-              I can help bust hoaxes <i className="fa fa-pencil-square-o"></i>
+              {t`I can help bust hoaxes`}{' '}
+              <i className="fa fa-pencil-square-o"></i>
             </a>
             <a
               href="https://hackmd.io/s/r1nfwTrgM"
               className="btn btn-secondary btn-lg mr-2"
             >
-              I can help with coding <i className="fa fa-code"></i>
+              {t`I can help with coding`} <i className="fa fa-code"></i>
             </a>
           </div>
         </div>
@@ -405,34 +400,34 @@ function Home() {
             <div className="col-12 col-md-8">
               <div className="row">
                 <div className="col-6 col-md-4">
-                  <label>Cofacts</label>
+                  <label>{t`Cofacts`}</label>
                   <div className="item">
                     <a href="https://bit.ly/cofacts-quickstart">
-                      Program Introduction
+                      {t`Program Introduction`}
                     </a>
                   </div>
                   <div className="item">
                     <a href="https://grants.g0v.tw/projects/588fa7b382223f001e022944">
-                      Original Program
+                      {t`Original Program`}
                     </a>
                   </div>
                   <div className="item">
-                    <a href="https://github.com/cofacts">Source code</a>
+                    <a href="https://github.com/cofacts">{t`Source code`}</a>
                   </div>
                   <div className="item">
                     <a href="https://www.facebook.com/groups/cofacts/">
-                      Facebook Club
+                      {t`Facebook Club`}
                     </a>
                   </div>
                   <div className="item">
-                    <a href="mailto:cofacts@googlegroups.com">Contact</a>
+                    <a href="mailto:cofacts@googlegroups.com">{t`Contact`}</a>
                   </div>
                 </div>
                 <div className="col-6 col-md-4">
-                  <label>Notices</label>
+                  <label>{t`Notices`}</label>
                   <div className="item">
                     <a href="https://beta.hackfoldr.org/cofacts/https%253A%252F%252Fhackmd.io%252Fs%252FryE0G6rxG">
-                      Cofacts Copyrights
+                      {t`Cofacts Copyrights`}
                     </a>
                   </div>
                 </div>

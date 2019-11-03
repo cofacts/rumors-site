@@ -6,24 +6,20 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: pages/index.js:20
-msgid "List page"
-msgstr "文章列表"
-
 #: components/AppLayout/AppFooter.js:20
 #: components/AppLayout/AppHeader.js:34
 msgid "About"
 msgstr "關於 Cofacts"
 
 #: components/AppLayout/AppFooter.js:22
+#: pages/index.js:423
 msgid "Contact"
 msgstr "聯絡我們"
 
-#: pages/index.js:17
-msgid "INDEX!"
-msgstr ""
-
 #: components/AppLayout/AppHeader.js:11
+#: pages/index.js:15
+#: pages/index.js:59
+#: pages/index.js:403
 msgid "Cofacts"
 msgstr ""
 
@@ -76,7 +72,7 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:241
+#: pages/articles.js:243
 #, javascript-format
 msgid "${ statsData.totalCount } collected message"
 msgid_plural "${ statsData.totalCount } collected messages"
@@ -94,20 +90,20 @@ msgstr "已回覆"
 msgid "All"
 msgstr "全部"
 
-#: pages/articles.js:224
+#: pages/articles.js:226
 msgid "Include messages reported only 1 time"
 msgstr "加列僅被回報 1 次的訊息"
 
-#: pages/articles.js:269
+#: pages/articles.js:271
 msgid "Shows messages reported multiple times by default."
 msgstr "預設僅會列出被回報數次的訊息。"
 
-#: pages/articles.js:279
+#: pages/articles.js:281
 msgid "Click here to include messages only reported 1 time."
 msgstr "按這裡加入僅被回報 1 次的訊息。"
 
 #: pages/articles.js:147
-#: pages/replies.js:147
+#: pages/replies.js:148
 msgid "Sort by"
 msgstr "排序方式"
 
@@ -119,12 +115,13 @@ msgstr "最近被查詢"
 msgid "Most asked"
 msgstr "最多人詢問"
 
-#: pages/articles.js:228
-#: pages/replies.js:233
+#: pages/articles.js:230
+#: pages/replies.js:236
 msgid "Sort by Relevance"
 msgstr "以相關度排序"
 
-#: pages/article/[id].js:122
+#: pages/article/[id].js:124
+#: pages/reply/[id].js:141
 msgid "Reported Message"
 msgstr "使用者回報訊息"
 
@@ -203,7 +200,7 @@ msgid "Deleted replies"
 msgstr "已刪除的回應"
 
 #: components/CurrentReplies.js:77
-#: pages/reply.js:135
+#: pages/reply/[id].js:176
 msgid "Restore"
 msgstr "恢復"
 
@@ -222,7 +219,7 @@ msgid "There is no existing replies for now."
 msgstr "目前沒有已撰寫的回應。"
 
 #: components/CurrentReplies.js:175
-#: pages/reply.js:135
+#: pages/reply/[id].js:176
 msgid "Delete"
 msgstr "刪除"
 
@@ -231,7 +228,7 @@ msgstr "刪除"
 msgid "Lv.${ editorLevel } ${ levelName }"
 msgstr "等級 ${ editorLevel }. ${ levelName }"
 
-#: pages/article/[id].js:151
+#: pages/article/[id].js:153
 msgid "Replies to the message"
 msgstr "現有回應"
 
@@ -263,56 +260,56 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/replies.js:134
+#: pages/replies.js:135
 msgid "All replies"
 msgstr "所有回應"
 
-#: pages/replies.js:159
+#: pages/replies.js:160
 msgid "Most recently written"
 msgstr "最近寫的"
 
-#: pages/replies.js:160
+#: pages/replies.js:161
 msgid "Least recently written"
 msgstr "最久以前寫的"
 
-#: pages/replies.js:197
+#: pages/replies.js:200
 msgid "Reply list"
 msgstr "回應列表"
 
-#: pages/replies.js:228
+#: pages/replies.js:231
 msgid "Only show replies written by me"
 msgstr "只顯示我寫的回應"
 
-#: pages/article/[id].js:156
+#: pages/article/[id].js:158
 msgid "Add a new reply"
 msgstr "新增回應"
 
-#: pages/article/[id].js:169
+#: pages/article/[id].js:171
 msgid "You may be interested in the following similar messages"
 msgstr "你可能對下面類似訊息感興趣"
 
-#: components/NewReplySection.js:76
+#: components/NewReplySection.js:77
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
-#: components/NewReplySection.js:90
+#: components/NewReplySection.js:91
 #. Notify upper component of submission
 msgid "Your have attached the reply to this message."
 msgstr "已經加入回應。"
 
-#: components/NewReplySection.js:117
+#: components/NewReplySection.js:118
 msgid "Please login first."
 msgstr "請先登入。"
 
-#: components/NewReplySection.js:123
+#: components/NewReplySection.js:124
 msgid "New Reply"
 msgstr "寫新回應"
 
-#: components/NewReplySection.js:130
+#: components/NewReplySection.js:131
 msgid "Reuse existing reply"
 msgstr "使用現有回應"
 
-#: components/NewReplySection.js:134
+#: components/NewReplySection.js:135
 #: components/ReplySearch/ReplySearch.js:156
 msgid "Search"
 msgstr "搜尋"
@@ -342,7 +339,7 @@ msgstr "理由合理"
 msgid "The reason is not reasonable"
 msgstr "理由不合理"
 
-#: components/AppLayout/LoginModal.js:13
+#: components/AppLayout/LoginModal.js:18
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
@@ -381,8 +378,332 @@ msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論
 msgid "This message has some of its content proved to be false."
 msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 
-#: pages/replies.js:247
+#: pages/replies.js:250
 #, javascript-format
 msgid "${ statsData.totalCount } reply"
 msgid_plural "${ statsData.totalCount } replies"
 msgstr[0] "${ statsData.totalCount } 份回應"
+
+#: pages/index.js:15
+msgid "Collaborative fact-checking system"
+msgstr ""
+
+#: pages/index.js:16
+msgid ""
+"Cofacts is a collaborative system connecting instant messages and "
+"fact-check reports together. It’s a grass-root effort fighting "
+"mis/disinformation in Taiwan."
+msgstr ""
+
+#: pages/index.js:74
+msgid "Hoax Search"
+msgstr ""
+
+#: pages/index.js:79
+msgid "Response List"
+msgstr ""
+
+#: pages/index.js:87
+msgid "Facebook"
+msgstr ""
+
+#: pages/index.js:92
+msgid "Hackfoldr"
+msgstr ""
+
+#: pages/index.js:104
+msgid ""
+"Follow our LINE@, and send any suspected hoax, scam, rumor, or\n"
+"urban legend to verify its truth."
+msgstr ""
+
+#: pages/index.js:109
+msgid ""
+"Search by ID “@cofacts” or scan our QR Code to follow our Cofacts\n"
+"LINE@ account, forward any possible hoax, scam, rumor, or urban\n"
+"legend sources to it, then our chatbot will help you check the\n"
+"credibility of the source!"
+msgstr ""
+
+#: pages/index.js:121
+msgid "TUTORIAL"
+msgstr ""
+
+#: pages/index.js:145
+msgid "Write your own response and share your wisdom!"
+msgstr ""
+
+#: pages/index.js:148
+msgid ""
+"The responses a user see are also submitted by other users. Here we\n"
+"do not have all-knowing judges, only citizens who cooperate and\n"
+"contribute. Think others’ response not good enough? Is there\n"
+"something you’d like to find out but it has not been requested yet?\n"
+"Write your own response and help others!"
+msgstr ""
+
+#: pages/index.js:155
+msgid ""
+"Every suspicious source is sent from an user, which is open to\n"
+"public for examination and response. One single request can be\n"
+"responded by different people, allowing each response to take a step\n"
+"closer to unravelling its truth."
+msgstr ""
+
+#: pages/index.js:162
+msgid "HOAX SEARCH"
+msgstr ""
+
+#: pages/index.js:169
+msgid "A war between hoaxes and facts"
+msgstr ""
+
+#: pages/index.js:170
+msgid "The difficulties we face..."
+msgstr ""
+
+#: pages/index.js:237
+msgid "Features"
+msgstr ""
+
+#: pages/index.js:240
+msgid ""
+"Cofacts program encourages people to become part of a chatbot for\n"
+"helping others. With your research, you can add your hoax busting\n"
+"responses into our database to help people acknowledge its lies."
+msgstr ""
+
+#: pages/index.js:251
+msgid "Crowdsourcing"
+msgstr ""
+
+#: pages/index.js:260
+msgid ""
+"Anyone can verify and respond to other’s requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr ""
+
+#: pages/index.js:273
+msgid "Real-Time Response"
+msgstr ""
+
+#: pages/index.js:282
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It’s fast and immediate, you\n"
+"don’t even have to wait. Better yet, you don’t even need to\n"
+"say ‘thank you’. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr ""
+
+#: pages/index.js:296
+msgid "Different Views"
+msgstr ""
+
+#: pages/index.js:305
+msgid ""
+"Knowing what’s fact and what’s an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other’s perspectives."
+msgstr ""
+
+#: pages/index.js:317
+msgid "Open Source Authorization"
+msgstr ""
+
+#: pages/index.js:326
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr ""
+
+#: pages/index.js:339
+msgid "See what others have to say"
+msgstr ""
+
+#: pages/index.js:352
+msgid "Join our open source community"
+msgstr ""
+
+#: pages/index.js:355
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+
+#: pages/index.js:361
+msgid "We welcome everyone to join us, here is what we’re looking for."
+msgstr ""
+
+#: pages/index.js:364
+msgid ""
+"People with curiosity and a sense of justice that can help us bust\n"
+"hoaxes and help others."
+msgstr ""
+
+#: pages/index.js:368
+msgid ""
+"Coding is a piece of cake to you? Join us fast and work together\n"
+"with us on our issues."
+msgstr ""
+
+#: pages/index.js:378
+msgid "I want to learn how to use Cofacts"
+msgstr ""
+
+#: pages/index.js:385
+msgid "I can help bust hoaxes"
+msgstr ""
+
+#: pages/index.js:392
+msgid "I can help with coding"
+msgstr ""
+
+#: pages/index.js:406
+msgid "Program Introduction"
+msgstr ""
+
+#: pages/index.js:411
+msgid "Original Program"
+msgstr ""
+
+#: pages/index.js:415
+msgid "Source code"
+msgstr ""
+
+#: pages/index.js:419
+msgid "Facebook Club"
+msgstr ""
+
+#: pages/index.js:427
+msgid "Notices"
+msgstr ""
+
+#: pages/index.js:430
+msgid "Cofacts Copyrights"
+msgstr ""
+
+#: pages/reply/[id].js:148
+#, javascript-format
+msgid "Check message and other ${ otherReplyCount } reply"
+msgid_plural "Check message and other ${ otherReplyCount } replies"
+msgstr[0] ""
+
+#: pages/reply/[id].js:172
+msgid "This reply"
+msgstr ""
+
+#: pages/reply/[id].js:183
+msgid "This reply has been deleted by its author."
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:5
+#. Are you aware that ~ is helping with ... 
+msgid "someone"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:6
+#. local ~ need your help! 
+msgid "people"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:10
+msgid "your mom"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:10
+msgid "moms"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:11
+msgid "your dad"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:11
+msgid "dads"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:12
+msgid "your sister"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:12
+msgid "sis"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:13
+msgid "your brother"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:13
+msgid "bro"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:14
+msgid "your colleague"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:14
+msgid "colleagues"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:15
+msgid "your child"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:15
+msgid "children"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:55
+#, javascript-format
+msgid ""
+"Are you aware that ${ someone } is helping the spread of ${ internetHoaxes "
+"}?"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:64
+msgid "Follow our LINE bot or join as one of our Cofacts editor."
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:66
+#, javascript-format
+msgid "Local ${ someones } need your protection!"
+msgstr ""
+
+#: components/LandingPage/Jumbotron.js:74
+msgid "Start busting hoaxes now"
+msgstr ""
+
+#: components/LandingPage/Stats.js:26
+#. we hold ~ 
+msgid "a gathering of editors."
+msgstr ""
+
+#: components/LandingPage/Stats.js:33
+#, javascript-format
+msgid "About ${ newMessageCount } new messages entering our database each week."
+msgstr ""
+
+#: components/LandingPage/Stats.js:36
+msgid ""
+"About ${ userForwardingCount } people forwarding new messages to our "
+"database each week."
+msgstr ""
+
+#: components/LandingPage/Stats.js:39
+#, javascript-format
+msgid "But less than ${ editorCount } active editors can help us respond each week."
+msgstr ""
+
+#: components/LandingPage/Stats.js:42
+#, javascript-format
+msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
+msgstr ""
