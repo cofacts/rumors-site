@@ -28,12 +28,12 @@ function Home() {
           property="og:description"
           content="Cofacts is a collaborative system connecting instant messages and fact-check reports together. It’s a grass-root effort fighting mis/disinformation in Taiwan."
         />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale" content={process.env.LOCALE} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://cofacts.g0v.tw" />
         <meta
           property="og:image"
-          content={require('components/LandingPage/images/ogimage.png')}
+          content={`https://cofacts.g0v.tw${require('components/LandingPage/images/ogimage.png')}`}
         />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1920" />
