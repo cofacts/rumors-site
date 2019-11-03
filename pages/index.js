@@ -73,7 +73,7 @@ function Home() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={cx({ collapse: navCollapsed })}>
+        <div className={cx('navbar-collapse', { collapse: navCollapsed })}>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <a href="/articles" className="nav-link">
