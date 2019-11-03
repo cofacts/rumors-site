@@ -3,7 +3,7 @@ import Head from 'next/head';
 import cx from 'clsx';
 // import { t } from 'ttag';
 
-import { NEWS } from 'components/LandingPage';
+import { NEWS, Jumbotron } from 'components/LandingPage';
 
 function Home() {
   const [navCollapsed, setNavCollapsed] = useState(true);
@@ -101,33 +101,7 @@ function Home() {
           </ul>
         </div>
       </nav>
-      <div className="jumbotron text-light">
-        <div className="text-center">
-          <h1 className="mb-2">
-            Are you aware that <span id="short-name">your mom</span> is helping
-            the spread of <em className="emphasis">internet hoaxes</em>?
-          </h1>
-          <div
-            style={{
-              borderBottom: '1px solid rgba(255,255,255,0.3)',
-              margin: 20,
-            }}
-          ></div>
-          <p>
-            Follow our LINE bot or join as one of our Cofacts editor.
-            <br />
-            Local <span id="long-name">moms</span> need your protection!
-          </p>
-          <br />
-          <a
-            style={{ minWidth: 280 }}
-            href="/articles"
-            className="btn btn-danger btn-lg"
-          >
-            Start busting hoaxes now
-          </a>
-        </div>
-      </div>
+      <Jumbotron />
 
       <div className="section bg-warning section-line">
         <div className="inner">
@@ -510,29 +484,6 @@ function Home() {
         nav {
           text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
           font-size: 0.9em;
-        }
-        .jumbotron {
-          height: 100vh;
-          max-height: 640px;
-          margin-bottom: 0;
-          position: relative;
-          background: url(${require('components/LandingPage/images/jumbotron.jpg')})
-            center center no-repeat #222;
-          background-size: cover;
-          border-radius: 0;
-        }
-        .jumbotron .text-center {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          margin: auto;
-          height: 210px;
-        }
-        .jumbotron .emphasis {
-          font-style: normal;
-          color: #ffc107;
         }
         .section {
           padding: 80px 20px;
