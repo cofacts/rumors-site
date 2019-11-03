@@ -3,7 +3,7 @@ import Head from 'next/head';
 import cx from 'clsx';
 // import { t } from 'ttag';
 
-import { NEWS, Jumbotron } from 'components/LandingPage';
+import { NEWS, Jumbotron, Stats } from 'components/LandingPage';
 
 function Home() {
   const [navCollapsed, setNavCollapsed] = useState(true);
@@ -181,29 +181,8 @@ function Home() {
               width: '150px',
             }}
             className="sep"
-          ></div>
-          <div className="row">
-            <div className="col-6 col-md-3">
-              About
-              <div className="huge">250</div> new messages entering our database
-              each week.
-            </div>
-            <div className="col-6 col-md-3">
-              About
-              <div className="huge">210</div> people forwarding new messages to
-              our database each week.
-            </div>
-            <div className="col-6 col-md-3">
-              But less than
-              <div className="huge">12</div> active editors can help us respond
-              each week.
-            </div>
-            <div className="col-6 col-md-3">
-              Every
-              <div className="huge">2</div> months we hold{' '}
-              <a href="https://cofacts.kktix.cc/">a gathering of editors.</a>
-            </div>
-          </div>
+          />
+          <Stats />
         </div>
       </div>
       <div className="section section-photos">
@@ -494,10 +473,6 @@ function Home() {
         }
         h2 {
           margin-bottom: 50px;
-        }
-        .huge {
-          font-size: 3em;
-          font-weight: 900;
         }
         .section-line {
           padding: 0 40px;
