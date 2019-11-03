@@ -3,6 +3,8 @@ import Head from 'next/head';
 import cx from 'clsx';
 // import { t } from 'ttag';
 
+import { NEWS } from 'components/LandingPage';
+
 function Home() {
   const [navCollapsed, setNavCollapsed] = useState(true);
 
@@ -389,54 +391,11 @@ function Home() {
         <div className="inner">
           <h2 className="text-center">See what others have to say.</h2>
           <ul>
-            <li>
-              2017-12-20 foodNEXT／
-              <a href="http://www.foodnext.net/issue/paper/4098799425">
-                Hoax buster surfaced! Self-organizing group helps citizens
-                busting internet hoaxes.
-              </a>
-            </li>
-            <li>
-              2017-07-27 New Power Party New Taipei Chatroom／
-              <a href="https://www.facebook.com/nppnewtpe/videos/452378341813693/">
-                LINE group hoaxes everywhere. Truths or lies? LINE bot helps you
-                verify.
-              </a>
-            </li>
-            <li>
-              2017-07-14 United Daily News／
-              <a href="https://udn.com/news/story/6649/2585096">
-                Fighting false news! Startup team builds LINE bot to verify news
-                sources.
-              </a>
-            </li>
-            <li>
-              2017-05-10 Business Weekly／
-              <a href="https://magazine.businessweekly.com.tw/Article_mag_page.aspx?id=64444&amp;p=0">
-                30% of the reported hoaxes in Taiwan came from China.
-              </a>
-            </li>
-            <li>
-              2017-03 University of Oxford／
-              <a href="http://comprop.oii.ox.ac.uk/research/working-papers/computational-propaganda-in-taiwan-where-digital-democracy-meets-automated-autocracy/">
-                Computational Propaganda in Taiwan: Where Digital Democracy
-                Meets Automated Autocracy
-              </a>
-            </li>
-            <li>
-              2017-01-25 g0v news／
-              <a href="https://g0v.news/%E5%9D%91%E4%B8%BB%E5%B0%88%E8%A8%AA-line-%E4%B8%8A%E9%9D%A2%E8%A8%8A%E6%81%AF%E6%9C%89%E4%BA%9B%E6%98%AF%E5%81%87%E7%9A%84-%E5%A5%BD%E5%9B%B0%E6%93%BE%E5%95%8A-%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%B0%8D%E6%8A%97%E5%81%87%E6%96%B0%E8%81%9E-%E4%BB%96%E5%80%91%E8%83%8C%E5%BE%8C%E7%9A%84%E9%95%B7%E5%BE%81%E8%A8%88%E7%95%AB-df9ca1460995">
-                [VICTIM INTERVIEW] “Fake news from LINE is really bothering” How
-                these heroes fight fake news and their long journey ahead.
-              </a>
-            </li>
-            <li>
-              2017-01-11 BNext／
-              <a href="https://www.bnext.com.tw/article/42725/line-fake-news-check">
-                Development in progress! “True or False - a LINE chatbot that
-                verifies fake news” developer: “It’s still in development.”
-              </a>
-            </li>
+            {NEWS.map(([meta, title, url], idx) => (
+              <li key={idx}>
+                {meta}／<a href={url}>{title}</a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
