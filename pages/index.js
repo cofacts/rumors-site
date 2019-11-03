@@ -31,7 +31,7 @@ function Home() {
         <meta property="og:url" content="https://cofacts.g0v.tw" />
         <meta
           property="og:image"
-          content="https://cofacts.g0v.tw/static/img/ogimage.png"
+          content={require('components/LandingPage/images/ogimage.png')}
         />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1920" />
@@ -153,14 +153,14 @@ function Home() {
               </a>
             </p>
             <p>
-              <img src="/static/img/qr-code.png" />
+              <img src={require('components/LandingPage/images/qr-code.png')} />
             </p>
           </div>
           <div className="phone-container">
             <div className="phone-img">
               <video
-                poster="/static/img/recording-still.gif"
-                src="/static/img/recording.mp4"
+                poster={require('components/LandingPage/images/recording-still.gif')}
+                src={require('components/LandingPage/images/recording.mp4')}
                 autoPlay
                 loop
                 muted
@@ -233,37 +233,49 @@ function Home() {
       <div className="section section-photos">
         <div className="inner">
           <div
-            style={{ backgroundImage: 'url(/static/img/gallery/1.jpg)' }}
+            style={{
+              backgroundImage: `url(${require('components/LandingPage/images/gallery/1.jpg')})`,
+            }}
             className="photo"
           >
             <div className="mask"></div>
           </div>
           <div
-            style={{ backgroundImage: 'url(/static/img/gallery/2.jpg)' }}
+            style={{
+              backgroundImage: `url(${require('components/LandingPage/images/gallery/2.jpg')})`,
+            }}
             className="photo"
           >
             <div className="mask"></div>
           </div>
           <div
-            style={{ backgroundImage: 'url(/static/img/gallery/3.jpg)' }}
+            style={{
+              backgroundImage: `url(${require('components/LandingPage/images/gallery/3.jpg')})`,
+            }}
             className="photo"
           >
             <div className="mask"></div>
           </div>
           <div
-            style={{ backgroundImage: 'url(/static/img/gallery/4.jpg)' }}
+            style={{
+              backgroundImage: `url(${require('components/LandingPage/images/gallery/4.jpg')})`,
+            }}
             className="photo"
           >
             <div className="mask"></div>
           </div>
           <div
-            style={{ backgroundImage: 'url(/static/img/gallery/5.jpg)' }}
+            style={{
+              backgroundImage: `url(${require('components/LandingPage/images/gallery/5.jpg')})`,
+            }}
             className="photo"
           >
             <div className="mask"></div>
           </div>
           <div
-            style={{ backgroundImage: 'url(/static/img/gallery/6.jpg)' }}
+            style={{
+              backgroundImage: `url(${require('components/LandingPage/images/gallery/6.jpg')})`,
+            }}
             className="photo"
           >
             <div className="mask"></div>
@@ -515,21 +527,19 @@ function Home() {
               </div>
             </div>
             <div className="col-12 col-md-4 text-center">
-              <img src="/static/img/g0v-bg-dark.svg" style={{ width: 100 }} />
+              <img
+                src={require('components/LandingPage/images/g0v-bg-dark.svg')}
+                style={{ width: 100 }}
+              />
               <div>powered by g0v</div>
             </div>
           </div>
         </div>
       </div>
       <style jsx>{`
-        html,
-        body {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          padding: 0;
+        :global(html, body) {
           font-size: 22px;
-          font-family: wt011, Helvetica, Arial, sans-serif;
+          font-family: Lato, Helvetica, Arial, sans-serif;
         }
         h1,
         h2,
@@ -543,11 +553,12 @@ function Home() {
           font-size: 0.9em;
         }
         .jumbotron {
-          height: 100%;
+          height: 100vh;
           max-height: 640px;
           margin-bottom: 0;
           position: relative;
-          background: url('img/jumbotron.jpg') center center no-repeat #222;
+          background: url(${require('components/LandingPage/images/jumbotron.jpg')})
+            center center no-repeat #222;
           background-size: cover;
           border-radius: 0;
         }
@@ -559,6 +570,10 @@ function Home() {
           bottom: 0;
           margin: auto;
           height: 210px;
+        }
+        .jumbotron .emphasis {
+          font-style: normal;
+          color: #ffc107;
         }
         .section {
           padding: 80px 20px;
@@ -573,6 +588,49 @@ function Home() {
         .huge {
           font-size: 3em;
           font-weight: 900;
+        }
+        .section-line {
+          padding: 0 40px;
+        }
+        .section-line .inner {
+          display: flex;
+          flex-flow: wrap;
+          justify-content: center;
+          align-items: flex-end;
+        }
+        .section-line .content {
+          padding: 40px 0;
+          min-width: 50%;
+          -webkit-flex: 1;
+          flex: 1;
+        }
+        .phone-container {
+          margin: 0 20px;
+          max-width: 100%;
+          width: 360px;
+          overflow: hidden;
+        }
+        .phone-container .phone-img {
+          width: 100%;
+          padding-bottom: 150%;
+          background: url(${require('components/LandingPage/images/phone.png')})
+            top left;
+          background-size: cover;
+          position: relative;
+        }
+        .phone-container video {
+          position: absolute;
+          width: 78%;
+          left: 11%;
+          top: 14%;
+        }
+        .section-why {
+          background: #fff
+            url(${require('components/LandingPage/images/cofacts-db-bg.jpg')})
+            bottom left no-repeat;
+        }
+        .section-why p {
+          background: rgba(255, 255, 255, 0.6);
         }
         .section-photos {
           padding: 0;
@@ -616,16 +674,14 @@ function Home() {
           font-size: 0.9em;
           color: #555;
         }
+        .section-contribute {
+          background: #fff
+            url(${require('components/LandingPage/images/giraffe.jpg')}) bottom
+            right no-repeat;
+          background-size: 150px auto;
+        }
         .section-footer a {
           color: #9be;
-        }
-        .media-preview {
-          border: 1px solid #ddd;
-          border-radius: 3px;
-          background: #444;
-          width: 100%;
-          height: 250px;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         .sep.gap-sm {
           margin: 15px 0;
