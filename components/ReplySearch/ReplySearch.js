@@ -6,8 +6,8 @@ import { t } from 'ttag';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
-
-import RelatedReplies, { getDedupedArticleReplies } from '../RelatedReplies';
+import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
+import RelatedReplies from '../RelatedReplies';
 import SearchArticleItem from './SearchArticleItem.js';
 import { Typography } from '@material-ui/core';
 

@@ -1,4 +1,4 @@
-import css from 'styled-jsx/css'; // eslint-disable-line import/no-unresolved
+import css from 'styled-jsx/css';
 
 export const feedbackStyle = css`
   .reply-feedback {

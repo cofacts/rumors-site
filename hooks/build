@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Variables on docker cloud: https://docs.docker.com/docker-hub/builds/advanced/
+docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=en_US -t $IMAGE_NAME-en .
+docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=zh_TW -t $IMAGE_NAME-tw .

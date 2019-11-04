@@ -10,7 +10,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import ReplyForm from './ReplyForm';
-import RelatedReplies, { getDedupedArticleReplies } from './RelatedReplies';
+import RelatedReplies from './RelatedReplies';
+import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
 import ReplySearch from './ReplySearch';
 
 const RelatedArticleData = gql`

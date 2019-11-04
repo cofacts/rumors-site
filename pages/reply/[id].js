@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { useEffect } from 'react';
 import { t, ngettext, msgid } from 'ttag';
+import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -70,7 +71,8 @@ const UPDATE_ARTICLE_REPLY_STATUS = gql`
   }
 `;
 
-function ReplyPage({ query }) {
+function ReplyPage() {
+  const { query } = useRouter();
   const replyVars = { id: query.id };
 
   const { data, loading } = useQuery(LOAD_REPLY, { variables: replyVars });
@@ -211,7 +213,5 @@ function ReplyPage({ query }) {
     </AppLayout>
   );
 }
-
-ReplyPage.getInitialProps = ({ query }) => ({ query });
 
 export default withData(ReplyPage);
