@@ -46,7 +46,12 @@ function Home() {
           href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css"
         />
         <link
-          href="//fonts.googleapis.com/css?family=Lato:300,700"
+          href="//fonts.googleapis.com/css?family=Lato:400,700"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <link
+          href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap&subset=chinese-traditional"
           rel="stylesheet"
           type="text/css"
         />
@@ -446,7 +451,7 @@ function Home() {
       <style jsx>{`
         :global(html, body) {
           font-size: 22px;
-          font-family: Lato, Helvetica, Arial, sans-serif;
+          font-family: Lato, 'Noto Sans TC', Helvetica, Arial, sans-serif;
         }
         h1,
         h2,
