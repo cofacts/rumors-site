@@ -44,7 +44,7 @@ function Jumbotron() {
   );
   const internetHoaxes = (
     <em className="emphasis" key="em">
-      internet hoaxes
+      {t`internet hoaxes`}
     </em>
   );
 

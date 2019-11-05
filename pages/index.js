@@ -12,8 +12,8 @@ function Home() {
     setNavCollapsed(s => !s);
   };
 
-  const title = `${t`Cofacts`} - ${t`Collaborative fact-checking system`}`;
-  const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
+  const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
+  const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
 
   return (
     <Fragment>
@@ -102,7 +102,7 @@ function Home() {
           <div className="content">
             <h4>
               {t`Follow our LINE@, and send any suspected hoax, scam, rumor, or
-                 urban legend to verify its truth.`}
+                 urban legend to verify its truth`}
             </h4>
             <div className="sep light-dark gap-sm"></div>
             <p>
