@@ -33,6 +33,11 @@ const NEWS = {
   ],
   zh_TW: [
     [
+      '2019-10-13 2019 NPOwer 公益行動家',
+      '真的假的 Cofacts —— 建立 Line 機器人對抗假資訊焦慮',
+      'https://npost.tw/archives/52977',
+    ],
+    [
       '2019-10-05 上報',
       '美玉姨和Cofacts 都在迎戰網路假訊息這隻「巨獸」',
       'https://www.upmedia.mg/news_info.php?SerialNo=72552',
