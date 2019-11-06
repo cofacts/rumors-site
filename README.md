@@ -36,7 +36,7 @@ Build docker image.
 
 ``` bash
 # build
-$ IMAGE_NAME=rumors-site-test hooks/build
+$ IMAGE_NAME=rumors-site-test npm run build
 ```
 
 This will build both `$IMAGE_NAME-en` and `$IMAGE_NAME-tw` image.

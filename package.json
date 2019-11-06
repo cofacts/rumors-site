@@ -52,6 +52,7 @@
     "eslint-plugin-react-hooks": "^2.0.1",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
-    "ttag-cli": "^1.7.22"
+    "ttag-cli": "^1.7.22",
+    "url-loader": "^2.2.0"
   }
 }

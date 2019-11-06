@@ -6,26 +6,22 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: pages/index.js:20
-msgid "List page"
-msgstr "文章列表"
-
 #: components/AppLayout/AppFooter.js:20
 #: components/AppLayout/AppHeader.js:34
 msgid "About"
 msgstr "關於 Cofacts"
 
 #: components/AppLayout/AppFooter.js:22
+#: pages/index.js:423
 msgid "Contact"
 msgstr "聯絡我們"
 
-#: pages/index.js:17
-msgid "INDEX!"
-msgstr ""
-
 #: components/AppLayout/AppHeader.js:11
+#: pages/index.js:15
+#: pages/index.js:59
+#: pages/index.js:403
 msgid "Cofacts"
-msgstr ""
+msgstr "Cofacts"
 
 #: components/AppLayout/AppHeader.js:15
 msgid "Collected Messages"
@@ -76,7 +72,7 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:241
+#: pages/articles.js:243
 #, javascript-format
 msgid "${ statsData.totalCount } collected message"
 msgid_plural "${ statsData.totalCount } collected messages"
@@ -94,20 +90,20 @@ msgstr "已回覆"
 msgid "All"
 msgstr "全部"
 
-#: pages/articles.js:224
+#: pages/articles.js:226
 msgid "Include messages reported only 1 time"
 msgstr "加列僅被回報 1 次的訊息"
 
-#: pages/articles.js:269
+#: pages/articles.js:271
 msgid "Shows messages reported multiple times by default."
 msgstr "預設僅會列出被回報數次的訊息。"
 
-#: pages/articles.js:279
+#: pages/articles.js:281
 msgid "Click here to include messages only reported 1 time."
 msgstr "按這裡加入僅被回報 1 次的訊息。"
 
 #: pages/articles.js:147
-#: pages/replies.js:147
+#: pages/replies.js:148
 msgid "Sort by"
 msgstr "排序方式"
 
@@ -119,12 +115,13 @@ msgstr "最近被查詢"
 msgid "Most asked"
 msgstr "最多人詢問"
 
-#: pages/articles.js:228
-#: pages/replies.js:233
+#: pages/articles.js:230
+#: pages/replies.js:236
 msgid "Sort by Relevance"
 msgstr "以相關度排序"
 
-#: pages/article/[id].js:122
+#: pages/article/[id].js:124
+#: pages/reply/[id].js:141
 msgid "Reported Message"
 msgstr "使用者回報訊息"
 
@@ -203,7 +200,7 @@ msgid "Deleted replies"
 msgstr "已刪除的回應"
 
 #: components/CurrentReplies.js:77
-#: pages/reply.js:135
+#: pages/reply/[id].js:176
 msgid "Restore"
 msgstr "恢復"
 
@@ -222,16 +219,15 @@ msgid "There is no existing replies for now."
 msgstr "目前沒有已撰寫的回應。"
 
 #: components/CurrentReplies.js:175
-#: pages/reply.js:135
+#: pages/reply/[id].js:176
 msgid "Delete"
 msgstr "刪除"
 
 #: components/EditorName.js:8
-#, javascript-format
 msgid "Lv.${ editorLevel } ${ levelName }"
 msgstr "等級 ${ editorLevel }. ${ levelName }"
 
-#: pages/article/[id].js:151
+#: pages/article/[id].js:153
 msgid "Replies to the message"
 msgstr "現有回應"
 
@@ -263,56 +259,56 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/replies.js:134
+#: pages/replies.js:135
 msgid "All replies"
 msgstr "所有回應"
 
-#: pages/replies.js:159
+#: pages/replies.js:160
 msgid "Most recently written"
 msgstr "最近寫的"
 
-#: pages/replies.js:160
+#: pages/replies.js:161
 msgid "Least recently written"
 msgstr "最久以前寫的"
 
-#: pages/replies.js:197
+#: pages/replies.js:200
 msgid "Reply list"
 msgstr "回應列表"
 
-#: pages/replies.js:228
+#: pages/replies.js:231
 msgid "Only show replies written by me"
 msgstr "只顯示我寫的回應"
 
-#: pages/article/[id].js:156
+#: pages/article/[id].js:158
 msgid "Add a new reply"
 msgstr "新增回應"
 
-#: pages/article/[id].js:169
+#: pages/article/[id].js:171
 msgid "You may be interested in the following similar messages"
 msgstr "你可能對下面類似訊息感興趣"
 
-#: components/NewReplySection.js:76
+#: components/NewReplySection.js:77
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
-#: components/NewReplySection.js:90
+#: components/NewReplySection.js:91
 #. Notify upper component of submission
 msgid "Your have attached the reply to this message."
 msgstr "已經加入回應。"
 
-#: components/NewReplySection.js:117
+#: components/NewReplySection.js:118
 msgid "Please login first."
 msgstr "請先登入。"
 
-#: components/NewReplySection.js:123
+#: components/NewReplySection.js:124
 msgid "New Reply"
 msgstr "寫新回應"
 
-#: components/NewReplySection.js:130
+#: components/NewReplySection.js:131
 msgid "Reuse existing reply"
 msgstr "使用現有回應"
 
-#: components/NewReplySection.js:134
+#: components/NewReplySection.js:135
 #: components/ReplySearch/ReplySearch.js:156
 msgid "Search"
 msgstr "搜尋"
@@ -342,7 +338,7 @@ msgstr "理由合理"
 msgid "The reason is not reasonable"
 msgstr "理由不合理"
 
-#: components/AppLayout/LoginModal.js:13
+#: components/AppLayout/LoginModal.js:18
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
@@ -381,8 +377,344 @@ msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論
 msgid "This message has some of its content proved to be false."
 msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 
-#: pages/replies.js:247
+#: pages/replies.js:250
 #, javascript-format
 msgid "${ statsData.totalCount } reply"
 msgid_plural "${ statsData.totalCount } replies"
 msgstr[0] "${ statsData.totalCount } 份回應"
+
+#: pages/index.js:74
+msgid "Hoax Search"
+msgstr "謠言資料庫"
+
+#: pages/index.js:79
+msgid "Response List"
+msgstr "回應列表"
+
+#: pages/index.js:87
+msgid "Facebook"
+msgstr "Facebook"
+
+#: pages/index.js:92
+msgid "Hackfoldr"
+msgstr "公開資料夾"
+
+#: pages/index.js:109
+msgid ""
+"Search by ID “@cofacts” or scan our QR Code to follow our Cofacts\n"
+"LINE@ account, forward any possible hoax, scam, rumor, or urban\n"
+"legend sources to it, then our chatbot will help you check the\n"
+"credibility of the source!"
+msgstr ""
+"id 搜尋 @cofacts 或是掃描 QR Code 成為真的假的 Cofacts 的 LINE "
+"好友後，轉傳可疑的謠言訊息給他，就可以讓機器人幫你查謠言囉！"
+
+#: pages/index.js:121
+msgid "TUTORIAL"
+msgstr "使用教學"
+
+#: pages/index.js:145
+msgid "Write your own response and share your wisdom!"
+msgstr "自己的回應自己寫"
+
+#: pages/index.js:148
+msgid ""
+"The responses a user see are also submitted by other users. Here we\n"
+"do not have all-knowing judges, only citizens who cooperate and\n"
+"contribute. Think others’ response not good enough? Is there\n"
+"something you’d like to find out but it has not been requested yet?\n"
+"Write your own response and help others!"
+msgstr ""
+"使用者所看到的回應，是由其他同樣是使用者的人所寫出來的喔。我們沒有全知全能的判斷者，只有互相貢獻的公民協作。覺得別人的回應回得不夠好嗎？你想知道的事情還"
+"沒有人查證過嗎？自己寫出新回應，一起幫助更多人。"
+
+#: pages/index.js:155
+msgid ""
+"Every suspicious source is sent from an user, which is open to\n"
+"public for examination and response. One single request can be\n"
+"responded by different people, allowing each response to take a step\n"
+"closer to unravelling its truth."
+msgstr "資料庫裡每一則可疑的轉傳文章都是來自某位使用者，公開檢索，讓你查證後給予回應。一則文章也可以有不同人分別給予各自的回應，讓新的回應比舊的回應更好。"
+
+#: pages/index.js:162
+msgid "HOAX SEARCH"
+msgstr "謠言資料庫檢索"
+
+#: pages/index.js:169
+msgid "A war between hoaxes and facts"
+msgstr "謠言與回應的追逐戰"
+
+#: pages/index.js:170
+msgid "The difficulties we face..."
+msgstr "這是我們目前在面對的事情"
+
+#: pages/index.js:237
+msgid "Features"
+msgstr "Cofacts 特色"
+
+#: pages/index.js:240
+msgid ""
+"Cofacts program encourages people to become part of a chatbot for\n"
+"helping others. With your research, you can add your hoax busting\n"
+"responses into our database to help people acknowledge its lies."
+msgstr "Cofacts 謠言查證專案 致力於鼓勵所有人都一起成為別人的聊天機器人。只要主動查證謠言訊息，把你查到的回應加入資料庫，就能進而幫助更多人。"
+
+#: pages/index.js:251
+msgid "Crowdsourcing"
+msgstr "群眾協作"
+
+#: pages/index.js:260
+msgid ""
+"Anyone can verify and respond to other’s requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr "任何人都可以查證且回應別人的謠言或訊息，並寫在資料庫裡。我們鼓勵公眾參與，最好把你爸爸媽媽都一起找來闢謠。"
+
+#: pages/index.js:273
+msgid "Real-Time Response"
+msgstr "即時回應"
+
+#: pages/index.js:282
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It’s fast and immediate, you\n"
+"don’t even have to wait. Better yet, you don’t even need to\n"
+"say ‘thank you’. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr "只要資料庫裡有回應，機器人就透過程式找答案給你，即時方便不用等。連問候答謝都省了，聊天機器人讓你查謠言都不用不好意思。"
+
+#: pages/index.js:296
+msgid "Different Views"
+msgstr "意見交鋒"
+
+#: pages/index.js:305
+msgid ""
+"Knowing what’s fact and what’s an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other’s perspectives."
+msgstr "了解事實與評論的差異，同時看見不同立場的意見，覺察自己的盲點，互相尊重。你聽你的鳥鳴，但也可以湊過去看她的日出。"
+
+#: pages/index.js:317
+msgid "Open Source Authorization"
+msgstr "開源授權"
+
+#: pages/index.js:326
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr "過往的程式碼、會議紀錄、數據資料都完全公開，鼓勵更多的開放資料，透明化地與每個人分享合作，創造不同的可能性。"
+
+#: pages/index.js:339
+msgid "See what others have to say"
+msgstr "媒體報導"
+
+#: pages/index.js:352
+msgid "Join our open source community"
+msgstr "一起來開源"
+
+#: pages/index.js:355
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+"Cofacts "
+"需要大家一起來幫忙讓目前的專案做得更好更完整。協作專案無法由少數人來完成，我們需要每一個人都一起付出、寫程式、闢謠、仔細研究查資料，自發性的查證與寫回應"
+"才能成就背後龐大的資料庫。"
+
+#: pages/index.js:361
+msgid "We welcome everyone to join us, here is what we’re looking for."
+msgstr "這裡列出我們需要的協助，歡迎每一個朋友加入我們。"
+
+#: pages/index.js:364
+msgid ""
+"People with curiosity and a sense of justice that can help us bust\n"
+"hoaxes and help others."
+msgstr "有好奇心、有正義感，就能查詢資料協助闢謠，幫助身邊的人。"
+
+#: pages/index.js:368
+msgid ""
+"Coding is a piece of cake to you? Join us fast and work together\n"
+"with us on our issues."
+msgstr "寫程式難不倒你嗎？快快來幫助我們一起解 issue。"
+
+#: pages/index.js:378
+msgid "I want to learn how to use Cofacts"
+msgstr "我想學用「真的假的」"
+
+#: pages/index.js:385
+msgid "I can help bust hoaxes"
+msgstr "我可以闢謠"
+
+#: pages/index.js:392
+msgid "I can help with coding"
+msgstr "我會寫 Code"
+
+#: pages/index.js:406
+msgid "Program Introduction"
+msgstr "專案介紹"
+
+#: pages/index.js:411
+msgid "Original Program"
+msgstr "原始提案"
+
+#: pages/index.js:415
+msgid "Source code"
+msgstr "Source code"
+
+#: pages/index.js:419
+msgid "Facebook Club"
+msgstr "FB 社團"
+
+#: pages/index.js:427
+msgid "Notices"
+msgstr "注意事項"
+
+#: pages/index.js:430
+msgid "Cofacts Copyrights"
+msgstr "成果授權"
+
+#: pages/reply/[id].js:148
+#, javascript-format
+msgid "Check message and other ${ otherReplyCount } reply"
+msgid_plural "Check message and other ${ otherReplyCount } replies"
+msgstr[0] "查看原始訊息訊息與其他 ${ otherReplyCount } 則回應"
+msgstr[1] "查看原始訊息訊息與其他 ${ otherReplyCount } 則回應"
+
+#: pages/reply/[id].js:172
+msgid "This reply"
+msgstr "本篇回應"
+
+#: pages/reply/[id].js:183
+msgid "This reply has been deleted by its author."
+msgstr "此回應已被原作者刪除。"
+
+#: components/LandingPage/Jumbotron.js:5
+#. Are you aware that ~ is helping with ...
+msgid "someone"
+msgstr "有人"
+
+#: components/LandingPage/Jumbotron.js:6
+#. local ~ need your help!
+msgid "people"
+msgstr "的人"
+
+#: components/LandingPage/Jumbotron.js:10
+msgid "your mom"
+msgstr "你媽"
+
+#: components/LandingPage/Jumbotron.js:10
+msgid "moms"
+msgstr "媽媽"
+
+#: components/LandingPage/Jumbotron.js:11
+msgid "your dad"
+msgstr "你爸"
+
+#: components/LandingPage/Jumbotron.js:11
+msgid "dads"
+msgstr "爸爸"
+
+#: components/LandingPage/Jumbotron.js:12
+msgid "your sister"
+msgstr "你姊"
+
+#: components/LandingPage/Jumbotron.js:12
+msgid "sis"
+msgstr "姐姐"
+
+#: components/LandingPage/Jumbotron.js:13
+msgid "your brother"
+msgstr "你哥"
+
+#: components/LandingPage/Jumbotron.js:13
+msgid "bro"
+msgstr "哥哥"
+
+#: components/LandingPage/Jumbotron.js:14
+msgid "your colleague"
+msgstr "你同事"
+
+#: components/LandingPage/Jumbotron.js:14
+msgid "colleagues"
+msgstr "同事們"
+
+#: components/LandingPage/Jumbotron.js:15
+msgid "your child"
+msgstr "你家小孩"
+
+#: components/LandingPage/Jumbotron.js:15
+msgid "children"
+msgstr "小朋友"
+
+#: components/LandingPage/Jumbotron.js:55
+#, javascript-format
+msgid ""
+"Are you aware that ${ someone } is helping the spread of ${ internetHoaxes "
+"}?"
+msgstr "你知道${ someone }在${ internetHoaxes }嗎？"
+
+#: components/LandingPage/Jumbotron.js:64
+msgid "Follow our LINE bot or join as one of our Cofacts editor."
+msgstr "現在就加入 LINE bot 與 Cofacts 編輯"
+
+#: components/LandingPage/Jumbotron.js:66
+#, javascript-format
+msgid "Local ${ someones } need your protection!"
+msgstr "地方的${ someones }需要你來闢謠！"
+
+#: components/LandingPage/Jumbotron.js:74
+msgid "Start busting hoaxes now"
+msgstr "立刻開始闢謠"
+
+#: components/LandingPage/Stats.js:26
+#. we hold ~
+msgid "a gathering of editors."
+msgstr "編輯小聚"
+
+#: components/LandingPage/Stats.js:33
+#, javascript-format
+msgid "About ${ newMessageCount } new messages entering our database each week."
+msgstr "每週有 ${ newMessageCount } 則新訊息進入資料庫"
+
+#: components/LandingPage/Stats.js:36
+msgid ""
+"About ${ userForwardingCount } people forwarding new messages to our "
+"database each week."
+msgstr "每週有 ${ userForwardingCount } 人發新訊息至資料庫"
+
+#: components/LandingPage/Stats.js:39
+#, javascript-format
+msgid "But less than ${ editorCount } active editors can help us respond each week."
+msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
+
+#: components/LandingPage/Stats.js:42
+#, javascript-format
+msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
+msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
+
+#: pages/index.js:15
+msgid "Connecting facts and instant messages"
+msgstr "Connecting facts and instant messages"
+
+#: pages/index.js:16
+msgid ""
+"Cofacts is a collaborative system connecting instant messages and "
+"fact-check reports or different opinions together. It’s a grass-root effort "
+"fighting mis/disinformation in Taiwan."
+msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
+
+#: pages/index.js:104
+msgid ""
+"Follow our LINE@, and send any suspected hoax, scam, rumor, or\n"
+"urban legend to verify its truth"
+msgstr "開 LINE 加好友，謠言隨手查!"
+
+#: components/LandingPage/Jumbotron.js:47
+msgid "internet hoaxes"
+msgstr "轉傳謠言"

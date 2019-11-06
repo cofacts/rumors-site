@@ -28,4 +28,25 @@ module.exports = {
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
+  webpack(config, { isServer }) {
+    //
+    // Simplified from https://github.com/twopluszero/next-images/blob/master/index.js
+    //
+    config.module.rules.push({
+      test: /\.(jpe?g|png|svg|gif|ico|webp|mp4)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            publicPath: '/_next/static/images/',
+            outputPath: `${isServer ? '../' : ''}static/images/`,
+            name: '[name]-[hash].[ext]',
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
 };
