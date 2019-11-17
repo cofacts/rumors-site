@@ -12,7 +12,7 @@ For production via [rumors-deploy](http://github.com/cofacts/rumors-deploy), do 
 
 ## Development
 
-This project uses NodeJS 8+ and npm 5+.
+This project uses NodeJS 12+.
 
 ``` bash
 $ npm install
@@ -30,47 +30,28 @@ $ npm t
 
 See: https://github.com/zeit/styled-jsx#syntax-highlighting
 
-### Landing Page (Makeshift)
+## Try built image on local
 
-We build a temporary landing page in the repo [grants-landing-template](github.com/cofacts/grants-landing-template).
-
-When the landing page repo is in the same directory of this repo, run the command below to update the landing page in this repo:
+Build docker image.
 
 ``` bash
-grants-landing-template $ npm start
-# After the landing page is compiled, ctrl-c
-
-grants-landing-template $ cd ../rumors-site
-
-rumors-site $ npm run landing
+# build
+$ IMAGE_NAME=rumors-site-test npm run build
 ```
 
-## Deploy
-
-Build docker image. These images are the same, just tagged differently.
-
-``` bash
-# Production build
-$ npm run build
-
-# Staging build
-$ npm run build:staging
-```
+This will build both `$IMAGE_NAME-en` and `$IMAGE_NAME-tw` image.
 
 Run the docker image on local machine, then visit `http://localhost:3000`.
 
 ``` bash
-$ docker run --rm -p 3000:3000 -e "PORT=3000" mrorz/rumors-site
+# English version:
+$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-en
+
+# zh_TW version:
+$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-tw
 ```
 
-Push to dockerhub
-``` bash
-# Production
-$ docker push mrorz/rumors-site:latest
-
-# Staging
-$ docker push mrorz/rumors-site:staging
-```
+On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `dev` and `master` branch.
 
 ## Design and Mockups
 

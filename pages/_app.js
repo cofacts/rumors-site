@@ -1,34 +1,27 @@
+import App from 'next/app';
 import React from 'react';
-import { Provider } from 'react-redux';
-import App, { Container } from 'next/app';
-import withRedux from 'next-redux-wrapper';
-import { serialize, deserialize } from 'json-immutable';
+import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from '../lib/theme';
 
-import makeStore from 'ducks';
-
-// https://github.com/kirill-konshin/next-redux-wrapper
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
-
-    return { pageProps };
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
   }
 
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
     return (
-      <Container>
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
     );
   }
 }
 
-export default withRedux(makeStore, {
-  serializeState: s => serialize(s),
-  deserializeState: s => (s ? deserialize(s) : s), // state may be undefined: https://github.com/kirill-konshin/next-redux-wrapper/issues/90
-})(MyApp);
+export default MyApp;

@@ -1,5 +1,4 @@
-import React from 'react';
-import { List, Map } from 'immutable';
+import gql from 'graphql-tag';
 
 /**
  *
@@ -22,24 +21,17 @@ function getErrorText(error) {
 }
 
 /**
- * @param {Map} props.hyperlink
+ * @param {object} props.hyperlink
  */
-function Hyperlink({ hyperlink = Map() }) {
-  const title = hyperlink.get('title');
-  const summary = (hyperlink.get('summary') || '').slice(0, 200);
-  const topImageUrl = hyperlink.get('topImageUrl');
-  const error = hyperlink.get('error');
+function Hyperlink({ hyperlink }) {
+  const { title, topImageUrl, error, url } = hyperlink;
+  const summary = (hyperlink.summary || '').slice(0, 200);
 
   return (
     <article className="link">
       <h1 title={title}>{title}</h1>
-      <a
-        className="url"
-        href={hyperlink.get('url')}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {hyperlink.get('url')}
+      <a className="url" href={url} target="_blank" rel="noopener noreferrer">
+        {url}
       </a>
       <div className="preview__container">
         <p className="preview__summary" title={summary}>
@@ -123,16 +115,16 @@ function Hyperlink({ hyperlink = Map() }) {
 }
 
 /**
- * @param {List} props.hyperlinks
+ * @param {object[]} props.hyperlinks
  */
-function Hyperlinks({ hyperlinks = List() }) {
-  if (!hyperlinks || hyperlinks.size === 0) return null;
+function Hyperlinks({ hyperlinks = [] }) {
+  if (!hyperlinks || hyperlinks.length === 0) return null;
 
   return (
     <section className="links">
-      {hyperlinks
-        .map((hyperlink, idx) => <Hyperlink key={idx} hyperlink={hyperlink} />)
-        .toArray()}
+      {hyperlinks.map((hyperlink, idx) => (
+        <Hyperlink key={idx} hyperlink={hyperlink} />
+      ))}
       <style jsx>{`
         .links {
           display: flex;
@@ -144,5 +136,17 @@ function Hyperlinks({ hyperlinks = List() }) {
     </section>
   );
 }
+
+Hyperlinks.fragments = {
+  HyperlinkData: gql`
+    fragment HyperlinkData on Hyperlink {
+      title
+      url
+      summary
+      topImageUrl
+      error
+    }
+  `,
+};
 
 export default Hyperlinks;

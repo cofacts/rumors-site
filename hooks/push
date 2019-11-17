@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Variables on docker cloud: https://docs.docker.com/docker-hub/builds/advanced/
+docker push $IMAGE_NAME-en
+docker push $IMAGE_NAME-tw

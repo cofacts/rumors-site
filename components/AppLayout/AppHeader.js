@@ -1,28 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { t } from 'ttag';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
-import { Link } from 'routes';
-import { showDialog, logout, updateName } from 'ducks/auth';
+import Link from 'next/link';
 import UserName from './UserName';
 
-function AppHeader({
-  user,
-  isLoadingAuth,
-  onLoginClick,
-  onLogoutClick,
-  onUserNameUpdate,
-}) {
+function AppHeader() {
   return (
     <header className="root">
       <a className="logo hidden-xs" href="/">
-        <h1>真的假的</h1>
+        <h1>{t`Cofacts`}</h1>
       </a>
       <nav className="nav">
-        <Link route="articles">
-          <a className="nav-item">文章</a>
+        <Link href="/articles">
+          <a className="nav-item">{t`Collected Messages`}</a>
         </Link>
-        <Link route="replies">
-          <a className="nav-item">回應</a>
+        <Link href="/replies">
+          <a className="nav-item">{t`Replies`}</a>
         </Link>
         <a
           href={EDITOR_FACEBOOK_GROUP}
@@ -30,7 +23,7 @@ function AppHeader({
           rel="noopener noreferrer"
           className="nav-item hidden-xs"
         >
-          FB 編輯求助區
+          {t`Editor forum`}
         </a>
         <a
           href={PROJECT_HACKFOLDR}
@@ -38,16 +31,10 @@ function AppHeader({
           rel="noopener noreferrer"
           className="nav-item hidden-xs"
         >
-          專案介紹
+          {t`About`}
         </a>
       </nav>
-      <UserName
-        isLoading={isLoadingAuth}
-        user={user}
-        onLoginClick={onLoginClick}
-        onLogoutClick={onLogoutClick}
-        onUpdate={onUserNameUpdate}
-      />
+      <UserName />
       <style jsx>{`
         .root {
           display: flex;
@@ -76,28 +63,4 @@ function AppHeader({
   );
 }
 
-function mapStateToProps({ auth }) {
-  return {
-    user: auth.get('user'),
-    isLoadingAuth: auth.getIn(['state', 'isLoading']),
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onLoginClick() {
-      dispatch(showDialog());
-    },
-    onLogoutClick() {
-      dispatch(logout());
-    },
-    onUserNameUpdate(name) {
-      dispatch(updateName(name));
-    },
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppHeader);
+export default AppHeader;

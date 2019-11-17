@@ -1,5 +1,5 @@
 import React from 'react';
-import { truncate } from '../util/text';
+import { truncate } from 'lib/text';
 
 export default class ExpandableText extends React.Component {
   static defaultProps = {

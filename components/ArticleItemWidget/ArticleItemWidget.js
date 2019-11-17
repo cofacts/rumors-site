@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import NProgress from 'nprogress';
-import cx from 'classnames';
+import cx from 'clsx';
+// import NProgress from 'nprogress';
 
-import gql from '../../util/gql';
+// import gql from '../../util/gql';
 
 import WidgetItem from './WidgetItem.js';
 import NotArticleExtendSelection from './NotArticleExtendSelection.js';
@@ -39,31 +39,31 @@ export default class ArticleItemWidget extends PureComponent {
     );
   };
 
-  handleNotArticleReply = text => {
-    const { id } = this.props;
-    NProgress.start();
-    gql`
-      mutation(
-        $articleId: String!
-        $text: String!
-        $type: ReplyTypeEnum!
-        $reference: String
-      ) {
-        CreateReply(
-          articleId: $articleId
-          text: $text
-          type: $type
-          reference: $reference
-        ) {
-          id
-        }
-      }
-    `({ articleId: id, type: 'NOT_ARTICLE', text }).then(() => {
-      this.handleNotArticleSave(text);
-      this.handleWidgetUIReset();
-      NProgress.done();
-    });
-  };
+  // handleNotArticleReply = text => {
+  //   const { id } = this.props;
+  //   NProgress.start();
+  //   gql`
+  //     mutation(
+  //       $articleId: String!
+  //       $text: String!
+  //       $type: ReplyTypeEnum!
+  //       $reference: String
+  //     ) {
+  //       CreateReply(
+  //         articleId: $articleId
+  //         text: $text
+  //         type: $type
+  //         reference: $reference
+  //       ) {
+  //         id
+  //       }
+  //     }
+  //   `({ articleId: id, type: 'NOT_ARTICLE', text }).then(() => {
+  //     this.handleNotArticleSave(text);
+  //     this.handleWidgetUIReset();
+  //     NProgress.done();
+  //   });
+  // };
 
   handleReadClick = event => {
     event && event.preventDefault();

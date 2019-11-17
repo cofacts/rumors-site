@@ -1,14 +1,12 @@
-import React from 'react';
+import { t } from 'ttag';
 import levelNames from '../constants/levelNames';
-import 'balloon-css/balloon.css';
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default function EditorName({ editorName, editorLevel }) {
+  const levelName = levelNames[editorLevel];
   return (
-    <span
-      data-balloon={`Lv.${editorLevel} ${levelNames[editorLevel]} `}
-      data-balloon-pos="up"
-    >
-      {editorName}
-    </span>
+    <Tooltip title={t`Lv.${editorLevel} ${levelName}`} placement="top">
+      <span>{editorName}</span>
+    </Tooltip>
   );
 }

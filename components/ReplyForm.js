@@ -4,9 +4,9 @@ import {
   TYPE_DESC,
   TYPE_INSTRUCTION,
   TYPE_SUGGESTION_OPTIONS,
-} from '../constants/replyType';
+} from 'constants/replyType';
 
-import { EDITOR_FACEBOOK_GROUP, EDITOR_REFERENCE } from '../constants/urls';
+import { EDITOR_FACEBOOK_GROUP, EDITOR_REFERENCE } from 'constants/urls';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 const formInitialState = {
@@ -17,9 +17,7 @@ const formInitialState = {
 
 export default class ReplyForm extends React.PureComponent {
   static defaultProps = {
-    onSubmit() {
-      return Promise.reject();
-    },
+    onSubmit() {},
     disabled: false,
   };
 
@@ -43,6 +41,19 @@ export default class ReplyForm extends React.PureComponent {
     });
   }
 
+  /**
+   * Clears form and localStorage. Invoked by ReplyForm's parent component.
+   *
+   * @public
+   */
+  clear = () => {
+    delete localStorage.replyType;
+    delete localStorage.reference;
+    delete localStorage.text;
+
+    this.setState(formInitialState);
+  };
+
   set(key, value) {
     this.setState({ [key]: value });
 
@@ -64,16 +75,12 @@ export default class ReplyForm extends React.PureComponent {
 
   handleSubmit = e => {
     e.preventDefault(); // prevent reload
-    if (this.props.disabled) return;
-    const { replyType, reference, text } = this.state;
-    this.props.onSubmit({ type: replyType, reference, text }).then(() => {
-      // Clean up localStorage on success
-      delete localStorage.replyType;
-      delete localStorage.reference;
-      delete localStorage.text;
 
-      this.setState(formInitialState);
-    });
+    const { onSubmit, disabled } = this.props;
+    const { replyType, reference, text } = this.state;
+
+    if (disabled) return;
+    onSubmit({ type: replyType, reference, text });
   };
 
   handleSuggestionAdd = e => {
@@ -142,7 +149,8 @@ export default class ReplyForm extends React.PureComponent {
           查證範圍請參考{' '}
           <a href={EDITOR_REFERENCE} target="_blank" rel="noopener noreferrer">
             《Cofacts 編輯規則》
-          </a>。
+          </a>
+          。
         </p>
       );
     }
@@ -178,13 +186,11 @@ export default class ReplyForm extends React.PureComponent {
   renderHelp() {
     return (
       <span className="help">
-        不知道從何下手嗎？<a
-          href={EDITOR_REFERENCE}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        不知道從何下手嗎？
+        <a href={EDITOR_REFERENCE} target="_blank" rel="noopener noreferrer">
           Cofacts 編輯規則
-        </a>、
+        </a>
+        、
         <a
           href={EDITOR_FACEBOOK_GROUP}
           target="_blank"

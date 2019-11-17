@@ -14,6 +14,7 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off', // we don't use propTypes.
+    'react/react-in-jsx-scope': 'off', // React import not needed in Next.js
     'prettier/prettier': ["error", {
       "trailingComma": "es5",
       "singleQuote": true,

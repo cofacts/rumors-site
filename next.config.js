@@ -1,13 +1,10 @@
-// https://github.com/zeit/next-plugins/tree/master/packages/next-css
-//
-const { config } = require('./package.json');
-const withCSS = require('@zeit/next-css');
-const withImages = require('next-images');
+require('dotenv').config();
 
+const env = {};
 const publicRuntimeConfig = {};
 const serverRuntimeConfig = {};
 
-Object.keys(process.env).forEach(key => {
+Object.keys(process.env || {}).forEach(key => {
   switch (true) {
     case key.startsWith('SERVER_'):
       serverRuntimeConfig[key] = process.env[key];
@@ -15,16 +12,41 @@ Object.keys(process.env).forEach(key => {
     case key.startsWith('PUBLIC_'):
       publicRuntimeConfig[key] = process.env[key];
       break;
+    case key.startsWith('NODE_'):
+    case key.startsWith('__'):
+    case key.startsWith('npm_'):
+    case key === 'PATH':
+    case key === 'NODE':
+      // https://github.com/zeit/next.js/blob/master/errors/env-key-not-allowed.md
+      break;
     default:
+      env[key] = process.env[key];
   }
 });
 
-module.exports = withImages(
-  withCSS({
-    publicRuntimeConfig: {
-      ...publicRuntimeConfig,
-      AUTOTRACK_FILENAME: config.autotrackFileName,
-    },
-    serverRuntimeConfig,
-  })
-);
+module.exports = {
+  env,
+  publicRuntimeConfig,
+  serverRuntimeConfig,
+  webpack(config, { isServer }) {
+    //
+    // Simplified from https://github.com/twopluszero/next-images/blob/master/index.js
+    //
+    config.module.rules.push({
+      test: /\.(jpe?g|png|svg|gif|ico|webp|mp4)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            publicPath: '/_next/static/images/',
+            outputPath: `${isServer ? '../' : ''}static/images/`,
+            name: '[name]-[hash].[ext]',
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
+};
