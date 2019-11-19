@@ -175,8 +175,8 @@ class ArticleReply extends React.PureComponent {
     const originalAuthorElem = (
       <EditorName
         key="editorName"
-        editorName={replyAuthor.name}
-        editorLevel={replyAuthor.level}
+        editorName={replyAuthor?.name}
+        editorLevel={replyAuthor?.level}
       />
     );
     const originalAuthorsReply = (
@@ -185,7 +185,7 @@ class ArticleReply extends React.PureComponent {
       </Link>
     );
 
-    if (replyAuthor.name && articleReplyAuthor.id !== replyAuthor.id) {
+    if (replyAuthor?.name && articleReplyAuthor?.id !== replyAuthor?.id) {
       return (
         <span key="editor">
           {jt`${articleReplyAuthorName} uses ${originalAuthorsReply} to`}
