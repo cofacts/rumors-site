@@ -90,7 +90,10 @@ function ReplyFeedback({
     onCompleted: () => setReorderSnackShow(true),
   });
 
-  const isOwnArticleReply = currentUser?.id === user.id;
+  // Note that currentUser and user may be undefined or null (when appId mismatch)
+  // Noth case should not consider as ownArticleReply
+  //
+  const isOwnArticleReply = currentUser && user && currentUser.id === user.id;
   const downVoteReasons = (feedbacks || []).filter(
     feedback => !!feedback.comment
   );
