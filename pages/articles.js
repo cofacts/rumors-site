@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
 import Router, { useRouter } from 'next/router';
+import Head from 'next/head';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -195,6 +196,9 @@ function ArticleListPage() {
 
   return (
     <AppLayout>
+      <Head>
+        <title>{t`Article list`}</title>
+      </Head>
       <Grid container spacing={2}>
         <Grid item>
           <ArticleFilter
