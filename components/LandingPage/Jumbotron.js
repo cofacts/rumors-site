@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { t, jt } from 'ttag';
+import Link from 'next/link';
 
 const DEFAULT_CHARACTOR = {
   singular: /* Are you aware that ~ is helping with ... */ t`someone`,
@@ -66,13 +67,11 @@ function Jumbotron() {
           {jt`Local ${someones} need your protection!`}
         </p>
         <br />
-        <a
-          style={{ minWidth: 280 }}
-          href="/articles"
-          className="btn btn-danger btn-lg"
-        >
-          {t`Start busting hoaxes now`}
-        </a>
+        <Link href="/articles">
+          <a style={{ minWidth: 280 }} className="btn btn-danger btn-lg">
+            {t`Start busting hoaxes now`}
+          </a>
+        </Link>
       </div>
       <style jsx>{`
         .jumbotron {
