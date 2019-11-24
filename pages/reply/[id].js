@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
+import { PushToDataLayer } from 'lib/gtm';
 import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
@@ -113,16 +114,30 @@ function ReplyPage() {
   }, [currentUser]);
 
   if (loading) {
-    return <AppLayout>Loading...</AppLayout>;
+    return (
+      <AppLayout>
+        <Head>
+          <title>{t`Loading`}</title>
+        </Head>
+        Loading...
+      </AppLayout>
+    );
   }
 
   const reply = data?.GetReply;
 
   if (!reply) {
-    return <AppLayout>Reply not found.</AppLayout>;
+    return (
+      <AppLayout>
+        <Head>
+          <title>{t`Not found`}</title>
+        </Head>
+        {t`Reply does not exist`}
+      </AppLayout>
+    );
   }
 
-  const slicedReplyTitle = reply.text.slice(0, 15);
+  const slicedReplyTitle = reply.text.slice(0, 100);
   const originalArticleReply = reply.articleReplies.reduce(
     (earliest, articleReply) =>
       articleReply.createdAt < earliest.createdAt ? articleReply : earliest,
@@ -134,7 +149,9 @@ function ReplyPage() {
   return (
     <AppLayout>
       <Head>
-        <title>{slicedReplyTitle}⋯⋯ | Cofacts 真的假的</title>
+        <title>
+          {slicedReplyTitle}⋯⋯ | {t`Cofacts`}
+        </title>
       </Head>
       <section className="section">
         <header className="header">
@@ -183,6 +200,8 @@ function ReplyPage() {
           <p className="deleted-prompt">{t`This reply has been deleted by its author.`}</p>
         )}
       </section>
+
+      <PushToDataLayer event="dataLoaded" />
 
       <style jsx>{`
         .section {

@@ -60,6 +60,7 @@ The application will fire the following custom events:
 
 - `routeChangeStart` - when next-router starts route change
 - `routeChangeComplete` - when next-router finish route change
+- `dataLoaded` - when article / reply is loaded in article & reply page
 
 ## Design and Mockups
 

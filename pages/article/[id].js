@@ -7,6 +7,9 @@ import Head from 'next/head';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
+import { nl2br, linkify } from 'lib/text';
+import { PushToDataLayer } from 'lib/gtm';
+
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleInfo from 'components/ArticleInfo';
@@ -15,8 +18,6 @@ import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import NewReplySection from 'components/NewReplySection';
 import ArticleItem from 'components/ArticleItem';
-
-import { nl2br, linkify } from 'lib/text';
 
 const LOAD_ARTICLE = gql`
   query LoadArticlePage($id: String!) {
@@ -103,21 +104,37 @@ function ArticlePage() {
   }, []);
 
   if (loading) {
-    return <AppLayout>Loading...</AppLayout>;
+    return (
+      <AppLayout>
+        <Head>
+          <title>{t`Loading`}</title>
+        </Head>
+        Loading...
+      </AppLayout>
+    );
   }
 
   const article = data?.GetArticle;
 
   if (!article) {
-    return <AppLayout>Article not found.</AppLayout>;
+    return (
+      <AppLayout>
+        <Head>
+          <title>{t`Not found`}</title>
+        </Head>
+        {t`Message does not exist`}
+      </AppLayout>
+    );
   }
 
-  const slicedArticleTitle = article.text.slice(0, 15);
+  const slicedArticleTitle = article.text.slice(0, 100);
 
   return (
     <AppLayout>
       <Head>
-        <title>{slicedArticleTitle}⋯⋯ | Cofacts 真的假的</title>
+        <title>
+          {slicedArticleTitle}⋯⋯ | {t`Cofacts`}
+        </title>
       </Head>
       <section className="section">
         <header className="header">
@@ -176,6 +193,8 @@ function ArticlePage() {
           </ul>
         </section>
       )}
+
+      <PushToDataLayer event="dataLoaded" />
 
       <style jsx>{`
         .section {
