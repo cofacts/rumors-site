@@ -3,6 +3,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
+import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
@@ -21,8 +22,14 @@ function AppLayout({ children }) {
   const classes = useStyles();
 
   useEffect(() => {
-    const handleRouteChangeStart = () => setRouteChanging(true);
-    const handleRouteChangeComplete = () => setRouteChanging(false);
+    const handleRouteChangeStart = () => {
+      setRouteChanging(true);
+      pushToDataLayer({ event: 'routeChangeStart' });
+    };
+    const handleRouteChangeComplete = () => {
+      setRouteChanging(false);
+      pushToDataLayer({ event: 'routeChangeComplete' });
+    };
 
     Router.events.on('routeChangeStart', handleRouteChangeStart);
     Router.events.on('routeChangeComplete', handleRouteChangeComplete);
