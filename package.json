@@ -29,7 +29,7 @@
     "date-fns": "^2.0.1",
     "dotenv": "^8.0.0",
     "graphql": "^14.4.2",
-    "immer": "^3.2.0",
+    "immer": "^5.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
     "next": "^9.1.2",
@@ -53,6 +53,6 @@
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "ttag-cli": "^1.7.22",
-    "url-loader": "^2.2.0"
+    "url-loader": "^3.0.0"
   }
 }
