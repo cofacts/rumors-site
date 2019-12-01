@@ -45,5 +45,9 @@ export const TYPE_SUGGESTION_OPTIONS = {
     { label: '聊天', value: '送出文章的人在嘗試與機器人聊天。' },
     { label: '意見回饋', value: '對 Cofacts 真的假的的建言。' },
     { label: '無意義測試', value: '測試用之無意義訊息。' },
+    {
+      label: '連結失效',
+      value: '連結失效',
+    },
   ],
 };
