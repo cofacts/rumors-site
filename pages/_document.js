@@ -1,9 +1,13 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
+import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/styles';
 import theme from 'lib/theme';
 
 const LANG = (process.env.LOCALE || 'en').replace('_', '-');
+const {
+  publicRuntimeConfig: { PUBLIC_GTM_ID },
+} = getConfig();
 
 class MyDocument extends Document {
   render() {
@@ -22,8 +26,27 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${PUBLIC_GTM_ID}');
+              `,
+            }}
+          ></script>
         </Head>
         <body>
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${PUBLIC_GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
           <Main />
           <NextScript />
           <style jsx global>{`

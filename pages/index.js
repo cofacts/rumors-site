@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import cx from 'clsx';
 import { t } from 'ttag';
 
@@ -60,9 +61,9 @@ function Home() {
         className="navbar navbar-expand-lg navbar-dark fixed-top"
         style={{ backgroundColor: navCollapsed ? 'initial' : '#343a40' }}
       >
-        <a href="/" className="navbar-brand">
-          {t`Cofacts`}
-        </a>
+        <Link href="/">
+          <a className="navbar-brand">{t`Cofacts`}</a>
+        </Link>
         <button
           type="button"
           data-toggle="collapse"
@@ -75,14 +76,14 @@ function Home() {
         <div className={cx('navbar-collapse', { collapse: navCollapsed })}>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <a href="/articles" className="nav-link">
-                {t`Hoax Search`}
-              </a>
+              <Link href="/articles">
+                <a className="nav-link">{t`Hoax Search`}</a>
+              </Link>
             </li>
             <li className="nav-item active">
-              <a href="/replies" className="nav-link">
-                {t`Response List`}
-              </a>
+              <Link href="/replies">
+                <a className="nav-link">{t`Response List`}</a>
+              </Link>
             </li>
             <li className="nav-item active">
               <a
@@ -590,5 +591,8 @@ function Home() {
     </Fragment>
   );
 }
+
+// Home page should be server-rendered
+Home.getInitialProps = () => ({});
 
 export default Home;

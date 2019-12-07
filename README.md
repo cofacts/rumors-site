@@ -25,7 +25,6 @@ $ npm run lint:fix
 # run test
 $ npm t
 ```
-
 ### styled-jsx syntax highlighting
 
 See: https://github.com/zeit/styled-jsx#syntax-highlighting
@@ -52,6 +51,16 @@ $ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-tw
 ```
 
 On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `dev` and `master` branch.
+
+## Analytics
+
+This project supports Google Tag Manager; populate `PUBLIC_GTM_ID` in `.env` with your Google Tag Manager Container ID.
+
+The application will fire the following custom events:
+
+- `routeChangeStart` - when next-router starts route change
+- `routeChangeComplete` - when next-router finish route change
+- `dataLoaded` - when article / reply is loaded in article & reply page
 
 ## Design and Mockups
 
