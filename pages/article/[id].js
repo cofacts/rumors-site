@@ -8,7 +8,7 @@ import Head from 'next/head';
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { nl2br, linkify } from 'lib/text';
-import { PushToDataLayer } from 'lib/gtm';
+import { usePushToDataLayer } from 'lib/gtm';
 
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
@@ -103,6 +103,10 @@ function ArticlePage() {
     replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
+  const article = data?.GetArticle;
+
+  usePushToDataLayer(!!article, { event: 'dataLoaded' });
+
   if (loading) {
     return (
       <AppLayout>
@@ -113,8 +117,6 @@ function ArticlePage() {
       </AppLayout>
     );
   }
-
-  const article = data?.GetArticle;
 
   if (!article) {
     return (
@@ -193,8 +195,6 @@ function ArticlePage() {
           </ul>
         </section>
       )}
-
-      <PushToDataLayer event="dataLoaded" />
 
       <style jsx>{`
         .section {

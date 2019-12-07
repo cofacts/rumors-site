@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
-import { PushToDataLayer } from 'lib/gtm';
+import { usePushToDataLayer } from 'lib/gtm';
 import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
@@ -113,6 +113,9 @@ function ReplyPage() {
     }
   }, [currentUser]);
 
+  const reply = data?.GetReply;
+  usePushToDataLayer(!!reply, { event: 'dataLoaded' });
+
   if (loading) {
     return (
       <AppLayout>
@@ -123,8 +126,6 @@ function ReplyPage() {
       </AppLayout>
     );
   }
-
-  const reply = data?.GetReply;
 
   if (!reply) {
     return (
@@ -200,8 +201,6 @@ function ReplyPage() {
           <p className="deleted-prompt">{t`This reply has been deleted by its author.`}</p>
         )}
       </section>
-
-      <PushToDataLayer event="dataLoaded" />
 
       <style jsx>{`
         .section {
