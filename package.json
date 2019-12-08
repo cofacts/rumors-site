@@ -36,6 +36,7 @@
     "next-apollo": "^3.1.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "rollbar": "^2.14.4",
     "ttag": "^1.7.17"
   },
   "devDependencies": {
