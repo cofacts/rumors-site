@@ -7,7 +7,7 @@ import Head from 'next/head';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
-import { nl2br, linkify } from 'lib/text';
+import { nl2br, linkify, ellipsis } from 'lib/text';
 import { usePushToDataLayer } from 'lib/gtm';
 
 import AppLayout from 'components/AppLayout';
@@ -129,13 +129,11 @@ function ArticlePage() {
     );
   }
 
-  const slicedArticleTitle = article.text.slice(0, 100);
-
   return (
     <AppLayout>
       <Head>
         <title>
-          {slicedArticleTitle}⋯⋯ | {t`Cofacts`}
+          {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
       </Head>
       <section className="section">
