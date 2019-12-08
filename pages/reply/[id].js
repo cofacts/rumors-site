@@ -13,6 +13,7 @@ import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleReply from 'components/ArticleReply';
+import UsedArticleItem from 'components/UsedArticleItem';
 
 import { nl2br, linkify } from 'lib/text';
 
@@ -35,11 +36,13 @@ const LOAD_REPLY = gql`
         createdAt
         status
         ...ArticleReplyData
+        ...UsedArticleItemData
       }
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}
   ${ArticleReply.fragments.ArticleReplyData}
+  ${UsedArticleItem.fragments.UsedArticleItemData}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -144,6 +147,9 @@ function ReplyPage() {
       articleReply.createdAt < earliest.createdAt ? articleReply : earliest,
     reply.articleReplies[0]
   );
+  const otherArticleReplies = reply.articleReplies.filter(
+    ({ article }) => article.id !== originalArticleReply.article.id
+  );
   const otherReplyCount = originalArticleReply.article.replyCount - 1;
   const isDeleted = originalArticleReply.status === 'DELETED';
 
@@ -168,7 +174,7 @@ function ReplyPage() {
                     `Check message and other ${otherReplyCount} replies`,
                     otherReplyCount
                   )
-                : `Check message`}{' '}
+                : t`Check message`}{' '}
               &gt;
             </a>
           </Link>
@@ -200,6 +206,15 @@ function ReplyPage() {
         {isDeleted && (
           <p className="deleted-prompt">{t`This reply has been deleted by its author.`}</p>
         )}
+      </section>
+
+      <section className="section">
+        <h2>{t`The reply is also used in these messages`}</h2>
+        <ul className="items">
+          {otherArticleReplies.map(ar => (
+            <UsedArticleItem key={ar.article.id} articleReply={ar} />
+          ))}
+        </ul>
       </section>
 
       <style jsx>{`
