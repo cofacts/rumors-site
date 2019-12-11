@@ -14,7 +14,7 @@ import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleReply from 'components/ArticleReply';
 
-import { nl2br, linkify } from 'lib/text';
+import { nl2br, linkify, ellipsis } from 'lib/text';
 
 const LOAD_REPLY = gql`
   query LoadReplyPage($id: String!) {
@@ -138,7 +138,6 @@ function ReplyPage() {
     );
   }
 
-  const slicedReplyTitle = reply.text.slice(0, 100);
   const originalArticleReply = reply.articleReplies.reduce(
     (earliest, articleReply) =>
       articleReply.createdAt < earliest.createdAt ? articleReply : earliest,
@@ -151,7 +150,7 @@ function ReplyPage() {
     <AppLayout>
       <Head>
         <title>
-          {slicedReplyTitle}⋯⋯ | {t`Cofacts`}
+          {ellipsis(reply.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
       </Head>
       <section className="section">

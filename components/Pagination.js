@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { t } from 'ttag';
 
 export default function Pagination({
   query = {}, // URL params
@@ -8,7 +9,7 @@ export default function Pagination({
 }) {
   const { firstCursor, lastCursor } = pageInfo;
   if (!firstCursor || !lastCursor) {
-    return <p>Loading...</p>;
+    return null;
   }
 
   const firstCursorOfPage = edges.length && edges[0] && edges[0].cursor;
@@ -23,7 +24,7 @@ export default function Pagination({
             query: { ...query, before: firstCursorOfPage, after: undefined },
           }}
         >
-          <a>Prev</a>
+          <a>{t`Prev`}</a>
         </Link>
       ) : (
         ''
@@ -34,7 +35,7 @@ export default function Pagination({
             query: { ...query, after: lastCursorOfPage, before: undefined },
           }}
         >
-          <a>Next</a>
+          <a>{t`Next`}</a>
         </Link>
       ) : (
         ''

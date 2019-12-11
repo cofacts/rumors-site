@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { t, ngettext, msgid } from 'ttag';
+import { t, ngettext, msgid, jt } from 'ttag';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import url from 'url';
@@ -17,6 +17,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 
 import withData from 'lib/apollo';
+import { ellipsis } from 'lib/text';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
@@ -193,12 +194,25 @@ function ArticleListPage() {
   });
 
   const showOneTimeMessages = +query.replyRequestCount === 1;
+  const searchedArticleEdge = (articleData?.edges || []).find(
+    ({ node: { id } }) => id === query.searchUserByArticleId
+  );
+  const searchedUserArticleElem = (
+    <mark>
+      {ellipsis(searchedArticleEdge?.node?.text || '', { wordCount: 15 })}
+    </mark>
+  );
 
   return (
     <AppLayout>
       <Head>
         <title>{t`Article list`}</title>
       </Head>
+
+      {query.searchUserByArticleId && (
+        <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
+      )}
+
       <Grid container spacing={2}>
         <Grid item>
           <ArticleFilter
