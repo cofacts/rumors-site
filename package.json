@@ -37,6 +37,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "rollbar": "^2.14.4",
+    "stackimpact": "^1.3.23",
     "ttag": "^1.7.17"
   },
   "devDependencies": {
