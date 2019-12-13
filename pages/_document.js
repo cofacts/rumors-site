@@ -128,7 +128,12 @@ MyDocument.getInitialProps = async ctx => {
 
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: App => props => sheets.collect(<App {...props} />),
+        enhanceApp: App => props => {
+          const span = agent.profile('sheets.collect');
+          const component = sheets.collect(<App {...props} />);
+          span.stop();
+          return component;
+        },
       });
 
     const span = agent.profile('Document.getInitialProps');
