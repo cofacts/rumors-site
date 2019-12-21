@@ -379,21 +379,25 @@ function Home() {
           <div className="text-center">
             <a
               href="https://hackmd.io/@B4gs1CECTRyI5Ny7vSy6dQ/SklM4dV9m/https%3A%2F%2Fg0v.hackmd.io%2FWaz-B9sORSOPLp6nAOS82w?type=book&fbclid=IwAR0pNUVLOllNTgoPE8dxbJSt8VCvIeCK_h0MszfAS2aiUFLj3XFfTfKXM4Q"
-              className="btn btn-secondary btn-lg mr-2"
+              className="btn btn-secondary btn-md mr-2 mb-2"
+              style={{
+                whiteSpace: 'normal !important',
+                wordWrap: 'break-word',
+              }}
             >
               {t`I want to learn how to use Cofacts`}{' '}
               <i className="fa fa-user-plus"></i>
             </a>
             <a
               href="https://hackmd.io/s/SyMRyrfEl"
-              className="btn btn-secondary btn-lg mr-2"
+              className="btn btn-secondary btn-md mr-2 mb-2"
             >
               {t`I can help bust hoaxes`}{' '}
               <i className="fa fa-pencil-square-o"></i>
             </a>
             <a
               href="https://hackmd.io/s/r1nfwTrgM"
-              className="btn btn-secondary btn-lg mr-2"
+              className="btn btn-secondary btn-md mr-2 mb-2"
             >
               {t`I can help with coding`} <i className="fa fa-code"></i>
             </a>

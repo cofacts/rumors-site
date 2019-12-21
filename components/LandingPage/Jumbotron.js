@@ -68,15 +68,11 @@ function Jumbotron() {
         </p>
         <br />
         <Link href="/articles">
-          <a style={{ minWidth: 280 }} className="btn btn-danger btn-lg">
-            {t`Start busting hoaxes now`}
-          </a>
+          <a className="btn btn-danger btn-md">{t`Start busting hoaxes now`}</a>
         </Link>
       </div>
       <style jsx>{`
         .jumbotron {
-          height: 100vh;
-          max-height: 640px;
           margin-bottom: 0;
           position: relative;
           background: url(${require('components/LandingPage/images/jumbotron.jpg')})
@@ -94,13 +90,7 @@ function Jumbotron() {
           color: #ffc107;
         }
         .text-center {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          margin: auto;
-          height: 210px;
+          text-align: center;
         }
 
         @keyframes fade-in {
