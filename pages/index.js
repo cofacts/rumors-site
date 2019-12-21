@@ -3,8 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import cx from 'clsx';
 import { t } from 'ttag';
-
 import { NEWS, Jumbotron, Stats } from 'components/LandingPage';
+import qrCodeURL from './../components/LandingPage/images/qr-code.png';
 
 function Home() {
   const [navCollapsed, setNavCollapsed] = useState(true);
@@ -129,7 +129,7 @@ function Home() {
               </a>
             </p>
             <p>
-              <img src={require('components/LandingPage/images/qr-code.png')} />
+              <img src={qrCodeURL} />
             </p>
           </div>
           <div className="phone-container">
