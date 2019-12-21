@@ -21,7 +21,12 @@ class CopyButton extends React.PureComponent {
       text: () => this.props.content,
     });
     clipboard.on('success', () => {
-      this.setState({ showCopySnack: true });
+      if (window.navigator && window.navigator.share) {
+        const text = clipboard.text();
+        navigator.share({ text });
+      } else {
+        this.setState({ showCopySnack: true });
+      }
     });
   }
 
