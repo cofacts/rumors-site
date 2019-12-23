@@ -4,6 +4,7 @@ import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Rollbar from 'rollbar';
 import theme from 'lib/theme';
+import agent from 'lib/stackimpact';
 
 const LANG = (process.env.LOCALE || 'en').replace('_', '-');
 const {
@@ -125,12 +126,18 @@ MyDocument.getInitialProps = async ctx => {
     const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () =>
-      originalRenderPage({
+    ctx.renderPage = () => {
+      const span = agent.profile('ctx.renderPage');
+      const rendered = originalRenderPage({
         enhanceApp: App => props => sheets.collect(<App {...props} />),
       });
+      span.stop();
+      return rendered;
+    };
 
+    const span = agent.profile('Document.getInitialProps');
     const initialProps = await Document.getInitialProps(ctx);
+    span.stop();
 
     return {
       ...initialProps,
