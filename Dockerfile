@@ -1,4 +1,4 @@
-FROM node:12-stretch-slim AS builder
+FROM node:12 AS builder
 WORKDIR /srv/www
 
 # make node_modules cached.
