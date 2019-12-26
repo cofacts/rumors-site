@@ -20,6 +20,8 @@ ARG APP_ID=DEV
 #
 RUN npm run build:next
 
+RUN npm prune --production
+
 #########################################
 FROM node:12-stretch-slim
 
@@ -27,9 +29,6 @@ WORKDIR /srv/www
 EXPOSE 3000
 ENTRYPOINT npm start
 
-COPY package.json package-lock.json ./
-RUN npm install --production
-
-# These file may change more often than package.json
-COPY next.config.js ./
+COPY package.json package-lock.json next.config.js ./
 COPY --from=builder /srv/www/.next ./.next
+COPY --from=builder /srv/www/node_modules ./node_modules
