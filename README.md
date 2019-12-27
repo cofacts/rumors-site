@@ -66,3 +66,43 @@ The application will fire the following custom events:
 
 * [真的假的 hackfoldr](http://beta.hackfoldr.org/rumors)
 * [網站 UI flow](https://i.imgur.com/lxas2Ic.jpg)
+
+
+## Translation
+
+We use [ttag](https://ttag.js.org/) to support build-time i18n for the SSR website. During deploy,
+we build one Docker image for each locale.
+
+Please refer to ttag documentation for [annotating strings to translate](https://ttag.js.org/docs/quickstart.html).
+
+To extract annotated strings to translation files, use:
+
+```
+$ npm run i18n:extract
+```
+
+### Translation files
+
+The translation files are located under `i18n/`, in [Gettext PO format](https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html).
+
+- `en_US.po`: Since the language used in code is already English, this empty translation file exists to simplify settings.
+- `zh_TW.po`: Traditional Chinese translation.
+
+### Supporting other languages
+
+You can replace this with [any language](https://www.gnu.org/software/gettext/manual/html_node/Locale-Names.html) you want to support, by leveraging Gettext [`msginit` command](https://www.gnu.org/software/gettext/manual/html_node/msginit-Invocation.html).
+
+You will need to change the following to reflect the locale change:
+
+- `i18n:extract` script in `package.json`
+- `i18n:validate` script in `package.json`
+- `hooks/build` script & `hooks/push` script, with correct LOCALE setup and image tags
+
+### Building in different languages
+
+By default, the chatbot will be built under `en_US` locale.
+
+During development, changing `LOCALE` in `.env` allows you to spin up dev server under a specific locale.
+Please set `LOCALE` to one of `en_US`, `zh_TW` or any other language code that exists under `i18n/` directory.
+
+When building using Docker, `LOCALE` can be provided via build args. See `hooks/build` for the command to use.
