@@ -27,7 +27,7 @@ const DEFAULT_ORDER_BY = 'lastRequestedAt';
 const DEFAULT_TYPE_FILTER = 'unsolved';
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
 
-const LIST_ARTICLES = gql`
+export const LIST_ARTICLES = gql`
   query ListArticles(
     $filter: ListArticleFilter
     $orderBy: [ListArticleOrderBy]
