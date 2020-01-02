@@ -1,6 +1,7 @@
 import { LIST_ARTICLES } from 'pages/articles';
 import { ApolloClient } from 'apollo-boost';
 import { config } from 'lib/apollo';
+import { Feed } from 'feed';
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
 
 async function articleFeedHandler(req, res) {
@@ -34,7 +35,22 @@ async function articleFeedHandler(req, res) {
     res.status(400).json(errors);
   }
 
-  res.status(200).json(data);
+  const feedInstance = new Feed({
+    title: 'test feed',
+  });
+
+  data.ListArticles.edges.forEach(({ node }) => {
+    feedInstance.addItem({
+      content: node.text,
+      date: new Date(node.createdAt),
+    });
+  });
+
+  try {
+    res.send(feedInstance[feed]());
+  } catch (e) {
+    res.status(500).send(e);
+  }
 }
 
 export default articleFeedHandler;
