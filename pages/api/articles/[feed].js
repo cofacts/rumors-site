@@ -8,10 +8,18 @@ async function articleFeedHandler(req, res) {
     query: { feed, args },
   } = req;
 
-  const variables = JSON.parse(args || '{}');
-
   if (!AVAILABLE_FEEDS.includes(feed)) {
     res.status(400).send('Invalid feed type');
+    return;
+  }
+
+  let variables;
+  try {
+    variables = JSON.parse(args || '{}');
+    if (typeof variables !== 'object')
+      throw Error('args should be an JSON object');
+  } catch (e) {
+    res.status(400).send(`Error parsing args: ${e}`);
     return;
   }
 
