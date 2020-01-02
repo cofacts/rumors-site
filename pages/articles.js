@@ -26,6 +26,7 @@ import SearchInput from 'components/SearchInput';
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
 const DEFAULT_TYPE_FILTER = 'unsolved';
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
+const MAX_KEYWORD_LENGTH = 100;
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -79,7 +80,10 @@ function urlQuery2Filter({
 } = {}) {
   const filterObj = {};
   if (q) {
-    filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
+    filterObj.moreLikeThis = {
+      like: q.slice(0, MAX_KEYWORD_LENGTH),
+      minimumShouldMatch: '0',
+    };
   }
 
   filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
@@ -203,10 +207,22 @@ function ArticleListPage() {
     </mark>
   );
 
+  const feedArgs = JSON.stringify(listQueryVars);
+
   return (
     <AppLayout>
       <Head>
         <title>{t`Article list`}</title>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href={`https://cofacts.g0v.tw/api/articles/rss2?args=${feedArgs}`}
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          href={`https://cofacts.g0v.tw/api/articles/atom1?args=${feedArgs}`}
+        />
       </Head>
 
       {query.searchUserByArticleId && (
