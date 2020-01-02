@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import querystring from 'querystring';
 import { t, ngettext, msgid, jt } from 'ttag';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -168,13 +169,22 @@ function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
   );
 }
 
-function ArticleListPage() {
-  const { query } = useRouter();
-
-  const listQueryVars = {
+/**
+ *
+ * @param {object} query
+ * @returns {object}
+ */
+export function getQueryVars(query) {
+  return {
     filter: urlQuery2Filter(query),
     orderBy: urlQuery2OrderBy(query),
   };
+}
+
+function ArticleListPage() {
+  const { query } = useRouter();
+
+  const listQueryVars = getQueryVars(query);
 
   const {
     loading,
@@ -207,8 +217,7 @@ function ArticleListPage() {
     </mark>
   );
 
-  const feedArgs = JSON.stringify(listQueryVars);
-
+  const queryString = querystring.stringify(query);
   return (
     <AppLayout>
       <Head>
@@ -216,12 +225,12 @@ function ArticleListPage() {
         <link
           rel="alternate"
           type="application/rss+xml"
-          href={`https://cofacts.g0v.tw/api/articles/rss2?args=${feedArgs}`}
+          href={`https://cofacts.g0v.tw/api/articles/rss2?${queryString}`}
         />
         <link
           rel="alternate"
           type="application/atom+xml"
-          href={`https://cofacts.g0v.tw/api/articles/atom1?args=${feedArgs}`}
+          href={`https://cofacts.g0v.tw/api/articles/atom1?${queryString}`}
         />
       </Head>
 

@@ -1,9 +1,11 @@
 import gql from 'graphql-tag';
+import querystring from 'querystring';
 import { t } from 'ttag';
+import { Feed } from 'feed';
 import { ApolloClient } from 'apollo-boost';
 import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
-import { Feed } from 'feed';
+import { getQueryVars } from 'pages/articles';
 
 const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
@@ -53,7 +55,7 @@ function getArticleText({ text, hyperlinks }) {
 
 async function articleFeedHandler(req, res) {
   const {
-    query: { feed, args },
+    query: { feed, ...query },
   } = req;
 
   if (!AVAILABLE_FEEDS.includes(feed)) {
@@ -61,36 +63,28 @@ async function articleFeedHandler(req, res) {
     return;
   }
 
-  let variables;
-  try {
-    variables = JSON.parse(args || '{}');
-    if (typeof variables !== 'object')
-      throw Error('args should be an JSON object');
-  } catch (e) {
-    res.status(400).send(`Error parsing args: ${e}`);
-    return;
-  }
+  const listQueryVars = getQueryVars(query);
 
   const { createCache, ...otherConfigs } = config;
   const client = new ApolloClient({ ...otherConfigs, cache: createCache() });
 
   const { data, errors } = await client.query({
     query: LIST_ARTICLES,
-    variables,
+    variables: listQueryVars,
   });
   if (errors && errors.length) {
     res.status(400).json(errors);
   }
 
-  const keywords = args?.filter?.moreLikeThis?.like;
+  const queryString = querystring.stringify(query, '&amp;'); // Use &amp; for XML meta tags
   const feedOption = {
-    title: (keywords ? `${keywords} | ` : '') + t`Cofacts reported messages`,
-    link: 'https://cofacts.g0v.tw/articles',
+    title: (query.q ? `${query.q} | ` : '') + t`Cofacts reported messages`,
+    link: `https://cofacts.g0v.tw/articles?${queryString}`,
     description: t`List of messages reported by Cofacts users`,
     feedLinks: {
-      json: `https://cofacts.g0v.tw/api/articles/json1?args=${args}`,
-      rss: `https://cofacts.g0v.tw/api/articles/rss2?args=${args}`,
-      atom: `https://cofacts.g0v.tw/api/articles/atom1?args=${args}`,
+      json: `https://cofacts.g0v.tw/api/articles/json1?${queryString}`,
+      rss: `https://cofacts.g0v.tw/api/articles/rss2?${queryString}`,
+      atom: `https://cofacts.g0v.tw/api/articles/atom1?${queryString}`,
     },
   };
 
