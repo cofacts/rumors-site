@@ -5,8 +5,10 @@ const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
 
 async function articleFeedHandler(req, res) {
   const {
-    query: { feed },
+    query: { feed, args },
   } = req;
+
+  const variables = JSON.parse(args || '{}');
 
   if (!AVAILABLE_FEEDS.includes(feed)) {
     res.status(400).send('Invalid feed type');
@@ -18,6 +20,7 @@ async function articleFeedHandler(req, res) {
 
   const { data, errors } = await client.query({
     query: LIST_ARTICLES,
+    variables,
   });
   if (errors && errors.length) {
     res.status(400).json(errors);
