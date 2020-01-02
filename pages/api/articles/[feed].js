@@ -1,8 +1,55 @@
-import { LIST_ARTICLES } from 'pages/articles';
+import gql from 'graphql-tag';
+import { t } from 'ttag';
 import { ApolloClient } from 'apollo-boost';
+import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
 import { Feed } from 'feed';
+
+const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
+
+// Arguments must match the ones in pages/articles.js
+const LIST_ARTICLES = gql`
+  query ListArticles(
+    $filter: ListArticleFilter
+    $orderBy: [ListArticleOrderBy]
+    $before: String
+    $after: String
+  ) {
+    ListArticles(
+      filter: $filter
+      orderBy: $orderBy
+      before: $before
+      after: $after
+      first: 25
+    ) {
+      edges {
+        node {
+          id
+          text
+          createdAt
+          hyperlinks {
+            url
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+function getArticleText({ text, hyperlinks }) {
+  return (hyperlinks || []).reduce(
+    (replacedText, hyperlink) =>
+      hyperlink.title
+        ? replacedText.replace(
+            hyperlink.url,
+            `[${hyperlink.title}](${hyperlink.url})`
+          )
+        : replacedText,
+    text
+  );
+}
 
 async function articleFeedHandler(req, res) {
   const {
@@ -35,13 +82,27 @@ async function articleFeedHandler(req, res) {
     res.status(400).json(errors);
   }
 
-  const feedInstance = new Feed({
-    title: 'test feed',
-  });
+  const keywords = args?.filter?.moreLikeThis?.like;
+  const feedOption = {
+    title: (keywords ? `${keywords} | ` : '') + t`Cofacts reported messages`,
+    link: 'https://cofacts.g0v.tw/articles',
+    description: t`List of messages reported by Cofacts users`,
+    feedLinks: {
+      json: `https://cofacts.g0v.tw/api/articles/json1?args=${args}`,
+      rss: `https://cofacts.g0v.tw/api/articles/rss2?args=${args}`,
+      atom: `https://cofacts.g0v.tw/api/articles/atom1?args=${args}`,
+    },
+  };
+
+  const feedInstance = new Feed(feedOption);
 
   data.ListArticles.edges.forEach(({ node }) => {
+    const text = getArticleText(node);
     feedInstance.addItem({
-      content: node.text,
+      id: node.id,
+      title: ellipsis(text, { wordCount: TITLE_LENGTH }),
+      description: ellipsis(text, { wordCount: 200 }),
+      link: `https://cofacts.g0v.tw/article/${node.id}`,
       date: new Date(node.createdAt),
     });
   });
