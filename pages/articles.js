@@ -3,6 +3,7 @@ import querystring from 'querystring';
 import { t, ngettext, msgid, jt } from 'ttag';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
+import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -28,6 +29,10 @@ const DEFAULT_ORDER_BY = 'lastRequestedAt';
 const DEFAULT_TYPE_FILTER = 'unsolved';
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
 const MAX_KEYWORD_LENGTH = 100;
+
+const {
+  publicRuntimeConfig: { PUBLIC_URL },
+} = getConfig();
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -225,12 +230,12 @@ function ArticleListPage() {
         <link
           rel="alternate"
           type="application/rss+xml"
-          href={`https://cofacts.g0v.tw/api/articles/rss2?${queryString}`}
+          href={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
         />
         <link
           rel="alternate"
           type="application/atom+xml"
-          href={`https://cofacts.g0v.tw/api/articles/atom1?${queryString}`}
+          href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
         />
       </Head>
 

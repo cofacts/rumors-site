@@ -3,12 +3,16 @@ import querystring from 'querystring';
 import { t } from 'ttag';
 import { Feed } from 'feed';
 import { ApolloClient } from 'apollo-boost';
+import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
 import { getQueryVars } from 'pages/articles';
 
 const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
+const {
+  publicRuntimeConfig: { PUBLIC_URL },
+} = getConfig();
 
 // Arguments must match the ones in pages/articles.js
 const LIST_ARTICLES = gql`
@@ -79,12 +83,12 @@ async function articleFeedHandler(req, res) {
   const queryString = querystring.stringify(query, '&amp;'); // Use &amp; for XML meta tags
   const feedOption = {
     title: (query.q ? `${query.q} | ` : '') + t`Cofacts reported messages`,
-    link: `https://cofacts.g0v.tw/articles?${queryString}`,
+    link: `${PUBLIC_URL}/articles?${queryString}`,
     description: t`List of messages reported by Cofacts users`,
     feedLinks: {
-      json: `https://cofacts.g0v.tw/api/articles/json1?${queryString}`,
-      rss: `https://cofacts.g0v.tw/api/articles/rss2?${queryString}`,
-      atom: `https://cofacts.g0v.tw/api/articles/atom1?${queryString}`,
+      json: `${PUBLIC_URL}/api/articles/json1?${queryString}`,
+      rss: `${PUBLIC_URL}/api/articles/rss2?${queryString}`,
+      atom: `${PUBLIC_URL}/api/articles/atom1?${queryString}`,
     },
   };
 
@@ -96,7 +100,7 @@ async function articleFeedHandler(req, res) {
       id: node.id,
       title: ellipsis(text, { wordCount: TITLE_LENGTH }),
       description: ellipsis(text, { wordCount: 200 }),
-      link: `https://cofacts.g0v.tw/article/${node.id}`,
+      link: `${PUBLIC_URL}/article/${node.id}`,
       date: new Date(node.createdAt),
     });
   });

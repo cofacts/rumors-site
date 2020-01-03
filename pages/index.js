@@ -1,10 +1,16 @@
 import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import getConfig from 'next/config';
 import cx from 'clsx';
 import { t } from 'ttag';
 import { NEWS, Jumbotron, Stats } from 'components/LandingPage';
 import qrCodeURL from './../components/LandingPage/images/qr-code.png';
+import ogImage from 'components/LandingPage/images/ogimage.png';
+
+const {
+  publicRuntimeConfig: { PUBLIC_URL },
+} = getConfig();
 
 function Home() {
   const [navCollapsed, setNavCollapsed] = useState(true);
@@ -25,11 +31,8 @@ function Home() {
         <meta property="og:description" content={description} />
         <meta property="og:locale" content={process.env.LOCALE} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://cofacts.g0v.tw" />
-        <meta
-          property="og:image"
-          content={`https://cofacts.g0v.tw${require('components/LandingPage/images/ogimage.png')}`}
-        />
+        <meta property="og:url" content={PUBLIC_URL} />
+        <meta property="og:image" content={`${PUBLIC_URL}${ogImage}`} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1920" />
         <meta property="og:image:height" content="1271" />
