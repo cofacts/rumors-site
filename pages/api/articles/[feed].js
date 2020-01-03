@@ -96,11 +96,12 @@ async function articleFeedHandler(req, res) {
 
   data.ListArticles.edges.forEach(({ node }) => {
     const text = getArticleText(node);
+    const url = `${PUBLIC_URL}/article/${node.id}`;
     feedInstance.addItem({
-      id: node.id,
+      id: url,
       title: ellipsis(text, { wordCount: TITLE_LENGTH }),
       description: ellipsis(text, { wordCount: 200 }),
-      link: `${PUBLIC_URL}/article/${node.id}`,
+      link: url,
       date: new Date(node.createdAt),
     });
   });
