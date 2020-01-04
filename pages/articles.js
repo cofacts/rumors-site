@@ -24,6 +24,7 @@ import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
 import SearchInput from 'components/SearchInput';
+import FeedDisplay from 'components/FeedDisplay';
 
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
 const DEFAULT_TYPE_FILTER = 'unsolved';
@@ -252,10 +253,15 @@ function ArticleListPage() {
             }
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ marginRight: 'auto' }}>
           <SearchInput
             q={query.q}
             onChange={q => goToUrlQueryAndResetPagination({ ...query, q })}
+          />
+        </Grid>
+        <Grid item>
+          <FeedDisplay
+            feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
           />
         </Grid>
       </Grid>
