@@ -27,7 +27,7 @@ const LIST_ARTICLES = gql`
       orderBy: $orderBy
       before: $before
       after: $after
-      first: 25
+      first: 10
     ) {
       edges {
         node {
@@ -37,6 +37,7 @@ const LIST_ARTICLES = gql`
           hyperlinks {
             url
             title
+            topImageUrl
           }
         }
       }
@@ -44,6 +45,12 @@ const LIST_ARTICLES = gql`
   }
 `;
 
+/**
+ * Extracts text and replaces hyperlinks with title information for better readability
+ *
+ * @param {object} node - Article node in GraphQL API
+ * @returns {string}
+ */
 function getArticleText({ text, hyperlinks }) {
   return (hyperlinks || []).reduce(
     (replacedText, hyperlink) =>
@@ -54,6 +61,24 @@ function getArticleText({ text, hyperlinks }) {
           )
         : replacedText,
     text
+  );
+}
+
+/**
+ * Returns a image for the article, using the first image in hyperlinks
+ *
+ * @param {object} node - Article node in GraphQL API
+ * @returns {string|undefined}
+ */
+function getImage({ hyperlinks }) {
+  return (
+    (hyperlinks || []).reduce((url, hyperlink) => {
+      if (url) return url;
+      if (hyperlink.topImageUrl) {
+        return hyperlink.topImageUrl;
+      }
+      return null;
+    }, null) || undefined
   );
 }
 
@@ -100,9 +125,13 @@ async function articleFeedHandler(req, res) {
     feedInstance.addItem({
       id: url,
       title: ellipsis(text, { wordCount: TITLE_LENGTH }),
-      description: ellipsis(text, { wordCount: 200 }),
+
+      // https://stackoverflow.com/a/54905457/1582110
+      description: text,
+
       link: url,
       date: new Date(node.createdAt),
+      image: getImage(node),
     });
   });
 
