@@ -1,7 +1,9 @@
 import gql from 'graphql-tag';
+import querystring from 'querystring';
 import { t, ngettext, msgid, jt } from 'ttag';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
+import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -22,10 +24,16 @@ import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
 import SearchInput from 'components/SearchInput';
+import FeedDisplay from 'components/FeedDisplay';
 
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
 const DEFAULT_TYPE_FILTER = 'unsolved';
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
+const MAX_KEYWORD_LENGTH = 100;
+
+const {
+  publicRuntimeConfig: { PUBLIC_URL },
+} = getConfig();
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -79,7 +87,10 @@ function urlQuery2Filter({
 } = {}) {
   const filterObj = {};
   if (q) {
-    filterObj.moreLikeThis = { like: q, minimumShouldMatch: '0' };
+    filterObj.moreLikeThis = {
+      like: q.slice(0, MAX_KEYWORD_LENGTH),
+      minimumShouldMatch: '0',
+    };
   }
 
   filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
@@ -164,13 +175,22 @@ function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
   );
 }
 
-function ArticleListPage() {
-  const { query } = useRouter();
-
-  const listQueryVars = {
+/**
+ *
+ * @param {object} query
+ * @returns {object}
+ */
+export function getQueryVars(query) {
+  return {
     filter: urlQuery2Filter(query),
     orderBy: urlQuery2OrderBy(query),
   };
+}
+
+function ArticleListPage() {
+  const { query } = useRouter();
+
+  const listQueryVars = getQueryVars(query);
 
   const {
     loading,
@@ -203,10 +223,21 @@ function ArticleListPage() {
     </mark>
   );
 
+  const queryString = querystring.stringify(query);
   return (
     <AppLayout>
       <Head>
         <title>{t`Article list`}</title>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
+        />
       </Head>
 
       {query.searchUserByArticleId && (
@@ -222,10 +253,15 @@ function ArticleListPage() {
             }
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ marginRight: 'auto' }}>
           <SearchInput
             q={query.q}
             onChange={q => goToUrlQueryAndResetPagination({ ...query, q })}
+          />
+        </Grid>
+        <Grid item>
+          <FeedDisplay
+            feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
           />
         </Grid>
       </Grid>
