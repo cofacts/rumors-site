@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "hooks/build",
-    "build:next": "next build",
+    "build": "next build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",

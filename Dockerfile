@@ -18,7 +18,7 @@ ARG APP_ID=DEV
 # Generate .next, which includes absolute path to package so it must be done
 # within container.
 #
-RUN npm run build:next
+RUN npm run build
 
 RUN npm prune --production
 
