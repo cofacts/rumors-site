@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",
-    "start": "pm2 startOrRestart ecosystem.config.js --env production --log-date-format=\"YYYY-MM-DD HH:mm Z\" --no-daemon",
+    "start": "pm2 --log-date-format=\"YYYY-MM-DD HH:mm Z\" --no-daemon startOrRestart ecosystem.config.js",
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages ./constants",
     "i18n:validate": "ttag validate i18n/zh_TW.po"
   },
