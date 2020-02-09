@@ -11,8 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",
-    "start": "pm2-runtime next -- start",
-    "start:next": "next start",
+    "start": "node server.js",
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages ./constants",
     "i18n:validate": "ttag validate i18n/zh_TW.po"
   },
