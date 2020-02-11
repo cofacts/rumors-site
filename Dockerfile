@@ -29,7 +29,7 @@ WORKDIR /srv/www
 EXPOSE 3000
 
 # Note: using npm start here will cause error when exiting the container
-ENTRYPOINT node_modules/.bin/pm2-runtime ecosystem.config.js
+CMD ["node_modules/.bin/pm2-runtime", "ecosystem.config.js"]
 
 COPY package.json package-lock.json next.config.js ecosystem.config.js server.js ./
 COPY --from=builder /srv/www/.next ./.next
