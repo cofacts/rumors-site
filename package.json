@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "babel-eslint": "^10.0.3",
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-ttag": "^1.7.23",
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
@@ -53,7 +53,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
-    "jest": "^24.9.0",
+    "jest": "^25.0.0",
     "prettier": "^1.18.2",
     "ttag-cli": "^1.7.22",
     "url-loader": "^3.0.0"
