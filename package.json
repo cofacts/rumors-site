@@ -7,12 +7,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "hooks/build",
-    "build:next": "next build",
+    "build": "next build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",
-    "start": "next start",
+    "start": "node server.js",
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages ./constants",
     "i18n:validate": "ttag validate i18n/zh_TW.po"
   },
@@ -35,6 +34,7 @@
     "lodash": "^4.17.15",
     "next": "^9.1.2",
     "next-apollo": "^3.1.5",
+    "pm2": "^4.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "rollbar": "^2.14.4",
