@@ -10,8 +10,10 @@ function UsedArticleItem({ articleReply }) {
   const { article, user } = articleReply;
   const createdAt = new Date(articleReply.createdAt);
   const timeAgoStr = formatDistanceToNow(createdAt);
-  const editorElem = (
+  const editorElem = user ? (
     <EditorName key="editor" editorName={user.name} editorLevel={user.level} />
+  ) : (
+    t`someone`
   );
 
   return (
