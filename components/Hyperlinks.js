@@ -151,6 +151,12 @@ function Hyperlink({ hyperlink }) {
 }
 
 function PollingHyperlink({ pollingType, pollingId }) {
+  // The loaded data will populate apollo-client's normalized Article/Reply cache via apollo-client
+  // automatic cache updates.
+  // Ref: https://www.apollographql.com/docs/react/caching/cache-configuration/#automatic-cache-updates
+  //
+  // Therefore, we don't need to read query results here.
+  //
   useQuery(POLLING_QUERY[pollingType], {
     variables: { id: pollingId },
     pollInterval: 2000,
