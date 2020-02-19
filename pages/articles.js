@@ -1,35 +1,36 @@
 import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t, ngettext, msgid, jt } from 'ttag';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import url from 'url';
-import { useQuery } from '@apollo/react-hooks';
 
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SortIcon from '@material-ui/icons/Sort';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
-import ListItemText from '@material-ui/core/ListItemText';
 
+import { useQuery } from '@apollo/react-hooks';
 import withData from 'lib/apollo';
 import { ellipsis } from 'lib/text';
+import {
+  goToUrlQueryAndResetPagination,
+  getArrayFromQueryParam,
+} from 'lib/url';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
 import SearchInput from 'components/SearchInput';
 import FeedDisplay from 'components/FeedDisplay';
+import {
+  ArticleStatusFilter,
+  CategoryFilter,
+  SortInput,
+  DEFAULT_STATUS_FILTER,
+  DEFAULT_CATEGORY_IDS,
+  DEFAULT_ORDER_BY,
+} from 'components/ArticleListPage';
 
-const DEFAULT_ORDER_BY = 'lastRequestedAt';
-const DEFAULT_STATUS_FILTER = 'unsolved';
-const DEFAULT_CATEGORY_IDS = [];
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -91,15 +92,6 @@ const LIST_CATEGORIES = gql`
 `;
 
 /**
- * @param {string|string[]} stringOrArray
- * @returns {string[]}
- */
-function getArrayFromQueryParam(stringOrArray) {
-  if (typeof stringOrArray === 'string') return [stringOrArray];
-  return stringOrArray;
-}
-
-/**
  * @param {object} urlQuery - URL query object
  * @returns {object} ListArticleFilter
  */
@@ -154,94 +146,6 @@ function urlQuery2OrderBy({ q, orderBy = DEFAULT_ORDER_BY } = {}) {
   }
 
   return [{ [orderBy]: 'DESC' }];
-}
-
-/**
- * @param {object} urlQuery
- */
-function goToUrlQueryAndResetPagination(urlQuery) {
-  delete urlQuery.before;
-  delete urlQuery.after;
-  Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
-}
-
-function ArticleStatusFilter({
-  filter = DEFAULT_STATUS_FILTER,
-  onChange = () => {},
-}) {
-  return (
-    <ButtonGroup size="small" variant="outlined">
-      <Button
-        disabled={filter === 'unsolved'}
-        onClick={() => onChange('unsolved')}
-      >
-        {t`Not replied`}
-      </Button>
-      <Button disabled={filter === 'solved'} onClick={() => onChange('solved')}>
-        {t`Replied`}
-      </Button>
-      <Button disabled={filter === 'all'} onClick={() => onChange('all')}>
-        {t`All`}
-      </Button>
-    </ButtonGroup>
-  );
-}
-
-/**
- * @param {string[]} props.categoryIds - selected category id
- * @param {Category[]} props.categories - category options
- * @param {(categoryIds: string[]) => void} props.onChange
- */
-function CategoryFilter({
-  categoryIds = DEFAULT_CATEGORY_IDS,
-  categories = [],
-  onChange = () => {},
-}) {
-  return (
-    <TextField
-      label={t`Category`}
-      select
-      SelectProps={{
-        multiple: true,
-        renderValue: selectedIds =>
-          selectedIds
-            .map(id => categories.find(category => category.id === id)?.title)
-            .filter(c => c)
-            .join(', '),
-      }}
-      value={categoryIds}
-      onChange={e => onChange(e.target.value)}
-    >
-      {categories.map(({ id, title }) => (
-        <MenuItem key={id} value={id}>
-          <Checkbox checked={categoryIds.includes(id)} />
-          <ListItemText>{title}</ListItemText>
-        </MenuItem>
-      ))}
-    </TextField>
-  );
-}
-
-function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
-  return (
-    <TextField
-      label={t`Sort by`}
-      select
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SortIcon />
-          </InputAdornment>
-        ),
-      }}
-      value={orderBy}
-      onChange={e => onChange(e.target.value)}
-    >
-      <MenuItem value="lastRequestedAt">{t`Most recently asked`}</MenuItem>
-      <MenuItem value="lastRepliedAt">{t`Most recently replied`}</MenuItem>
-      <MenuItem value="replyRequestCount">{t`Most asked`}</MenuItem>
-    </TextField>
-  );
 }
 
 /**
