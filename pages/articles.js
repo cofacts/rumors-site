@@ -223,7 +223,7 @@ function ArticleListPage() {
         <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
       )}
 
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="flex-end">
         <Grid item>
           <ArticleStatusFilter
             filter={query.filter}

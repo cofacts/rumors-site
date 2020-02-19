@@ -22,6 +22,7 @@ function CategoryFilter({
       label={t`Category`}
       select
       SelectProps={{
+        style: { minWidth: 100 },
         multiple: true,
         renderValue: selectedIds =>
           selectedIds
