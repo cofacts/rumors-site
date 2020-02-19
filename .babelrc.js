@@ -19,5 +19,6 @@ module.exports = {
       'ttag', {resolve: {translations: `i18n/${process.env.LOCALE}.po`}}
     ],
     "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-nullish-coalescing-operator",
   ]
 }
