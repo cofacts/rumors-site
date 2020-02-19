@@ -54,7 +54,11 @@ On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is 
 
 ## Analytics
 
-This project supports Google Tag Manager; populate `PUBLIC_GTM_ID` in `.env` with your Google Tag Manager Container ID.
+This project supports Google Tag Manager. You can prepare the following setup in `.env` file:
+- `PUBLIC_GTM_ID`: Google Tag Manager Container ID (`GTM-XXXXXXX`)
+- `PUBLIC_GA_TRACKING_ID`: Google analytics trakcing ID (`UA-XXXXXXXX-X`). `rumors-site` will *not*
+  load Google analytics itself; instead, it will push `GA_TRACKING_ID` to `dataLayer`, and it is your
+  responsibility to pick it up as a Data Layer Variable and setup Google Analytics in Google Tag Manager.
 
 The application will fire the following custom events:
 
