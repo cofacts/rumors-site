@@ -1,9 +1,8 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import Head from 'next/head';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { t, ngettext, msgid } from 'ttag';
-import url from 'url';
 
 import { useQuery } from '@apollo/react-hooks';
 
@@ -17,6 +16,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import withData from 'lib/apollo';
+import { goToUrlQueryAndResetPagination } from 'lib/url';
 import useCurrentUser from 'lib/useCurrentUser';
 import AppLayout from 'components/AppLayout';
 import Pagination from 'components/Pagination';
@@ -107,15 +107,6 @@ function urlQuery2OrderBy({ q, orderBy = DEFAULT_ORDER_BY } = {}) {
   }
 
   return [{ [orderByItem]: order }];
-}
-
-/**
- * @param {object} urlQuery
- */
-function goToUrlQueryAndResetPagination(urlQuery) {
-  delete urlQuery.before;
-  delete urlQuery.after;
-  Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
 }
 
 function ReplyFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
