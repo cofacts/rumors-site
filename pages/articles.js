@@ -17,6 +17,7 @@ import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import withData from 'lib/apollo';
 import { ellipsis } from 'lib/text';
@@ -27,7 +28,8 @@ import SearchInput from 'components/SearchInput';
 import FeedDisplay from 'components/FeedDisplay';
 
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
-const DEFAULT_TYPE_FILTER = 'unsolved';
+const DEFAULT_STATUS_FILTER = 'unsolved';
+const DEFAULT_CATEGORY_IDS = [];
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -75,14 +77,37 @@ const LIST_STAT = gql`
   }
 `;
 
+const LIST_CATEGORIES = gql`
+  query ListCategoriesOnArticleList {
+    ListCategories(first: 50) {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * @param {string|string[]} stringOrArray
+ * @returns {string[]}
+ */
+function getArrayFromQueryParam(stringOrArray) {
+  if (typeof stringOrArray === 'string') return [stringOrArray];
+  return stringOrArray;
+}
+
 /**
  * @param {object} urlQuery - URL query object
  * @returns {object} ListArticleFilter
  */
 function urlQuery2Filter({
-  filter = DEFAULT_TYPE_FILTER,
+  filter = DEFAULT_STATUS_FILTER,
   q,
   replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
+  c = DEFAULT_CATEGORY_IDS,
   searchUserByArticleId,
 } = {}) {
   const filterObj = {};
@@ -103,6 +128,11 @@ function urlQuery2Filter({
 
   if (searchUserByArticleId) {
     filterObj.fromUserOfArticleId = searchUserByArticleId;
+  }
+
+  const categoryIds = getArrayFromQueryParam(c || []);
+  if (categoryIds.length > 0) {
+    filterObj.categoryIds = categoryIds;
   }
 
   // Return filterObj only when it is populated.
@@ -135,7 +165,10 @@ function goToUrlQueryAndResetPagination(urlQuery) {
   Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
 }
 
-function ArticleFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
+function ArticleStatusFilter({
+  filter = DEFAULT_STATUS_FILTER,
+  onChange = () => {},
+}) {
   return (
     <ButtonGroup size="small" variant="outlined">
       <Button
@@ -151,6 +184,41 @@ function ArticleFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
         {t`All`}
       </Button>
     </ButtonGroup>
+  );
+}
+
+/**
+ * @param {string[]} props.categoryIds - selected category id
+ * @param {Category[]} props.categories - category options
+ * @param {(categoryIds: string[]) => void} props.onChange
+ */
+function CategoryFilter({
+  categoryIds = DEFAULT_CATEGORY_IDS,
+  categories = [],
+  onChange = () => {},
+}) {
+  return (
+    <TextField
+      label={t`Category`}
+      select
+      SelectProps={{
+        multiple: true,
+        renderValue: selectedIds =>
+          selectedIds
+            .map(id => categories.find(category => category.id === id)?.title)
+            .filter(c => c)
+            .join(', '),
+      }}
+      value={categoryIds}
+      onChange={e => onChange(e.target.value)}
+    >
+      {categories.map(({ id, title }) => (
+        <MenuItem key={id} value={id}>
+          <Checkbox checked={categoryIds.includes(id)} />
+          <ListItemText>{title}</ListItemText>
+        </MenuItem>
+      ))}
+    </TextField>
   );
 }
 
@@ -214,6 +282,12 @@ function ArticleListPage() {
     variables: listQueryVars,
   });
 
+  // This query should fire only once on client side and never gets re-fetched
+  //
+  const {
+    data: { ListCategories: categoriesData },
+  } = useQuery(LIST_CATEGORIES, { ssr: false });
+
   const showOneTimeMessages = +query.replyRequestCount === 1;
   const searchedArticleEdge = (articleData?.edges || []).find(
     ({ node: { id } }) => id === query.searchUserByArticleId
@@ -247,10 +321,22 @@ function ArticleListPage() {
 
       <Grid container spacing={2}>
         <Grid item>
-          <ArticleFilter
+          <ArticleStatusFilter
             filter={query.filter}
             onChange={filter =>
               goToUrlQueryAndResetPagination({ ...query, filter })
+            }
+          />
+        </Grid>
+        <Grid item>
+          <CategoryFilter
+            categoryIds={getArrayFromQueryParam(query.c || [])}
+            categories={categoriesData?.edges?.map(({ node }) => node) || []}
+            onChange={categoryIds =>
+              goToUrlQueryAndResetPagination({
+                ...query,
+                c: categoryIds,
+              })
             }
           />
         </Grid>
