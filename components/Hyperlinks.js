@@ -1,7 +1,43 @@
 import gql from 'graphql-tag';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useQuery } from '@apollo/react-hooks';
+
+const HyperlinkData = gql`
+  fragment HyperlinkData on Hyperlink {
+    title
+    url
+    summary
+    topImageUrl
+    error
+  }
+`;
+
+const POLLING_QUERY = {
+  articles: gql`
+    query PollingArticleHyperlink($id: String!) {
+      GetArticle(id: $id) {
+        id
+        hyperlinks {
+          ...HyperlinkData
+        }
+      }
+    }
+    ${HyperlinkData}
+  `,
+  replies: gql`
+    query PollingReplyHyperlink($id: String!) {
+      GetReply(id: $id) {
+        id
+        hyperlinks {
+          ...HyperlinkData
+        }
+      }
+    }
+    ${HyperlinkData}
+  `,
+};
 
 /**
- *
  * @param {string} error - One of ResolveError https://github.com/cofacts/url-resolver/blob/master/src/typeDefs/ResolveError.graphql
  */
 function getErrorText(error) {
@@ -114,17 +150,41 @@ function Hyperlink({ hyperlink }) {
   );
 }
 
+function PollingHyperlink({ pollingType, pollingId }) {
+  // The loaded data will populate apollo-client's normalized Article/Reply cache via apollo-client
+  // automatic cache updates.
+  // Ref: https://www.apollographql.com/docs/react/caching/cache-configuration/#automatic-cache-updates
+  //
+  // Therefore, we don't need to read query results here.
+  //
+  useQuery(POLLING_QUERY[pollingType], {
+    variables: { id: pollingId },
+    pollInterval: 2000,
+  });
+
+  return <CircularProgress />;
+}
+
 /**
- * @param {object[]} props.hyperlinks
+ * @param {object[] | null} props.hyperlinks
+ * @param {'articles'|'replies'?} props.pollingType - poll article or reply for hyperlinks when it's not loaded (null)
+ * @param {string?} props.pollingId - polling article or reply id for hyperlinks when it's not loaded (null)
  */
-function Hyperlinks({ hyperlinks = [] }) {
-  if (!hyperlinks || hyperlinks.length === 0) return null;
+function Hyperlinks({ hyperlinks, pollingType, pollingId }) {
+  if (!((pollingId && pollingType) || (!pollingId && !pollingType))) {
+    throw new Error('pollingType and pollingId must be specified together');
+  }
+
+  if (hyperlinks && hyperlinks.length === 0) return null;
 
   return (
     <section className="links">
-      {hyperlinks.map((hyperlink, idx) => (
+      {(hyperlinks || []).map((hyperlink, idx) => (
         <Hyperlink key={idx} hyperlink={hyperlink} />
       ))}
+      {!hyperlinks && pollingId && (
+        <PollingHyperlink pollingId={pollingId} pollingType={pollingType} />
+      )}
       <style jsx>{`
         .links {
           display: flex;
@@ -138,15 +198,7 @@ function Hyperlinks({ hyperlinks = [] }) {
 }
 
 Hyperlinks.fragments = {
-  HyperlinkData: gql`
-    fragment HyperlinkData on Hyperlink {
-      title
-      url
-      summary
-      topImageUrl
-      error
-    }
-  `,
+  HyperlinkData,
 };
 
 export default Hyperlinks;

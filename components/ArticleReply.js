@@ -211,7 +211,11 @@ class ArticleReply extends React.PureComponent {
           ? nl2br(linkify(reference))
           : `⚠️️ ${t`There is no reference for this reply. Its truthfulness may be doubtful.`}`}
 
-        <Hyperlinks hyperlinks={articleReply.reply.hyperlinks} />
+        <Hyperlinks
+          hyperlinks={articleReply.reply.hyperlinks}
+          pollingType="replies"
+          pollingId={articleReply.replyId}
+        />
         <style jsx>{sectionStyle}</style>
       </section>
     );
