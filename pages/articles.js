@@ -170,6 +170,7 @@ function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
       onChange={e => onChange(e.target.value)}
     >
       <MenuItem value="lastRequestedAt">{t`Most recently asked`}</MenuItem>
+      <MenuItem value="lastRepliedAt">{t`Most recently replied`}</MenuItem>
       <MenuItem value="replyRequestCount">{t`Most asked`}</MenuItem>
     </TextField>
   );
