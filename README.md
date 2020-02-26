@@ -66,6 +66,11 @@ The application will fire the following custom events:
 - `routeChangeComplete` - when next-router finish route change
 - `dataLoaded` - when article / reply is loaded in article & reply page
 
+Also, it will push the following custom variable to `dataLayer`;
+
+- `GA_TRACKING_ID` - see `PUBLIC_GA_TRACKING_ID`
+- `CURRENT_USER` - Current user object, set by `useCurrentUser`.
+
 ## Design and Mockups
 
 * [真的假的 hackfoldr](http://beta.hackfoldr.org/rumors)
