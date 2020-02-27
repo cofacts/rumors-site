@@ -3,7 +3,6 @@ import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Link from 'next/link';
-import LEVEL_NAMES from 'constants/levelNames';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -12,8 +11,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
-import LoginModal from './LoginModal';
 import fetchAPI from 'lib/fetchAPI';
+import { usePushToDataLayer } from 'lib/gtm';
+import LEVEL_NAMES from 'constants/levelNames';
+import LoginModal from './LoginModal';
 
 const USER_QUERY = gql`
   query UserLevelQuery {
@@ -172,6 +173,8 @@ function UserName() {
     if (prevLevel !== null) setLevelUpPopupShow(true);
     setPrevLevel(data.GetUser.level);
   }, [data?.GetUser?.level]);
+
+  usePushToDataLayer(data?.GetUser, { CURRENT_USER: data?.GetUser });
 
   const handleUserNameEdit = useCallback(name => {
     setName({ variables: { name } });
