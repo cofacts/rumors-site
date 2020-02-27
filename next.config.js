@@ -38,7 +38,7 @@ module.exports = {
       if (entry['main.js'] && !entry['main.js'].includes('core-js')) {
         // As specified by React official doc
         // https://reactjs.org/docs/javascript-environment-requirements.html
-        entry['main.js'].push('core-js');
+        entry['main.js'].unshift('core-js');
       }
       return entry;
     };
