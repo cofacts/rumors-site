@@ -1,3 +1,4 @@
+import accepts from 'accepts';
 import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t } from 'ttag';
@@ -136,6 +137,13 @@ async function articleFeedHandler(req, res) {
   });
 
   try {
+    // https://stackoverflow.com/questions/595616/what-is-the-correct-mime-type-to-use-for-an-rss-feed
+    const type = accepts(req).type([
+      'application/rss+xml',
+      'application/xml',
+      'text/xml',
+    ]);
+    res.setHeader('Content-Type', type || 'text/xml');
     res.send(feedInstance[feed]());
   } catch (e) {
     res.status(500).send(e);
