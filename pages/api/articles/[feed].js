@@ -139,7 +139,7 @@ async function articleFeedHandler(req, res) {
               }</p>
               ${articleReply.reply.text}
 
-              <h2>${t`Reference`}</h2>
+              ${articleReply.reply.reference ? `<h2>${t`Reference`}</h2>` : ''}
               ${articleReply.reply.reference}
             `
             : ''),
