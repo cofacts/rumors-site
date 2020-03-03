@@ -7,6 +7,7 @@ import { ApolloClient } from 'apollo-boost';
 import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
+import rollbar from 'lib/rollbar';
 import { getQueryVars } from 'pages/articles';
 import { TYPE_NAME } from 'constants/replyType';
 
@@ -158,7 +159,7 @@ async function articleFeedHandler(req, res) {
     res.setHeader('Content-Type', type || 'text/xml');
     res.send(feedInstance[feed]());
   } catch (e) {
-    console.error(e);
+    rollbar.error(e);
     res.status(500).json(e);
   }
 }
