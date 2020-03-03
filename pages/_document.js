@@ -3,6 +3,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Rollbar from 'rollbar';
+import { AUTH_ERROR_MSG } from 'constants/errors';
 import theme from 'lib/theme';
 import agent from 'lib/stackimpact';
 
@@ -13,6 +14,7 @@ const {
     PUBLIC_GA_TRACKING_ID,
     PUBLIC_ROLLBAR_TOKEN,
     PUBLIC_ROLLBAR_ENV,
+    PUBLIC_URL,
   },
   serverRuntimeConfig: { SERVER_ROLLBAR_TOKEN },
 } = getConfig();
@@ -69,9 +71,9 @@ class MyDocument extends Document {
                   accessToken: "${PUBLIC_ROLLBAR_TOKEN}",
                   captureUncaught: true,
                   captureUnhandledRejections: true,
-                  payload: {
-                    environment: "${PUBLIC_ROLLBAR_ENV}"
-                  }
+                  payload: { environment: "${PUBLIC_ROLLBAR_ENV}" },
+                  hostWhiteList: ["/srv/www", "${PUBLIC_URL}"],
+                  ignoredMessages: ["${AUTH_ERROR_MSG}"],
                 };
                 ${rollbarSnippet}
               `,
