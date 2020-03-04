@@ -1,7 +1,10 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import ArticleInfo from './ArticleInfo';
+import { t } from 'ttag';
 import { listItemStyle } from './ListItem.styles';
+import isValid from 'date-fns/isValid';
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 // import ArticleItemWidget from './ArticleItemWidget/ArticleItemWidget.js';
 import cx from 'clsx';
 
@@ -9,9 +12,14 @@ export default function ArticleItem({
   article,
   read = false, // from localEditorHelperList, it only provide after did mount
   notArticleReplied = false, // same as top
+  showLastReply = true,
   // handleLocalEditorHelperList,
   // isLogin,
 }) {
+  const latestReply = article.articleReplies[0]?.reply;
+  const lastRepliedAt = new Date(latestReply.createdAt);
+  const timeAgoStr = formatDistanceToNow(lastRepliedAt);
+
   return (
     <li
       className={cx('item', {
@@ -23,6 +31,19 @@ export default function ArticleItem({
         <a>
           <div className="item-text">{article.text}</div>
           <ArticleInfo article={article} />
+          {showLastReply && latestReply && (
+            <div className="latest-reply">
+              <strong>{t`Latest Reply`}</strong>
+              <br />
+              {latestReply.text}
+              {isValid(lastRepliedAt) && (
+                <span title={format(lastRepliedAt)}>
+                  {' - '}
+                  {t`${timeAgoStr} ago`}
+                </span>
+              )}
+            </div>
+          )}
           {/* {isLogin && (
             <ArticleItemWidget
               id={id}
@@ -35,6 +56,16 @@ export default function ArticleItem({
       </Link>
 
       <style jsx>{listItemStyle}</style>
+      <style jsx>{`
+        .latest-reply {
+          background-color: #64b5f6;
+          padding: 1rem;
+          border-radius: 4px;
+        }
+        .item:hover .latest-reply {
+          color: black;
+        }
+      `}</style>
     </li>
   );
 }
@@ -44,6 +75,14 @@ ArticleItem.fragments = {
     fragment ArticleItem on Article {
       id
       text
+      articleReplies {
+        articleId
+        replyId
+        reply {
+          text
+          createdAt
+        }
+      }
       ...ArticleInfo
     }
     ${ArticleInfo.fragments.articleInfo}
