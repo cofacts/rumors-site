@@ -17,8 +17,8 @@ export default function ArticleItem({
   // isLogin,
 }) {
   const latestReply = article.articleReplies[0]?.reply;
-  const createdAt = new Date(latestReply.createdAt);
-  const timeAgoStr = formatDistanceToNow(createdAt);
+  const lastRepliedAt = new Date(latestReply.createdAt);
+  const timeAgoStr = formatDistanceToNow(lastRepliedAt);
 
   return (
     <li
@@ -36,8 +36,8 @@ export default function ArticleItem({
               <strong>{t`Latest Reply`}</strong>
               <br />
               {latestReply.text}
-              {isValid(createdAt) && (
-                <span title={format(createdAt)}>
+              {isValid(lastRepliedAt) && (
+                <span title={format(lastRepliedAt)}>
                   {' - '}
                   {t`${timeAgoStr} ago`}
                 </span>
