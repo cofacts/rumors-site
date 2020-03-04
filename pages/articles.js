@@ -312,9 +312,13 @@ function ArticleListPage() {
             edges={articleData?.edges}
           />
           <ul className="article-list">
-            {articleData.edges.map(({ node }) => {
-              return <ArticleItem key={node.id} article={node} />;
-            })}
+            {articleData.edges.map(({ node }) => (
+              <ArticleItem
+                key={node.id}
+                article={node}
+                showLastReply={query.orderBy === 'lastRepliedAt'}
+              />
+            ))}
           </ul>
           <Pagination
             query={query}
