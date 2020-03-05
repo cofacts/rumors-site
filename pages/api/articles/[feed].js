@@ -17,6 +17,14 @@ const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
 
+// This should match article "time" fields in ListArticleOrderBy
+const IS_ARTICLE_TIME_FIELD = {
+  createdAt: true,
+  updatedAt: true,
+  lastRequestedAt: true,
+  lastRepliedAt: true,
+};
+
 // Arguments must match the ones in pages/articles.js
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -36,13 +44,13 @@ const LIST_ARTICLES = gql`
         node {
           id
           text
-          createdAt
           hyperlinks {
             url
             title
           }
           articleReplies(status: NORMAL) {
             replyId
+            createdAt # IS_ARTICLE_TIME_FIELD
             user {
               name
             }
@@ -52,6 +60,10 @@ const LIST_ARTICLES = gql`
               reference
             }
           }
+          # IS_ARTICLE_TIME_FIELD
+          createdAt
+          updatedAt
+          lastRequestedAt
         }
       }
     }
@@ -75,6 +87,19 @@ function getArticleText({ text, hyperlinks }) {
         : replacedText,
     text
   );
+}
+
+/**
+ * @param {object} article - article object from GraphQL
+ * @param {string} dateField - article's first time field in orderBy
+ * @return {string} date to fill in RSS <pubDate>
+ */
+function getDateValue(article, dateField) {
+  if (dateField === 'lastRepliedAt') {
+    return article.articleReplies[0].createdAt;
+  }
+
+  return article[dateField];
 }
 
 async function articleFeedHandler(req, res) {
@@ -115,6 +140,14 @@ async function articleFeedHandler(req, res) {
 
   const feedInstance = new Feed(feedOption);
 
+  // first time field in article node specified in query
+  const dateField =
+    listQueryVars.orderBy.reduce((field, obj) => {
+      if (field) return field;
+
+      const [currentField] = Object.keys(obj);
+      return IS_ARTICLE_TIME_FIELD[currentField] ? currentField : null;
+    }, null) || 'createdAt';
   try {
     data.ListArticles.edges.forEach(({ node }) => {
       const text = getArticleText(node);
@@ -146,7 +179,7 @@ async function articleFeedHandler(req, res) {
             : ''),
 
         link: url,
-        date: new Date(node.createdAt),
+        date: new Date(getDateValue(node, dateField)),
       });
     });
 
