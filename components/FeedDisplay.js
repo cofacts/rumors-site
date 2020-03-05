@@ -1,15 +1,33 @@
 import { useState } from 'react';
-import { t, jt } from 'ttag';
+import { t } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 import TextField from '@material-ui/core/TextField';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   leftIcon: { marginRight: theme.spacing(1) },
-  paper: { padding: theme.spacing(2) },
 }));
+
+function ListItemLink({ href, children }) {
+  return (
+    <ListItem
+      button
+      component="a"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <ListItemText>{children}</ListItemText>
+    </ListItem>
+  );
+}
 
 function FeedDisplay({ feedUrl }) {
   const classes = useStyles();
@@ -33,9 +51,6 @@ function FeedDisplay({ feedUrl }) {
         anchorEl={anchorEl}
         open={!!anchorEl}
         onClose={handleClose}
-        classes={{
-          paper: classes.paper,
-        }}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',
@@ -45,26 +60,38 @@ function FeedDisplay({ feedUrl }) {
           horizontal: 'center',
         }}
       >
-        {jt`You can follow this list using any RSS reader.`}
-        <TextField
-          label={t`RSS Feed URL`}
-          defaultValue={feedUrl}
-          margin="normal"
-          variant="outlined"
-          InputProps={{ readOnly: true }}
-          onFocus={e => e.target.select()}
-          fullWidth
-        />
-        {t`Add to`}{' '}
-        <a
-          href={`https://feedly.com/i/discover/sources/search/feed/${encodeURIComponent(
-            feedUrl
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t`Feedly`}
-        </a>
+        <List>
+          <ListSubheader>{t`Get update using Email`}</ListSubheader>
+          <ListItemLink href={`https://feedrabbit.com/?url=${feedUrl}`}>
+            {t`Via Feedrabbit`}
+          </ListItemLink>
+          <ListItemLink href={`https://blogtrottr.com/?subscribe=${feedUrl}`}>
+            {t`Via Blogtrottr`}
+          </ListItemLink>
+          <ListItemLink href="https://ifttt.com/feed">
+            {t`Via IFTTT (also connects to LINE)`}
+          </ListItemLink>
+
+          <ListSubheader>{t`Get RSS updates`}</ListSubheader>
+          <ListItemLink
+            href={`https://feedly.com/i/discover/sources/search/feed/${encodeURIComponent(
+              feedUrl
+            )}`}
+          >
+            {t`Via Feedly`}
+          </ListItemLink>
+          <ListItem>
+            <TextField
+              label={t`RSS Feed URL for this list`}
+              defaultValue={feedUrl}
+              margin="normal"
+              variant="outlined"
+              InputProps={{ readOnly: true }}
+              onFocus={e => e.target.select()}
+              fullWidth
+            />
+          </ListItem>
+        </List>
       </Popover>
     </>
   );

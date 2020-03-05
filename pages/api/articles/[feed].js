@@ -1,3 +1,4 @@
+import accepts from 'accepts';
 import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t } from 'ttag';
@@ -6,7 +7,9 @@ import { ApolloClient } from 'apollo-boost';
 import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
+import rollbar from 'lib/rollbar';
 import { getQueryVars } from 'pages/articles';
+import { TYPE_NAME } from 'constants/replyType';
 
 const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
@@ -37,7 +40,17 @@ const LIST_ARTICLES = gql`
           hyperlinks {
             url
             title
-            topImageUrl
+          }
+          articleReplies(status: NORMAL) {
+            replyId
+            user {
+              name
+            }
+            reply {
+              text
+              type
+              reference
+            }
           }
         }
       }
@@ -57,28 +70,10 @@ function getArticleText({ text, hyperlinks }) {
       hyperlink.title
         ? replacedText.replace(
             hyperlink.url,
-            `[${hyperlink.title}](${hyperlink.url})`
+            `${hyperlink.url} (${hyperlink.title})`
           )
         : replacedText,
     text
-  );
-}
-
-/**
- * Returns a image for the article, using the first image in hyperlinks
- *
- * @param {object} node - Article node in GraphQL API
- * @returns {string|undefined}
- */
-function getImage({ hyperlinks }) {
-  return (
-    (hyperlinks || []).reduce((url, hyperlink) => {
-      if (url) return url;
-      if (hyperlink.topImageUrl) {
-        return hyperlink.topImageUrl;
-      }
-      return null;
-    }, null) || undefined
   );
 }
 
@@ -103,6 +98,7 @@ async function articleFeedHandler(req, res) {
   });
   if (errors && errors.length) {
     res.status(400).json(errors);
+    return;
   }
 
   const queryString = querystring.stringify(query, '&amp;'); // Use &amp; for XML meta tags
@@ -119,26 +115,52 @@ async function articleFeedHandler(req, res) {
 
   const feedInstance = new Feed(feedOption);
 
-  data.ListArticles.edges.forEach(({ node }) => {
-    const text = getArticleText(node);
-    const url = `${PUBLIC_URL}/article/${node.id}`;
-    feedInstance.addItem({
-      id: url,
-      title: ellipsis(text, { wordCount: TITLE_LENGTH }),
-
-      // https://stackoverflow.com/a/54905457/1582110
-      description: text,
-
-      link: url,
-      date: new Date(node.createdAt),
-      image: getImage(node),
-    });
-  });
-
   try {
+    data.ListArticles.edges.forEach(({ node }) => {
+      const text = getArticleText(node);
+      const url = `${PUBLIC_URL}/article/${node.id}`;
+      const articleReply = node.articleReplies[0];
+      feedInstance.addItem({
+        id: url,
+        title: ellipsis(text, { wordCount: TITLE_LENGTH }),
+
+        // https://stackoverflow.com/a/54905457/1582110
+        description:
+          `
+          <h2><a href="${url}">${t`Reported Message`}</a></h2>
+          ${text}
+        ` +
+          (articleReply
+            ? `
+              <h2><a href="${PUBLIC_URL}/reply/${
+                articleReply.replyId
+              }">${t`Latest reply`}</a></h2>
+              <p>${TYPE_NAME[articleReply.reply.type]} by ${
+                articleReply.user ? articleReply.user.name : t`someone`
+              }</p>
+              ${articleReply.reply.text}
+
+              ${articleReply.reply.reference ? `<h2>${t`Reference`}</h2>` : ''}
+              ${articleReply.reply.reference}
+            `
+            : ''),
+
+        link: url,
+        date: new Date(node.createdAt),
+      });
+    });
+
+    // https://stackoverflow.com/questions/595616/what-is-the-correct-mime-type-to-use-for-an-rss-feed
+    const type = accepts(req).type([
+      'application/rss+xml',
+      'application/xml',
+      'text/xml',
+    ]);
+    res.setHeader('Content-Type', type || 'text/xml');
     res.send(feedInstance[feed]());
   } catch (e) {
-    res.status(500).send(e);
+    rollbar.error(e);
+    res.status(500).json(e);
   }
 }
 
