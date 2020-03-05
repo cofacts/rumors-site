@@ -2,7 +2,7 @@ import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/styles';
-import { AUTH_ERROR_MSG } from 'constants/errors';
+import { AUTH_ERROR_MSG, NO_USER_FOR_ARTICLE } from 'constants/errors';
 import theme from 'lib/theme';
 import agent from 'lib/stackimpact';
 import rollbar from 'lib/rollbar';
@@ -60,7 +60,7 @@ class MyDocument extends Document {
                   captureUncaught: true,
                   captureUnhandledRejections: true,
                   payload: { environment: "${PUBLIC_ROLLBAR_ENV}" },
-                  ignoredMessages: ["${AUTH_ERROR_MSG}"],
+                  ignoredMessages: ["${AUTH_ERROR_MSG}", "${NO_USER_FOR_ARTICLE}"],
                 };
                 ${rollbarSnippet}
               `,
