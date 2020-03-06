@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import gql from 'graphql-tag';
 import getConfig from 'next/config';
 import { t } from 'ttag';
@@ -7,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
 import ArticleCategory from './ArticleCategory';
+import AddCategoryDialog from './AddCategoryDialog';
 
 const {
   publicRuntimeConfig: { PUBLIC_SHOW_ADD_CATEGORY },
@@ -23,17 +25,18 @@ const CATEGORY_LIST_QUERY = gql`
       edges {
         node {
           id
-          title
-          description
+          ...CategoryData
         }
       }
     }
   }
+  ${AddCategoryDialog.fragments.CategoryData}
 `;
 
 function ArticleCategories({ articleId, articleCategories }) {
   const classes = useStyles();
-  const { data: allCategoryData } = useQuery(CATEGORY_LIST_QUERY, {
+  const [showAddDialog, setAddDialogShow] = useState(false);
+  const { data, loading } = useQuery(CATEGORY_LIST_QUERY, {
     ssr: false,
   });
 
@@ -44,9 +47,11 @@ function ArticleCategories({ articleId, articleCategories }) {
     },
     {}
   );
-  const otherCategories = (allCategoryData?.ListCategories?.edges || [])
-    .filter(({ node }) => !isInArticle[node.id])
-    .map(({ node }) => node);
+
+  const allCategories = (data.ListCategories?.edges || []).map(
+    ({ node }) => node
+  );
+  const hasOtherCategories = allCategories.some(({ id }) => !isInArticle[id]);
 
   return (
     <aside>
@@ -72,11 +77,25 @@ function ArticleCategories({ articleId, articleCategories }) {
         )
       )}
 
-      {PUBLIC_SHOW_ADD_CATEGORY && otherCategories.length > 0 && (
-        <Button className={classes.button}>
+      {PUBLIC_SHOW_ADD_CATEGORY && !loading && hasOtherCategories && (
+        <Button
+          className={classes.button}
+          onClick={() => setAddDialogShow(true)}
+        >
           <AddIcon className={classes.buttonIcon} />
           {t`Add category`}
         </Button>
+      )}
+
+      {showAddDialog && (
+        <AddCategoryDialog
+          articleId={articleId}
+          articleCategories={articleCategories}
+          allCategories={allCategories}
+          onClose={() => {
+            setAddDialogShow(false);
+          }}
+        />
       )}
     </aside>
   );
