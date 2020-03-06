@@ -6,9 +6,11 @@ import Link from 'next/link';
 import Chip from '@material-ui/core/Chip';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { dataIdFromObject } from 'lib/apollo';
+import DownVoteDialog from './DownVoteDialog';
 
 const useStyles = makeStyles(theme => ({
   category: { marginRight: theme.spacing(1), marginTop: theme.spacing(1) },
@@ -67,6 +69,28 @@ const DELETE_CATEGORY = gql`
   }
 `;
 
+const VOTE_CATEGORY = gql`
+  mutation VoteArticleCategory(
+    $articleId: String!
+    $categoryId: String!
+    $vote: FeedbackVote!
+    $comment: String
+  ) {
+    CreateOrUpdateArticleCategoryFeedback(
+      articleId: $articleId
+      categoryId: $categoryId
+      vote: $vote
+      comment: $comment
+    ) {
+      articleId
+      categoryId
+
+      ...ArticleCategoryData
+    }
+  }
+  ${ArticleCategoryData}
+`;
+
 function ArticleCategory({
   articleId,
   categoryId,
@@ -77,6 +101,8 @@ function ArticleCategory({
   ownVote,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [showVoteSnack, setVoteSnackShow] = useState(false);
+  const [showDownVoteDialog, setDownVoteDialogShow] = useState(false);
   const classes = useStyles();
   const [deleteCategory, { loading: deletingCategory }] = useMutation(
     DELETE_CATEGORY,
@@ -118,11 +144,30 @@ function ArticleCategory({
       },
     }
   );
+  const [voteCategory, { loading: votingCategory }] = useMutation(
+    VOTE_CATEGORY,
+    {
+      onCompleted: () => {
+        setAnchorEl(null);
+        setVoteSnackShow(true);
+      },
+    }
+  );
+
   const handleOpen = e => {
     setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleVoteUp = () => {
+    voteCategory({ variables: { articleId, categoryId, vote: 'UPVOTE' } });
+  };
+  const handleVoteDown = comment => {
+    voteCategory({
+      variables: { articleId, categoryId, vote: 'DOWNVOTE', comment },
+    });
+    setDownVoteDialogShow(false);
   };
 
   return (
@@ -152,13 +197,32 @@ function ArticleCategory({
         >
           <MenuItem component="a">{t`Go to category`}</MenuItem>
         </Link>
-        <MenuItem disabled={ownVote === 'UPVOTE'}>
+        <MenuItem
+          disabled={votingCategory || ownVote === 'UPVOTE'}
+          onClick={handleVoteUp}
+        >
           {t`Mark as accurate category`} ({positiveFeedbackCount})
         </MenuItem>
-        <MenuItem disabled={ownVote === 'DOWNVOTE'}>
+        <MenuItem
+          disabled={votingCategory}
+          onClick={() => setDownVoteDialogShow(true)}
+        >
           {t`Mark as wrong category`} ({negativeFeedbackCount}) ...
         </MenuItem>
       </Menu>
+      <Snackbar
+        open={showVoteSnack}
+        onClose={() => setVoteSnackShow(false)}
+        message={t`Thank you for the feedback.`}
+      />
+      {showDownVoteDialog && (
+        <DownVoteDialog
+          articleId={articleId}
+          categoryId={categoryId}
+          onClose={() => showDownVoteDialog(false)}
+          onVote={handleVoteDown}
+        />
+      )}
     </>
   );
 }
