@@ -46,13 +46,23 @@ function ArticleCategories({ articleId, articleCategories }) {
   return (
     <aside>
       {(articleCategories || []).map(
-        ({ categoryId, category, canUpdateStatus }) => (
+        ({
+          categoryId,
+          category,
+          canUpdateStatus,
+          positiveFeedbackCount,
+          negativeFeedbackCount,
+          ownVote,
+        }) => (
           <ArticleCategory
             key={categoryId}
             category={category}
             articleId={articleId}
             categoryId={categoryId}
             canDelete={canUpdateStatus}
+            positiveFeedbackCount={positiveFeedbackCount}
+            negativeFeedbackCount={negativeFeedbackCount}
+            ownVote={ownVote}
           />
         )
       )}

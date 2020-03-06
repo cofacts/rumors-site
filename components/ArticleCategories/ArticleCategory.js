@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
+import Link from 'next/link';
 import Chip from '@material-ui/core/Chip';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,6 +12,7 @@ import { dataIdFromObject } from 'lib/apollo';
 
 const useStyles = makeStyles(theme => ({
   category: { marginRight: theme.spacing(1), marginTop: theme.spacing(1) },
+  deletedLabel: { textDecoration: 'line-through', opacity: 0.5 },
 }));
 
 const ArticleCategoryData = gql`
@@ -64,7 +67,15 @@ const DELETE_CATEGORY = gql`
   }
 `;
 
-function ArticleCategory({ articleId, categoryId, category, canDelete }) {
+function ArticleCategory({
+  articleId,
+  categoryId,
+  category,
+  canDelete,
+  positiveFeedbackCount,
+  negativeFeedbackCount,
+  ownVote,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
   const [deleteCategory, { loading: deletingCategory }] = useMutation(
@@ -118,8 +129,14 @@ function ArticleCategory({ articleId, categoryId, category, canDelete }) {
     <>
       <Chip
         className={classes.category}
+        classes={{
+          label:
+            negativeFeedbackCount > positiveFeedbackCount
+              ? classes.deletedLabel
+              : undefined,
+        }}
         disabled={deletingCategory}
-        label={category.title}
+        label={`# ${category.title}`}
         onClick={handleOpen}
         onDelete={canDelete ? () => deleteCategory() : undefined}
       />
@@ -129,9 +146,18 @@ function ArticleCategory({ articleId, categoryId, category, canDelete }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <Link
+          href={{ pathname: '/articles', query: { c: categoryId } }}
+          passHref
+        >
+          <MenuItem component="a">{t`Go to category`}</MenuItem>
+        </Link>
+        <MenuItem disabled={ownVote === 'UPVOTE'}>
+          {t`Mark as accurate category`} ({positiveFeedbackCount})
+        </MenuItem>
+        <MenuItem disabled={ownVote === 'DOWNVOTE'}>
+          {t`Mark as wrong category`} ({negativeFeedbackCount}) ...
+        </MenuItem>
       </Menu>
     </>
   );
