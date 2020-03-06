@@ -115,3 +115,13 @@ During development, changing `LOCALE` in `.env` allows you to spin up dev server
 Please set `LOCALE` to one of `en_US`, `zh_TW` or any other language code that exists under `i18n/` directory.
 
 When building using Docker, `LOCALE` can be provided via build args. See `hooks/build` for the command to use.
+
+### Analyze bundle size
+
+Run this:
+```
+NODE_ENV=analyze npm run build
+```
+
+Then two browser window with [Webpack Bundle Analyzer tree map](https://github.com/zeit/next.js/tree/canary/packages/next-bundle-analyzer) may pop up,
+one for after server build and another for client build.

@@ -1,5 +1,12 @@
 require('dotenv').config();
 
+let withBundleAnalyzer = config => config;
+if (process.env.NODE_ENV === 'analyze') {
+  withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: true,
+  });
+}
+
 const env = {};
 const publicRuntimeConfig = {};
 const serverRuntimeConfig = {};
@@ -24,7 +31,7 @@ Object.keys(process.env || {}).forEach(key => {
   }
 });
 
-module.exports = {
+module.exports = withBundleAnalyzer({
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
@@ -63,4 +70,4 @@ module.exports = {
 
     return config;
   },
-};
+});
