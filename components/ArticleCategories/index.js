@@ -1,3 +1,3 @@
-import ArticleCategories from './ArticleCategories'
+import ArticleCategories from './ArticleCategories';
 
 export default ArticleCategories;
