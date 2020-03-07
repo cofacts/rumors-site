@@ -171,10 +171,7 @@ function ReplyListPage() {
     orderBy: urlQuery2OrderBy(query),
   };
 
-  const {
-    loading,
-    data: { ListReplies: replyData },
-  } = useQuery(LIST_REPLIES, {
+  const { loading, data: listRepliesData } = useQuery(LIST_REPLIES, {
     variables: {
       ...listQueryVars,
       before: query.before,
@@ -185,14 +182,14 @@ function ReplyListPage() {
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
   // on page change, but still works when filter options are updated.
 
-  const {
-    loading: statsLoading,
-    data: { ListReplies: statsData },
-  } = useQuery(LIST_STAT, {
+  const { loading: statsLoading, data: listStatData } = useQuery(LIST_STAT, {
     variables: listQueryVars,
   });
 
   const currentUser = useCurrentUser();
+
+  const replyEdges = listRepliesData?.ListReplies?.edges || [];
+  const statsData = listStatData?.ListReplies || {};
 
   return (
     <AppLayout>
@@ -261,17 +258,17 @@ function ReplyListPage() {
           <Pagination
             query={query}
             pageInfo={statsData?.pageInfo}
-            edges={replyData?.edges}
+            edges={replyEdges}
           />
           <ul className="reply-list">
-            {replyData.edges.map(({ node }) => (
+            {replyEdges.map(({ node }) => (
               <ReplyItem key={node.id} reply={node} showUser={!query.mine} />
             ))}
           </ul>
           <Pagination
             query={query}
             pageInfo={statsData?.pageInfo}
-            edges={replyData?.edges}
+            edges={replyEdges}
           />
         </>
       )}

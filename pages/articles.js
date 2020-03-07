@@ -195,7 +195,8 @@ function ArticleListPage() {
 
   const {
     loading,
-    data: { ListArticles: articleData },
+    data: listArticlesData,
+    error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
     variables: {
       ...listQueryVars,
@@ -207,19 +208,21 @@ function ArticleListPage() {
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
   // on page change, but still works when filter options are updated.
   //
-  const {
-    loading: statsLoading,
-    data: { ListArticles: statsData },
-  } = useQuery(LIST_STAT, {
+  const { loading: statsLoading, data: listStatData } = useQuery(LIST_STAT, {
     variables: listQueryVars,
   });
 
+  // List data
+  const statsData = listStatData?.ListArticles || {};
+  const articleEdges = listArticlesData?.ListArticles?.edges || [];
+
+  // Flags
   const showOneTimeMessages = +query.replyRequestCount === 1;
-  const searchedArticleEdge = (articleData?.edges || []).find(
+  const searchedArticleEdge = articleEdges.find(
     ({ node: { id } }) => id === query.searchUserByArticleId
   );
   const searchedUserArticleElem = (
-    <mark>
+    <mark key="searched-user">
       {ellipsis(searchedArticleEdge?.node?.text || '', { wordCount: 15 })}
     </mark>
   );
@@ -304,15 +307,17 @@ function ArticleListPage() {
 
       {loading ? (
         'Loading....'
+      ) : listArticlesError ? (
+        listArticlesError.toString()
       ) : (
         <>
           <Pagination
             query={query}
             pageInfo={statsData?.pageInfo}
-            edges={articleData?.edges}
+            edges={articleEdges}
           />
           <ul className="article-list">
-            {articleData.edges.map(({ node }) => (
+            {articleEdges.map(({ node }) => (
               <ArticleItem
                 key={node.id}
                 article={node}
@@ -323,7 +328,7 @@ function ArticleListPage() {
           <Pagination
             query={query}
             pageInfo={statsData?.pageInfo}
-            edges={articleData?.edges}
+            edges={articleEdges}
           />
           {!showOneTimeMessages && (
             <Typography variant="body2" component="p">

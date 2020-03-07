@@ -61,10 +61,12 @@ ReplyItem.fragments = {
       type
       createdAt
       user {
+        id
         name
       }
       articleReplies(status: NORMAL) {
         articleId
+        replyId
       }
     }
   `,
