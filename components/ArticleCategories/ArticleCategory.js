@@ -230,6 +230,9 @@ function ArticleCategory({
 ArticleCategory.fragments = {
   ArticleCategoryData,
   ArticleCategoryDataForUser,
+
+  // For updating cache after mutation, not for data fetching
+  ArticleWithCategories,
 };
 
 export default ArticleCategory;

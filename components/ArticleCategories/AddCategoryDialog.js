@@ -13,6 +13,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
+import { dataIdFromObject } from 'lib/apollo';
 import ArticleCategory from './ArticleCategory';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -111,6 +112,30 @@ function AddCategoryDialog({
 
   const [addCategory, { loading }] = useMutation(ADD_CATEGORY, {
     onCompleted: onClose,
+    update(
+      cache,
+      {
+        data: { CreateArticleCategory },
+      }
+    ) {
+      // Read & update Article instance
+      const id = dataIdFromObject({ __typename: 'Article', id: articleId });
+      const article = cache.readFragment({
+        id,
+        fragmentName: 'ArticleWithCategories',
+        fragment: ArticleCategory.fragments.ArticleWithCategories,
+      });
+
+      cache.writeFragment({
+        id: dataIdFromObject({ __typename: 'Article', id: articleId }),
+        fragmentName: 'ArticleWithCategories',
+        fragment: ArticleCategory.fragments.ArticleWithCategories,
+        data: {
+          ...article,
+          articleCategories: CreateArticleCategory,
+        },
+      });
+    },
   });
 
   const handleAdd = categoryId => {
