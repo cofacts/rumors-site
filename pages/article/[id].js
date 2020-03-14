@@ -16,6 +16,7 @@ import ArticleInfo from 'components/ArticleInfo';
 import Trendline from 'components/Trendline';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
+import AddReportReason from 'components/AddReportReason';
 import NewReplySection from 'components/NewReplySection';
 import ArticleItem from 'components/ArticleItem';
 
@@ -163,6 +164,9 @@ function ArticlePage() {
               isArticleCreator={idx === 0}
             />
           ))}
+        <AddReportReason
+            articleId={article.id}
+        />
         </footer>
       </section>
 
