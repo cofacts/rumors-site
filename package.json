@@ -13,7 +13,9 @@
     "test": "jest",
     "start": "node server.js",
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages ./constants",
-    "i18n:validate": "ttag validate i18n/zh_TW.po"
+    "i18n:validate": "ttag validate i18n/zh_TW.po",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
@@ -42,8 +44,14 @@
     "ttag": "^1.7.17"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/react": "^5.3.17",
     "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-ttag": "^1.7.23",
     "eslint": "^6.2.2",
