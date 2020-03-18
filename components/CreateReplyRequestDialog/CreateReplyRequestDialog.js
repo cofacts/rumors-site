@@ -16,8 +16,9 @@ const CREATE_REPLY_REQUEST = gql`
     }
   }
 `;
+const MIN_REASON_LENGTH = 80;
 
-function SubmitButton({ articleId, text, disabled }) {
+function SubmitButton({ articleId, text, disabled, onFinish }) {
   const [createReplyRequest] = useMutation(CREATE_REPLY_REQUEST, {
     refetchQueries: ['LoadArticlePage'],
   });
@@ -26,11 +27,12 @@ function SubmitButton({ articleId, text, disabled }) {
     e.preventDefault(); // prevent reload
     if (disabled) return;
     createReplyRequest({ variables: { articleId, reason: text } });
+    onFinish();
   };
 
   return (
     <button onClick={handleSubmit} disabled={disabled}>
-      送出
+      {disabled ? "字數太少，無法送出" : "送出理由"}
     </button>
   );
 }
@@ -43,6 +45,8 @@ class CreateReplyRequestDialog extends React.PureComponent {
     this.state = {
       ...formInitialState,
     };
+
+    this.formRef = React.createRef();
   }
 
   componentDidMount() {
@@ -66,12 +70,23 @@ class CreateReplyRequestDialog extends React.PureComponent {
   handleTextChange = ({ target: { value } }) => {
     this.setState({
       text: value,
-      disabled: !value || value.length < 80,
+      disabled: !value || value.length < MIN_REASON_LENGTH,
     });
   };
 
+  onReasonSubmitted = () => {
+    this.formRef.current.reset();
+    this.setState({
+      visible: false
+    });
+  }
+
   showForm = () => {
     this.setState({ visible: true });
+  };
+
+  onCancel = () => {
+    this.setState({ visible: false });
   };
 
   render = () => {
@@ -80,12 +95,12 @@ class CreateReplyRequestDialog extends React.PureComponent {
     return (
       <div>
         {visible ? null : (
-          <button type="button" onClick={this.showForm}>
-            回覆
+          <button onClick={this.showForm}>
+            增加回報理由
           </button>
         )}
         {!visible ? null : (
-          <form>
+          <form ref={this.formRef}>
             <p>
               請告訴其他編輯：<strong>您為何覺得這是一則謠言</strong>？
             </p>
@@ -107,7 +122,11 @@ class CreateReplyRequestDialog extends React.PureComponent {
               articleId={this.props.articleId}
               text={text}
               disabled={disabled}
+              onFinish={this.onReasonSubmitted}
             />
+            <button onClick={this.onCancel}>
+              取消
+            </button>
 
             <style jsx>{`
               textarea {
