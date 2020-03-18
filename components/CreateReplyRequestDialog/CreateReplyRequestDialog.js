@@ -32,7 +32,7 @@ function SubmitButton({ articleId, text, disabled, onFinish }) {
 
   return (
     <button onClick={handleSubmit} disabled={disabled}>
-      {disabled ? "字數太少，無法送出" : "送出理由"}
+      {disabled ? '字數太少，無法送出' : '送出理由'}
     </button>
   );
 }
@@ -77,9 +77,9 @@ class CreateReplyRequestDialog extends React.PureComponent {
   onReasonSubmitted = () => {
     this.formRef.current.reset();
     this.setState({
-      visible: false
+      visible: false,
     });
-  }
+  };
 
   showForm = () => {
     this.setState({ visible: true });
@@ -94,11 +94,7 @@ class CreateReplyRequestDialog extends React.PureComponent {
 
     return (
       <div>
-        {visible ? null : (
-          <button onClick={this.showForm}>
-            增加回報理由
-          </button>
-        )}
+        {visible ? null : <button onClick={this.showForm}>增加回報理由</button>}
         {!visible ? null : (
           <form ref={this.formRef}>
             <p>
@@ -124,9 +120,7 @@ class CreateReplyRequestDialog extends React.PureComponent {
               disabled={disabled}
               onFinish={this.onReasonSubmitted}
             />
-            <button onClick={this.onCancel}>
-              取消
-            </button>
+            <button onClick={this.onCancel}>取消</button>
 
             <style jsx>{`
               textarea {
