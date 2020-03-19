@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { t } from 'ttag';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
+import {
+  EDITOR_FACEBOOK_GROUP,
+  PROJECT_HACKFOLDR,
+  CONTACT_EMAIL,
+} from 'constants/urls';
 import { makeStyles } from '@material-ui/styles';
-import gql from 'graphql-tag';
-import { useLazyQuery } from '@apollo/react-hooks';
-import LoginModal from './LoginModal';
 import { Button, Divider, List, ListItem } from '@material-ui/core';
 import NavLink from 'components/NavLink';
 import getGravatar from 'lib/getGravatar';
-import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size'
-
-const USER_QUERY = gql`
-  query UserLevelQuery {
-    GetUser {
-      id
-      name
-      email
-    }
-  }
-`;
+import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 
 const useStyles = makeStyles({
   paper: {
@@ -57,12 +48,8 @@ const useStyles = makeStyles({
   },
 });
 
-function AppSidebar({ open, toggle }) {
+function AppSidebar({ open, toggle, user, openLoginModal }) {
   const classes = useStyles();
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [loadUser, { data }] = useLazyQuery(USER_QUERY);
-
-  useEffect(() => loadUser(), []);
 
   return (
     <SwipeableDrawer
@@ -76,12 +63,12 @@ function AppSidebar({ open, toggle }) {
       }}
     >
       <div className={classes.profile}>
-        {data?.name ? (
+        {user?.name ? (
           <>
-            <div>{`Hi! ${data.name}`}</div>
+            <div>{`Hi! ${user.name}`}</div>
             <img
               className={classes.avatar}
-              src={getGravatar(data.email)}
+              src={getGravatar(user.email)}
               alt=""
             />
             {/* not implemented yet */}
@@ -101,15 +88,10 @@ function AppSidebar({ open, toggle }) {
             */}
           </>
         ) : (
-          <>
-            <Button
-              className={classes.login}
-              onClick={() => setLoginModalOpen(true)}
-            >{t`Login`}</Button>
-            {loginModalOpen && (
-              <LoginModal onClose={() => setLoginModalOpen(false)} />
-            )}
-          </>
+          <Button
+            className={classes.login}
+            onClick={openLoginModal}
+          >{t`Login`}</Button>
         )}
       </div>
       <Divider classes={{ root: classes.divider }} />
@@ -125,7 +107,7 @@ function AppSidebar({ open, toggle }) {
           </NavLink>
         </ListItem>
         <ListItem classes={{ root: classes.listItem }} button>
-          <NavLink external href="mailto:cofacts@googlegroups.com">
+          <NavLink external href={`mailto:${CONTACT_EMAIL}`}>
             {t`Contact Us`}
           </NavLink>
         </ListItem>
