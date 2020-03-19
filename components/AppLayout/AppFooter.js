@@ -1,36 +1,126 @@
 import React from 'react';
 import { t } from 'ttag';
-import { PROJECT_HACKFOLDR, CONTACT_EMAIL } from 'constants/urls';
+import {
+  EDITOR_FACEBOOK_GROUP,
+  PROJECT_HACKFOLDR,
+  CONTACT_EMAIL,
+} from 'constants/urls';
+import NavLink from 'components/NavLink';
+import { withStyles, makeStyles } from '@material-ui/styles';
+import MailIcon from '@material-ui/icons/Mail';
+
+const useStyles = makeStyles({
+  first: {
+    display: 'flex',
+    justifyContent: 'center',
+    // @todo: use material-ui builtin palette color
+    background: '#333333',
+    '& h3': {
+      // @todo: use material-ui builtin palette color
+      color: '#858585',
+    },
+  },
+  container: {
+    width: 800,
+    color: '#FFFFFF',
+    margin: 60,
+    display: 'flex',
+  },
+  second: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 28,
+    // @todo: use material-ui builtin palette color
+    background: '#1F1F1F',
+  },
+  logo: {
+    width: 275,
+    height: 'auto',
+  },
+  column: {
+    flex: '1 1',
+  },
+  linkTextWithIcon: {
+    marginLeft: 12,
+  },
+});
+
+const CustomLink = withStyles({
+  linkWrapper: {
+    margin: '10px 0',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  link: {
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    lineHeight: '28px',
+    fontSize: 20,
+    fontWeight: 500,
+  },
+  linkActive: {
+    // @todo: use material-ui builtin palette color
+    color: '#FFB600',
+  },
+  icon: {
+    marginRight: 8,
+  },
+})(({ classes, icon, ...rest }) => (
+  <div className={classes.linkWrapper}>
+    {icon && React.createElement(icon, { className: classes.icon })}
+    <NavLink
+      className={classes.link}
+      activeClassName={classes.linkActive}
+      {...rest}
+    />
+  </div>
+));
 
 export default function AppFooter() {
+  const classes = useStyles();
   return (
     <footer>
-      <a
-        href="https://grants.g0v.tw/power/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://grants.g0v.tw/images/power/poweredby-long.svg"
-          alt="Powered by g0v"
-        />
-      </a>
-      <p>
-        <a href={PROJECT_HACKFOLDR} target="_blank" rel="noopener noreferrer">
-          {t`About`}
+      <div className={classes.first}>
+        <div className={classes.container}>
+          <div className={classes.column}>
+            <h3>{t`Fact Check`}</h3>
+            <CustomLink href="/articles">{t`Collected Messages`}</CustomLink>
+            <CustomLink href="/replies">{t`Replies`}</CustomLink>
+            <CustomLink external href={EDITOR_FACEBOOK_GROUP}>
+              {t`Editor forum`}
+            </CustomLink>
+          </div>
+          <div className={classes.column}>
+            <h3>{t`About`}</h3>
+            <CustomLink external href={PROJECT_HACKFOLDR}>
+              {t`About Cofacts`}
+            </CustomLink>
+          </div>
+          <div className={classes.column}>
+            <h3>{t`Contact Us`}</h3>
+            <CustomLink
+              external
+              href={`mailto:${CONTACT_EMAIL}`}
+              icon={MailIcon}
+            >
+              {t`Contact Us`}
+            </CustomLink>
+          </div>
+        </div>
+      </div>
+      <div className={classes.second}>
+        <a
+          href="https://grants.g0v.tw/power/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            className={classes.logo}
+            src="https://grants.g0v.tw/images/power/poweredby-long-i.svg"
+            alt="Powered by g0v"
+          />
         </a>
-        ・<a href={`mailto:${CONTACT_EMAIL}`}>{t`Contact`}</a>
-      </p>
-      <style jsx>{`
-        footer {
-          margin: 0 20px 44px;
-          text-align: center;
-        }
-        img {
-          width: 100%;
-          max-width: 300px;
-        }
-      `}</style>
+      </div>
     </footer>
   );
 }

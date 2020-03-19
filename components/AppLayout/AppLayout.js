@@ -11,6 +11,7 @@ import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
+import { useMediaQuery } from '@material-ui/core';
 
 const USER_QUERY = gql`
   query UserLevelQuery {
@@ -38,6 +39,7 @@ function AppLayout({ children }) {
   const [isRouteChanging, setRouteChanging] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const isDesktop = useMediaQuery('(min-width:992px)');
 
   const [loadUser, { data }] = useLazyQuery(USER_QUERY);
 
@@ -88,7 +90,7 @@ function AppLayout({ children }) {
       />
       {isRouteChanging && <LinearProgress classes={classes} />}
       <Container className={classes.main}>{children}</Container>
-      <AppFooter />
+      {isDesktop && <AppFooter />}
       <GoogleWebsiteTranslator />
       {loginModalOpen && (
         <LoginModal onClose={() => setLoginModalOpen(false)} />
