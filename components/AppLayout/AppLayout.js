@@ -1,10 +1,11 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
+import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
@@ -15,10 +16,20 @@ const useStyles = makeStyles({
     left: 0,
     right: 0,
   },
+  // @todo: workaround style
+  main: {
+    paddingTop: '2rem',
+  },
 });
 
 function AppLayout({ children }) {
   const [isRouteChanging, setRouteChanging] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = useCallback(() => setSidebarOpen(open => !open), [
+    sidebarOpen,
+  ]);
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -42,9 +53,10 @@ function AppLayout({ children }) {
 
   return (
     <Fragment>
-      <AppHeader />
+      <AppHeader onMenuButtonClick={toggleSidebar} />
+      <AppSidebar open={sidebarOpen} toggle={setSidebarOpen} />
       {isRouteChanging && <LinearProgress classes={classes} />}
-      <Container>{children}</Container>
+      <Container className={classes.main}>{children}</Container>
       <AppFooter />
       <GoogleWebsiteTranslator />
     </Fragment>
