@@ -3,7 +3,7 @@ import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
 import { grey } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Button } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';

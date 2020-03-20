@@ -6,7 +6,7 @@ import {
   CONTACT_EMAIL,
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
-import { withStyles, makeStyles } from '@material-ui/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles({
@@ -93,7 +93,7 @@ export default function AppFooter() {
           <div className={classes.column}>
             <h3>{t`About`}</h3>
             <CustomLink external href={PROJECT_HACKFOLDR}>
-              {t`About Cofacts`}
+              {t`About`}
             </CustomLink>
           </div>
           <div className={classes.column}>

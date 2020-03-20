@@ -6,7 +6,7 @@ import {
   PROJECT_HACKFOLDR,
   CONTACT_EMAIL,
 } from 'constants/urls';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider, List, ListItem } from '@material-ui/core';
 import NavLink from 'components/NavLink';
 import getGravatar from 'lib/getGravatar';
