@@ -12,6 +12,7 @@ import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
 import { useMediaQuery } from '@material-ui/core';
+import fetchAPI from 'lib/fetchAPI';
 
 const USER_QUERY = gql`
   query UserLevelQuery {
@@ -19,6 +20,7 @@ const USER_QUERY = gql`
       id
       name
       email
+      level
     }
   }
 `;
@@ -35,13 +37,17 @@ const useStyles = makeStyles({
   },
 });
 
+const apiLogout = () => {
+  return fetchAPI('/logout').then(resp => resp.json());
+};
+
 function AppLayout({ children }) {
   const [isRouteChanging, setRouteChanging] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const isDesktop = useMediaQuery('(min-width:992px)');
 
-  const [loadUser, { data }] = useLazyQuery(USER_QUERY);
+  const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
 
   const toggleSidebar = useCallback(() => setSidebarOpen(open => !open), [
     sidebarOpen,
@@ -50,6 +56,8 @@ function AppLayout({ children }) {
   const openLoginModal = useCallback(() => setLoginModalOpen(true), [
     loginModalOpen,
   ]);
+
+  const logout = useCallback(() => apiLogout().then(refetch), [refetch]);
 
   const classes = useStyles();
 
@@ -81,6 +89,7 @@ function AppLayout({ children }) {
         onMenuButtonClick={toggleSidebar}
         user={data}
         openLoginModal={openLoginModal}
+        logout={logout}
       />
       <AppSidebar
         open={sidebarOpen}
