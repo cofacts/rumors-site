@@ -6,17 +6,18 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components/AppLayout/AppFooter.js:20
-#: components/AppLayout/AppHeader.js:34
+#: components/AppLayout/AppFooter.js:92
+#: components/AppLayout/AppFooter.js:94
+#: components/AppLayout/AppHeader.js:149
+#: components/AppLayout/AppHeader.js:212
+#: components/AppLayout/AppSidebar.js:116
 msgid "About"
 msgstr "關於 Cofacts"
 
-#: components/AppLayout/AppFooter.js:22
 #: pages/index.js:436
 msgid "Contact"
 msgstr "聯絡我們"
 
-#: components/AppLayout/AppHeader.js:11
 #: pages/article/[id].js:136
 #: pages/index.js:22
 #: pages/index.js:68
@@ -25,40 +26,47 @@ msgstr "聯絡我們"
 msgid "Cofacts"
 msgstr "Cofacts"
 
-#: components/AppLayout/AppHeader.js:15
+#: components/AppLayout/AppFooter.js:85
+#: components/AppLayout/AppHeader.js:131
 msgid "Collected Messages"
 msgstr "訊息列表"
 
-#: components/AppLayout/AppHeader.js:26
+#: components/AppLayout/AppFooter.js:88
+#: components/AppLayout/AppHeader.js:144
 msgid "Editor forum"
 msgstr "編輯討論區"
 
-#: components/AppLayout/UserName.js:135
+#: components/AppLayout/UserName.js:137
 msgid "Save"
 msgstr "儲存"
 
-#: components/AppLayout/UserName.js:138
+#: components/AppLayout/UserName.js:140
 #: components/ReplyFeedback.js:202
 msgid "Cancel"
 msgstr "取消"
 
-#: components/AppLayout/UserName.js:186
+#: components/AppLayout/AppHeader.js:228
+#: components/AppLayout/AppSidebar.js:105
+#: components/AppLayout/UserName.js:190
 msgid "Login"
 msgstr "登入"
 
-#: components/AppLayout/UserName.js:213
+#: components/AppLayout/AppHeader.js:219
+#: components/AppLayout/AppSidebar.js:137
+#: components/AppLayout/UserName.js:217
 msgid "Logout"
 msgstr "登出"
 
-#: components/AppLayout/UserName.js:223
+#: components/AppLayout/UserName.js:227
 msgid "Congratulations! You have leveled up!"
 msgstr "恭喜！您升級了！"
 
-#: components/AppLayout/UserName.js:227
+#: components/AppLayout/UserName.js:231
 msgid "Close"
 msgstr "關閉"
 
-#: components/AppLayout/AppHeader.js:18
+#: components/AppLayout/AppFooter.js:86
+#: components/AppLayout/AppHeader.js:138
 #: components/ReplySearch/ReplySearch.js:115
 msgid "Replies"
 msgstr "回應列表"
@@ -74,7 +82,7 @@ msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: pages/articles.js:298
+#: pages/articles.js:301
 #, javascript-format
 msgid "${ statsData.totalCount } collected message"
 msgid_plural "${ statsData.totalCount } collected messages"
@@ -92,15 +100,15 @@ msgstr "已回覆"
 msgid "All"
 msgstr "全部"
 
-#: pages/articles.js:281
+#: pages/articles.js:284
 msgid "Include messages reported only 1 time"
 msgstr "加列僅被回報 1 次的訊息"
 
-#: pages/articles.js:330
+#: pages/articles.js:335
 msgid "Shows messages reported multiple times by default."
 msgstr "預設僅會列出被回報數次的訊息。"
 
-#: pages/articles.js:340
+#: pages/articles.js:345
 msgid "Click here to include messages only reported 1 time."
 msgstr "按這裡加入僅被回報 1 次的訊息。"
 
@@ -121,11 +129,12 @@ msgstr "最近被回應"
 msgid "Most asked"
 msgstr "最多人詢問"
 
-#: pages/articles.js:285
-#: pages/replies.js:236
+#: pages/articles.js:288
+#: pages/replies.js:233
 msgid "Sort by Relevance"
 msgstr "以相關度排序"
 
+#: pages/api/articles/[feed].js:130
 #: pages/article/[id].js:141
 #: pages/reply/[id].js:164
 msgid "Reported Message"
@@ -136,7 +145,7 @@ msgid "All messages reported by this user"
 msgstr "所有這個使用者回報的訊息"
 
 #: components/ArticleInfo.js:31
-#: components/ArticleItem.js:42
+#: components/ArticleItem.js:25
 #: components/ArticleReply.js:120
 #: components/ReplyItem.js:31
 #: components/UsedArticleItem.js:27
@@ -164,6 +173,7 @@ msgstr "詳細解釋"
 
 #: components/ArticleReply.js:131
 #: components/ArticleReply.js:208
+#: pages/api/articles/[feed].js:143
 msgid "Reference"
 msgstr "出處"
 
@@ -280,11 +290,11 @@ msgstr "最近寫的"
 msgid "Least recently written"
 msgstr "最久以前寫的"
 
-#: pages/replies.js:200
+#: pages/replies.js:197
 msgid "Reply list"
 msgstr "回應列表"
 
-#: pages/replies.js:231
+#: pages/replies.js:228
 msgid "Only show replies written by me"
 msgstr "只顯示我寫的回應"
 
@@ -347,7 +357,7 @@ msgstr "理由合理"
 msgid "The reason is not reasonable"
 msgstr "理由不合理"
 
-#: components/AppLayout/LoginModal.js:18
+#: components/AppLayout/LoginModal.js:73
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
@@ -386,7 +396,7 @@ msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論
 msgid "This message has some of its content proved to be false."
 msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 
-#: pages/replies.js:250
+#: pages/replies.js:247
 #, javascript-format
 msgid "${ statsData.totalCount } reply"
 msgid_plural "${ statsData.totalCount } replies"
@@ -605,11 +615,13 @@ msgstr "此回應已被原作者刪除。"
 
 #: components/LandingPage/Jumbotron.js:6
 #: components/UsedArticleItem.js:16
+#: pages/api/articles/[feed].js:139
+#. https://stackoverflow.com/a/54905457/1582110
 msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Jumbotron.js:7
-#. local ~ need your help!
+#. local ~ need your help! 
 msgid "people"
 msgstr "的人"
 
@@ -682,7 +694,7 @@ msgid "Start busting hoaxes now"
 msgstr "立刻開始闢謠"
 
 #: components/LandingPage/Stats.js:26
-#. we hold ~
+#. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -728,7 +740,7 @@ msgstr "開 LINE 加好友，謠言隨手查!"
 msgid "internet hoaxes"
 msgstr "轉傳謠言"
 
-#: pages/articles.js:231
+#: pages/articles.js:234
 msgid "Article list"
 msgstr "文章列表"
 
@@ -763,29 +775,13 @@ msgstr "${editorElem} 加的"
 msgid "Check message"
 msgstr "查看原始訊息"
 
-#: pages/articles.js:245
+#: pages/articles.js:248
 #, javascript-format
 msgid "Messages reported by user that reported “${ searchedUserArticleElem }”"
 msgstr ""
 
-#: components/FeedDisplay.js:30
-msgid "Subscribe to this list"
-msgstr ""
-
 #: components/FeedDisplay.js:48
-msgid "You can follow this list using any RSS reader."
-msgstr ""
-
-#: components/FeedDisplay.js:50
-msgid "RSS Feed URL"
-msgstr ""
-
-#: components/FeedDisplay.js:58
-msgid "Add to"
-msgstr ""
-
-#: components/FeedDisplay.js:66
-msgid "Feedly"
+msgid "Subscribe to this list"
 msgstr ""
 
 #: components/Pagination.js:27
@@ -796,16 +792,71 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: pages/api/articles/[feed].js:110
+#: pages/api/articles/[feed].js:106
 #. Use &amp; for XML meta tags
 msgid "Cofacts reported messages"
 msgstr ""
 
-#: pages/api/articles/[feed].js:112
+#: pages/api/articles/[feed].js:108
 #. Use &amp; for XML meta tags
 msgid "List of messages reported by Cofacts users"
 msgstr ""
 
-#: components/ArticleItem.js:36
+#: components/ArticleItem.js:19
 msgid "Latest Reply"
 msgstr "最新回應"
+
+#: components/FeedDisplay.js:64
+msgid "Get update using Email"
+msgstr ""
+
+#: components/FeedDisplay.js:66
+msgid "Via Feedrabbit"
+msgstr ""
+
+#: components/FeedDisplay.js:69
+msgid "Via Blogtrottr"
+msgstr ""
+
+#: components/FeedDisplay.js:72
+msgid "Via IFTTT (also connects to LINE)"
+msgstr ""
+
+#: components/FeedDisplay.js:75
+msgid "Get RSS updates"
+msgstr ""
+
+#: components/FeedDisplay.js:81
+msgid "Via Feedly"
+msgstr ""
+
+#: components/FeedDisplay.js:85
+msgid "RSS Feed URL for this list"
+msgstr ""
+
+#: pages/api/articles/[feed].js:137
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Latest reply"
+msgstr ""
+
+#: components/AppLayout/AppFooter.js:84
+msgid "Fact Check"
+msgstr ""
+
+#: components/AppLayout/AppFooter.js:98
+#: components/AppLayout/AppFooter.js:104
+#: components/AppLayout/AppSidebar.js:121
+msgid "Contact Us"
+msgstr ""
+
+#: components/AppLayout/AppHeader.js:205
+msgid "My Profile"
+msgstr ""
+
+#: components/AppLayout/AppSidebar.js:111
+msgid "Forum"
+msgstr ""
+
+#: components/AppLayout/AppFooter.js:111
+msgid "Facebook forum"
+msgstr ""
