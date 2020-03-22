@@ -11,3 +11,4 @@
 !next.config.js
 !ecosystem.config.js
 !.storybook/*
+!public/*
