@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
+import GlobalSearch from './GlobalSearch';
 import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -38,12 +39,13 @@ const useStyles = makeStyles({
   },
   top: {
     height: NAVBAR_HEIGHT,
-    padding: '1rem',
+    padding: '0 1rem',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     background: '#FFFFFF',
     '@media(min-width: 992px)': {
-      padding: '1rem 2rem',
+      padding: '0 2rem',
     },
   },
   logo: {
@@ -206,7 +208,7 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
           </a>
           {isDesktop && <Links classes={classes} />}
         </div>
-        {/* @todo: search feature */}
+        <GlobalSearch />
         {isDesktop &&
           (user?.name ? (
             <>
