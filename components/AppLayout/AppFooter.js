@@ -9,15 +9,13 @@ import NavLink from 'components/NavLink';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   first: {
     display: 'flex',
     justifyContent: 'center',
-    // @todo: use material-ui builtin palette color
-    background: '#333333',
+    background: theme.palette.secondary.main,
     '& h3': {
-      // @todo: use material-ui builtin palette color
-      color: '#858585',
+      color: theme.palette.secondary[300],
     },
   },
   container: {
@@ -30,8 +28,7 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     padding: 28,
-    // @todo: use material-ui builtin palette color
-    background: '#1F1F1F',
+    background: theme.palette.secondary[900],
   },
   logo: {
     width: 275,
@@ -43,9 +40,9 @@ const useStyles = makeStyles({
   linkTextWithIcon: {
     marginLeft: 12,
   },
-});
+}));
 
-const CustomLink = withStyles({
+const CustomLink = withStyles(theme => ({
   linkWrapper: {
     margin: '10px 0',
     display: 'flex',
@@ -59,13 +56,12 @@ const CustomLink = withStyles({
     fontWeight: 500,
   },
   linkActive: {
-    // @todo: use material-ui builtin palette color
-    color: '#FFB600',
+    color: theme.palette.primary[500],
   },
   icon: {
     marginRight: 8,
   },
-})(({ classes, icon, ...rest }) => (
+}))(({ classes, icon, ...rest }) => (
   <div className={classes.linkWrapper}>
     {icon && React.createElement(icon, { className: classes.icon })}
     <NavLink

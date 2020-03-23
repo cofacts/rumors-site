@@ -12,16 +12,15 @@ import NavLink from 'components/NavLink';
 import getGravatar from 'lib/getGravatar';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   paper: {
     top: `${NAVBAR_HEIGHT + TABS_HEIGHT}px !important`,
     padding: 30,
-    // @todo: use material-ui builtin palette color
-    background: '#2E2E2E',
-    color: '#FFFFFF',
+    background: theme.palette.secondary[600],
+    color: theme.palette.common.white,
   },
   login: {
-    color: '#FFFFFF',
+    color: theme.palette.common.white,
   },
   profile: {
     paddingBottom: '12px',
@@ -33,12 +32,12 @@ const useStyles = makeStyles({
   listItem: {
     justifyContent: 'center',
     '& a': {
-      color: '#FFFFFF',
+      color: theme.palette.common.white,
       textDecoration: 'none',
     },
   },
   divider: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.palette.common.white,
   },
   avatar: {
     width: 60,
@@ -46,7 +45,7 @@ const useStyles = makeStyles({
     margin: '24px 0',
     borderRadius: '50%',
   },
-});
+}));
 
 function AppSidebar({ open, toggle, user, openLoginModal }) {
   const classes = useStyles();

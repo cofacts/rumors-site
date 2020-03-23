@@ -3,7 +3,6 @@ import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
 import GlobalSearch from './GlobalSearch';
-import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import {
@@ -24,7 +23,7 @@ import getGravatar from 'lib/getGravatar';
 
 const MENU_BUTTON_WIDTH = 48;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'sticky',
     height: NAVBAR_HEIGHT + TABS_HEIGHT,
@@ -61,7 +60,7 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     height: TABS_HEIGHT,
     width: `calc(100% - ${MENU_BUTTON_WIDTH}px)`,
-    backgroundColor: grey[100],
+    backgroundColor: theme.palette.secondary[50],
     '@media(min-width: 992px)': {
       backgroundColor: 'inherit',
       height: 'auto',
@@ -79,17 +78,16 @@ const useStyles = makeStyles({
     whiteSpace: 'nowrap',
     fontWeight: 500,
     letterSpacing: 0.75,
-    color: grey[500],
+    color: theme.palette.secondary[300],
     '@media(min-width: 992px)': {
-      color: grey[800],
+      color: theme.palette.secondary[500],
       padding: '0 10px',
     },
   },
   activeTab: {
-    color: grey[800],
+    color: theme.palette.secondary[500],
     '@media(min-width: 992px)': {
-      // @todo: use material-ui builtin palette color
-      color: '#FFB600',
+      color: theme.palette.primary.main,
     },
   },
   menuToggleButton: {
@@ -98,9 +96,8 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // @todo: use material-ui builtin palette color
-    background: '#757575',
-    color: '#FFFFFF',
+    background: theme.palette.secondary[300],
+    color: theme.palette.common.white,
   },
   avatar: {
     width: 40,
@@ -110,25 +107,23 @@ const useStyles = makeStyles({
   },
   profileMenu: {
     marginTop: 50,
-    // @todo: use material-ui builtin palette color
-    backgroundColor: '#333333',
-    color: '#FFFFFF',
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.common.white,
     overflow: 'inherit',
   },
   level: {
     position: 'relative',
     left: -8,
     fontWeight: 'bold',
-    // @todo: use material-ui builtin palette color
-    backgroundColor: '#FFB600',
-    color: '#333333',
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.secondary.main,
     padding: '2px 16px',
     '&:after': {
       position: 'absolute',
       right: 0,
-      borderRight: '10px solid #333333',
-      borderBottom: '10px solid #FFB600',
-      borderTop: '10px solid #FFB600',
+      borderRight: `10px solid ${theme.palette.secondary.main}`,
+      borderBottom: `10px solid ${theme.palette.primary[500]}`,
+      borderTop: `10px solid ${theme.palette.primary[500]}`,
       height: 0,
       content: '""',
     },
@@ -137,24 +132,21 @@ const useStyles = makeStyles({
       bottom: -8,
       left: 0,
       height: 0,
-      // @todo: use material-ui builtin palette color
-      borderTop: '8px solid #FF9200',
+      borderTop: `8px solid ${theme.palette.primary[700]}`,
       borderLeft: '8px solid transparent',
       background: 'transparent',
       content: '""',
     },
   },
   divider: {
-    // @todo: use material-ui builtin palette color
-    backgroundColor: '#5C5C5C',
+    backgroundColor: theme.palette.secondary[400],
   },
   listIcon: {
-    // @todo: use material-ui builtin palette color
-    color: '#858585',
+    color: theme.palette.secondary[300],
     minWidth: 0,
     paddingRight: 8,
   },
-});
+}));
 
 const Links = ({ classes }) => (
   <div className={classes.tabs}>
