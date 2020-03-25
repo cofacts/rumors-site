@@ -2,10 +2,11 @@ import React, { useState, useCallback } from 'react';
 import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
-import GlobalSearch from './GlobalSearch';
-import { makeStyles } from '@material-ui/core/styles';
+// import GlobalSearch from './GlobalSearch';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import {
+  Box,
   Button,
   Menu,
   MenuItem,
@@ -15,11 +16,12 @@ import {
 } from '@material-ui/core';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import InfoIcon from '@material-ui/icons/Info';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
 import getGravatar from 'lib/getGravatar';
+import desktopLogo from './images/logo-desktop.png';
+import mobileLogo from './images/logo-mobile.png';
 
 const MENU_BUTTON_WIDTH = 48;
 
@@ -29,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     height: NAVBAR_HEIGHT + TABS_HEIGHT,
     top: 0,
     zIndex: 10,
-    '@media(min-width: 992px)': {
+    [theme.breakpoints.up('md')]: {
       height: NAVBAR_HEIGHT,
     },
   },
@@ -43,14 +45,14 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     background: '#FFFFFF',
-    '@media(min-width: 992px)': {
+    [theme.breakpoints.up('md')]: {
       padding: '0 2rem',
     },
   },
   logo: {
     width: 100,
     height: 'auto',
-    '@media(min-width: 992px)': {
+    [theme.breakpoints.up('md')]: {
       width: 240,
     },
   },
@@ -61,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     height: TABS_HEIGHT,
     width: `calc(100% - ${MENU_BUTTON_WIDTH}px)`,
     backgroundColor: theme.palette.secondary[50],
-    '@media(min-width: 992px)': {
+    [theme.breakpoints.up('md')]: {
       backgroundColor: 'inherit',
       height: 'auto',
       width: 'auto',
@@ -79,14 +81,14 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 500,
     letterSpacing: 0.75,
     color: theme.palette.secondary[300],
-    '@media(min-width: 992px)': {
+    [theme.breakpoints.up('md')]: {
       color: theme.palette.secondary[500],
       padding: '0 10px',
     },
   },
   activeTab: {
     color: theme.palette.secondary[500],
-    '@media(min-width: 992px)': {
+    [theme.breakpoints.up('md')]: {
       color: theme.palette.primary.main,
     },
   },
@@ -180,7 +182,7 @@ const Links = ({ classes }) => (
 function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
   const [anchor, setAnchor] = useState(false);
   const classes = useStyles();
-  const isDesktop = useMediaQuery('(min-width:992px)');
+  const theme = useTheme();
 
   const openProfileMenu = useCallback(e => setAnchor(e.currentTarget), [
     anchor,
@@ -194,15 +196,19 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
           <a href="/">
             <img
               className={classes.logo}
-              src={isDesktop ? '/logo-desktop.png' : '/logo-mobile.png'}
+              src={mobileLogo}
+              srcSet={`${desktopLogo} ${theme.breakpoints.values.md}w`}
               alt=""
             />
           </a>
-          {isDesktop && <Links classes={classes} />}
+          <Box display={['none', 'none', 'inline']}>
+            <Links classes={classes} />
+          </Box>
         </div>
-        <GlobalSearch />
-        {isDesktop &&
-          (user?.name ? (
+        {/* GlobalSearch not fully implemented yet */}
+        {/* <GlobalSearch />*/}
+        <Box display={['none', 'none', 'block']}>
+          {user?.name ? (
             <>
               <img
                 className={classes.avatar}
@@ -258,16 +264,17 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
               size="small"
               variant="medium"
             >{t`Login`}</Button>
-          ))}
+          )}
+        </Box>
       </div>
-      {!isDesktop && (
+      <Box display={['block', 'block', 'none']}>
         <div className={classes.flex}>
           <Links classes={classes} />
           <div className={classes.menuToggleButton} onClick={onMenuButtonClick}>
             <MoreHorizIcon />
           </div>
         </div>
-      )}
+      </Box>
     </header>
   );
 }

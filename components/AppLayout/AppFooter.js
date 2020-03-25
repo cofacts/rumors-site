@@ -7,6 +7,7 @@ import {
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles(theme => ({
@@ -75,7 +76,7 @@ const CustomLink = withStyles(theme => ({
 export default function AppFooter() {
   const classes = useStyles();
   return (
-    <footer>
+    <Box component="footer" display={['none', 'none', 'block']}>
       <div className={classes.first}>
         <div className={classes.container}>
           <div className={classes.column}>
@@ -117,6 +118,6 @@ export default function AppFooter() {
           />
         </a>
       </div>
-    </footer>
+    </Box>
   );
 }

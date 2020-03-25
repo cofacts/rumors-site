@@ -19,8 +19,10 @@ const useStyles = makeStyles({
   },
 });
 
+// @todo: fix this workaround
 function GlobalSearch() {
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  // @todo: remove useMediaQuery, use other alternatives
   const isDesktop = useMediaQuery('(min-width:992px)');
   const classes = useStyles();
 
