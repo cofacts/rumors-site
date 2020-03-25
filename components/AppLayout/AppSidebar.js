@@ -5,29 +5,42 @@ import {
   EDITOR_FACEBOOK_GROUP,
   PROJECT_HACKFOLDR,
   CONTACT_EMAIL,
+  LINE_URL,
 } from 'constants/urls';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Divider, List, ListItem } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+} from '@material-ui/core';
+import * as Widgets from './Widgets';
 import NavLink from 'components/NavLink';
-import getGravatar from 'lib/getGravatar';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 
 const useStyles = makeStyles(theme => ({
   paper: {
     top: `${NAVBAR_HEIGHT + TABS_HEIGHT}px !important`,
-    padding: 30,
     background: theme.palette.secondary[600],
     color: theme.palette.common.white,
+    overflow: 'inherit',
+  },
+  level: {
+    margin: '16px 0',
+  },
+  name: {
+    marginLeft: 16,
   },
   login: {
     color: theme.palette.common.white,
+    margin: '24px auto',
+    border: `1px solid ${theme.palette.common.white}`,
+    borderRadius: 70,
   },
-  profile: {
-    paddingBottom: '12px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+  list: {
+    padding: 30,
   },
   listItem: {
     justifyContent: 'center',
@@ -38,12 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     backgroundColor: theme.palette.common.white,
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    margin: '24px 0',
-    borderRadius: '50%',
+    margin: '0 30px',
   },
 }));
 
@@ -61,40 +69,43 @@ function AppSidebar({ open, toggle, user, openLoginModal }) {
         paper: classes.paper,
       }}
     >
-      <div className={classes.profile}>
-        {user?.name ? (
-          <>
-            <div>{`Hi! ${user.name}`}</div>
-            <img
-              className={classes.avatar}
-              src={getGravatar(user.email)}
-              alt=""
-            />
-            {/* not implemented yet */}
-            {/*
-              <List>
-                <ListItem classes={{ root: classes.listItem }} button>
-                  <NavLink href='/'>
-                    {t`My Profile`}
-                  </NavLink>
-                </ListItem>
-                <ListItem classes={{ root: classes.listItem }} button>
-                  <NavLink href='/'>
-                    {t`Watching`}
-                  </NavLink>
-                </ListItem>
-              </List>
-            */}
-          </>
-        ) : (
-          <Button
-            className={classes.login}
-            onClick={openLoginModal}
-          >{t`Login`}</Button>
-        )}
-      </div>
+      {user?.name ? (
+        <div>
+          <Widgets.Level user={user} className={classes.level} />
+          <Box px={1.5} pb={2} display="flex" alignItems="center">
+            <Widgets.Avatar user={user} size={60} />
+            <Typography className={classes.name} variant="h6">
+              {user?.name}
+            </Typography>
+          </Box>
+          <Box px={1.5} pb={2}>
+            <Widgets.LevelProgressBar user={user} />
+          </Box>
+
+          {/* not implemented yet */}
+          {/*
+            <List>
+              <ListItem classes={{ root: classes.listItem }} button>
+                <NavLink href='/'>
+                  {t`My Profile`}
+                </NavLink>
+              </ListItem>
+              <ListItem classes={{ root: classes.listItem }} button>
+                <NavLink href='/'>
+                  {t`Watching`}
+                </NavLink>
+              </ListItem>
+            </List>
+          */}
+        </div>
+      ) : (
+        <Button
+          className={classes.login}
+          onClick={openLoginModal}
+        >{t`Login`}</Button>
+      )}
       <Divider classes={{ root: classes.divider }} />
-      <List>
+      <List className={classes.list}>
         <ListItem classes={{ root: classes.listItem }} button>
           <NavLink external href={EDITOR_FACEBOOK_GROUP}>
             {t`Forum`}
@@ -112,12 +123,23 @@ function AppSidebar({ open, toggle, user, openLoginModal }) {
         </ListItem>
         <ListItem classes={{ root: classes.listItem }} button>
           Line:
-          {/* @todo: fill in line url */}
-          <NavLink external href="/">
+          <NavLink external href={LINE_URL}>
             @cofacts
           </NavLink>
         </ListItem>
       </List>
+      {true && (
+        <>
+          <Divider classes={{ root: classes.divider }} />
+          <List className={classes.list}>
+            <ListItem classes={{ root: classes.listItem }} button>
+              <NavLink external href="#">
+                {t`Logout`}
+              </NavLink>
+            </ListItem>
+          </List>
+        </>
+      )}
     </SwipeableDrawer>
   );
 }

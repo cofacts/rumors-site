@@ -9,6 +9,7 @@ import NavLink from 'components/NavLink';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 const useStyles = makeStyles(theme => ({
   first: {
@@ -101,6 +102,13 @@ export default function AppFooter() {
               icon={MailIcon}
             >
               {t`Contact Us`}
+            </CustomLink>
+            <CustomLink
+              external
+              href={EDITOR_FACEBOOK_GROUP}
+              icon={FacebookIcon}
+            >
+              {t`Facebook forum`}
             </CustomLink>
           </div>
         </div>

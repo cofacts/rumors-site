@@ -20,6 +20,11 @@ const USER_QUERY = gql`
       name
       email
       level
+      points {
+        total
+        currentLevel
+        nextLevel
+      }
     }
   }
 `;

@@ -19,7 +19,7 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
-import getGravatar from 'lib/getGravatar';
+import * as Widgets from './Widgets';
 import desktopLogo from './images/logo-desktop.png';
 import mobileLogo from './images/logo-mobile.png';
 
@@ -101,44 +101,11 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.secondary[300],
     color: theme.palette.common.white,
   },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: '50%',
-    cursor: 'pointer',
-  },
   profileMenu: {
     marginTop: 50,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.common.white,
     overflow: 'inherit',
-  },
-  level: {
-    position: 'relative',
-    left: -8,
-    fontWeight: 'bold',
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.secondary.main,
-    padding: '2px 16px',
-    '&:after': {
-      position: 'absolute',
-      right: 0,
-      borderRight: `10px solid ${theme.palette.secondary.main}`,
-      borderBottom: `10px solid ${theme.palette.primary[500]}`,
-      borderTop: `10px solid ${theme.palette.primary[500]}`,
-      height: 0,
-      content: '""',
-    },
-    '&:before': {
-      position: 'absolute',
-      bottom: -8,
-      left: 0,
-      height: 0,
-      borderTop: `8px solid ${theme.palette.primary[700]}`,
-      borderLeft: '8px solid transparent',
-      background: 'transparent',
-      content: '""',
-    },
   },
   divider: {
     backgroundColor: theme.palette.secondary[400],
@@ -147,6 +114,10 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[300],
     minWidth: 0,
     paddingRight: 8,
+  },
+  login: {
+    borderRadius: 70,
+    border: `1px solid ${theme.palette.secondary[500]}`,
   },
 }));
 
@@ -210,12 +181,7 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
         <Box display={['none', 'none', 'block']}>
           {user?.name ? (
             <>
-              <img
-                className={classes.avatar}
-                src={getGravatar(user.email)}
-                alt=""
-                onClick={openProfileMenu}
-              />
+              <Widgets.Avatar user={user} size={40} onClick={openProfileMenu} />
               <Menu
                 id="profile-menu"
                 classes={{ paper: classes.profileMenu }}
@@ -224,16 +190,12 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
                 open={!!anchor}
                 onClose={closeProfileMenu}
               >
-                <span className={classes.level}>LV. {user.level}</span>
+                <Widgets.Level user={user} />
                 <MenuItem onClick={closeProfileMenu}>
                   <ListItemIcon>
-                    <img
-                      className={classes.avatar}
-                      src={getGravatar(user.email)}
-                      alt=""
-                    />
+                    <Widgets.Avatar user={user} size={40} />
                   </ListItemIcon>
-                  <Typography variant="inherit">{user.name}</Typography>
+                  <Typography variant="inherit">{user?.name}</Typography>
                 </MenuItem>
                 <Divider classes={{ root: classes.divider }} />
                 <MenuItem onClick={closeProfileMenu}>
@@ -262,7 +224,7 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
             <Button
               onClick={openLoginModal}
               size="small"
-              variant="medium"
+              className={classes.login}
             >{t`Login`}</Button>
           )}
         </Box>

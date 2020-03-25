@@ -6,3 +6,4 @@ export const EDITOR_REFERENCE =
 export const EDITOR_FACEBOOK_GROUP =
   'https://www.facebook.com/groups/cofacts/permalink/1959641497601003/';
 export const CONTACT_EMAIL = 'cofacts@googlegroups.com';
+export const LINE_URL = 'https://line.me/R/ti/p/%40cofacts';
