@@ -65,13 +65,20 @@ class CreateReplyRequestDialog extends React.PureComponent {
       text: value,
       disabled: !value || value.length < MIN_REASON_LENGTH,
     });
+
+    // Backup to localStorage
+    requestAnimationFrame(() => (localStorage.text = value));
   };
 
   handleReasonSubmitted = () => {
     this.formRef.current.reset();
+
     this.setState({
+      text: '',
       visible: false,
     });
+
+    requestAnimationFrame(() => (localStorage.text = ''));
   };
 
   showForm = () => {
