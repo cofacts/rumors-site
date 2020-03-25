@@ -60,13 +60,6 @@ class CreateReplyRequestDialog extends React.PureComponent {
     });
   }
 
-  set(key, value) {
-    this.setState({ [key]: value });
-
-    // Backup to localStorage
-    requestAnimationFrame(() => (localStorage[key] = value));
-  }
-
   handleTextChange = ({ target: { value } }) => {
     this.setState({
       text: value,
@@ -74,7 +67,7 @@ class CreateReplyRequestDialog extends React.PureComponent {
     });
   };
 
-  onReasonSubmitted = () => {
+  handleReasonSubmitted = () => {
     this.formRef.current.reset();
     this.setState({
       visible: false,
@@ -104,6 +97,7 @@ class CreateReplyRequestDialog extends React.PureComponent {
             <textarea
               placeholder="例：我用 OO 關鍵字查詢 Facebook，發現⋯⋯ / 我在 XX 官網上找到不一樣的說法如下⋯⋯"
               onChange={this.handleTextChange}
+              value={text}
             ></textarea>
             <details>
               <summary>送出理由小撇步</summary>
@@ -118,7 +112,7 @@ class CreateReplyRequestDialog extends React.PureComponent {
               articleId={this.props.articleId}
               text={text}
               disabled={disabled}
-              onFinish={this.onReasonSubmitted}
+              onFinish={this.handleReasonSubmitted}
             />
             <button onClick={this.onCancel}>取消</button>
 
