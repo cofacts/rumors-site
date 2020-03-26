@@ -52,13 +52,9 @@ function AppLayout({ children }) {
 
   const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
 
-  const toggleSidebar = useCallback(() => setSidebarOpen(open => !open), [
-    sidebarOpen,
-  ]);
+  const toggleSidebar = useCallback(() => setSidebarOpen(open => !open), []);
 
-  const openLoginModal = useCallback(() => setLoginModalOpen(true), [
-    loginModalOpen,
-  ]);
+  const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
 
   const logout = useCallback(() => apiLogout().then(refetch), [refetch]);
 
@@ -100,7 +96,7 @@ function AppLayout({ children }) {
         user={data}
         openLoginModal={openLoginModal}
       />
-      {isRouteChanging && <LinearProgress classes={classes} />}
+      {isRouteChanging && <LinearProgress classes={{ root: classes.root }} />}
       <Container className={classes.main}>{children}</Container>
       <AppFooter />
       <GoogleWebsiteTranslator />

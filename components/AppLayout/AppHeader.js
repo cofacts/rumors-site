@@ -241,4 +241,4 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
   );
 }
 
-export default AppHeader;
+export default React.memo(AppHeader);

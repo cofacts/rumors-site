@@ -144,4 +144,4 @@ function AppSidebar({ open, toggle, user, openLoginModal }) {
   );
 }
 
-export default AppSidebar;
+export default React.memo(AppSidebar);

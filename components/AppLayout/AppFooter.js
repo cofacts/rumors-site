@@ -74,7 +74,7 @@ const CustomLink = withStyles(theme => ({
   </div>
 ));
 
-export default function AppFooter() {
+function AppFooter() {
   const classes = useStyles();
   return (
     <Box component="footer" display={['none', 'none', 'block']}>
@@ -129,3 +129,5 @@ export default function AppFooter() {
     </Box>
   );
 }
+
+export default React.memo(AppFooter);
