@@ -45,8 +45,6 @@ class CreateReplyRequestDialog extends React.PureComponent {
     this.state = {
       ...formInitialState,
     };
-
-    this.formRef = React.createRef();
   }
 
   componentDidMount() {
@@ -71,8 +69,6 @@ class CreateReplyRequestDialog extends React.PureComponent {
   };
 
   handleReasonSubmitted = () => {
-    this.formRef.current.reset();
-
     this.setState({
       text: '',
       visible: false,
@@ -94,9 +90,8 @@ class CreateReplyRequestDialog extends React.PureComponent {
 
     return (
       <div>
-        {visible ? null : <button onClick={this.showForm}>增加回報理由</button>}
-        {!visible ? null : (
-          <form ref={this.formRef}>
+        {visible ? (
+          <form>
             <p>
               請告訴其他編輯：<strong>您為何覺得這是一則謠言</strong>？
             </p>
@@ -130,6 +125,8 @@ class CreateReplyRequestDialog extends React.PureComponent {
               }
             `}</style>
           </form>
+        ) : (
+          <button onClick={this.showForm}>增加回報理由</button>
         )}
       </div>
     );
