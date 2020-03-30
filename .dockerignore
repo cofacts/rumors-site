@@ -10,3 +10,4 @@
 !server.js
 !next.config.js
 !ecosystem.config.js
+!.storybook/*

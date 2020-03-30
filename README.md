@@ -52,6 +52,19 @@ $ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-tw
 
 On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `dev` and `master` branch.
 
+### Storybook
+We use storybook to demonstrate components.
+```bash
+# run storybook localserver on port 6006
+$ npm run storybook
+```
+we also use storyshot to do snapshot test with stories, make sure to run:
+```
+$ npm test -- -u 
+```
+before pushing to update stories snapshots.
+Storybook will be available under /storybook/index.html after build.
+
 ## Analytics
 
 This project supports Google Tag Manager. You can prepare the following setup in `.env` file:
