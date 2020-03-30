@@ -17,7 +17,7 @@ export default function ArticleInfo({ article }) {
       )}
       {article.replyCount > 0 ? (
         <span>
-          ・
+          {' | '}
           {ngettext(
             msgid`${replyCount} response`,
             `${replyCount} responses`,
@@ -28,7 +28,7 @@ export default function ArticleInfo({ article }) {
         ''
       )}
       {isValid(createdAt) ? (
-        <span title={format(createdAt)}>・{t`${timeAgoStr} ago`}</span>
+        <span title={format(createdAt)}> | {t`${timeAgoStr} ago`}</span>
       ) : (
         ''
       )}

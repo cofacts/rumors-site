@@ -321,7 +321,8 @@ function ArticleListPage() {
               <ArticleItem
                 key={node.id}
                 article={node}
-                showLastReply={query.orderBy === 'lastRepliedAt'}
+                showLastReply={false}
+                showReplyCount={true}
               />
             ))}
           </ul>

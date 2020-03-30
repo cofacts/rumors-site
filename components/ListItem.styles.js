@@ -1,3 +1,4 @@
+// @todo: deprecated. remove this after finishing UserArticleItem UI upgrade.
 import css from 'styled-jsx/css';
 
 export const listItemStyle = css`

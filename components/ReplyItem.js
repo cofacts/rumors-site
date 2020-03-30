@@ -1,55 +1,48 @@
+import { makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 import gql from 'graphql-tag';
-import Link from 'next/link';
 import { t } from 'ttag';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import isValid from 'date-fns/isValid';
-import { listItemStyle } from './ListItem.styles';
-import { TYPE_ICON, TYPE_NAME } from '../constants/replyType';
+import { TYPE_NAME } from '../constants/replyType';
+import Avatar from 'components/AppLayout/Widgets/Avatar';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+  },
+});
 
 /**
  *
  * @param {ReplyItem} props.reply - see ReplyItem in GraphQL fragment
  * @param {boolean} showUser
  */
-function ReplyItem({ reply, showUser = true }) {
-  const { type: replyType } = reply;
+function ReplyItem({ reply }) {
+  const { user, type: replyType } = reply;
   const createdAt = new Date(reply.createdAt);
   const timeAgoStr = formatDistanceToNow(createdAt);
 
+  const classes = useStyles();
+
   return (
-    <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
-      <a className="item">
-        <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
-        <div className="item-content">
-          <div className="item-text">
-            {showUser ? `${reply?.user?.name || '有人'}：` : ''}
-            {reply.text}
-          </div>
-          <div className="item-info">
-            使用於 {reply.articleReplies.length} 篇
-            {isValid(createdAt) ? (
-              <span title={format(createdAt)}>・{t`${timeAgoStr} ago`}</span>
-            ) : (
-              ''
-            )}
-          </div>
+    <div className={classes.root}>
+      <Box p="24px">
+        <Avatar user={user} size={72} />
+        {/*
+          <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
+        */}
+      </Box>
+      <Box py="12px">
+        <div>{t`${user.name} consider this ${TYPE_NAME[replyType]}`}</div>
+        <div>{reply.text}</div>
+        <div>
+          {isValid(createdAt) || (
+            <span title={format(createdAt)}>{t`${timeAgoStr} ago`}</span>
+          )}
         </div>
-        <style jsx>{listItemStyle}</style>
-        <style jsx>{`
-          .item {
-            display: flex;
-          }
-          .item-content {
-            margin-left: 8px;
-            min-width: 0; /* Make inner ellipsis work */
-          }
-          .item-info {
-            font-size: 0.8em;
-            color: rgba(0, 0, 0, 0.5);
-          }
-        `}</style>
-      </a>
-    </Link>
+      </Box>
+    </div>
   );
 }
 
