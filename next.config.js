@@ -29,20 +29,6 @@ module.exports = {
   publicRuntimeConfig,
   serverRuntimeConfig,
   webpack(config, { isServer }) {
-    const originalEntryFn = config.entry;
-
-    // Inserting polyfill for old Browsers
-    // https://github.com/zeit/next.js/blob/canary/examples/with-polyfills/next.config.js
-    config.entry = async () => {
-      const entry = await originalEntryFn();
-      if (entry['main.js'] && !entry['main.js'].includes('core-js')) {
-        // As specified by React official doc
-        // https://reactjs.org/docs/javascript-environment-requirements.html
-        entry['main.js'].unshift('core-js');
-      }
-      return entry;
-    };
-
     //
     // Simplified from https://github.com/twopluszero/next-images/blob/master/index.js
     //
