@@ -1,33 +1,32 @@
 import gql from 'graphql-tag';
 import querystring from 'querystring';
-import { t, ngettext, msgid, jt } from 'ttag';
+import { t, jt } from 'ttag';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SortIcon from '@material-ui/icons/Sort';
 import Grid from '@material-ui/core/Grid';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
+
+import { makeStyles } from '@material-ui/core/styles';
 
 import withData from 'lib/apollo';
 import { ellipsis } from 'lib/text';
 import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
-import SearchInput from 'components/SearchInput';
 import FeedDisplay from 'components/FeedDisplay';
+import Filters, { Filter } from 'components/Filters';
 
+const STATUSES = ['unsolved', 'solved', 'all'];
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
-const DEFAULT_TYPE_FILTER = 'unsolved';
+const DEFAULT_STATUS = 'unsolved';
 const DEFAULT_REPLY_REQUEST_COUNT = 2;
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -75,12 +74,21 @@ const LIST_STAT = gql`
   }
 `;
 
+const useStyles = makeStyles({
+  filters: {
+    padding: '12px 0',
+  },
+  articleList: {
+    padding: 0,
+  },
+});
+
 /**
  * @param {object} urlQuery - URL query object
  * @returns {object} ListArticleFilter
  */
 function urlQuery2Filter({
-  filter = DEFAULT_TYPE_FILTER,
+  filter = DEFAULT_STATUS,
   q,
   replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
   searchUserByArticleId,
@@ -135,25 +143,6 @@ function goToUrlQueryAndResetPagination(urlQuery) {
   Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
 }
 
-function ArticleFilter({ filter = DEFAULT_TYPE_FILTER, onChange = () => {} }) {
-  return (
-    <ButtonGroup size="small" variant="outlined">
-      <Button
-        disabled={filter === 'unsolved'}
-        onClick={() => onChange('unsolved')}
-      >
-        {t`Not replied`}
-      </Button>
-      <Button disabled={filter === 'solved'} onClick={() => onChange('solved')}>
-        {t`Replied`}
-      </Button>
-      <Button disabled={filter === 'all'} onClick={() => onChange('all')}>
-        {t`All`}
-      </Button>
-    </ButtonGroup>
-  );
-}
-
 function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
   return (
     <TextField
@@ -189,6 +178,8 @@ export function getQueryVars(query) {
 }
 
 function ArticleListPage() {
+  const classes = useStyles();
+
   const { query } = useRouter();
 
   const listQueryVars = getQueryVars(query);
@@ -208,7 +199,7 @@ function ArticleListPage() {
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
   // on page change, but still works when filter options are updated.
   //
-  const { loading: statsLoading, data: listStatData } = useQuery(LIST_STAT, {
+  const { data: listStatData } = useQuery(LIST_STAT, {
     variables: listQueryVars,
   });
 
@@ -217,7 +208,6 @@ function ArticleListPage() {
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
 
   // Flags
-  const showOneTimeMessages = +query.replyRequestCount === 1;
   const searchedArticleEdge = articleEdges.find(
     ({ node: { id } }) => id === query.searchUserByArticleId
   );
@@ -248,62 +238,50 @@ function ArticleListPage() {
         <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
       )}
 
-      <Grid container spacing={2}>
-        <Grid item>
-          <ArticleFilter
-            filter={query.filter}
-            onChange={filter =>
-              goToUrlQueryAndResetPagination({ ...query, filter })
-            }
-          />
+      <Grid container alignItems="center" justify="space-between" spacing={2}>
+        <Grid item xs={12} lg="auto">
+          <Typography variant="h4">{t`Messages`}</Typography>
         </Grid>
-        <Grid item style={{ marginRight: 'auto' }}>
-          <SearchInput
-            q={query.q}
-            onChange={q => goToUrlQueryAndResetPagination({ ...query, q })}
-          />
-        </Grid>
-        <Grid item>
+        <Grid item xs={12} lg="auto">
           <FeedDisplay
             feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
           />
         </Grid>
       </Grid>
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={showOneTimeMessages}
-            onChange={e =>
-              goToUrlQueryAndResetPagination({
-                ...query,
-                replyRequestCount: e.target.checked ? 1 : 2,
-              })
-            }
+
+      <Filters className={classes.filters}>
+        <Filter
+          title={t`Filter`}
+          options={STATUSES.map(status => ({
+            label: status,
+            value: status,
+            selected: status === DEFAULT_STATUS,
+          }))}
+          onChange={filter =>
+            goToUrlQueryAndResetPagination({ ...query, filter })
+          }
+        />
+        {/* not implemented yet
+        <Filter
+          title={t`Consider`}
+          multiple
+        />
+        */}
+        {/* not implemented yet
+          <Filter
+            title={t`Topic`}
+            multiple
+            expandable
+            onlySelected
+            placeholder={`All Topics`}
+            options={TOPICS.map(topic => ({
+              label: topic,
+              value: topic,
+              selected: false,
+            }))}
           />
-        }
-        label={t`Include messages reported only 1 time`}
-      />
-      <div>
-        {query.q ? (
-          t`Sort by Relevance`
-        ) : (
-          <SortInput
-            orderBy={query.orderBy}
-            onChange={orderBy =>
-              goToUrlQueryAndResetPagination({ ...query, orderBy })
-            }
-          />
-        )}
-      </div>
-      <p>
-        {statsLoading
-          ? 'Loading...'
-          : ngettext(
-              msgid`${statsData.totalCount} collected message`,
-              `${statsData.totalCount} collected messages`,
-              statsData.totalCount
-            )}
-      </p>
+        */}
+      </Filters>
 
       {loading ? (
         'Loading....'
@@ -311,12 +289,7 @@ function ArticleListPage() {
         listArticlesError.toString()
       ) : (
         <>
-          <Pagination
-            query={query}
-            pageInfo={statsData?.pageInfo}
-            edges={articleEdges}
-          />
-          <ul className="article-list">
+          <ul className={classes.articleList}>
             {articleEdges.map(({ node }) => (
               <ArticleItem
                 key={node.id}
@@ -331,32 +304,8 @@ function ArticleListPage() {
             pageInfo={statsData?.pageInfo}
             edges={articleEdges}
           />
-          {!showOneTimeMessages && (
-            <Typography variant="body2" component="p">
-              {t`Shows messages reported multiple times by default.`}{' '}
-              <a
-                href="javascript:;"
-                onClick={() =>
-                  goToUrlQueryAndResetPagination({
-                    ...query,
-                    replyRequestCount: 1,
-                  })
-                }
-              >
-                {t`Click here to include messages only reported 1 time.`}
-              </a>
-            </Typography>
-          )}
         </>
       )}
-      <style jsx>
-        {`
-          .article-list {
-            padding: 0;
-            list-style: none;
-          }
-        `}
-      </style>
     </AppLayout>
   );
 }
