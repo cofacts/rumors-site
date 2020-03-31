@@ -18,7 +18,7 @@ const USER_QUERY = gql`
     GetUser {
       id
       name
-      email
+      avatarUrl
       level
       points {
         total
@@ -86,14 +86,14 @@ function AppLayout({ children }) {
     <Fragment>
       <AppHeader
         onMenuButtonClick={toggleSidebar}
-        user={data}
+        user={data?.GetUser}
         openLoginModal={openLoginModal}
         logout={logout}
       />
       <AppSidebar
         open={sidebarOpen}
         toggle={setSidebarOpen}
-        user={data}
+        user={data?.GetUser}
         openLoginModal={openLoginModal}
       />
       {isRouteChanging && <LinearProgress classes={{ root: classes.root }} />}

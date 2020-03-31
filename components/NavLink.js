@@ -8,18 +8,13 @@ function NavLink({
   className,
   activeClassName,
   external,
-  target,
-  rel,
+  target = '_blank',
+  rel = 'noopener noreferrer',
   children,
 }) {
   const router = useRouter();
   return external ? (
-    <a
-      href={href}
-      target={target || '_blank'}
-      rel={rel || 'noopener noreferrer'}
-      className={className}
-    >
+    <a href={href} target={target} rel={rel} className={className}>
       {children}
     </a>
   ) : (

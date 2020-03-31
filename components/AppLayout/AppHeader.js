@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
@@ -20,8 +20,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
 import * as Widgets from './Widgets';
-import desktopLogo from './images/logo-desktop.png';
-import mobileLogo from './images/logo-mobile.png';
+import desktopLogo from './images/logo-desktop.svg';
+import mobileLogo from './images/logo-mobile.svg';
 
 const MENU_BUTTON_WIDTH = 48;
 
@@ -54,21 +54,6 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
     [theme.breakpoints.up('md')]: {
       width: 240,
-    },
-  },
-  tabs: {
-    marginRight: 'auto',
-    display: 'flex',
-    justifyContent: 'space-between',
-    height: TABS_HEIGHT,
-    width: `calc(100% - ${MENU_BUTTON_WIDTH}px)`,
-    backgroundColor: theme.palette.secondary[50],
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: 'inherit',
-      height: 'auto',
-      width: 'auto',
-      fontSize: 20,
-      padding: '0 10px',
     },
   },
   tab: {
@@ -122,13 +107,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Links = ({ classes }) => (
-  <div className={classes.tabs}>
+  <>
     <NavLink
       href="/articles"
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {t`Collected Messages`}
+      {t`Messages`}
     </NavLink>
     <NavLink
       href="/replies"
@@ -147,32 +132,36 @@ const Links = ({ classes }) => (
       href={PROJECT_HACKFOLDR}
       className={classes.tab}
     >{t`About`}</NavLink>
-  </div>
+  </>
 );
 
 function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
-  const [anchor, setAnchor] = useState(false);
+  const [anchor, setAnchor] = useState(null);
   const classes = useStyles();
   const theme = useTheme();
 
-  const openProfileMenu = useCallback(e => setAnchor(e.currentTarget), [
-    anchor,
-  ]);
-  const closeProfileMenu = useCallback(() => setAnchor(null), [anchor]);
+  const openProfileMenu = e => setAnchor(e.currentTarget);
+  const closeProfileMenu = () => setAnchor(null);
+  user = {
+    name: 'yanglin',
+    avatarUrl:
+      'https://www.gravatar.com/avatar/ca87e79f73877094f4cd381a38dbc356?s=80&d=mp&r=g',
+  };
 
   return (
     <header className={classes.root}>
       <div className={classes.top}>
         <div className={classes.flex}>
           <a href="/">
-            <img
-              className={classes.logo}
-              src={mobileLogo}
-              srcSet={`${desktopLogo} ${theme.breakpoints.values.md}w`}
-              alt=""
-            />
+            <picture>
+              <source
+                media={`(min-width: ${theme.breakpoints.values.md}px)`}
+                srcSet={desktopLogo}
+              />
+              <img className={classes.logo} src={mobileLogo} alt="" />
+            </picture>
           </a>
-          <Box display={['none', 'none', 'inline']}>
+          <Box display={['none', 'none', 'flex']} fontSize={20} px="10px">
             <Links classes={classes} />
           </Box>
         </div>
@@ -187,7 +176,7 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
                 classes={{ paper: classes.profileMenu }}
                 anchorEl={anchor}
                 keepMounted
-                open={!!anchor}
+                open={Boolean(anchor)}
                 onClose={closeProfileMenu}
               >
                 <Widgets.Level user={user} />
@@ -229,12 +218,14 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
           )}
         </Box>
       </div>
-      <Box display={['block', 'block', 'none']}>
-        <div className={classes.flex}>
-          <Links classes={classes} />
-          <div className={classes.menuToggleButton} onClick={onMenuButtonClick}>
-            <MoreHorizIcon />
-          </div>
+      <Box
+        display={['flex', 'flex', 'none']}
+        height={TABS_HEIGHT}
+        css={{ backgroundColor: theme.palette.secondary[50] }}
+      >
+        <Links classes={classes} />
+        <div className={classes.menuToggleButton} onClick={onMenuButtonClick}>
+          <MoreHorizIcon />
         </div>
       </Box>
     </header>

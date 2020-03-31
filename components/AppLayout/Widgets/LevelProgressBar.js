@@ -21,21 +21,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function LevelProgressBar({ user, className }) {
-  if (!user) return null;
-  user = { points: { total: 100, nextLevel: 120, currentLevel: 90 } };
-  const currentExp = user.points.total - user.points.currentLevel;
-  const levelExp =
-    (user.points.nextLevel || Infinity) - user.points.currentLevel;
+  const currentExp = user ? user.points.total - user.points.currentLevel : 0;
+  const levelExp = user
+    ? (user.points.nextLevel || Infinity) - user.points.currentLevel
+    : Infinity;
   const classes = useStyles((currentExp / levelExp) * 100);
   return (
-    <div className={cx(classes.root, className)}>
-      <div
-        className={classes.progressBar}
-        title={`${currentExp} / ${levelExp}`}
-      >
-        <i className={classes.progress} />
+    !!user && (
+      <div className={cx(classes.root, className)}>
+        <div
+          className={classes.progressBar}
+          title={`${currentExp} / ${levelExp}`}
+        >
+          <i className={classes.progress} />
+        </div>
       </div>
-    </div>
+    )
   );
 }
 

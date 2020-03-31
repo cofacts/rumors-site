@@ -33,13 +33,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Level({ user = { level: 0 }, className, ...rest }) {
+// @todo: material-ui menu component implicitly uses ref,
+// not passing ref to component causes runtime warning.
+// maybe we should find a better solution to deal with this.
+// eslint-disable-next-line react/display-name
+export default React.forwardRef(function Level(
+  { user = { level: 0 }, className, ...rest },
+  ref
+) {
   const classes = useStyles();
   return (
-    <div className={cx(classes.root, className)} {...rest}>
+    <div className={cx(classes.root, className)} ref={ref} {...rest}>
       LV. {user.level} {LEVEL_NAMES[user.level]}
     </div>
   );
-}
-
-export default Level;
+});

@@ -1,5 +1,4 @@
 import React from 'react';
-import getGravatar from 'lib/getGravatar';
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -17,7 +16,7 @@ function Avatar({ user = {}, size = 24, className, ...rest }) {
   return (
     <img
       className={cx(classes.root, className)}
-      src={getGravatar(user.email)}
+      src={user.avatarUrl}
       alt=""
       {...rest}
     />
