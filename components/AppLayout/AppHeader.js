@@ -142,11 +142,6 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
 
   const openProfileMenu = e => setAnchor(e.currentTarget);
   const closeProfileMenu = () => setAnchor(null);
-  user = {
-    name: 'yanglin',
-    avatarUrl:
-      'https://www.gravatar.com/avatar/ca87e79f73877094f4cd381a38dbc356?s=80&d=mp&r=g',
-  };
 
   return (
     <header className={classes.root}>
