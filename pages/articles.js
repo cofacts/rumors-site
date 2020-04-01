@@ -7,10 +7,6 @@ import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SortIcon from '@material-ui/icons/Sort';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
@@ -23,6 +19,8 @@ import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
+import TimeRange from 'components/TimeRange';
+import SortInput from 'components/SortInput';
 
 const STATUSES = ['unsolved', 'solved', 'all'];
 const DEFAULT_ORDER_BY = 'lastRequestedAt';
@@ -90,6 +88,8 @@ const useStyles = makeStyles({
 function urlQuery2Filter({
   filter = DEFAULT_STATUS,
   q,
+  start,
+  end,
   replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
   searchUserByArticleId,
 } = {}) {
@@ -111,6 +111,13 @@ function urlQuery2Filter({
 
   if (searchUserByArticleId) {
     filterObj.fromUserOfArticleId = searchUserByArticleId;
+  }
+
+  if (start) {
+    filterObj.createdAt = { GT: start };
+    if (end) {
+      filterObj.createdAt.LTE = end;
+    }
   }
 
   // Return filterObj only when it is populated.
@@ -141,28 +148,6 @@ function goToUrlQueryAndResetPagination(urlQuery) {
   delete urlQuery.before;
   delete urlQuery.after;
   Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
-}
-
-function SortInput({ orderBy = DEFAULT_ORDER_BY, onChange = () => {} }) {
-  return (
-    <TextField
-      label={t`Sort by`}
-      select
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SortIcon />
-          </InputAdornment>
-        ),
-      }}
-      value={orderBy}
-      onChange={e => onChange(e.target.value)}
-    >
-      <MenuItem value="lastRequestedAt">{t`Most recently asked`}</MenuItem>
-      <MenuItem value="lastRepliedAt">{t`Most recently replied`}</MenuItem>
-      <MenuItem value="replyRequestCount">{t`Most asked`}</MenuItem>
-    </TextField>
-  );
 }
 
 /**
@@ -249,6 +234,34 @@ function ArticleListPage() {
         </Grid>
       </Grid>
 
+      <Grid container alignItems="center" justify="space-between">
+        <Grid item>
+          <TimeRange
+            range={listQueryVars?.filter?.createdAt}
+            onChange={createdAt =>
+              goToUrlQueryAndResetPagination({
+                ...query,
+                start: createdAt?.GT,
+                end: createdAt?.LTE,
+              })
+            }
+          />
+        </Grid>
+        <Grid item>
+          <SortInput
+            orderBy={query.orderBy || DEFAULT_ORDER_BY}
+            onChange={orderBy =>
+              goToUrlQueryAndResetPagination({ ...query, orderBy })
+            }
+            options={[
+              { value: 'lastRequestedAt', label: t`Most recently asked` },
+              { value: 'lastRepliedAt', label: t`Most recently replied` },
+              { value: 'replyRequestCount', label: t`Most asked` },
+            ]}
+          />
+        </Grid>
+      </Grid>
+
       <Filters className={classes.filters}>
         <Filter
           title={t`Filter`}
@@ -258,7 +271,10 @@ function ArticleListPage() {
             selected: status === DEFAULT_STATUS,
           }))}
           onChange={filter =>
-            goToUrlQueryAndResetPagination({ ...query, filter })
+            goToUrlQueryAndResetPagination({
+              ...query,
+              filter,
+            })
           }
         />
         {/* not implemented yet
