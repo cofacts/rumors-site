@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AppSidebar({ open, toggle, user, openLoginModal }) {
+function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
   const classes = useStyles();
 
   return (
@@ -101,7 +101,7 @@ function AppSidebar({ open, toggle, user, openLoginModal }) {
       ) : (
         <Button
           className={classes.login}
-          onClick={openLoginModal}
+          onClick={onLoginModalOpen}
         >{t`Login`}</Button>
       )}
       <Divider classes={{ root: classes.divider }} />

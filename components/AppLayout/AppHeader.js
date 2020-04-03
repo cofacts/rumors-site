@@ -135,7 +135,7 @@ const Links = ({ classes }) => (
   </>
 );
 
-function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
+function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
   const [anchor, setAnchor] = useState(null);
   const classes = useStyles();
   const theme = useTheme();
@@ -206,7 +206,7 @@ function AppHeader({ onMenuButtonClick, user, openLoginModal, logout }) {
             </>
           ) : (
             <Button
-              onClick={openLoginModal}
+              onClick={onLoginModalOpen}
               size="small"
               className={classes.login}
             >{t`Login`}</Button>

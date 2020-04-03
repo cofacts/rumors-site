@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary[500],
     borderRadius: 10,
     height: 10,
-    content: ' ',
   },
 }));
 

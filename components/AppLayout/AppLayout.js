@@ -87,14 +87,14 @@ function AppLayout({ children }) {
       <AppHeader
         onMenuButtonClick={toggleSidebar}
         user={data?.GetUser}
-        openLoginModal={openLoginModal}
-        logout={logout}
+        onLoginModalOpen={openLoginModal}
+        onLogout={logout}
       />
       <AppSidebar
         open={sidebarOpen}
         toggle={setSidebarOpen}
         user={data?.GetUser}
-        openLoginModal={openLoginModal}
+        onLoginModalOpen={openLoginModal}
       />
       {isRouteChanging && <LinearProgress classes={{ root: classes.root }} />}
       <Container className={classes.main}>{children}</Container>
