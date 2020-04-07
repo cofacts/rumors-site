@@ -14,7 +14,7 @@ const {
     PUBLIC_GA_TRACKING_ID,
     PUBLIC_ROLLBAR_TOKEN,
     PUBLIC_ROLLBAR_ENV,
-  },
+  } = {},
 } = getConfig();
 
 // Client-side rollbar snippet
