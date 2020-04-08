@@ -176,6 +176,7 @@ function ReplyFeedback({
         >
           <form
             onSubmit={e => {
+              e.preventDefault();
               const comment = e.target.reason.value;
               voteReply({
                 variables: { articleId, replyId, vote: 'DOWNVOTE', comment },
