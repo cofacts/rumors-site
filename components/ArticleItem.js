@@ -1,11 +1,10 @@
-import { useRef, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
 import { t } from 'ttag';
-import cx from 'clsx';
+import TextExpansion from './TextExpansion';
 // import ArticleItemWidget from './ArticleItemWidget/ArticleItemWidget.js';
 
 const useStyles = makeStyles(theme => ({
@@ -62,47 +61,6 @@ const useStyles = makeStyles(theme => ({
       fontSize: 10,
     },
   },
-  textWrapper: {
-    position: 'relative',
-  },
-  text: {
-    display: 'box',
-    boxOrient: 'vertical',
-    margin: '5px 0',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    lineClamp: 3,
-    [theme.breakpoints.up('md')]: {
-      margin: '12px 0',
-      lineClamp: 2,
-    },
-    '&.show-more': {
-      lineClamp: 'unset',
-    },
-  },
-  showMore: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    background: theme.palette.common.white,
-    display: ({ articleLength, maxCharsPerLine }) =>
-      articleLength > maxCharsPerLine * 3 ? 'block' : 'none',
-    color: '#2079F0',
-    cursor: 'pointer',
-    [theme.breakpoints.up('md')]: {
-      display: ({ articleLength, maxCharsPerLine }) =>
-        articleLength > maxCharsPerLine * 2 ? 'block' : 'none',
-    },
-    '&:before': {
-      position: 'absolute',
-      left: -48,
-      display: 'block',
-      background: 'linear-gradient(to right, transparent, white 80%)',
-      height: '1.5em',
-      width: 48,
-      content: '""',
-    },
-  },
   link: {
     position: 'relative',
     display: 'flex',
@@ -134,31 +92,18 @@ export default function ArticleItem({
   article,
   read = false, // from localEditorHelperList, it only provide after did mount
   notArticleReplied = false, // same as top
+  isLink = true,
+  showLastReply = false,
   showReplyCount = true,
   // handleLocalEditorHelperList,
   // isLogin,
 }) {
-  const [showMore, setShowMore] = useState(false);
-  const [maxCharsPerLine, setMaxCharsPerLine] = useState(0);
-  const textRef = useRef(null);
-
-  const { replyCount, replyRequestCount } = article;
+  const { text, replyCount, replyRequestCount } = article;
 
   const classes = useStyles({
     read,
     isArticle: !notArticleReplied,
-    articleLength: article.text.length,
-    maxCharsPerLine,
-    showMore,
   });
-
-  useEffect(() => {
-    const width = textRef.current.clientWidth;
-    const fontSize = parseFloat(
-      window.getComputedStyle(textRef.current).getPropertyValue('font-size')
-    );
-    setMaxCharsPerLine(~~(width / fontSize));
-  }, []);
 
   const content = (
     <>
@@ -176,13 +121,8 @@ export default function ArticleItem({
             </div>
           </div>
         )}
-        <div className={classes.textWrapper} ref={textRef}>
-          <p className={cx(classes.text, showMore && 'show-more')}>
-            {article.text}
-          </p>
-          <span className={classes.showMore} >
-            ({showMore ? t`Show Less` : t`Show More`})
-          </span>
+        <div>
+          <TextExpansion content={text} disable={isLink} />
         </div>
       </div>
     </>
@@ -190,9 +130,25 @@ export default function ArticleItem({
 
   return (
     <li className={classes.root}>
-      <Link href="/article/[id]" as={`/article/${article.id}`}>
-        <a>{content}</a>
-      </Link>
+      {isLink ? (
+        <Link href="/article/[id]" as={`/article/${article.id}`}>
+          <a>{content}</a>
+        </Link>
+      ) : (
+        content
+      )}
+      {isLink || (
+        <div className={classes.link}>
+          <Link href="/article/[id]" as={`/article/${article.id}`}>
+            <a>{t`Bust Hoaxes`}</a>
+          </Link>
+        </div>
+      )}
+
+      {showLastReply &&
+        article.articleReplies.map(articleReply => (
+          <ReplyItem key={articleReply.reply.id} {...articleReply} />
+        ))}
     </li>
   );
 }
@@ -205,6 +161,22 @@ ArticleItem.fragments = {
       articleReplies(status: NORMAL) {
         articleId
         replyId
+        positiveFeedbackCount
+        negativeFeedbackCount
+        user {
+          id
+          name
+        }
+        feedbacks {
+          id
+          user {
+            id
+            name
+            avatarUrl
+          }
+          comment
+          vote
+        }
         reply {
           id
           text
@@ -215,10 +187,12 @@ ArticleItem.fragments = {
             name
             avatarUrl
           }
+          ...ReplyItem
         }
       }
       ...ArticleInfo
     }
     ${ArticleInfo.fragments.articleInfo}
+    ${ReplyItem.fragments.ReplyItem}
   `,
 };

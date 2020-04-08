@@ -1,3 +1,4 @@
+// @todo: merge this with ReplyItem
 import React, { useState } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
