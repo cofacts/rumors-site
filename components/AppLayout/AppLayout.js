@@ -3,6 +3,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
+import withData from 'lib/apollo';
 import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
@@ -34,10 +35,6 @@ const useStyles = makeStyles({
     top: 0,
     left: 0,
     right: 0,
-  },
-  // @todo: workaround style
-  main: {
-    paddingTop: '2rem',
   },
 });
 
@@ -97,7 +94,7 @@ function AppLayout({ children }) {
         onLoginModalOpen={openLoginModal}
       />
       {isRouteChanging && <LinearProgress classes={{ root: classes.root }} />}
-      <Container className={classes.main}>{children}</Container>
+      <Container>{children}</Container>
       <AppFooter />
       <GoogleWebsiteTranslator />
       {loginModalOpen && (
@@ -107,4 +104,4 @@ function AppLayout({ children }) {
   );
 }
 
-export default AppLayout;
+export default withData(AppLayout);

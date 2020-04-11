@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect, useCallback, forwardRef } from 'react';
-import moment from 'moment';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button, Menu, MenuItem } from '@material-ui/core';

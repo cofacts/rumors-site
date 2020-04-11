@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
-// import GlobalSearch from './GlobalSearch';
+import GlobalSearch from './GlobalSearch';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import {
@@ -172,6 +172,7 @@ const Links = ({ classes, unsolvedCount }) => (
 
 function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
   const [anchor, setAnchor] = useState(null);
+  const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
   const theme = useTheme();
   const { data } = useQuery(LIST_UNSOLVED_ARTICLES);
@@ -185,21 +186,22 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
     <header className={classes.root}>
       <div className={classes.top}>
         <div className={classes.flex}>
-          <a href="/">
-            <picture>
-              <source
-                media={`(min-width: ${theme.breakpoints.values.md}px)`}
-                srcSet={desktopLogo}
-              />
-              <img className={classes.logo} src={mobileLogo} alt="" />
-            </picture>
-          </a>
+          {displayLogo && (
+            <a href="/">
+              <picture>
+                <source
+                  media={`(min-width: ${theme.breakpoints.values.md}px)`}
+                  srcSet={desktopLogo}
+                />
+                <img className={classes.logo} src={mobileLogo} alt="" />
+              </picture>
+            </a>
+          )}
           <Box display={['none', 'none', 'flex']} fontSize={20} px="10px">
             <Links classes={classes} unsolvedCount={unsolvedCount} />
           </Box>
         </div>
-        {/* GlobalSearch not fully implemented yet */}
-        {/* <GlobalSearch />*/}
+        <GlobalSearch onIconClick={() => setDisplayLogo(false)} />
         <Box display={['none', 'none', 'block']}>
           {user?.name ? (
             <>

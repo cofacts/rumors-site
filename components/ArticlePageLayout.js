@@ -2,19 +2,18 @@ import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t, jt } from 'ttag';
 import Router, { useRouter } from 'next/router';
-import Head from 'next/head';
 import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import withData from 'lib/apollo';
 import { ellipsis } from 'lib/text';
-import AppLayout from 'components/AppLayout';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
 import FeedDisplay from 'components/FeedDisplay';
@@ -214,28 +213,14 @@ function ArticlePageLayout({
 
   const queryString = querystring.stringify(query);
   return (
-    <AppLayout>
-      <Head>
-        <title>{title}</title>
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          href={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
-        />
-        <link
-          rel="alternate"
-          type="application/atom+xml"
-          href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
-        />
-      </Head>
-
+    <Box pt={2}>
       {query.searchUserByArticleId && (
         <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
       )}
 
       <Grid container alignItems="center" justify="space-between" spacing={2}>
         <Grid item xs={12} lg="auto">
-          <Typography variant="h4">{t`Messages`}</Typography>
+          <Typography variant="h4">{title}</Typography>
         </Grid>
         <Grid item xs={12} lg="auto">
           <FeedDisplay
@@ -279,7 +264,6 @@ function ArticlePageLayout({
             options={STATUSES.map(status => ({
               label: status,
               value: status,
-              // @todo: fix initial load filter is undefined issue
               selected: status === (query.filter || defaultStatus),
             }))}
             onChange={filter =>
@@ -340,7 +324,7 @@ function ArticlePageLayout({
           />
         </>
       )}
-    </AppLayout>
+    </Box>
   );
 }
 
