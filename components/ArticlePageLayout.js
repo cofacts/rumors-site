@@ -23,7 +23,7 @@ import TimeRange from 'components/TimeRange';
 import SortInput from 'components/SortInput';
 
 const STATUSES = ['unsolved', 'solved', 'all'];
-const DEFAULT_REPLY_REQUEST_COUNT = 2;
+const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
 
 const {
@@ -164,9 +164,11 @@ export function getQueryVars(query, option) {
 }
 
 function ArticlePageLayout({
+  title,
   articleDisplayConfig = {},
   defaultOrder = 'lastRequestedAt',
   defaultStatus = 'unsolved',
+  filters = { status: true, consider: true, category: true },
 }) {
   const classes = useStyles();
 
@@ -214,7 +216,7 @@ function ArticlePageLayout({
   return (
     <AppLayout>
       <Head>
-        <title>{t`Article list`}</title>
+        <title>{title}</title>
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -271,28 +273,35 @@ function ArticlePageLayout({
       </Grid>
 
       <Filters className={classes.filters}>
-        <Filter
-          title={t`Filter`}
-          options={STATUSES.map(status => ({
-            label: status,
-            value: status,
-            // @todo: fix initial load filter is undefined issue
-            selected: status === (query.filter || defaultStatus),
-          }))}
-          onChange={filter =>
-            goToUrlQueryAndResetPagination({
-              ...query,
-              filter,
-            })
-          }
-        />
+        {filters.status && (
+          <Filter
+            title={t`Filter`}
+            options={STATUSES.map(status => ({
+              label: status,
+              value: status,
+              // @todo: fix initial load filter is undefined issue
+              selected: status === (query.filter || defaultStatus),
+            }))}
+            onChange={filter =>
+              goToUrlQueryAndResetPagination({
+                ...query,
+                filter,
+              })
+            }
+          />
+        )}
+
         {/* not implemented yet
-        <Filter
-          title={t`Consider`}
-          multiple
-        />
+        {filters.consider && (
+          <Filter
+            title={t`Consider`}
+            multiple
+          />
+        )}
+
         */}
         {/* not implemented yet
+        {filters.category && (
           <Filter
             title={t`Topic`}
             multiple
@@ -305,6 +314,7 @@ function ArticlePageLayout({
               selected: false,
             }))}
           />
+        )}
         */}
       </Filters>
 

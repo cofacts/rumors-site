@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
 import { t } from 'ttag';
 import cx from 'clsx';
 import NavLink from 'components/NavLink';
@@ -18,10 +19,11 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
-import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
+import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import * as Widgets from './Widgets';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
+import { useQuery } from '@apollo/react-hooks';
 
 const MENU_BUTTON_WIDTH = 48;
 
@@ -68,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[300],
     [theme.breakpoints.up('md')]: {
       color: theme.palette.secondary[500],
-      padding: '0 10px',
+      padding: '0 18px',
     },
   },
   activeTab: {
@@ -104,9 +106,33 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
   },
+  withLabel: {
+    position: 'relative',
+  },
+  label: {
+    [theme.breakpoints.up('md')]: {
+      position: 'absolute',
+      color: theme.palette.common.white,
+      background: '#FB5959',
+      borderRadius: 20,
+      padding: '0px 4px',
+      lineHeight: '20px',
+      left: 'calc(100% - 25px)',
+      top: -5,
+      fontSize: 14,
+    },
+  },
 }));
 
-const Links = ({ classes }) => (
+const LIST_UNSOLVED_ARTICLES = gql`
+  query ListArticles {
+    ListArticles(filter: { replyCount: { EQ: 0 } }) {
+      totalCount
+    }
+  }
+`;
+
+const Links = ({ classes, unsolvedCount }) => (
   <>
     <NavLink
       href="/articles"
@@ -123,15 +149,24 @@ const Links = ({ classes }) => (
       {t`Replies`}
     </NavLink>
     <NavLink
+      href="/hoax-for-you"
+      className={cx(classes.tab, classes.withLabel)}
+      activeClassName={classes.activeTab}
+    >
+      {t`For You`}
+      <span className={classes.label}>
+        {unsolvedCount >= 100 ? '99+' : unsolvedCount}
+      </span>
+    </NavLink>
+    <Box
+      display={['none', 'none', 'inline']}
+      component={NavLink}
       external
       href={EDITOR_FACEBOOK_GROUP}
-      className={cx(classes.tab, 'hidden-xs')}
-    >{t`Editor forum`}</NavLink>
-    <NavLink
-      external
-      href={PROJECT_HACKFOLDR}
       className={classes.tab}
-    >{t`About`}</NavLink>
+    >
+      {t`Forum`}
+    </Box>
   </>
 );
 
@@ -139,6 +174,9 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
   const [anchor, setAnchor] = useState(null);
   const classes = useStyles();
   const theme = useTheme();
+  const { data } = useQuery(LIST_UNSOLVED_ARTICLES);
+
+  const unsolvedCount = data?.ListArticles?.totalCount;
 
   const openProfileMenu = e => setAnchor(e.currentTarget);
   const closeProfileMenu = () => setAnchor(null);
@@ -157,7 +195,7 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
             </picture>
           </a>
           <Box display={['none', 'none', 'flex']} fontSize={20} px="10px">
-            <Links classes={classes} />
+            <Links classes={classes} unsolvedCount={unsolvedCount} />
           </Box>
         </div>
         {/* GlobalSearch not fully implemented yet */}
@@ -218,7 +256,7 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
         height={TABS_HEIGHT}
         css={{ backgroundColor: theme.palette.secondary[50] }}
       >
-        <Links classes={classes} />
+        <Links classes={classes} unsolvedCount={unsolvedCount} />
         <div className={classes.menuToggleButton} onClick={onMenuButtonClick}>
           <MoreHorizIcon />
         </div>

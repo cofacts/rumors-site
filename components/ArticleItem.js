@@ -112,11 +112,11 @@ export default function ArticleItem({
         {showReplyCount && (
           <div className={classes.infoBox}>
             <div>
-              <h2>{replyCount}</h2>
+              <h2>{~~replyCount}</h2>
               <span>{t`replies`}</span>
             </div>
             <div>
-              <h2>{replyRequestCount}</h2>
+              <h2>{~~replyRequestCount}</h2>
               <span>{t`requests`}</span>
             </div>
           </div>
