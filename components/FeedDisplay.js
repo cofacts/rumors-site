@@ -12,7 +12,13 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  leftIcon: { marginRight: theme.spacing(1) },
+  button: {
+    background: theme.palette.secondary[100],
+    color: theme.palette.secondary[500],
+    borderRadius: 30,
+    padding: '5px 14px',
+  },
+  leftIcon: { marginLeft: theme.spacing(1) },
 }));
 
 function ListItemLink({ href, children }) {
@@ -43,9 +49,9 @@ function FeedDisplay({ feedUrl }) {
 
   return (
     <>
-      <Button onClick={handleClick}>
-        <RssFeedIcon className={classes.leftIcon} />
+      <Button onClick={handleClick} className={classes.button}>
         {t`Subscribe to this list`}
+        <RssFeedIcon className={classes.leftIcon} />
       </Button>
       <Popover
         anchorEl={anchorEl}
