@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t, jt } from 'ttag';
@@ -8,8 +9,14 @@ import { useQuery } from '@apollo/react-hooks';
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Fab from '@material-ui/core/Fab';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 
+import FilterListIcon from '@material-ui/icons/FilterList';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 import withData from 'lib/apollo';
@@ -69,14 +76,36 @@ const LIST_STAT = gql`
   }
 `;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   filters: {
     padding: '12px 0',
   },
   articleList: {
     padding: 0,
   },
-});
+  openFilter: {
+    position: 'fixed',
+    left: 22,
+    bottom: 22,
+    backgroundColor: theme.palette.secondary[500],
+    color: theme.palette.common.white,
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  filtersModal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  closeIcon: {
+    position: 'absolute',
+    right: 12,
+    top: 20,
+    color: theme.palette.secondary[100],
+  },
+}));
 
 /**
  * @param {object} urlQuery - URL query object
@@ -162,6 +191,59 @@ export function getQueryVars(query, option) {
   };
 }
 
+const FilterGroup = ({
+  classes,
+  query,
+  filters,
+  defaultStatus,
+  // desktop = false,
+}) => (
+  <Filters className={classes.filters}>
+    {filters.status && (
+      <Filter
+        title={t`Filter`}
+        options={STATUSES.map(status => ({
+          label: status,
+          value: status,
+          selected: status === (query.filter || defaultStatus),
+        }))}
+        onChange={filter =>
+          goToUrlQueryAndResetPagination({
+            ...query,
+            filter,
+          })
+        }
+      />
+    )}
+
+    {/* not implemented yet
+    {filters.consider && (
+      <Filter
+        title={t`Consider`}
+        multiple
+      />
+    )}
+    */}
+
+    {/* not implemented yet
+    {filters.category && (
+      <Filter
+        title={t`Topic`}
+        multiple
+        expandable={desktop}
+        onlySelected={desktop}
+        placeholder={desktop ? t`All Topics` : ''}
+        options={TOPICS.map(topic => ({
+          label: topic,
+          value: topic,
+          selected: false,
+        }))}
+      />
+    )}
+    */}
+  </Filters>
+);
+
 function ArticlePageLayout({
   title,
   articleDisplayConfig = {},
@@ -170,6 +252,7 @@ function ArticlePageLayout({
   filters = { status: true, consider: true, category: true },
 }) {
   const classes = useStyles();
+  const [showFilters, setFiltersShow] = useState(false);
 
   const { query } = useRouter();
 
@@ -257,50 +340,15 @@ function ArticlePageLayout({
         </Grid>
       </Grid>
 
-      <Filters className={classes.filters}>
-        {filters.status && (
-          <Filter
-            title={t`Filter`}
-            options={STATUSES.map(status => ({
-              label: status,
-              value: status,
-              selected: status === (query.filter || defaultStatus),
-            }))}
-            onChange={filter =>
-              goToUrlQueryAndResetPagination({
-                ...query,
-                filter,
-              })
-            }
-          />
-        )}
-
-        {/* not implemented yet
-        {filters.consider && (
-          <Filter
-            title={t`Consider`}
-            multiple
-          />
-        )}
-
-        */}
-        {/* not implemented yet
-        {filters.category && (
-          <Filter
-            title={t`Topic`}
-            multiple
-            expandable
-            onlySelected
-            placeholder={`All Topics`}
-            options={TOPICS.map(topic => ({
-              label: topic,
-              value: topic,
-              selected: false,
-            }))}
-          />
-        )}
-        */}
-      </Filters>
+      <Box display={['none', 'none', 'block']}>
+        <FilterGroup
+          filters={filters}
+          defaultStatus={defaultStatus}
+          classes={classes}
+          query={query}
+          desktop
+        />
+      </Box>
 
       {loading ? (
         'Loading....'
@@ -324,6 +372,42 @@ function ArticlePageLayout({
           />
         </>
       )}
+      <Fab
+        variant="extended"
+        aria-label="filters"
+        className={classes.openFilter}
+        onClick={() => setFiltersShow(!showFilters)}
+      >
+        <FilterListIcon />
+        {t`Filter`}
+      </Fab>
+      <Modal
+        aria-labelledby="filters"
+        aria-describedby="filters"
+        open={showFilters}
+        onClose={() => setFiltersShow(false)}
+        closeAfterTransition
+        className={classes.filtersModal}
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showFilters}>
+          <Box position="relative">
+            <FilterGroup
+              filters={filters}
+              defaultStatus={defaultStatus}
+              classes={classes}
+              query={query}
+            />
+            <CloseIcon
+              className={classes.closeIcon}
+              onClick={() => setFiltersShow(false)}
+            />
+          </Box>
+        </Fade>
+      </Modal>
     </Box>
   );
 }
