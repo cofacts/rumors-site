@@ -1,3 +1,4 @@
+// @todo: remove this. this components is deprecated and will be replaced by new UI components
 import React, { PureComponent, useState, useCallback, useEffect } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
