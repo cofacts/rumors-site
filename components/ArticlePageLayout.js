@@ -76,6 +76,20 @@ const LIST_STAT = gql`
   }
 `;
 
+const LIST_CATEGORIES = gql`
+  query ListCategories {
+    ListCategories(first: 25) {
+      totalCount
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
+  }
+`;
+
 const useStyles = makeStyles(theme => ({
   filters: {
     padding: '12px 0',
@@ -115,6 +129,7 @@ function urlQuery2Filter(
   {
     filter,
     q,
+    categoryIds = '',
     start,
     end,
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
@@ -133,6 +148,10 @@ function urlQuery2Filter(
   }
 
   filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
+
+  if (categoryIds) {
+    filterObj.categoryIds = categoryIds.split(',').map(decodeURIComponent);
+  }
 
   if (status === 'solved') {
     filterObj.replyCount = { GT: 0 };
@@ -195,8 +214,9 @@ const FilterGroup = ({
   classes,
   query,
   filters,
+  categories,
   defaultStatus,
-  // desktop = false,
+  desktop = false,
 }) => (
   <Filters className={classes.filters}>
     {filters.status && (
@@ -225,7 +245,6 @@ const FilterGroup = ({
     )}
     */}
 
-    {/* not implemented yet
     {filters.category && (
       <Filter
         title={t`Topic`}
@@ -233,14 +252,18 @@ const FilterGroup = ({
         expandable={desktop}
         onlySelected={desktop}
         placeholder={desktop ? t`All Topics` : ''}
-        options={TOPICS.map(topic => ({
-          label: topic,
-          value: topic,
-          selected: false,
-        }))}
+        options={categories}
+        onChange={selected =>
+          goToUrlQueryAndResetPagination({
+            ...query,
+            categoryIds: Object.entries(selected)
+              .filter(entry => entry[1])
+              .map(([key]) => encodeURIComponent(key))
+              .join(','),
+          })
+        }
       />
     )}
-    */}
   </Filters>
 );
 
@@ -273,6 +296,8 @@ function ArticlePageLayout({
     },
   });
 
+  const { data: listCategories } = useQuery(LIST_CATEGORIES);
+
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
   // on page change, but still works when filter options are updated.
   //
@@ -283,6 +308,16 @@ function ArticlePageLayout({
   // List data
   const statsData = listStatData?.ListArticles || {};
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
+
+  const selectedCategories =
+    query.categoryIds?.split(',').map(decodeURIComponent) || [];
+
+  const categories =
+    listCategories?.ListCategories?.edges.map(({ node }) => ({
+      value: node.id,
+      label: node.title,
+      selected: selectedCategories.includes(node.id),
+    })) || [];
 
   // Flags
   const searchedArticleEdge = articleEdges.find(
@@ -343,6 +378,7 @@ function ArticlePageLayout({
       <Box display={['none', 'none', 'block']}>
         <FilterGroup
           filters={filters}
+          categories={categories}
           defaultStatus={defaultStatus}
           classes={classes}
           query={query}
@@ -397,6 +433,7 @@ function ArticlePageLayout({
           <Box position="relative">
             <FilterGroup
               filters={filters}
+              categories={categories}
               defaultStatus={defaultStatus}
               classes={classes}
               query={query}
