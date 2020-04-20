@@ -146,7 +146,7 @@ const useStyles = makeStyles(theme => ({
   feedbacks: {
     marginTop: 16,
     maxHeight: 300,
-    overflow: 'scroll',
+    overflow: 'auto',
   },
   textarea: {
     padding: 15,
