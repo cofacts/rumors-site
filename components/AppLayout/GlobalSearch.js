@@ -61,13 +61,15 @@ function GlobalSearch({ onIconClick }) {
   const { query } = router;
   const [expanded, setExpanded] = useState(false);
   const [focus, setFocus] = useState(false);
-  const [value, setValue] = useState(router.query.q);
+  const [value, setValue] = useState(router.query.q || '');
   const classes = useStyles({ focus, value });
 
   const navigate = type => () =>
     router.push({ pathname: '/search', query: { type, q: value } });
 
-  useEffect(() => void (query.q !== value && setValue(query.q)), [query.q]);
+  useEffect(() => void (query.q !== value && setValue(query.q || '')), [
+    query.q,
+  ]);
 
   const input = (
     <TextField
