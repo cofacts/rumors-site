@@ -170,7 +170,7 @@ const Links = ({ classes, unsolvedCount }) => (
   </>
 );
 
-function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
+function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
   const [anchor, setAnchor] = useState(null);
   const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
@@ -236,7 +236,7 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
                   <Typography variant="inherit">{t`About`}</Typography>
                 </MenuItem>
                 <Divider classes={{ root: classes.divider }} />
-                <MenuItem onClick={logout}>
+                <MenuItem onClick={onLogout}>
                   <ListItemIcon className={classes.listIcon}>
                     <ExitToAppRoundedIcon />
                   </ListItemIcon>
