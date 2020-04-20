@@ -10,7 +10,6 @@ const useStyles = makeStyles(theme => ({
   text: {
     display: 'box',
     boxOrient: 'vertical',
-    margin: '5px 0',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     lineClamp: 3,

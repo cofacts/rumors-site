@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
     padding: '6px 10px',
     marginRight: 20,
     maxHeight: 64,
+    marginTop: 14,
     '& > div': {
       textAlign: 'center',
       width: 55,
