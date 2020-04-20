@@ -183,6 +183,7 @@ const ArticleReplyFeedbackData = gql`
     ...ArticleReplyFeedbackForUser
     positiveFeedbackCount
     negativeFeedbackCount
+    ownVote
     feedbacks {
       ...Feedback
     }
@@ -425,6 +426,7 @@ function ReplyItem({
 }
 
 ReplyItem.fragments = {
+  ArticleReplyFeedbackData,
   ReplyItem: gql`
     fragment ReplyItem on Reply {
       id
@@ -434,17 +436,9 @@ ReplyItem.fragments = {
       user {
         id
         name
-      }
-      articleReplies(status: NORMAL) {
-        articleId
-        replyId
-        feedbacks {
-          ...Feedback
-        }
-        ...ArticleReplyFeedbackData
+        avatarUrl
       }
     }
-    ${ArticleReplyFeedbackData}
   `,
 };
 

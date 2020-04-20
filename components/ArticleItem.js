@@ -162,38 +162,15 @@ ArticleItem.fragments = {
       articleReplies(status: NORMAL) {
         articleId
         replyId
-        positiveFeedbackCount
-        negativeFeedbackCount
-        user {
-          id
-          name
-        }
-        feedbacks {
-          id
-          user {
-            id
-            name
-            avatarUrl
-          }
-          comment
-          vote
-        }
         reply {
-          id
-          text
-          createdAt
-          type
-          user {
-            id
-            name
-            avatarUrl
-          }
           ...ReplyItem
         }
+        ...ArticleReplyFeedbackData
       }
       ...ArticleInfo
     }
     ${ArticleInfo.fragments.articleInfo}
+    ${ReplyItem.fragments.ArticleReplyFeedbackData}
     ${ReplyItem.fragments.ReplyItem}
   `,
 };
