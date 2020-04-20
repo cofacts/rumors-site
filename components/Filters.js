@@ -160,12 +160,12 @@ export function Filter({
           <button type="button" onClick={() => setExpand(e => !e)}>
             {expand ? (
               <>
-                {t`Expand Less`}
+                {t`Collapse`}
                 <ExpandLessIcon />
               </>
             ) : (
               <>
-                {t`Expand More`}
+                {t`Expand`}
                 <ExpandMoreIcon />
               </>
             )}
