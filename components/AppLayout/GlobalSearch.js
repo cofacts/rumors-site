@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { t } from 'ttag';
-import { Box, InputAdornment, TextField, makeStyles } from '@material-ui/core';
+import {
+  Box,
+  InputAdornment,
+  TextField,
+  ClickAwayListener,
+  makeStyles,
+} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
@@ -85,48 +91,52 @@ function GlobalSearch({ onIconClick }) {
           input: classes.input,
         },
         onFocus: () => setFocus(true),
-        onBlur: () => setFocus(false),
       }}
       classes={{ root: classes.searchWrapper }}
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={e => {
+        setValue(e.target.value);
+        if (!e.target.value && expanded) setExpanded(false);
+      }}
     />
   );
 
   return (
-    <div className={classes.root}>
-      <Box display={['none', 'none', 'block']}>{input}</Box>
-      <Box display={['block', 'block', 'none']} textAlign="right">
-        {expanded ? (
-          input
-        ) : (
-          <SearchIcon
-            onClick={() => {
-              setExpanded(!expanded);
-              onIconClick();
-            }}
-          />
+    <ClickAwayListener onClickAway={() => setFocus(false)}>
+      <div className={classes.root}>
+        <Box display={['none', 'none', 'block']}>{input}</Box>
+        <Box display={['block', 'block', 'none']} textAlign="right">
+          {expanded ? (
+            input
+          ) : (
+            <SearchIcon
+              onClick={() => {
+                setExpanded(!expanded);
+                onIconClick();
+              }}
+            />
+          )}
+        </Box>
+        {!!value && focus && (
+          <div className={classes.result}>
+            <div className={classes.resultEntry} onClick={navigate('messages')}>
+              <div className={classes.iconWithText}>
+                <Box component={SearchIcon} mr={1.5} />
+                {value}
+              </div>
+              <div className={classes.right}>{t`in Messages`}</div>
+            </div>
+            <div className={classes.resultEntry} onClick={navigate('replies')}>
+              <div className={classes.iconWithText}>
+                <Box component={SearchIcon} mr={1.5} />
+                {value}
+              </div>
+              <div className={classes.right}>{t`in Replies`}</div>
+            </div>
+          </div>
         )}
-      </Box>
-      {!!value && focus && (
-        <div className={classes.result}>
-          <div className={classes.resultEntry} onClick={navigate('messages')}>
-            <div className={classes.iconWithText}>
-              <Box component={SearchIcon} mr={1.5} />
-              {value}
-            </div>
-            <div className={classes.right}>{t`in Messages`}</div>
-          </div>
-          <div className={classes.resultEntry} onClick={navigate('replies')}>
-            <div className={classes.iconWithText}>
-              <Box component={SearchIcon} mr={1.5} />
-              {value}
-            </div>
-            <div className={classes.right}>{t`in Replies`}</div>
-          </div>
-        </div>
-      )}
-    </div>
+      </div>
+    </ClickAwayListener>
   );
 }
 
