@@ -117,7 +117,11 @@ export function Filter({
       if (multiple) {
         const newState = { ...selected, [value]: !selected[value] };
         setSelected(newState);
-        onChange(newState);
+        onChange(
+          Object.entries(newState)
+            .filter(entry => entry[1])
+            .map(entry => entry[0])
+        );
       } else {
         const newState = Object.fromEntries(
           Object.entries(selected).map(([key]) => [key, key === value])

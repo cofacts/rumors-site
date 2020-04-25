@@ -256,9 +256,8 @@ const FilterGroup = ({
         onChange={selected =>
           goToUrlQueryAndResetPagination({
             ...query,
-            categoryIds: Object.entries(selected)
-              .filter(entry => entry[1])
-              .map(([key]) => encodeURIComponent(key))
+            categoryIds: selected
+              .map(value => encodeURIComponent(value))
               .join(','),
           })
         }
