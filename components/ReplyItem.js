@@ -176,7 +176,12 @@ const useStyles = makeStyles(theme => ({
     padding: '10px 25px',
     background: theme.palette.primary[500],
     color: theme.palette.common.white,
+    cursor: 'pointer',
     borderRadius: 30,
+    '&:disabled': {
+      opacity: 0.7,
+      cursor: 'not-allowed',
+    },
   },
 }));
 
@@ -234,11 +239,15 @@ function ReplyItem({
   negativeFeedbackCount,
   ownVote,
 }) {
-  const [createReplyFeedback] = useMutation(CREATE_REPLY_FEEDBACK, {
-    onCompleted() {
-      closeVotePopover();
-    },
-  });
+  const [createReplyFeedback, { loading: updatingReplyFeedback }] = useMutation(
+    CREATE_REPLY_FEEDBACK,
+    {
+      onCompleted() {
+        closeVotePopover();
+        setReason('');
+      },
+    }
+  );
 
   const [vote, setVote] = useState(null);
   const [reason, setReason] = useState('');
@@ -420,11 +429,11 @@ function ReplyItem({
           <button
             type="button"
             className={classes.sendButton}
+            disabled={updatingReplyFeedback}
             onClick={() => {
               createReplyFeedback({
                 variables: { articleId, replyId, vote, comment: reason },
               });
-              closeVotePopover();
             }}
           >{t`Send`}</button>
         </div>
