@@ -5,6 +5,7 @@ import getConfig from 'next/config';
 import { t } from 'ttag';
 import querystring from 'querystring';
 import AppLayout from 'components/AppLayout';
+import withData from 'lib/apollo';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -41,4 +42,4 @@ function HoaxForYouPage() {
   );
 }
 
-export default HoaxForYouPage;
+export default withData(HoaxForYouPage);

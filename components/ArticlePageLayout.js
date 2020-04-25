@@ -19,7 +19,6 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
-import withData from 'lib/apollo';
 import { ellipsis } from 'lib/text';
 import ArticleItem from 'components/ArticleItem';
 import Pagination from 'components/Pagination';
@@ -448,4 +447,4 @@ function ArticlePageLayout({
   );
 }
 
-export default withData(ArticlePageLayout);
+export default ArticlePageLayout;

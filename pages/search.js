@@ -7,6 +7,7 @@ import { t } from 'ttag';
 import querystring from 'querystring';
 import ArticlePageLayout from 'components/ArticlePageLayout';
 import AppLayout from 'components/AppLayout';
+import withData from 'lib/apollo';
 import cx from 'clsx';
 
 const {
@@ -96,4 +97,4 @@ function SearchPage() {
   );
 }
 
-export default SearchPage;
+export default withData(SearchPage);
