@@ -106,20 +106,22 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
   },
-  withLabel: {
+  withBadge: {
     position: 'relative',
   },
-  label: {
+  badge: {
+    left: 'calc(100% - 30px)',
+    top: 0,
+    position: 'absolute',
+    color: theme.palette.common.white,
+    background: '#FB5959',
+    borderRadius: 20,
+    padding: '0px 4px',
+    lineHeight: '20px',
+    fontSize: 14,
     [theme.breakpoints.up('md')]: {
-      position: 'absolute',
-      color: theme.palette.common.white,
-      background: '#FB5959',
-      borderRadius: 20,
-      padding: '0px 4px',
-      lineHeight: '20px',
       left: 'calc(100% - 25px)',
       top: -5,
-      fontSize: 14,
     },
   },
 }));
@@ -150,11 +152,11 @@ const Links = ({ classes, unsolvedCount }) => (
     </NavLink>
     <NavLink
       href="/hoax-for-you"
-      className={cx(classes.tab, classes.withLabel)}
+      className={cx(classes.tab, classes.withBadge)}
       activeClassName={classes.activeTab}
     >
       {t`For You`}
-      <span className={classes.label}>
+      <span className={classes.badge}>
         {unsolvedCount >= 100 ? '99+' : unsolvedCount}
       </span>
     </NavLink>

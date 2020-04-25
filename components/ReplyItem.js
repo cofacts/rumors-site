@@ -1,7 +1,7 @@
 // @todo: merge this with ReplyFeedback
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Popover } from '@material-ui/core';
+import { Box, Popover, Typography, SvgIcon } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
@@ -12,11 +12,19 @@ import { TYPE_NAME } from '../constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import TextExpansion from './TextExpansion';
 import Feedback from './Feedback';
-import ThumbUp from './images/thumb-up.svg';
-import ThumbDown from './images/thumb-down.svg';
-import ThumbUpSolid from './images/thumb-up-solid.svg';
-import ThumbDownSolid from './images/thumb-down-solid.svg';
 import cx from 'clsx';
+
+const ThumbUpIcon = props => (
+  <SvgIcon {...props} viewBox="0 0 17 15">
+    <path d="M1 13.8672H3.65455V6.51612H1V13.8672ZM15.6 7.1287C15.6 6.45486 15.0027 5.90353 14.2727 5.90353H10.0852L10.7156 3.10401L10.7355 2.90798C10.7355 2.65682 10.6227 2.42403 10.4435 2.25863L9.74009 1.61542L5.37336 5.65237C5.12782 5.8729 4.98182 6.17919 4.98182 6.51612V12.642C4.98182 13.3158 5.57909 13.8672 6.30909 13.8672H12.2818C12.8326 13.8672 13.3038 13.5609 13.5029 13.1198L15.5071 8.80107C15.5668 8.66017 15.6 8.51315 15.6 8.35388V7.1287Z" />
+  </SvgIcon>
+);
+
+const ThumbDownIcon = props => (
+  <SvgIcon {...props} viewBox="0 0 17 15">
+    <path d="M10.2909 1.46155H4.31818C3.76736 1.46155 3.29618 1.76784 3.09709 2.2089L1.09291 6.52765C1.03318 6.66854 1 6.81556 1 6.97483V8.20001C1 8.87386 1.59727 9.42518 2.32727 9.42518H6.51482L5.88436 12.2247L5.86445 12.4207C5.86445 12.6719 5.97727 12.9047 6.15646 13.0701L6.85991 13.7133L11.2333 9.67635C11.4722 9.45581 11.6182 9.14952 11.6182 8.8126V2.68672C11.6182 2.01288 11.0209 1.46155 10.2909 1.46155ZM12.9455 1.46155V8.8126H15.6V1.46155H12.9455Z" />
+  </SvgIcon>
+);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,22 +77,20 @@ const useStyles = makeStyles(theme => ({
     outline: 'none',
     cursor: 'pointer',
     border: `1px solid ${theme.palette.secondary[100]}`,
+    color: theme.palette.secondary[100],
     background: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
       padding: '4px 18px',
       marginRight: 10,
     },
   },
-  thumbUp: {
-    transform: 'translateY(-1px)',
-  },
-  thumbDown: {
-    transform: 'translateY(1px)',
-    [theme.breakpoints.up('md')]: {
-      transform: 'translateY(2px)',
-    },
+  voted: {
+    border: `1px solid ${theme.palette.primary[500]}`,
+    color: theme.palette.primary[500],
   },
   buttonGroup: {
+    display: 'flex',
+    alignItems: 'center',
     whiteSpace: 'nowrap',
     '& $vote': {
       marginRight: 0,
@@ -147,6 +153,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: 16,
     maxHeight: 300,
     overflow: 'auto',
+  },
+  popupTitle: {
+    fontSize: 18,
+    marginBottom: 24,
   },
   textarea: {
     padding: 15,
@@ -222,6 +232,7 @@ function ReplyItem({
   feedbacks,
   positiveFeedbackCount,
   negativeFeedbackCount,
+  ownVote,
 }) {
   const [createReplyFeedback] = useMutation(CREATE_REPLY_FEEDBACK, {
     onCompleted() {
@@ -257,6 +268,7 @@ function ReplyItem({
   };
 
   const classes = useStyles({ replyType });
+  const userName = user?.name ?? t`Anonymoys`;
 
   return (
     <div className={classes.root}>
@@ -275,44 +287,38 @@ function ReplyItem({
       <Box py="12px" flexGrow={1}>
         <div
           className={classes.replyType}
-        >{t`${user.name} consider this ${TYPE_NAME[replyType]}`}</div>
+        >{t`${userName} consider this ${TYPE_NAME[replyType]}`}</div>
         <TextExpansion content={text} />
         <div className={classes.status}>
           <div className={classes.actions}>
             <button
-              className={classes.vote}
+              className={cx(
+                classes.vote,
+                ownVote === 'UPVOTE' && classes.voted
+              )}
               type="button"
               onClick={e => openVotePopover(e, 'UPVOTE')}
             >
-              <img className={classes.thumbUp} src={ThumbUp} alt="thumb-up" />
+              <ThumbUpIcon />
             </button>
             <button
-              className={classes.vote}
+              className={cx(
+                classes.vote,
+                ownVote === 'DOWNVOTE' && classes.voted
+              )}
               type="button"
               onClick={e => openVotePopover(e, 'DOWNVOTE')}
             >
-              <img
-                className={classes.thumbDown}
-                src={ThumbDown}
-                alt="thumb-down"
-              />
+              <ThumbDownIcon />
             </button>
             <div className={classes.buttonGroup}>
               <button className={classes.vote} type="button">
                 {positiveFeedbackCount}
-                <img
-                  className={classes.thumbUp}
-                  src={ThumbUpSolid}
-                  alt="thumb-up"
-                />
+                <ThumbUpIcon style={{ fontSize: 16, margin: '0 2px' }} />
               </button>
               <button className={classes.vote} type="button">
                 {negativeFeedbackCount}
-                <img
-                  className={classes.thumbDown}
-                  src={ThumbDownSolid}
-                  alt="thumb-down"
-                />
+                <ThumbDownIcon style={{ fontSize: 16, margin: '0 2px' }} />
               </button>
               <button
                 className={classes.vote}
@@ -401,7 +407,9 @@ function ReplyItem({
         >
           <CloseIcon />
         </button>
-        <h5>{t`The reason why you upvote/downvote:`}</h5>
+        <Typography
+          className={classes.popupTitle}
+        >{t`The reason why you upvote/downvote:`}</Typography>
         <textarea
           className={classes.textarea}
           value={reason}

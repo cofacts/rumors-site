@@ -87,6 +87,10 @@ const useStyles = makeStyles(theme => ({
       zIndex: 2,
     },
   },
+  contentContainer: {
+    // fix display: box display
+    minWidth: 1,
+  },
 }));
 
 export default function ArticleItem({
@@ -122,7 +126,7 @@ export default function ArticleItem({
             </div>
           </div>
         )}
-        <div>
+        <div className={classes.contentContainer}>
           <TextExpansion content={text} disable={isLink} />
         </div>
       </div>
