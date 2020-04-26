@@ -1,7 +1,14 @@
 // @todo: merge this with ReplyFeedback
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Popover, Typography, SvgIcon } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import {
+  Tabs,
+  Tab,
+  Box,
+  Popover,
+  Typography,
+  SvgIcon,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
@@ -133,22 +140,6 @@ const useStyles = makeStyles(theme => ({
     outline: 'none',
     color: theme.palette.secondary[100],
   },
-  tabs: {
-    display: 'flex',
-    paddingTop: 32,
-  },
-  tab: {
-    flex: 'auto',
-    border: 'none',
-    outline: 'none',
-    cursor: 'pointer',
-    borderBottom: `1px solid ${theme.palette.secondary[200]}`,
-    color: theme.palette.secondary[200],
-    '&.active': {
-      borderBottom: `1px solid ${theme.palette.primary[500]}`,
-      color: theme.palette.primary[500],
-    },
-  },
   feedbacks: {
     marginTop: 16,
     maxHeight: 300,
@@ -184,6 +175,19 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
+
+const CustomTab = withStyles({
+  root: {
+    position: 'relative',
+    minHeight: 0,
+  },
+  wrapper: {
+    '& > svg': {
+      position: 'absolute',
+      left: 0,
+    },
+  },
+})(Tab);
 
 const ArticleReplyFeedbackForUser = gql`
   fragment ArticleReplyFeedbackForUser on ArticleReply {
@@ -365,18 +369,22 @@ function ReplyItem({
           <CloseIcon />
         </button>
         {text}
-        <div className={classes.tabs}>
-          <button
-            type="button"
-            className={cx(classes.tab, tab === 0 && 'active')}
-            onClick={() => setTab(0)}
-          >{t`Helpful ${positiveFeedbackCount}`}</button>
-          <button
-            type="button"
-            className={cx(classes.tab, tab === 1 && 'active')}
-            onClick={() => setTab(1)}
-          >{t`Not Helpful ${negativeFeedbackCount}`}</button>
-        </div>
+        <Tabs
+          value={tab}
+          onChange={(e, value) => setTab(value)}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+        >
+          <CustomTab
+            icon={<ThumbUpIcon />}
+            label={t`Helpful ${positiveFeedbackCount}`}
+          />
+          <CustomTab
+            icon={<ThumbDownIcon />}
+            label={t`Not Helpful ${negativeFeedbackCount}`}
+          />
+        </Tabs>
         <Box
           display={tab === 0 ? 'block' : 'none'}
           className={classes.feedbacks}
