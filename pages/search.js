@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Container } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Tabs, Tab, Box, Container } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import getConfig from 'next/config';
@@ -8,7 +8,6 @@ import querystring from 'querystring';
 import ArticlePageLayout from 'components/ArticlePageLayout';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
-import cx from 'clsx';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -25,20 +24,19 @@ const useStyles = makeStyles(theme => ({
   search: {
     color: theme.palette.common.white,
   },
-  tab: {
-    cursor: 'pointer',
-    color: theme.palette.secondary[200],
-    padding: '14px 12px',
-    outline: 'none',
-    '&.active': {
-      color: theme.palette.primary.main,
-      borderBottom: `4px solid ${theme.palette.primary.main}`,
-    },
-  },
   content: {
     paddingTop: 230,
   },
 }));
+
+const CustomTab = withStyles(theme => ({
+  root: {
+    color: theme.palette.common.white,
+    '&$selected': {
+      color: theme.palette.primary,
+    },
+  },
+}))(Tab);
 
 function SearchPage() {
   const router = useRouter();
@@ -47,7 +45,7 @@ function SearchPage() {
 
   const classes = useStyles();
 
-  const navigate = type => () =>
+  const navigate = type =>
     router.push({ pathname: '/search', query: { ...query, type } });
 
   return (
@@ -72,22 +70,16 @@ function SearchPage() {
           </Box>
         </Container>
         <Container>
-          <Box display="flex">
-            <div
-              className={cx(classes.tab, query.type === 'messages' && 'active')}
-              tabIndex="0"
-              onClick={navigate('messages')}
-            >
-              {t`Messages`}
-            </div>
-            <div
-              className={cx(classes.tab, query.type === 'replies' && 'active')}
-              tabIndex="1"
-              onClick={navigate('replies')}
-            >
-              {t`Replies`}
-            </div>
-          </Box>
+          <Tabs
+            value={query.type}
+            onChange={(e, page) => navigate(page)}
+            indicatorColor="primary"
+            textColor="primary"
+            aria-label="tabs"
+          >
+            <CustomTab value="messages" label={t`Messages`} />
+            <CustomTab value="replies" label={t`Replies`} />
+          </Tabs>
         </Container>
       </div>
       <div className={classes.content}>
