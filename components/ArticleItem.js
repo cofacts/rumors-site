@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
+import ReplyFeedback from './ReplyFeedback';
 import { t } from 'ttag';
 import TextExpansion from './TextExpansion';
 // import ArticleItemWidget from './ArticleItemWidget/ArticleItemWidget.js';
@@ -174,7 +175,7 @@ ArticleItem.fragments = {
       ...ArticleInfo
     }
     ${ArticleInfo.fragments.articleInfo}
-    ${ReplyItem.fragments.ArticleReplyFeedbackData}
+    ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
     ${ReplyItem.fragments.ReplyItem}
   `,
 };
