@@ -281,7 +281,7 @@ function ReplyItem({
   };
 
   const classes = useStyles({ replyType });
-  const userName = user?.name ?? t`Anonymoys`;
+  const userName = user?.name ?? t`Anonymous`;
 
   return (
     <div className={classes.root}>
