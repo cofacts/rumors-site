@@ -1,6 +1,68 @@
 import gql from 'graphql-tag';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { Box, SvgIcon, CircularProgress } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useQuery } from '@apollo/react-hooks';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: '12px 16px',
+    margin: '0 8px 8px 0',
+    background: theme.palette.secondary[50],
+    borderRadius: 8,
+    '& h1': {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      margin: 0,
+      marginBottom: 10,
+      maxWidth: 'inherit',
+    },
+  },
+  url: {
+    color: theme.palette.secondary[300],
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 16,
+    '& a': {
+      color: theme.palette.secondary[300],
+      display: 'block',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      textDecoration: 'none',
+      marginLeft: 8,
+    },
+  },
+  preview: {
+    display: 'flex',
+    borderLeft: `4px solid ${theme.palette.secondary[200]}`,
+    paddingLeft: 10,
+    paddingRight: 15,
+    minHeight: 40,
+    justifyContent: 'space-between',
+    '& .summary': {
+      color: theme.palette.secondary[500],
+      maxHeight: 40,
+      overflow: 'hidden',
+      margin: 0,
+      display: 'flex',
+      marginRight: 10,
+    },
+    '& .image': {
+      margin: 0,
+      maxHeight: 60,
+      minWidth: 60,
+      background: `#ccc center center no-repeat`,
+      backgroundSize: 'cover',
+      backgroundImage: ({ topImageUrl }) => `url(${topImageUrl})`,
+      borderRadius: 3,
+    },
+  },
+  error: {
+    color: 'firebrick',
+    fontStyle: 'italic',
+  },
+}));
 
 const HyperlinkData = gql`
   fragment HyperlinkData on Hyperlink {
@@ -37,6 +99,12 @@ const POLLING_QUERY = {
   `,
 };
 
+const LinkIcon = props => (
+  <SvgIcon {...props} viewBox="0 0 20 10">
+    <path d="M1.9 5C1.9 3.29 3.29 1.9 5 1.9H9V0H5C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10H9V8.1H5C3.29 8.1 1.9 6.71 1.9 5ZM6 6H14V4H6V6ZM15 0H11V1.9H15C16.71 1.9 18.1 3.29 18.1 5C18.1 6.71 16.71 8.1 15 8.1H11V10H15C17.76 10 20 7.76 20 5C20 2.24 17.76 0 15 0Z" />
+  </SvgIcon>
+);
+
 /**
  * @param {string} error - One of ResolveError https://github.com/cofacts/url-resolver/blob/master/src/typeDefs/ResolveError.graphql
  */
@@ -63,89 +131,24 @@ function Hyperlink({ hyperlink }) {
   const { title, topImageUrl, error, url } = hyperlink;
   const summary = (hyperlink.summary || '').slice(0, 200);
 
+  const classes = useStyles({ topImageUrl });
+
   return (
-    <article className="link">
+    <article className={classes.root}>
       <h1 title={title}>{title}</h1>
-      <a className="url" href={url} target="_blank" rel="noopener noreferrer">
-        {url}
-      </a>
-      <div className="preview__container">
-        <p className="preview__summary" title={summary}>
+      <div className={classes.preview}>
+        <p className="summary" title={summary}>
           {summary}
         </p>
-        {topImageUrl && (
-          <figure
-            className="preview__img"
-            style={{ backgroundImage: `url(${topImageUrl})` }}
-          />
-        )}
+        {topImageUrl && <figure className="image" />}
         {error && <p className="error">{getErrorText(error)}</p>}
       </div>
-
-      <style jsx>{`
-        .link {
-          border: 1px solid rgba(0, 0, 0, 0.2);
-          padding: 12px 8px;
-          margin: 0 8px 8px 0;
-          width: 100%;
-          max-width: 450px;
-          overflow: hidden;
-        }
-
-        .preview__container {
-          display: flex;
-          border-left: 3px solid rgba(0, 0, 0, 0.2);
-          padding-left: 10px;
-          padding-right: 15px;
-          min-height: 40px;
-          justify-content: space-between;
-        }
-
-        .preview__img {
-          margin: 0;
-          max-height: 60px;
-          min-width: 60px;
-          border-right: 1px solid rgba(0, 0, 0, 0.2);
-          background: #ccc center center no-repeat;
-          background-size: cover;
-          border-radius: 3px;
-        }
-
-        .link h1 {
-          font-size: 14px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          margin: 0;
-          max-width: inherit;
-        }
-
-        .url {
-          display: block;
-          font-size: 12px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          color: #999;
-          margin-bottom: 8px;
-        }
-
-        .preview__summary {
-          font-size: 12px;
-          color: #333;
-          max-height: 40px;
-          overflow: hidden;
-          margin: 0;
-          display: flex;
-          margin-right: 10px;
-        }
-
-        .error {
-          color: firebrick;
-          font-size: 12px;
-          font-style: italic;
-        }
-      `}</style>
+      <span className={classes.url}>
+        <LinkIcon />
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          {url}
+        </a>
+      </span>
     </article>
   );
 }
@@ -178,22 +181,21 @@ function Hyperlinks({ hyperlinks, pollingType, pollingId }) {
   if (hyperlinks && hyperlinks.length === 0) return null;
 
   return (
-    <section className="links">
+    <Box
+      component="section"
+      display="flex"
+      flexDirection="row"
+      flexWrap="wrap"
+      mt={2}
+      mb={1}
+    >
       {(hyperlinks || []).map((hyperlink, idx) => (
         <Hyperlink key={idx} hyperlink={hyperlink} />
       ))}
       {!hyperlinks && pollingId && (
         <PollingHyperlink pollingId={pollingId} pollingType={pollingType} />
       )}
-      <style jsx>{`
-        .links {
-          display: flex;
-          flex-flow: row wrap;
-          margin: 16px 0 8px;
-          max-width: 100%;
-        }
-      `}</style>
-    </section>
+    </Box>
   );
 }
 

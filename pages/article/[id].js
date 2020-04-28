@@ -1,6 +1,9 @@
 import gql from 'graphql-tag';
 import { useEffect, useRef, useCallback } from 'react';
-import { t } from 'ttag';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Divider } from '@material-ui/core';
+import { ngettext, msgid, t } from 'ttag';
+
 import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
@@ -10,16 +13,42 @@ import useCurrentUser from 'lib/useCurrentUser';
 import { nl2br, linkify, ellipsis } from 'lib/text';
 import { usePushToDataLayer } from 'lib/gtm';
 
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import isValid from 'date-fns/isValid';
+
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
-import ArticleInfo from 'components/ArticleInfo';
-import Trendline from 'components/Trendline';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import CreateReplyRequestDialog from 'components/CreateReplyRequestDialog';
 import NewReplySection from 'components/NewReplySection';
 import ArticleItem from 'components/ArticleItem';
+import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
+import cx from 'clsx';
+import Trendline from 'components/Trendline';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    padding: '24px 0',
+    alignItems: 'baseline',
+  },
+  card: {
+    background: theme.palette.common.white,
+    borderRadius: 8,
+  },
+  main: {
+    flex: 3,
+    marginRight: 12,
+  },
+  aside: {
+    flex: 1,
+  },
+  divider: {
+    backgroundColor: theme.palette.secondary[500],
+  },
+}));
 
 const LOAD_ARTICLE = gql`
   query LoadArticlePage($id: String!) {
@@ -113,7 +142,17 @@ function ArticlePage() {
     replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  const article = data?.GetArticle;
+  const article = data?.GetArticle || {};
+
+  const { replyRequestCount, text, hyperlinks } = article;
+  const classes = useStyles();
+  const similarArticles = article?.similarArticles?.edges || [];
+
+  const createdAt = article.createdAt
+    ? new Date(article.createdAt)
+    : new Date();
+
+  const timeAgoStr = formatDistanceToNow(createdAt);
 
   usePushToDataLayer(!!article, { event: 'dataLoaded' });
 
@@ -146,97 +185,104 @@ function ArticlePage() {
           {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
       </Head>
-      <section className="section">
-        <header className="header">
-          <h2>{t`Reported Message`}</h2>
-          <div className="trendline">
-            <Trendline id={article.id} />
-          </div>
-          <ArticleInfo article={article} />
-        </header>
-        <article className="message">
-          {nl2br(
-            linkify(article.text, {
-              props: {
-                target: '_blank',
-              },
-            })
-          )}
-          <Hyperlinks hyperlinks={article.hyperlinks} />
-        </article>
-        <footer>
-          {article.replyRequests.map((replyRequest, idx) => (
-            <ReplyRequestReason
-              key={replyRequest.id}
+      <div className={classes.root}>
+        <Box className={classes.main}>
+          <Box className={classes.card} px={3.5} py={1.5}>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <h4>
+                {ngettext(
+                  msgid`${replyRequestCount} person report this message`,
+                  `${replyRequestCount} people report this message`,
+                  replyRequestCount
+                )}
+              </h4>
+              {isValid(createdAt) && (
+                <span
+                  title={format(createdAt)}
+                >{t`First reported ${timeAgoStr} ago`}</span>
+              )}
+            </Box>
+            <Divider classes={{ root: classes.divider }} />
+            <Box py={4}>
+              {nl2br(
+                linkify(text, {
+                  props: {
+                    target: '_blank',
+                  },
+                })
+              )}
+              <Hyperlinks hyperlinks={hyperlinks} />
+            </Box>
+            <ArticleCategories
               articleId={article.id}
-              replyRequest={replyRequest}
-              isArticleCreator={idx === 0}
+              articleCategories={article.articleCategories}
             />
-          ))}
-          <CreateReplyRequestDialog articleId={article.id} />
-        </footer>
-        <ArticleCategories
-          articleId={article.id}
-          articleCategories={article.articleCategories}
-        />
-      </section>
+            <Trendline />
+            <Divider />
+            <footer>
+              {article.replyRequests.map((replyRequest, idx) => (
+                <ReplyRequestReason
+                  key={replyRequest.id}
+                  articleId={article.id}
+                  replyRequest={replyRequest}
+                  isArticleCreator={idx === 0}
+                />
+              ))}
+              <CreateReplyRequestDialog articleId={article.id} />
+            </footer>
+          </Box>
+          <Box className={classes.card} px={3.5} py={1.5} mt={3}>
+            <h2>{t`Add a new reply`}</h2>
+            <NewReplySection
+              articleId={article.id}
+              existingReplyIds={(article?.articleReplies || []).map(
+                ({ replyId }) => replyId
+              )}
+              relatedArticles={article?.relatedArticles}
+              onSubmissionComplete={handleNewReplySubmit}
+            />
+          </Box>
+          <Box
+            className={classes.card}
+            px={3.5}
+            py={1.5}
+            mt={3}
+            id="current-replies"
+            ref={replySectionRef}
+          >
+            <h2>{t`Replies to the message`}</h2>
+            <CurrentReplies articleReplies={article.articleReplies} />
+          </Box>
+        </Box>
 
-      <section className="section" id="current-replies" ref={replySectionRef}>
-        <h2>{t`Replies to the message`}</h2>
-        <CurrentReplies articleReplies={article.articleReplies} />
-      </section>
-
-      <section className="section">
-        <h2>{t`Add a new reply`}</h2>
-        <NewReplySection
-          articleId={article.id}
-          existingReplyIds={(article?.articleReplies || []).map(
-            ({ replyId }) => replyId
+        <Box className={cx(classes.card, classes.aside)} px={3.5} py={1.5}>
+          <Box display="flex">
+            <h4>{t`Similar messages`}</h4>
+          </Box>
+          <Divider classes={{ root: classes.divider }} />
+          {similarArticles.length ? (
+            similarArticles.map(({ node }) => (
+              <Box key={node.id} pt={4}>
+                {node.text}
+                <Box py={1}>
+                  <ArticleInfo article={node} />
+                </Box>
+                <Divider />
+              </Box>
+            ))
+          ) : (
+            <Box
+              textAlign="center"
+              pt={4}
+              pb={3}
+            >{t`No similar messages found`}</Box>
           )}
-          relatedArticles={article?.relatedArticles}
-          onSubmissionComplete={handleNewReplySubmit}
-        />
-      </section>
-
-      {article?.similarArticles?.edges?.length > 0 && (
-        <section className="section">
-          <h2>{t`You may be interested in the following similar messages`}</h2>
-          <ul className="similar-articles">
-            {article.similarArticles.edges.map(({ node }) => (
-              <ArticleItem key={node.id} article={node} />
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <style jsx>{`
-        .section {
-          margin-bottom: 64px;
-        }
-        .header {
-          display: flex;
-          align-items: center;
-          flex-flow: row wrap;
-        }
-        .header > .trendline {
-          margin: 0 16px 0 auto;
-        }
-        .message {
-          border: 1px solid #ccc;
-          background: #eee;
-          border-radius: 3px;
-          padding: 24px;
-          word-break: break-all;
-        }
-        .items {
-          list-style-type: none;
-          padding-left: 0;
-        }
-        .similar-articles {
-          padding: 0;
-          list-style: none;
-        }
-      `}</style>
+        </Box>
+      </div>
     </AppLayout>
   );
 }

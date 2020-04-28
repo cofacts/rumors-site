@@ -36,6 +36,10 @@ const useStyles = makeStyles(theme => ({
       padding: '4px 18px',
       marginRight: 10,
     },
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary[300]}`,
+      color: theme.palette.secondary[300],
+    },
   },
   voted: {
     border: `1px solid ${theme.palette.primary[500]}`,
@@ -49,6 +53,10 @@ const useStyles = makeStyles(theme => ({
     color: 'transparent',
     fontSize: 16,
     stroke: theme.palette.secondary[100],
+  },
+  thumbIcon: {
+    fontSize: 16,
+    margin: '0 2px',
   },
   buttonGroup: {
     display: 'flex',
@@ -76,10 +84,6 @@ const useStyles = makeStyles(theme => ({
         borderRight: 0,
       },
     },
-  },
-  icon: {
-    fontSize: 14,
-    marginLeft: 4,
   },
   popover: {
     position: 'relative',
@@ -306,11 +310,11 @@ function ReplyFeedback({
       <div className={classes.buttonGroup} data-ga="Number display">
         <button className={classes.vote} type="button">
           {positiveFeedbackCount}
-          <ThumbUpIcon className={classes.icon} />
+          <ThumbUpIcon className={classes.thumbIcon} />
         </button>
         <button className={classes.vote} type="button">
           {negativeFeedbackCount}
-          <ThumbDownIcon className={classes.icon} />
+          <ThumbDownIcon className={classes.thumbIcon} />
         </button>
         <button
           className={classes.vote}
