@@ -236,7 +236,6 @@ function ArticlePage() {
             </footer>
           </Box>
           <Box className={classes.card} px={3.5} py={1.5} mt={3}>
-            <h2>{t`Add a new reply`}</h2>
             <NewReplySection
               articleId={article.id}
               existingReplyIds={(article?.articleReplies || []).map(

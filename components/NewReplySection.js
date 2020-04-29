@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { withStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 
@@ -55,6 +56,27 @@ const CONNECT_REPLY = gql`
     }
   }
 `;
+
+const CustomTab = withStyles(theme => ({
+  root: {
+    position: 'relative',
+    color: theme.palette.secondary[300],
+    '&$selected': {
+      color: theme.palette.primary,
+      '& $indicator': {
+        color: theme.palette.primary,
+      },
+    },
+  },
+}))(Tab);
+
+const CustomBadge = withStyles(theme => ({
+  badge: {
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.secondary[300],
+    transform: 'scale(1) translate(120%, 0)',
+  },
+}))(Badge);
 
 function NewReplySection({
   articleId,
@@ -120,19 +142,21 @@ function NewReplySection({
 
   return (
     <>
-      <Tabs value={selectedTab} onChange={handleTabChange}>
-        <Tab label={t`New Reply`} />
-        <Tab
+      <Tabs
+        variant="fullWidth"
+        textColor="primary"
+        indicatorColor="primary"
+        value={selectedTab}
+        onChange={handleTabChange}
+      >
+        <CustomTab label={t`New Reply`} />
+        <CustomTab
           label={
-            <Badge
-              color="secondary"
-              badgeContent={relatedArticleReplies.length}
-            >
+            <CustomBadge badgeContent={relatedArticleReplies.length || 1000}>
               {t`Reuse existing reply`}
-            </Badge>
+            </CustomBadge>
           }
         />
-        <Tab label={t`Search`} />
       </Tabs>
       
       {selectedTab === 0 && (
@@ -143,18 +167,18 @@ function NewReplySection({
         />
       )}
       {selectedTab === 1 && (
-        <RelatedReplies
-          relatedArticleReplies={relatedArticleReplies}
-          onConnect={handleConnect}
-          disabled={connectingReply}
-        />
-      )}
-      {selectedTab === 2 && (
-        <ReplySearch
-          existingReplyIds={existingReplyIds}
-          onConnect={handleConnect}
-          disabled={connectingReply}
-        />
+        <>
+          <ReplySearch
+            existingReplyIds={existingReplyIds}
+            onConnect={handleConnect}
+            disabled={connectingReply}
+          />
+          <RelatedReplies
+            relatedArticleReplies={relatedArticleReplies}
+            onConnect={handleConnect}
+            disabled={connectingReply}
+          />
+        </>
       )}
       <Snackbar
         open={!!flashMessage}
