@@ -1,11 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import useCurrentUser from 'lib/useCurrentUser';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
+
+const useStyles = makeStyles(theme => ({
+  form: {
+    position: 'relative',
+  },
+  textarea: {
+    borderRadius: 24,
+    width: '100%',
+    border: `1px solid ${theme.palette.secondary[100]}`,
+    padding: '17px 14px',
+    '&:focus': {
+      paddingBottom: 17 + 37,
+      outline: 'none',
+    },
+  },
+  submit: {
+    position: 'absolute',
+    bottom: 12,
+    right: 8,
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.common.white,
+    border: 'none',
+    outline: 'none',
+    padding: '10px 13px',
+    borderRadius: 30,
+  },
+}));
 
 const CREATE_REPLY_REQUEST = gql`
   mutation CreateReplyRequestFromForm($articleId: String!, $reason: String!) {
@@ -16,7 +44,7 @@ const CREATE_REPLY_REQUEST = gql`
 `;
 const MIN_REASON_LENGTH = 80;
 
-function SubmitButton({ articleId, text, disabled, onFinish }) {
+const SubmitButton = ({ className, articleId, text, disabled, onFinish }) => {
   const [createReplyRequest] = useMutation(CREATE_REPLY_REQUEST, {
     refetchQueries: ['LoadArticlePage'],
   });
@@ -29,11 +57,11 @@ function SubmitButton({ articleId, text, disabled, onFinish }) {
   };
 
   return (
-    <button onClick={handleSubmit} disabled={disabled}>
+    <button className={className} onClick={handleSubmit} disabled={disabled}>
       {disabled ? '字數太少，無法送出' : '送出理由'}
     </button>
   );
-}
+};
 
 const CreateReplyRequestDialog = React.memo(({ articleId }) => {
   const [disabled, setDisabled] = useState(false);
@@ -59,6 +87,8 @@ const CreateReplyRequestDialog = React.memo(({ articleId }) => {
     requestAnimationFrame(() => (localStorage.text = ''));
   };
 
+  const classes = useStyles();
+
   const user = useCurrentUser();
 
   return (
@@ -70,15 +100,22 @@ const CreateReplyRequestDialog = React.memo(({ articleId }) => {
         <p>
           請告訴其他編輯：<strong>您為何覺得這是一則謠言</strong>？
         </p>
-
-        <Box
-          component="textarea"
-          placeholder="例：我用 OO 關鍵字查詢 Facebook，發現⋯⋯ / 我在 XX 官網上找到不一樣的說法如下⋯⋯"
-          onChange={handleTextChange}
-          value={text}
-          width="100%"
-          height="3rem"
-        />
+        <div className={classes.form}>
+          <textarea
+            className={classes.textarea}
+            placeholder="例：我用 OO 關鍵字查詢 Facebook，發現⋯⋯ / 我在 XX 官網上找到不一樣的說法如下⋯⋯"
+            onChange={handleTextChange}
+            value={text}
+            rows={1}
+          />
+          <SubmitButton
+            className={classes.submit}
+            articleId={articleId}
+            text={text}
+            disabled={disabled}
+            onFinish={handleReasonSubmitted}
+          />
+        </div>
         <details>
           <summary>送出理由小撇步</summary>
           <ul>
@@ -88,12 +125,6 @@ const CreateReplyRequestDialog = React.memo(({ articleId }) => {
             <li>把你的結果傳給其他編輯參考吧！</li>
           </ul>
         </details>
-        <SubmitButton
-          articleId={articleId}
-          text={text}
-          disabled={disabled}
-          onFinish={handleReasonSubmitted}
-        />
       </Box>
     </Box>
   );
