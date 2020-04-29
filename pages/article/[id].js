@@ -20,7 +20,7 @@ import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
-import CreateReplyRequestDialog from 'components/CreateReplyRequestDialog';
+import CreateReplyRequestForm from 'components/CreateReplyRequestForm';
 import NewReplySection from 'components/NewReplySection';
 import ArticleItem from 'components/ArticleItem';
 import ArticleInfo from 'components/ArticleInfo';
@@ -232,7 +232,7 @@ function ArticlePage() {
                   isArticleCreator={idx === 0}
                 />
               ))}
-              <CreateReplyRequestDialog articleId={article.id} />
+              <CreateReplyRequestForm articleId={article.id} />
             </footer>
           </Box>
           <Box className={classes.card} px={3.5} py={1.5} mt={3}>

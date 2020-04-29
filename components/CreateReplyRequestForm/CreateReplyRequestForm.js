@@ -63,7 +63,7 @@ const SubmitButton = ({ className, articleId, text, disabled, onFinish }) => {
   );
 };
 
-const CreateReplyRequestDialog = React.memo(({ articleId }) => {
+const CreateReplyRequestForm = React.memo(({ articleId }) => {
   const [disabled, setDisabled] = useState(false);
   const [text, setText] = useState('');
 
@@ -130,6 +130,6 @@ const CreateReplyRequestDialog = React.memo(({ articleId }) => {
   );
 });
 
-CreateReplyRequestDialog.displayName = 'CreateReplyRequestDialog';
+CreateReplyRequestForm.displayName = 'CreateReplyRequestForm';
 
-export default CreateReplyRequestDialog;
+export default CreateReplyRequestForm;
