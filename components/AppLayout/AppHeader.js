@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
-import cx from 'clsx';
 import NavLink from 'components/NavLink';
 import GlobalSearch from './GlobalSearch';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import {
   Box,
@@ -14,6 +13,7 @@ import {
   ListItemIcon,
   Divider,
   Typography,
+  Badge,
 } from '@material-ui/core';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
@@ -106,24 +106,6 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
   },
-  withBadge: {
-    position: 'relative',
-  },
-  badge: {
-    left: 'calc(100% - 30px)',
-    top: 0,
-    position: 'absolute',
-    color: theme.palette.common.white,
-    background: '#FB5959',
-    borderRadius: 20,
-    padding: '0px 4px',
-    lineHeight: '20px',
-    fontSize: 14,
-    [theme.breakpoints.up('md')]: {
-      left: 'calc(100% - 25px)',
-      top: -5,
-    },
-  },
 }));
 
 const LIST_UNSOLVED_ARTICLES = gql`
@@ -133,6 +115,10 @@ const LIST_UNSOLVED_ARTICLES = gql`
     }
   }
 `;
+
+const CustomBadge = withStyles(theme => ({
+  badge: { backgroundColor: '#FB5959', color: theme.palette.common.white },
+}))(Badge);
 
 const Links = ({ classes, unsolvedCount }) => (
   <>
@@ -152,13 +138,16 @@ const Links = ({ classes, unsolvedCount }) => (
     </NavLink>
     <NavLink
       href="/hoax-for-you"
-      className={cx(classes.tab, classes.withBadge)}
+      className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {t`For You`}
-      <span className={classes.badge}>
-        {unsolvedCount >= 100 ? '99+' : unsolvedCount}
-      </span>
+      <CustomBadge
+        classes={{ root: classes.badge }}
+        badgeContent={unsolvedCount}
+        showZero={true}
+      >
+        {t`For You`}
+      </CustomBadge>
     </NavLink>
     <Box
       display={['none', 'none', 'inline']}
