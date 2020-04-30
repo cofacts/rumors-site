@@ -5,8 +5,8 @@ import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
 import ReplyFeedback from './ReplyFeedback';
 import { t } from 'ttag';
-import TextExpansion from './TextExpansion';
-// import ArticleItemWidget from './ArticleItemWidget/ArticleItemWidget.js';
+import { nl2br } from 'lib/text';
+import ExpandableText from './ExpandableText';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -88,9 +88,12 @@ const useStyles = makeStyles(theme => ({
       zIndex: 2,
     },
   },
-  contentContainer: {
-    // fix display: box display
+  content: {
+    // fix very very long string layout
+    lineBreak: 'anywhere',
     minWidth: 1,
+    margin: '12px 0',
+    flex: 1,
   },
 }));
 
@@ -127,9 +130,9 @@ export default function ArticleItem({
             </div>
           </div>
         )}
-        <div className={classes.contentContainer}>
-          <TextExpansion content={text} disable={isLink} />
-        </div>
+        <ExpandableText className={classes.content} lineClamp={3}>
+          {nl2br(text)}
+        </ExpandableText>
       </div>
     </>
   );
