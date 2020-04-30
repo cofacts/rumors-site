@@ -1,12 +1,57 @@
 import React from 'react';
+import { t } from 'ttag';
+import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 
 import { TYPE_NAME, TYPE_DESC } from 'constants/replyType';
 import ExpandableText from './ExpandableText';
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import { linkify, nl2br } from 'lib/text';
 import Link from 'next/link';
-import { sectionStyle } from './ReplyConnection.styles';
+import PlainList from 'components/PlainList';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    position: 'relative',
+    margin: '6px 0',
+    border: `1px solid ${theme.palette.secondary[100]}`,
+    borderRadius: 8,
+  },
+  body: {
+    padding: 24,
+  },
+  link: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    padding: 8,
+    borderBottomLeftRadius: 8,
+    borderLeft: `1px solid ${theme.palette.secondary[100]}`,
+    borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+    textDecoration: 'none',
+    color: theme.palette.secondary[300],
+  },
+  blockquote: {
+    fontSize: 13,
+    color: theme.palette.secondary[200],
+    borderLeft: `2px solid ${theme.palette.secondary[200]}`,
+    paddingLeft: 8,
+    marginLeft: 0,
+  },
+  title: {
+    marginBottom: '.5rem',
+  },
+  submit: {
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7,
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.common.white,
+    border: 'none',
+    outline: 'none',
+    width: '100%',
+    cursor: 'pointer',
+    padding: 12,
+  },
+}));
 
 const RelatedArticleReplyData = gql`
   fragment RelatedArticleReplyData on ArticleReply {
@@ -32,38 +77,38 @@ const RelatedArticleReplyData = gql`
  * @param {boolean} props.disabled - if we should disable the connect button
  */
 function RelatedReplyItem({ article, reply, onConnect, disabled }) {
-  const createdAt = new Date(reply.createdAt);
+  const classes = useStyles();
   return (
-    <li className="root">
-      <header className="section">
-        <Link href="/article/[id]" as={`/article/${article.id}`}>
-          <a>相關訊息</a>
-        </Link>
-        被標示為：
-        <strong title={TYPE_DESC[reply.type]}>{TYPE_NAME[reply.type]}</strong>
-      </header>
-      <section className="section">
-        <h3>相關訊息原文</h3>
-        <blockquote>
-          <ExpandableText wordCount={40}>
-            {/*
-              Don't need nl2br here, because the user just need a glimpse on the content.
-              Line breaks won't help the users.
-            */}
-            {linkify(article.text)}
-          </ExpandableText>
-        </blockquote>
-      </section>
-      <section className="section">
-        <h3>回應</h3>
-        <ExpandableText>{nl2br(linkify(reply.text))}</ExpandableText>
-      </section>
+    <li className={classes.root}>
+      <Link href="/article/[id]" as={`/article/${article.id}`}>
+        <a className={classes.link}>相關訊息</a>
+      </Link>
+      <div className={classes.body}>
+        <header>
+          {t`Message below was considered`}{' '}
+          <strong title={TYPE_DESC[reply.type]}>{TYPE_NAME[reply.type]}</strong>
+        </header>
+        <section>
+          <h3 className={classes.title}>{t`Related article`}</h3>
+          <blockquote className={classes.blockquote}>
+            <ExpandableText wordCount={40}>
+              {/*
+                Don't need nl2br here, because the user just need a glimpse on the content.
+                Line breaks won't help the users.
+              */}
+              {linkify(article.text)}
+            </ExpandableText>
+          </blockquote>
+        </section>
+        <section>
+          <h3 className={classes.title}>{t`Related reply`}</h3>
+          <ExpandableText>{nl2br(linkify(reply.text))}</ExpandableText>
+        </section>
+      </div>
+
       <footer>
-        <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
-          <a title={format(createdAt)}>{formatDistanceToNow(createdAt)}</a>
-        </Link>
-        ・
         <button
+          className={classes.submit}
           type="button"
           onClick={() => onConnect(reply.id)}
           disabled={disabled}
@@ -71,31 +116,6 @@ function RelatedReplyItem({ article, reply, onConnect, disabled }) {
           將這份回應加進此文章的回應
         </button>
       </footer>
-
-      <style jsx>{`
-        .root {
-          padding: 24px;
-          border: 1px solid #ccc;
-          border-top: 0;
-        }
-        .root:first-child {
-          border-top: 1px solid #ccc;
-        }
-        .root:hover {
-          background: rgba(0, 0, 0, 0.05);
-        }
-        blockquote {
-          font-size: 13px;
-          color: #999;
-          border-left: #ccc 2px solid;
-          padding-left: 8px;
-          margin-left: 0;
-        }
-        .similarity {
-          font-weight: normal;
-        }
-      `}</style>
-      <style jsx>{sectionStyle}</style>
     </li>
   );
 }
@@ -111,26 +131,18 @@ function RelatedReplies({
   }
 
   return (
-    <ul className="items">
-      {relatedArticleReplies.map(({ article, reply }) => {
-        return (
-          <RelatedReplyItem
-            key={`${article.id}/${reply.id}`}
-            targetArticleId={articleId}
-            article={article}
-            reply={reply}
-            onConnect={onConnect}
-            disabled={disabled}
-          />
-        );
-      })}
-      <style jsx>{`
-        .items {
-          list-style-type: none;
-          padding-left: 0;
-        }
-      `}</style>
-    </ul>
+    <PlainList>
+      {relatedArticleReplies.map(({ article, reply }) => (
+        <RelatedReplyItem
+          key={`${article.id}/${reply.id}`}
+          targetArticleId={articleId}
+          article={article}
+          reply={reply}
+          onConnect={onConnect}
+          disabled={disabled}
+        />
+      ))}
+    </PlainList>
   );
 }
 

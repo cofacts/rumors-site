@@ -14,6 +14,7 @@ import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
 import ArticleReply from 'components/ArticleReply';
 import UsedArticleItem from 'components/UsedArticleItem';
+import PlainList from 'components/PlainList';
 
 import { nl2br, linkify, ellipsis } from 'lib/text';
 
@@ -193,7 +194,7 @@ function ReplyPage() {
 
       <section className="section">
         <h2>{t`This reply`}</h2>
-        <ul className="items">
+        <PlainList>
           <ArticleReply
             articleReply={originalArticleReply}
             actionText={isDeleted ? t`Restore` : t`Delete`}
@@ -201,7 +202,7 @@ function ReplyPage() {
             disabled={updatingArticleReplyStatus}
             linkToReply={false}
           />
-        </ul>
+        </PlainList>
         {isDeleted && (
           <p className="deleted-prompt">{t`This reply has been deleted by its author.`}</p>
         )}
@@ -209,11 +210,11 @@ function ReplyPage() {
 
       <section className="section">
         <h2>{t`The reply is also used in these messages`}</h2>
-        <ul className="items">
+        <PlainList>
           {otherArticleReplies.map(ar => (
             <UsedArticleItem key={ar.article.id} articleReply={ar} />
           ))}
-        </ul>
+        </PlainList>
       </section>
 
       <style jsx>{`
@@ -231,10 +232,6 @@ function ReplyPage() {
           border-radius: 3px;
           padding: 24px;
           word-break: break-all;
-        }
-        .items {
-          list-style-type: none;
-          padding-left: 0;
         }
         .deleted-prompt {
           font-size: 12px;

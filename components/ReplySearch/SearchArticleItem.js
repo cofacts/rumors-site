@@ -10,7 +10,8 @@ import ArticleReply from 'components/ArticleReply';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import { nl2br, linkify } from 'lib/text';
 
-import ExpandableText from '../ExpandableText';
+import ExpandableText from 'components/ExpandableText';
+import PlainList from 'components/PlainList';
 import { sectionStyle } from '../ReplyConnection.styles';
 
 class SearchArticleItem extends PureComponent {
@@ -72,7 +73,7 @@ class SearchArticleItem extends PureComponent {
         </ExpandableText>
         <Dialog onClose={this.handleModalClose} open={repliesModalOpen}>
           <DialogTitle>{t`Replies of the searched message`}</DialogTitle>
-          <ul className="items">
+          <PlainList>
             {article.articleReplies.map(ar => (
               <ArticleReply
                 key={`${ar.articleId}__${ar.replyId}`}
@@ -84,7 +85,7 @@ class SearchArticleItem extends PureComponent {
                 showFeedback={false}
               />
             ))}
-          </ul>
+          </PlainList>
         </Dialog>
         <style jsx>{`
           .root {
@@ -114,10 +115,6 @@ class SearchArticleItem extends PureComponent {
             width: auto;
             display: inline-block;
             margin-left: 0.5em;
-          }
-          .items {
-            list-style-type: none;
-            padding-left: 0;
           }
         `}</style>
         <style jsx>{sectionStyle}</style>

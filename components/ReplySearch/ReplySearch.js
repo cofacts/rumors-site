@@ -10,6 +10,7 @@ import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
 import RelatedReplies from '../RelatedReplies';
 import SearchArticleItem from './SearchArticleItem.js';
 import { Typography } from '@material-ui/core';
+import PlainList from 'components/PlainList';
 
 const SEARCH = gql`
   query SearchArticleAndReply($query: String!) {
@@ -46,27 +47,17 @@ const SEARCH = gql`
   ${SearchArticleItem.fragments.SearchArticleData}
 `;
 
-const SearchArticles = ({ onConnect, searchArticles }) => {
-  return (
-    <ul className="items">
-      {searchArticles.map(({ node: article }) => {
-        return (
-          <SearchArticleItem
-            key={article.id}
-            article={article}
-            onConnect={onConnect}
-          />
-        );
-      })}
-      <style jsx>{`
-        .items {
-          list-style-type: none;
-          padding-left: 0;
-        }
-      `}</style>
-    </ul>
-  );
-};
+const SearchArticles = ({ onConnect, searchArticles }) => (
+  <PlainList>
+    {searchArticles.map(({ node: article }) => (
+      <SearchArticleItem
+        key={article.id}
+        article={article}
+        onConnect={onConnect}
+      />
+    ))}
+  </PlainList>
+);
 
 /**
  * @param {function} props.onConnect - Connect reply handler. (replyId) => undefined
