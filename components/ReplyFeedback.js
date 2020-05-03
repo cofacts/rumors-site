@@ -40,6 +40,14 @@ const useStyles = makeStyles(theme => ({
   voted: {
     border: `1px solid ${theme.palette.primary[500]}`,
     color: theme.palette.primary[500],
+    '& $outlinedIcon': {
+      color: 'transparent',
+      stroke: theme.palette.primary[500],
+    },
+  },
+  outlinedIcon: {
+    color: 'transparent',
+    stroke: theme.palette.secondary[100],
   },
   buttonGroup: {
     display: 'flex',
@@ -281,14 +289,14 @@ function ReplyFeedback({
         type="button"
         onClick={e => openVotePopover(e, 'UPVOTE')}
       >
-        <ThumbUpIcon />
+        <ThumbUpIcon className={classes.outlinedIcon} />
       </button>
       <button
         className={cx(classes.vote, ownVote === 'DOWNVOTE' && classes.voted)}
         type="button"
         onClick={e => openVotePopover(e, 'DOWNVOTE')}
       >
-        <ThumbDownIcon />
+        <ThumbDownIcon className={classes.outlinedIcon} />
       </button>
       <div className={classes.buttonGroup}>
         <button className={classes.vote} type="button">
