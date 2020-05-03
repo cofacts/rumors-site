@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   result: {
     padding: '0 20px',
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     display: ({ value }) => (value ? 'block' : 'none'),
     background: theme.palette.secondary[500],
     width: '100%',
