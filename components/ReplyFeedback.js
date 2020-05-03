@@ -186,12 +186,13 @@ const ArticleReplyFeedbackData = gql`
     ownVote
     feedbacks {
       id
+      comment
+      vote
       user {
         id
         name
         avatarUrl
       }
-      comment
     }
   }
   ${ArticleReplyFeedbackForUser}
