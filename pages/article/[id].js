@@ -253,7 +253,8 @@ function ArticlePage() {
             id="current-replies"
             ref={replySectionRef}
           >
-            <h2>{t`Replies to the message`}</h2>
+            <h2>{t`${article.articleReplies.length} replies to the message`}</h2>
+            <Divider classes={{ root: classes.divider }} />
             <CurrentReplies articleReplies={article.articleReplies} />
           </Box>
         </Box>

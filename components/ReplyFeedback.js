@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     stroke: theme.palette.secondary[100],
   },
   thumbIcon: {
-    fontSize: 16,
+    fontSize: 15,
     margin: '0 2px',
   },
   buttonGroup: {
