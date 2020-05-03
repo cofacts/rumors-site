@@ -3,7 +3,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
-import withData from 'lib/apollo';
 import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
@@ -109,4 +108,4 @@ function AppLayout({ children }) {
   );
 }
 
-export default withData(AppLayout);
+export default AppLayout;
