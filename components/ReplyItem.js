@@ -50,6 +50,14 @@ const useStyles = makeStyles(theme => ({
       order: 2,
     },
   },
+  avatar: {
+    width: 30,
+    height: 30,
+    [theme.breakpoints.up('md')]: {
+      width: 72,
+      height: 72,
+    },
+  },
 }));
 
 /**
@@ -76,14 +84,8 @@ function ReplyItem({
 
   return (
     <div className={classes.root}>
-      <Box p="24px" display={['none', 'none', 'block']}>
-        <Avatar user={user} size={72} />
-        {/*
-          <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
-        */}
-      </Box>
-      <Box pr="14px" display={['block', 'block', 'none']}>
-        <Avatar user={user} size={30} />
+      <Box p={{ xs: '12px 14px 0 0', md: '24px' }}>
+        <Avatar user={user} className={classes.avatar} />
         {/*
           <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
         */}
