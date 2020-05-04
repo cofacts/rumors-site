@@ -8,10 +8,10 @@ export const TYPE_ICON = {
 };
 
 export const TYPE_NAME = {
-  NOT_ARTICLE: `${TYPE_ICON.NOT_ARTICLE} ${t`Invalid request`}`,
-  OPINIONATED: `${TYPE_ICON.OPINIONATED} ${t`Contains personal perspective`}`,
-  NOT_RUMOR: `${TYPE_ICON.NOT_RUMOR} ${t`Contains true information`}`,
-  RUMOR: `${TYPE_ICON.RUMOR} ${t`Contains misinformation`}`,
+  NOT_ARTICLE: t`invalid request`,
+  OPINIONATED: t`contains personal perspective`,
+  NOT_RUMOR: t`contains true information`,
+  RUMOR: t`contains misinformation`,
 };
 
 export const TYPE_DESC = {

@@ -11,12 +11,12 @@ const useStyles = makeStyles({
   },
 });
 
-function Avatar({ user = {}, size = 24, className, ...rest }) {
+function Avatar({ user, size = 24, className, ...rest }) {
   const classes = useStyles(size);
   return (
     <img
       className={cx(classes.root, className)}
-      src={user.avatarUrl}
+      src={user?.avatarUrl}
       alt=""
       {...rest}
     />

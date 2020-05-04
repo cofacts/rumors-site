@@ -29,15 +29,14 @@ const USER_QUERY = gql`
   }
 `;
 const useStyles = makeStyles({
-  root: {
+  loadingProgress: {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
   },
-  // @todo: workaround style
-  main: {
-    paddingTop: '2rem',
+  container: {
+    flex: 1,
   },
 });
 
@@ -96,8 +95,10 @@ function AppLayout({ children }) {
         user={data?.GetUser}
         onLoginModalOpen={openLoginModal}
       />
-      {isRouteChanging && <LinearProgress classes={{ root: classes.root }} />}
-      <Container className={classes.main}>{children}</Container>
+      {isRouteChanging && (
+        <LinearProgress classes={{ root: classes.loadingProgress }} />
+      )}
+      <Container className={classes.container}>{children}</Container>
       <AppFooter />
       <GoogleWebsiteTranslator />
       {loginModalOpen && (

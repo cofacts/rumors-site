@@ -11,7 +11,7 @@ export default class ExpandableText extends React.Component {
     isExpanded: false,
   };
 
-  toggleExapnd = () => {
+  toggleExpand = () => {
     this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }));
   };
 
@@ -21,7 +21,7 @@ export default class ExpandableText extends React.Component {
       <button
         key="expandable-text-more-button"
         className="more"
-        onClick={this.toggleExapnd}
+        onClick={this.toggleExpand}
       >
         {isExpanded ? '隱藏全文' : '閱讀更多'}
         <style jsx>{`

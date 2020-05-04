@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
 import { t } from 'ttag';
-import cx from 'clsx';
 import NavLink from 'components/NavLink';
-// import GlobalSearch from './GlobalSearch';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import GlobalSearch from './GlobalSearch';
+import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import {
   Box,
@@ -13,15 +13,17 @@ import {
   ListItemIcon,
   Divider,
   Typography,
+  Badge,
 } from '@material-ui/core';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
-import { EDITOR_FACEBOOK_GROUP, PROJECT_HACKFOLDR } from 'constants/urls';
+import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import * as Widgets from './Widgets';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
+import { useQuery } from '@apollo/react-hooks';
 
 const MENU_BUTTON_WIDTH = 48;
 
@@ -68,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[300],
     [theme.breakpoints.up('md')]: {
       color: theme.palette.secondary[500],
-      padding: '0 10px',
+      padding: '0 18px',
     },
   },
   activeTab: {
@@ -106,7 +108,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Links = ({ classes }) => (
+const LIST_UNSOLVED_ARTICLES = gql`
+  query ListArticles {
+    ListArticles(filter: { replyCount: { EQ: 0 } }) {
+      totalCount
+    }
+  }
+`;
+
+const CustomBadge = withStyles(theme => ({
+  badge: { backgroundColor: '#FB5959', color: theme.palette.common.white },
+}))(Badge);
+
+const Links = ({ classes, unsolvedCount }) => (
   <>
     <NavLink
       href="/articles"
@@ -123,22 +137,38 @@ const Links = ({ classes }) => (
       {t`Replies`}
     </NavLink>
     <NavLink
+      href="/hoax-for-you"
+      className={classes.tab}
+      activeClassName={classes.activeTab}
+    >
+      <CustomBadge
+        classes={{ root: classes.badge }}
+        badgeContent={unsolvedCount}
+        showZero={true}
+      >
+        {t`For You`}
+      </CustomBadge>
+    </NavLink>
+    <Box
+      display={['none', 'none', 'inline']}
+      component={NavLink}
       external
       href={EDITOR_FACEBOOK_GROUP}
-      className={cx(classes.tab, 'hidden-xs')}
-    >{t`Editor forum`}</NavLink>
-    <NavLink
-      external
-      href={PROJECT_HACKFOLDR}
       className={classes.tab}
-    >{t`About`}</NavLink>
+    >
+      {t`Forum`}
+    </Box>
   </>
 );
 
-function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
+function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
   const [anchor, setAnchor] = useState(null);
+  const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
   const theme = useTheme();
+  const { data } = useQuery(LIST_UNSOLVED_ARTICLES);
+
+  const unsolvedCount = data?.ListArticles?.totalCount;
 
   const openProfileMenu = e => setAnchor(e.currentTarget);
   const closeProfileMenu = () => setAnchor(null);
@@ -147,21 +177,22 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
     <header className={classes.root}>
       <div className={classes.top}>
         <div className={classes.flex}>
-          <a href="/">
-            <picture>
-              <source
-                media={`(min-width: ${theme.breakpoints.values.md}px)`}
-                srcSet={desktopLogo}
-              />
-              <img className={classes.logo} src={mobileLogo} alt="" />
-            </picture>
-          </a>
+          {displayLogo && (
+            <a href="/">
+              <picture>
+                <source
+                  media={`(min-width: ${theme.breakpoints.values.md}px)`}
+                  srcSet={desktopLogo}
+                />
+                <img className={classes.logo} src={mobileLogo} alt="" />
+              </picture>
+            </a>
+          )}
           <Box display={['none', 'none', 'flex']} fontSize={20} px="10px">
-            <Links classes={classes} />
+            <Links classes={classes} unsolvedCount={unsolvedCount} />
           </Box>
         </div>
-        {/* GlobalSearch not fully implemented yet */}
-        {/* <GlobalSearch />*/}
+        <GlobalSearch onIconClick={() => setDisplayLogo(false)} />
         <Box display={['none', 'none', 'block']}>
           {user?.name ? (
             <>
@@ -196,7 +227,7 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
                   <Typography variant="inherit">{t`About`}</Typography>
                 </MenuItem>
                 <Divider classes={{ root: classes.divider }} />
-                <MenuItem onClick={logout}>
+                <MenuItem onClick={onLogout}>
                   <ListItemIcon className={classes.listIcon}>
                     <ExitToAppRoundedIcon />
                   </ListItemIcon>
@@ -218,7 +249,7 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, logout }) {
         height={TABS_HEIGHT}
         css={{ backgroundColor: theme.palette.secondary[50] }}
       >
-        <Links classes={classes} />
+        <Links classes={classes} unsolvedCount={unsolvedCount} />
         <div className={classes.menuToggleButton} onClick={onMenuButtonClick}>
           <MoreHorizIcon />
         </div>

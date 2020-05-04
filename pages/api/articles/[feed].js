@@ -8,7 +8,7 @@ import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
 import rollbar from 'lib/rollbar';
-import { getQueryVars } from 'pages/articles';
+import { getQueryVars } from 'components/ArticlePageLayout';
 import { TYPE_NAME } from 'constants/replyType';
 
 const TITLE_LENGTH = 40;

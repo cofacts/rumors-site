@@ -84,6 +84,12 @@ class MyDocument extends Document {
                 蘋方-繁, 'PingFang TC', 微軟正黑體, 'Microsoft JhengHei',
                 sans-serif;
             }
+            #__next {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              min-height: 100vh;
+            }
           `}</style>
         </body>
       </html>

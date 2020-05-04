@@ -11,14 +11,14 @@ const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
 
-function ArticleListPage() {
+function HoaxForYouPage() {
   const { query } = useRouter();
   const queryString = querystring.stringify(query);
 
   return (
     <AppLayout>
       <Head>
-        <title>{t`Article list`}</title>
+        <title>{t`Hoax for you`}</title>
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -30,9 +30,16 @@ function ArticleListPage() {
           href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
         />
       </Head>
-      <ArticlePageLayout title={t`Messages`} />
+      <ArticlePageLayout
+        title={t`Hoax for you`}
+        filters={{
+          status: false,
+          consider: false,
+          category: true,
+        }}
+      />
     </AppLayout>
   );
 }
 
-export default withData(ArticleListPage);
+export default withData(HoaxForYouPage);
