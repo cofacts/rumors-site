@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
   outlinedIcon: {
     color: 'transparent',
+    fontSize: 16,
     stroke: theme.palette.secondary[100],
   },
   buttonGroup: {
@@ -58,9 +59,7 @@ const useStyles = makeStyles(theme => ({
       display: 'inline-flex',
       color: theme.palette.secondary[200],
       background: theme.palette.secondary[50],
-      '& img': {
-        paddingLeft: 6,
-      },
+      fontSize: 16,
       '&:first-child': {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
@@ -77,6 +76,10 @@ const useStyles = makeStyles(theme => ({
         borderRight: 0,
       },
     },
+  },
+  icon: {
+    fontSize: 14,
+    marginLeft: 4,
   },
   popover: {
     position: 'relative',
@@ -301,11 +304,11 @@ function ReplyFeedback({
       <div className={classes.buttonGroup}>
         <button className={classes.vote} type="button">
           {positiveFeedbackCount}
-          <ThumbUpIcon style={{ fontSize: 16, margin: '0 2px' }} />
+          <ThumbUpIcon className={classes.icon} />
         </button>
         <button className={classes.vote} type="button">
           {negativeFeedbackCount}
-          <ThumbDownIcon style={{ fontSize: 16, margin: '0 2px' }} />
+          <ThumbDownIcon className={classes.icon} />
         </button>
         <button
           className={classes.vote}

@@ -84,7 +84,7 @@ function ReplyItem({
 
   return (
     <div className={classes.root}>
-      <Box p={{ xs: '12px 14px 0 0', md: '24px' }}>
+      <Box p={{ xs: '8px 14px 0 0', md: '24px' }}>
         <Avatar user={user} className={classes.avatar} />
         {/*
           <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
