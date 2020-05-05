@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
+  userIcon: {
+    fontSize: 40,
+  },
   vote: {
     display: 'flex',
     alignItems: 'center',
@@ -139,7 +142,7 @@ function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
         {replyRequestReason && (
           <>
             <Box color="primary.main" pr={2}>
-              <UserIcon fontSize="large" />
+              <UserIcon className={classes.userIcon} />
             </Box>
             <Box flex={1}>
               <p className="reason">{replyRequestReason}</p>

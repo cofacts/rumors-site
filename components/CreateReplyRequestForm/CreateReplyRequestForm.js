@@ -1,16 +1,67 @@
 import React, { useState, useEffect } from 'react';
+import { t } from 'ttag';
 import { useMutation } from '@apollo/react-hooks';
-import { Box } from '@material-ui/core';
+import { Box, Menu, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
+import Hint from 'components/ReplyForm/Hint';
 import useCurrentUser from 'lib/useCurrentUser';
+import cx from 'clsx';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 
 const useStyles = makeStyles(theme => ({
+  button: {
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.common.white,
+    cursor: 'pointer',
+    border: 'none',
+    outline: 'none',
+    borderRadius: 30,
+    padding: '10px 13px',
+  },
+  buttonGroup: {
+    flex: 3,
+    paddingLeft: 8,
+    display: 'flex',
+    alignItems: 'center',
+    whiteSpace: 'nowrap',
+    '& button': {
+      flex: 1,
+      marginRight: 0,
+      color: theme.palette.secondary[300],
+      background: theme.palette.common.white,
+      outline: 'none',
+      cursor: 'pointer',
+      fontSize: 16,
+      padding: '8px 24px',
+      border: `1px solid ${theme.palette.secondary[100]}`,
+      '&:first-child': {
+        borderTopLeftRadius: 30,
+        borderBottomLeftRadius: 30,
+        paddingLeft: 24,
+      },
+      '&:last-child': {
+        borderTopRightRadius: 30,
+        borderBottomRightRadius: 30,
+        paddingRight: 24,
+      },
+      '&:not(:first-child):not(:last-child)': {
+        borderLeft: 0,
+        borderRight: 0,
+      },
+      '&:hover': {
+        background: theme.palette.secondary[50],
+      },
+      '&.active': {
+        color: theme.palette.primary[500],
+      },
+    },
+  },
   form: {
     position: 'relative',
+    flex: 1,
   },
   textarea: {
     borderRadius: 24,
@@ -26,12 +77,14 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: 12,
     right: 8,
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.common.white,
-    border: 'none',
-    outline: 'none',
-    padding: '10px 13px',
-    borderRadius: 30,
+  },
+  replyButton: {
+    flex: 1,
+    width: '100%',
+  },
+  menu: {
+    marginTop: 40,
+    marginLeft: 30,
   },
 }));
 
@@ -63,72 +116,123 @@ const SubmitButton = ({ className, articleId, text, disabled, onFinish }) => {
   );
 };
 
-const CreateReplyRequestForm = React.memo(({ articleId }) => {
-  const [disabled, setDisabled] = useState(false);
-  const [text, setText] = useState('');
+const CreateReplyRequestForm = React.memo(
+  ({ articleId, requestedForReply, onNewReplyButtonClick }) => {
+    const [disabled, setDisabled] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [text, setText] = useState('');
 
-  useEffect(() => {
-    // restore from localStorage if applicable.
-    // We don't do this in constructor to avoid server/client render mismatch.
-    //
-    setText(localStorage.text || text);
-  }, []);
+    const [shareAnchor, setShareAnchor] = useState(null);
 
-  const handleTextChange = ({ target: { value } }) => {
-    setText(value);
-    setDisabled(!value || value.length < MIN_REASON_LENGTH);
-    // Backup to localStorage
-    requestAnimationFrame(() => (localStorage.text = value));
-  };
+    useEffect(() => {
+      // restore from localStorage if applicable.
+      // We don't do this in constructor to avoid server/client render mismatch.
+      //
+      setText(localStorage.text || text);
+    }, []);
 
-  const handleReasonSubmitted = () => {
-    setText('');
-    setDisabled(false);
-    requestAnimationFrame(() => (localStorage.text = ''));
-  };
+    const handleTextChange = ({ target: { value } }) => {
+      setText(value);
+      setDisabled(!value || value.length < MIN_REASON_LENGTH);
+      // Backup to localStorage
+      requestAnimationFrame(() => (localStorage.text = value));
+    };
 
-  const classes = useStyles();
+    const handleReasonSubmitted = () => {
+      setText('');
+      setDisabled(false);
+      requestAnimationFrame(() => (localStorage.text = ''));
+    };
 
-  const user = useCurrentUser();
+    const classes = useStyles();
+    const user = useCurrentUser();
 
-  return (
-    <Box display="flex" alignItems="center">
-      <Box pr={2}>
-        <Avatar user={user} size={32} />
-      </Box>
-      <Box component="form" flex={1}>
-        <p>
-          請告訴其他編輯：<strong>您為何覺得這是一則謠言</strong>？
-        </p>
-        <div className={classes.form}>
-          <textarea
-            className={classes.textarea}
-            placeholder="例：我用 OO 關鍵字查詢 Facebook，發現⋯⋯ / 我在 XX 官網上找到不一樣的說法如下⋯⋯"
-            onChange={handleTextChange}
-            value={text}
-            rows={1}
-          />
-          <SubmitButton
-            className={classes.submit}
-            articleId={articleId}
-            text={text}
-            disabled={disabled}
-            onFinish={handleReasonSubmitted}
-          />
-        </div>
-        <details>
-          <summary>送出理由小撇步</summary>
-          <ul>
-            <li>闡述更多想法</li>
-            <li>去 google 查查看</li>
-            <li>把全文複製貼上到 Facebook 搜尋框看看</li>
-            <li>把你的結果傳給其他編輯參考吧！</li>
-          </ul>
-        </details>
-      </Box>
-    </Box>
-  );
-});
+    return (
+      <div>
+        {showForm && (
+          <>
+            <Box pl={7} pt={2}>
+              <Hint>{t`Did you find anything suspicious about the message?`}</Hint>
+            </Box>
+            <Box component="form" display="flex" pt={2}>
+              <Box pr={2} pt={0.5}>
+                <Avatar user={user} size={42} />
+              </Box>
+              <Box flex={1}>
+                <div className={classes.form}>
+                  <textarea
+                    className={classes.textarea}
+                    placeholder="例：我用 OO 關鍵字查詢 Facebook，發現⋯⋯ / 我在 XX 官網上找到不一樣的說法如下⋯⋯"
+                    onChange={handleTextChange}
+                    value={text}
+                    rows={1}
+                  />
+                  <SubmitButton
+                    className={cx(classes.submit, classes.button)}
+                    articleId={articleId}
+                    text={text}
+                    disabled={disabled}
+                    onFinish={handleReasonSubmitted}
+                  />
+                </div>
+              </Box>
+            </Box>
+          </>
+        )}
+        <Box display="flex" py={2} alignItems="center">
+          <button
+            type="button"
+            className={cx(classes.button, classes.replyButton)}
+            onClick={onNewReplyButtonClick}
+          >
+            {t`Reply to this message`}
+          </button>
+          <div className={classes.buttonGroup}>
+            <button
+              type="button"
+              className={cx(showForm && 'active')}
+              onClick={() => setShowForm(!showForm)}
+            >{t`I second that`}</button>
+            <button
+              type="button"
+              className={cx(requestedForReply && 'active')}
+            >{t`I also wanna know`}</button>
+            <button
+              type="button"
+              onClick={e => setShareAnchor(e.currentTarget)}
+            >{t`Share`}</button>
+          </div>
+          <Menu
+            id="share-article-menu"
+            anchorEl={shareAnchor}
+            keepMounted
+            getContentAnchorEl={null}
+            open={!!shareAnchor}
+            onClose={() => setShareAnchor(null)}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <MenuItem
+              onClick={() =>
+                window.open(
+                  `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
+                )
+              }
+            >
+              {t`Facebook`}
+            </MenuItem>
+          </Menu>
+        </Box>
+      </div>
+    );
+  }
+);
 
 CreateReplyRequestForm.displayName = 'CreateReplyRequestForm';
 

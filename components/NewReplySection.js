@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, forwardRef, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { withStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
@@ -78,116 +78,127 @@ const CustomBadge = withStyles(theme => ({
   },
 }))(Badge);
 
-function NewReplySection({
-  articleId,
-  existingReplyIds,
-  relatedArticles,
-  onSubmissionComplete,
-}) {
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [flashMessage, setFlashMessage] = useState(0);
-  const currentUser = useCurrentUser();
-  const replyFormRef = useRef();
-  const [createReply, { loading: creatingReply }] = useMutation(CREATE_REPLY, {
-    refetchQueries: ['LoadArticlePage'],
-    awaitRefetchQueries: true,
-    onCompleted() {
-      onSubmissionComplete(); // Notify upper component of submission
-      if (replyFormRef.current) {
-        replyFormRef.current.clear();
-      }
-      setFlashMessage(t`Your reply has been submitted.`);
-    },
-    onError(error) {
-      console.error(error);
-      setFlashMessage(error.toString());
-    },
-  });
-  const [connectReply, { loading: connectingReply }] = useMutation(
-    CONNECT_REPLY,
-    {
-      refetchQueries: ['LoadArticlePage'],
-      awaitRefetchQueries: true,
-      onCompleted() {
-        onSubmissionComplete(); // Notify upper component of submission
-        setFlashMessage(t`Your have attached the reply to this message.`);
-      },
-      onError(error) {
-        console.error(error);
-        setFlashMessage(error.toString());
-      },
-    }
-  );
-
-  const handleTabChange = useCallback((e, v) => setSelectedTab(v), []);
-  const handleSubmit = useCallback(
-    replyData => {
-      createReply({ variables: { ...replyData, articleId } });
-    },
-    [createReply]
-  );
-
-  const relatedArticleReplies = getDedupedArticleReplies(
-    relatedArticles,
-    existingReplyIds
-  );
-
-  const handleConnect = replyId => {
-    connectReply({ variables: { articleId, replyId } });
-  };
-
-  if (!currentUser) {
-    return <p>{t`Please login first.`}</p>;
-  }
-
-  return (
-    <>
-      <Tabs
-        variant="fullWidth"
-        textColor="primary"
-        indicatorColor="primary"
-        value={selectedTab}
-        onChange={handleTabChange}
-      >
-        <CustomTab label={t`New Reply`} />
-        <CustomTab
-          label={
-            <CustomBadge badgeContent={relatedArticleReplies.length || 1000}>
-              {t`Reuse existing reply`}
-            </CustomBadge>
+const NewReplySection = forwardRef(
+  (
+    { articleId, existingReplyIds, relatedArticles, onSubmissionComplete },
+    ref
+  ) => {
+    const [selectedTab, setSelectedTab] = useState(0);
+    const [flashMessage, setFlashMessage] = useState(0);
+    const currentUser = useCurrentUser();
+    const replyFormRef = useRef(null);
+    const [createReply, { loading: creatingReply }] = useMutation(
+      CREATE_REPLY,
+      {
+        refetchQueries: ['LoadArticlePage'],
+        awaitRefetchQueries: true,
+        onCompleted() {
+          onSubmissionComplete(); // Notify upper component of submission
+          if (replyFormRef.current) {
+            replyFormRef.current.clear();
           }
-        />
-      </Tabs>
-      
-      {selectedTab === 0 && (
-        <ReplyForm
-          ref={replyFormRef}
-          onSubmit={handleSubmit}
-          disabled={creatingReply}
-        />
-      )}
-      {selectedTab === 1 && (
-        <>
-          <ReplySearch
-            existingReplyIds={existingReplyIds}
-            onConnect={handleConnect}
-            disabled={connectingReply}
+          setFlashMessage(t`Your reply has been submitted.`);
+        },
+        onError(error) {
+          console.error(error);
+          setFlashMessage(error.toString());
+        },
+      }
+    );
+    const [connectReply, { loading: connectingReply }] = useMutation(
+      CONNECT_REPLY,
+      {
+        refetchQueries: ['LoadArticlePage'],
+        awaitRefetchQueries: true,
+        onCompleted() {
+          onSubmissionComplete(); // Notify upper component of submission
+          setFlashMessage(t`Your have attached the reply to this message.`);
+        },
+        onError(error) {
+          console.error(error);
+          setFlashMessage(error.toString());
+        },
+      }
+    );
+
+    const handleTabChange = useCallback((e, v) => setSelectedTab(v), []);
+    const handleSubmit = useCallback(
+      replyData => {
+        createReply({ variables: { ...replyData, articleId } });
+      },
+      [createReply]
+    );
+
+    const relatedArticleReplies = getDedupedArticleReplies(
+      relatedArticles,
+      existingReplyIds
+    );
+
+    const handleConnect = replyId => {
+      connectReply({ variables: { articleId, replyId } });
+    };
+
+    useEffect(() => {
+      if (replyFormRef.current) {
+        ref.current = replyFormRef.current;
+      }
+    });
+
+    if (!currentUser) {
+      return <p>{t`Please login first.`}</p>;
+    }
+
+    return (
+      <>
+        <Tabs
+          variant="fullWidth"
+          textColor="primary"
+          indicatorColor="primary"
+          value={selectedTab}
+          onChange={handleTabChange}
+        >
+          <CustomTab label={t`New Reply`} />
+          <CustomTab
+            label={
+              <CustomBadge badgeContent={relatedArticleReplies.length || 1000}>
+                {t`Reuse existing reply`}
+              </CustomBadge>
+            }
           />
-          <RelatedReplies
-            relatedArticleReplies={relatedArticleReplies}
-            onConnect={handleConnect}
-            disabled={connectingReply}
+        </Tabs>
+        
+        {selectedTab === 0 && (
+          <ReplyForm
+            ref={replyFormRef}
+            onSubmit={handleSubmit}
+            disabled={creatingReply}
           />
-        </>
-      )}
-      <Snackbar
-        open={!!flashMessage}
-        onClose={() => setFlashMessage('')}
-        message={flashMessage}
-      />
-    </>
-  );
-}
+        )}
+        {selectedTab === 1 && (
+          <>
+            <ReplySearch
+              existingReplyIds={existingReplyIds}
+              onConnect={handleConnect}
+              disabled={connectingReply}
+            />
+            <RelatedReplies
+              relatedArticleReplies={relatedArticleReplies}
+              onConnect={handleConnect}
+              disabled={connectingReply}
+            />
+          </>
+        )}
+        <Snackbar
+          open={!!flashMessage}
+          onClose={() => setFlashMessage('')}
+          message={flashMessage}
+        />
+      </>
+    );
+  }
+);
+
+NewReplySection.displayName = 'NewReplySection';
 
 NewReplySection.fragments = {
   RelatedArticleData,

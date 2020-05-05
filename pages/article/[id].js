@@ -55,6 +55,7 @@ const LOAD_ARTICLE = gql`
     GetArticle(id: $id) {
       id
       text
+      requestedForReply
       replyRequestCount
       replyCount
       createdAt
@@ -114,6 +115,7 @@ const LOAD_ARTICLE_FOR_USER = gql`
 function ArticlePage() {
   const { query } = useRouter();
   const articleVars = { id: query.id };
+  const formRef = useRef(null);
 
   const { data, loading } = useQuery(LOAD_ARTICLE, {
     variables: articleVars,
@@ -232,7 +234,11 @@ function ArticlePage() {
                   isArticleCreator={idx === 0}
                 />
               ))}
-              <CreateReplyRequestForm articleId={article.id} />
+              <CreateReplyRequestForm
+                requestedForReply={article.requestedForReply}
+                articleId={article.id}
+                onNewReplyButtonClick={formRef.current?.scrollToEditor}
+              />
             </footer>
           </Box>
           <Box className={classes.card} px={3.5} py={1.5} mt={3}>
@@ -243,6 +249,7 @@ function ArticlePage() {
               )}
               relatedArticles={article?.relatedArticles}
               onSubmissionComplete={handleNewReplySubmit}
+              ref={formRef}
             />
           </Box>
           <Box

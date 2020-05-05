@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Box, NativeSelect, InputBase } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { t } from 'ttag';
-import InfoIcon from '@material-ui/icons/Info';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReasonEditor from './ReasonEditor';
 import { TYPE_NAME, TYPE_DESC } from 'constants/replyType';
+import Hint from './Hint';
 
 import { EDITOR_REFERENCE } from 'constants/urls';
 
@@ -29,22 +29,6 @@ const formInitialState = {
   reference: '',
   text: '',
 };
-
-const Info = withStyles(theme => ({
-  root: {
-    color: theme.palette.secondary[200],
-  },
-  icon: {
-    fontSize: 16,
-    verticalAlign: -3,
-    marginRight: 2,
-  },
-}))(({ classes, children }) => (
-  <div className={classes.root}>
-    <InfoIcon className={classes.icon} />
-    {children}
-  </div>
-));
 
 const CustomInput = withStyles(theme => ({
   root: {
@@ -84,7 +68,7 @@ const TypeSelect = ({ replyType, onChange }) => (
       ))}
     </NativeSelect>
     <Box px={1} flex={1}>
-      <Info>{TYPE_DESC[replyType]}</Info>
+      <Hint>{TYPE_DESC[replyType]}</Hint>
     </Box>
   </Box>
 );
@@ -123,7 +107,7 @@ const ReferenceInput = withStyles(theme => ({
               : '資料來源'}
           </strong>
         </label>
-        <Info>{t`Multiple sources will be separated by line break for better line user experience`}</Info>
+        <Hint>{t`Multiple sources will be separated by line break for better line user experience`}</Hint>
       </Box>
       <textarea
         required
@@ -171,6 +155,13 @@ const ReplyForm = React.memo(
         delete localStorage.text;
 
         setState(formInitialState);
+      },
+      scrollToEditor() {
+        editorRef.current.focus();
+        editorRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
       },
     };
 
@@ -237,7 +228,7 @@ const ReplyForm = React.memo(
         />
 
         <Box display="flex" justifyContent="space-between">
-          <Info>{t`You will gain 1 point by submitting the reply`}</Info>
+          <Hint>{t`You will gain 1 point by submitting the reply`}</Hint>
           <button className={classes.submit} type="submit" disabled={disabled}>
             送出回應
           </button>
