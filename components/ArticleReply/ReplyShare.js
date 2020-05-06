@@ -10,7 +10,6 @@ import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import CopyButton from './CopyButton';
 import cx from 'clsx';
-import { separateOperations } from 'graphql';
 
 const useStyles = makeStyles(theme => ({
   mobile: {
