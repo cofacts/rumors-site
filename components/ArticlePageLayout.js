@@ -21,7 +21,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { ellipsis } from 'lib/text';
 import ArticleItem from 'components/ArticleItem';
-import Pagination from 'components/Pagination';
+import LoadMore from 'components/LoadMore';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/TimeRange';
@@ -39,16 +39,9 @@ const LIST_ARTICLES = gql`
   query ListArticles(
     $filter: ListArticleFilter
     $orderBy: [ListArticleOrderBy]
-    $before: String
     $after: String
   ) {
-    ListArticles(
-      filter: $filter
-      orderBy: $orderBy
-      before: $before
-      after: $after
-      first: 25
-    ) {
+    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 10) {
       edges {
         node {
           ...ArticleItem
@@ -189,7 +182,6 @@ function urlQuery2OrderBy({ orderBy } = {}, defaultOrder) {
  * @param {object} urlQuery
  */
 function goToUrlQueryAndResetPagination(urlQuery) {
-  delete urlQuery.before;
   delete urlQuery.after;
   urlQuery = Object.fromEntries(
     Object.entries(urlQuery).filter(entry => !!entry[1])
@@ -274,6 +266,8 @@ function ArticlePageLayout({
 }) {
   const classes = useStyles();
   const [showFilters, setFiltersShow] = useState(false);
+  const [nextCursor, setNextCursor] = useState(null);
+  const [articleEdges, setArticleEdges] = useState([]);
 
   const { query } = useRouter();
 
@@ -284,13 +278,17 @@ function ArticlePageLayout({
 
   const {
     loading,
+    refetch,
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
     variables: {
       ...listQueryVars,
-      before: query.before,
-      after: query.after,
+      after: nextCursor,
+    },
+    onCompleted() {
+      const newLoaded = listArticlesData?.ListArticles?.edges || [];
+      setArticleEdges(articleEdges.concat(newLoaded));
     },
   });
 
@@ -305,7 +303,6 @@ function ArticlePageLayout({
 
   // List data
   const statsData = listStatData?.ListArticles || {};
-  const articleEdges = listArticlesData?.ListArticles?.edges || [];
 
   const selectedCategories =
     query.categoryIds?.split(',').map(decodeURIComponent) || [];
@@ -384,7 +381,7 @@ function ArticlePageLayout({
         />
       </Box>
 
-      {loading ? (
+      {loading && !articleEdges.length ? (
         'Loading....'
       ) : listArticlesError ? (
         listArticlesError.toString()
@@ -399,10 +396,12 @@ function ArticlePageLayout({
               />
             ))}
           </ul>
-          <Pagination
-            query={query}
+          <LoadMore
             pageInfo={statsData?.pageInfo}
             edges={articleEdges}
+            setCursor={setNextCursor}
+            load={refetch}
+            loading={loading}
           />
         </>
       )}
