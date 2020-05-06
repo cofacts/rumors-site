@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { TYPE_NAME } from '../constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
-import TextExpansion from './TextExpansion';
+import ExpandableText from './ExpandableText';
 import ReplyFeedback from './ReplyFeedback';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import isValid from 'date-fns/isValid';
@@ -58,6 +58,12 @@ const useStyles = makeStyles(theme => ({
       height: 72,
     },
   },
+  content: {
+    // fix very very long string layout
+    lineBreak: 'anywhere',
+    margin: '12px 0',
+    flex: 1,
+  },
 }));
 
 /**
@@ -94,7 +100,9 @@ function ReplyItem({
         <div
           className={classes.replyType}
         >{t`${userName} consider this ${TYPE_NAME[replyType]}`}</div>
-        <TextExpansion content={text} />
+        <ExpandableText className={classes.content} lineClamp={3}>
+          {text}
+        </ExpandableText>
         <div className={classes.status}>
           <ReplyFeedback
             articleId={articleId}
