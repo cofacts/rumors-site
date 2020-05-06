@@ -28,7 +28,7 @@ const ToggleButton = withStyles({
   },
 })(({ classes, toggleExpand, expanded }) => (
   <button className={classes.root} onClick={toggleExpand}>
-    ({expanded ? t`Show Less ▲` : t`Show More ▼`})
+    ({expanded ? t`Show Less` + ' ▲' : t`Show More` + ' ▼'})
   </button>
 ));
 
