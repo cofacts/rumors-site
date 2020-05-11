@@ -88,6 +88,7 @@ const useStyles = makeStyles(theme => ({
   },
   articleList: {
     padding: 0,
+    marginBottom: -12,
   },
   openFilter: {
     position: 'fixed',
