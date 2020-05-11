@@ -14,14 +14,15 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ellipsis } from 'lib/text';
 import ArticleItem from 'components/ArticleItem';
-import LoadMore from 'components/LoadMore';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/TimeRange';
@@ -111,6 +112,19 @@ const useStyles = makeStyles(theme => ({
     right: 12,
     top: 20,
     color: theme.palette.secondary[100],
+  },
+  loadMore: {
+    width: '33%',
+    color: theme.palette.secondary[300],
+    outline: 'none',
+    cursor: 'pointer',
+    borderRadius: 30,
+    padding: 10,
+    background: 'transparent',
+    border: `1px solid ${theme.palette.secondary[300]}`,
+  },
+  loading: {
+    color: theme.palette.secondary[300],
   },
 }));
 
@@ -267,8 +281,6 @@ function ArticlePageLayout({
 }) {
   const classes = useStyles();
   const [showFilters, setFiltersShow] = useState(false);
-  const [nextCursor, setNextCursor] = useState(null);
-  const [articleEdges, setArticleEdges] = useState([]);
 
   const { query } = useRouter();
 
@@ -279,17 +291,12 @@ function ArticlePageLayout({
 
   const {
     loading,
-    refetch,
+    fetchMore,
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
     variables: {
       ...listQueryVars,
-      after: nextCursor,
-    },
-    onCompleted() {
-      const newLoaded = listArticlesData?.ListArticles?.edges || [];
-      setArticleEdges(articleEdges.concat(newLoaded));
     },
   });
 
@@ -303,7 +310,14 @@ function ArticlePageLayout({
   });
 
   // List data
+  const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
+
+  const lastCursorOfPage =
+    articleEdges.length &&
+    articleEdges[articleEdges.length - 1] &&
+    articleEdges[articleEdges.length - 1].cursor;
+  const { lastCursor } = statsData?.pageInfo || {};
 
   const selectedCategories =
     query.categoryIds?.split(',').map(decodeURIComponent) || [];
@@ -397,13 +411,41 @@ function ArticlePageLayout({
               />
             ))}
           </ul>
-          <LoadMore
-            pageInfo={statsData?.pageInfo}
-            edges={articleEdges}
-            setCursor={setNextCursor}
-            load={refetch}
-            loading={loading}
-          />
+          {lastCursorOfPage !== lastCursor && (
+            <Box display="flex" p={2} justifyContent="center">
+              <button
+                type="button"
+                className={classes.loadMore}
+                onClick={() =>
+                  fetchMore({
+                    variables: {
+                      after: lastCursorOfPage,
+                    },
+                    updateQuery(prev, { fetchMoreResult }) {
+                      if (!fetchMoreResult) return prev;
+                      const newArticleData = fetchMoreResult?.ListArticles;
+                      return {
+                        ...prev,
+                        ListArticles: {
+                          ...newArticleData,
+                          edges: [...articleEdges, ...newArticleData.edges],
+                        },
+                      };
+                    },
+                  })
+                }
+              >
+                {loading ? (
+                  <CircularProgress
+                    size={16}
+                    classes={{ root: classes.loading }}
+                  />
+                ) : (
+                  t`Load More`
+                )}
+              </button>
+            </Box>
+          )}
         </>
       )}
       <Fab
