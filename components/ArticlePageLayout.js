@@ -89,7 +89,6 @@ const useStyles = makeStyles(theme => ({
   },
   articleList: {
     padding: 0,
-    marginBottom: -12,
   },
   openFilter: {
     position: 'fixed',
@@ -412,7 +411,7 @@ function ArticlePageLayout({
             ))}
           </ul>
           {lastCursorOfPage !== lastCursor && (
-            <Box display="flex" p={2} justifyContent="center">
+            <Box display="flex" pb={1.5} justifyContent="center">
               <button
                 type="button"
                 className={classes.loadMore}
