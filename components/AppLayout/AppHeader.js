@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LIST_UNSOLVED_ARTICLES = gql`
-  query ListArticles {
+  query ListUnresolvedArticles {
     ListArticles(filter: { replyCount: { EQ: 0 } }) {
       totalCount
     }
