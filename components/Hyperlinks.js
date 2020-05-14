@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0 8px 8px 0',
     background: theme.palette.secondary[50],
     borderRadius: 8,
+    maxWidth: '100%',
     '& h1': {
       overflow: 'hidden',
       textOverflow: 'ellipsis',

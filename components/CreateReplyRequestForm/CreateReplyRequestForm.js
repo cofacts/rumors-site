@@ -22,11 +22,17 @@ const useStyles = makeStyles(theme => ({
     padding: '10px 13px',
   },
   buttonGroup: {
-    flex: 3,
-    paddingLeft: 8,
     display: 'flex',
     alignItems: 'center',
     whiteSpace: 'nowrap',
+    width: '100%',
+    marginBottom: 30,
+    [theme.breakpoints.up('md')]: {
+      flex: 3,
+      paddingLeft: 8,
+      width: 'auto',
+      marginBottom: 0,
+    },
     '& button': {
       flex: 1,
       marginRight: 0,
@@ -81,6 +87,16 @@ const useStyles = makeStyles(theme => ({
   replyButton: {
     flex: 1,
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    borderRadius: 0,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    [theme.breakpoints.up('md')]: {
+      position: 'static',
+      borderRadius: 30,
+    },
   },
   menu: {
     marginTop: 40,
@@ -179,7 +195,7 @@ const CreateReplyRequestForm = React.memo(
             </Box>
           </>
         )}
-        <Box display="flex" py={2} alignItems="center">
+        <Box display="flex" py={2} alignItems="center" flexWrap="wrap">
           <button
             type="button"
             className={cx(classes.button, classes.replyButton)}
@@ -192,11 +208,11 @@ const CreateReplyRequestForm = React.memo(
               type="button"
               className={cx(showForm && 'active')}
               onClick={() => setShowForm(!showForm)}
-            >{t`I second that`}</button>
+            >{t`Comment`}</button>
             <button
               type="button"
               className={cx(requestedForReply && 'active')}
-            >{t`I also wanna know`}</button>
+            >{t`Follow`}</button>
             <button
               type="button"
               onClick={e => setShareAnchor(e.currentTarget)}

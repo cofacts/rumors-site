@@ -1,11 +1,8 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Box, SvgIcon, Divider } from '@material-ui/core';
 import gql from 'graphql-tag';
-import { t } from 'ttag';
-import url from 'url';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 
@@ -40,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   thumbIcon: {
     fontSize: 16,
     margin: '0 2px',
+  },
+  reasonBody: {
+    wordBreak: 'break-word',
   },
 }));
 
@@ -77,6 +77,8 @@ const UPDATE_VOTE = gql`
   ${ReplyRequestInfo}
 `;
 
+// @todo: temporarily remove this
+/*
 const AuthorArticleLink = withStyles(theme => ({
   linkAuthor: {
     color: theme.palette.secondary[300],
@@ -99,6 +101,7 @@ const AuthorArticleLink = withStyles(theme => ({
     </a>
   </Link>
 ));
+*/
 
 const UserIcon = props => (
   <SvgIcon {...props} viewBox="0 0 41 42">
@@ -118,7 +121,7 @@ const ThumbDownIcon = props => (
   </SvgIcon>
 );
 
-function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
+function ReplyRequestReason({ isArticleCreator, replyRequest }) {
   const {
     id: replyRequestId,
     reason: replyRequestReason,
@@ -138,14 +141,14 @@ function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
 
   return (
     <div>
-      <Box display="flex" flexWrap="noWrap" alignItems="center" py={2}>
+      <Box display="flex" alignItems="center" py={2}>
         {replyRequestReason && (
           <>
             <Box color="primary.main" pr={2}>
               <UserIcon className={classes.userIcon} />
             </Box>
-            <Box flex={1}>
-              <p className="reason">{replyRequestReason}</p>
+            <Box flex={1} className={classes.reasonBody}>
+              <p className={classes.reason}>{replyRequestReason}</p>
               <Box display="flex" justifyContent="space-between">
                 <Box display="flex">
                   <button
@@ -173,9 +176,9 @@ function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
                     <span>{negativeFeedbackCount}</span>
                   </button>
                 </Box>
-                {isArticleCreator && (
+                {/* isArticleCreator && (
                   <AuthorArticleLink articleId={articleId} />
-                )}
+                ) */}
               </Box>
             </Box>
           </>

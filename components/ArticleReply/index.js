@@ -19,8 +19,10 @@ import ReplyShare from './ReplyShare';
 const useStyles = makeStyles(theme => ({
   root: {
     '&:not(:first)': {
-      borderTop: `1px dotted ${theme.palette.secondary[100]}`,
+      borderTop: `1px solid ${theme.palette.secondary[100]}`,
     },
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   replyType: {
     color: ({ replyType }) => {
@@ -39,6 +41,16 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: '17px 0',
     borderBottom: `1px dotted ${theme.palette.secondary[100]}`,
+  },
+  avatar: {
+    width: 30,
+    height: 30,
+    marginRight: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      width: 42,
+      height: 42,
+      marginRight: theme.spacing(2),
+    },
   },
 }));
 
@@ -206,7 +218,7 @@ const ArticleReply = React.memo(
     return (
       <li className={classes.root}>
         <Box component="header" display="flex" alignItems="center">
-          {user && <Box component={Avatar} user={user} size={42} mr={2} />}
+          {user && <Avatar user={user} className={classes.avatar} />}
           <Box flexGrow={1}>
             <div className={classes.replyType}>
               {jt`${authorElem} mark this message ${TYPE_NAME[replyType]}`}

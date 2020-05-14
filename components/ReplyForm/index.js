@@ -67,7 +67,7 @@ const TypeSelect = ({ replyType, onChange }) => (
         </option>
       ))}
     </NativeSelect>
-    <Box px={1} flex={1}>
+    <Box display={{ xs: 'none', md: 'block' }} px={1} flex={1}>
       <Hint>{TYPE_DESC[replyType]}</Hint>
     </Box>
   </Box>

@@ -32,21 +32,56 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     padding: '24px 0',
-    alignItems: 'baseline',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      alignItems: 'baseline',
+    },
   },
   card: {
     background: theme.palette.common.white,
     borderRadius: 8,
   },
   main: {
-    flex: 3,
-    marginRight: 12,
+    flex: 1,
+    marginRight: 0,
+    [theme.breakpoints.up('md')]: {
+      flex: 3,
+      marginRight: 12,
+    },
   },
   aside: {
-    flex: 1,
+    background: 'transparent',
+    [theme.breakpoints.up('md')]: {
+      padding: '16px 28px',
+      background: theme.palette.common.white,
+    },
+    '& h4': {
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: 10,
+        borderBottom: `1px solid ${theme.palette.secondary[500]}`,
+      },
+    },
   },
-  divider: {
-    backgroundColor: theme.palette.secondary[500],
+  similarMessageContainer: {
+    backgroundColor: theme.palette.common.white,
+    minWidth: '100%',
+    padding: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    borderRadius: 8,
+    [theme.breakpoints.up('md')]: {
+      margin: 0,
+      width: 'auto',
+    },
+  },
+  text: {
+    [theme.breakpoints.down('md')]: {
+      display: 'box',
+      overflow: 'hidden',
+      boxOrient: 'vertical',
+      textOverflow: 'ellipsis',
+      lineClamp: 5,
+    },
   },
 }));
 
@@ -188,8 +223,13 @@ function ArticlePage() {
         </title>
       </Head>
       <div className={classes.root}>
-        <Box className={classes.main}>
-          <Box className={classes.card} px={3.5} py={1.5}>
+        <div className={classes.main}>
+          <Box
+            className={classes.card}
+            position="relative"
+            px={{ xs: 1.5, md: 3.5 }}
+            py={1.5}
+          >
             <Box
               display="flex"
               justifyContent="space-between"
@@ -241,7 +281,14 @@ function ArticlePage() {
               />
             </footer>
           </Box>
-          <Box className={classes.card} px={3.5} py={1.5} mt={3}>
+
+          <Box
+            className={classes.card}
+            position="relative"
+            px={{ xs: 1.5, md: 3.5 }}
+            py={1.5}
+            mt={3}
+          >
             <NewReplySection
               articleId={article.id}
               existingReplyIds={(article?.articleReplies || []).map(
@@ -254,7 +301,8 @@ function ArticlePage() {
           </Box>
           <Box
             className={classes.card}
-            px={3.5}
+            position="relative"
+            px={{ xs: 1.5, md: 3.5 }}
             py={1.5}
             mt={3}
             id="current-replies"
@@ -264,23 +312,26 @@ function ArticlePage() {
             <Divider classes={{ root: classes.divider }} />
             <CurrentReplies articleReplies={article.articleReplies} />
           </Box>
-        </Box>
+        </div>
 
-        <Box className={cx(classes.card, classes.aside)} px={3.5} py={1.5}>
-          <Box display="flex">
-            <h4>{t`Similar messages`}</h4>
-          </Box>
-          <Divider classes={{ root: classes.divider }} />
+        <div className={cx(classes.card, classes.aside)}>
+          <h4>{t`Similar messages`}</h4>
           {similarArticles.length ? (
-            similarArticles.map(({ node }) => (
-              <Box key={node.id} pt={4}>
-                {node.text}
-                <Box py={1}>
-                  <ArticleInfo article={node} />
-                </Box>
-                <Divider />
-              </Box>
-            ))
+            <Box
+              display="flex"
+              flexDirection={{ xs: 'row', md: 'column' }}
+              overflow="scroll"
+            >
+              {similarArticles.map(({ node }) => (
+                <div key={node.id} className={classes.similarMessageContainer}>
+                  <article className={classes.text}>{node.text}</article>
+                  <Box py={1}>
+                    <ArticleInfo article={node} />
+                  </Box>
+                  <Divider />
+                </div>
+              ))}
+            </Box>
           ) : (
             <Box
               textAlign="center"
@@ -288,7 +339,7 @@ function ArticlePage() {
               pb={3}
             >{t`No similar messages found`}</Box>
           )}
-        </Box>
+        </div>
       </div>
     </AppLayout>
   );

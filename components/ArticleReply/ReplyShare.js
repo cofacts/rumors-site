@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     padding: '1px 8px',
     outline: 'none',
     cursor: 'pointer',
-    marginLeft: 12,
+    marginLeft: 2,
     border: `1px solid ${
       open ? theme.palette.primary[500] : theme.palette.secondary[100]
     }`,
@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: '4px 18px',
       marginRight: 10,
+      marginLeft: 12,
     },
     '&:hover': {
       border: `1px solid ${theme.palette.secondary[300]}`,
