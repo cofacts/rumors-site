@@ -141,7 +141,7 @@ function urlQuery2Filter(
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
     searchUserByArticleId,
   } = {},
-  defaultStatus = 'unsolved'
+  { defaultStatus = 'unsolved', timeRangeKey = 'createdAt' }
 ) {
   const status = filter || defaultStatus;
 
@@ -172,9 +172,9 @@ function urlQuery2Filter(
   }
 
   if (start) {
-    filterObj.createdAt = { GT: start };
+    filterObj[timeRangeKey] = { GT: start };
     if (end) {
-      filterObj.createdAt.LTE = end;
+      filterObj[timeRangeKey].LTE = end;
     }
   }
 
@@ -212,7 +212,10 @@ function goToUrlQueryAndResetPagination(urlQuery) {
  */
 export function getQueryVars(query, option) {
   return {
-    filter: urlQuery2Filter(query, option?.filter),
+    filter: urlQuery2Filter(query, {
+      defaultStatus: option?.filter,
+      timeRangeKey: option?.timeRangeKey,
+    }),
     orderBy: urlQuery2OrderBy(query, option?.order),
   };
 }
@@ -278,7 +281,12 @@ function ArticlePageLayout({
   articleDisplayConfig = {},
   defaultOrder = 'lastRequestedAt',
   defaultStatus = 'unsolved',
-  filters = { status: true, consider: true, category: true },
+  timeRangeKey = 'createdAt',
+  filters = {
+    status: true,
+    consider: true,
+    category: true,
+  },
 }) {
   const classes = useStyles();
   const [showFilters, setFiltersShow] = useState(false);
@@ -288,6 +296,7 @@ function ArticlePageLayout({
   const listQueryVars = getQueryVars(query, {
     filter: defaultStatus,
     order: defaultOrder,
+    timeRangeKey,
   });
 
   const {
@@ -359,12 +368,12 @@ function ArticlePageLayout({
       <Grid container alignItems="center" justify="space-between">
         <Grid item>
           <TimeRange
-            range={listQueryVars?.filter?.createdAt}
-            onChange={createdAt =>
+            range={listQueryVars?.filter?.[timeRangeKey]}
+            onChange={time =>
               goToUrlQueryAndResetPagination({
                 ...query,
-                start: createdAt?.GT,
-                end: createdAt?.LTE,
+                start: time?.GT,
+                end: time?.LTE,
               })
             }
           />
