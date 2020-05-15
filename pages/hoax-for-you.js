@@ -6,6 +6,10 @@ import { t } from 'ttag';
 import querystring from 'querystring';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
+import {
+  NO_USEFUL_REPLY_YET,
+  ASKED_MANY_TIMES,
+} from 'constants/articleFilters';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -32,11 +36,12 @@ function HoaxForYouPage() {
       </Head>
       <ArticlePageLayout
         title={t`Hoax for you`}
-        filters={{
-          status: false,
+        options={{
+          filters: false,
           consider: false,
           category: true,
         }}
+        defaultFilters={[NO_USEFUL_REPLY_YET, ASKED_MANY_TIMES]}
       />
     </AppLayout>
   );

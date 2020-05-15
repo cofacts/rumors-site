@@ -21,13 +21,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ellipsis } from 'lib/text';
+import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/TimeRange';
 import SortInput from 'components/SortInput';
 
-const STATUSES = ['unsolved', 'solved', 'trending', 'all'];
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -132,7 +132,7 @@ const useStyles = makeStyles(theme => ({
  */
 function urlQuery2Filter(
   {
-    filter,
+    filters = '',
     q,
     categoryIds = '',
     start,
@@ -140,9 +140,10 @@ function urlQuery2Filter(
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
     searchUserByArticleId,
   } = {},
-  { defaultStatus = 'unsolved', timeRangeKey = 'createdAt' }
+  { defaultFilters = [], timeRangeKey = 'createdAt' }
 ) {
-  const status = filter || defaultStatus;
+  const splits = filters.split(',');
+  const selectedFilters = splits.length && splits[0] ? splits : defaultFilters;
 
   const filterObj = {};
   if (q) {
@@ -155,16 +156,27 @@ function urlQuery2Filter(
   filterObj.replyRequestCount = { GTE: replyRequestCount };
 
   if (categoryIds) {
-    filterObj.categoryIds = categoryIds.split(',').map(decodeURIComponent);
+    filterObj.categoryIds = categoryIds.split(',');
   }
 
-  if (status === 'solved') {
-    filterObj.replyCount = { GT: 0 };
-  } else if (status === 'unsolved') {
-    filterObj.replyCount = { EQ: 0 };
-  } else if (status === 'trending') {
-    filterObj.replyRequestCount = { GTE: 2 };
-  }
+  selectedFilters.forEach(filter => {
+    switch (filter) {
+      case FILTERS.REPLIED_BY_ME:
+        // @todo: fill this when api completes
+        break;
+      case FILTERS.NO_USEFUL_REPLY_YET:
+        filterObj.hasArticleReplyWithMorePositiveFeedback = false;
+        filterObj.replyCount = { EQ: 0 };
+        break;
+      case FILTERS.ASKED_MANY_TIMES:
+        filterObj.replyRequestCount = { GTE: 2 };
+        break;
+      case FILTERS.REPLIED_MANY_TIMES:
+        filterObj.replyCount = { GTE: 3 };
+        break;
+      default:
+    }
+  });
 
   if (searchUserByArticleId) {
     filterObj.fromUserOfArticleId = searchUserByArticleId;
@@ -212,41 +224,53 @@ function goToUrlQueryAndResetPagination(urlQuery) {
 export function getQueryVars(query, option) {
   return {
     filter: urlQuery2Filter(query, {
-      defaultStatus: option?.filter,
+      defaultFilters: option?.filters,
       timeRangeKey: option?.timeRangeKey,
     }),
     orderBy: urlQuery2OrderBy(query, option?.order),
   };
 }
 
+const filterLabelMapping = [
+  { value: FILTERS.REPLIED_BY_ME, label: t`Replied by me` },
+  { value: FILTERS.NO_USEFUL_REPLY_YET, label: t`No useful reply yet` },
+  { value: FILTERS.ASKED_MANY_TIMES, label: t`Asked many times` },
+  { value: FILTERS.REPLIED_MANY_TIMES, label: t`Replied many times` },
+];
+
 const FilterGroup = ({
   classes,
   query,
-  filters,
+  options,
   categories,
-  defaultStatus,
+  defaultFilters,
   desktop = false,
 }) => (
   <Filters className={classes.filters}>
-    {filters.status && (
+    {options.filters && (
       <Filter
         title={t`Filter`}
-        options={STATUSES.map(status => ({
-          label: status,
-          value: status,
-          selected: status === (query.filter || defaultStatus),
-        }))}
-        onChange={filter =>
+        multiple
+        options={filterLabelMapping.map(filter => {
+          let selected;
+          if (query.filters) {
+            selected = query.filters.split(',').includes(filter.value);
+          } else {
+            selected = defaultFilters.includes(filter.value);
+          }
+          return { ...filter, selected };
+        })}
+        onChange={filters =>
           goToUrlQueryAndResetPagination({
             ...query,
-            filter,
+            filters: filters.join(','),
           })
         }
       />
     )}
 
     {/* not implemented yet
-    {filters.consider && (
+    {options.consider && (
       <Filter
         title={t`Consider`}
         multiple
@@ -254,7 +278,7 @@ const FilterGroup = ({
     )}
     */}
 
-    {filters.category && (
+    {options.category && (
       <Filter
         title={t`Topic`}
         multiple
@@ -279,10 +303,10 @@ function ArticlePageLayout({
   title,
   articleDisplayConfig = {},
   defaultOrder = 'lastRequestedAt',
-  defaultStatus = 'unsolved',
+  defaultFilters = [],
   timeRangeKey = 'createdAt',
-  filters = {
-    status: true,
+  options = {
+    filters: true,
     consider: true,
     category: true,
   },
@@ -293,7 +317,7 @@ function ArticlePageLayout({
   const { query } = useRouter();
 
   const listQueryVars = getQueryVars(query, {
-    filter: defaultStatus,
+    filters: defaultFilters,
     order: defaultOrder,
     timeRangeKey,
   });
@@ -403,9 +427,9 @@ function ArticlePageLayout({
 
       <Box display={['none', 'none', 'block']}>
         <FilterGroup
-          filters={filters}
+          options={options}
           categories={categories}
-          defaultStatus={defaultStatus}
+          defaultFilters={defaultFilters}
           classes={classes}
           query={query}
           desktop
@@ -488,9 +512,9 @@ function ArticlePageLayout({
         <Fade in={showFilters}>
           <Box position="relative">
             <FilterGroup
-              filters={filters}
+              filters={options}
               categories={categories}
-              defaultStatus={defaultStatus}
+              defaultFilters={defaultFilters}
               classes={classes}
               query={query}
             />
