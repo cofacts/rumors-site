@@ -9,20 +9,38 @@ import { EDITOR_FACEBOOK_GROUP, EDITOR_REFERENCE } from 'constants/urls';
 
 const useStyles = makeStyles(theme => ({
   editor: {
-    border: `1px solid ${theme.palette.secondary[100]}`,
-    borderRadius: 8,
-    '& > *:first-child': {
-      borderTopLeftRadius: 8,
-      borderTopRightRadius: 8,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      border: `1px solid ${theme.palette.secondary[100]}`,
+      borderRadius: 8,
+      '& > *:first-child': {
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+      },
     },
   },
   tools: {
-    background: theme.palette.common.white,
+    background: theme.palette.secondary[50],
+    [theme.breakpoints.up('md')]: {
+      background: theme.palette.common.white,
+      order: 1,
+    },
+    '& > *:not(first-child)': {
+      borderLeft: `1px solid ${theme.palette.secondary[100]}`,
+    },
   },
   suggestions: {
-    background: theme.palette.secondary[50],
+    background: theme.palette.common.white,
     color: theme.palette.secondary[300],
     padding: 12,
+    whiteSpace: 'nowrap',
+    overflow: 'scroll',
+    [theme.breakpoints.up('md')]: {
+      order: 2,
+      background: theme.palette.secondary[50],
+    },
   },
   suggestion: {
     background: 'transparent',
@@ -44,12 +62,20 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       color: theme.palette.common.white,
     },
+    [theme.breakpoints.up('md')]: {
+      order: 3,
+    },
   },
   inputArea: {
+    height: 'calc(100% - 60px)',
     padding: '9px 17px',
     border: 'none',
     width: '100%',
     outline: 'none',
+    [theme.breakpoints.up('md')]: {
+      height: 'auto',
+      order: 4,
+    },
   },
   closeIcon: {
     cursor: 'pointer',
@@ -63,22 +89,6 @@ const ReasonEditor = React.forwardRef(
 
     return (
       <div className={classes.editor}>
-        {TYPE_SUGGESTION_OPTIONS[replyType] && (
-          <div className={classes.suggestions}>
-            常用模板
-            {TYPE_SUGGESTION_OPTIONS[replyType].map(({ label, value }) => (
-              <button
-                key={label}
-                className={classes.suggestion}
-                type="button"
-                value={value}
-                onClick={onSuggestionAdd}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
         {showHelp && (
           <div className={classes.help}>
             <Box display="flex" alignItems="center" component="span">
@@ -114,12 +124,28 @@ const ReasonEditor = React.forwardRef(
           required
           className={classes.inputArea}
           ref={ref}
-          id="text"
           placeholder="140 字以內"
           onChange={onChange}
           value={value}
           rows={10}
         />
+
+        {TYPE_SUGGESTION_OPTIONS[replyType] && (
+          <div className={classes.suggestions}>
+            常用模板
+            {TYPE_SUGGESTION_OPTIONS[replyType].map(({ label, value }) => (
+              <button
+                key={label}
+                className={classes.suggestion}
+                type="button"
+                value={value}
+                onClick={onSuggestionAdd}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     );
   }

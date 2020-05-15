@@ -5,7 +5,7 @@ import { Box, Menu, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
-import Hint from 'components/ReplyForm/Hint';
+import Hint from 'components/NewReplySection/ReplyForm/Hint';
 import useCurrentUser from 'lib/useCurrentUser';
 import cx from 'clsx';
 

@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Divider } from '@material-ui/core';
 import { ngettext, msgid, t } from 'ttag';
@@ -61,6 +61,21 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: 10,
         borderBottom: `1px solid ${theme.palette.secondary[500]}`,
       },
+    },
+  },
+  newReplyContainer: {
+    position: 'fixed',
+    zIndex: 10,
+    height: '100%',
+    width: '100%',
+    top: 0,
+    left: 0,
+    background: theme.palette.common.white,
+    [theme.breakpoints.up('md')]: {
+      position: 'relative',
+      padding: '28px 16px',
+      marginTop: 24,
+      borderRadius: 8,
     },
   },
   similarMessageContainer: {
@@ -149,8 +164,8 @@ const LOAD_ARTICLE_FOR_USER = gql`
 
 function ArticlePage() {
   const { query } = useRouter();
+  const [showForm, setShowForm] = useState(false);
   const articleVars = { id: query.id };
-  const formRef = useRef(null);
 
   const { data, loading } = useQuery(LOAD_ARTICLE, {
     variables: articleVars,
@@ -277,28 +292,27 @@ function ArticlePage() {
               <CreateReplyRequestForm
                 requestedForReply={article.requestedForReply}
                 articleId={article.id}
-                onNewReplyButtonClick={formRef.current?.scrollToEditor}
+                onNewReplyButtonClick={() => {
+                  setShowForm(true);
+                }}
               />
             </footer>
           </Box>
 
-          <Box
-            className={classes.card}
-            position="relative"
-            px={{ xs: 1.5, md: 3.5 }}
-            py={1.5}
-            mt={3}
-          >
-            <NewReplySection
-              articleId={article.id}
-              existingReplyIds={(article?.articleReplies || []).map(
-                ({ replyId }) => replyId
-              )}
-              relatedArticles={article?.relatedArticles}
-              onSubmissionComplete={handleNewReplySubmit}
-              ref={formRef}
-            />
-          </Box>
+          {showForm && (
+            <div className={classes.newReplyContainer}>
+              <NewReplySection
+                article={article}
+                existingReplyIds={(article?.articleReplies || []).map(
+                  ({ replyId }) => replyId
+                )}
+                relatedArticles={article?.relatedArticles}
+                onSubmissionComplete={handleNewReplySubmit}
+                onClose={() => setShowForm(false)}
+              />
+            </div>
+          )}
+
           <Box
             className={classes.card}
             position="relative"
