@@ -28,7 +28,7 @@ import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/TimeRange';
 import SortInput from 'components/SortInput';
 
-const STATUSES = ['unsolved', 'solved', 'all'];
+const STATUSES = ['unsolved', 'solved', 'trending', 'all'];
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -153,7 +153,7 @@ function urlQuery2Filter(
     };
   }
 
-  filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
+  filterObj.replyRequestCount = { GTE: replyRequestCount };
 
   if (categoryIds) {
     filterObj.categoryIds = categoryIds.split(',').map(decodeURIComponent);
@@ -163,6 +163,8 @@ function urlQuery2Filter(
     filterObj.replyCount = { GT: 0 };
   } else if (status === 'unsolved') {
     filterObj.replyCount = { EQ: 0 };
+  } else if (status === 'trending') {
+    filterObj.replyRequestCount = { GTE: 2 };
   }
 
   if (searchUserByArticleId) {
@@ -294,9 +296,7 @@ function ArticlePageLayout({
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
-    variables: {
-      ...listQueryVars,
-    },
+    variables: listQueryVars,
   });
 
   const { data: listCategories } = useQuery(LIST_CATEGORIES);
