@@ -7,7 +7,6 @@ import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Fab from '@material-ui/core/Fab';
 import Modal from '@material-ui/core/Modal';
@@ -354,19 +353,28 @@ function ArticlePageLayout({
         <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
       )}
 
-      <Grid container alignItems="center" justify="space-between" spacing={2}>
-        <Grid item xs={12} lg="auto">
-          <Typography variant="h4">{title}</Typography>
-        </Grid>
-        <Grid item xs={12} lg="auto">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent={{ xs: 'center', md: 'space-between' }}
+        flexDirection={{ xs: 'column', md: 'row' }}
+        mb={2}
+      >
+        <Typography variant="h4">{title}</Typography>
+        <Box my={1}>
           <FeedDisplay
             feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
           />
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
-      <Grid container alignItems="center" justify="space-between">
-        <Grid item>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        overflow="scroll"
+      >
+        <div>
           <TimeRange
             range={listQueryVars?.filter?.[timeRangeKey]}
             onChange={time =>
@@ -377,8 +385,8 @@ function ArticlePageLayout({
               })
             }
           />
-        </Grid>
-        <Grid item>
+        </div>
+        <div>
           <SortInput
             orderBy={query.orderBy || defaultOrder}
             onChange={orderBy =>
@@ -390,8 +398,8 @@ function ArticlePageLayout({
               { value: 'replyRequestCount', label: t`Most asked` },
             ]}
           />
-        </Grid>
-      </Grid>
+        </div>
+      </Box>
 
       <Box display={['none', 'none', 'block']}>
         <FilterGroup

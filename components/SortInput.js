@@ -12,11 +12,15 @@ const useStyles = makeStyles(theme => ({
       expand ? theme.palette.secondary[100] : theme.palette.common.white,
     transition: 'background .3s',
     borderRadius: 4,
-    padding: '5px 10px',
+    padding: '0px 10px',
   },
   select: {
     '&:focus': {
       backgroundColor: 'inherit',
+    },
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 2.5,
+      paddingBottom: 2.5,
     },
   },
 }));
