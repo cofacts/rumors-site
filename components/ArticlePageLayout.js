@@ -502,7 +502,7 @@ function ArticlePageLayout({
         <Fade in={showFilters}>
           <Box position="relative">
             <FilterGroup
-              filters={options}
+              options={options}
               categories={categories}
               defaultFilters={defaultFilters}
               classes={classes}
