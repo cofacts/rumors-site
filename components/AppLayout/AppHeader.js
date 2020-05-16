@@ -112,7 +112,6 @@ const LIST_UNSOLVED_ARTICLES = gql`
   query ListUnresolvedArticles {
     ListArticles(
       filter: {
-        replyCount: { EQ: 0 }
         replyRequestCount: { GTE: 2 }
         hasArticleReplyWithMorePositiveFeedback: false
       }

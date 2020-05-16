@@ -166,7 +166,6 @@ function urlQuery2Filter(
         break;
       case FILTERS.NO_USEFUL_REPLY_YET:
         filterObj.hasArticleReplyWithMorePositiveFeedback = false;
-        filterObj.replyCount = { EQ: 0 };
         break;
       case FILTERS.ASKED_MANY_TIMES:
         filterObj.replyRequestCount = { GTE: 2 };
