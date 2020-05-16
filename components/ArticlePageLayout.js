@@ -182,10 +182,10 @@ function urlQuery2Filter(
   }
 
   if (start) {
-    filterObj[timeRangeKey] = { GT: start };
-    if (end) {
-      filterObj[timeRangeKey].LTE = end;
-    }
+    filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], GTE: start };
+  }
+  if (end) {
+    filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], LTE: end };
   }
 
   // Return filterObj only when it is populated.
