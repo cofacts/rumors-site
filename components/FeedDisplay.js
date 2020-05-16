@@ -50,7 +50,7 @@ function FeedDisplay({ feedUrl }) {
   return (
     <>
       <Button onClick={handleClick} className={classes.button}>
-        {t`Subscribe to this list`}
+        {t`Subscribe`}
         <RssFeedIcon className={classes.leftIcon} />
       </Button>
       <Popover

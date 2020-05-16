@@ -7,16 +7,23 @@ import { t } from 'ttag';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    flexDirection: 'row',
+  },
+  inputClass: {
     border: `1px solid ${theme.palette.secondary[100]}`,
     background: ({ expand }) =>
       expand ? theme.palette.secondary[100] : theme.palette.common.white,
     transition: 'background .3s',
     borderRadius: 4,
-    padding: '5px 10px',
+    padding: '0px 10px',
   },
-  select: {
+  selectClass: {
     '&:focus': {
       backgroundColor: 'inherit',
+    },
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 2.5,
+      paddingBottom: 2.5,
     },
   },
 }));
@@ -27,9 +34,10 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
   return (
     <TextField
       select
+      classes={{ root: classes.root }}
       InputProps={{
         classes: {
-          root: classes.root,
+          root: classes.inputClass,
         },
         disableUnderline: true,
         startAdornment: (
@@ -38,7 +46,7 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
       }}
       SelectProps={{
         classes: {
-          root: classes.select,
+          root: classes.selectClass,
         },
         onOpen: () => setExpand(true),
         onClose: () => setExpand(false),

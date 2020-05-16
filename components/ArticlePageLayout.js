@@ -7,7 +7,6 @@ import getConfig from 'next/config';
 import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Fab from '@material-ui/core/Fab';
 import Modal from '@material-ui/core/Modal';
@@ -22,13 +21,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ellipsis } from 'lib/text';
+import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/TimeRange';
 import SortInput from 'components/SortInput';
 
-const STATUSES = ['unsolved', 'solved', 'all'];
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -133,7 +132,7 @@ const useStyles = makeStyles(theme => ({
  */
 function urlQuery2Filter(
   {
-    filter,
+    filters = '',
     q,
     categoryIds = '',
     start,
@@ -141,9 +140,10 @@ function urlQuery2Filter(
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
     searchUserByArticleId,
   } = {},
-  defaultStatus = 'unsolved'
+  { defaultFilters = [], timeRangeKey = 'createdAt' }
 ) {
-  const status = filter || defaultStatus;
+  const splits = filters.split(',');
+  const selectedFilters = splits.length && splits[0] ? splits : defaultFilters;
 
   const filterObj = {};
   if (q) {
@@ -153,27 +153,39 @@ function urlQuery2Filter(
     };
   }
 
-  filterObj.replyRequestCount = { GT: replyRequestCount - 1 };
+  filterObj.replyRequestCount = { GTE: replyRequestCount };
 
   if (categoryIds) {
-    filterObj.categoryIds = categoryIds.split(',').map(decodeURIComponent);
+    filterObj.categoryIds = categoryIds.split(',');
   }
 
-  if (status === 'solved') {
-    filterObj.replyCount = { GT: 0 };
-  } else if (status === 'unsolved') {
-    filterObj.replyCount = { EQ: 0 };
-  }
+  selectedFilters.forEach(filter => {
+    switch (filter) {
+      case FILTERS.REPLIED_BY_ME:
+        // @todo: fill this when api completes
+        break;
+      case FILTERS.NO_USEFUL_REPLY_YET:
+        filterObj.hasArticleReplyWithMorePositiveFeedback = false;
+        break;
+      case FILTERS.ASKED_MANY_TIMES:
+        filterObj.replyRequestCount = { GTE: 2 };
+        break;
+      case FILTERS.REPLIED_MANY_TIMES:
+        filterObj.replyCount = { GTE: 3 };
+        break;
+      default:
+    }
+  });
 
   if (searchUserByArticleId) {
     filterObj.fromUserOfArticleId = searchUserByArticleId;
   }
 
   if (start) {
-    filterObj.createdAt = { GT: start };
-    if (end) {
-      filterObj.createdAt.LTE = end;
-    }
+    filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], GTE: start };
+  }
+  if (end) {
+    filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], LTE: end };
   }
 
   // Return filterObj only when it is populated.
@@ -210,39 +222,54 @@ function goToUrlQueryAndResetPagination(urlQuery) {
  */
 export function getQueryVars(query, option) {
   return {
-    filter: urlQuery2Filter(query, option?.filter),
+    filter: urlQuery2Filter(query, {
+      defaultFilters: option?.filters,
+      timeRangeKey: option?.timeRangeKey,
+    }),
     orderBy: urlQuery2OrderBy(query, option?.order),
   };
 }
 
+const filterLabelMapping = [
+  { value: FILTERS.REPLIED_BY_ME, label: t`Replied by me` },
+  { value: FILTERS.NO_USEFUL_REPLY_YET, label: t`No useful reply yet` },
+  { value: FILTERS.ASKED_MANY_TIMES, label: t`Asked many times` },
+  { value: FILTERS.REPLIED_MANY_TIMES, label: t`Replied many times` },
+];
+
 const FilterGroup = ({
   classes,
   query,
-  filters,
+  options,
   categories,
-  defaultStatus,
+  defaultFilters,
   desktop = false,
 }) => (
   <Filters className={classes.filters}>
-    {filters.status && (
+    {options.filters && (
       <Filter
         title={t`Filter`}
-        options={STATUSES.map(status => ({
-          label: status,
-          value: status,
-          selected: status === (query.filter || defaultStatus),
-        }))}
-        onChange={filter =>
+        multiple
+        options={filterLabelMapping.map(filter => {
+          let selected;
+          if (query.filters) {
+            selected = query.filters.split(',').includes(filter.value);
+          } else {
+            selected = defaultFilters.includes(filter.value);
+          }
+          return { ...filter, selected };
+        })}
+        onChange={filters =>
           goToUrlQueryAndResetPagination({
             ...query,
-            filter,
+            filters: filters.join(','),
           })
         }
       />
     )}
 
     {/* not implemented yet
-    {filters.consider && (
+    {options.consider && (
       <Filter
         title={t`Consider`}
         multiple
@@ -250,7 +277,7 @@ const FilterGroup = ({
     )}
     */}
 
-    {filters.category && (
+    {options.category && (
       <Filter
         title={t`Topic`}
         multiple
@@ -275,8 +302,13 @@ function ArticlePageLayout({
   title,
   articleDisplayConfig = {},
   defaultOrder = 'lastRequestedAt',
-  defaultStatus = 'unsolved',
-  filters = { status: true, consider: true, category: true },
+  defaultFilters = [],
+  timeRangeKey = 'createdAt',
+  options = {
+    filters: true,
+    consider: true,
+    category: true,
+  },
 }) {
   const classes = useStyles();
   const [showFilters, setFiltersShow] = useState(false);
@@ -284,8 +316,9 @@ function ArticlePageLayout({
   const { query } = useRouter();
 
   const listQueryVars = getQueryVars(query, {
-    filter: defaultStatus,
+    filters: defaultFilters,
     order: defaultOrder,
+    timeRangeKey,
   });
 
   const {
@@ -294,9 +327,7 @@ function ArticlePageLayout({
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
-    variables: {
-      ...listQueryVars,
-    },
+    variables: listQueryVars,
   });
 
   const { data: listCategories } = useQuery(LIST_CATEGORIES);
@@ -345,50 +376,50 @@ function ArticlePageLayout({
         <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
       )}
 
-      <Grid container alignItems="center" justify="space-between" spacing={2}>
-        <Grid item xs={12} lg="auto">
-          <Typography variant="h4">{title}</Typography>
-        </Grid>
-        <Grid item xs={12} lg="auto">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent={{ xs: 'center', md: 'space-between' }}
+        flexDirection={{ xs: 'column', md: 'row' }}
+        mb={2}
+      >
+        <Typography variant="h4">{title}</Typography>
+        <Box my={1}>
           <FeedDisplay
             feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
           />
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
-      <Grid container alignItems="center" justify="space-between">
-        <Grid item>
-          <TimeRange
-            range={listQueryVars?.filter?.createdAt}
-            onChange={createdAt =>
-              goToUrlQueryAndResetPagination({
-                ...query,
-                start: createdAt?.GT,
-                end: createdAt?.LTE,
-              })
-            }
-          />
-        </Grid>
-        <Grid item>
-          <SortInput
-            orderBy={query.orderBy || defaultOrder}
-            onChange={orderBy =>
-              goToUrlQueryAndResetPagination({ ...query, orderBy })
-            }
-            options={[
-              { value: 'lastRequestedAt', label: t`Most recently asked` },
-              { value: 'lastRepliedAt', label: t`Most recently replied` },
-              { value: 'replyRequestCount', label: t`Most asked` },
-            ]}
-          />
-        </Grid>
-      </Grid>
+      <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+        <TimeRange
+          range={listQueryVars?.filter?.[timeRangeKey]}
+          onChange={time =>
+            goToUrlQueryAndResetPagination({
+              ...query,
+              start: time?.GT,
+              end: time?.LTE,
+            })
+          }
+        />
+        <SortInput
+          orderBy={query.orderBy || defaultOrder}
+          onChange={orderBy =>
+            goToUrlQueryAndResetPagination({ ...query, orderBy })
+          }
+          options={[
+            { value: 'lastRequestedAt', label: t`Most recently asked` },
+            { value: 'lastRepliedAt', label: t`Most recently replied` },
+            { value: 'replyRequestCount', label: t`Most asked` },
+          ]}
+        />
+      </Box>
 
       <Box display={['none', 'none', 'block']}>
         <FilterGroup
-          filters={filters}
+          options={options}
           categories={categories}
-          defaultStatus={defaultStatus}
+          defaultFilters={defaultFilters}
           classes={classes}
           query={query}
           desktop
@@ -471,9 +502,9 @@ function ArticlePageLayout({
         <Fade in={showFilters}>
           <Box position="relative">
             <FilterGroup
-              filters={filters}
+              options={options}
               categories={categories}
-              defaultStatus={defaultStatus}
+              defaultFilters={defaultFilters}
               classes={classes}
               query={query}
             />

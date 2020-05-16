@@ -38,7 +38,7 @@ function ReplyListPage() {
           showReplyCount: false,
         }}
         defaultOrder="lastRepliedAt"
-        defaultStatus="solved"
+        timeRangeKey="repliedAt"
       />
     </AppLayout>
   );

@@ -14,28 +14,47 @@ const useStyles = makeStyles(theme => ({
   },
   calendarButton: {
     background: theme.palette.common.white,
+    padding: 5,
+    minWidth: 0,
+
     '&:hover': {
       background: theme.palette.secondary[100],
       color: theme.palette.secondary[300],
     },
+    [theme.breakpoints.up('md')]: {
+      padding: 7,
+    },
+  },
+  calendarIcon: {
+    fontSize: 14,
+    color: theme.palette.secondary[300],
+    [theme.breakpoints.up('md')]: {
+      fontSize: 18,
+    },
   },
   selectButton: {
     background: theme.palette.common.white,
+    padding: '0px 5px',
   },
   startDate: {
+    background: theme.palette.common.white,
     marginLeft: '0 !important',
-    paddingLeft: 9,
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
   },
   to: {
-    padding: 11,
+    padding: '0 11px',
   },
   endDate: {
+    background: theme.palette.common.white,
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderRadius: 4,
-    padding: 9,
+    padding: '1.5px 0',
+    minWidth: 100,
+    [theme.breakpoints.up('md')]: {
+      padding: '5.5px 0',
+    },
   },
 }));
 
@@ -115,7 +134,7 @@ function TimeRange({ onChange = () => null, range }) {
     <div className={classes.root}>
       <ButtonGroup classes={{ contained: classes.buttonGroup }}>
         <Button className={classes.calendarButton} onClick={openMenu}>
-          <DateRangeIcon />
+          <DateRangeIcon className={classes.calendarIcon} />
         </Button>
         {custom ? (
           <Input
