@@ -391,7 +391,7 @@ function ArticlePageLayout({
         </Box>
       </Box>
 
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" flexWrap="wrap">
         <TimeRange
           range={listQueryVars?.filter?.[timeRangeKey]}
           onChange={time =>
