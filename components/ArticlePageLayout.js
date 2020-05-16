@@ -391,37 +391,28 @@ function ArticlePageLayout({
         </Box>
       </Box>
 
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        overflow="scroll"
-      >
-        <div>
-          <TimeRange
-            range={listQueryVars?.filter?.[timeRangeKey]}
-            onChange={time =>
-              goToUrlQueryAndResetPagination({
-                ...query,
-                start: time?.GT,
-                end: time?.LTE,
-              })
-            }
-          />
-        </div>
-        <div>
-          <SortInput
-            orderBy={query.orderBy || defaultOrder}
-            onChange={orderBy =>
-              goToUrlQueryAndResetPagination({ ...query, orderBy })
-            }
-            options={[
-              { value: 'lastRequestedAt', label: t`Most recently asked` },
-              { value: 'lastRepliedAt', label: t`Most recently replied` },
-              { value: 'replyRequestCount', label: t`Most asked` },
-            ]}
-          />
-        </div>
+      <Box display="flex" justifyContent="space-between">
+        <TimeRange
+          range={listQueryVars?.filter?.[timeRangeKey]}
+          onChange={time =>
+            goToUrlQueryAndResetPagination({
+              ...query,
+              start: time?.GT,
+              end: time?.LTE,
+            })
+          }
+        />
+        <SortInput
+          orderBy={query.orderBy || defaultOrder}
+          onChange={orderBy =>
+            goToUrlQueryAndResetPagination({ ...query, orderBy })
+          }
+          options={[
+            { value: 'lastRequestedAt', label: t`Most recently asked` },
+            { value: 'lastRepliedAt', label: t`Most recently replied` },
+            { value: 'replyRequestCount', label: t`Most asked` },
+          ]}
+        />
       </Box>
 
       <Box display={['none', 'none', 'block']}>
