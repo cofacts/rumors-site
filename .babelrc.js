@@ -15,10 +15,11 @@ module.exports = {
           "lib": "./lib",
         }
       }
-    ], [
+    ],
+    "@babel/plugin-proposal-class-properties", // ttag extraction & resolve needs it, even though it's included in next/babel...
+    "@babel/plugin-proposal-optional-chaining",
+    [ // Need to be put last so that it can replace all strings
       'ttag', {resolve: {translations: `i18n/${process.env.LOCALE}.po`}}
     ],
-    "@babel/plugin-proposal-class-properties", // ttag extraction needs it, even though it's included in next/babel...
-    "@babel/plugin-proposal-optional-chaining",
   ]
 }

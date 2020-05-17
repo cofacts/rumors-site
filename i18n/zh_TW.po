@@ -833,11 +833,11 @@ msgstr "看理由"
 #: components/ReplyFeedback.js:349
 #, javascript-format
 msgid "Helpful ${ positiveFeedbackCount }"
-msgstr "有幫助"
+msgstr "有幫助 ${ positiveFeedbackCount }"
 
 #: components/ReplyFeedback.js:353
 msgid "Not Helpful ${ negativeFeedbackCount }"
-msgstr "沒有幫助"
+msgstr "沒有幫助 ${ negativeFeedbackCount }"
 
 #: components/ReplyFeedback.js:416
 msgid "Send"
