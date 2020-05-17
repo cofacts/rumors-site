@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useCallback, forwardRef } from 'react';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button, Menu, MenuItem } from '@material-ui/core';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,11 +59,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const options = [
-  { value: 'all', label: t`All` },
+  { value: 'all', label: c('Time range dropdown').t`All` },
   { value: 'now-1d/d', label: t`In 1 Day` },
   { value: 'now-1w/d', label: t`In 1 Week` },
   { value: 'now-1m/d', label: t`In 1 Month` },
-  { value: 'custom', label: t`Custom` },
+  { value: 'custom', label: c('Time range dropdown').t`Custom` },
 ];
 
 /*

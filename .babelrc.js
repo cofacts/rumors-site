@@ -18,6 +18,7 @@ module.exports = {
     ], [
       'ttag', {resolve: {translations: `i18n/${process.env.LOCALE}.po`}}
     ],
+    "@babel/plugin-proposal-class-properties", // ttag extraction needs it, even though it's included in next/babel...
     "@babel/plugin-proposal-optional-chaining",
   ]
 }

@@ -18,7 +18,7 @@ function ArticleListPage() {
   return (
     <AppLayout>
       <Head>
-        <title>{t`Article list`}</title>
+        <title>{t`Dubious Messages`}</title>
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -30,7 +30,7 @@ function ArticleListPage() {
           href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
         />
       </Head>
-      <ArticlePageLayout title={t`Messages`} />
+      <ArticlePageLayout title={t`Dubious Messages`} />
     </AppLayout>
   );
 }

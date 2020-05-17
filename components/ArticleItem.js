@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
 import ReplyFeedback from './ReplyFeedback';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { nl2br } from 'lib/text';
 import ExpandableText from './ExpandableText';
 
@@ -122,11 +122,11 @@ export default function ArticleItem({
           <div className={classes.infoBox}>
             <div>
               <h2>{+replyCount}</h2>
-              <span>{t`replies`}</span>
+              <span>{c('Info box').t`replies`}</span>
             </div>
             <div>
               <h2>{+replyRequestCount}</h2>
-              <span>{t`requests`}</span>
+              <span>{c('Info box').t`requests`}</span>
             </div>
           </div>
         )}

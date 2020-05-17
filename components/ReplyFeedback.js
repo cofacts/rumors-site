@@ -392,9 +392,11 @@ function ReplyFeedback({
         >
           <CloseIcon />
         </button>
-        <Typography
-          className={classes.popupTitle}
-        >{t`The reason why you upvote/downvote:`}</Typography>
+        <Typography className={classes.popupTitle}>
+          {vote === 'UPVOTE'
+            ? t`Do you have any thing to add?`
+            : t`Why do you think it is not useful?`}
+        </Typography>
         <textarea
           className={classes.textarea}
           value={reason}
