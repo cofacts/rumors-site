@@ -32,6 +32,8 @@ const ToggleButton = withStyles({
   </button>
 ));
 
+ToggleButton.displayName = 'ExpandableTextToggleButton';
+
 const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
   const [expanded, setExpanded] = useState(false);
   const [height, setHeight] = useState(0);

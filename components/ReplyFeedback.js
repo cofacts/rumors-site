@@ -291,6 +291,7 @@ function ReplyFeedback({
         className={cx(classes.vote, ownVote === 'UPVOTE' && classes.voted)}
         type="button"
         onClick={e => openVotePopover(e, 'UPVOTE')}
+        data-ga="Upvote"
       >
         <ThumbUpIcon className={classes.outlinedIcon} />
       </button>
@@ -298,10 +299,11 @@ function ReplyFeedback({
         className={cx(classes.vote, ownVote === 'DOWNVOTE' && classes.voted)}
         type="button"
         onClick={e => openVotePopover(e, 'DOWNVOTE')}
+        data-ga="Downvote"
       >
         <ThumbDownIcon className={classes.outlinedIcon} />
       </button>
-      <div className={classes.buttonGroup}>
+      <div className={classes.buttonGroup} data-ga="Number display">
         <button className={classes.vote} type="button">
           {positiveFeedbackCount}
           <ThumbUpIcon className={classes.icon} />
@@ -424,6 +426,8 @@ function ReplyFeedback({
     </div>
   );
 }
+
+ReplyFeedback.displayName = 'ReplyFeedback';
 
 ReplyFeedback.fragments = {
   ArticleReplyFeedbackData,

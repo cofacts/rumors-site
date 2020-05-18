@@ -126,6 +126,8 @@ function ReplyItem({
   );
 }
 
+ReplyItem.displayName = 'ReplyItem';
+
 ReplyItem.fragments = {
   ReplyItem: gql`
     fragment ReplyItem on Reply {
