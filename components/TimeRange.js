@@ -181,7 +181,11 @@ function TimeRange({ onChange = () => null, range }) {
         onClose={closeMenu}
       >
         {options.map(option => (
-          <MenuItem key={option.value} onClick={select(option.value)}>
+          <MenuItem
+            key={option.value}
+            onClick={select(option.value)}
+            data-ga={`MenuItem(${option.value})`}
+          >
             {option.label}
           </MenuItem>
         ))}
