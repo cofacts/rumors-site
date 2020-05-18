@@ -800,7 +800,7 @@ msgstr "查看更多"
 #: pages/hoax-for-you.js:25
 #: pages/hoax-for-you.js:38
 msgid "Hoax for you"
-msgstr "等你來打"
+msgstr "等你來答"
 
 #: pages/replies.js:21
 msgid "Latest replies"
