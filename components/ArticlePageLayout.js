@@ -427,7 +427,7 @@ function ArticlePageLayout({
       </Box>
 
       {loading && !articleEdges.length ? (
-        'Loading....'
+        t`Loading...`
       ) : listArticlesError ? (
         listArticlesError.toString()
       ) : (

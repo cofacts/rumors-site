@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import NavLink from 'components/NavLink';
 import GlobalSearch from './GlobalSearch';
 import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
@@ -132,14 +132,14 @@ const Links = ({ classes, unsolvedCount }) => (
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {t`Messages`}
+      {c('App header').t`Messages`}
     </NavLink>
     <NavLink
       href="/replies"
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {t`Replies`}
+      {c('App header').t`Replies`}
     </NavLink>
     <NavLink
       href="/hoax-for-you"
@@ -151,7 +151,7 @@ const Links = ({ classes, unsolvedCount }) => (
         badgeContent={unsolvedCount}
         showZero={true}
       >
-        {t`For You`}
+        {c('App header').t`For You`}
       </CustomBadge>
     </NavLink>
     <Box
@@ -161,7 +161,7 @@ const Links = ({ classes, unsolvedCount }) => (
       href={EDITOR_FACEBOOK_GROUP}
       className={classes.tab}
     >
-      {t`Forum`}
+      {c('App header').t`Forum`}
     </Box>
   </>
 );
@@ -229,7 +229,7 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
                   <ListItemIcon className={classes.listIcon}>
                     <InfoIcon />
                   </ListItemIcon>
-                  <Typography variant="inherit">{t`About`}</Typography>
+                  <Typography variant="inherit">{t`About Cofacts`}</Typography>
                 </MenuItem>
                 <Divider classes={{ root: classes.divider }} />
                 <MenuItem onClick={onLogout}>

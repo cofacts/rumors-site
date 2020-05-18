@@ -31,7 +31,7 @@ function ReplyListPage() {
         />
       </Head>
       <ArticlePageLayout
-        title={t`Replies`}
+        title={t`Latest Replies`}
         articleDisplayConfig={{
           isLink: false,
           showLastReply: true,
