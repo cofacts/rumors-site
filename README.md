@@ -87,7 +87,7 @@ Also, it will push the following custom variable to `dataLayer`;
 Lastly, in Google Tag Manager we use `data-ga` property to track clicks.
 If user clicks a decendant of an React element with `data-ga` property,
 a click event will be sent to Google analytics with the written `data-ga`.
-(It doesn't even need to be rendered, we [setup the Google Tag Manager](https://github.com/cofacts/rumors-site/issues/237) to read private React instance)
+(It doesn't even need to be rendered, we [setup the Google Tag Manager](https://github.com/cofacts/rumors-site/pull/254) to read private React instance)
 
 Also, if a component has its `displayName` set,
 a click event with that `displayName` is also sent to Google Analytics when any of its decendant is clicked.
