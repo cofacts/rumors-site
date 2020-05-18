@@ -190,4 +190,6 @@ function TimeRange({ onChange = () => null, range }) {
   );
 }
 
+TimeRange.displayName = 'TimeRange';
+
 export default TimeRange;

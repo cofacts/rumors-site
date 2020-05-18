@@ -265,6 +265,7 @@ const FilterGroup = ({
             filters: filters.join(','),
           })
         }
+        data-ga="Filter(filter)"
       />
     )}
 
@@ -293,6 +294,7 @@ const FilterGroup = ({
               .join(','),
           })
         }
+        data-ga="Filter(category)"
       />
     )}
   </Filters>

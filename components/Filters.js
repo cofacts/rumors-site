@@ -161,7 +161,11 @@ export function Filter({
       </div>
       {expandable && (
         <div className={classes.expand}>
-          <button type="button" onClick={() => setExpand(e => !e)}>
+          <button
+            type="button"
+            onClick={() => setExpand(e => !e)}
+            data-ga="FilterExpandButton"
+          >
             {expand ? (
               <>
                 {t`Collapse`}
