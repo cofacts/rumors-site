@@ -103,4 +103,6 @@ function FeedDisplay({ feedUrl }) {
   );
 }
 
+FeedDisplay.displayName = 'FeedDisplay';
+
 export default FeedDisplay;
