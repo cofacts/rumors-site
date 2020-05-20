@@ -60,7 +60,7 @@ $ npm run storybook
 ```
 we also use storyshot to do snapshot test with stories, make sure to run:
 ```
-$ npm test -- -u 
+$ npm test -- -u
 ```
 before pushing to update stories snapshots.
 Storybook will be available under /storybook/index.html after build.
@@ -83,6 +83,14 @@ Also, it will push the following custom variable to `dataLayer`;
 
 - `GA_TRACKING_ID` - see `PUBLIC_GA_TRACKING_ID`
 - `CURRENT_USER` - Current user object, set by `useCurrentUser`.
+
+Lastly, in Google Tag Manager we use `data-ga` property to track clicks.
+If user clicks a decendant of an React element with `data-ga` property,
+a click event will be sent to Google analytics with the written `data-ga`.
+(It doesn't even need to be rendered, we [setup the Google Tag Manager](https://github.com/cofacts/rumors-site/pull/254) to read private React instance)
+
+Also, if a component has its `displayName` set,
+a click event with that `displayName` is also sent to Google Analytics when any of its decendant is clicked.
 
 ## Design and Mockups
 

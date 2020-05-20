@@ -147,7 +147,7 @@ export default function ArticleItem({
         content
       )}
       {isLink || (
-        <div className={classes.link}>
+        <div className={classes.link} data-ga="Bust hoax button">
           <Link href="/article/[id]" as={`/article/${article.id}`}>
             <a>{t`Bust Hoaxes`}</a>
           </Link>
@@ -161,6 +161,8 @@ export default function ArticleItem({
     </li>
   );
 }
+
+ArticleItem.displayName = 'ArticleItem';
 
 ArticleItem.fragments = {
   ArticleItem: gql`

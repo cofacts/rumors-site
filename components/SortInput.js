@@ -63,4 +63,6 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
   );
 }
 
+SortInput.displayName = 'SortInput';
+
 export default SortInput;

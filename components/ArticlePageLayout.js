@@ -265,6 +265,7 @@ const FilterGroup = ({
             filters: filters.join(','),
           })
         }
+        data-ga="Filter(filter)"
       />
     )}
 
@@ -293,6 +294,7 @@ const FilterGroup = ({
               .join(','),
           })
         }
+        data-ga="Filter(category)"
       />
     )}
   </Filters>
@@ -444,6 +446,7 @@ function ArticlePageLayout({
           {lastCursorOfPage !== lastCursor && (
             <Box display="flex" pb={1.5} justifyContent="center">
               <button
+                data-ga="LoadMore"
                 type="button"
                 className={classes.loadMore}
                 onClick={() =>
@@ -481,6 +484,7 @@ function ArticlePageLayout({
       <Fab
         variant="extended"
         aria-label="filters"
+        data-ga="Mobile filter button"
         className={classes.openFilter}
         onClick={() => setFiltersShow(!showFilters)}
       >
@@ -502,6 +506,7 @@ function ArticlePageLayout({
         <Fade in={showFilters}>
           <Box position="relative">
             <FilterGroup
+              data-ga="Mobile filter view"
               options={options}
               categories={categories}
               defaultFilters={defaultFilters}
