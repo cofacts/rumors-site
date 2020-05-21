@@ -61,7 +61,7 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
               : '資料來源'}
           </strong>
         </label>
-        <Hint>{t`Separate sources with newlines to improve line user experience`}</Hint>
+        <Hint>{t`Inserting blank lines between reference items can improve readability in LINE.`}</Hint>
       </Box>
     </Box>
   );
