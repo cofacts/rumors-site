@@ -90,13 +90,11 @@ const useStyles = makeStyles(theme => ({
     },
   },
   text: {
-    [theme.breakpoints.down('md')]: {
-      display: 'box',
-      overflow: 'hidden',
-      boxOrient: 'vertical',
-      textOverflow: 'ellipsis',
-      lineClamp: 5,
-    },
+    display: 'box',
+    overflow: 'hidden',
+    boxOrient: 'vertical',
+    textOverflow: 'ellipsis',
+    lineClamp: 5,
   },
 }));
 
@@ -338,7 +336,7 @@ function ArticlePage() {
             >
               {similarArticles.map(({ node }) => (
                 <div key={node.id} className={classes.similarMessageContainer}>
-                  <article className={classes.text}>{node.text}</article>
+                  <article className={classes.text}>{nl2br(node.text)}</article>
                   <Box py={1}>
                     <ArticleInfo article={node} />
                   </Box>
