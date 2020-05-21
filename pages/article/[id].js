@@ -180,6 +180,7 @@ function ArticlePage() {
   const currentUser = useCurrentUser();
 
   const replySectionRef = useRef(null);
+  const classes = useStyles();
 
   useEffect(() => {
     if (!articleForUserCalled) {
@@ -194,17 +195,7 @@ function ArticlePage() {
     replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  const article = data?.GetArticle || {};
-
-  const { replyRequestCount, text, hyperlinks } = article;
-  const classes = useStyles();
-  const similarArticles = article?.similarArticles?.edges || [];
-
-  const createdAt = article.createdAt
-    ? new Date(article.createdAt)
-    : new Date();
-
-  const timeAgoStr = formatDistanceToNow(createdAt);
+  const article = data?.GetArticle;
 
   usePushToDataLayer(!!article, { event: 'dataLoaded' });
 
@@ -229,6 +220,15 @@ function ArticlePage() {
       </AppLayout>
     );
   }
+
+  const { replyRequestCount, text, hyperlinks } = article;
+  const similarArticles = article?.similarArticles?.edges || [];
+
+  const createdAt = article.createdAt
+    ? new Date(article.createdAt)
+    : new Date();
+
+  const timeAgoStr = formatDistanceToNow(createdAt);
 
   return (
     <AppLayout>
