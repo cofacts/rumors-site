@@ -51,9 +51,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
   aside: {
+    flex: 1,
     background: 'transparent',
     [theme.breakpoints.up('md')]: {
-      padding: '16px 28px',
+      padding: '21px 19px',
       background: theme.palette.common.white,
     },
     '& h4': {
@@ -72,6 +73,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     background: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
+      zIndex: 10,
       position: 'relative',
       padding: '28px 16px',
       marginTop: 24,
@@ -81,12 +83,17 @@ const useStyles = makeStyles(theme => ({
   similarMessageContainer: {
     backgroundColor: theme.palette.common.white,
     minWidth: '100%',
-    padding: theme.spacing(2),
+    padding: '17px 19px',
     marginRight: theme.spacing(2),
     borderRadius: 8,
     [theme.breakpoints.up('md')]: {
+      padding: '16px 0 0 0 ',
       margin: 0,
       width: 'auto',
+      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+      '&:last-child': {
+        borderBottom: 'none',
+      },
     },
   },
   text: {
@@ -240,8 +247,8 @@ function ArticlePage() {
           <Box
             className={classes.card}
             position="relative"
-            px={{ xs: 1.5, md: 3.5 }}
-            py={1.5}
+            px={{ xs: '12px', md: '19px' }}
+            py={{ xs: '13px', md: '21px' }}
           >
             <Box
               display="flex"
@@ -314,8 +321,8 @@ function ArticlePage() {
           <Box
             className={classes.card}
             position="relative"
-            px={{ xs: 1.5, md: 3.5 }}
-            py={1.5}
+            px={{ xs: '12px', md: '19px' }}
+            py={{ xs: '13px', md: '21px' }}
             mt={3}
             id="current-replies"
             ref={replySectionRef}
@@ -332,15 +339,14 @@ function ArticlePage() {
             <Box
               display="flex"
               flexDirection={{ xs: 'row', md: 'column' }}
-              overflow="scroll"
+              overflow="auto"
             >
               {similarArticles.map(({ node }) => (
                 <div key={node.id} className={classes.similarMessageContainer}>
                   <article className={classes.text}>{nl2br(node.text)}</article>
-                  <Box py={1}>
+                  <Box pt={1.5} pb={2}>
                     <ArticleInfo article={node} />
                   </Box>
-                  <Divider />
                 </div>
               ))}
             </Box>

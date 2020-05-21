@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
       marginBottom: 10,
       maxWidth: 'inherit',
+      fontSize: 14,
     },
   },
   url: {
@@ -43,13 +44,15 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     '& .summary': {
       color: theme.palette.secondary[500],
-      maxHeight: 40,
       overflow: 'hidden',
       margin: 0,
-      display: 'flex',
-      marginRight: 10,
+      display: 'box',
+      boxOrient: 'vertical',
+      textOverflow: 'ellipsis',
+      lineClamp: 2,
     },
     '& .image': {
+      marginLeft: 10,
       margin: 0,
       maxHeight: 60,
       minWidth: 60,

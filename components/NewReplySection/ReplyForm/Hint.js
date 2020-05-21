@@ -5,9 +5,6 @@ const Hint = withStyles(theme => ({
   root: {
     fontSize: 12,
     color: theme.palette.secondary[200],
-    [theme.breakpoints.up('md')]: {
-      fontSize: 14,
-    },
   },
   icon: {
     fontSize: 14,

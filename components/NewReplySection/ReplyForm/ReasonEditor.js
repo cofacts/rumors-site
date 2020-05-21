@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[300],
     padding: 12,
     whiteSpace: 'nowrap',
-    overflow: 'scroll',
+    overflowX: 'auto',
     [theme.breakpoints.up('md')]: {
       order: 2,
       background: theme.palette.secondary[50],

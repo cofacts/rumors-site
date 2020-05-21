@@ -1,6 +1,6 @@
 import React from 'react';
 import { t } from 'ttag';
-import { Box, SvgIcon } from '@material-ui/core';
+import { Box, SvgIcon, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 
@@ -44,14 +44,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '.5rem',
   },
   submit: {
-    borderBottomLeftRadius: 7,
-    borderBottomRightRadius: 7,
-    backgroundColor: theme.palette.primary[500],
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
     color: theme.palette.common.white,
-    border: 'none',
-    outline: 'none',
     width: '100%',
-    cursor: 'pointer',
     padding: 12,
   },
 }));
@@ -129,14 +125,16 @@ function RelatedReplyItem({ article, reply, onConnect, disabled }) {
       </div>
 
       <footer>
-        <button
-          className={classes.submit}
-          type="button"
+        <Button
+          variant="contained"
+          color="primary"
+          disableElevation
           onClick={() => onConnect(reply.id)}
           disabled={disabled}
+          classes={{ root: classes.submit }}
         >
           {t`Use this reply`}
-        </button>
+        </Button>
       </footer>
     </li>
   );
