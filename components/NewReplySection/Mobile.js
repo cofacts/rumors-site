@@ -10,14 +10,16 @@ import ReplyFormContext from './ReplyForm/context';
 import { nl2br, linkify } from 'lib/text';
 
 import ReferenceInput from './ReplyForm/ReferenceInput';
+import ReplySearch from './ReplySearch';
+import SearchBar from './ReplySearch/SearchBar';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
   },
-  top: {
-    height: 60,
+  header: {
+    minHeight: 60,
     background: theme.palette.secondary[500],
     display: 'flex',
     justifyContent: 'space-between',
@@ -39,9 +41,32 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 30,
     padding: '5px 16px',
   },
-
   typeSelect: {
     background: theme.palette.secondary[50],
+  },
+  searchBarContainer: {
+    position: 'fixed',
+    backgroundColor: theme.palette.secondary[50],
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    padding: '12px 10px',
+    '&:focus-within': {
+      backgroundColor: theme.palette.secondary[100],
+    },
+  },
+  searchBar: {
+    backgroundColor: theme.palette.secondary[100],
+    borderRadius: 30,
+    '& > input': {
+      backgroundColor: theme.palette.secondary[100],
+    },
+    '&:focus-within': {
+      background: theme.palette.common.white,
+      '& > input': {
+        backgroundColor: theme.palette.common.white,
+      },
+    },
   },
 }));
 
@@ -82,6 +107,10 @@ export default function Mobile({
   article,
   handleSubmit,
   creatingReply,
+  relatedArticleReplies,
+  handleConnect,
+  connectingReply,
+  existingReplyIds,
 }) {
   const [view, setView] = useState(NEW_REPLY_VIEW);
   const [selectedTab, setSelectedTab] = useState(1);
@@ -104,7 +133,7 @@ export default function Mobile({
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
-      <div className={classes.top}>
+      <div className={classes.header}>
         <button type="button" className={classes.cancel} onClick={onClose}>
           {t`Cancel`}
         </button>
@@ -121,7 +150,13 @@ export default function Mobile({
             value={EXISTING_REPLY_VIEW}
           >{t`Search Existing Reply`}</MenuItem>
         </Select>
-        <Submit disabled={creatingReply} onClick={handleSubmit} />
+        <Submit
+          disabled={creatingReply}
+          onClick={handleSubmit}
+          style={{
+            visibility: view === EXISTING_REPLY_VIEW ? 'hidden' : 'visible',
+          }}
+        />
       </div>
       {view === NEW_REPLY_VIEW && (
         <>
@@ -184,7 +219,19 @@ export default function Mobile({
           </Box>
         </>
       )}
-      {view === EXISTING_REPLY_VIEW && 'under construction ...'}
+      {view === EXISTING_REPLY_VIEW && (
+        <Box px={2} overflow="auto">
+          <ReplySearch
+            relatedArticleReplies={relatedArticleReplies}
+            existingReplyIds={existingReplyIds}
+            onConnect={handleConnect}
+            disabled={connectingReply}
+          />
+          <div className={classes.searchBarContainer}>
+            <SearchBar className={classes.searchBar} />
+          </div>
+        </Box>
+      )}
     </Box>
   );
 }

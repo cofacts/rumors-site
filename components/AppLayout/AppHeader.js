@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     position: 'sticky',
     height: NAVBAR_HEIGHT + TABS_HEIGHT,
     top: 0,
-    zIndex: 10,
+    zIndex: 20,
     [theme.breakpoints.up('md')]: {
       height: NAVBAR_HEIGHT,
     },

@@ -2,8 +2,7 @@ import { useState, useCallback, useContext } from 'react';
 import { t } from 'ttag';
 import { Box, Tabs, Tab, Badge } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import ReplySearch from 'components/ReplySearch';
-import RelatedReplies from 'components/RelatedReplies';
+import ReplySearch from 'components/NewReplySection/ReplySearch';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import {
   ReasonEditor,
@@ -14,6 +13,7 @@ import {
 } from './ReplyForm';
 import ReplyFormContext from './ReplyForm/context';
 import useCurrentUser from 'lib/useCurrentUser';
+import SearchBar from './ReplySearch/SearchBar';
 
 const CustomTab = withStyles(theme => ({
   root: {
@@ -105,13 +105,21 @@ const Desktop = ({
       )}
       {selectedTab === 1 && (
         <>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Box flex={1} component="h3">
+              {t`Related messages and replies`}
+            </Box>
+            <Box flex={1} pl={2}>
+              <SearchBar />
+            </Box>
+          </Box>
           <ReplySearch
-            existingReplyIds={existingReplyIds}
-            onConnect={handleConnect}
-            disabled={connectingReply}
-          />
-          <RelatedReplies
             relatedArticleReplies={relatedArticleReplies}
+            existingReplyIds={existingReplyIds}
             onConnect={handleConnect}
             disabled={connectingReply}
           />

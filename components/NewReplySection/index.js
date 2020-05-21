@@ -11,6 +11,7 @@ import Mobile from './Mobile';
 import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
 import RelatedReplies from 'components/RelatedReplies';
 import ReplyFormContext, { withReplyFormContext } from './ReplyForm/context';
+import { withReplySearchContext } from './ReplySearch/context';
 
 const RelatedArticleData = gql`
   fragment RelatedArticleData on Article {
@@ -54,7 +55,9 @@ const CONNECT_REPLY = gql`
   }
 `;
 
-const NewReplySection = withReplyFormContext(
+const withContext = f => withReplyFormContext(withReplySearchContext(f));
+
+const NewReplySection = withContext(
   ({
     article,
     existingReplyIds,
@@ -90,6 +93,8 @@ const NewReplySection = withReplyFormContext(
         awaitRefetchQueries: true,
         onCompleted() {
           onSubmissionComplete(); // Notify upper component of submission
+          handlers.clear();
+          onClose();
           setFlashMessage(t`Your have attached the reply to this message.`);
         },
         onError(error) {

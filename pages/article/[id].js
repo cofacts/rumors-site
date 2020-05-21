@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
   newReplyContainer: {
     position: 'fixed',
-    zIndex: 10,
+    zIndex: 20,
     height: '100%',
     width: '100%',
     top: 0,
@@ -264,7 +264,7 @@ function ArticlePage() {
               )}
             </Box>
             <Divider classes={{ root: classes.divider }} />
-            <Box py={4}>
+            <Box py={4} overflow="hidden">
               {nl2br(
                 linkify(text, {
                   props: {
