@@ -105,11 +105,7 @@ const Desktop = ({
       )}
       {selectedTab === 1 && (
         <>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
+          <Box display="flex" alignItems="center">
             <Box flex={1} component="h3">
               {t`Related messages and replies`}
             </Box>

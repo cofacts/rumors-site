@@ -25,8 +25,10 @@ const CustomTooltip = withStyles(theme => ({
   },
 }))(Tooltip);
 
-export default function ReplyInfo({ reply }) {
-  const createdAt = reply.createdAt ? new Date(reply.createdAt) : new Date();
+export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
+  const createdAt = articleReplyCreatedAt
+    ? new Date(articleReplyCreatedAt)
+    : new Date();
   const { articleReplies, user } = reply;
   const referenceCount = articleReplies?.length;
   const timeAgoStr = formatDistanceToNow(createdAt);

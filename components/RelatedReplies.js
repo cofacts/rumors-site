@@ -90,7 +90,7 @@ function RelatedReplyItem({ article, reply, onConnect, disabled }) {
   return (
     <li className={classes.root}>
       <Link href="/article/[id]" as={`/article/${article.id}`}>
-        <a className={classes.link}>
+        <a target="_blank" className={classes.link}>
           <Box
             component="span"
             display={{ xs: 'none', md: 'inline' }}

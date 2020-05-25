@@ -115,6 +115,7 @@ const ArticleReply = React.memo(
     showFeedback = true,
   }) => {
     const {
+      createdAt,
       articleId,
       positiveFeedbackCount,
       negativeFeedbackCount,
@@ -227,7 +228,7 @@ const ArticleReply = React.memo(
             <div className={classes.replyType}>
               {jt`${authorElem} mark this message ${TYPE_NAME[replyType]}`}
             </div>
-            <ReplyInfo reply={reply} />
+            <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
           </Box>
           {(articleReply.canUpdateStatus || !showActionOnlyWhenCanUpdate) && (
             <ReplyActions

@@ -208,11 +208,15 @@ const CreateReplyRequestForm = React.memo(
               type="button"
               className={cx(showForm && 'active')}
               onClick={() => setShowForm(!showForm)}
-            >{t`Comment`}</button>
-            <button
-              type="button"
-              className={cx(requestedForReply && 'active')}
-            >{t`Follow`}</button>
+            >
+              {requestedForReply === true ? t`Update comment` : t`Comment`}
+            </button>
+            {/* 
+              <button
+                type="button"
+                className={cx(requestedForReply && 'active')}
+              >{t`Follow`}</button>
+            */}
             <button
               type="button"
               onClick={e => setShareAnchor(e.currentTarget)}

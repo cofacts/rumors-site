@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Divider } from '@material-ui/core';
@@ -86,6 +87,7 @@ const useStyles = makeStyles(theme => ({
     padding: '17px 19px',
     marginRight: theme.spacing(2),
     borderRadius: 8,
+    cursor: 'pointer',
     [theme.breakpoints.up('md')]: {
       padding: '16px 0 0 0 ',
       margin: 0,
@@ -342,12 +344,14 @@ function ArticlePage() {
               overflow="auto"
             >
               {similarArticles.map(({ node }) => (
-                <div key={node.id} className={classes.similarMessageContainer}>
-                  <article className={classes.text}>{nl2br(node.text)}</article>
-                  <Box pt={1.5} pb={2}>
-                    <ArticleInfo article={node} />
-                  </Box>
-                </div>
+                <Link key={node.id} href={`/article/${node.id}`}>
+                  <div className={classes.similarMessageContainer}>
+                    <article className={classes.text}>{node.text}</article>
+                    <Box pt={1.5} pb={2}>
+                      <ArticleInfo article={node} />
+                    </Box>
+                  </div>
+                </Link>
               ))}
             </Box>
           ) : (
