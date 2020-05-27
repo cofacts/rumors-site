@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Divider } from '@material-ui/core';
+import { Box, Divider, Snackbar } from '@material-ui/core';
 import { ngettext, msgid, t } from 'ttag';
 
 import { useRouter } from 'next/router';
@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   },
   newReplyContainer: {
     position: 'fixed',
-    zIndex: 20,
+    zIndex: theme.zIndex.modal,
     height: '100%',
     width: '100%',
     top: 0,
@@ -173,6 +173,7 @@ const LOAD_ARTICLE_FOR_USER = gql`
 function ArticlePage() {
   const { query } = useRouter();
   const [showForm, setShowForm] = useState(false);
+  const [flashMessage, setFlashMessage] = useState(0);
   const articleVars = { id: query.id };
 
   const { data, loading } = useQuery(LOAD_ARTICLE, {
@@ -201,7 +202,15 @@ function ArticlePage() {
   const handleNewReplySubmit = useCallback(() => {
     if (!replySectionRef.current) return;
     replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    setFlashMessage(t`Your reply has been submitted.`);
   }, []);
+
+  const handleError = useCallback(error => {
+    console.error(error);
+    setFlashMessage(error.toString());
+  }, []);
+
+  const handleFormClose = () => setShowForm(false);
 
   const article = data?.GetArticle;
 
@@ -316,7 +325,8 @@ function ArticlePage() {
                 )}
                 relatedArticles={article?.relatedArticles}
                 onSubmissionComplete={handleNewReplySubmit}
-                onClose={() => setShowForm(false)}
+                onError={handleError}
+                onClose={handleFormClose}
               />
             </div>
           )}
@@ -364,6 +374,11 @@ function ArticlePage() {
           )}
         </div>
       </div>
+      <Snackbar
+        open={!!flashMessage}
+        onClose={() => setFlashMessage('')}
+        message={flashMessage}
+      />
     </AppLayout>
   );
 }

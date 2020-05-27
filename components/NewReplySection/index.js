@@ -1,9 +1,9 @@
-import { useState, useCallback, useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 
-import { Box, Snackbar } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import Desktop from './Desktop';
@@ -63,10 +63,11 @@ const NewReplySection = withContext(
     existingReplyIds,
     relatedArticles,
     onSubmissionComplete,
+    onError,
+    setFlashMessage,
     onClose,
   }) => {
     const { fields, handlers } = useContext(ReplyFormContext);
-    const [flashMessage, setFlashMessage] = useState(0);
     const currentUser = useCurrentUser();
 
     const [createReply, { loading: creatingReply }] = useMutation(
@@ -78,12 +79,8 @@ const NewReplySection = withContext(
           onSubmissionComplete(); // Notify upper component of submission
           handlers.clear();
           onClose();
-          setFlashMessage(t`Your reply has been submitted.`);
         },
-        onError(error) {
-          console.error(error);
-          setFlashMessage(error.toString());
-        },
+        onError,
       }
     );
     const [connectReply, { loading: connectingReply }] = useMutation(
@@ -97,10 +94,7 @@ const NewReplySection = withContext(
           onClose();
           setFlashMessage(t`Your have attached the reply to this message.`);
         },
-        onError(error) {
-          console.error(error);
-          setFlashMessage(error.toString());
-        },
+        onError,
       }
     );
 
@@ -148,11 +142,6 @@ const NewReplySection = withContext(
         <Box display={{ xs: 'block', md: 'none' }}>
           <Mobile onClose={onClose} article={article} {...sharedProps} />
         </Box>
-        <Snackbar
-          open={!!flashMessage}
-          onClose={() => setFlashMessage('')}
-          message={flashMessage}
-        />
       </form>
     );
   }
