@@ -64,7 +64,6 @@ const NewReplySection = withContext(
     relatedArticles,
     onSubmissionComplete,
     onError,
-    setFlashMessage,
     onClose,
   }) => {
     const { fields, handlers } = useContext(ReplyFormContext);
@@ -92,7 +91,6 @@ const NewReplySection = withContext(
           onSubmissionComplete(); // Notify upper component of submission
           handlers.clear();
           onClose();
-          setFlashMessage(t`Your have attached the reply to this message.`);
         },
         onError,
       }
