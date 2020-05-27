@@ -1,10 +1,47 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, SvgIcon, Divider } from '@material-ui/core';
 import gql from 'graphql-tag';
-import { t } from 'ttag';
-import url from 'url';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
+import cx from 'clsx';
+
+const useStyles = makeStyles(theme => ({
+  userIcon: {
+    fontSize: 40,
+  },
+  vote: {
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 45,
+    padding: '1px 8px',
+    marginRight: 3,
+    outline: 'none',
+    cursor: 'pointer',
+    border: `1px solid ${theme.palette.secondary[100]}`,
+    color: theme.palette.secondary[100],
+    background: theme.palette.common.white,
+    [theme.breakpoints.up('md')]: {
+      padding: '4px 18px',
+      marginRight: 10,
+    },
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary[300]}`,
+      color: theme.palette.secondary[300],
+    },
+  },
+  voted: {
+    border: `1px solid ${theme.palette.primary[500]}`,
+    color: theme.palette.primary[500],
+  },
+  thumbIcon: {
+    fontSize: 16,
+    margin: '0 2px',
+  },
+  reasonBody: {
+    wordBreak: 'break-word',
+  },
+}));
 
 const UPVOTE = 'UPVOTE';
 const DOWNVOTE = 'DOWNVOTE';
@@ -40,7 +77,15 @@ const UPDATE_VOTE = gql`
   ${ReplyRequestInfo}
 `;
 
-const AuthorArticleLink = ({ articleId }) => (
+// @todo: temporarily remove this
+/*
+const AuthorArticleLink = withStyles(theme => ({
+  linkAuthor: {
+    color: theme.palette.secondary[300],
+    alignSelf: 'flex-end',
+    whiteSpace: 'nowrap',
+  },
+}))(({ classes, articleId }) => (
   <Link
     href={url.format({
       pathname: '/articles',
@@ -51,42 +96,32 @@ const AuthorArticleLink = ({ articleId }) => (
       },
     })}
   >
-    <a className="link-author">
+    <a className={classes.linkAuthor}>
       {t`All messages reported by this user`}
-      <style jsx>{`
-        .link-author {
-          color: #5e7d8f;
-          align-self: flex-end;
-          white-space: nowrap;
-        }
-      `}</style>
     </a>
   </Link>
+));
+*/
+
+const UserIcon = props => (
+  <SvgIcon {...props} viewBox="0 0 41 42">
+    <path d="M20.4167 0.800049C9.34879 0.800049 0 10.1488 0 21.2167C0 32.2846 9.34879 41.6334 20.4167 41.6334C31.4845 41.6334 40.8333 32.2846 40.8333 21.2167C40.8333 10.1488 31.4845 0.800049 20.4167 0.800049ZM20.4167 11.0084C23.9426 11.0084 26.5417 13.6054 26.5417 17.1334C26.5417 20.6614 23.9426 23.2584 20.4167 23.2584C16.8927 23.2584 14.2917 20.6614 14.2917 17.1334C14.2917 13.6054 16.8927 11.0084 20.4167 11.0084ZM9.99192 30.9595C11.8233 28.2645 14.8776 26.4679 18.375 26.4679H22.4583C25.9577 26.4679 29.01 28.2645 30.8414 30.9595C28.2322 33.7525 24.5306 35.5084 20.4167 35.5084C16.3027 35.5084 12.6012 33.7525 9.99192 30.9595Z" />
+  </SvgIcon>
 );
 
-function UserIcon() {
-  return (
-    <>
-      <svg
-        className="svg-user"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 512 512"
-      >
-        <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.457 0 200 89.543 200 200 0 36.982-10.049 71.611-27.548 101.328-7.072-25.444-25.663-54.208-63.93-65.374C377.207 271.782 384 248.414 384 224c0-70.689-57.189-128-128-128-70.689 0-128 57.19-128 128 0 24.414 6.793 47.783 19.478 67.954-38.299 11.175-56.876 39.913-63.938 65.362C66.046 327.601 56 292.976 56 256c0-110.457 89.543-200 200-200zm80 168c0 44.183-35.817 80-80 80s-80-35.817-80-80 35.817-80 80-80 80 35.817 80 80zM128 409.669v-27.758c0-20.41 13.53-38.348 33.156-43.955l24.476-6.993C206.342 344.648 230.605 352 256 352s49.658-7.352 70.369-21.038l24.476 6.993C370.47 343.563 384 361.5 384 381.911v27.758C349.315 438.592 304.693 456 256 456s-93.315-17.408-128-46.331z" />
-      </svg>
-      <style jsx>{`
-        .svg-user {
-          flex: 0 0 2.5em;
-          height: 2.5em;
-          fill: gray;
-          margin-right: 0.3em;
-        }
-      `}</style>
-    </>
-  );
-}
+const ThumbUpIcon = props => (
+  <SvgIcon {...props} viewBox="0 0 17 15">
+    <path d="M1 13.8671H3.65455V6.51606H1V13.8671ZM15.6 7.12864C15.6 6.4548 15.0027 5.90347 14.2727 5.90347H10.0852L10.7156 3.10394L10.7355 2.90792C10.7355 2.65676 10.6227 2.42397 10.4435 2.25857L9.74009 1.61536L5.37336 5.65231C5.12782 5.87284 4.98182 6.17913 4.98182 6.51606V12.6419C4.98182 13.3158 5.57909 13.8671 6.30909 13.8671H12.2818C12.8326 13.8671 13.3038 13.5608 13.5029 13.1197L15.5071 8.80101C15.5668 8.66011 15.6 8.51309 15.6 8.35382V7.12864Z" />
+  </SvgIcon>
+);
 
-function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
+const ThumbDownIcon = props => (
+  <SvgIcon {...props} viewBox="0 0 17 15">
+    <path d="M10.2909 1.46155H4.31818C3.76736 1.46155 3.29618 1.76784 3.09709 2.2089L1.09291 6.52765C1.03318 6.66854 1 6.81556 1 6.97483V8.20001C1 8.87386 1.59727 9.42518 2.32727 9.42518H6.51482L5.88436 12.2247L5.86445 12.4207C5.86445 12.6719 5.97727 12.9047 6.15646 13.0701L6.85991 13.7133L11.2333 9.67635C11.4722 9.45581 11.6182 9.14952 11.6182 8.8126V2.68672C11.6182 2.01288 11.0209 1.46155 10.2909 1.46155ZM12.9455 1.46155V8.8126H15.6V1.46155H12.9455Z" />
+  </SvgIcon>
+);
+
+function ReplyRequestReason({ isArticleCreator, replyRequest }) {
   const {
     id: replyRequestId,
     reason: replyRequestReason,
@@ -100,135 +135,56 @@ function ReplyRequestReason({ isArticleCreator, replyRequest, articleId }) {
     voteReason({ variables: { vote, replyRequestId } });
   };
 
+  const classes = useStyles();
+
   if (!(isArticleCreator || replyRequestReason)) return null;
 
   return (
-    <div className="container-request-user">
-      {replyRequestReason && (
-        <>
-          <div className="box-vote">
-            <button
-              className="btn-vote btn-up-vote"
-              onClick={() => handleVote(UPVOTE)}
-              disabled={loading || ownVote === UPVOTE}
-            >
-              <span className="vote-num">{positiveFeedbackCount}</span>
-              <svg
-                className={`icon ${ownVote === UPVOTE && 'active'}`}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 320 512"
-              >
-                <path d="M48.048 352h223.895c42.638 0 64.151-51.731 33.941-81.941l-111.943-112c-18.745-18.745-49.137-18.746-67.882 0l-111.952 112C-16.042 300.208 5.325 352 48.048 352zM160 192l112 112H48l112-112z" />
-              </svg>
-            </button>
-            <button
-              className="btn-vote btn-down-vote"
-              onClick={() => {
-                handleVote(DOWNVOTE);
-              }}
-              disabled={loading || ownVote === DOWNVOTE}
-            >
-              <span className="vote-num">{negativeFeedbackCount}</span>
-              <svg
-                className={`icon ${ownVote === DOWNVOTE && 'active'}`}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 320 512"
-              >
-                <path d="M272 160H48.1c-42.6 0-64.2 51.7-33.9 81.9l111.9 112c18.7 18.7 49.1 18.7 67.9 0l112-112c30-30.1 8.7-81.9-34-81.9zM160 320L48 208h224L160 320z" />
-              </svg>
-            </button>
-          </div>
-          <UserIcon />
-          <p className="reason">{replyRequestReason}</p>
-        </>
-      )}
-      {isArticleCreator && <AuthorArticleLink articleId={articleId} />}
-
-      <style jsx>{`
-        .container-request-user {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: flex-end;
-          border: 2px dashed #ccc;
-          border-top: none;
-          padding: 0.2em 0.5em;
-        }
-        .box-vote {
-          fill: gray;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-end;
-          margin-right: 0.2em;
-        }
-        .reason {
-          flex-grow: 1;
-          max-width: calc(100% - 5em);
-          word-break: break-all; /* someone would paste URL link and make flex content overflow */
-        }
-        .btn-vote {
-          position: relative;
-        }
-        .btn-vote::after {
-          display: block;
-          position: absolute;
-          padding: 0.3em 0.5em;
-          white-space: nowrap;
-          background-color: rgba(0, 0, 0, 0.5);
-          border-radius: 0.5em;
-          transition: 0.3s ease-out;
-          pointer-events: none;
-          opacity: 0;
-          color: white;
-        }
-        .btn-vote:hover::after {
-          transform: translateX(0);
-          opacity: 1;
-        }
-        .btn-up-vote::after {
-          content: ${t`The reason is reasonable`};
-          bottom: 100%;
-          transform: translateY(100%);
-        }
-        .btn-down-vote::after {
-          content: ${t`The reason is not reasonable`};
-          top: 100%;
-          transform: translateY(-100%);
-        }
-        .icon {
-          fill: gray;
-          transition: 0.1s linear;
-          margin-left: 0.3em;
-          width: 1em;
-          cursor: pointer;
-        }
-        .btn-vote:not(:disabled) .icon:hover {
-          transform: scale(1.3);
-        }
-        .btn-up-vote:not(:disabled) .icon:hover,
-        .btn-up-vote:disabled .icon {
-          fill: #6dc00c;
-        }
-        .btn-down-vote:not(:disabled) .icon:hover,
-        .btn-down-vote:disabled .icon {
-          fill: red;
-        }
-
-        button {
-          background: none;
-          border: 0;
-          border-color: transparent;
-          padding: 0;
-          display: flex;
-          align-items: center;
-        }
-        button:active,
-        button:focus {
-          outline: none;
-        }
-      `}</style>
+    <div>
+      <Box display="flex" alignItems="center" py={2}>
+        {replyRequestReason && (
+          <>
+            <Box color="primary.main" pr={2}>
+              <UserIcon className={classes.userIcon} />
+            </Box>
+            <Box flex={1} className={classes.reasonBody}>
+              <p className={classes.reason}>{replyRequestReason}</p>
+              <Box display="flex" justifyContent="space-between">
+                <Box display="flex">
+                  <button
+                    className={cx(
+                      classes.vote,
+                      ownVote === UPVOTE && classes.voted
+                    )}
+                    type="button"
+                    onClick={() => handleVote(UPVOTE)}
+                    disabled={loading || ownVote === UPVOTE}
+                  >
+                    <ThumbUpIcon className={classes.thumbIcon} />
+                    <span>{positiveFeedbackCount}</span>
+                  </button>
+                  <button
+                    className={cx(
+                      classes.vote,
+                      ownVote === DOWNVOTE && classes.voted
+                    )}
+                    type="button"
+                    onClick={() => handleVote(DOWNVOTE)}
+                    disabled={loading || ownVote === DOWNVOTE}
+                  >
+                    <ThumbDownIcon className={classes.thumbIcon} />
+                    <span>{negativeFeedbackCount}</span>
+                  </button>
+                </Box>
+                {/* isArticleCreator && (
+                  <AuthorArticleLink articleId={articleId} />
+                ) */}
+              </Box>
+            </Box>
+          </>
+        )}
+      </Box>
+      <Divider />
     </div>
   );
 }

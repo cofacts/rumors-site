@@ -52,8 +52,8 @@ export default function ArticleInfo({ article }) {
     <div>
       <span className={classes.info}>
         {ngettext(
-          msgid`${replyRequestCount} occurence`,
-          `${replyRequestCount} occurences`,
+          msgid`${replyRequestCount} occurrence`,
+          `${replyRequestCount} occurrences`,
           replyRequestCount
         )}
       </span>

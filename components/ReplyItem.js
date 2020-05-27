@@ -99,7 +99,7 @@ function ReplyItem({
       <Box py="12px" flexGrow={1}>
         <div
           className={classes.replyType}
-        >{t`${userName} consider this ${TYPE_NAME[replyType]}`}</div>
+        >{t`${userName} mark this message ${TYPE_NAME[replyType]}`}</div>
         <ExpandableText className={classes.content} lineClamp={3}>
           {text}
         </ExpandableText>

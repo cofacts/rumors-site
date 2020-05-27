@@ -7,6 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 
 import ArticleReply from './ArticleReply';
+import PlainList from './PlainList';
 
 const CurrentRepliesData = gql`
   fragment CurrentRepliesData on ArticleReply {
@@ -67,7 +68,7 @@ class DeletedItems extends React.Component {
     return (
       <Dialog onClose={this.handleClose} open={showModal}>
         <DialogTitle>{t`Deleted replies`}</DialogTitle>
-        <ul className="items">
+        <PlainList>
           {items.map(ar => (
             <ArticleReply
               key={`${ar.articleId}__${ar.replyId}`}
@@ -77,16 +78,7 @@ class DeletedItems extends React.Component {
               actionText={t`Restore`}
             />
           ))}
-        </ul>
-        <style jsx>{`
-          h1 {
-            padding: 0 24px;
-          }
-          .items {
-            list-style-type: none;
-            padding-left: 0;
-          }
-        `}</style>
+        </PlainList>
       </Dialog>
     );
   };
@@ -168,7 +160,7 @@ function CurrentReplies({ articleReplies = [] }) {
   );
 
   return (
-    <ul className="items">
+    <PlainList>
       {validArticleReplies.map(ar => (
         <ArticleReply
           key={`${ar.articleId}__${ar.replyId}`}
@@ -183,13 +175,7 @@ function CurrentReplies({ articleReplies = [] }) {
         onRestore={handleRestore}
         disabled={updatingArticleReplyStatus}
       />
-      <style jsx>{`
-        .items {
-          list-style-type: none;
-          padding-left: 0;
-        }
-      `}</style>
-    </ul>
+    </PlainList>
   );
 }
 

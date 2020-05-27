@@ -1,6 +1,10 @@
 import gql from 'graphql-tag';
-import { useEffect, useRef, useCallback } from 'react';
-import { t } from 'ttag';
+import Link from 'next/link';
+import { useEffect, useRef, useCallback, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Divider, Snackbar } from '@material-ui/core';
+import { ngettext, msgid, t } from 'ttag';
+
 import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
@@ -10,22 +14,106 @@ import useCurrentUser from 'lib/useCurrentUser';
 import { nl2br, linkify, ellipsis } from 'lib/text';
 import { usePushToDataLayer } from 'lib/gtm';
 
+import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import isValid from 'date-fns/isValid';
+
 import AppLayout from 'components/AppLayout';
 import Hyperlinks from 'components/Hyperlinks';
-import ArticleInfo from 'components/ArticleInfo';
-import Trendline from 'components/Trendline';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
-import CreateReplyRequestDialog from 'components/CreateReplyRequestDialog';
+import CreateReplyRequestForm from 'components/CreateReplyRequestForm';
 import NewReplySection from 'components/NewReplySection';
 import ArticleItem from 'components/ArticleItem';
+import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
+import cx from 'clsx';
+import Trendline from 'components/Trendline';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    padding: '24px 0',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      alignItems: 'baseline',
+    },
+  },
+  card: {
+    background: theme.palette.common.white,
+    borderRadius: 8,
+  },
+  main: {
+    flex: 1,
+    marginRight: 0,
+    [theme.breakpoints.up('md')]: {
+      flex: 3,
+      marginRight: 12,
+    },
+  },
+  aside: {
+    flex: 1,
+    background: 'transparent',
+    [theme.breakpoints.up('md')]: {
+      padding: '21px 19px',
+      background: theme.palette.common.white,
+    },
+    '& h4': {
+      [theme.breakpoints.up('md')]: {
+        paddingBottom: 10,
+        borderBottom: `1px solid ${theme.palette.secondary[500]}`,
+      },
+    },
+  },
+  newReplyContainer: {
+    position: 'fixed',
+    zIndex: theme.zIndex.modal,
+    height: '100%',
+    width: '100%',
+    top: 0,
+    left: 0,
+    background: theme.palette.common.white,
+    [theme.breakpoints.up('md')]: {
+      zIndex: 10,
+      position: 'relative',
+      padding: '28px 16px',
+      marginTop: 24,
+      borderRadius: 8,
+    },
+  },
+  similarMessageContainer: {
+    backgroundColor: theme.palette.common.white,
+    minWidth: '100%',
+    padding: '17px 19px',
+    marginRight: theme.spacing(2),
+    borderRadius: 8,
+    textDecoration: 'none',
+    color: 'inherit',
+    [theme.breakpoints.up('md')]: {
+      padding: '16px 0 0 0 ',
+      margin: 0,
+      width: 'auto',
+      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+      '&:last-child': {
+        borderBottom: 'none',
+      },
+    },
+  },
+  text: {
+    display: 'box',
+    overflow: 'hidden',
+    boxOrient: 'vertical',
+    textOverflow: 'ellipsis',
+    lineClamp: 5,
+  },
+}));
 
 const LOAD_ARTICLE = gql`
   query LoadArticlePage($id: String!) {
     GetArticle(id: $id) {
       id
       text
+      requestedForReply
       replyRequestCount
       replyCount
       createdAt
@@ -84,6 +172,8 @@ const LOAD_ARTICLE_FOR_USER = gql`
 
 function ArticlePage() {
   const { query } = useRouter();
+  const [showForm, setShowForm] = useState(false);
+  const [flashMessage, setFlashMessage] = useState(0);
   const articleVars = { id: query.id };
 
   const { data, loading } = useQuery(LOAD_ARTICLE, {
@@ -99,6 +189,7 @@ function ArticlePage() {
   const currentUser = useCurrentUser();
 
   const replySectionRef = useRef(null);
+  const classes = useStyles();
 
   useEffect(() => {
     if (!articleForUserCalled) {
@@ -111,7 +202,15 @@ function ArticlePage() {
   const handleNewReplySubmit = useCallback(() => {
     if (!replySectionRef.current) return;
     replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    setFlashMessage(t`Your reply has been submitted.`);
   }, []);
+
+  const handleError = useCallback(error => {
+    console.error(error);
+    setFlashMessage(error.toString());
+  }, []);
+
+  const handleFormClose = () => setShowForm(false);
 
   const article = data?.GetArticle;
 
@@ -139,6 +238,15 @@ function ArticlePage() {
     );
   }
 
+  const { replyRequestCount, text, hyperlinks } = article;
+  const similarArticles = article?.similarArticles?.edges || [];
+
+  const createdAt = article.createdAt
+    ? new Date(article.createdAt)
+    : new Date();
+
+  const timeAgoStr = formatDistanceToNow(createdAt);
+
   return (
     <AppLayout>
       <Head>
@@ -146,97 +254,131 @@ function ArticlePage() {
           {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
       </Head>
-      <section className="section">
-        <header className="header">
-          <h2>{t`Reported Message`}</h2>
-          <div className="trendline">
-            <Trendline id={article.id} />
-          </div>
-          <ArticleInfo article={article} />
-        </header>
-        <article className="message">
-          {nl2br(
-            linkify(article.text, {
-              props: {
-                target: '_blank',
-              },
-            })
-          )}
-          <Hyperlinks hyperlinks={article.hyperlinks} />
-        </article>
-        <footer>
-          {article.replyRequests.map((replyRequest, idx) => (
-            <ReplyRequestReason
-              key={replyRequest.id}
+      <div className={classes.root}>
+        <div className={classes.main}>
+          <Box
+            className={classes.card}
+            position="relative"
+            px={{ xs: '12px', md: '19px' }}
+            py={{ xs: '13px', md: '21px' }}
+          >
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <h4>
+                {ngettext(
+                  msgid`${replyRequestCount} person report this message`,
+                  `${replyRequestCount} people report this message`,
+                  replyRequestCount
+                )}
+              </h4>
+              {isValid(createdAt) && (
+                <span
+                  title={format(createdAt)}
+                >{t`First reported ${timeAgoStr} ago`}</span>
+              )}
+            </Box>
+            <Divider classes={{ root: classes.divider }} />
+            <Box py={4} overflow="hidden">
+              {nl2br(
+                linkify(text, {
+                  props: {
+                    target: '_blank',
+                  },
+                })
+              )}
+              <Hyperlinks hyperlinks={hyperlinks} />
+            </Box>
+            <ArticleCategories
               articleId={article.id}
-              replyRequest={replyRequest}
-              isArticleCreator={idx === 0}
+              articleCategories={article.articleCategories}
             />
-          ))}
-          <CreateReplyRequestDialog articleId={article.id} />
-        </footer>
-        <ArticleCategories
-          articleId={article.id}
-          articleCategories={article.articleCategories}
-        />
-      </section>
+            <Trendline />
+            <Divider />
+            <footer>
+              {article.replyRequests.map((replyRequest, idx) => (
+                <ReplyRequestReason
+                  key={replyRequest.id}
+                  articleId={article.id}
+                  replyRequest={replyRequest}
+                  isArticleCreator={idx === 0}
+                />
+              ))}
+              <CreateReplyRequestForm
+                requestedForReply={article.requestedForReply}
+                articleId={article.id}
+                onNewReplyButtonClick={() => {
+                  setShowForm(true);
+                }}
+              />
+            </footer>
+          </Box>
 
-      <section className="section" id="current-replies" ref={replySectionRef}>
-        <h2>{t`Replies to the message`}</h2>
-        <CurrentReplies articleReplies={article.articleReplies} />
-      </section>
-
-      <section className="section">
-        <h2>{t`Add a new reply`}</h2>
-        <NewReplySection
-          articleId={article.id}
-          existingReplyIds={(article?.articleReplies || []).map(
-            ({ replyId }) => replyId
+          {showForm && (
+            <div className={classes.newReplyContainer}>
+              <NewReplySection
+                article={article}
+                existingReplyIds={(article?.articleReplies || []).map(
+                  ({ replyId }) => replyId
+                )}
+                relatedArticles={article?.relatedArticles}
+                onSubmissionComplete={handleNewReplySubmit}
+                onError={handleError}
+                onClose={handleFormClose}
+              />
+            </div>
           )}
-          relatedArticles={article?.relatedArticles}
-          onSubmissionComplete={handleNewReplySubmit}
-        />
-      </section>
 
-      {article?.similarArticles?.edges?.length > 0 && (
-        <section className="section">
-          <h2>{t`You may be interested in the following similar messages`}</h2>
-          <ul className="similar-articles">
-            {article.similarArticles.edges.map(({ node }) => (
-              <ArticleItem key={node.id} article={node} />
-            ))}
-          </ul>
-        </section>
-      )}
+          <Box
+            className={classes.card}
+            position="relative"
+            px={{ xs: '12px', md: '19px' }}
+            py={{ xs: '13px', md: '21px' }}
+            mt={3}
+            id="current-replies"
+            ref={replySectionRef}
+          >
+            <h2>{t`${article.articleReplies.length} replies to the message`}</h2>
+            <Divider classes={{ root: classes.divider }} />
+            <CurrentReplies articleReplies={article.articleReplies} />
+          </Box>
+        </div>
 
-      <style jsx>{`
-        .section {
-          margin-bottom: 64px;
-        }
-        .header {
-          display: flex;
-          align-items: center;
-          flex-flow: row wrap;
-        }
-        .header > .trendline {
-          margin: 0 16px 0 auto;
-        }
-        .message {
-          border: 1px solid #ccc;
-          background: #eee;
-          border-radius: 3px;
-          padding: 24px;
-          word-break: break-all;
-        }
-        .items {
-          list-style-type: none;
-          padding-left: 0;
-        }
-        .similar-articles {
-          padding: 0;
-          list-style: none;
-        }
-      `}</style>
+        <div className={cx(classes.card, classes.aside)}>
+          <h4>{t`Similar messages`}</h4>
+          {similarArticles.length ? (
+            <Box
+              display="flex"
+              flexDirection={{ xs: 'row', md: 'column' }}
+              overflow="auto"
+            >
+              {similarArticles.map(({ node }) => (
+                <Link key={node.id} href={`/article/${node.id}`}>
+                  <a className={classes.similarMessageContainer}>
+                    <article className={classes.text}>{node.text}</article>
+                    <Box pt={1.5} pb={2}>
+                      <ArticleInfo article={node} />
+                    </Box>
+                  </a>
+                </Link>
+              ))}
+            </Box>
+          ) : (
+            <Box
+              textAlign="center"
+              pt={4}
+              pb={3}
+            >{t`No similar messages found`}</Box>
+          )}
+        </div>
+      </div>
+      <Snackbar
+        open={!!flashMessage}
+        onClose={() => setFlashMessage('')}
+        message={flashMessage}
+      />
     </AppLayout>
   );
 }
