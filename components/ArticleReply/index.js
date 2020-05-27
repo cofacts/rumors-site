@@ -163,14 +163,16 @@ const ArticleReply = React.memo(
 
     const renderAuthor = useCallback(
       () =>
-        (
+        articleReplyAuthor ? (
           <EditorName
             key="editor"
             editorName={articleReplyAuthor?.name}
             editorLevel={articleReplyAuthor?.level}
           />
-        ) || t`Someone`,
-      [articleReplyAuthor, replyAuthor]
+        ) : (
+          t`Someone`
+        ),
+      [articleReplyAuthor]
     );
 
     const renderReference = useCallback(() => {
