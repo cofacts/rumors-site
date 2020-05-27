@@ -9,17 +9,8 @@ import {
 import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import CopyButton from './CopyButton';
-import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
-  mobile: {
-    display: 'block',
-    [theme.breakpoints.up('md')]: { display: 'none' },
-  },
-  desktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: { display: 'block' },
-  },
   button: ({ open }) => ({
     borderRadius: 45,
     padding: '1px 8px',
@@ -55,10 +46,6 @@ const ReplyShare = ({ copyText }) => {
 
   const classes = useStyles({ open: !!anchorEl });
 
-  const openMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const closeMenu = () => {
     setAnchorEl(null);
   };
@@ -71,32 +58,22 @@ const ReplyShare = ({ copyText }) => {
 
   const onCopied = useCallback(() => onSuccess('Copied to clipboard!'));
 
-  const handleShare = () => {
+  const handleShare = event => {
     if (window.navigator && window.navigator.share) {
       navigator
         .share({ text: copyText })
         .then(() => onSuccess(t`Successfylly Shared!`))
         .catch(() => {});
+    } else {
+      setAnchorEl(event.currentTarget);
     }
   };
 
   return (
     <>
-      <button
-        type="button"
-        className={cx(classes.button, classes.desktop)}
-        onClick={openMenu}
-      >
+      <button type="button" className={classes.button} onClick={handleShare}>
         {t`Share`}
       </button>
-      <button
-        type="button"
-        className={cx(classes.button, classes.mobile)}
-        onClick={handleShare}
-      >
-        {t`Share`}
-      </button>
-
       <Popper id="share" open={!!anchorEl} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
           <ClickAwayListener onClickAway={closeMenu}>

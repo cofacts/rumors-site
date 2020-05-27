@@ -87,7 +87,8 @@ const useStyles = makeStyles(theme => ({
     padding: '17px 19px',
     marginRight: theme.spacing(2),
     borderRadius: 8,
-    cursor: 'pointer',
+    textDecoration: 'none',
+    color: 'inherit',
     [theme.breakpoints.up('md')]: {
       padding: '16px 0 0 0 ',
       margin: 0,
@@ -345,12 +346,12 @@ function ArticlePage() {
             >
               {similarArticles.map(({ node }) => (
                 <Link key={node.id} href={`/article/${node.id}`}>
-                  <div className={classes.similarMessageContainer}>
+                  <a className={classes.similarMessageContainer}>
                     <article className={classes.text}>{node.text}</article>
                     <Box pt={1.5} pb={2}>
                       <ArticleInfo article={node} />
                     </Box>
-                  </div>
+                  </a>
                 </Link>
               ))}
             </Box>

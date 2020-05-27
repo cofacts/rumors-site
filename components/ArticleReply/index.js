@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import Link from 'next/link';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
 import { Box, Divider } from '@material-ui/core';
@@ -129,7 +128,7 @@ const ArticleReply = React.memo(
     const { type: replyType } = reply;
 
     const replyAuthor = reply.user;
-    const user = replyAuthor || articleReplyAuthor;
+    const user = articleReplyAuthor || replyAuthor;
 
     const classes = useStyles({ replyType });
 
@@ -162,39 +161,17 @@ const ArticleReply = React.memo(
       );
     }, [reply, articleReply]);
 
-    const renderAuthor = useCallback(() => {
-      const articleReplyAuthorName =
+    const renderAuthor = useCallback(
+      () =>
         (
           <EditorName
             key="editor"
             editorName={articleReplyAuthor?.name}
             editorLevel={articleReplyAuthor?.level}
           />
-        ) || t`Someone`;
-
-      const originalAuthorElem = (
-        <EditorName
-          key="editorName"
-          editorName={replyAuthor?.name}
-          editorLevel={replyAuthor?.level}
-        />
-      );
-      const originalAuthorsReply = (
-        <Link key="originalReply" href="/reply/[id]" as={`/reply/${reply.id}`}>
-          <a>{jt`${originalAuthorElem}'s reply`}</a>
-        </Link>
-      );
-
-      if (replyAuthor?.name && articleReplyAuthor?.id !== replyAuthor?.id) {
-        return (
-          <span key="editor">
-            {jt`${articleReplyAuthorName} uses ${originalAuthorsReply} to`}
-          </span>
-        );
-      }
-
-      return articleReplyAuthorName;
-    }, [articleReplyAuthor, replyAuthor]);
+        ) || t`Someone`,
+      [articleReplyAuthor, replyAuthor]
+    );
 
     const renderReference = useCallback(() => {
       if (replyType === 'NOT_ARTICLE') return null;

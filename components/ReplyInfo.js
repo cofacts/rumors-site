@@ -43,7 +43,9 @@ export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
         </CustomTooltip>
       )}
       {user && (
-        <span className={classes.info}>{t`references from ${user.name}`}</span>
+        <span
+          className={classes.info}
+        >{t`originally written by ${user.name}`}</span>
       )}
 
       {referenceCount > 0 && (
