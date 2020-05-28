@@ -6,6 +6,7 @@ import getConfig from 'next/config';
 import { t } from 'ttag';
 import querystring from 'querystring';
 import ArticlePageLayout from 'components/ArticlePageLayout';
+import ReplySearchPageLayout from 'components/ReplySearchPageLayout';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
 
@@ -83,7 +84,10 @@ function SearchPage() {
         </Container>
       </div>
       <div className={classes.content}>
-        <ArticlePageLayout q={{ [query.type]: query.q }} />
+        {query.type === 'messages' && (
+          <ArticlePageLayout displayHeader={false} />
+        )}
+        {query.type === 'replies' && <ReplySearchPageLayout />}
       </div>
     </AppLayout>
   );

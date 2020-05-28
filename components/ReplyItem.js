@@ -7,6 +7,7 @@ import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ExpandableText from './ExpandableText';
 import ReplyFeedback from './ReplyFeedback';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import { highlight } from 'lib/text';
 import isValid from 'date-fns/isValid';
 
 const useStyles = makeStyles(theme => ({
@@ -64,6 +65,9 @@ const useStyles = makeStyles(theme => ({
     margin: '12px 0',
     flex: 1,
   },
+  highlight: {
+    color: theme.palette.primary[500],
+  },
 }));
 
 /**
@@ -79,6 +83,7 @@ function ReplyItem({
   positiveFeedbackCount,
   negativeFeedbackCount,
   ownVote,
+  query,
 }) {
   const createdAt = new Date(reply.createdAt);
   const timeAgoStr = formatDistanceToNow(createdAt);
@@ -101,7 +106,7 @@ function ReplyItem({
           className={classes.replyType}
         >{t`${userName} mark this message ${TYPE_NAME[replyType]}`}</div>
         <ExpandableText className={classes.content} lineClamp={3}>
-          {text}
+          {highlight(text, { query, highlightClassName: classes.highlight })}
         </ExpandableText>
         <div className={classes.status}>
           <ReplyFeedback
