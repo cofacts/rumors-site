@@ -1,5 +1,7 @@
+import { useState, useCallback } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Box, Container } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import getConfig from 'next/config';
@@ -24,9 +26,63 @@ const useStyles = makeStyles(theme => ({
   },
   search: {
     color: theme.palette.common.white,
+    paddingRight: theme.spacing(3),
   },
   content: {
     paddingTop: 230,
+  },
+  inputArea: {
+    position: 'relative',
+    background: theme.palette.secondary[400],
+    border: `1px dashed ${theme.palette.secondary[200]}`,
+    borderRadius: 8,
+    padding: theme.spacing(1),
+    '&:before, &:after': {
+      display: 'block',
+      position: 'absolute',
+      color: '#B9B9B9',
+      fontSize: '2rem',
+    },
+    '&:before': {
+      content: '"“"',
+      top: -theme.spacing(1),
+      left: -theme.spacing(2),
+    },
+    '&:after': {
+      content: '"”"',
+      bottom: -theme.spacing(3),
+      right: -theme.spacing(2),
+    },
+    '&:focus-within': {
+      border: `1px solid ${theme.palette.primary[500]}`,
+      '& $submit': {
+        display: 'block',
+      },
+    },
+  },
+  input: {
+    width: '100%',
+    border: 'none',
+    outline: 'none',
+    color: theme.palette.common.white,
+    background: 'transparent',
+  },
+  submit: {
+    display: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+    height: '100%',
+    position: 'absolute',
+    border: `1px solid ${theme.palette.primary[500]}`,
+    top: 0,
+    right: 0,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+    background: theme.palette.primary[500],
+    color: theme.palette.common.white,
+    '& > svg': {
+      verticalAlign: 'middle',
+    },
   },
 }));
 
@@ -40,6 +96,7 @@ const CustomTab = withStyles(theme => ({
 }))(Tab);
 
 function SearchPage() {
+  const [input, setInput] = useState('');
   const router = useRouter();
   const queryString = querystring.stringify(router.query);
   const { query } = router;
@@ -48,6 +105,11 @@ function SearchPage() {
 
   const navigate = type =>
     router.push({ pathname: '/search', query: { ...query, type } });
+
+  const onSearch = useCallback(
+    () => router.push({ pathname: '/search', query: { ...query, q: input } }),
+    [query, input]
+  );
 
   return (
     <AppLayout>
@@ -66,8 +128,22 @@ function SearchPage() {
       </Head>
       <div className={classes.jumbotron}>
         <Container>
-          <Box py="56px">
-            <h2 className={classes.search}>{t`Search`}</h2>
+          <Box py="56px" display="flex" alignItems="baseline">
+            <h2 className={classes.search}>{t`Searching`}</h2>
+            <Box flex={1} className={classes.inputArea}>
+              <textarea
+                className={classes.input}
+                onChange={e => setInput(e.target.value)}
+                rows={1}
+              />
+              <button
+                type="button"
+                className={classes.submit}
+                onClick={onSearch}
+              >
+                <SearchIcon />
+              </button>
+            </Box>
           </Box>
         </Container>
         <Container>
