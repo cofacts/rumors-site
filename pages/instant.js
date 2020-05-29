@@ -335,6 +335,7 @@ function InstantPage() {
   useEffect(() => {
     // Kick-off data loading
     loadArticleCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading || !startFrom) {

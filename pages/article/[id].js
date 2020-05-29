@@ -193,12 +193,14 @@ function ArticlePage() {
   const replySectionRef = useRef(null);
   const classes = useStyles();
 
+  // Load user field when currentUser changes
   useEffect(() => {
     if (!articleForUserCalled) {
       loadArticleForUser();
     } else {
       refetchArticleForUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const handleNewReplySubmit = useCallback(() => {

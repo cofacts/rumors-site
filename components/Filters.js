@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Paper } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -112,26 +112,23 @@ export function Filter({
   );
   const [expand, setExpand] = useState(false);
 
-  const onOptionClicked = useCallback(
-    value => () => {
-      if (multiple) {
-        const newState = { ...selected, [value]: !selected[value] };
-        setSelected(newState);
-        onChange(
-          Object.entries(newState)
-            .filter(entry => entry[1])
-            .map(entry => entry[0])
-        );
-      } else {
-        const newState = Object.fromEntries(
-          Object.entries(selected).map(([key]) => [key, key === value])
-        );
-        setSelected(newState);
-        onChange(value);
-      }
-    },
-    [selected, options]
-  );
+  const onOptionClicked = value => () => {
+    if (multiple) {
+      const newState = { ...selected, [value]: !selected[value] };
+      setSelected(newState);
+      onChange(
+        Object.entries(newState)
+          .filter(entry => entry[1])
+          .map(entry => entry[0])
+      );
+    } else {
+      const newState = Object.fromEntries(
+        Object.entries(selected).map(([key]) => [key, key === value])
+      );
+      setSelected(newState);
+      onChange(value);
+    }
+  };
 
   useEffect(() => {
     const newSelected = Object.fromEntries(

@@ -94,16 +94,13 @@ function TimeRange({ onChange = () => null, range }) {
 
   const openMenu = () => setAnchor(anchorEl.current);
   const closeMenu = () => setAnchor(null);
-  const select = useCallback(
-    option => () => {
-      setSelected(option);
-      if (option !== 'custom') {
-        onChange(option === 'all' ? null : { GT: option });
-      }
-      closeMenu();
-    },
-    []
-  );
+  const select = option => () => {
+    setSelected(option);
+    if (option !== 'custom') {
+      onChange(option === 'all' ? null : { GT: option });
+    }
+    closeMenu();
+  };
 
   const setAndUpdateValue = value => {
     setCustomValue(value);
@@ -126,7 +123,7 @@ function TimeRange({ onChange = () => null, range }) {
         }
       }
     }
-  }, [range]);
+  }, [range, customValue]);
 
   const custom = selected === 'custom';
 

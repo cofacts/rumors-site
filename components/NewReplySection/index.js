@@ -105,7 +105,7 @@ const NewReplySection = withContext(
           variables: { type, reference, text, articleId: article.id },
         });
       },
-      [createReply, fields]
+      [createReply, fields, article.id, creatingReply]
     );
 
     const relatedArticleReplies = getDedupedArticleReplies(

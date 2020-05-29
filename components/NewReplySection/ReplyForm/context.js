@@ -22,6 +22,7 @@ export const withReplyFormContext = Component => props => {
       reference: localStorage.reference || fields.reference,
       text: localStorage.text || fields.text,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const clear = () => {

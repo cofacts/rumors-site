@@ -75,6 +75,7 @@ function GlobalSearch({ onIconClick }) {
 
   useEffect(() => void (query.q !== value && setValue(query.q || '')), [
     query.q,
+    value,
   ]);
 
   const input = (

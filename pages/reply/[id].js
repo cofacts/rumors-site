@@ -109,12 +109,14 @@ function ReplyPage() {
 
   const currentUser = useCurrentUser();
 
+  // Load user field when currentUser changes
   useEffect(() => {
     if (!replyForUserCalled) {
       loadReplyForUser();
     } else {
       refetchReplyForUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const reply = data?.GetReply;
