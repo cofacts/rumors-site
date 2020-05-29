@@ -5,6 +5,7 @@ module.exports = {
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "prettier",
     "prettier/react",
   ],
@@ -15,6 +16,7 @@ module.exports = {
   rules: {
     'react/prop-types': 'off', // we don't use propTypes.
     'react/react-in-jsx-scope': 'off', // React import not needed in Next.js
+    'react-hooks/exhaustive-deps': 'error', // Require explicit ignore when we want to skip deps
     'prettier/prettier': ["error", {
       "trailingComma": "es5",
       "singleQuote": true,
