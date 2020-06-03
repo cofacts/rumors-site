@@ -66,12 +66,15 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
     position: 'absolute',
     right: theme.spacing(2),
+    top: 0,
+    bottom: 0,
     '& > svg': {
       verticalAlign: 'middle',
       marginLeft: theme.spacing(1),
     },
     [theme.breakpoints.up('md')]: {
-      display: 'inline',
+      display: 'flex',
+      alignItems: 'center',
     },
   },
   article: {
@@ -104,7 +107,7 @@ export default function ReplySearchItem({
     setOpen(false);
   };
 
-  const replyCount = articleReplies.length;
+  const replyCount = articleReplies.length - 1;
 
   const {
     article,
@@ -138,36 +141,42 @@ export default function ReplySearchItem({
           query={query}
         />
       </Box>
-      <button
-        type="button"
-        className={classes.openModalButton}
-        onClick={handleClickOpen}
-      >
-        {ngettext(
-          msgid`This reply is also used in ${replyCount} other message`,
-          `This reply is also used in ${replyCount} other messages`,
-          replyCount
-        )}
-        <span className={classes.view}>
-          {t`view`}
-          <VisibilityIcon />
-        </span>
-      </button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{t`This reply is used in following messages`}</DialogTitle>
-        <DialogContent>
-          <PlainList>
-            {articleReplies.map(({ article }) => (
-              <ArticleItem
-                key={article.id}
-                article={article}
-                showReplyCount={false}
-                className={classes.article}
-              />
-            ))}
-          </PlainList>
-        </DialogContent>
-      </Dialog>
+      {!!replyCount && (
+        <>
+          <button
+            type="button"
+            className={classes.openModalButton}
+            onClick={handleClickOpen}
+          >
+            {ngettext(
+              msgid`This reply is also used in ${replyCount} other message`,
+              `This reply is also used in ${replyCount} other messages`,
+              replyCount
+            )}
+            <span className={classes.view}>
+              {t`view`}
+              <VisibilityIcon />
+            </span>
+          </button>
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>{t`This reply is used in following messages`}</DialogTitle>
+            <DialogContent>
+              <PlainList>
+                {articleReplies
+                  .filter(ar => ar !== articleReply)
+                  .map(({ article }) => (
+                    <ArticleItem
+                      key={article.id}
+                      article={article}
+                      showReplyCount={false}
+                      className={classes.article}
+                    />
+                  ))}
+              </PlainList>
+            </DialogContent>
+          </Dialog>
+        </>
+      )}
     </li>
   );
 }

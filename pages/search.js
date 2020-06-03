@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useRef, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Box, Container } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -30,6 +30,11 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     paddingTop: 230,
+  },
+  form: {
+    padding: '56px 0',
+    display: 'flex',
+    alignItems: 'baseline',
   },
   inputArea: {
     position: 'relative',
@@ -96,20 +101,27 @@ const CustomTab = withStyles(theme => ({
 }))(Tab);
 
 function SearchPage() {
-  const [input, setInput] = useState('');
   const router = useRouter();
   const queryString = querystring.stringify(router.query);
   const { query } = router;
+  const textareaRef = useRef(null);
 
   const classes = useStyles();
 
   const navigate = type =>
     router.push({ pathname: '/search', query: { ...query, type } });
 
-  const onSearch = useCallback(
-    () => router.push({ pathname: '/search', query: { ...query, q: input } }),
-    [query, input]
-  );
+  const onSearch = e => {
+    e.preventDefault();
+    router.push({
+      pathname: '/search',
+      query: { ...query, q: e.target.search.value },
+    });
+  };
+
+  useEffect(() => {
+    textareaRef.current.value = query.q;
+  }, [query.q]);
 
   return (
     <AppLayout>
@@ -128,23 +140,20 @@ function SearchPage() {
       </Head>
       <div className={classes.jumbotron}>
         <Container>
-          <Box py="56px" display="flex" alignItems="baseline">
+          <form onSubmit={onSearch} className={classes.form}>
             <h2 className={classes.search}>{t`Searching`}</h2>
             <Box flex={1} className={classes.inputArea}>
               <textarea
+                ref={textareaRef}
+                name="search"
                 className={classes.input}
-                onChange={e => setInput(e.target.value)}
                 rows={1}
               />
-              <button
-                type="button"
-                className={classes.submit}
-                onClick={onSearch}
-              >
+              <button type="submit" className={classes.submit}>
                 <SearchIcon />
               </button>
             </Box>
-          </Box>
+          </form>
         </Container>
         <Container>
           <Tabs
