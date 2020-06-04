@@ -1,6 +1,8 @@
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import initStoryshots from '@storybook/addon-storyshots';
+import initStoryshots, {
+  multiSnapshotWithOptions,
+} from '@storybook/addon-storyshots';
 import { createSerializer } from 'enzyme-to-json';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -34,6 +36,8 @@ function removeMaterialUIInternals(json) {
 }
 
 initStoryshots({
-  renderer: mount,
+  test: multiSnapshotWithOptions({
+    renderer: mount,
+  }),
   snapshotSerializers: [createSerializer({ map: removeMaterialUIInternals })],
 });
