@@ -14,7 +14,7 @@ export const noRangeGiven = () => <TimeRange onChange={action('onChange')} />;
 
 const optionValues = options.map(({ value }) => value);
 export const setRangeFromProps = () => (
-  <>
+  <div>
     <p>range = null:</p>
     <TimeRange range={null} onChange={action('onChange')} />
 
@@ -29,5 +29,5 @@ export const setRangeFromProps = () => (
       range={{ GTE: text('GTE', '1989-06-04'), LTE: text('LTE', '2019-06-04') }}
       onChange={action('onChange')}
     />
-  </>
+  </div>
 );
