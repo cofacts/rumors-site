@@ -118,9 +118,10 @@ function SearchPage() {
     });
   };
 
+  const { q } = query;
   useEffect(() => {
-    textareaRef.current.value = query.q;
-  }, [query.q]);
+    textareaRef.current.value = q;
+  }, [q]);
 
   return (
     <AppLayout>
