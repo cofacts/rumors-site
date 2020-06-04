@@ -20,9 +20,8 @@ const useStyles = makeStyles(theme => ({
   jumbotron: {
     position: 'absolute',
     background: '#202020',
-    width: '100vw',
-    minWidth: '100vw',
     left: 0,
+    right: 0,
   },
   search: {
     color: theme.palette.common.white,
