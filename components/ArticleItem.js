@@ -5,8 +5,9 @@ import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
 import ReplyFeedback from './ReplyFeedback';
 import { c, t } from 'ttag';
-import { nl2br } from 'lib/text';
+import { nl2br, highlight } from 'lib/text';
 import ExpandableText from './ExpandableText';
+import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,6 +96,9 @@ const useStyles = makeStyles(theme => ({
     margin: '12px 0',
     flex: 1,
   },
+  highlight: {
+    color: theme.palette.primary[500],
+  },
 }));
 
 export default function ArticleItem({
@@ -104,6 +108,8 @@ export default function ArticleItem({
   isLink = true,
   showLastReply = false,
   showReplyCount = true,
+  query = '',
+  className,
   // handleLocalEditorHelperList,
   // isLogin,
 }) {
@@ -131,14 +137,17 @@ export default function ArticleItem({
           </div>
         )}
         <ExpandableText className={classes.content} lineClamp={3}>
-          {nl2br(text)}
+          {highlight(nl2br(text), {
+            query,
+            highlightClassName: classes.highlight,
+          })}
         </ExpandableText>
       </div>
     </>
   );
 
   return (
-    <li className={classes.root}>
+    <li className={cx(classes.root, className)}>
       {isLink ? (
         <Link href="/article/[id]" as={`/article/${article.id}`}>
           <a>{content}</a>

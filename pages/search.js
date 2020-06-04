@@ -1,11 +1,14 @@
+import { useRef, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Box, Container } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import getConfig from 'next/config';
 import { t } from 'ttag';
 import querystring from 'querystring';
 import ArticlePageLayout from 'components/ArticlePageLayout';
+import ReplySearchPageLayout from 'components/ReplySearchPageLayout';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
 
@@ -17,15 +20,73 @@ const useStyles = makeStyles(theme => ({
   jumbotron: {
     position: 'absolute',
     background: '#202020',
-    width: '100vw',
-    minWidth: '100vw',
     left: 0,
+    right: 0,
   },
   search: {
     color: theme.palette.common.white,
+    paddingRight: theme.spacing(3),
   },
   content: {
     paddingTop: 230,
+  },
+  form: {
+    padding: '56px 0',
+    display: 'flex',
+    alignItems: 'baseline',
+  },
+  inputArea: {
+    position: 'relative',
+    background: theme.palette.secondary[400],
+    border: `1px dashed ${theme.palette.secondary[200]}`,
+    borderRadius: 8,
+    padding: theme.spacing(1),
+    '&:before, &:after': {
+      display: 'block',
+      position: 'absolute',
+      color: '#B9B9B9',
+      fontSize: '2rem',
+    },
+    '&:before': {
+      content: '"“"',
+      top: -theme.spacing(1),
+      left: -theme.spacing(2),
+    },
+    '&:after': {
+      content: '"”"',
+      bottom: -theme.spacing(3),
+      right: -theme.spacing(2),
+    },
+    '&:focus-within': {
+      border: `1px solid ${theme.palette.primary[500]}`,
+      '& $submit': {
+        display: 'block',
+      },
+    },
+  },
+  input: {
+    width: '100%',
+    border: 'none',
+    outline: 'none',
+    color: theme.palette.common.white,
+    background: 'transparent',
+  },
+  submit: {
+    display: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+    height: '100%',
+    position: 'absolute',
+    border: `1px solid ${theme.palette.primary[500]}`,
+    top: 0,
+    right: 0,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+    background: theme.palette.primary[500],
+    color: theme.palette.common.white,
+    '& > svg': {
+      verticalAlign: 'middle',
+    },
   },
 }));
 
@@ -42,11 +103,24 @@ function SearchPage() {
   const router = useRouter();
   const queryString = querystring.stringify(router.query);
   const { query } = router;
+  const textareaRef = useRef(null);
 
   const classes = useStyles();
 
   const navigate = type =>
     router.push({ pathname: '/search', query: { ...query, type } });
+
+  const onSearch = e => {
+    e.preventDefault();
+    router.push({
+      pathname: '/search',
+      query: { ...query, q: e.target.search.value },
+    });
+  };
+
+  useEffect(() => {
+    textareaRef.current.value = query.q;
+  }, [query.q]);
 
   return (
     <AppLayout>
@@ -65,9 +139,20 @@ function SearchPage() {
       </Head>
       <div className={classes.jumbotron}>
         <Container>
-          <Box py="56px">
-            <h2 className={classes.search}>{t`Search`}</h2>
-          </Box>
+          <form onSubmit={onSearch} className={classes.form}>
+            <h2 className={classes.search}>{t`Searching`}</h2>
+            <Box flex={1} className={classes.inputArea}>
+              <textarea
+                ref={textareaRef}
+                name="search"
+                className={classes.input}
+                rows={1}
+              />
+              <button type="submit" className={classes.submit}>
+                <SearchIcon />
+              </button>
+            </Box>
+          </form>
         </Container>
         <Container>
           <Tabs
@@ -83,7 +168,10 @@ function SearchPage() {
         </Container>
       </div>
       <div className={classes.content}>
-        <ArticlePageLayout q={{ [query.type]: query.q }} />
+        {query.type === 'messages' && (
+          <ArticlePageLayout displayHeader={false} />
+        )}
+        {query.type === 'replies' && <ReplySearchPageLayout />}
       </div>
     </AppLayout>
   );

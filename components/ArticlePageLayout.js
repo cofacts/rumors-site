@@ -439,6 +439,7 @@ function ArticlePageLayout({
               <ArticleItem
                 key={node.id}
                 article={node}
+                query={query.q}
                 {...articleDisplayConfig}
               />
             ))}
