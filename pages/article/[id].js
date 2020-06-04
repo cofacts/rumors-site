@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   main: {
     flex: 1,
     marginRight: 0,
+    minWidth: 0,
     [theme.breakpoints.up('md')]: {
       flex: 3,
       marginRight: 12,
@@ -54,6 +55,7 @@ const useStyles = makeStyles(theme => ({
   aside: {
     flex: 1,
     background: 'transparent',
+    minWidth: 0,
     [theme.breakpoints.up('md')]: {
       padding: '21px 19px',
       background: theme.palette.common.white,
