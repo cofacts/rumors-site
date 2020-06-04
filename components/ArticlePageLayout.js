@@ -399,7 +399,7 @@ function ArticlePageLayout({
           onChange={time =>
             goToUrlQueryAndResetPagination({
               ...query,
-              start: time?.GT,
+              start: time?.GTE,
               end: time?.LTE,
             })
           }
