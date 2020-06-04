@@ -10,10 +10,10 @@ export default {
   decorators: [withKnobs],
 };
 
-export const noRangeGiven = () => <TimeRange onChange={action('onChange')} />;
+export const NoRangeGiven = () => <TimeRange onChange={action('onChange')} />;
 
 const optionValues = options.map(({ value }) => value);
-export const setRangeFromProps = () => (
+export const SetRangeFromProps = () => (
   <div>
     <p>range = null:</p>
     <TimeRange range={null} onChange={action('onChange')} />
