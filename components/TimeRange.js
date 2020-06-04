@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const options = [
+export const options = [
   { value: 'all', label: c('Time range dropdown').t`All` },
   { value: 'now-1d/d', label: t`In 1 Day` },
   { value: 'now-1w/d', label: t`In 1 Week` },
