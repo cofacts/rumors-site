@@ -145,6 +145,8 @@ const CreateReplyRequestForm = React.memo(
       // We don't do this in constructor to avoid server/client render mismatch.
       //
       setText(localStorage.text || text);
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleTextChange = ({ target: { value } }) => {
@@ -211,7 +213,7 @@ const CreateReplyRequestForm = React.memo(
             >
               {requestedForReply === true ? t`Update comment` : t`Comment`}
             </button>
-            {/* 
+            {/*
               <button
                 type="button"
                 className={cx(requestedForReply && 'active')}

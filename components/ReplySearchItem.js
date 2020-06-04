@@ -94,10 +94,11 @@ export default function ReplySearchItem({
   query = '',
   ...reply
 }) {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
   const articleReply = articleReplies[0];
   if (!articleReply) return null;
-
-  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -116,8 +117,6 @@ export default function ReplySearchItem({
     negativeFeedbackCount,
     ownVote,
   } = articleReply || {};
-
-  const classes = useStyles();
 
   return (
     <li className={classes.root}>

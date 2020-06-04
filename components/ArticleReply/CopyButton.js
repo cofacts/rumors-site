@@ -12,7 +12,7 @@ const CopyButton = React.memo(({ content = '', onClick = () => {} }) => {
     });
     clipboard.on('success', () => onClick());
     return () => clipboard.destroy();
-  }, [copyBtnRef.current, content, onClick]);
+  }, [content, onClick]);
 
   return <Button ref={copyBtnRef}>{t`Copy`}</Button>;
 });

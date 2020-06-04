@@ -163,6 +163,7 @@ function UserName() {
   const [setName, { loading: loadingNameUpdate }] = useMutation(SET_NAME);
 
   // load user on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadUser(), []);
 
   // toggle level popup level update
@@ -173,14 +174,17 @@ function UserName() {
 
     if (prevLevel !== null) setLevelUpPopupShow(true);
     setPrevLevel(data.GetUser.level);
-  }, [data?.GetUser?.level]);
+  }, [data?.GetUser?.level, prevLevel]);
 
   usePushToDataLayer(data?.GetUser, { CURRENT_USER: data?.GetUser });
 
-  const handleUserNameEdit = useCallback(name => {
-    setName({ variables: { name } });
-    setUserNameEdit(false);
-  }, []);
+  const handleUserNameEdit = useCallback(
+    name => {
+      setName({ variables: { name } });
+      setUserNameEdit(false);
+    },
+    [setName]
+  );
 
   if (loading || loadingNameUpdate) return 'Loading...';
 

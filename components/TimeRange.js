@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback, forwardRef } from 'react';
+import { useRef, useState, useEffect, forwardRef } from 'react';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button, Menu, MenuItem } from '@material-ui/core';
@@ -66,6 +66,18 @@ const options = [
   { value: 'custom', label: c('Time range dropdown').t`Custom` },
 ];
 
+/**
+ * @param {{GTE: string?, LTE: string?}} range
+ * @return {string} one of options' value
+ */
+function getSelectedFromRange(range) {
+  if (!range) return 'all';
+  if (range.LTE) return 'custom';
+
+  const option = options.find(o => o.value === range.GTE);
+  return option ? option.value : 'custom';
+}
+
 /*
   material ui actually passes down some non-DOM props to children,
   and this cause some warning on runtime.
@@ -84,9 +96,9 @@ Input.displayName = 'input';
 
 function TimeRange({ onChange = () => null, range }) {
   const [anchor, setAnchor] = useState(null);
-  const [selected, setSelected] = useState('all');
+  const [selected, setSelected] = useState(getSelectedFromRange(range));
   const [customValue, setCustomValue] = useState({
-    GT: range?.GT,
+    GTE: range?.GTE,
     LTE: range?.LTE,
   });
   const anchorEl = useRef(null);
@@ -94,38 +106,29 @@ function TimeRange({ onChange = () => null, range }) {
 
   const openMenu = () => setAnchor(anchorEl.current);
   const closeMenu = () => setAnchor(null);
-  const select = useCallback(
-    option => () => {
-      setSelected(option);
-      if (option !== 'custom') {
-        onChange(option === 'all' ? null : { GT: option });
-      }
-      closeMenu();
-    },
-    []
-  );
+  const select = option => () => {
+    setSelected(option);
+    if (option !== 'custom') {
+      onChange(option === 'all' ? null : { GTE: option });
+    }
+    closeMenu();
+  };
 
   const setAndUpdateValue = value => {
     setCustomValue(value);
     onChange(value);
   };
 
-  // when props update, change value
+  // update state when range prop change
   useEffect(() => {
-    if (!range) return;
-    if (customValue.GT !== range.GT || customValue.LTE !== range.LTE) {
-      setAndUpdateValue(range);
+    setCustomValue(customValue => {
+      if (!range) return customValue;
+      return customValue.GTE !== range.GTE || customValue.LTE !== range.LTE
+        ? range
+        : customValue;
+    });
 
-      if (range.GT) {
-        const option = options.find(o => o.value === range.GT);
-        if (option) {
-          setSelected(option.value);
-        } else if (range.GT || range.LTE) {
-          // custom
-          setSelected('custom');
-        }
-      }
-    }
+    setSelected(() => getSelectedFromRange(range));
   }, [range]);
 
   const custom = selected === 'custom';
@@ -139,11 +142,11 @@ function TimeRange({ onChange = () => null, range }) {
         {custom ? (
           <Input
             ref={anchorEl}
-            value={customValue.GT}
+            value={customValue.GTE}
             className={classes.startDate}
             onChange={e => {
               e.persist();
-              const newValue = { ...customValue, GT: e.target.value };
+              const newValue = { ...customValue, GTE: e.target.value };
               setAndUpdateValue(newValue);
             }}
             type="date"

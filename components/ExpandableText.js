@@ -58,6 +58,7 @@ const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
     if (lineClamp) {
       cloneAndComputeHeight();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderWithLineChampLimits = () => {

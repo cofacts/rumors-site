@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import {
   Popper,
   Fade,
@@ -56,8 +56,6 @@ const ReplyShare = ({ copyText }) => {
     closeMenu();
   };
 
-  const onCopied = useCallback(() => onSuccess('Copied to clipboard!'));
-
   const handleShare = event => {
     if (window.navigator && window.navigator.share) {
       navigator
@@ -81,7 +79,7 @@ const ReplyShare = ({ copyText }) => {
               <Paper elevation={3}>
                 <CopyButton
                   content={copyText}
-                  onClick={onCopied}
+                  onClick={() => onSuccess('Copied to clipboard!')}
                 >{t`Copy`}</CopyButton>
               </Paper>
             </Fade>

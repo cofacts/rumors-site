@@ -76,7 +76,7 @@ function ReplySearch({
 
   useEffect(() => {
     loadSearchResults({ variables: { query: search } });
-  }, [search]);
+  }, [search, loadSearchResults]);
 
   const source = [FILTERS.ALL_REPLIES, FILTERS.MY_REPLIES].includes(filter)
     ? data?.ListReplies

@@ -132,7 +132,7 @@ const ArticleReply = React.memo(
 
     const classes = useStyles({ replyType });
 
-    const renderFooter = useCallback(() => {
+    const renderFooter = () => {
       const copyText =
         typeof window !== 'undefined'
           ? `${TYPE_NAME[reply.type]} \n【${t`Reason`}】${(
@@ -159,7 +159,7 @@ const ArticleReply = React.memo(
           <ReplyShare copyText={copyText} />
         </Box>
       );
-    }, [reply, articleReply]);
+    };
 
     const renderAuthor = useCallback(
       () =>
@@ -175,7 +175,7 @@ const ArticleReply = React.memo(
       [articleReplyAuthor]
     );
 
-    const renderReference = useCallback(() => {
+    const renderReference = () => {
       if (replyType === 'NOT_ARTICLE') return null;
 
       const reference = reply.reference;
@@ -195,7 +195,7 @@ const ArticleReply = React.memo(
           />
         </section>
       );
-    }, [replyType, reply]);
+    };
 
     const authorElem = renderAuthor();
 
