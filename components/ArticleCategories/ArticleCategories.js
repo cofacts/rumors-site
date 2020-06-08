@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import getConfig from 'next/config';
 import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
-import Button from '@material-ui/core/Button';
+import { Box, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -15,8 +15,15 @@ const {
 } = getConfig();
 
 const useStyles = makeStyles(theme => ({
-  button: { marginTop: theme.spacing(1) },
-  buttonIcon: { marginRight: theme.spacing(1) },
+  button: {
+    marginTop: theme.spacing(1),
+    background: theme.palette.common.white,
+    border: `1px solid ${theme.palette.secondary[100]}`,
+    color: theme.palette.secondary[500],
+  },
+  buttonIcon: {
+    fontSize: theme.typography.body1.fontSize,
+  },
 }));
 
 const CATEGORY_LIST_QUERY = gql`
@@ -55,36 +62,24 @@ function ArticleCategories({ articleId, articleCategories }) {
 
   return (
     <aside>
-      {(articleCategories || []).map(
-        ({
-          categoryId,
-          category,
-          canUpdateStatus,
-          positiveFeedbackCount,
-          negativeFeedbackCount,
-          ownVote,
-        }) => (
-          <ArticleCategory
-            key={categoryId}
-            category={category}
-            articleId={articleId}
-            categoryId={categoryId}
-            canDelete={canUpdateStatus}
-            positiveFeedbackCount={positiveFeedbackCount}
-            negativeFeedbackCount={negativeFeedbackCount}
-            ownVote={ownVote}
-          />
-        )
-      )}
+      {(articleCategories || []).map(articleCategory => (
+        <ArticleCategory
+          key={articleCategory.categoryId}
+          {...articleCategory}
+        />
+      ))}
 
       {PUBLIC_SHOW_ADD_CATEGORY && !loading && hasOtherCategories && (
-        <Button
+        <Chip
           className={classes.button}
           onClick={() => setAddDialogShow(true)}
-        >
-          <AddIcon className={classes.buttonIcon} />
-          {t`Add category`}
-        </Button>
+          label={
+            <Box display="flex" alignItems="center" pr={1}>
+              <AddIcon className={classes.buttonIcon} />
+              {t`Add category`}
+            </Box>
+          }
+        />
       )}
 
       {showAddDialog && (
