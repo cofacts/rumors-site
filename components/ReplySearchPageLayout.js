@@ -80,6 +80,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[100],
   },
   loadMore: {
+    fontSize: theme.typography.htmlFontSize,
+    minWidth: 120,
     width: '33%',
     color: theme.palette.secondary[300],
     outline: 'none',

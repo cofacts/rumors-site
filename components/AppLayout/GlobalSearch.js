@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
       padding: '0 24px',
     },
   },
+  inputRoot: {
+    borderRadius: 8,
+  },
   input: {
     padding: '10px 0',
     cursor: 'pointer',
@@ -33,9 +36,11 @@ const useStyles = makeStyles(theme => ({
     padding: '0 20px',
     position: 'absolute',
     zIndex: 2,
+    top: 44,
     display: ({ value }) => (value ? 'block' : 'none'),
     background: theme.palette.secondary[500],
     width: '100%',
+    borderRadius: 8,
     [theme.breakpoints.up('md')]: {
       marginLeft: 24,
       marginRight: 24,
@@ -43,6 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   resultEntry: {
+    fontSize: theme.typography.htmlFontSize,
     cursor: 'pointer',
     color: theme.palette.common.white,
     display: 'flex',
@@ -60,6 +66,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
   },
+  ellipsisOnMobile: {
+    [theme.breakpoints.down('md')]: {
+      maxWidth: 120,
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+    },
+  },
 }));
 
 function GlobalSearch({ onIconClick }) {
@@ -73,9 +87,9 @@ function GlobalSearch({ onIconClick }) {
   const navigate = type => () =>
     router.push({ pathname: '/search', query: { type, q: value } });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => void (query.q !== value && setValue(query.q || '')), [
     query.q,
-    value,
   ]);
 
   const input = (
@@ -89,6 +103,7 @@ function GlobalSearch({ onIconClick }) {
           </InputAdornment>
         ),
         classes: {
+          root: classes.inputRoot,
           input: classes.input,
         },
         onFocus: () => setFocus(true),
@@ -123,14 +138,14 @@ function GlobalSearch({ onIconClick }) {
             <div className={classes.resultEntry} onClick={navigate('messages')}>
               <div className={classes.iconWithText}>
                 <Box component={SearchIcon} mr={1.5} />
-                {value}
+                <div className={classes.ellipsisOnMobile}>{value}</div>
               </div>
               <div className={classes.right}>{t`in Messages`}</div>
             </div>
             <div className={classes.resultEntry} onClick={navigate('replies')}>
               <div className={classes.iconWithText}>
                 <Box component={SearchIcon} mr={1.5} />
-                {value}
+                <div className={classes.ellipsisOnMobile}>{value}</div>
               </div>
               <div className={classes.right}>{t`in Replies`}</div>
             </div>

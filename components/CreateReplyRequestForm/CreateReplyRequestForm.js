@@ -22,13 +22,13 @@ const useStyles = makeStyles(theme => ({
     padding: '10px 13px',
   },
   buttonGroup: {
+    flex: 2,
     display: 'flex',
     alignItems: 'center',
     whiteSpace: 'nowrap',
     width: '100%',
     marginBottom: 30,
     [theme.breakpoints.up('md')]: {
-      flex: 3,
       paddingLeft: 8,
       width: 'auto',
       marginBottom: 0,
@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
       padding: '8px 24px',
       border: `1px solid ${theme.palette.secondary[100]}`,
       '&:first-child': {
+        borderRight: 0,
         borderTopLeftRadius: 30,
         borderBottomLeftRadius: 30,
         paddingLeft: 24,
@@ -71,6 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
   textarea: {
     borderRadius: 24,
+    fontSize: 18,
     width: '100%',
     border: `1px solid ${theme.palette.secondary[100]}`,
     padding: '17px 14px',
@@ -85,6 +87,7 @@ const useStyles = makeStyles(theme => ({
     right: 8,
   },
   replyButton: {
+    fontSize: 16,
     flex: 1,
     width: '100%',
     position: 'absolute',

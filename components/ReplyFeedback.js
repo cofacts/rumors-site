@@ -41,19 +41,6 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.secondary[300],
     },
   },
-  voted: {
-    border: `1px solid ${theme.palette.primary[500]}`,
-    color: theme.palette.primary[500],
-    '& $outlinedIcon': {
-      color: 'transparent',
-      stroke: theme.palette.primary[500],
-    },
-  },
-  outlinedIcon: {
-    color: 'transparent',
-    fontSize: 16,
-    stroke: theme.palette.secondary[100],
-  },
   thumbIcon: {
     fontSize: 15,
     margin: '0 2px',
@@ -66,7 +53,6 @@ const useStyles = makeStyles(theme => ({
       marginRight: 0,
       display: 'inline-flex',
       color: theme.palette.secondary[200],
-      background: theme.palette.secondary[50],
       fontSize: 16,
       '&:first-child': {
         borderTopRightRadius: 0,
@@ -84,6 +70,9 @@ const useStyles = makeStyles(theme => ({
         borderRight: 0,
       },
     },
+  },
+  voted: {
+    color: `${theme.palette.primary[500]} !important`,
   },
   popover: {
     position: 'relative',
@@ -291,28 +280,22 @@ function ReplyFeedback({
 
   return (
     <div className={cx(classes.root, className)}>
-      <button
-        className={cx(classes.vote, ownVote === 'UPVOTE' && classes.voted)}
-        type="button"
-        onClick={e => openVotePopover(e, 'UPVOTE')}
-        data-ga="Upvote"
-      >
-        <ThumbUpIcon className={classes.outlinedIcon} />
-      </button>
-      <button
-        className={cx(classes.vote, ownVote === 'DOWNVOTE' && classes.voted)}
-        type="button"
-        onClick={e => openVotePopover(e, 'DOWNVOTE')}
-        data-ga="Downvote"
-      >
-        <ThumbDownIcon className={classes.outlinedIcon} />
-      </button>
       <div className={classes.buttonGroup} data-ga="Number display">
-        <button className={classes.vote} type="button">
+        <button
+          className={cx(classes.vote, ownVote === 'UPVOTE' && classes.voted)}
+          type="button"
+          onClick={e => openVotePopover(e, 'UPVOTE')}
+          data-ga="Upvote"
+        >
           {positiveFeedbackCount}
           <ThumbUpIcon className={classes.thumbIcon} />
         </button>
-        <button className={classes.vote} type="button">
+        <button
+          className={cx(classes.vote, ownVote === 'DOWNVOTE' && classes.voted)}
+          type="button"
+          onClick={e => openVotePopover(e, 'DOWNVOTE')}
+          data-ga="Downvote"
+        >
           {negativeFeedbackCount}
           <ThumbDownIcon className={classes.thumbIcon} />
         </button>

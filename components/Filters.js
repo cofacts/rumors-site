@@ -31,20 +31,29 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    '& button': {
-      whiteSpace: 'nowrap',
-      cursor: 'pointer',
-      border: 'none',
-      outline: 'none',
-      backgroundColor: 'inherit',
-      display: 'flex',
-      alignItems: 'center',
+  },
+  control: {
+    padding: 0,
+    whiteSpace: 'nowrap',
+    cursor: 'pointer',
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'inherit',
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: 14,
+    color: theme.palette.secondary[300],
+    '&:hover': {
+      color: theme.palette.secondary[500],
+    },
+    '&.active': {
+      color: theme.palette.primary[500],
     },
   },
   dropdown: {
     position: 'absolute',
-    right: 0,
-    top: '100%',
+    left: -24,
+    top: 36,
     padding: 10,
     minWidth: 300,
     width: '20%',
@@ -83,10 +92,11 @@ const Option = withStyles(theme => ({
     padding: '4px 10px',
     margin: '4px 2px',
     cursor: 'pointer',
+    border: ({ chip, selected }) =>
+      chip || selected ? `1px solid ${theme.palette.secondary[100]}` : 'none',
   },
   selected: {
     background: theme.palette.secondary[50],
-    border: `1px solid ${theme.palette.secondary[100]}`,
   },
 }))(({ classes, selected, label, onClick }) => (
   <span
@@ -139,7 +149,38 @@ export function Filter({
 
   return (
     <Paper className={classes.root} elevation={0} square>
-      <div className={classes.title}>{title}</div>
+      <div className={classes.title}>
+        {expandable ? (
+          <div className={classes.expand}>
+            <button
+              className={cx(classes.control, expand && 'active')}
+              type="button"
+              onClick={() => setExpand(e => !e)}
+              data-ga="FilterExpandButton"
+            >
+              {title}
+              {expand ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            </button>
+            {expand && (
+              <Paper className={classes.dropdown} elevation={3}>
+                <div className={classes.dropdownOptions}>
+                  {options.map(option => (
+                    <Option
+                      {...option}
+                      key={option.value}
+                      selected={selected[option.value]}
+                      onClick={onOptionClicked(option.value)}
+                      chip
+                    />
+                  ))}
+                </div>
+              </Paper>
+            )}
+          </div>
+        ) : (
+          title
+        )}
+      </div>
       <div className={classes.body}>
         {placeholder && !Object.values(selected).includes(true) ? (
           <span className={classes.placeholder}>{placeholder}</span>
@@ -156,41 +197,6 @@ export function Filter({
             ))
         )}
       </div>
-      {expandable && (
-        <div className={classes.expand}>
-          <button
-            type="button"
-            onClick={() => setExpand(e => !e)}
-            data-ga="FilterExpandButton"
-          >
-            {expand ? (
-              <>
-                {t`Collapse`}
-                <ExpandLessIcon />
-              </>
-            ) : (
-              <>
-                {t`Expand`}
-                <ExpandMoreIcon />
-              </>
-            )}
-          </button>
-          {expand && (
-            <Paper className={classes.dropdown} elevation={3}>
-              <div className={classes.dropdownOptions}>
-                {options.map(option => (
-                  <Option
-                    {...option}
-                    key={option.value}
-                    selected={selected[option.value]}
-                    onClick={onOptionClicked(option.value)}
-                  />
-                ))}
-              </div>
-            </Paper>
-          )}
-        </div>
-      )}
     </Paper>
   );
 }

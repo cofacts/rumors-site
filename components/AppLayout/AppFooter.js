@@ -10,6 +10,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import FacebookIcon from '@material-ui/icons/Facebook';
+import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
 const useStyles = makeStyles(theme => ({
   first: {
@@ -110,6 +111,7 @@ function AppFooter() {
             >
               {t`Facebook forum`}
             </CustomLink>
+            <GoogleWebsiteTranslator desktop />
           </div>
         </div>
       </div>

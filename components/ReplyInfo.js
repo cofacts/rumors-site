@@ -22,6 +22,7 @@ const CustomTooltip = withStyles(theme => ({
   },
   tooltip: {
     backgroundColor: theme.palette.secondary[500],
+    fontSize: 12,
   },
 }))(Tooltip);
 

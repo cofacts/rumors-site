@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
+import { useMediaQuery } from '@material-ui/core';
 import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
 import ReplyFeedback from './ReplyFeedback';
@@ -46,10 +47,16 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary[50],
     borderRadius: 8,
     display: 'flex',
-    padding: '6px 10px',
-    marginRight: 20,
-    maxHeight: 64,
-    marginTop: 14,
+    padding: 6,
+    marginRight: 12,
+    maxHeight: 56,
+    marginTop: 10,
+    [theme.breakpoints.up('md')]: {
+      padding: '6px 10px',
+      marginRight: 20,
+      maxHeight: 64,
+      marginTop: 14,
+    },
     '& > div': {
       textAlign: 'center',
       width: 55,
@@ -59,12 +66,20 @@ const useStyles = makeStyles(theme => ({
     },
     '& h2': {
       margin: 0,
+      fontSize: 14,
+      [theme.breakpoints.up('md')]: {
+        fontSize: 24,
+      },
     },
     '& span': {
-      fontSize: 10,
+      fontSize: 12,
+      [theme.breakpoints.up('md')]: {
+        fontSize: 14,
+      },
     },
   },
   link: {
+    fontSize: theme.typography.htmlFontSize,
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
@@ -95,6 +110,10 @@ const useStyles = makeStyles(theme => ({
     minWidth: 1,
     margin: '12px 0',
     flex: 1,
+    fontSize: 12,
+    [theme.breakpoints.up('md')]: {
+      fontSize: 14,
+    },
   },
   highlight: {
     color: theme.palette.primary[500],
@@ -114,7 +133,7 @@ export default function ArticleItem({
   // isLogin,
 }) {
   const { text, replyCount, replyRequestCount } = article;
-
+  const match = useMediaQuery('(min-width:600px)');
   const classes = useStyles({
     read,
     isArticle: !notArticleReplied,
@@ -137,7 +156,7 @@ export default function ArticleItem({
           </div>
         )}
         <ExpandableText className={classes.content} lineClamp={3}>
-          {highlight(nl2br(text), {
+          {highlight(match ? nl2br(text) : text, {
             query,
             highlightClassName: classes.highlight,
           })}

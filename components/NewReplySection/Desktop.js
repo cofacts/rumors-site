@@ -19,6 +19,7 @@ const CustomTab = withStyles(theme => ({
   root: {
     position: 'relative',
     color: theme.palette.secondary[300],
+    fontSize: 18,
     '&$selected': {
       color: theme.palette.primary,
       '& $indicator': {

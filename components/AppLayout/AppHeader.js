@@ -66,6 +66,7 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     fontWeight: 500,
+    fontSize: 18,
     letterSpacing: 0.75,
     color: theme.palette.secondary[300],
     [theme.breakpoints.up('md')]: {
@@ -103,6 +104,8 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 8,
   },
   login: {
+    fontSize: 18,
+    padding: '4px 16px',
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
   },
@@ -243,7 +246,6 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
           ) : (
             <Button
               onClick={onLoginModalOpen}
-              size="small"
               className={classes.login}
             >{t`Login`}</Button>
           )}

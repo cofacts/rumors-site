@@ -19,6 +19,7 @@ import {
 import * as Widgets from './Widgets';
 import NavLink from 'components/NavLink';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
+import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -126,6 +127,9 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
           <NavLink external href={LINE_URL}>
             @cofacts
           </NavLink>
+        </ListItem>
+        <ListItem classes={{ root: classes.listItem }}>
+          <GoogleWebsiteTranslator mobile />
         </ListItem>
       </List>
       {true && (

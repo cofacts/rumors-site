@@ -25,6 +25,9 @@ const ToggleButton = withStyles({
     outline: 'none',
     cursor: 'pointer',
     background: 'transparent',
+    fontSize: 'inherit',
+    padding: 0,
+    lineHeight: 'inherit',
   },
 })(({ classes, toggleExpand, expanded }) => (
   <button className={classes.root} onClick={toggleExpand}>

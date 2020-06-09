@@ -160,8 +160,8 @@ function ReplyRequestReason({ isArticleCreator, replyRequest }) {
                     onClick={() => handleVote(UPVOTE)}
                     disabled={loading || ownVote === UPVOTE}
                   >
-                    <ThumbUpIcon className={classes.thumbIcon} />
                     <span>{positiveFeedbackCount}</span>
+                    <ThumbUpIcon className={classes.thumbIcon} />
                   </button>
                   <button
                     className={cx(
@@ -172,8 +172,8 @@ function ReplyRequestReason({ isArticleCreator, replyRequest }) {
                     onClick={() => handleVote(DOWNVOTE)}
                     disabled={loading || ownVote === DOWNVOTE}
                   >
-                    <ThumbDownIcon className={classes.thumbIcon} />
                     <span>{negativeFeedbackCount}</span>
+                    <ThumbDownIcon className={classes.thumbIcon} />
                   </button>
                 </Box>
                 {/* isArticleCreator && (
