@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
 import Link from 'next/link';
+
 import { useMutation } from '@apollo/react-hooks';
 import { dataIdFromObject } from 'lib/apollo';
+import ArticleCategory from './ArticleCategory';
 
 import {
   Box,
@@ -107,6 +109,17 @@ const ArticleWithCategories = gql`
   ${ArticleCategoryData}
 `;
 
+const ADD_CATEGORY = gql`
+  mutation AddCategoryToArticle($articleId: String!, $categoryId: String!) {
+    CreateArticleCategory(articleId: $articleId, categoryId: $categoryId) {
+      articleId
+      categoryId
+      ...ArticleCategoryData
+    }
+  }
+  ${ArticleCategory.fragments.ArticleCategoryData}
+`;
+
 const DELETE_CATEGORY = gql`
   mutation RemoveCategoryFromArticle(
     $articleId: String!
@@ -149,23 +162,42 @@ const VOTE_CATEGORY = gql`
 /**
  * @param {Category} props.category
  * @param {null|string} vote
- * @param {boolean} disabled
- * @param {string => void} onAdd
+ * @param {bool} marked
  */
-function CategoryOption({
-  category,
-  articleId,
-  feedback = {},
-  marked,
-  onAdd,
-  disabled,
-}) {
+function CategoryOption({ category, articleId, feedback = {}, marked }) {
   const { positive, negative, ownVote } = feedback;
 
   const allFeedbackCount = ~~(positive + negative);
 
   const [showVoteSnack, setVoteSnackShow] = useState(false);
   const [showDownVoteDialog, setDownVoteDialogShow] = useState(false);
+  const [addCategory, { loading }] = useMutation(ADD_CATEGORY, {
+    update(
+      cache,
+      {
+        data: { CreateArticleCategory },
+      }
+    ) {
+      // Read & update Article instance
+      const id = dataIdFromObject({ __typename: 'Article', id: articleId });
+      const article = cache.readFragment({
+        id,
+        fragmentName: 'ArticleWithCategories',
+        fragment: ArticleCategory.fragments.ArticleWithCategories,
+      });
+
+      cache.writeFragment({
+        id: dataIdFromObject({ __typename: 'Article', id: articleId }),
+        fragmentName: 'ArticleWithCategories',
+        fragment: ArticleCategory.fragments.ArticleWithCategories,
+        data: {
+          ...article,
+          articleCategories: CreateArticleCategory,
+        },
+      });
+    },
+  });
+
   const [deleteCategory, { loading: deletingCategory }] = useMutation(
     DELETE_CATEGORY,
     {
@@ -218,7 +250,7 @@ function CategoryOption({
   const classes = useStyles({ allFeedbackCount, positive, negative, marked });
 
   const handleAdd = () => {
-    onAdd(category.id);
+    addCategory({ variables: { articleId, categoryId: category.id } });
     handleVoteUp();
   };
 
@@ -257,7 +289,7 @@ function CategoryOption({
           <button
             type="button"
             className={classes.action}
-            disabled={disabled}
+            disabled={loading}
             onClick={handleAdd}
           >
             {t`Add`}
@@ -267,7 +299,7 @@ function CategoryOption({
           <button
             type="button"
             className={classes.action}
-            disabled={disabled || deletingCategory}
+            disabled={loading || deletingCategory}
             onClick={deleteCategory}
           >
             {t`Remove`}
@@ -311,7 +343,12 @@ function CategoryOption({
       <div>
         <Typography variant="body2" color="secondary">
           {category.description}{' '}
-          <Link href={{ pathname: '/articles', query: { c: category.id } }}>
+          <Link
+            href={{
+              pathname: '/articles',
+              query: { categoryIds: category.id },
+            }}
+          >
             <a className={classes.example}>{t`See examples`}</a>
           </Link>
         </Typography>
@@ -326,7 +363,7 @@ function CategoryOption({
         <DownVoteDialog
           articleId={articleId}
           categoryId={category.id}
-          onClose={() => showDownVoteDialog(false)}
+          onClose={() => setDownVoteDialogShow(false)}
           onVote={handleVoteDown}
         />
       )}
