@@ -2,9 +2,6 @@ import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 
-import { useMutation } from '@apollo/react-hooks';
-import { dataIdFromObject } from 'lib/apollo';
-import ArticleCategory from './ArticleCategory';
 import CategoryOption from './CategoryOption';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
 
@@ -28,7 +25,6 @@ function AddCategoryDialog({
   articleCategories,
   onClose = () => {},
 }) {
-
   const feedbackMap = articleCategories.reduce((map, ac) => {
     map[ac.categoryId] = {
       ownVote: ac.ownVote,
