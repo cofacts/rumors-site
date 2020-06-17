@@ -46,7 +46,8 @@ const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
 
   const cloneAndComputeHeight = () => {
     const computedStyle = window.getComputedStyle(containerRef.current);
-    setLineHeight(parseFloat(computedStyle.lineHeight));
+    const lh = parseFloat(computedStyle.lineHeight);
+    setLineHeight(isNaN(lh) ? 14 : lh);
     const clone = containerRef.current.cloneNode(true);
     clone.style.maxHeight = '';
     rootRef.current.appendChild(clone);

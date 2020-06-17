@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots PlainList Description 1`] = `
+<div>
+  <p>
+    Just an unordered list (ul) without default list-style. small utility.
+  </p>
+  <Component
+    classes={
+      Object {
+        "root": "Component-root-6",
+      }
+    }
+  >
+    <ul
+      className="Component-root-6"
+    >
+      <li>
+        item 1
+      </li>
+      <li>
+        item 2
+      </li>
+      <li>
+        item 3
+      </li>
+    </ul>
+  </Component>
+</div>
+`;

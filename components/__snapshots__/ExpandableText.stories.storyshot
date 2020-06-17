@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ExpandableText With Line Clamp Given 1`] = `
+<div>
+  <p
+    style={
+      Object {
+        "fontSize": 12,
+      }
+    }
+  >
+    Calculating line clamp base on container height. 
+    <br />
+    *Known bug: container's line-height is not numeric(ex: 'normal') will cause error.
+  </p>
+  <div
+    style={
+      Object {
+        "lineHeight": "16px",
+      }
+    }
+  >
+    <ExpandableText
+      lineClamp={3}
+    >
+      <div>
+        <div
+          className="makeStyles-root-4"
+          style={
+            Object {
+              "maxHeight": 42,
+            }
+          }
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus. Quisque fermentum magna sit amet nunc faucibus, quis fringilla massa maximus. Aliquam tincidunt orci et felis rutrum, et egestas ante egestas. Duis vel dolor sed risus pulvinar pretium at in lorem. Duis sed odio at orci tincidunt pharetra. Mauris ut erat at diam mattis ultrices eget et dui. Maecenas sit amet ultrices nunc. Vivamus hendrerit odio sit amet ex congue tincidunt. Phasellus id enim in enim congue pharetra eget id lacus. Donec sit amet erat vel augue aliquam tristique et non justo. Suspendisse lorem dui, vestibulum vel ante vel, sagittis malesuada leo. Aenean aliquam vestibulum tortor a suscipit. Maecenas a diam suscipit, semper leo ut, aliquam felis. Donec ex mi, lobortis eget feugiat ac, facilisis eu nunc. Nullam lacinia quis quam id rutrum. In pellentesque lacus ac ipsum faucibus pharetra. Mauris vulputate magna nec enim maximus, sed porta lacus posuere. Maecenas felis ipsum, iaculis a enim sed, aliquet interdum dolor. Phasellus id arcu in nisi facilisis volutpat fermentum sodales magna. Etiam ornare vel mauris in faucibus. Ut consequat eget felis sed vulputate. Fusce dapibus aliquet turpis, in ultricies tortor congue porttitor. Integer a quam orci. Donec eu ligula blandit, dapibus neque a, mollis sapien. Nam maximus lectus augue, vel iaculis mi dignissim vitae.
+        </div>
+      </div>
+    </ExpandableText>
+  </div>
+</div>
+`;
+
+exports[`Storyshots ExpandableText With Word Count Given 1`] = `
+<ExpandableText
+  wordCount={40}
+>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur 
+    <ExpandableTextToggleButton
+      expanded={false}
+      key="expandable-text-more-button"
+      toggleExpand={[Function]}
+    >
+      <Component
+        classes={
+          Object {
+            "root": "Component-root-3",
+          }
+        }
+        expanded={false}
+        toggleExpand={[Function]}
+      >
+        <button
+          className="Component-root-3"
+          onClick={[Function]}
+        >
+          (
+          Show More ▼
+          )
+        </button>
+      </Component>
+    </ExpandableTextToggleButton>
+  </div>
+</ExpandableText>
+`;
