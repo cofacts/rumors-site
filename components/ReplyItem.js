@@ -97,10 +97,12 @@ function ReplyItem({
   return (
     <div className={classes.root}>
       <Box p={{ xs: '8px 14px 0 0', md: '24px' }}>
-        <Avatar user={user} className={classes.avatar} />
-        {/*
-          <div title={TYPE_NAME[replyType]}>{TYPE_ICON[replyType]}</div>
-        */}
+        <Avatar
+          user={user}
+          className={classes.avatar}
+          showLevel
+          status={replyType}
+        />
       </Box>
       <Box py="12px" flexGrow={1}>
         <div
@@ -144,6 +146,7 @@ ReplyItem.fragments = {
       user {
         id
         name
+        level
         avatarUrl
       }
     }
