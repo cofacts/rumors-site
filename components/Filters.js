@@ -4,7 +4,6 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import cx from 'clsx';
-import { t } from 'ttag';
 
 const useStyles = makeStyles(theme => ({
   root: {

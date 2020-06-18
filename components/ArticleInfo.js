@@ -75,7 +75,7 @@ export default function ArticleInfo({ article }) {
                 const IconComponent = TYPE_ICON[k];
                 return (
                   <span key={k} className={classes.opinion}>
-                    <IconComponent className={classes.optionIcon}/>
+                    <IconComponent className={classes.optionIcon} />
                     <span>{v}</span>
                   </span>
                 );
