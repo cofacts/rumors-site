@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { t } from 'ttag';
@@ -62,17 +63,15 @@ const useStyles = makeStyles(theme => ({
       borderTop: `1px solid ${theme.palette.secondary[400]}`,
     },
   },
-  iconWithText: {
-    display: 'flex',
-    alignItems: 'center',
-  },
   ellipsisOnMobile: {
-    [theme.breakpoints.down('md')]: {
-      maxWidth: 120,
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-    },
+    flex: 1,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    minWidth: 0,
+  },
+  right: {
+    flexShrink: 0,
   },
 }));
 
@@ -87,10 +86,9 @@ function GlobalSearch({ onIconClick }) {
   const navigate = type => () =>
     router.push({ pathname: '/search', query: { type, q: value } });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => void (query.q !== value && setValue(query.q || '')), [
-    query.q,
-  ]);
+  useEffect(() => void(setValue(value =>
+    query.q !== value ? (query.q || '') : value
+  )), [query.q]);
 
   const input = (
     <TextField
@@ -136,17 +134,13 @@ function GlobalSearch({ onIconClick }) {
         {!!value && focus && (
           <div className={classes.result}>
             <div className={classes.resultEntry} onClick={navigate('messages')}>
-              <div className={classes.iconWithText}>
-                <Box component={SearchIcon} mr={1.5} />
-                <div className={classes.ellipsisOnMobile}>{value}</div>
-              </div>
+              <Box component={SearchIcon} mr={1.5} />
+              <div className={classes.ellipsisOnMobile}>{value}</div>
               <div className={classes.right}>{t`in Messages`}</div>
             </div>
             <div className={classes.resultEntry} onClick={navigate('replies')}>
-              <div className={classes.iconWithText}>
-                <Box component={SearchIcon} mr={1.5} />
-                <div className={classes.ellipsisOnMobile}>{value}</div>
-              </div>
+              <Box component={SearchIcon} mr={1.5} />
+              <div className={classes.ellipsisOnMobile}>{value}</div>
               <div className={classes.right}>{t`in Replies`}</div>
             </div>
           </div>
