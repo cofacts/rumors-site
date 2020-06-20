@@ -9,6 +9,7 @@ import {
 } from 'constants/urls';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  useMediaQuery,
   Box,
   Button,
   Typography,
@@ -58,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 
 function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
   const classes = useStyles();
+  const matches = useMediaQuery('(max-width:768px)');
 
   return (
     <SwipeableDrawer
@@ -128,9 +130,11 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
             @cofacts
           </NavLink>
         </ListItem>
-        <ListItem classes={{ root: classes.listItem }}>
-          <GoogleWebsiteTranslator mobile />
-        </ListItem>
+        {matches && (
+          <ListItem classes={{ root: classes.listItem }}>
+            <GoogleWebsiteTranslator />
+          </ListItem>
+        )}
       </List>
       {true && (
         <>

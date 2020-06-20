@@ -7,7 +7,7 @@ import {
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { Box, useMediaQuery } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
@@ -77,6 +77,8 @@ const CustomLink = withStyles(theme => ({
 
 function AppFooter() {
   const classes = useStyles();
+  const matches = useMediaQuery('(min-width:768px)');
+
   return (
     <Box component="footer" display={['none', 'none', 'block']}>
       <div className={classes.first}>
@@ -111,7 +113,7 @@ function AppFooter() {
             >
               {t`Facebook forum`}
             </CustomLink>
-            <GoogleWebsiteTranslator desktop />
+            {matches && <GoogleWebsiteTranslator />}
           </div>
         </div>
       </div>
