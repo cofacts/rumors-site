@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { t } from 'ttag';
@@ -86,9 +85,10 @@ function GlobalSearch({ onIconClick }) {
   const navigate = type => () =>
     router.push({ pathname: '/search', query: { type, q: value } });
 
-  useEffect(() => void(setValue(value =>
-    query.q !== value ? (query.q || '') : value
-  )), [query.q]);
+  useEffect(
+    () => void setValue(value => (query.q !== value ? query.q || '' : value)),
+    [query.q]
+  );
 
   const input = (
     <TextField

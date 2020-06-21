@@ -190,7 +190,7 @@ export function Filter({
               <Option
                 {...option}
                 key={option.value}
-                selected={onlySelected ? false : selected[option.value]}
+                selected={selected[option.value]}
                 onClick={onOptionClicked(option.value)}
               />
             ))

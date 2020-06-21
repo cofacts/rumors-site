@@ -6,6 +6,8 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Tabs,
   Tab,
+  ButtonGroup,
+  Button,
   Box,
   Popover,
   Typography,
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     borderRadius: 45,
-    padding: '1px 8px',
+    padding: '0px 8px',
     marginRight: 3,
     outline: 'none',
     cursor: 'pointer',
@@ -33,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[100],
     background: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
-      padding: '4px 18px',
+      padding: '0 18px',
       marginRight: 10,
     },
     '&:hover': {
@@ -53,7 +55,8 @@ const useStyles = makeStyles(theme => ({
       marginRight: 0,
       display: 'inline-flex',
       color: theme.palette.secondary[200],
-      fontSize: 16,
+      fontSize: 14,
+      textTransform: 'none',
       '&:first-child': {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
@@ -68,6 +71,9 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 0,
         borderLeft: 0,
         borderRight: 0,
+      },
+      '&:disabled': {
+        cursor: 'not-allowed',
       },
     },
   },
@@ -280,33 +286,33 @@ function ReplyFeedback({
 
   return (
     <div className={cx(classes.root, className)}>
-      <div className={classes.buttonGroup} data-ga="Number display">
-        <button
+      <ButtonGroup
+        className={classes.buttonGroup}
+        data-ga="Number display"
+        disableElevation
+      >
+        <Button
           className={cx(classes.vote, ownVote === 'UPVOTE' && classes.voted)}
-          type="button"
           onClick={e => openVotePopover(e, 'UPVOTE')}
+          disabled={isOwnArticleReply}
           data-ga="Upvote"
         >
           {positiveFeedbackCount}
           <ThumbUpIcon className={classes.thumbIcon} />
-        </button>
-        <button
+        </Button>
+        <Button
           className={cx(classes.vote, ownVote === 'DOWNVOTE' && classes.voted)}
-          type="button"
           onClick={e => openVotePopover(e, 'DOWNVOTE')}
+          disabled={isOwnArticleReply}
           data-ga="Downvote"
         >
           {negativeFeedbackCount}
           <ThumbDownIcon className={classes.thumbIcon} />
-        </button>
-        <button
-          className={classes.vote}
-          type="button"
-          onClick={openReasonsPopover}
-        >
+        </Button>
+        <Button className={classes.vote} onClick={openReasonsPopover}>
           {t`See Reasons`}
-        </button>
-      </div>
+        </Button>
+      </ButtonGroup>
       <Popover
         id={`reply-reasons-${reply.id}`}
         open={!!reasonsPopoverAnchorEl}
@@ -396,7 +402,7 @@ function ReplyFeedback({
           <button
             type="button"
             className={classes.sendButton}
-            disabled={isOwnArticleReply || updatingReplyFeedback}
+            disabled={updatingReplyFeedback}
             onClick={() => {
               createReplyFeedback({
                 variables: { articleId, replyId, vote, comment: reason },

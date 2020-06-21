@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
-      alignItems: 'baseline',
+      alignItems: 'flex-start',
     },
   },
   title: {
@@ -224,6 +224,8 @@ function ArticlePage() {
   const currentUser = useCurrentUser();
 
   const replySectionRef = useRef(null);
+  const newReplyRef = useRef(null);
+
   const classes = useStyles();
 
   // Load user field when currentUser changes
@@ -311,6 +313,7 @@ function ArticlePage() {
                   replyRequestCount
                 )}
               </h4>
+
               {isValid(createdAt) && (
                 <span
                   title={format(createdAt)}
@@ -348,6 +351,14 @@ function ArticlePage() {
                   articleId={article.id}
                   onNewReplyButtonClick={() => {
                     setShowForm(true);
+                    // use setTimeout to make sure the form has shown
+                    setTimeout(
+                      () =>
+                        newReplyRef.current.scrollIntoView({
+                          behavior: 'smooth',
+                        }),
+                      0
+                    );
                   }}
                 />
               </footer>
@@ -355,7 +366,7 @@ function ArticlePage() {
           </Box>
 
           {showForm && (
-            <div className={classes.newReplyContainer}>
+            <div className={classes.newReplyContainer} ref={newReplyRef}>
               <NewReplySection
                 article={article}
                 existingReplyIds={(article?.articleReplies || []).map(

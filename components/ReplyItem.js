@@ -6,14 +6,18 @@ import { TYPE_NAME } from '../constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ExpandableText from './ExpandableText';
 import ReplyFeedback from './ReplyFeedback';
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import ReplyInfo from './ReplyInfo';
 import { highlight } from 'lib/text';
-import isValid from 'date-fns/isValid';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flex: '1 0 auto',
+    '&:not(:last-child)': {
+      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+      paddingBottom: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
   },
   replyType: {
     fontWeight: 'bold',
@@ -36,20 +40,11 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     flexWrap: 'wrap',
   },
-  feedbacks: {
-    order: 2,
-    [theme.breakpoints.up('md')]: {
-      order: 1,
-    },
-  },
   createdAt: {
-    color: theme.palette.secondary[200],
-    flex: '1 0 100%',
-    order: 1,
-    padding: '8px 0',
+    display: 'none',
     [theme.breakpoints.up('md')]: {
       flex: '0 1 auto',
-      order: 2,
+      display: 'inline',
     },
   },
   avatar: {
@@ -77,6 +72,7 @@ const useStyles = makeStyles(theme => ({
  * @param {boolean} showUser
  */
 function ReplyItem({
+  createdAt,
   articleId,
   replyId,
   reply,
@@ -86,9 +82,6 @@ function ReplyItem({
   ownVote,
   query,
 }) {
-  const createdAt = new Date(reply.createdAt);
-  const timeAgoStr = formatDistanceToNow(createdAt);
-
   const { user, text, type: replyType } = reply;
 
   const classes = useStyles({ replyType });
@@ -120,14 +113,10 @@ function ReplyItem({
             feedbacks={feedbacks}
             ownVote={ownVote}
             reply={reply}
-            className={classes.feedbacks}
           />
-          {isValid(createdAt) && (
-            <span
-              className={classes.createdAt}
-              title={format(createdAt)}
-            >{t`${timeAgoStr} ago`}</span>
-          )}
+          <Box display={['none', 'none', 'block']}>
+            <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
+          </Box>
         </div>
       </Box>
     </div>

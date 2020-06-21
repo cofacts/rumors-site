@@ -1,12 +1,11 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import { useMediaQuery } from '@material-ui/core';
 import ArticleInfo from './ArticleInfo';
 import ReplyItem from './ReplyItem';
 import ReplyFeedback from './ReplyFeedback';
 import { c, t } from 'ttag';
-import { nl2br, highlight } from 'lib/text';
+import { highlight } from 'lib/text';
 import ExpandableText from './ExpandableText';
 import cx from 'clsx';
 
@@ -133,7 +132,6 @@ export default function ArticleItem({
   // isLogin,
 }) {
   const { text, replyCount, replyRequestCount } = article;
-  const match = useMediaQuery('(min-width:600px)');
   const classes = useStyles({
     read,
     isArticle: !notArticleReplied,
@@ -156,7 +154,7 @@ export default function ArticleItem({
           </div>
         )}
         <ExpandableText className={classes.content} lineClamp={3}>
-          {highlight(match ? nl2br(text) : text, {
+          {highlight(text, {
             query,
             highlightClassName: classes.highlight,
           })}
@@ -198,6 +196,7 @@ ArticleItem.fragments = {
       id
       text
       articleReplies(status: NORMAL) {
+        createdAt
         articleId
         replyId
         reply {

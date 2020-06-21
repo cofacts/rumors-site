@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { t } from 'ttag';
 import { useMutation } from '@apollo/react-hooks';
-import { SvgIcon, Box, Menu, MenuItem } from '@material-ui/core';
+import {
+  ButtonGroup,
+  Button,
+  SvgIcon,
+  Box,
+  Menu,
+  MenuItem,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
@@ -19,7 +26,6 @@ const useStyles = makeStyles(theme => ({
     border: 'none',
     outline: 'none',
     borderRadius: 30,
-    padding: '10px 13px',
   },
   buttonGroup: {
     flex: 2,
@@ -41,7 +47,6 @@ const useStyles = makeStyles(theme => ({
       outline: 'none',
       cursor: 'pointer',
       fontSize: 16,
-      padding: '8px 24px',
       border: `1px solid ${theme.palette.secondary[100]}`,
       '&:first-child': {
         borderRight: 0,
@@ -109,7 +114,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     opacity: 0,
     zIndex: 1000,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       right: 13,
       top: 50,
     },
@@ -117,7 +122,7 @@ const useStyles = makeStyles(theme => ({
     '&.show': { opacity: 1 },
   },
   floatButton: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       top: 120,
       right: 5,
       padding: '6px 13px',
@@ -193,18 +198,6 @@ const SubmitButton = ({ className, articleId, text, disabled, onFinish }) => {
   );
 };
 
-const inViewport = el => {
-  const rect = el.getBoundingClientRect();
-
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
-};
-
 const CreateReplyRequestForm = React.memo(
   ({ articleId, requestedForReply, onNewReplyButtonClick }) => {
     const buttonRef = useRef(null);
@@ -226,16 +219,23 @@ const CreateReplyRequestForm = React.memo(
 
     // event scroll listener
     useEffect(() => {
-      function handler() {
-        if (!inViewport(buttonRef.current) && !showFloatButton) {
-          setShowFloatButton(true);
-        } else if (inViewport(buttonRef.current) && showFloatButton) {
-          setShowFloatButton(false);
-        }
-      }
-      window.addEventListener('scroll', handler);
-      return () => window.removeEventListener('scroll', handler);
-    }, [showFloatButton]);
+      const observer = new IntersectionObserver(
+        entries =>
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setShowFloatButton(false);
+            } else {
+              setShowFloatButton(true);
+            }
+          }),
+        { threshold: 0.2 }
+      );
+
+      const target = buttonRef.current;
+
+      observer.observe(target);
+      return () => observer.unobserve(target);
+    }, []);
 
     const handleTextChange = ({ target: { value } }) => {
       setText(value);
@@ -286,33 +286,38 @@ const CreateReplyRequestForm = React.memo(
           </>
         )}
         <Box display="flex" py={2} alignItems="center" flexWrap="wrap">
-          <button
+          <Button
             ref={buttonRef}
-            type="button"
             className={cx(classes.button, classes.replyButton)}
             onClick={onNewReplyButtonClick}
+            disableElevation
           >
             {t`Reply to this message`}
-          </button>
-          <div className={classes.buttonGroup}>
-            <button
-              type="button"
+          </Button>
+          <ButtonGroup
+            className={classes.buttonGroup}
+            aria-label="comment and share"
+          >
+            <Button
               className={cx(showForm && 'active')}
               onClick={() => setShowForm(!showForm)}
+              disableElevation
             >
               {requestedForReply === true ? t`Update comment` : t`Comment`}
-            </button>
+            </Button>
             {/*
-              <button
+              <Button
                 type="button"
                 className={cx(requestedForReply && 'active')}
-              >{t`Follow`}</button>
+                disableElevation
+              >{t`Follow`}</Button>
             */}
-            <button
+            <Button
               type="button"
               onClick={e => setShareAnchor(e.currentTarget)}
-            >{t`Share`}</button>
-          </div>
+              disableElevation
+            >{t`Share`}</Button>
+          </ButtonGroup>
           <Menu
             id="share-article-menu"
             anchorEl={shareAnchor}
