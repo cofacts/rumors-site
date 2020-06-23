@@ -12,6 +12,7 @@ import CopyButton from './CopyButton';
 
 const useStyles = makeStyles(theme => ({
   button: ({ open }) => ({
+    fontSize: theme.typography.htmlFontSize,
     borderRadius: 45,
     padding: '1px 8px',
     outline: 'none',

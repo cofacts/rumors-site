@@ -36,7 +36,39 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
-      alignItems: 'baseline',
+      alignItems: 'flex-start',
+    },
+  },
+  title: {
+    position: 'relative',
+    left: -8,
+    fontWeight: 'bold',
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.secondary.main,
+    padding: '10px 32px',
+    [theme.breakpoints.down('md')]: {
+      padding: '10px 16px',
+      fontSize: 12,
+    },
+    '&:after': {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      borderRight: `20px solid ${theme.palette.common.white}`,
+      borderBottom: `20px solid ${theme.palette.primary[500]}`,
+      borderTop: `20px solid ${theme.palette.primary[500]}`,
+      height: 0,
+      content: '""',
+    },
+    '&:before': {
+      position: 'absolute',
+      bottom: -8,
+      left: 0,
+      height: 0,
+      borderTop: `8px solid ${theme.palette.primary[700]}`,
+      borderLeft: '8px solid transparent',
+      background: 'transparent',
+      content: '""',
     },
   },
   card: {
@@ -62,7 +94,8 @@ const useStyles = makeStyles(theme => ({
     },
     '& h4': {
       [theme.breakpoints.up('md')]: {
-        paddingBottom: 10,
+        marginBottom: 0,
+        paddingBottom: 16,
         borderBottom: `1px solid ${theme.palette.secondary[500]}`,
       },
     },
@@ -191,6 +224,8 @@ function ArticlePage() {
   const currentUser = useCurrentUser();
 
   const replySectionRef = useRef(null);
+  const newReplyRef = useRef(null);
+
   const classes = useStyles();
 
   // Load user field when currentUser changes
@@ -263,65 +298,75 @@ function ArticlePage() {
           <Box
             className={classes.card}
             position="relative"
-            px={{ xs: '12px', md: '19px' }}
-            py={{ xs: '13px', md: '21px' }}
+            pb={{ xs: '13px', md: '21px' }}
           >
             <Box
               display="flex"
               justifyContent="space-between"
               alignItems="center"
+              pr={{ xs: '12px', md: '19px' }}
             >
-              <h4>
+              <h4 className={classes.title}>
                 {ngettext(
                   msgid`${replyRequestCount} person report this message`,
                   `${replyRequestCount} people report this message`,
                   replyRequestCount
                 )}
               </h4>
+
               {isValid(createdAt) && (
                 <span
                   title={format(createdAt)}
                 >{t`First reported ${timeAgoStr} ago`}</span>
               )}
             </Box>
-            <Divider classes={{ root: classes.divider }} />
-            <Box py={4} overflow="hidden">
-              {nl2br(
-                linkify(text, {
-                  props: {
-                    target: '_blank',
-                  },
-                })
-              )}
-              <Hyperlinks hyperlinks={hyperlinks} />
-            </Box>
-            <ArticleCategories
-              articleId={article.id}
-              articleCategories={article.articleCategories}
-            />
-            <Trendline />
-            <Divider />
-            <footer>
-              {article.replyRequests.map((replyRequest, idx) => (
-                <ReplyRequestReason
-                  key={replyRequest.id}
-                  articleId={article.id}
-                  replyRequest={replyRequest}
-                  isArticleCreator={idx === 0}
-                />
-              ))}
-              <CreateReplyRequestForm
-                requestedForReply={article.requestedForReply}
+            <Box px={{ xs: '12px', md: '19px' }}>
+              <Box py={3} overflow="hidden">
+                {nl2br(
+                  linkify(text, {
+                    props: {
+                      target: '_blank',
+                    },
+                  })
+                )}
+                <Hyperlinks hyperlinks={hyperlinks} />
+              </Box>
+              <ArticleCategories
                 articleId={article.id}
-                onNewReplyButtonClick={() => {
-                  setShowForm(true);
-                }}
+                articleCategories={article.articleCategories}
               />
-            </footer>
+              <Trendline />
+              <Divider />
+              <footer>
+                {article.replyRequests.map((replyRequest, idx) => (
+                  <ReplyRequestReason
+                    key={replyRequest.id}
+                    articleId={article.id}
+                    replyRequest={replyRequest}
+                    isArticleCreator={idx === 0}
+                  />
+                ))}
+                <CreateReplyRequestForm
+                  requestedForReply={article.requestedForReply}
+                  articleId={article.id}
+                  onNewReplyButtonClick={() => {
+                    setShowForm(true);
+                    // use setTimeout to make sure the form has shown
+                    setTimeout(
+                      () =>
+                        newReplyRef.current.scrollIntoView({
+                          behavior: 'smooth',
+                        }),
+                      0
+                    );
+                  }}
+                />
+              </footer>
+            </Box>
           </Box>
 
           {showForm && (
-            <div className={classes.newReplyContainer}>
+            <div className={classes.newReplyContainer} ref={newReplyRef}>
               <NewReplySection
                 article={article}
                 existingReplyIds={(article?.articleReplies || []).map(

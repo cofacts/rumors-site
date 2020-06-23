@@ -93,6 +93,7 @@ const useStyles = makeStyles(theme => ({
 const CustomTab = withStyles(theme => ({
   root: {
     color: theme.palette.common.white,
+    fontSize: theme.typography.htmlFontSize,
     '&$selected': {
       color: theme.palette.primary,
     },

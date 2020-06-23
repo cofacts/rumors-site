@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   selectButton: {
     background: theme.palette.common.white,
-    padding: '0px 5px',
+    padding: '0px 8px',
   },
   startDate: {
     background: theme.palette.common.white,

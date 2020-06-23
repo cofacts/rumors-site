@@ -116,6 +116,7 @@ export default function ReplySearchItem({
     positiveFeedbackCount,
     negativeFeedbackCount,
     ownVote,
+    createdAt,
   } = articleReply || {};
 
   return (
@@ -138,6 +139,7 @@ export default function ReplySearchItem({
           negativeFeedbackCount={negativeFeedbackCount}
           ownVote={ownVote}
           query={query}
+          createdAt={createdAt}
         />
       </Box>
       {!!replyCount && (

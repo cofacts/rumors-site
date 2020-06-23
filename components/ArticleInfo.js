@@ -16,9 +16,17 @@ const useStyles = makeStyles(theme => ({
     },
   },
   opinion: {
+    display: 'flex',
+    alignItems: 'center',
     '&:not(:first-child)': {
       paddingLeft: 15,
     },
+    '& > span:nth-child(2)': {
+      paddingLeft: 4,
+    },
+  },
+  optionIcon: {
+    fontSize: 14,
   },
 }));
 
@@ -27,6 +35,7 @@ const CustomTooltip = withStyles(theme => ({
     color: theme.palette.secondary[500],
   },
   tooltip: {
+    display: 'flex',
     backgroundColor: theme.palette.secondary[500],
   },
 }))(Tooltip);
@@ -62,11 +71,15 @@ export default function ArticleInfo({ article }) {
         <CustomTooltip
           title={
             <>
-              {Object.entries(opinions).map(([k, v]) => (
-                <span key={k} className={classes.opinion}>
-                  {TYPE_ICON[k]} {v}
-                </span>
-              ))}
+              {Object.entries(opinions).map(([k, v]) => {
+                const IconComponent = TYPE_ICON[k];
+                return (
+                  <span key={k} className={classes.opinion}>
+                    <IconComponent className={classes.optionIcon} />
+                    <span>{v}</span>
+                  </span>
+                );
+              })}
             </>
           }
           arrow

@@ -7,7 +7,6 @@ import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
-import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
@@ -101,7 +100,6 @@ function AppLayout({ children }) {
       )}
       <Container className={classes.container}>{children}</Container>
       <AppFooter />
-      <GoogleWebsiteTranslator />
       {loginModalOpen && (
         <LoginModal onClose={() => setLoginModalOpen(false)} />
       )}

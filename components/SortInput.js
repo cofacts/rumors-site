@@ -17,7 +17,13 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 4,
     padding: '0px 10px',
   },
+  adornment: {
+    '& > p': {
+      fontSize: 14,
+    },
+  },
   selectClass: {
+    fontSize: 14,
     '&:focus': {
       backgroundColor: 'inherit',
     },
@@ -41,7 +47,10 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
         },
         disableUnderline: true,
         startAdornment: (
-          <InputAdornment position="start">{t`Sort by`}</InputAdornment>
+          <InputAdornment
+            classes={{ root: classes.adornment }}
+            position="start"
+          >{t`Sort by`}</InputAdornment>
         ),
       }}
       SelectProps={{

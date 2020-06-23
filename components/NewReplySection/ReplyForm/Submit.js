@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     [theme.breakpoints.up('md')]: {
       padding: '10px 45px',
+      fontSize: 18,
     },
   },
 }));

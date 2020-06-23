@@ -15,10 +15,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       border: `1px solid ${theme.palette.secondary[100]}`,
       borderRadius: 8,
-      '& > *:first-child': {
-        borderTopLeftRadius: 8,
-        borderTopRightRadius: 8,
-      },
     },
   },
   tools: {
@@ -40,6 +36,8 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       order: 2,
       background: theme.palette.secondary[50],
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
     },
   },
   suggestion: {

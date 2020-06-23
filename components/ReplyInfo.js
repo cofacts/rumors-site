@@ -22,6 +22,7 @@ const CustomTooltip = withStyles(theme => ({
   },
   tooltip: {
     backgroundColor: theme.palette.secondary[500],
+    fontSize: 12,
   },
 }))(Tooltip);
 
@@ -42,7 +43,7 @@ export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
           <span className={classes.info}>{t`replied ${timeAgoStr} ago`}</span>
         </CustomTooltip>
       )}
-      {user && (
+      {user?.name && (
         <span
           className={classes.info}
         >{t`originally written by ${user.name}`}</span>

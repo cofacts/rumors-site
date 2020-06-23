@@ -9,6 +9,7 @@ import {
 } from 'constants/urls';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  useMediaQuery,
   Box,
   Button,
   Typography,
@@ -19,6 +20,7 @@ import {
 import * as Widgets from './Widgets';
 import NavLink from 'components/NavLink';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
+import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -57,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 
 function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
   const classes = useStyles();
+  const matches = useMediaQuery('(max-width:768px)');
 
   return (
     <SwipeableDrawer
@@ -127,6 +130,11 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
             @cofacts
           </NavLink>
         </ListItem>
+        {matches && (
+          <ListItem classes={{ root: classes.listItem }}>
+            <GoogleWebsiteTranslator />
+          </ListItem>
+        )}
       </List>
       {true && (
         <>
