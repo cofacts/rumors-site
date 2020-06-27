@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import ReplySearchItem from 'components/ReplySearchItem';
 import Filters, { Filter } from 'components/Filters';
-import TimeRange from 'components/TimeRange';
+import TimeRange from 'components/ListPage/TimeRange';
 
 const MAX_KEYWORD_LENGTH = 100;
 

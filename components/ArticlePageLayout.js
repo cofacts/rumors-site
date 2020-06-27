@@ -25,7 +25,7 @@ import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
-import TimeRange from 'components/TimeRange';
+import TimeRange from 'components/ListPage/TimeRange';
 import SortInput from 'components/SortInput';
 
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
