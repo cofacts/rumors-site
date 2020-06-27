@@ -4,3 +4,9 @@
   justify-content: space-between;
   min-height: 100vh;
 }
+
+/* Replaced elements should get font settings from its parent */
+button, input {
+  font-family: inherit;
+  font-size: inherit;
+}
