@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPage/BaseSortInput No Props Given 1`] = `
+<BaseSortInput>
+  <div
+    className="MuiFormControl-root MuiTextField-root makeStyles-root-6"
+  >
+    <div
+      className="MuiInputBase-root MuiInput-root makeStyles-inputClass-7 makeStyles-inputClass-10 Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
+      onClick={[Function]}
+    >
+      <div
+        className="MuiInputAdornment-root makeStyles-adornment-8 MuiInputAdornment-positionStart"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+        >
+          Sort by
+        </p>
+      </div>
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root MuiSelect-icon Mui-disabled"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+    </div>
+  </div>
+</BaseSortInput>
+`;
+
+exports[`Storyshots ListPage/BaseSortInput With Options 1`] = `
+<BaseSortInput
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "label": "Option 1",
+        "value": "option1",
+      },
+      Object {
+        "label": "Option 2",
+        "value": "option2",
+      },
+    ]
+  }
+>
+  <div
+    className="MuiFormControl-root MuiTextField-root makeStyles-root-108"
+  >
+    <div
+      className="MuiInputBase-root MuiInput-root makeStyles-inputClass-109 makeStyles-inputClass-112 MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
+      onClick={[Function]}
+    >
+      <div
+        className="MuiInputAdornment-root makeStyles-adornment-110 MuiInputAdornment-positionStart"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+        >
+          Sort by
+        </p>
+      </div>
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root MuiSelect-icon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+    </div>
+  </div>
+</BaseSortInput>
+`;

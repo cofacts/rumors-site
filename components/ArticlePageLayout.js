@@ -26,7 +26,7 @@ import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/ListPage/TimeRange';
-import SortInput from 'components/SortInput';
+import SortInput from 'components/ListPage/SortInput';
 
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
@@ -387,10 +387,7 @@ function ArticlePageLayout({
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
         <TimeRange />
         <SortInput
-          orderBy={query.orderBy || defaultOrder}
-          onChange={orderBy =>
-            goToUrlQueryAndResetPagination({ ...query, orderBy })
-          }
+          defaultOrderBy={defaultOrder}
           options={[
             { value: 'lastRequestedAt', label: t`Most recently asked` },
             { value: 'lastRepliedAt', label: t`Most recently replied` },

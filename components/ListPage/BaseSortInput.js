@@ -34,7 +34,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SortInput({ orderBy, onChange = () => {}, options }) {
+/**
+ * @param {string} props.orderBy
+ * @param {(orderBy: string) => void} props.onChange
+ * @param {Array<{value: string, label: React.ReactNode}>} props.options
+ */
+function BaseSortInput({ orderBy = '', onChange = () => {}, options = [] }) {
   const [expand, setExpand] = useState(false);
   const classes = useStyles({ expand });
   return (
@@ -50,7 +55,9 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
           <InputAdornment
             classes={{ root: classes.adornment }}
             position="start"
-          >{t`Sort by`}</InputAdornment>
+          >
+            {t`Sort by`}
+          </InputAdornment>
         ),
       }}
       SelectProps={{
@@ -62,6 +69,7 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
       }}
       value={orderBy}
       onChange={e => onChange(e.target.value)}
+      disabled={options.length === 0}
     >
       {options.map(({ value, label }) => (
         <MenuItem key={value} value={value}>
@@ -72,6 +80,4 @@ function SortInput({ orderBy, onChange = () => {}, options }) {
   );
 }
 
-SortInput.displayName = 'SortInput';
-
-export default SortInput;
+export default BaseSortInput;
