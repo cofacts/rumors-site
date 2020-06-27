@@ -2,7 +2,7 @@ import React from 'react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { BaseTimeRange, options } from './TimeRange';
+import BaseTimeRange, { options } from './BaseTimeRange';
 
 export default {
   title: 'ListPage/BaseTimeRange',
@@ -23,7 +23,7 @@ export const SetStartEndFromProps = () => (
     <BaseTimeRange start="" end="" onChange={action('onChange')} />
 
     <p>
-      <start>start</start> equal to option values:
+      <code>start</code> equal to option values:
     </p>
     <BaseTimeRange
       start={select('Start options', optionValues, optionValues[1])}

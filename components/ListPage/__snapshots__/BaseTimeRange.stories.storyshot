@@ -622,9 +622,9 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
     </div>
   </BaseTimeRange>
   <p>
-    <start>
+    <code>
       start
-    </start>
+    </code>
      equal to option values:
   </p>
   <BaseTimeRange
