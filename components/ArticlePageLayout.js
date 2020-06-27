@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t, jt } from 'ttag';
@@ -7,15 +6,8 @@ import getConfig from 'next/config';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
-import Fab from '@material-ui/core/Fab';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-import FilterListIcon from '@material-ui/icons/FilterList';
-import CloseIcon from '@material-ui/icons/Close';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -24,7 +16,7 @@ import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
-import Filters, { Filter } from 'components/Filters';
+import Filters, { Filter } from 'components/ListPage/Filters';
 import TimeRange from 'components/ListPage/TimeRange';
 import SortInput from 'components/ListPage/SortInput';
 
@@ -89,22 +81,7 @@ const useStyles = makeStyles(theme => ({
   articleList: {
     padding: 0,
   },
-  openFilter: {
-    position: 'fixed',
-    left: 22,
-    bottom: 22,
-    backgroundColor: theme.palette.secondary[500],
-    color: theme.palette.common.white,
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  filtersModal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
-  },
+
   closeIcon: {
     position: 'absolute',
     right: 12,
@@ -304,7 +281,6 @@ function ArticlePageLayout({
   },
 }) {
   const classes = useStyles();
-  const [showFilters, setFiltersShow] = useState(false);
 
   const { query } = useRouter();
 
@@ -461,45 +437,6 @@ function ArticlePageLayout({
           )}
         </>
       )}
-      <Fab
-        variant="extended"
-        aria-label="filters"
-        data-ga="Mobile filter button"
-        className={classes.openFilter}
-        onClick={() => setFiltersShow(!showFilters)}
-      >
-        <FilterListIcon />
-        {t`Filter`}
-      </Fab>
-      <Modal
-        aria-labelledby="filters"
-        aria-describedby="filters"
-        open={showFilters}
-        onClose={() => setFiltersShow(false)}
-        closeAfterTransition
-        className={classes.filtersModal}
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={showFilters}>
-          <Box position="relative">
-            <FilterGroup
-              data-ga="Mobile filter view"
-              options={options}
-              categories={categories}
-              defaultFilters={defaultFilters}
-              classes={classes}
-              query={query}
-            />
-            <CloseIcon
-              className={classes.closeIcon}
-              onClick={() => setFiltersShow(false)}
-            />
-          </Box>
-        </Fade>
-      </Modal>
     </Box>
   );
 }
