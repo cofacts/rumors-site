@@ -1,7 +1,9 @@
-import { useRef, useState, forwardRef } from 'react';
+import { useRef, useState, forwardRef, memo } from 'react';
+import { useRouter } from 'next/router';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button, Menu, MenuItem } from '@material-ui/core';
+import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import { c, t } from 'ttag';
 
 const useStyles = makeStyles(theme => ({
@@ -185,8 +187,25 @@ export function BaseTimeRange({ start, end, onChange = () => null }) {
   );
 }
 
+/**
+ * Time range control connnected to URL "start", "end" param
+ */
 function TimeRange() {
-  return <BaseTimeRange />;
+  const { query } = useRouter();
+
+  return (
+    <BaseTimeRange
+      start={query.start}
+      end={query.end}
+      onChange={(start, end) => {
+        goToUrlQueryAndResetPagination({
+          ...query,
+          start,
+          end,
+        });
+      }}
+    />
+  );
 }
 
-export default TimeRange;
+export default memo(TimeRange);

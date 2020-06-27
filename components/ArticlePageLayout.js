@@ -2,9 +2,8 @@ import { useState } from 'react';
 import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t, jt } from 'ttag';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import getConfig from 'next/config';
-import url from 'url';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
@@ -21,6 +20,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ellipsis } from 'lib/text';
+import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
@@ -207,17 +207,6 @@ function urlQuery2OrderBy({ orderBy } = {}, defaultOrder) {
 }
 
 /**
- * @param {object} urlQuery
- */
-function goToUrlQueryAndResetPagination(urlQuery) {
-  delete urlQuery.after;
-  urlQuery = Object.fromEntries(
-    Object.entries(urlQuery).filter(entry => !!entry[1])
-  );
-  Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
-}
-
-/**
  *
  * @param {object} query
  * @returns {object}
@@ -396,16 +385,7 @@ function ArticlePageLayout({
       </Box>
 
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
-        <TimeRange
-          range={listQueryVars?.filter?.[timeRangeKey]}
-          onChange={time =>
-            goToUrlQueryAndResetPagination({
-              ...query,
-              start: time?.GTE,
-              end: time?.LTE,
-            })
-          }
-        />
+        <TimeRange />
         <SortInput
           orderBy={query.orderBy || defaultOrder}
           onChange={orderBy =>

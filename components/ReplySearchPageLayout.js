@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
-import Router, { useRouter } from 'next/router';
-import url from 'url';
+import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
@@ -12,12 +11,11 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { TYPE_NAME } from 'constants/replyType';
-
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
-
 import { makeStyles } from '@material-ui/core/styles';
 
+import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import ReplySearchItem from 'components/ReplySearchItem';
 import Filters, { Filter } from 'components/Filters';
 import TimeRange from 'components/ListPage/TimeRange';
@@ -131,17 +129,6 @@ function urlQuery2Filter({ q, start, end, types = '' } = {}) {
   return filterObj;
 }
 
-/**
- * @param {object} urlQuery
- */
-function goToUrlQueryAndResetPagination(urlQuery) {
-  delete urlQuery.after;
-  urlQuery = Object.fromEntries(
-    Object.entries(urlQuery).filter(entry => !!entry[1])
-  );
-  Router.push(`${location.pathname}${url.format({ query: urlQuery })}`);
-}
-
 function ReplySearchPageLayout() {
   const classes = useStyles();
   const [showFilter, setFilterShow] = useState(false);
@@ -200,16 +187,7 @@ function ReplySearchPageLayout() {
   return (
     <Box pt={2}>
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
-        <TimeRange
-          range={listQueryVars?.filter?.createdAt}
-          onChange={time =>
-            goToUrlQueryAndResetPagination({
-              ...query,
-              start: time?.GTE,
-              end: time?.LTE,
-            })
-          }
-        />
+        <TimeRange />
       </Box>
 
       <Box display={['none', 'none', 'block']}>{filterElem}</Box>
