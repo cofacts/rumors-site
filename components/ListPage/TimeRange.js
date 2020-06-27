@@ -64,7 +64,7 @@ export const options = [
   { value: 'all', label: c('Time range dropdown').t`All` },
   { value: 'now-1d/d', label: t`In 1 Day` },
   { value: 'now-1w/d', label: t`In 1 Week` },
-  { value: 'now-1m/d', label: t`In 1 Month` },
+  { value: 'now-1M/d', label: t`In 1 Month` },
   { value: 'custom', label: c('Time range dropdown').t`Custom` },
 ];
 
