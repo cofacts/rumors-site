@@ -5,8 +5,8 @@ import { action } from '@storybook/addon-actions';
 import { BaseTimeRange, options } from './TimeRange';
 
 export default {
-  title: 'ListPage/TimeRange',
-  component: 'TimeRange',
+  title: 'ListPage/BaseTimeRange',
+  component: 'BaseTimeRange',
   decorators: [withKnobs],
 };
 

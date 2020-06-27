@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots ListPage/TimeRange No Start End Given 1`] = `
+exports[`Storyshots ListPage/BaseTimeRange No Start End Given 1`] = `
 <BaseTimeRange
   onChange={[Function]}
 >
@@ -230,7 +230,7 @@ exports[`Storyshots ListPage/TimeRange No Start End Given 1`] = `
                 <li
                   aria-disabled={false}
                   className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                  data-ga="MenuItem(now-1m/d)"
+                  data-ga="MenuItem(now-1M/d)"
                   onBlur={[Function]}
                   onClick={[Function]}
                   onDragLeave={[Function]}
@@ -305,7 +305,7 @@ exports[`Storyshots ListPage/TimeRange No Start End Given 1`] = `
 </BaseTimeRange>
 `;
 
-exports[`Storyshots ListPage/TimeRange Set Start End From Props 1`] = `
+exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
 <div>
   <p>
     <code>
@@ -548,7 +548,7 @@ exports[`Storyshots ListPage/TimeRange Set Start End From Props 1`] = `
                   <li
                     aria-disabled={false}
                     className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                    data-ga="MenuItem(now-1m/d)"
+                    data-ga="MenuItem(now-1M/d)"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onDragLeave={[Function]}
@@ -857,7 +857,7 @@ exports[`Storyshots ListPage/TimeRange Set Start End From Props 1`] = `
                   <li
                     aria-disabled={false}
                     className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                    data-ga="MenuItem(now-1m/d)"
+                    data-ga="MenuItem(now-1M/d)"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onDragLeave={[Function]}
@@ -1169,7 +1169,7 @@ exports[`Storyshots ListPage/TimeRange Set Start End From Props 1`] = `
                   <li
                     aria-disabled={false}
                     className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                    data-ga="MenuItem(now-1m/d)"
+                    data-ga="MenuItem(now-1M/d)"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onDragLeave={[Function]}
