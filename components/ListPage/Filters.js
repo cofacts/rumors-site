@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
   fab: {
     position: 'fixed',
+    zIndex: theme.zIndex.speedDial,
     right: 20,
     bottom: 20,
     backgroundColor: theme.palette.secondary[500],
