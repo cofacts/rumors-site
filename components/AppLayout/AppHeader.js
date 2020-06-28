@@ -52,7 +52,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: '0 2rem',
     },
-    position: 'relative', // for .loadingProgress
   },
   logo: {
     width: 100,
@@ -114,9 +113,12 @@ const useStyles = makeStyles(theme => ({
   },
   loadingProgress: {
     position: 'absolute',
-    bottom: 0,
+    top: '100%',
     left: 0,
     right: 0,
+  },
+  loadingProgressBar: {
+    borderRadius: 4,
   },
 }));
 
@@ -280,12 +282,6 @@ function AppHeader({
             >{t`Login`}</Button>
           )}
         </Box>
-        {showProgress && (
-          <LinearProgress
-            classes={{ root: classes.loadingProgress }}
-            variant="indeterminate"
-          />
-        )}
       </div>
       <Box
         display={['flex', 'flex', 'none']}
@@ -297,6 +293,14 @@ function AppHeader({
           <MoreHorizIcon />
         </div>
       </Box>
+      {showProgress && (
+        <LinearProgress
+          classes={{
+            root: classes.loadingProgress,
+            bar: classes.loadingProgressBar,
+          }}
+        />
+      )}
     </header>
   );
 }
