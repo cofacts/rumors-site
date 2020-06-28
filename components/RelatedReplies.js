@@ -145,7 +145,7 @@ function RelatedReplies({
   relatedArticleReplies = [],
   onConnect,
   disabled = false,
-  actionText = ''
+  actionText = '',
 }) {
   if (!relatedArticleReplies.length) {
     return <p>目前沒有相關的回應</p>;
