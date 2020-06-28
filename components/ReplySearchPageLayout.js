@@ -1,23 +1,15 @@
-import { useState } from 'react';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
-import Fab from '@material-ui/core/Fab';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { TYPE_NAME } from 'constants/replyType';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import ReplySearchItem from 'components/ReplySearchItem';
-import Filters, { Filter } from 'components/Filters';
+import Filters from 'components/ListPage/Filters';
+import ReplyTypeFilter from 'components/ListPage/ReplyTypeFilter';
 import TimeRange from 'components/ListPage/TimeRange';
 
 const MAX_KEYWORD_LENGTH = 100;
@@ -53,7 +45,7 @@ const LIST_STAT = gql`
 
 const useStyles = makeStyles(theme => ({
   filters: {
-    padding: '12px 0',
+    margin: '12px 0',
   },
   openFilter: {
     position: 'fixed',
@@ -98,7 +90,7 @@ const useStyles = makeStyles(theme => ({
  * @param {object} urlQuery - URL query object
  * @returns {object} ListReplyFilter
  */
-function urlQuery2Filter({ q, start, end, types = '' } = {}) {
+function urlQuery2Filter({ q, start, end, types } = {}) {
   const filterObj = {};
   if (q) {
     filterObj.moreLikeThis = {
@@ -107,12 +99,8 @@ function urlQuery2Filter({ q, start, end, types = '' } = {}) {
     };
   }
 
-  const selectedTypes = types.split(',');
-
-  if (selectedTypes[0]) {
-    // @todo: fix the logic when multi-types filter finishes
-    //filterObj.types = selectedTypes;
-    filterObj.type = selectedTypes[0];
+  if (types) {
+    filterObj.types = types.split(',');
   }
 
   if (start) {
@@ -131,8 +119,6 @@ function urlQuery2Filter({ q, start, end, types = '' } = {}) {
 
 function ReplySearchPageLayout() {
   const classes = useStyles();
-  const [showFilter, setFilterShow] = useState(false);
-
   const { query } = useRouter();
   const listQueryVars = { filter: urlQuery2Filter(query) };
 
@@ -162,35 +148,15 @@ function ReplySearchPageLayout() {
     replyEdges[replyEdges.length - 1].cursor;
   const { lastCursor } = statsData?.pageInfo || {};
 
-  const selectedTypes = query.types ? query.types.split(',') : [];
-
-  const filterElem = (
-    <Filters className={classes.filters} data-ga="Mobile filter view">
-      <Filter
-        title={t`Consider`}
-        multiple
-        options={Object.entries(TYPE_NAME).map(([value, label]) => ({
-          value,
-          label,
-          selected: selectedTypes.includes(value),
-        }))}
-        onChange={selected =>
-          goToUrlQueryAndResetPagination({
-            ...query,
-            types: selected.join(','),
-          })
-        }
-      />
-    </Filters>
-  );
-
   return (
     <Box pt={2}>
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
         <TimeRange />
       </Box>
 
-      <Box display={['none', 'none', 'block']}>{filterElem}</Box>
+      <Filters className={classes.filters}>
+        <ReplyTypeFilter />
+      </Filters>
 
       {loading && !replyEdges.length ? (
         t`Loading...`
@@ -241,38 +207,6 @@ function ReplySearchPageLayout() {
           )}
         </>
       )}
-      <Fab
-        variant="extended"
-        aria-label="filters"
-        data-ga="Mobile filter button"
-        className={classes.openFilter}
-        onClick={() => setFilterShow(!showFilter)}
-      >
-        <FilterListIcon />
-        {t`Filter`}
-      </Fab>
-      <Modal
-        aria-labelledby="filters"
-        aria-describedby="filters"
-        open={showFilter}
-        onClose={() => setFilterShow(false)}
-        closeAfterTransition
-        className={classes.filtersModal}
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={showFilter}>
-          <Box position="relative">
-            {filterElem}
-            <CloseIcon
-              className={classes.closeIcon}
-              onClick={() => setFilterShow(false)}
-            />
-          </Box>
-        </Fade>
-      </Modal>
     </Box>
   );
 }

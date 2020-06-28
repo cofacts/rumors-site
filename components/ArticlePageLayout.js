@@ -92,9 +92,9 @@ const useStyles = makeStyles(theme => ({
  */
 function urlQuery2Filter(
   {
-    filters = '',
+    filters,
     q,
-    categoryIds = '',
+    categoryIds,
     start,
     end,
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
@@ -102,10 +102,8 @@ function urlQuery2Filter(
   } = {},
   { defaultFilters = [], timeRangeKey = 'createdAt', user }
 ) {
-  const splits = filters.split(',');
-  const selectedFilters = splits.length && splits[0] ? splits : defaultFilters;
-
   const filterObj = {};
+
   if (q) {
     filterObj.moreLikeThis = {
       like: q.slice(0, MAX_KEYWORD_LENGTH),
@@ -119,6 +117,7 @@ function urlQuery2Filter(
     filterObj.categoryIds = categoryIds.split(',');
   }
 
+  const selectedFilters = filters ? filters.split(',') : defaultFilters;
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
@@ -278,13 +277,8 @@ function ArticlePageLayout({
       <Filters className={classes.filters}>
         {options.filters && <ArticleStatusFilter />}
         {/* not implemented yet
-          {options.consider && (
-            <Filter
-              title={t`Consider`}
-              multiple
-            />
-          )}
-          */}
+          {options.consider && <ReplyTypeFilter />}
+        */}
         {options.category && <CategoryFilter />}
       </Filters>
 
