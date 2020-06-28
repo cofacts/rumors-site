@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
-import NavLink from 'components/NavLink';
-import GlobalSearch from './GlobalSearch';
+
 import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import {
-  Box,
-  Button,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  Divider,
-  Typography,
-  Badge,
-} from '@material-ui/core';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
+
+import NavLink from 'components/NavLink';
+import GlobalSearch from './GlobalSearch';
+import * as Widgets from './Widgets';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
-import * as Widgets from './Widgets';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
 import { useQuery } from '@apollo/react-hooks';
@@ -50,6 +52,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: '0 2rem',
     },
+    position: 'relative', // for .loadingProgress
   },
   logo: {
     width: 100,
@@ -108,6 +111,12 @@ const useStyles = makeStyles(theme => ({
     padding: '4px 16px',
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
+  },
+  loadingProgress: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 }));
 
@@ -169,12 +178,27 @@ const Links = ({ classes, unsolvedCount }) => (
   </>
 );
 
-function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
+/**
+ * @param {User | null} user
+ * @param {boolean} showProgress
+ * @param {() => void} props.onMenuButtonClick
+ * @param {() => void} props.onLoginModalOpen
+ * @param {() => void} props.onLogout
+ */
+function AppHeader({
+  user,
+  showProgress,
+  onMenuButtonClick,
+  onLoginModalOpen,
+  onLogout,
+}) {
   const [anchor, setAnchor] = useState(null);
   const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
   const theme = useTheme();
-  const { data } = useQuery(LIST_UNSOLVED_ARTICLES);
+  const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
+    ssr: false, // no number needed for SSR
+  });
 
   const unsolvedCount = data?.ListArticles?.totalCount;
 
@@ -250,6 +274,12 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
             >{t`Login`}</Button>
           )}
         </Box>
+        {showProgress && (
+          <LinearProgress
+            classes={{ root: classes.loadingProgress }}
+            variant="indeterminate"
+          />
+        )}
       </div>
       <Box
         display={['flex', 'flex', 'none']}
