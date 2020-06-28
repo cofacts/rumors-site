@@ -25,13 +25,16 @@ const useStyles = makeStyles(theme => ({
   },
   fab: {
     position: 'fixed',
-    left: 22,
-    bottom: 22,
+    right: 20,
+    bottom: 20,
     backgroundColor: theme.palette.secondary[500],
     color: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  fabIcon: {
+    marginRight: theme.spacing(0.5),
   },
   closeIcon: {
     position: 'absolute',
@@ -42,6 +45,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 /**
+ * Responsive wrapper for all filters.
+ * On mobile, it displays a floating button and a dialog when clicked.
+ * On desktop, it displays all filters in a grid.
+ *
  * @param {string?} props.className
  * @param {React.ReactNode} props.children
  */
@@ -53,13 +60,14 @@ function Filters({ className, children }) {
     <>
       <dl className={cx(classes.desktop, className)}>{children}</dl>
       <Fab
+        size="medium"
         variant="extended"
         aria-label="filters"
         data-ga="Mobile filter button"
         className={classes.fab}
         onClick={() => setFiltersShow(!showFilters)}
       >
-        <FilterListIcon />
+        <FilterListIcon className={classes.fabIcon} />
         {t`Filter`}
       </Fab>
       <Dialog
