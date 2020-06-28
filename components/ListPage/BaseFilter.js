@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
  * @param {boolean?} props.expandable - Makes options collapsible on desktop.
  *   Turning this on also hides filters not selected on desktop.
  * @param {Array<string>} props.selected - Selected option values
- * @param {Array<{value: string, label:string}>} props.options
+ * @param {Array<{value: string, label:string, disabled:boolean}>} props.options
  * @param {(selected: string[]) => void} props.onChange
  */
 function BaseFilter({
@@ -158,6 +158,7 @@ function BaseFilter({
               selected={isValueSelected[option.value]}
               label={option.label}
               value={option.value}
+              disabled={option.disabled}
               onClick={handleOptionClicked}
               chip
             />
@@ -178,6 +179,7 @@ function BaseFilter({
                 key={option.value}
                 label={option.label}
                 value={option.value}
+                disabled={option.disabled}
                 selected={isValueSelected[option.value]}
                 onClick={handleOptionClicked}
               />

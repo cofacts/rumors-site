@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
  * @param {boolean} props.selected
  * @param {string} props.label
  * @param {string} props.value
+ * @param {boolean} props.disabled
  * @param {(value: string) => void} props.onClick
  */
 function BaseFilterOption({
@@ -38,6 +39,7 @@ function BaseFilterOption({
   selected,
   label,
   value,
+  disabled,
   onClick = () => {},
 }) {
   const classes = useStyles({ chip, selected });
@@ -51,6 +53,7 @@ function BaseFilterOption({
       classes={classes}
       label={label}
       onClick={handleClick}
+      disabled={disabled}
     />
   );
 }
