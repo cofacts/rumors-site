@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
+import { t } from 'ttag';
 
 import { makeStyles } from '@material-ui/core/styles';
 import HelpIcon from '@material-ui/icons/Help';
@@ -12,10 +13,13 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Picker } from 'emoji-mart';
 import { LIST_STYLES, addListStyle } from 'lib/editor';
 import SearchBar from '../ReplySearch/SearchBar';
+import ReplySearch from '../ReplySearch/ReplySearch';
+import ReplySearchContext from '../ReplySearch/context';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   editor: {
+    position: 'relative',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -59,6 +63,20 @@ const useStyles = makeStyles(theme => ({
     },
     '&.active > button': {
       border: `1px solid ${theme.palette.secondary[200]}`,
+    },
+  },
+  searchPanel: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: 'calc(100% - 60px)',
+    background: theme.palette.common.white,
+    borderTop: `2px solid ${theme.palette.secondary[100]}`,
+    padding: '0 9px',
+    overflow: 'auto',
+    [theme.breakpoints.up('md')]: {
+      top: 62,
+      height: 'calc(100% - 62px)',
     },
   },
   searchContainer: {
@@ -144,13 +162,21 @@ const StickerIcon = props => (
 
 const { BULLETED, NUMBERED } = LIST_STYLES;
 
-const ReasonEditor = ({ value, onSuggestionAdd, onChange, replyType }) => {
+const ReasonEditor = ({
+  value,
+  onSuggestionAdd,
+  onChange,
+  replyType,
+  relatedArticleReplies,
+  existingReplyIds,
+}) => {
   const editorRef = useRef(null);
   const lastKey = useRef(null);
   const [listStyle, setListStyle] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const classes = useStyles();
   const [showHelp, setShowHelp] = useState(true);
+  const { search, setSearch } = useContext(ReplySearchContext);
 
   const toggleListStyle = type => () =>
     setListStyle(v => (v === type ? null : type));
@@ -179,6 +205,19 @@ const ReasonEditor = ({ value, onSuggestionAdd, onChange, replyType }) => {
     // mock a onchange event
     onChange({ target: { value: element.value } });
     setShowEmojiPicker(false);
+  };
+
+  const handleConnect = reply => {
+    const replyReference =
+      reply.text
+        .split('\n')
+        .map(sentence => `> ${sentence}`)
+        .join('\n') + '\n';
+    const element = editorRef.current;
+    element.value = replyReference + element.value;
+    element.selectionStart = replyReference.length + element.selectionStart;
+    onChange({ target: { value: element.value } });
+    setSearch('');
   };
 
   return (
@@ -241,6 +280,18 @@ const ReasonEditor = ({ value, onSuggestionAdd, onChange, replyType }) => {
           ))}
         </div>
       )}
+
+      {search && (
+        <div className={classes.searchPanel}>
+          <ReplySearch
+            relatedArticleReplies={relatedArticleReplies}
+            existingReplyIds={existingReplyIds}
+            onConnect={handleConnect}
+            actionText={t`Add this reply to my reply`}
+          />
+        </div>
+      )}
+
       <div className={classes.tools}>
         <div className={classes.searchContainer}>
           <SearchBar className={classes.search} />

@@ -90,6 +90,8 @@ const Desktop = ({
             value={text}
             onChange={updateText}
             onSuggestionAdd={addSuggestion}
+            relatedArticleReplies={relatedArticleReplies}
+            existingReplyIds={existingReplyIds}
           />
 
           <ReferenceInput
@@ -119,6 +121,7 @@ const Desktop = ({
             existingReplyIds={existingReplyIds}
             onConnect={handleConnect}
             disabled={connectingReply}
+            actionText={t`Use this reply`}
           />
         </>
       )}

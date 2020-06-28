@@ -205,6 +205,8 @@ export default function Mobile({
                   value={text}
                   onChange={updateText}
                   onSuggestionAdd={addSuggestion}
+                  relatedArticleReplies={relatedArticleReplies}
+                  existingReplyIds={existingReplyIds}
                 />
               </>
             )}
@@ -226,6 +228,7 @@ export default function Mobile({
             existingReplyIds={existingReplyIds}
             onConnect={handleConnect}
             disabled={connectingReply}
+            actionText={t`Use this reply`}
           />
           <div className={classes.searchBarContainer}>
             <SearchBar className={classes.searchBar} />

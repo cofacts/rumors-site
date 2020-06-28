@@ -207,7 +207,7 @@ const LOAD_ARTICLE_FOR_USER = gql`
 
 function ArticlePage() {
   const { query } = useRouter();
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [flashMessage, setFlashMessage] = useState(0);
   const articleVars = { id: query.id };
 
