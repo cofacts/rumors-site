@@ -14,17 +14,27 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     minWidth: '6em',
-    padding: '0 8px',
-    alignSelf: 'center',
     color: theme.palette.secondary[300],
+    [theme.breakpoints.up('md')]: {
+      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+    },
+    '&:last-of-type': {
+      borderBottom: 0,
+    },
   },
   body: {
-    flex: '1 1 auto',
-    marginRight: -theme.spacing(1),
-    marginBottom: -theme.spacing(1),
+    margin: 0,
+    borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+    '&:last-child': {
+      borderBottom: 0,
+    },
+  },
+  options: {
+    marginTop: -theme.spacing(1),
+    marginLeft: -theme.spacing(1),
     '& > *': {
-      marginRight: theme.spacing(1),
-      marginBottom: theme.spacing(1),
+      marginTop: theme.spacing(1),
+      marginLeft: theme.spacing(1),
     },
   },
   placeholder: {
@@ -74,6 +84,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 /**
+ * One row of filter in <Filters>.
+ * Designed to add 2 grid cells in <Filters>'s grid.
  *
  * @param {string} props.title
  * @param {string?} props.placeholder - Shown when no options are selected
@@ -112,8 +124,8 @@ function BaseFilter({
   };
 
   return (
-    <Paper className={classes.root} elevation={0} square>
-      <div className={classes.title}>
+    <>
+      <dt className={classes.title}>
         {isExpandable ? (
           <div className={classes.expand}>
             <button
@@ -145,28 +157,30 @@ function BaseFilter({
         ) : (
           title
         )}
-      </div>
-      <div className={classes.body}>
+      </dt>
+      <dd className={classes.body}>
         {placeholder && selected.length === 0 ? (
           <span className={classes.placeholder}>{placeholder}</span>
         ) : (
-          options
-            .filter(option =>
-              // Only show selected items when BaseFilter is expandable
-              isExpandable ? isValueSelected[option.value] : true
-            )
-            .map(option => (
-              <BaseFilterOption
-                key={option.value}
-                label={option.label}
-                value={option.value}
-                selected={isValueSelected[option.value]}
-                onClick={handleOptionClicked}
-              />
-            ))
+          <div className={classes.options}>
+            {options
+              .filter(option =>
+                // Only show selected items when BaseFilter is expandable
+                isExpandable ? isValueSelected[option.value] : true
+              )
+              .map(option => (
+                <BaseFilterOption
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                  selected={isValueSelected[option.value]}
+                  onClick={handleOptionClicked}
+                />
+              ))}
+          </div>
         )}
-      </div>
-    </Paper>
+      </dd>
+    </>
   );
 }
 

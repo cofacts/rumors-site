@@ -4,7 +4,6 @@ import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -12,20 +11,16 @@ import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   desktop: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'grid',
+      gridTemplateColumns: 'max-content 1fr',
+      background: '#fff',
+      borderRadius: 8,
     },
-    '& > *:first-child': {
-      borderTopLeftRadius: 8,
-      borderTopRightRadius: 8,
-    },
-    '& > *:last-child': {
-      borderBottomLeftRadius: 8,
-      borderBottomRightRadius: 8,
-    },
-    '& > *:not(:last-child)': {
-      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
-    },
+  },
+  mobile: {
+    margin: `${theme.spacing(3)} 0`,
   },
   fab: {
     position: 'fixed',
@@ -55,7 +50,7 @@ function Filters({ className, children }) {
 
   return (
     <>
-      <div className={cx(classes.desktop, className)}>{children}</div>
+      <dl className={cx(classes.desktop, className)}>{children}</dl>
       <Fab
         variant="extended"
         aria-label="filters"
@@ -66,8 +61,12 @@ function Filters({ className, children }) {
         <FilterListIcon />
         {t`Filter`}
       </Fab>
-      <Dialog open={showFilters} onClose={() => setFiltersShow(false)}>
-        <DialogContent>{children}</DialogContent>
+      <Dialog
+        open={showFilters}
+        onClose={() => setFiltersShow(false)}
+        scroll="body"
+      >
+        <dl className={classes.mobile}>{children}</dl>
         <CloseIcon
           className={classes.closeIcon}
           onClick={() => setFiltersShow(false)}
