@@ -8,14 +8,15 @@ import cx from 'clsx';
 import BaseFilterOption from './BaseFilterOption';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    padding: '6px 16px',
-    display: 'flex',
-  },
   title: {
-    minWidth: '6em',
+    fontSize: 12,
+    lineHeight: '20px',
     color: theme.palette.secondary[300],
+    padding: `${theme.spacing(1)}px 18px 0`,
+
     [theme.breakpoints.up('md')]: {
+      fontSize: 14,
+      paddingTop: theme.spacing(1.5),
       borderBottom: `1px solid ${theme.palette.secondary[100]}`,
     },
     '&:last-of-type': {
@@ -24,17 +25,13 @@ const useStyles = makeStyles(theme => ({
   },
   body: {
     margin: 0,
+    padding: theme.spacing(0.5),
     borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
     '&:last-child': {
       borderBottom: 0,
-    },
-  },
-  options: {
-    marginTop: -theme.spacing(1),
-    marginLeft: -theme.spacing(1),
-    '& > *': {
-      marginTop: theme.spacing(1),
-      marginLeft: theme.spacing(1),
     },
   },
   placeholder: {
@@ -160,24 +157,22 @@ function BaseFilter({
       </dt>
       <dd className={classes.body}>
         {placeholder && selected.length === 0 ? (
-          <span className={classes.placeholder}>{placeholder}</span>
+          <div className={classes.placeholder}>{placeholder}</div>
         ) : (
-          <div className={classes.options}>
-            {options
-              .filter(option =>
-                // Only show selected items when BaseFilter is expandable
-                isExpandable ? isValueSelected[option.value] : true
-              )
-              .map(option => (
-                <BaseFilterOption
-                  key={option.value}
-                  label={option.label}
-                  value={option.value}
-                  selected={isValueSelected[option.value]}
-                  onClick={handleOptionClicked}
-                />
-              ))}
-          </div>
+          options
+            .filter(option =>
+              // Only show selected items when BaseFilter is expandable
+              isExpandable ? isValueSelected[option.value] : true
+            )
+            .map(option => (
+              <BaseFilterOption
+                key={option.value}
+                label={option.label}
+                value={option.value}
+                selected={isValueSelected[option.value]}
+                onClick={handleOptionClicked}
+              />
+            ))
         )}
       </dd>
     </>

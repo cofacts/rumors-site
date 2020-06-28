@@ -3,6 +3,8 @@ import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    padding: '3px 9px', /* consider 1px border */
+
     // Add background color on selected
     backgroundColor: ({ selected }) =>
       selected ? theme.palette.secondary[50] : undefined,
@@ -10,6 +12,10 @@ const useStyles = makeStyles(theme => ({
     // Hide border color when not chip and not selected
     borderColor: ({ chip, selected }) =>
       !chip && !selected ? `transparent` : undefined,
+  },
+  /* Chip label */
+  label: {
+    padding: 0,
   },
 }));
 
