@@ -81,13 +81,6 @@ const useStyles = makeStyles(theme => ({
   articleList: {
     padding: 0,
   },
-
-  closeIcon: {
-    position: 'absolute',
-    right: 12,
-    top: 20,
-    color: theme.palette.secondary[100],
-  },
   loadMore: {
     fontSize: theme.typography.htmlFontSize,
     minWidth: 120,

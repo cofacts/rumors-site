@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Paper } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import cx from 'clsx';
+import BaseFilterOption from './BaseFilterOption';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,9 +19,13 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[300],
   },
   body: {
-    display: 'flex',
-    flexWrap: 'wrap',
     flex: '1 1 auto',
+    marginRight: -theme.spacing(1),
+    marginBottom: -theme.spacing(1),
+    '& > *': {
+      marginRight: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
   },
   placeholder: {
     alignSelf: 'center',
@@ -67,53 +73,37 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Option = withStyles(theme => ({
-  root: {
-    borderRadius: 55,
-    padding: '4px 10px',
-    margin: '4px 2px',
-    cursor: 'pointer',
-    border: ({ chip, selected }) =>
-      chip || selected ? `1px solid ${theme.palette.secondary[100]}` : 'none',
-  },
-  selected: {
-    background: theme.palette.secondary[50],
-  },
-}))(({ classes, selected, label, onClick }) => (
-  <span
-    className={cx(classes.root, selected && classes.selected)}
-    onClick={onClick}
-  >
-    {label}
-  </span>
-));
-
 /**
  *
  * @param {string} props.title
- * @param {string?} props.placeholder
- * @param {boolean?} props.onlySelected - Show selected items only
- * @param {boolean?} props.expandable - Makes options collapsible
+ * @param {string?} props.placeholder - Shown when no options are selected
+ * @param {boolean?} props.expandable - Makes options collapsible on desktop.
+ *   Turning this on also hides filters not selected on desktop.
  * @param {Array<string>} props.selected - Selected option values
  * @param {Array<{value: string, label:string}>} props.options
  * @param {(selected: string[]) => void} props.onChange
  */
-export function BaseFilter({
+function BaseFilter({
   title,
   onChange = () => null,
   placeholder,
-  onlySelected,
   expandable,
   selected = [],
   options = [],
 }) {
   const classes = useStyles();
   const [expand, setExpand] = useState(false);
+
+  // Note: this is implemented using JS, don't use it on places
+  // that is going to cause flicker on page load!
+  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('md'));
+
   const isValueSelected = Object.fromEntries(
     selected.map(value => [value, true])
   );
+  const isExpandable = expandable && isDesktop;
 
-  const onOptionClicked = value => () => {
+  const handleOptionClicked = value => {
     if (isValueSelected[value]) {
       onChange(selected.filter(v => v !== value));
     } else {
@@ -124,7 +114,7 @@ export function BaseFilter({
   return (
     <Paper className={classes.root} elevation={0} square>
       <div className={classes.title}>
-        {expandable ? (
+        {isExpandable ? (
           <div className={classes.expand}>
             <button
               className={cx(classes.control, expand && 'active')}
@@ -139,11 +129,12 @@ export function BaseFilter({
               <Paper className={classes.dropdown} elevation={3}>
                 <div className={classes.dropdownOptions}>
                   {options.map(option => (
-                    <Option
-                      {...option}
+                    <BaseFilterOption
                       key={option.value}
                       selected={isValueSelected[option.value]}
-                      onClick={onOptionClicked(option.value)}
+                      label={option.label}
+                      value={option.value}
+                      onClick={handleOptionClicked}
                       chip
                     />
                   ))}
@@ -161,14 +152,16 @@ export function BaseFilter({
         ) : (
           options
             .filter(option =>
-              onlySelected ? isValueSelected[option.value] : true
+              // Only show selected items when BaseFilter is expandable
+              isExpandable ? isValueSelected[option.value] : true
             )
             .map(option => (
-              <Option
-                {...option}
+              <BaseFilterOption
                 key={option.value}
+                label={option.label}
+                value={option.value}
                 selected={isValueSelected[option.value]}
-                onClick={onOptionClicked(option.value)}
+                onClick={handleOptionClicked}
               />
             ))
         )}
