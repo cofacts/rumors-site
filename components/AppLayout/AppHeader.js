@@ -134,7 +134,13 @@ const LIST_UNSOLVED_ARTICLES = gql`
 `;
 
 const CustomBadge = withStyles(theme => ({
-  badge: { backgroundColor: '#FB5959', color: theme.palette.common.white },
+  root: {
+    verticalAlign: 'baseline' /* override badge default */,
+  },
+  badge: {
+    backgroundColor: '#FB5959',
+    color: theme.palette.common.white,
+  },
 }))(Badge);
 
 const Links = ({ classes, unsolvedCount }) => (
