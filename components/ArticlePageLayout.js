@@ -12,11 +12,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ellipsis } from 'lib/text';
-import { goToUrlQueryAndResetPagination } from 'lib/listPage';
+import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
-import Filters, { Filter } from 'components/ListPage/Filters';
+import Filters from 'components/ListPage/Filters';
+import ArticleStatusFilter from 'components/ListPage/ArticleStatusFilter';
+import CategoryFilter from 'components/ListPage/CategoryFilter';
 import TimeRange from 'components/ListPage/TimeRange';
 import SortInput from 'components/ListPage/SortInput';
 
@@ -60,23 +62,9 @@ const LIST_STAT = gql`
   }
 `;
 
-const LIST_CATEGORIES = gql`
-  query ListCategories {
-    ListCategories(first: 25) {
-      totalCount
-      edges {
-        node {
-          id
-          title
-        }
-      }
-    }
-  }
-`;
-
 const useStyles = makeStyles(theme => ({
   filters: {
-    padding: '12px 0',
+    margin: '12px 0',
   },
   articleList: {
     padding: 0,
@@ -112,7 +100,7 @@ function urlQuery2Filter(
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
     searchUserByArticleId,
   } = {},
-  { defaultFilters = [], timeRangeKey = 'createdAt' }
+  { defaultFilters = [], timeRangeKey = 'createdAt', user }
 ) {
   const splits = filters.split(',');
   const selectedFilters = splits.length && splits[0] ? splits : defaultFilters;
@@ -134,7 +122,10 @@ function urlQuery2Filter(
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
-        // @todo: fill this when api completes
+        filterObj.articleRepliesFrom = {
+          userId: user?.id,
+          exists: true,
+        };
         break;
       case FILTERS.NO_USEFUL_REPLY_YET:
         filterObj.hasArticleReplyWithMorePositiveFeedback = false;
@@ -186,80 +177,11 @@ export function getQueryVars(query, option) {
     filter: urlQuery2Filter(query, {
       defaultFilters: option?.filters,
       timeRangeKey: option?.timeRangeKey,
+      user: option?.user,
     }),
     orderBy: urlQuery2OrderBy(query, option?.order),
   };
 }
-
-const filterLabelMapping = [
-  { value: FILTERS.REPLIED_BY_ME, label: t`Replied by me` },
-  { value: FILTERS.NO_USEFUL_REPLY_YET, label: t`No useful reply yet` },
-  { value: FILTERS.ASKED_MANY_TIMES, label: t`Asked many times` },
-  { value: FILTERS.REPLIED_MANY_TIMES, label: t`Replied many times` },
-];
-
-const FilterGroup = ({
-  classes,
-  query,
-  options,
-  categories,
-  defaultFilters,
-  desktop = false,
-}) => (
-  <Filters className={classes.filters}>
-    {options.filters && (
-      <Filter
-        title={t`Filter`}
-        multiple
-        options={filterLabelMapping.map(filter => {
-          let selected;
-          if (query.filters) {
-            selected = query.filters.split(',').includes(filter.value);
-          } else {
-            selected = defaultFilters.includes(filter.value);
-          }
-          return { ...filter, selected };
-        })}
-        onChange={filters =>
-          goToUrlQueryAndResetPagination({
-            ...query,
-            filters: filters.join(','),
-          })
-        }
-        data-ga="Filter(filter)"
-      />
-    )}
-
-    {/* not implemented yet
-    {options.consider && (
-      <Filter
-        title={t`Consider`}
-        multiple
-      />
-    )}
-    */}
-
-    {options.category && (
-      <Filter
-        title={t`Topic`}
-        multiple
-        expandable={desktop}
-        onlySelected={desktop}
-        placeholder={desktop ? t`All Topics` : ''}
-        options={categories}
-        onChange={selected =>
-          goToUrlQueryAndResetPagination({
-            ...query,
-            categoryIds: selected
-              .map(value => encodeURIComponent(value))
-              .join(','),
-          })
-        }
-        data-ga="Filter(category)"
-      />
-    )}
-  </Filters>
-);
 
 function ArticlePageLayout({
   title,
@@ -274,13 +196,13 @@ function ArticlePageLayout({
   },
 }) {
   const classes = useStyles();
-
   const { query } = useRouter();
-
+  const user = useCurrentUser();
   const listQueryVars = getQueryVars(query, {
     filters: defaultFilters,
     order: defaultOrder,
     timeRangeKey,
+    user,
   });
 
   const {
@@ -291,8 +213,6 @@ function ArticlePageLayout({
   } = useQuery(LIST_ARTICLES, {
     variables: listQueryVars,
   });
-
-  const { data: listCategories } = useQuery(LIST_CATEGORIES);
 
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
   // on page change, but still works when filter options are updated.
@@ -310,16 +230,6 @@ function ArticlePageLayout({
     articleEdges[articleEdges.length - 1] &&
     articleEdges[articleEdges.length - 1].cursor;
   const { lastCursor } = statsData?.pageInfo || {};
-
-  const selectedCategories =
-    query.categoryIds?.split(',').map(decodeURIComponent) || [];
-
-  const categories =
-    listCategories?.ListCategories?.edges.map(({ node }) => ({
-      value: node.id,
-      label: node.title,
-      selected: selectedCategories.includes(node.id),
-    })) || [];
 
   // Flags
   const searchedArticleEdge = articleEdges.find(
@@ -365,16 +275,18 @@ function ArticlePageLayout({
         />
       </Box>
 
-      <Box display={['none', 'none', 'block']}>
-        <FilterGroup
-          options={options}
-          categories={categories}
-          defaultFilters={defaultFilters}
-          classes={classes}
-          query={query}
-          desktop
-        />
-      </Box>
+      <Filters className={classes.filters}>
+        {options.filters && <ArticleStatusFilter />}
+        {/* not implemented yet
+          {options.consider && (
+            <Filter
+              title={t`Consider`}
+              multiple
+            />
+          )}
+          */}
+        {options.category && <CategoryFilter />}
+      </Filters>
 
       {loading && !articleEdges.length ? (
         t`Loading...`
