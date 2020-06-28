@@ -3,7 +3,6 @@ import Popover from '@material-ui/core/Popover';
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import cx from 'clsx';
 import BaseFilterOption from './BaseFilterOption';
 
@@ -34,6 +33,12 @@ const useStyles = makeStyles(theme => ({
   },
   active: {
     color: theme.palette.primary[500],
+  },
+  icon: {
+    transition: 'transform .2s',
+  },
+  activeIcon: {
+    transform: 'rotateX(180deg)',
   },
   body: {
     margin: 0 /* override dd defaults */,
@@ -126,7 +131,11 @@ function BaseFilter({
         {...dtProps}
       >
         {title}
-        {isExpandable && (isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
+        {isExpandable && (
+          <ExpandMoreIcon
+            className={cx(classes.icon, { [classes.activeIcon]: isExpanded })}
+          />
+        )}
       </dt>
       <Popover
         open={isExpanded}
