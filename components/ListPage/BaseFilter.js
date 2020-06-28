@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Paper } from '@material-ui/core';
+import Popover from '@material-ui/core/Popover';
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -23,60 +23,40 @@ const useStyles = makeStyles(theme => ({
       borderBottom: 0,
     },
   },
-  body: {
-    margin: 0,
-    padding: theme.spacing(0.5),
-    borderBottom: `1px solid ${theme.palette.secondary[100]}`,
-    '& > *': {
-      margin: theme.spacing(0.5),
-    },
-    '&:last-child': {
-      borderBottom: 0,
-    },
-  },
-  placeholder: {
-    alignSelf: 'center',
-    padding: '4px 10px',
-    margin: 4,
-  },
-  expand: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  control: {
-    padding: 0,
-    whiteSpace: 'nowrap',
+  expandable: {
     cursor: 'pointer',
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'inherit',
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: 14,
-    color: theme.palette.secondary[300],
     '&:hover': {
       color: theme.palette.secondary[500],
     },
-    '&.active': {
-      color: theme.palette.primary[500],
+    '& > svg': {
+      verticalAlign: 'middle',
+    },
+  },
+  active: {
+    color: theme.palette.primary[500],
+  },
+  body: {
+    margin: 0 /* override dd defaults */,
+    borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+    '&:last-child': {
+      borderBottom: 0,
+    },
+
+    padding: theme.spacing(0.5),
+    '& > *': {
+      margin: theme.spacing(0.5),
     },
   },
   dropdown: {
-    position: 'absolute',
-    left: -24,
-    top: 36,
-    padding: 10,
-    minWidth: 300,
-    width: '20%',
-    display: 'flex',
-    flexDirection: 'column',
-    zIndex: 10,
+    maxWidth: 400,
+    padding: '14px 20px',
+    '& > *': {
+      margin: '6px 4px',
+    },
   },
-  dropdownOptions: {
-    width: '100%',
-    display: 'flex',
-    flexWrap: 'wrap',
+  placeholder: {
+    padding: '4px 10px',
+    margin: 4,
   },
 }));
 
@@ -101,7 +81,7 @@ function BaseFilter({
   options = [],
 }) {
   const classes = useStyles();
-  const [expand, setExpand] = useState(false);
+  const [expandEl, setExpandEl] = useState(null);
 
   // Note: this is implemented using JS, don't use it on places
   // that is going to cause flicker on page load!
@@ -120,41 +100,61 @@ function BaseFilter({
     }
   };
 
+  const handleExpand = e => {
+    setExpandEl(e.currentTarget);
+  };
+
+  const handleCollapse = () => {
+    setExpandEl(null);
+  };
+
+  const isExpanded = !!expandEl;
+  const dtProps = isExpandable
+    ? {
+        onClick: isExpanded ? handleCollapse : handleExpand,
+        'data-ga': 'FilterExpandButton',
+      }
+    : {};
+
   return (
     <>
-      <dt className={classes.title}>
-        {isExpandable ? (
-          <div className={classes.expand}>
-            <button
-              className={cx(classes.control, expand && 'active')}
-              type="button"
-              onClick={() => setExpand(e => !e)}
-              data-ga="FilterExpandButton"
-            >
-              {title}
-              {expand ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </button>
-            {expand && (
-              <Paper className={classes.dropdown} elevation={3}>
-                <div className={classes.dropdownOptions}>
-                  {options.map(option => (
-                    <BaseFilterOption
-                      key={option.value}
-                      selected={isValueSelected[option.value]}
-                      label={option.label}
-                      value={option.value}
-                      onClick={handleOptionClicked}
-                      chip
-                    />
-                  ))}
-                </div>
-              </Paper>
-            )}
-          </div>
-        ) : (
-          title
-        )}
+      <dt
+        className={cx(classes.title, {
+          [classes.expandable]: isExpandable,
+          [classes.active]: isExpanded,
+        })}
+        {...dtProps}
+      >
+        {title}
+        {isExpandable && (isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
       </dt>
+      <Popover
+        open={isExpanded}
+        anchorEl={expandEl}
+        onClose={handleCollapse}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: -4,
+          horizontal: 'left',
+        }}
+        elevation={1}
+      >
+        <div className={classes.dropdown}>
+          {options.map(option => (
+            <BaseFilterOption
+              key={option.value}
+              selected={isValueSelected[option.value]}
+              label={option.label}
+              value={option.value}
+              onClick={handleOptionClicked}
+              chip
+            />
+          ))}
+        </div>
+      </Popover>
       <dd className={classes.body}>
         {placeholder && selected.length === 0 ? (
           <div className={classes.placeholder}>{placeholder}</div>
