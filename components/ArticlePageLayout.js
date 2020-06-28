@@ -121,8 +121,9 @@ function urlQuery2Filter(
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
+        if (!user) break;
         filterObj.articleRepliesFrom = {
-          userId: user?.id,
+          userId: user.id,
           exists: true,
         };
         break;
