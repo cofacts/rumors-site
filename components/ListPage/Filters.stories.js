@@ -22,11 +22,13 @@ export const FiltersAndOptions = () => (
     <BaseFilter
       title="Has selected"
       onChange={action('onChange: has-selected')}
-      selected={['option2']}
+      selected={['option2', 'option5']}
       options={[
         { value: 'option1', label: 'Option 1' },
         { value: 'option2', label: 'Option 2' },
         { value: 'option3', label: 'Disabled', disabled: true },
+        { value: 'option4', label: 'Chip', chip: true },
+        { value: 'option5', label: 'Selected Chip', chip: true },
       ]}
     />
     <BaseFilter

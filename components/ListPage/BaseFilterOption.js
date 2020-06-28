@@ -28,10 +28,10 @@ const useStyles = makeStyles(theme => ({
 
 /**
  * @param {boolean} props.chip - toggle chip-like border on display
- * @param {boolean} props.selected
  * @param {string} props.label
  * @param {string} props.value
  * @param {boolean} props.disabled
+ * @param {boolean} props.selected
  * @param {(value: string) => void} props.onClick
  */
 function BaseFilterOption({

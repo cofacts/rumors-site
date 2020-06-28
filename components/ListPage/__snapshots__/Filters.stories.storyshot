@@ -130,11 +130,22 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             "label": "Disabled",
             "value": "option3",
           },
+          Object {
+            "chip": true,
+            "label": "Chip",
+            "value": "option4",
+          },
+          Object {
+            "chip": true,
+            "label": "Selected Chip",
+            "value": "option5",
+          },
         ]
       }
       selected={
         Array [
           "option2",
+          "option5",
         ]
       }
       title="Has selected"
@@ -273,6 +284,91 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             </NoSsr>
           </div>
         </BaseFilterOption>
+        <BaseFilterOption
+          chip={true}
+          key="option4"
+          label="Chip"
+          onClick={[Function]}
+          value="option4"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-531 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Chip
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          chip={true}
+          key="option5"
+          label="Selected Chip"
+          onClick={[Function]}
+          selected={true}
+          value="option5"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-532 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Selected Chip
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
       </dd>
     </BaseFilter>
     <BaseFilter
@@ -330,7 +426,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-531 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-533 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -371,7 +467,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-532 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-534 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -412,7 +508,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option3"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-533 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-535 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -453,7 +549,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option4"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-534 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-536 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -494,7 +590,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option5"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-535 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-537 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -537,7 +633,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
         >
           <div
             aria-disabled={true}
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-536 MuiChip-outlined Mui-disabled MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-538 MuiChip-outlined Mui-disabled MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
