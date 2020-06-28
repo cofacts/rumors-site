@@ -3,7 +3,8 @@ import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: '3px 9px', /* consider 1px border */
+    height: 'auto' /* Override material-ui */,
+    padding: '3px 9px' /* consider 1px border */,
 
     // Add background color on selected
     backgroundColor: ({ selected }) =>
@@ -16,6 +17,12 @@ const useStyles = makeStyles(theme => ({
   /* Chip label */
   label: {
     padding: 0,
+    fontSize: 12,
+    lineHeight: '20px',
+
+    [theme.breakpoints.up('md')]: {
+      fontSize: 14,
+    },
   },
 }));
 

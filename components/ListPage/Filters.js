@@ -11,6 +11,7 @@ import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   desktop: {
+    margin: 0 /* Cancel default style for <dl> */,
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'grid',
