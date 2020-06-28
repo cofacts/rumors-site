@@ -23,12 +23,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   expandable: {
-    cursor: 'pointer',
-    '&:hover': {
-      color: theme.palette.secondary[500],
-    },
-    '& > svg': {
-      verticalAlign: 'middle',
+    [theme.breakpoints.up('md')]: {
+      cursor: 'pointer',
+      '&:hover': {
+        color: theme.palette.secondary[500],
+      },
+      '& > svg': {
+        verticalAlign: 'middle',
+      },
     },
   },
   active: {
@@ -36,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     transition: 'transform .2s',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   activeIcon: {
     transform: 'rotateX(180deg)',
@@ -62,6 +67,9 @@ const useStyles = makeStyles(theme => ({
   placeholder: {
     padding: '4px 10px',
     margin: 4,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -97,9 +105,6 @@ function BaseFilter({
     selected.map(value => [value, true])
   );
 
-  // De-facto "expandable": the flag is true on desktop env
-  const isExpandable = expandable && isDesktop;
-
   const handleOptionClicked = value => {
     if (isValueSelected[value]) {
       onChange(selected.filter(v => v !== value));
@@ -117,24 +122,25 @@ function BaseFilter({
   };
 
   const isExpanded = !!expandEl;
-  const dtProps = isExpandable
-    ? {
-        onClick: isExpanded ? handleCollapse : handleExpand,
-        'data-ga': 'FilterExpandButton',
-      }
-    : {};
+  const dtProps =
+    expandable && isDesktop
+      ? {
+          onClick: isExpanded ? handleCollapse : handleExpand,
+          'data-ga': 'FilterExpandButton',
+        }
+      : {};
 
   return (
     <>
       <dt
         className={cx(classes.title, {
-          [classes.expandable]: isExpandable,
+          [classes.expandable]: expandable,
           [classes.active]: isExpanded,
         })}
         {...dtProps}
       >
         {title}
-        {isExpandable && (
+        {expandable && (
           <ExpandMoreIcon
             className={cx(classes.icon, { [classes.activeIcon]: isExpanded })}
           />
@@ -166,23 +172,22 @@ function BaseFilter({
         </div>
       </Popover>
       <dd className={classes.body}>
-        {placeholder && isExpandable && selected.length === 0 ? (
+        {expandable && selected.length === 0 && (
           <div className={classes.placeholder}>{placeholder}</div>
-        ) : (
-          options
-            .filter(option =>
-              // Only show selected items when BaseFilter is expandable
-              isExpandable ? isValueSelected[option.value] : true
-            )
-            .map(option => (
-              <BaseFilterOption
-                key={option.value}
-                selected={isValueSelected[option.value]}
-                onClick={handleOptionClicked}
-                {...option}
-              />
-            ))
         )}
+        {options
+          .filter(option =>
+            // Only show selected items when BaseFilter is expandable
+            expandable && isDesktop ? isValueSelected[option.value] : true
+          )
+          .map(option => (
+            <BaseFilterOption
+              key={option.value}
+              selected={isValueSelected[option.value]}
+              onClick={handleOptionClicked}
+              {...option}
+            />
+          ))}
       </dd>
     </>
   );

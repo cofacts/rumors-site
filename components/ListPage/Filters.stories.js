@@ -47,7 +47,7 @@ export const FiltersAndOptions = () => (
     />
     <BaseFilter
       title="Placehold"
-      placeholder="This is placeholder"
+      placeholder="Placeholder only shows when nothing is selected on desktop"
       expandable
       selected={[]}
       options={[

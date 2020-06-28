@@ -411,9 +411,19 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
       title="Expandable"
     >
       <dt
-        className="makeStyles-title-481"
+        className="makeStyles-title-481 makeStyles-expandable-482"
       >
         Expandable
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root makeStyles-icon-484"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          />
+        </svg>
       </dt>
       <dd
         className="makeStyles-body-486"
@@ -426,7 +436,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-533 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-542 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -467,7 +477,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-534 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-543 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -508,7 +518,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option3"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-535 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-544 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -549,7 +559,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option4"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-536 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-545 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -590,7 +600,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option5"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-537 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-546 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -633,7 +643,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
         >
           <div
             aria-disabled={true}
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-538 MuiChip-outlined Mui-disabled MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-547 MuiChip-outlined Mui-disabled MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -683,18 +693,33 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           },
         ]
       }
-      placeholder="This is placeholder"
+      placeholder="Placeholder only shows when nothing is selected on desktop"
       selected={Array []}
       title="Placehold"
     >
       <dt
-        className="makeStyles-title-481"
+        className="makeStyles-title-481 makeStyles-expandable-482"
       >
         Placehold
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root makeStyles-icon-484"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          />
+        </svg>
       </dt>
       <dd
         className="makeStyles-body-486"
       >
+        <div
+          className="makeStyles-placeholder-488"
+        >
+          Placeholder only shows when nothing is selected on desktop
+        </div>
         <BaseFilterOption
           key="option1"
           label="Option 1"
@@ -702,7 +727,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-539 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-548 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -743,7 +768,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-540 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-549 MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
