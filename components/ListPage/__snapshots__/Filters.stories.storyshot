@@ -1,0 +1,561 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
+<Filters>
+  <dl
+    className="makeStyles-desktop-476"
+  >
+    <BaseFilter
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "Option 1",
+            "value": "option1",
+          },
+          Object {
+            "label": "Option 2",
+            "value": "option2",
+          },
+        ]
+      }
+      title="Normal filter"
+    >
+      <dt
+        className="makeStyles-title-481"
+      >
+        Normal filter
+      </dt>
+      <dd
+        className="makeStyles-body-486"
+      >
+        <BaseFilterOption
+          key="option1"
+          label="Option 1"
+          onClick={[Function]}
+          value="option1"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-493 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 1
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          key="option2"
+          label="Option 2"
+          onClick={[Function]}
+          value="option2"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-527 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 2
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+      </dd>
+    </BaseFilter>
+    <BaseFilter
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "Option 1",
+            "value": "option1",
+          },
+          Object {
+            "label": "Option 2",
+            "value": "option2",
+          },
+        ]
+      }
+      selected={
+        Array [
+          "option2",
+        ]
+      }
+      title="Has selected"
+    >
+      <dt
+        className="makeStyles-title-481"
+      >
+        Has selected
+      </dt>
+      <dd
+        className="makeStyles-body-486"
+      >
+        <BaseFilterOption
+          key="option1"
+          label="Option 1"
+          onClick={[Function]}
+          value="option1"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-528 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 1
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          key="option2"
+          label="Option 2"
+          onClick={[Function]}
+          selected={true}
+          value="option2"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-529 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 2
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+      </dd>
+    </BaseFilter>
+    <BaseFilter
+      expandable={true}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "Option 1",
+            "value": "option1",
+          },
+          Object {
+            "label": "Option 2",
+            "value": "option2",
+          },
+          Object {
+            "label": "Option 3",
+            "value": "option3",
+          },
+          Object {
+            "label": "Option 4",
+            "value": "option4",
+          },
+          Object {
+            "label": "Option 5",
+            "value": "option5",
+          },
+        ]
+      }
+      selected={
+        Array [
+          "option1",
+        ]
+      }
+      title="Expandable"
+    >
+      <dt
+        className="makeStyles-title-481"
+      >
+        Expandable
+      </dt>
+      <dd
+        className="makeStyles-body-486"
+      >
+        <BaseFilterOption
+          key="option1"
+          label="Option 1"
+          onClick={[Function]}
+          selected={true}
+          value="option1"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-530 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 1
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          key="option2"
+          label="Option 2"
+          onClick={[Function]}
+          value="option2"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-531 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 2
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          key="option3"
+          label="Option 3"
+          onClick={[Function]}
+          value="option3"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-532 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 3
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          key="option4"
+          label="Option 4"
+          onClick={[Function]}
+          value="option4"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-533 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 4
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+        <BaseFilterOption
+          key="option5"
+          label="Option 5"
+          onClick={[Function]}
+          value="option5"
+        >
+          <div
+            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-534 MuiChip-outlined MuiChip-clickable"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="MuiChip-label makeStyles-label-492"
+            >
+              Option 5
+            </span>
+            <NoSsr>
+              <span
+                className="MuiTouchRipple-root"
+              >
+                <TransitionGroup
+                  childFactory={[Function]}
+                  component={null}
+                  exit={true}
+                />
+              </span>
+            </NoSsr>
+          </div>
+        </BaseFilterOption>
+      </dd>
+    </BaseFilter>
+    <BaseFilter
+      options={
+        Array [
+          Object {
+            "label": "Option 1",
+            "value": "option1",
+          },
+          Object {
+            "label": "Option 2",
+            "value": "option2",
+          },
+        ]
+      }
+      placeholder="This is placeholder"
+      selected={Array []}
+      title="Placehold"
+    >
+      <dt
+        className="makeStyles-title-481"
+      >
+        Placehold
+      </dt>
+      <dd
+        className="makeStyles-body-486"
+      >
+        <div
+          className="makeStyles-placeholder-488"
+        >
+          This is placeholder
+        </div>
+      </dd>
+    </BaseFilter>
+  </dl>
+  <button
+    aria-label="filters"
+    className="MuiButtonBase-root MuiFab-root makeStyles-fab-478 MuiFab-extended MuiFab-sizeMedium"
+    data-ga="Mobile filter button"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root makeStyles-fabIcon-479"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"
+        />
+      </svg>
+      Filter
+    </span>
+    <NoSsr>
+      <span
+        className="MuiTouchRipple-root"
+      >
+        <TransitionGroup
+          childFactory={[Function]}
+          component={null}
+          exit={true}
+        />
+      </span>
+    </NoSsr>
+  </button>
+</Filters>
+`;
