@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPage/LoadMore Shows Nothing 1`] = `
+<LoadMore
+  edges={
+    Array [
+      Object {
+        "cursor": "foo",
+      },
+    ]
+  }
+  pageInfo={
+    Object {
+      "lastCursor": "foo",
+    }
+  }
+/>
+`;
+
+exports[`Storyshots ListPage/LoadMore Shows Up 1`] = `
+<LoadMore
+  edges={
+    Array [
+      Object {
+        "cursor": "foo",
+      },
+    ]
+  }
+  loading={false}
+  onMoreRequest={[Function]}
+  pageInfo={
+    Object {
+      "lastCursor": "bar",
+    }
+  }
+>
+  <div
+    className="MuiBox-root MuiBox-root-588"
+  >
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-loadMore-585"
+      data-ga="LoadMore"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Load More
+      </span>
+      <NoSsr>
+        <span
+          className="MuiTouchRipple-root"
+        >
+          <TransitionGroup
+            childFactory={[Function]}
+            component={null}
+            exit={true}
+          />
+        </span>
+      </NoSsr>
+    </button>
+  </div>
+</LoadMore>
+`;

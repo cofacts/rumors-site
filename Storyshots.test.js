@@ -28,7 +28,7 @@ function removeMaterialUIInternals(json) {
   }
 
   // Skip HOC components (single children) or excessive wrapper
-  if (json.type.match(/^(ForwardRef|WithStyles|ThemeProvider)/)) {
+  if (json.type.match(/^(ForwardRef|WithStyles|ThemeProvider|Styled)/)) {
     // When skipping HOC or wrapper, the first children are usually setups (such as <CssBaseline>),
     // we should ignore together
     return json.children && json.children[json.children.length - 1];

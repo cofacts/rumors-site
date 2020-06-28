@@ -7,7 +7,6 @@ import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -21,6 +20,7 @@ import ArticleStatusFilter from 'components/ListPage/ArticleStatusFilter';
 import CategoryFilter from 'components/ListPage/CategoryFilter';
 import TimeRange from 'components/ListPage/TimeRange';
 import SortInput from 'components/ListPage/SortInput';
+import LoadMore from 'components/ListPage/LoadMore';
 
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
@@ -62,27 +62,12 @@ const LIST_STAT = gql`
   }
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   filters: {
     margin: '12px 0',
   },
   articleList: {
     padding: 0,
-  },
-  loadMore: {
-    fontSize: theme.typography.htmlFontSize,
-    minWidth: 120,
-    width: '33%',
-    color: theme.palette.secondary[300],
-    outline: 'none',
-    cursor: 'pointer',
-    borderRadius: 30,
-    padding: 10,
-    background: 'transparent',
-    border: `1px solid ${theme.palette.secondary[300]}`,
-  },
-  loading: {
-    color: theme.palette.secondary[300],
   },
 }));
 
@@ -212,6 +197,7 @@ function ArticlePageLayout({
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
     variables: listQueryVars,
+    notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
   });
 
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
@@ -224,12 +210,6 @@ function ArticlePageLayout({
   // List data
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
-
-  const lastCursorOfPage =
-    articleEdges.length &&
-    articleEdges[articleEdges.length - 1] &&
-    articleEdges[articleEdges.length - 1].cursor;
-  const { lastCursor } = statsData?.pageInfo || {};
 
   // Flags
   const searchedArticleEdge = articleEdges.find(
@@ -299,42 +279,28 @@ function ArticlePageLayout({
               />
             ))}
           </ul>
-          {lastCursorOfPage !== lastCursor && (
-            <Box display="flex" pb={1.5} justifyContent="center">
-              <button
-                data-ga="LoadMore"
-                type="button"
-                className={classes.loadMore}
-                onClick={() =>
-                  fetchMore({
-                    variables: {
-                      after: lastCursorOfPage,
+
+          <LoadMore
+            edges={articleEdges}
+            pageInfo={statsData?.pageInfo}
+            loading={loading}
+            onMoreRequest={args =>
+              fetchMore({
+                variables: args,
+                updateQuery(prev, { fetchMoreResult }) {
+                  if (!fetchMoreResult) return prev;
+                  const newArticleData = fetchMoreResult?.ListArticles;
+                  return {
+                    ...prev,
+                    ListArticles: {
+                      ...newArticleData,
+                      edges: [...articleEdges, ...newArticleData.edges],
                     },
-                    updateQuery(prev, { fetchMoreResult }) {
-                      if (!fetchMoreResult) return prev;
-                      const newArticleData = fetchMoreResult?.ListArticles;
-                      return {
-                        ...prev,
-                        ListArticles: {
-                          ...newArticleData,
-                          edges: [...articleEdges, ...newArticleData.edges],
-                        },
-                      };
-                    },
-                  })
-                }
-              >
-                {loading ? (
-                  <CircularProgress
-                    size={16}
-                    classes={{ root: classes.loading }}
-                  />
-                ) : (
-                  t`Load More`
-                )}
-              </button>
-            </Box>
-          )}
+                  };
+                },
+              })
+            }
+          />
         </>
       )}
     </Box>
