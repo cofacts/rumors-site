@@ -8,11 +8,11 @@ const useStyles = makeStyles(theme => ({
 
     // Add background color on selected
     backgroundColor: ({ selected }) =>
-      selected ? theme.palette.secondary[50] : undefined,
+      selected ? theme.palette.secondary[50] : '',
 
     // Hide border color when not chip and not selected
     borderColor: ({ chip, selected }) =>
-      !chip && !selected ? `transparent` : undefined,
+      !chip && !selected ? `transparent` : '',
   },
   /* Chip label */
   label: {
