@@ -70,9 +70,10 @@ const useStyles = makeStyles(theme => ({
  * Designed to add 2 grid cells in <Filters>'s grid.
  *
  * @param {string} props.title
- * @param {string?} props.placeholder - Shown when no options are selected
  * @param {boolean?} props.expandable - Makes options collapsible on desktop.
  *   Turning this on also hides filters not selected on desktop.
+ * @param {string?} props.placeholder - Shown when no options are selected.
+ *   Only useful when `expandable` is true on desktop.
  * @param {Array<string>} props.selected - Selected option values
  * @param {Array<BaseFilterOptionProps>} props.options
  * @param {(selected: string[]) => void} props.onChange
@@ -95,6 +96,8 @@ function BaseFilter({
   const isValueSelected = Object.fromEntries(
     selected.map(value => [value, true])
   );
+
+  // De-facto "expandable": the flag is true on desktop env
   const isExpandable = expandable && isDesktop;
 
   const handleOptionClicked = value => {
@@ -163,7 +166,7 @@ function BaseFilter({
         </div>
       </Popover>
       <dd className={classes.body}>
-        {placeholder && selected.length === 0 ? (
+        {placeholder && isExpandable && selected.length === 0 ? (
           <div className={classes.placeholder}>{placeholder}</div>
         ) : (
           options

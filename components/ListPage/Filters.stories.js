@@ -48,6 +48,7 @@ export const FiltersAndOptions = () => (
     <BaseFilter
       title="Placehold"
       placeholder="This is placeholder"
+      expandable
       selected={[]}
       options={[
         { value: 'option1', label: 'Option 1' },
