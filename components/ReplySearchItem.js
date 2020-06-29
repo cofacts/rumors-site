@@ -89,7 +89,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ReplySearchItem({
-  id,
   articleReplies = [],
   query = '',
   ...reply
@@ -112,6 +111,8 @@ export default function ReplySearchItem({
 
   const {
     article,
+    articleId,
+    replyId,
     feedbacks,
     positiveFeedbackCount,
     negativeFeedbackCount,
@@ -131,8 +132,9 @@ export default function ReplySearchItem({
         <Divider classes={{ root: classes.divider }} />
 
         <ReplyItem
-          key={id}
-          replyId={reply.id}
+          key={reply.id}
+          articleId={articleId}
+          replyId={replyId}
           reply={reply}
           feedbacks={feedbacks}
           positiveFeedbackCount={positiveFeedbackCount}
@@ -190,12 +192,15 @@ ReplySearchItem.fragments = {
       id
       createdAt
       articleReplies(status: NORMAL) {
+        createdAt
         replyId
+        articleId
         article {
           id
           text
           ...ArticleInfo
           articleReplies {
+            ownVote
             reply {
               id
               type

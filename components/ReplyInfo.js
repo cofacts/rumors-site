@@ -1,17 +1,26 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
+import Link from 'next/link';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import isValid from 'date-fns/isValid';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
-  info: {
+  root: {
     color: theme.palette.secondary[200],
+  },
+  info: {
     '&:not(:first-child)': {
       marginLeft: 6,
       paddingLeft: 6,
       borderLeft: `1px solid ${theme.palette.secondary[200]}`,
+    },
+  },
+  link: {
+    '&:hover': {
+      textDecoration: 'underline',
     },
   },
 }));
@@ -37,10 +46,16 @@ export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       {isValid(createdAt) && (
         <CustomTooltip title={format(createdAt)} arrow>
-          <span className={classes.info}>{t`replied ${timeAgoStr} ago`}</span>
+          <span>
+            <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
+              <a
+                className={cx(classes.info, classes.link)}
+              >{t`replied ${timeAgoStr} ago`}</a>
+            </Link>
+          </span>
         </CustomTooltip>
       )}
       {user?.name && (
