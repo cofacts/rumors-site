@@ -34,6 +34,11 @@ function AddCategoryDialog({
     return map;
   }, {});
 
+  const userMap = articleCategories.reduce((map, ac) => {
+    map[ac.categoryId] = ac.user;
+    return map;
+  }, {});
+
   return (
     <Dialog
       onClose={onClose}
@@ -53,6 +58,7 @@ function AddCategoryDialog({
               articleId={articleId}
               category={category}
               feedback={feedbackMap[category.id]}
+              user={userMap[category.id]}
               marked={!!feedbackMap[category.id]}
             />
           ))}

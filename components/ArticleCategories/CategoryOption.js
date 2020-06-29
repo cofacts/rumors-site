@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useMutation } from '@apollo/react-hooks';
 import { dataIdFromObject } from 'lib/apollo';
 import ArticleCategory from './ArticleCategory';
+import useCurrentUser from 'lib/useCurrentUser';
 
 import {
   Box,
@@ -84,29 +85,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ArticleCategoryData = gql`
-  fragment ArticleCategoryData on ArticleCategory {
-    # articleId and categoryId are required to identify ArticleCategory instances
-    articleId
-    categoryId
-    category {
-      title
-      description
-    }
-    positiveFeedbackCount
-    negativeFeedbackCount
-    ownVote
-    canUpdateStatus
-  }
-`;
-
 const ArticleWithCategories = gql`
   fragment ArticleWithCategories on Article {
     articleCategories {
       ...ArticleCategoryData
     }
   }
-  ${ArticleCategoryData}
+  ${ArticleCategory.fragments.ArticleCategoryData}
 `;
 
 const ADD_CATEGORY = gql`
@@ -156,7 +141,7 @@ const VOTE_CATEGORY = gql`
       ...ArticleCategoryData
     }
   }
-  ${ArticleCategoryData}
+  ${ArticleCategory.fragments.ArticleCategoryData}
 `;
 
 /**
@@ -164,10 +149,18 @@ const VOTE_CATEGORY = gql`
  * @param {null|string} vote
  * @param {bool} marked
  */
-function CategoryOption({ category, articleId, feedback = {}, marked }) {
+function CategoryOption({
+  user: author,
+  category,
+  articleId,
+  feedback = {},
+  marked,
+}) {
   const { positive, negative, ownVote } = feedback;
 
   const allFeedbackCount = ~~(positive + negative);
+
+  const user = useCurrentUser();
 
   const [showVoteSnack, setVoteSnackShow] = useState(false);
   const [showDownVoteDialog, setDownVoteDialogShow] = useState(false);
@@ -251,7 +244,6 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
 
   const handleAdd = () => {
     addCategory({ variables: { articleId, categoryId: category.id } });
-    handleVoteUp();
   };
 
   const handleVoteUp = () => {
@@ -270,7 +262,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
     });
     setDownVoteDialogShow(false);
   };
-
+  const ownMark = user && author?.id === user.id;
   return (
     <Box mt={3}>
       <div>
@@ -295,7 +287,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
             {t`Add`}
           </button>
         )}
-        {ownVote && positive <= 1 && (
+        {ownMark && (
           <button
             type="button"
             className={classes.action}
@@ -314,7 +306,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
               classes.voteButton,
               ownVote === 'UPVOTE' && classes.agree
             )}
-            disabled={votingCategory || ownVote === 'UPVOTE'}
+            disabled={votingCategory || ownVote === 'UPVOTE' || ownMark}
             onClick={handleVoteUp}
           />
           <div className={classes.result}>
@@ -335,7 +327,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
               classes.voteButton,
               ownVote === 'DOWNVOTE' && classes.disagree
             )}
-            disabled={votingCategory || ownVote === 'DOWNVOTE'}
+            disabled={votingCategory || ownVote === 'DOWNVOTE' || ownMark}
             onClick={() => setDownVoteDialogShow(true)}
           />
         </Box>
