@@ -199,6 +199,9 @@ ArticleItem.fragments = {
         createdAt
         articleId
         replyId
+        user {
+          ...ReplyItemUser
+        }
         reply {
           ...ReplyItem
         }
@@ -209,5 +212,6 @@ ArticleItem.fragments = {
     ${ArticleInfo.fragments.articleInfo}
     ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
     ${ReplyItem.fragments.ReplyItem}
+    ${ReplyItem.fragments.User}
   `,
 };

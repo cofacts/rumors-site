@@ -118,6 +118,7 @@ export default function ReplySearchItem({
     negativeFeedbackCount,
     ownVote,
     createdAt,
+    user,
   } = articleReply || {};
 
   return (
@@ -142,6 +143,7 @@ export default function ReplySearchItem({
           ownVote={ownVote}
           query={query}
           createdAt={createdAt}
+          user={user}
         />
       </Box>
       {!!replyCount && (
@@ -195,6 +197,9 @@ ReplySearchItem.fragments = {
         createdAt
         replyId
         articleId
+        user {
+          ...ReplyItemUser
+        }
         article {
           id
           text
@@ -214,5 +219,6 @@ ReplySearchItem.fragments = {
     ${ArticleInfo.fragments.articleInfo}
     ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
     ${ReplyItem.fragments.ReplyItem}
+    ${ReplyItem.fragments.User}
   `,
 };

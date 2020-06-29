@@ -286,11 +286,7 @@ function ReplyFeedback({
 
   return (
     <div className={cx(classes.root, className)}>
-      <ButtonGroup
-        className={classes.buttonGroup}
-        data-ga="Number display"
-        disableElevation
-      >
+      <ButtonGroup className={classes.buttonGroup} data-ga="Number display">
         <Button
           className={cx(classes.vote, ownVote === 'UPVOTE' && classes.voted)}
           onClick={e => openVotePopover(e, 'UPVOTE')}

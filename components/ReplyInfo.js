@@ -5,7 +5,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import isValid from 'date-fns/isValid';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
-import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,10 +16,8 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: 6,
       borderLeft: `1px solid ${theme.palette.secondary[200]}`,
     },
-  },
-  link: {
-    '&:hover': {
-      textDecoration: 'underline',
+    '& a': {
+      color: 'inherit',
     },
   },
 }));
@@ -49,11 +46,9 @@ export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
     <div className={classes.root}>
       {isValid(createdAt) && (
         <CustomTooltip title={format(createdAt)} arrow>
-          <span>
+          <span className={classes.info}>
             <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
-              <a
-                className={cx(classes.info, classes.link)}
-              >{t`replied ${timeAgoStr} ago`}</a>
+              <a>{t`replied ${timeAgoStr} ago`}</a>
             </Link>
           </span>
         </CustomTooltip>
