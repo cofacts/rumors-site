@@ -98,6 +98,7 @@ function ArticleCategories({ articleId, articleCategories }) {
 
 ArticleCategories.fragments = {
   ...ArticleCategory.fragments,
+  ...AddCategoryDialog.fragments,
 };
 
 export default ArticleCategories;

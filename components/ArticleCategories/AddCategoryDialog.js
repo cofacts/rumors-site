@@ -1,8 +1,28 @@
 import { t } from 'ttag';
+import gql from 'graphql-tag';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import useCurrentUser from 'lib/useCurrentUser';
 
 import CategoryOption from './CategoryOption';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
+
+const AddCategoryDialogData = gql`
+  fragment AddCategoryDialogData on ArticleCategory {
+    # articleId and categoryId are required to identify ArticleCategory instances
+    articleId
+    categoryId
+    category {
+      title
+      description
+    }
+    positiveFeedbackCount
+    negativeFeedbackCount
+    ownVote
+    user {
+      id
+    }
+  }
+`;
 
 /**
  * @param {string} props.articleId
@@ -16,6 +36,8 @@ function AddCategoryDialog({
   articleCategories,
   onClose = () => {},
 }) {
+  const user = useCurrentUser();
+
   const feedbackMap = articleCategories.reduce((map, ac) => {
     map[ac.categoryId] = {
       ownVote: ac.ownVote,
@@ -25,8 +47,8 @@ function AddCategoryDialog({
     return map;
   }, {});
 
-  const userMap = articleCategories.reduce((map, ac) => {
-    map[ac.categoryId] = ac.user;
+  const isAuthorMap = articleCategories.reduce((map, ac) => {
+    map[ac.categoryId] = user && ac.user?.id === user.id;
     return map;
   }, {});
 
@@ -49,7 +71,7 @@ function AddCategoryDialog({
               articleId={articleId}
               category={category}
               feedback={feedbackMap[category.id]}
-              user={userMap[category.id]}
+              isAuthor={isAuthorMap[category.id]}
               marked={!!feedbackMap[category.id]}
             />
           ))}
@@ -59,6 +81,9 @@ function AddCategoryDialog({
   );
 }
 
-AddCategoryDialog.fragments = { ...CategoryOption.fragments };
+AddCategoryDialog.fragments = {
+  ...CategoryOption.fragments,
+  AddCategoryDialogData,
+};
 
 export default AddCategoryDialog;

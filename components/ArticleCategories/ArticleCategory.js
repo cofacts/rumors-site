@@ -19,6 +19,8 @@ const ArticleCategoryData = gql`
     }
     positiveFeedbackCount
     negativeFeedbackCount
+    ownVote
+    canUpdateStatus
   }
 `;
 

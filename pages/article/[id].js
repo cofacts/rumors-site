@@ -174,6 +174,7 @@ const LOAD_ARTICLE = gql`
       }
       articleCategories {
         ...ArticleCategoryData
+        ...AddCategoryDialogData
       }
     }
   }
@@ -183,6 +184,7 @@ const LOAD_ARTICLE = gql`
   ${NewReplySection.fragments.RelatedArticleData}
   ${ArticleItem.fragments.ArticleItem}
   ${ArticleCategories.fragments.ArticleCategoryData}
+  ${ArticleCategories.fragments.AddCategoryDialogData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -197,12 +199,14 @@ const LOAD_ARTICLE_FOR_USER = gql`
       }
       articleCategories {
         ...ArticleCategoryDataForUser
+        ...AddCategoryDialogData
       }
     }
   }
   ${ReplyRequestReason.fragments.ReplyRequestInfoForUser}
   ${CurrentReplies.fragments.ArticleReplyForUser}
   ${ArticleCategories.fragments.ArticleCategoryDataForUser}
+  ${ArticleCategories.fragments.AddCategoryDialogData}
 `;
 
 function ArticlePage() {

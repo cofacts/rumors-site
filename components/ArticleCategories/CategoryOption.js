@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useMutation } from '@apollo/react-hooks';
 import { dataIdFromObject } from 'lib/apollo';
 import ArticleCategory from './ArticleCategory';
-import useCurrentUser from 'lib/useCurrentUser';
 
 import {
   Box,
@@ -97,6 +96,10 @@ const ArticleWithCategories = gql`
   fragment ArticleWithCategories on Article {
     articleCategories {
       ...ArticleCategoryData
+      # should update user
+      user {
+        id
+      }
     }
   }
   ${ArticleCategory.fragments.ArticleCategoryData}
@@ -158,7 +161,7 @@ const VOTE_CATEGORY = gql`
  * @param {bool} marked
  */
 function CategoryOption({
-  user: author,
+  isAuthor,
   category,
   articleId,
   feedback = {},
@@ -167,8 +170,6 @@ function CategoryOption({
   const { positive, negative, ownVote } = feedback;
 
   const allFeedbackCount = ~~(positive + negative);
-
-  const user = useCurrentUser();
 
   const [showVoteSnack, setVoteSnackShow] = useState(false);
   const [showDownVoteDialog, setDownVoteDialogShow] = useState(false);
@@ -270,7 +271,6 @@ function CategoryOption({
     });
     setDownVoteDialogShow(false);
   };
-  const ownMark = user && author?.id === user.id;
   return (
     <Box mt={3}>
       <div>
@@ -295,7 +295,7 @@ function CategoryOption({
             {t`Add`}
           </button>
         )}
-        {ownMark && (
+        {isAuthor && (
           <button
             type="button"
             className={classes.action}
@@ -314,7 +314,7 @@ function CategoryOption({
               classes.voteButton,
               ownVote === 'UPVOTE' && classes.agree
             )}
-            disabled={votingCategory || ownVote === 'UPVOTE' || ownMark}
+            disabled={votingCategory || ownVote === 'UPVOTE' || isAuthor}
             onClick={handleVoteUp}
           />
           <div className={classes.result}>
@@ -335,7 +335,7 @@ function CategoryOption({
               classes.voteButton,
               ownVote === 'DOWNVOTE' && classes.disagree
             )}
-            disabled={votingCategory || ownVote === 'DOWNVOTE' || ownMark}
+            disabled={votingCategory || ownVote === 'DOWNVOTE' || isAuthor}
             onClick={() => setDownVoteDialogShow(true)}
           />
         </Box>
