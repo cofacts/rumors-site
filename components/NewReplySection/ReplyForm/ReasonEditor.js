@@ -15,6 +15,7 @@ import { LIST_STYLES, addListStyle } from 'lib/editor';
 import SearchBar from '../ReplySearch/SearchBar';
 import ReplySearch from '../ReplySearch/ReplySearch';
 import ReplySearchContext from '../ReplySearch/context';
+import ReplyFormContext from './context';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -177,6 +178,7 @@ const ReasonEditor = ({
   const classes = useStyles();
   const [showHelp, setShowHelp] = useState(true);
   const { search, setSearch } = useContext(ReplySearchContext);
+  const { fields, handlers } = useContext(ReplyFormContext);
 
   const toggleListStyle = type => () =>
     setListStyle(v => (v === type ? null : type));
@@ -208,15 +210,16 @@ const ReasonEditor = ({
   };
 
   const handleConnect = reply => {
-    const replyReference =
-      reply.text
-        .split('\n')
-        .map(sentence => `> ${sentence}`)
-        .join('\n') + '\n';
+    const hyperlinks = reply.hyperlinks.map(
+      ({ title, url }) => `${title}\n${url}`
+    );
     const element = editorRef.current;
-    element.value = replyReference + element.value;
-    element.selectionStart = replyReference.length + element.selectionStart;
-    onChange({ target: { value: element.value } });
+    const text = `${reply.text}\n${hyperlinks.join('\n')}\n${element.value}`;
+    handlers.set('text', text);
+
+    if (replyType !== 'NOT_ARTICLE') {
+      handlers.set('reference', hyperlinks + fields.reference);
+    }
     setSearch('');
   };
 
