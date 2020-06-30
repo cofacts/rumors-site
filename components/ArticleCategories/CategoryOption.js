@@ -85,6 +85,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const CategoryData = gql`
+  fragment CategoryData on Category {
+    id
+    title
+    description
+  }
+`;
+
 const ArticleWithCategories = gql`
   fragment ArticleWithCategories on Article {
     articleCategories {
@@ -362,5 +370,7 @@ function CategoryOption({
     </Box>
   );
 }
+
+CategoryOption.fragments = { CategoryData };
 
 export default CategoryOption;

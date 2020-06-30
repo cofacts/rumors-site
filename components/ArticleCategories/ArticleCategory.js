@@ -17,13 +17,8 @@ const ArticleCategoryData = gql`
       title
       description
     }
-    user {
-      id
-    }
     positiveFeedbackCount
     negativeFeedbackCount
-    ownVote
-    canUpdateStatus
   }
 `;
 

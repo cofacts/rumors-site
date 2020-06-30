@@ -1,17 +1,8 @@
 import { t } from 'ttag';
-import gql from 'graphql-tag';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 
 import CategoryOption from './CategoryOption';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
-
-const CategoryData = gql`
-  fragment CategoryData on Category {
-    id
-    title
-    description
-  }
-`;
 
 /**
  * @param {string} props.articleId
@@ -68,6 +59,6 @@ function AddCategoryDialog({
   );
 }
 
-AddCategoryDialog.fragments = { CategoryData };
+AddCategoryDialog.fragments = { ...CategoryOption.fragments };
 
 export default AddCategoryDialog;
