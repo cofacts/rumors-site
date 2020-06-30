@@ -133,7 +133,9 @@ ReplyItem.fragments = {
       text
       type
       createdAt
+      ...ReplyInfo
     }
+    ${ReplyInfo.fragments.replyInfo}
   `,
   User: gql`
     fragment ReplyItemUser on User {
