@@ -339,7 +339,7 @@ function ArticlePage() {
                 articleId={article.id}
                 articleCategories={article.articleCategories}
               />
-              <Trendline />
+              <Trendline id={article.id} />
               <Divider />
               <footer>
                 {article.replyRequests.map((replyRequest, idx) => (
