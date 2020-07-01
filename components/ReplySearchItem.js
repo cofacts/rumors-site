@@ -89,7 +89,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ReplySearchItem({
-  id,
   articleReplies = [],
   query = '',
   ...reply
@@ -112,11 +111,14 @@ export default function ReplySearchItem({
 
   const {
     article,
+    articleId,
+    replyId,
     feedbacks,
     positiveFeedbackCount,
     negativeFeedbackCount,
     ownVote,
     createdAt,
+    user,
   } = articleReply || {};
 
   return (
@@ -131,8 +133,9 @@ export default function ReplySearchItem({
         <Divider classes={{ root: classes.divider }} />
 
         <ReplyItem
-          key={id}
-          replyId={reply.id}
+          key={reply.id}
+          articleId={articleId}
+          replyId={replyId}
           reply={reply}
           feedbacks={feedbacks}
           positiveFeedbackCount={positiveFeedbackCount}
@@ -140,6 +143,7 @@ export default function ReplySearchItem({
           ownVote={ownVote}
           query={query}
           createdAt={createdAt}
+          user={user}
         />
       </Box>
       {!!replyCount && (
@@ -190,12 +194,18 @@ ReplySearchItem.fragments = {
       id
       createdAt
       articleReplies(status: NORMAL) {
+        createdAt
         replyId
+        articleId
+        user {
+          ...ReplyItemUser
+        }
         article {
           id
           text
           ...ArticleInfo
           articleReplies {
+            ownVote
             reply {
               id
               type
@@ -209,5 +219,6 @@ ReplySearchItem.fragments = {
     ${ArticleInfo.fragments.articleInfo}
     ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
     ${ReplyItem.fragments.ReplyItem}
+    ${ReplyItem.fragments.User}
   `,
 };

@@ -73,6 +73,7 @@ const useStyles = makeStyles(theme => ({
  */
 function ReplyItem({
   createdAt,
+  user,
   articleId,
   replyId,
   reply,
@@ -82,7 +83,7 @@ function ReplyItem({
   ownVote,
   query,
 }) {
-  const { user, text, type: replyType } = reply;
+  const { text, type: replyType } = reply;
 
   const classes = useStyles({ replyType });
   const userName = user?.name ?? t`Anonymous`;
@@ -132,12 +133,16 @@ ReplyItem.fragments = {
       text
       type
       createdAt
-      user {
-        id
-        name
-        level
-        avatarUrl
-      }
+      ...ReplyInfo
+    }
+    ${ReplyInfo.fragments.replyInfo}
+  `,
+  User: gql`
+    fragment ReplyItemUser on User {
+      id
+      name
+      level
+      avatarUrl
     }
   `,
 };

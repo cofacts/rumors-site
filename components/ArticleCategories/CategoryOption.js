@@ -84,19 +84,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ArticleCategoryData = gql`
-  fragment ArticleCategoryData on ArticleCategory {
-    # articleId and categoryId are required to identify ArticleCategory instances
-    articleId
-    categoryId
-    category {
-      title
-      description
-    }
-    positiveFeedbackCount
-    negativeFeedbackCount
-    ownVote
-    canUpdateStatus
+const CategoryData = gql`
+  fragment CategoryData on Category {
+    id
+    title
+    description
   }
 `;
 
@@ -104,9 +96,13 @@ const ArticleWithCategories = gql`
   fragment ArticleWithCategories on Article {
     articleCategories {
       ...ArticleCategoryData
+      # should update user
+      user {
+        id
+      }
     }
   }
-  ${ArticleCategoryData}
+  ${ArticleCategory.fragments.ArticleCategoryData}
 `;
 
 const ADD_CATEGORY = gql`
@@ -156,7 +152,7 @@ const VOTE_CATEGORY = gql`
       ...ArticleCategoryData
     }
   }
-  ${ArticleCategoryData}
+  ${ArticleCategory.fragments.ArticleCategoryData}
 `;
 
 /**
@@ -164,7 +160,13 @@ const VOTE_CATEGORY = gql`
  * @param {null|string} vote
  * @param {bool} marked
  */
-function CategoryOption({ category, articleId, feedback = {}, marked }) {
+function CategoryOption({
+  isAuthor,
+  category,
+  articleId,
+  feedback = {},
+  marked,
+}) {
   const { positive, negative, ownVote } = feedback;
 
   const allFeedbackCount = ~~(positive + negative);
@@ -251,7 +253,6 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
 
   const handleAdd = () => {
     addCategory({ variables: { articleId, categoryId: category.id } });
-    handleVoteUp();
   };
 
   const handleVoteUp = () => {
@@ -270,7 +271,6 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
     });
     setDownVoteDialogShow(false);
   };
-
   return (
     <Box mt={3}>
       <div>
@@ -295,7 +295,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
             {t`Add`}
           </button>
         )}
-        {ownVote && positive <= 1 && (
+        {isAuthor && (
           <button
             type="button"
             className={classes.action}
@@ -314,7 +314,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
               classes.voteButton,
               ownVote === 'UPVOTE' && classes.agree
             )}
-            disabled={votingCategory || ownVote === 'UPVOTE'}
+            disabled={votingCategory || ownVote === 'UPVOTE' || isAuthor}
             onClick={handleVoteUp}
           />
           <div className={classes.result}>
@@ -335,7 +335,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
               classes.voteButton,
               ownVote === 'DOWNVOTE' && classes.disagree
             )}
-            disabled={votingCategory || ownVote === 'DOWNVOTE'}
+            disabled={votingCategory || ownVote === 'DOWNVOTE' || isAuthor}
             onClick={() => setDownVoteDialogShow(true)}
           />
         </Box>
@@ -370,5 +370,7 @@ function CategoryOption({ category, articleId, feedback = {}, marked }) {
     </Box>
   );
 }
+
+CategoryOption.fragments = { CategoryData };
 
 export default CategoryOption;
