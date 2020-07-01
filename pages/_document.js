@@ -38,6 +38,12 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          {/* emoji-mart css */}
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/emoji-mart@3.0.0/css/emoji-mart.css"
+          />
+
           <script
             dangerouslySetInnerHTML={{
               __html: `

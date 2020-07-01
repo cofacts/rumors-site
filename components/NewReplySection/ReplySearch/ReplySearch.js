@@ -66,6 +66,7 @@ function ReplySearch({
   onConnect = () => {},
   disabled = false,
   existingReplyIds = [],
+  actionText = '',
 }) {
   const currentUser = useCurrentUser();
   const { search, filter } = useContext(ReplySearchContext);
@@ -108,6 +109,7 @@ function ReplySearch({
             onConnect={onConnect}
             relatedArticleReplies={allArticleReplies}
             disabled={disabled}
+            actionText={actionText}
           />
         ) : (
           <div>{`- 找無${variables.query}相關的回覆與文章 -`}</div>

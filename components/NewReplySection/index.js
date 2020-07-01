@@ -113,8 +113,8 @@ const NewReplySection = withContext(
       existingReplyIds
     );
 
-    const handleConnect = replyId => {
-      connectReply({ variables: { articleId: article.id, replyId } });
+    const handleConnect = reply => {
+      connectReply({ variables: { articleId: article.id, replyId: reply.id } });
     };
 
     if (!currentUser) {

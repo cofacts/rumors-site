@@ -85,7 +85,7 @@ const RelatedArticleReplyData = gql`
  * @param {function} props.onConnect - (replyId) => undefined
  * @param {boolean} props.disabled - if we should disable the connect button
  */
-function RelatedReplyItem({ article, reply, onConnect, disabled }) {
+function RelatedReplyItem({ article, reply, onConnect, disabled, actionText }) {
   const classes = useStyles();
   return (
     <li className={classes.root}>
@@ -129,11 +129,11 @@ function RelatedReplyItem({ article, reply, onConnect, disabled }) {
           variant="contained"
           color="primary"
           disableElevation
-          onClick={() => onConnect(reply.id)}
+          onClick={() => onConnect(reply)}
           disabled={disabled}
           classes={{ root: classes.submit }}
         >
-          {t`Use this reply`}
+          {actionText}
         </Button>
       </footer>
     </li>
@@ -145,6 +145,7 @@ function RelatedReplies({
   relatedArticleReplies = [],
   onConnect,
   disabled = false,
+  actionText = '',
 }) {
   if (!relatedArticleReplies.length) {
     return <p>目前沒有相關的回應</p>;
@@ -160,6 +161,7 @@ function RelatedReplies({
           reply={reply}
           onConnect={onConnect}
           disabled={disabled}
+          actionText={actionText}
         />
       ))}
     </PlainList>

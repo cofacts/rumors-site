@@ -1,8 +1,15 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { t } from 'ttag';
-import { Select, InputBase, MenuItem } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import {
+  Box,
+  Select,
+  InputBase,
+  MenuItem,
+  IconButton,
+} from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 import ReplySearchContext, { FILTERS } from './context';
 import cx from 'clsx';
 
@@ -28,6 +35,16 @@ const useStyles = makeStyles(theme => ({
     border: 'none',
     outline: 'none',
   },
+  iconButtonRoot: {
+    background: theme.palette.secondary[300],
+    padding: 4,
+  },
+  iconButtonLabel: {
+    color: theme.palette.common.white,
+    '& svg': {
+      fontSize: 10,
+    },
+  },
 }));
 
 const CustomSelectInput = withStyles(theme => ({
@@ -44,7 +61,25 @@ const CustomSelectInput = withStyles(theme => ({
   },
 }))(InputBase);
 
+const getWidth = (ref, value) => {
+  let div = document.createElement('div');
+  div.innerHTML = value;
+  div.style.fontSize = ref.current
+    ? window.getComputedStyle(ref.current).fontSize
+    : '14px';
+  div.style.width = 'auto';
+  div.style.display = 'inline-block';
+  div.style.visibility = 'hidden';
+  div.style.position = 'fixed';
+  div.style.overflow = 'auto';
+  document.body.append(div);
+  let width = div.clientWidth;
+  div.remove();
+  return width;
+};
+
 export default function SearchBar({ className }) {
+  const inputRef = useRef(null);
   const { search, setSearch, filter, setFilter } = useContext(
     ReplySearchContext
   );
@@ -74,19 +109,40 @@ export default function SearchBar({ className }) {
         <MenuItem value={FILTERS.ALL_REPLIES}>{t`All replies`}</MenuItem>
         <MenuItem value={FILTERS.MY_REPLIES}>{t`My replies`}</MenuItem>
       </Select>
-      <input
-        className={classes.input}
-        type="text"
-        value={buffer}
-        onChange={e => setBuffer(e.target.value)}
-        onKeyDown={e => {
-          e.stopPropagation();
-          e.nativeEvent.stopImmediatePropagation();
-          if (e.key === 'Enter') {
-            setSearch(buffer);
-          }
-        }}
-      />
+      <Box position="relative" width="100%" display="flex" alignItems="center">
+        <input
+          className={classes.input}
+          type="text"
+          value={buffer}
+          onChange={e => setBuffer(e.target.value)}
+          ref={inputRef}
+          onKeyDown={e => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            if (e.key === 'Enter') {
+              setSearch(buffer);
+            }
+          }}
+        />
+        {buffer && (
+          <Box position="absolute" left={10 + getWidth(inputRef, buffer)}>
+            <IconButton
+              classes={{
+                root: classes.iconButtonRoot,
+                label: classes.iconButtonLabel,
+              }}
+              disableElevation
+              aria-label="delete"
+              onClick={() => {
+                setBuffer('');
+                setSearch('');
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        )}
+      </Box>
     </div>
   );
 }

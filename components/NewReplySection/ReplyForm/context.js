@@ -34,7 +34,7 @@ export const withReplyFormContext = Component => props => {
   };
 
   const set = (key, value) => {
-    setFields({ ...fields, [key]: value });
+    setFields(data => ({ ...data, [key]: value }));
 
     // Backup to localStorage
     requestAnimationFrame(() => (localStorage[key] = value));
