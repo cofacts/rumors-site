@@ -210,15 +210,12 @@ const ReasonEditor = ({
   };
 
   const handleConnect = reply => {
-    const hyperlinks = reply.hyperlinks.map(
-      ({ title, url }) => `${title}\n${url}`
-    );
     const element = editorRef.current;
-    const text = `${reply.text}\n${hyperlinks.join('\n')}\n${element.value}`;
+    const text = `${reply.text}\n${reply.reference}\n${element.value}`;
     handlers.set('text', text);
 
     if (replyType !== 'NOT_ARTICLE') {
-      handlers.set('reference', hyperlinks + fields.reference);
+      handlers.set('reference', reply.reference + '\n' + fields.reference);
     }
     setSearch('');
   };
