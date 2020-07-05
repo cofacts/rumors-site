@@ -21,6 +21,7 @@ const ArticleCategoryData = gql`
     negativeFeedbackCount
     ownVote
     canUpdateStatus
+    status
   }
 `;
 

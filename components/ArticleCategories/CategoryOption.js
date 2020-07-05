@@ -110,6 +110,10 @@ const ADD_CATEGORY = gql`
     CreateArticleCategory(articleId: $articleId, categoryId: $categoryId) {
       articleId
       categoryId
+      # should update user
+      user {
+        id
+      }
       ...ArticleCategoryData
     }
   }

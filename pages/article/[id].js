@@ -337,7 +337,9 @@ function ArticlePage() {
               </Box>
               <ArticleCategories
                 articleId={article.id}
-                articleCategories={article.articleCategories}
+                articleCategories={article.articleCategories.filter(
+                  ({ status }) => status === 'NORMAL'
+                )}
               />
               <Trendline id={article.id} />
               <Divider />
