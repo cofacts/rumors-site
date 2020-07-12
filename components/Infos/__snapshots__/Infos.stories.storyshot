@@ -33,3 +33,67 @@ exports[`Storyshots Infos With Multiple Children 1`] = `
   </div>
 </Infos>
 `;
+
+exports[`Storyshots Infos With Time Info 1`] = `
+<Infos>
+  <div
+    className="makeStyles-root"
+  >
+    <TimeInfo
+      time={1989-06-04T00:00:00.000Z}
+    >
+      <Tooltip
+        title="06/04/1989, 8:00 AM"
+      >
+        <span
+          aria-describedby={null}
+          className=""
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          title="06/04/1989, 8:00 AM"
+        >
+          over 30 years
+        </span>
+      </Tooltip>
+    </TimeInfo>
+    ｜
+    <TimeInfo
+      time={1989-06-04T00:00:00.000Z}
+    >
+      <Tooltip
+        title="06/04/1989, 8:00 AM"
+      >
+        <span
+          aria-describedby={null}
+          className=""
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          title="06/04/1989, 8:00 AM"
+        >
+          Created over 30 years ago
+        </span>
+      </Tooltip>
+    </TimeInfo>
+    ｜
+    <TimeInfo
+      time={null}
+    >
+      null
+    </TimeInfo>
+    ｜
+    <TimeInfo
+      time={null}
+    >
+      Created null ago
+    </TimeInfo>
+  </div>
+</Infos>
+`;

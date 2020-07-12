@@ -1,5 +1,5 @@
 import React from 'react';
-import Infos from './';
+import Infos, { TimeInfo } from './';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 export default {
@@ -22,5 +22,23 @@ export const WithMultipleChildren = () => (
       {/* Fragment considered as 1 item */}
       Item <em>wrapped</em> in fragment
     </>
+  </Infos>
+);
+
+export const WithTimeInfo = () => (
+  <Infos>
+    {/* Time given */}
+    <TimeInfo time={new Date(612921600000)} />
+
+    {/* Customized time rendering logic */}
+    <TimeInfo time={new Date(612921600000)}>
+      {str => `Created ${str} ago`}
+    </TimeInfo>
+
+    {/* Time given incorrectly */}
+    <TimeInfo time={null} />
+
+    {/* Customized time rendering with incorrect time */}
+    <TimeInfo time={null}>{str => `Created ${str} ago`}</TimeInfo>
   </Infos>
 );
