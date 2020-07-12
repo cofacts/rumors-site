@@ -1,6 +1,6 @@
 import { t } from 'ttag';
 import levelNames from '../constants/levelNames';
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from './Tooltip';
 
 export default function EditorName({ editorName, editorLevel }) {
   const levelName = levelNames[editorLevel];
