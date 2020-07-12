@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
-import ReplySearchItem from 'components/ReplySearchItem';
+import ReplySearchItem from 'components/ListPageDisplays/ReplySearchItem';
 import Filters from 'components/ListPageControls/Filters';
 import ReplyTypeFilter from 'components/ListPageControls/ReplyTypeFilter';
 import TimeRange from 'components/ListPageControls/TimeRange';

@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ellipsis } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
-import ArticleItem from 'components/ArticleItem';
+import ArticleItem from 'components/ListPageDisplays/ArticleItem';
 import FeedDisplay from 'components/FeedDisplay';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
