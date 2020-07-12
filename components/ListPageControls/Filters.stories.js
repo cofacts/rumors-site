@@ -5,7 +5,7 @@ import Filters from './Filters';
 import BaseFilter from './BaseFilter';
 
 export default {
-  title: 'ListPage/Filters',
+  title: 'ListPageControls/Filters',
   component: 'Filters',
 };
 

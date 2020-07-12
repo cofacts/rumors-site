@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import BaseSortInput from './BaseSortInput';
 
 export default {
-  title: 'ListPage/BaseSortInput',
+  title: 'ListPageControls/BaseSortInput',
   component: 'BaseSortInput',
   decorators: [withKnobs],
 };

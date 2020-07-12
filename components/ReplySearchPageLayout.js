@@ -7,10 +7,10 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ReplySearchItem from 'components/ReplySearchItem';
-import Filters from 'components/ListPage/Filters';
-import ReplyTypeFilter from 'components/ListPage/ReplyTypeFilter';
-import TimeRange from 'components/ListPage/TimeRange';
-import LoadMore from 'components/ListPage/LoadMore';
+import Filters from 'components/ListPageControls/Filters';
+import ReplyTypeFilter from 'components/ListPageControls/ReplyTypeFilter';
+import TimeRange from 'components/ListPageControls/TimeRange';
+import LoadMore from 'components/ListPageControls/LoadMore';
 
 const MAX_KEYWORD_LENGTH = 100;
 
