@@ -5,14 +5,14 @@ exports[`Storyshots ListPage/BaseTimeRange No Start End Given 1`] = `
   onChange={[Function]}
 >
   <div
-    className="makeStyles-root-210"
+    className="makeStyles-root"
   >
     <div
       className="MuiButtonGroup-root"
       role="group"
     >
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton-212"
+        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -34,7 +34,7 @@ exports[`Storyshots ListPage/BaseTimeRange No Start End Given 1`] = `
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root makeStyles-calendarIcon-213"
+            className="MuiSvgIcon-root makeStyles-calendarIcon"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -56,7 +56,7 @@ exports[`Storyshots ListPage/BaseTimeRange No Start End Given 1`] = `
         </NoSsr>
       </button>
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-selectButton-214"
+        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-selectButton"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -326,14 +326,14 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
     start=""
   >
     <div
-      className="makeStyles-root-343"
+      className="makeStyles-root"
     >
       <div
         className="MuiButtonGroup-root"
         role="group"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton-345"
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -355,7 +355,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root makeStyles-calendarIcon-346"
+              className="MuiSvgIcon-root makeStyles-calendarIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -377,7 +377,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           </NoSsr>
         </button>
         <input
-          className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate-348"
+          className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate"
           color="default"
           disableFocusRipple={false}
           disableRipple={false}
@@ -391,7 +391,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           variant="outlined"
         >
           <input
-            className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate-348"
+            className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate"
             onChange={[Function]}
             type="date"
             value=""
@@ -399,12 +399,12 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
         </input>
       </div>
       <span
-        className="makeStyles-to-349"
+        className="makeStyles-to"
       >
         to
       </span>
       <input
-        className="makeStyles-endDate-350"
+        className="makeStyles-endDate"
         onChange={[Function]}
         type="date"
         value=""
@@ -632,14 +632,14 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
     start="now-1d/d"
   >
     <div
-      className="makeStyles-root-343"
+      className="makeStyles-root"
     >
       <div
         className="MuiButtonGroup-root"
         role="group"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton-345"
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -661,7 +661,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root makeStyles-calendarIcon-346"
+              className="MuiSvgIcon-root makeStyles-calendarIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -683,7 +683,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           </NoSsr>
         </button>
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-selectButton-347"
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-selectButton"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -947,14 +947,14 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
     start="1989-06-04"
   >
     <div
-      className="makeStyles-root-343"
+      className="makeStyles-root"
     >
       <div
         className="MuiButtonGroup-root"
         role="group"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton-345"
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-calendarButton"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -976,7 +976,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root makeStyles-calendarIcon-346"
+              className="MuiSvgIcon-root makeStyles-calendarIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -998,7 +998,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           </NoSsr>
         </button>
         <input
-          className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate-348"
+          className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate"
           color="default"
           disableFocusRipple={false}
           disableRipple={false}
@@ -1012,7 +1012,7 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
           variant="outlined"
         >
           <input
-            className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate-348"
+            className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate"
             onChange={[Function]}
             type="date"
             value="1989-06-04"
@@ -1020,12 +1020,12 @@ exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
         </input>
       </div>
       <span
-        className="makeStyles-to-349"
+        className="makeStyles-to"
       >
         to
       </span>
       <input
-        className="makeStyles-endDate-350"
+        className="makeStyles-endDate"
         onChange={[Function]}
         type="date"
         value="2019-06-04"

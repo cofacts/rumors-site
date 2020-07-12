@@ -25,7 +25,7 @@ exports[`Storyshots ExpandableText With Line Clamp Given 1`] = `
     >
       <div>
         <div
-          className="makeStyles-root-4"
+          className="makeStyles-root"
           style={
             Object {
               "maxHeight": 42,

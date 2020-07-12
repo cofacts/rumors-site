@@ -3,7 +3,7 @@
 exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
 <Filters>
   <dl
-    className="makeStyles-desktop-476"
+    className="makeStyles-desktop"
   >
     <BaseFilter
       onChange={[Function]}
@@ -22,12 +22,12 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
       title="Normal filter"
     >
       <dt
-        className="makeStyles-title-481"
+        className="makeStyles-title"
       >
         Normal filter
       </dt>
       <dd
-        className="makeStyles-body-486"
+        className="makeStyles-body"
       >
         <BaseFilterOption
           key="option1"
@@ -36,7 +36,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-493 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -53,7 +53,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 1
             </span>
@@ -77,7 +77,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-527 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -94,7 +94,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 2
             </span>
@@ -151,12 +151,12 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
       title="Has selected"
     >
       <dt
-        className="makeStyles-title-481"
+        className="makeStyles-title"
       >
         Has selected
       </dt>
       <dd
-        className="makeStyles-body-486"
+        className="makeStyles-body"
       >
         <BaseFilterOption
           key="option1"
@@ -165,7 +165,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-528 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -182,7 +182,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 1
             </span>
@@ -207,7 +207,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-529 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -224,7 +224,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 2
             </span>
@@ -250,7 +250,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
         >
           <div
             aria-disabled={true}
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-530 MuiChip-outlined Mui-disabled MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined Mui-disabled MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -267,7 +267,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Disabled
             </span>
@@ -292,7 +292,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option4"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-531 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -309,7 +309,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Chip
             </span>
@@ -335,7 +335,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option5"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-532 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -352,7 +352,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Selected Chip
             </span>
@@ -411,12 +411,12 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
       title="Expandable"
     >
       <dt
-        className="makeStyles-title-481 makeStyles-expandable-482"
+        className="makeStyles-title makeStyles-expandable"
       >
         Expandable
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root makeStyles-icon-484"
+          className="MuiSvgIcon-root makeStyles-icon"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -426,7 +426,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
         </svg>
       </dt>
       <dd
-        className="makeStyles-body-486"
+        className="makeStyles-body"
       >
         <BaseFilterOption
           key="option1"
@@ -436,7 +436,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-542 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -453,7 +453,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 1
             </span>
@@ -477,7 +477,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-543 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -494,7 +494,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 2
             </span>
@@ -518,7 +518,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option3"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-544 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -535,7 +535,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 3
             </span>
@@ -559,7 +559,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option4"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-545 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -576,7 +576,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 4
             </span>
@@ -600,7 +600,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option5"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-546 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -617,7 +617,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 5
             </span>
@@ -643,7 +643,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
         >
           <div
             aria-disabled={true}
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-547 MuiChip-outlined Mui-disabled MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined Mui-disabled MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -660,7 +660,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Disabled
             </span>
@@ -698,12 +698,12 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
       title="Placehold"
     >
       <dt
-        className="makeStyles-title-481 makeStyles-expandable-482"
+        className="makeStyles-title makeStyles-expandable"
       >
         Placehold
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root makeStyles-icon-484"
+          className="MuiSvgIcon-root makeStyles-icon"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -713,10 +713,10 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
         </svg>
       </dt>
       <dd
-        className="makeStyles-body-486"
+        className="makeStyles-body"
       >
         <div
-          className="makeStyles-placeholder-488"
+          className="makeStyles-placeholder"
         >
           Placeholder only shows when nothing is selected on desktop
         </div>
@@ -727,7 +727,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option1"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-548 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -744,7 +744,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 1
             </span>
@@ -768,7 +768,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
           value="option2"
         >
           <div
-            className="MuiButtonBase-root MuiChip-root makeStyles-root-491 makeStyles-root-549 MuiChip-outlined MuiChip-clickable"
+            className="MuiButtonBase-root MuiChip-root makeStyles-root makeStyles-root MuiChip-outlined MuiChip-clickable"
             onBlur={[Function]}
             onClick={[Function]}
             onDragLeave={[Function]}
@@ -785,7 +785,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
             tabIndex={0}
           >
             <span
-              className="MuiChip-label makeStyles-label-492"
+              className="MuiChip-label makeStyles-label"
             >
               Option 2
             </span>
@@ -807,7 +807,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
   </dl>
   <button
     aria-label="filters"
-    className="MuiButtonBase-root MuiFab-root makeStyles-fab-478 MuiFab-extended MuiFab-sizeMedium"
+    className="MuiButtonBase-root MuiFab-root makeStyles-fab MuiFab-extended MuiFab-sizeMedium"
     data-ga="Mobile filter button"
     disabled={false}
     onBlur={[Function]}
@@ -830,7 +830,7 @@ exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
     >
       <svg
         aria-hidden="true"
-        className="MuiSvgIcon-root makeStyles-fabIcon-479"
+        className="MuiSvgIcon-root makeStyles-fabIcon"
         focusable="false"
         viewBox="0 0 24 24"
       >
