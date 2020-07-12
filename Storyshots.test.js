@@ -40,11 +40,7 @@ function removeMaterialUIInternals(json) {
   }
 
   // Remove makeStyle className serial numbers
-  if (
-    json.props &&
-    json.props.className &&
-    json.props.className.match(MAKE_STYLE_REGEXP)
-  ) {
+  if (json.props?.className?.match(MAKE_STYLE_REGEXP)) {
     json = {
       ...json,
       props: {
