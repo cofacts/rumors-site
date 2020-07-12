@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots ListPage/BaseTimeRange No Start End Given 1`] = `
+exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
 <BaseTimeRange
   onChange={[Function]}
 >
@@ -305,7 +305,7 @@ exports[`Storyshots ListPage/BaseTimeRange No Start End Given 1`] = `
 </BaseTimeRange>
 `;
 
-exports[`Storyshots ListPage/BaseTimeRange Set Start End From Props 1`] = `
+exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] = `
 <div>
   <p>
     <code>

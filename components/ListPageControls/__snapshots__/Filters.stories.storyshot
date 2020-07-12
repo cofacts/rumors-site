@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots ListPage/Filters Filters And Options 1`] = `
+exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
 <Filters>
   <dl
     className="makeStyles-desktop"

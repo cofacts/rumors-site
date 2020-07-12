@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots ListPage/LoadMore Shows Nothing 1`] = `
+exports[`Storyshots ListPageControls/LoadMore Shows Nothing 1`] = `
 <LoadMore
   edges={
     Array [
@@ -17,7 +17,7 @@ exports[`Storyshots ListPage/LoadMore Shows Nothing 1`] = `
 />
 `;
 
-exports[`Storyshots ListPage/LoadMore Shows Up 1`] = `
+exports[`Storyshots ListPageControls/LoadMore Shows Up 1`] = `
 <LoadMore
   edges={
     Array [
