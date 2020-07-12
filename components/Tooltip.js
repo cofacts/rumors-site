@@ -26,6 +26,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+/**
+ * Material UI Tooltip with custom style from Cofacts.
+ * @see https://www.figma.com/file/zpD45j8nqDB2XfA6m2QskO/Cofacts-website?node-id=79%3A9
+ *
+ * @param {MaterialUITooltip.props} props
+ */
 function Tooltip(props) {
   const classes = useStyles();
 
