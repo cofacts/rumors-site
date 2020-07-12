@@ -43,7 +43,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time={1989-06-04T00:00:00.000Z}
     >
       <Tooltip
-        title="06/04/1989, 8:00 AM"
+        title="06/04/1989, 12:00 AM"
       >
         <span
           aria-describedby={null}
@@ -54,7 +54,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 8:00 AM"
+          title="06/04/1989, 12:00 AM"
         >
           over 30 years
         </span>
@@ -62,10 +62,10 @@ exports[`Storyshots Infos With Time Info 1`] = `
     </TimeInfo>
     ｜
     <TimeInfo
-      time={1989-06-04T00:00:00.000Z}
+      time="1989-06-04T00:00:00Z"
     >
       <Tooltip
-        title="06/04/1989, 8:00 AM"
+        title="06/04/1989, 12:00 AM"
       >
         <span
           aria-describedby={null}
@@ -76,7 +76,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 8:00 AM"
+          title="06/04/1989, 12:00 AM"
         >
           Created over 30 years ago
         </span>
@@ -90,9 +90,9 @@ exports[`Storyshots Infos With Time Info 1`] = `
     </TimeInfo>
     ｜
     <TimeInfo
-      time={null}
+      time="Unsupport time string"
     >
-      Created null ago
+      Created Unsupport time string ago
     </TimeInfo>
   </div>
 </Infos>

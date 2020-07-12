@@ -30,8 +30,8 @@ export const WithTimeInfo = () => (
     {/* Time given */}
     <TimeInfo time={new Date(612921600000)} />
 
-    {/* Customized time rendering logic */}
-    <TimeInfo time={new Date(612921600000)}>
+    {/* String time and customized time rendering logic */}
+    <TimeInfo time="1989-06-04T00:00:00Z">
       {str => `Created ${str} ago`}
     </TimeInfo>
 
@@ -39,6 +39,8 @@ export const WithTimeInfo = () => (
     <TimeInfo time={null} />
 
     {/* Customized time rendering with incorrect time */}
-    <TimeInfo time={null}>{str => `Created ${str} ago`}</TimeInfo>
+    <TimeInfo time="Unsupport time string">
+      {str => `Created ${str} ago`}
+    </TimeInfo>
   </Infos>
 );
