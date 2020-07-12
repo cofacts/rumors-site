@@ -19,7 +19,7 @@ function Infos({ children, className, ...otherProps }) {
     <div className={cx(classes.root, className)} {...otherProps}>
       {Children.map(children, (child, idx) => (
         <Fragment key={idx}>
-          {idx > 0 && isValidElement(child) && '｜'}
+          {idx > 0 && child ? '｜' : null}
           {child}
         </Fragment>
       ))}
