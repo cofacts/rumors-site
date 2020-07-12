@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Infos Pure Text 1`] = `
+<Infos>
+  <div
+    className="makeStyles-root"
+  >
+    Some text
+  </div>
+</Infos>
+`;
+
+exports[`Storyshots Infos With Multiple Children 1`] = `
+<Infos>
+  <div
+    className="makeStyles-root"
+  >
+    <span>
+      Item in span
+    </span>
+    ｜
+     Item in text
+    ｜
+    <span>
+      Item in span 2
+    </span>
+    ｜
+    Item 
+    <em>
+      wrapped
+    </em>
+     in fragment
+  </div>
+</Infos>
+`;
