@@ -35,7 +35,7 @@ exports[`Storyshots ListPage/LoadMore Shows Up 1`] = `
   }
 >
   <div
-    className="MuiBox-root MuiBox-root-588"
+    className="MuiBox-root MuiBox-root"
   >
     <button
       className="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-loadMore"

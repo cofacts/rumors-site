@@ -7,7 +7,7 @@ import { createSerializer } from 'enzyme-to-json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const MAKE_STYLE_REGEXP = /(makeStyles-.+?)-\d+/g;
+const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox)-.+?)-\d+/g;
 
 function removeMaterialUIInternals(json) {
   // Remove Portal containerInfo
