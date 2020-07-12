@@ -66,23 +66,18 @@ const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
 
   const toggleExpand = () => setExpanded(!expanded);
 
-  const cloneAndComputeHeight = () => {
-    const computedStyle = window.getComputedStyle(containerRef.current);
-    const lh = parseFloat(computedStyle.lineHeight);
-    setLineHeight(isNaN(lh) ? 14 : lh);
-    const clone = containerRef.current.cloneNode(true);
-    clone.style.maxHeight = '';
-    rootRef.current.appendChild(clone);
-    setHeight(parseFloat(window.getComputedStyle(clone).height));
-    rootRef.current.removeChild(clone);
-  };
-
   useEffect(() => {
     if (lineClamp) {
-      cloneAndComputeHeight();
+      const computedStyle = window.getComputedStyle(containerRef.current);
+      const lh = parseFloat(computedStyle.lineHeight);
+      setLineHeight(isNaN(lh) ? 14 : lh);
+      const clone = containerRef.current.cloneNode(true);
+      clone.style.maxHeight = '';
+      rootRef.current.appendChild(clone);
+      setHeight(parseFloat(window.getComputedStyle(clone).height));
+      rootRef.current.removeChild(clone);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lineClamp]);
 
   const renderWithLineChampLimits = () => {
     return (
