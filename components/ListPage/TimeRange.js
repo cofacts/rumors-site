@@ -4,6 +4,12 @@ import BaseTimeRange from './BaseTimeRange';
 import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 
 /**
+ * URL param names to read from and write to
+ */
+const PARAM_NAME_START = 'start';
+const PARAM_NAME_END = 'end';
+
+/**
  * Time range control connnected to URL "start", "end" param
  */
 function TimeRange() {
@@ -11,13 +17,13 @@ function TimeRange() {
 
   return (
     <BaseTimeRange
-      start={query.start}
-      end={query.end}
+      start={query[PARAM_NAME_START]}
+      end={query[PARAM_NAME_END]}
       onChange={(start, end) => {
         goToUrlQueryAndResetPagination({
           ...query,
-          start,
-          end,
+          [PARAM_NAME_START]: start,
+          [PARAM_NAME_END]: end,
         });
       }}
     />

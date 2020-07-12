@@ -4,6 +4,11 @@ import BaseSortInput from './BaseSortInput';
 import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 
 /**
+ * URL param name to read from and write to
+ */
+const PARAM_NAME = 'orderBy';
+
+/**
  * @param {string} defaultOrderBy - Used when no order is specified in URL
  * @param {BaseSortInputProps['options']} props.options
  */
@@ -12,10 +17,10 @@ function SortInput({ options, defaultOrderBy }) {
 
   return (
     <BaseSortInput
-      orderBy={query.orderBy || defaultOrderBy}
+      orderBy={query[PARAM_NAME] || defaultOrderBy}
       options={options}
       onChange={orderBy => {
-        goToUrlQueryAndResetPagination({ ...query, orderBy });
+        goToUrlQueryAndResetPagination({ ...query, [PARAM_NAME]: orderBy });
       }}
     />
   );

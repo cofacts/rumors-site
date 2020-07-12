@@ -7,6 +7,11 @@ import { useQuery } from '@apollo/react-hooks';
 import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import BaseFilter from './BaseFilter';
 
+/**
+ * URL param name to read from and write to
+ */
+const PARAM_NAME = 'categoryIds';
+
 const LIST_CATEGORIES = gql`
   query ListCategories {
     ListCategories(first: 25) {
@@ -27,7 +32,7 @@ function CategoryFilter() {
     ssr: false, // No need to fetch on server
   });
 
-  const selectedValues = query.categoryIds ? query.categoryIds.split(',') : [];
+  const selectedValues = query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
   const options =
     data?.ListCategories?.edges.map(({ node }) => ({
       chip: true,
@@ -45,7 +50,7 @@ function CategoryFilter() {
       onChange={values =>
         goToUrlQueryAndResetPagination({
           ...query,
-          categoryIds: values.join(','),
+          [PARAM_NAME]: values.join(','),
         })
       }
       data-ga="Filter(category)"

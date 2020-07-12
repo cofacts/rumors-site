@@ -6,6 +6,11 @@ import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 
 import { TYPE_NAME } from 'constants/replyType';
 
+/**
+ * URL param name to read from and write to
+ */
+const PARAM_NAME = 'types';
+
 const OPTIONS = Object.entries(TYPE_NAME).map(([value, label]) => ({
   value,
   label,
@@ -13,7 +18,7 @@ const OPTIONS = Object.entries(TYPE_NAME).map(([value, label]) => ({
 
 function ReplyTypeFilter() {
   const { query } = useRouter();
-  const selectedValues = query.types ? query.types.split(',') : [];
+  const selectedValues = query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
 
   return (
     <BaseFilter
@@ -23,7 +28,7 @@ function ReplyTypeFilter() {
       onChange={selected =>
         goToUrlQueryAndResetPagination({
           ...query,
-          types: selected.join(','),
+          [PARAM_NAME]: selected.join(','),
         })
       }
     />

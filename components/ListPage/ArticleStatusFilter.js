@@ -7,6 +7,11 @@ import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 
 import * as FILTERS from 'constants/articleFilters';
 
+/**
+ * URL param name to read from and write to
+ */
+const PARAM_NAME = 'filters';
+
 const OPTIONS = [
   { value: FILTERS.REPLIED_BY_ME, label: t`Replied by me` },
   { value: FILTERS.NO_USEFUL_REPLY_YET, label: t`No useful reply yet` },
@@ -19,7 +24,7 @@ const LOGIN_ONLY_OPTIONS = [FILTERS.REPLIED_BY_ME];
 function ArticleStatusFilter() {
   const { query } = useRouter();
   const user = useCurrentUser();
-  const selectedValues = query.filters ? query.filters.split(',') : [];
+  const selectedValues = query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
 
   // Disable login-only options when not logged in
   const options = user
@@ -37,7 +42,7 @@ function ArticleStatusFilter() {
       onChange={values =>
         goToUrlQueryAndResetPagination({
           ...query,
-          filters: values.join(','),
+          [PARAM_NAME]: values.join(','),
         })
       }
       data-ga="Filter(filter)"
