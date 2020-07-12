@@ -18,6 +18,7 @@ import FeedDisplay from 'components/FeedDisplay';
 import Filters from 'components/ListPage/Filters';
 import ArticleStatusFilter from 'components/ListPage/ArticleStatusFilter';
 import CategoryFilter from 'components/ListPage/CategoryFilter';
+import ReplyTypeFilter from 'components/ListPage/ReplyTypeFilter';
 import TimeRange from 'components/ListPage/TimeRange';
 import SortInput from 'components/ListPage/SortInput';
 import LoadMore from 'components/ListPage/LoadMore';
@@ -84,6 +85,7 @@ function urlQuery2Filter(
     end,
     replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
     searchUserByArticleId,
+    types,
   } = {},
   { defaultFilters = [], timeRangeKey = 'createdAt', user }
 ) {
@@ -134,6 +136,10 @@ function urlQuery2Filter(
   }
   if (end) {
     filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], LTE: end };
+  }
+
+  if (types) {
+    filterObj.replyTypes = types.split(',');
   }
 
   // Return filterObj only when it is populated.
@@ -257,9 +263,7 @@ function ArticlePageLayout({
 
       <Filters className={classes.filters}>
         {options.filters && <ArticleStatusFilter />}
-        {/* not implemented yet
-          {options.consider && <ReplyTypeFilter />}
-        */}
+        {options.consider && <ReplyTypeFilter />}
         {options.category && <CategoryFilter />}
       </Filters>
 
