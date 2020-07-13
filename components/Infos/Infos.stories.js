@@ -30,6 +30,9 @@ export const WithTimeInfo = () => (
     {/* Time given */}
     <TimeInfo time={new Date(612921600000)} />
 
+    {/* Time in numbers */}
+    <TimeInfo time={612921600000} />
+
     {/* String time and customized time rendering logic */}
     <TimeInfo time="1989-06-04T00:00:00Z">
       {str => `Created ${str} ago`}

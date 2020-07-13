@@ -5,14 +5,14 @@ import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 /**
  * Add tooltip and renders date in preferred format
  *
- * @param {Date | string} props.time
+ * @param {Date | string | number} props.time
  * @param {(t: string) => React.ReactChild} props.children - Render of string
  */
 function TimeInfo({ time, children = t => t }) {
-  const date = typeof time === 'string' ? new Date(time) : time;
+  const date = time instanceof Date ? time : new Date(time);
 
-  if (!isValid(date)) {
-    // `time` may be a string that is not accepted by Date constructor.
+  if (!time || !isValid(date)) {
+    // `time` may be falsy something not accepted by Date constructor.
     // Try rendering it anyway.
     //
     return <>{children(String(time))}</>;
