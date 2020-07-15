@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
@@ -28,12 +27,6 @@ const USER_QUERY = gql`
   }
 `;
 const useStyles = makeStyles({
-  loadingProgress: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
   container: {
     flex: 1,
   },
@@ -84,8 +77,9 @@ function AppLayout({ children }) {
   return (
     <Fragment>
       <AppHeader
-        onMenuButtonClick={toggleSidebar}
         user={data?.GetUser}
+        showProgress={isRouteChanging}
+        onMenuButtonClick={toggleSidebar}
         onLoginModalOpen={openLoginModal}
         onLogout={logout}
       />
@@ -95,9 +89,6 @@ function AppLayout({ children }) {
         user={data?.GetUser}
         onLoginModalOpen={openLoginModal}
       />
-      {isRouteChanging && (
-        <LinearProgress classes={{ root: classes.loadingProgress }} />
-      )}
       <Container className={classes.container}>{children}</Container>
       <AppFooter />
       {loginModalOpen && (

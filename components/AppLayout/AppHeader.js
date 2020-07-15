@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
-import NavLink from 'components/NavLink';
-import GlobalSearch from './GlobalSearch';
+
 import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import {
-  Box,
-  Button,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  Divider,
-  Typography,
-  Badge,
-} from '@material-ui/core';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
+
+import NavLink from 'components/NavLink';
+import GlobalSearch from './GlobalSearch';
+import * as Widgets from './Widgets';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
-import * as Widgets from './Widgets';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
 import { useQuery } from '@apollo/react-hooks';
@@ -109,6 +111,15 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
   },
+  loadingProgress: {
+    position: 'absolute',
+    top: '100%',
+    left: 0,
+    right: 0,
+  },
+  loadingProgressBar: {
+    borderRadius: 4,
+  },
 }));
 
 const LIST_UNSOLVED_ARTICLES = gql`
@@ -125,7 +136,13 @@ const LIST_UNSOLVED_ARTICLES = gql`
 `;
 
 const CustomBadge = withStyles(theme => ({
-  badge: { backgroundColor: '#FB5959', color: theme.palette.common.white },
+  root: {
+    verticalAlign: 'baseline' /* override badge default */,
+  },
+  badge: {
+    backgroundColor: '#FB5959',
+    color: theme.palette.common.white,
+  },
 }))(Badge);
 
 const Links = ({ classes, unsolvedCount }) => (
@@ -169,12 +186,27 @@ const Links = ({ classes, unsolvedCount }) => (
   </>
 );
 
-function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
+/**
+ * @param {User | null} user
+ * @param {boolean} showProgress
+ * @param {() => void} props.onMenuButtonClick
+ * @param {() => void} props.onLoginModalOpen
+ * @param {() => void} props.onLogout
+ */
+function AppHeader({
+  user,
+  showProgress,
+  onMenuButtonClick,
+  onLoginModalOpen,
+  onLogout,
+}) {
   const [anchor, setAnchor] = useState(null);
   const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
   const theme = useTheme();
-  const { data } = useQuery(LIST_UNSOLVED_ARTICLES);
+  const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
+    ssr: false, // no number needed for SSR
+  });
 
   const unsolvedCount = data?.ListArticles?.totalCount;
 
@@ -261,6 +293,14 @@ function AppHeader({ onMenuButtonClick, user, onLoginModalOpen, onLogout }) {
           <MoreHorizIcon />
         </div>
       </Box>
+      {showProgress && (
+        <LinearProgress
+          classes={{
+            root: classes.loadingProgress,
+            bar: classes.loadingProgressBar,
+          }}
+        />
+      )}
     </header>
   );
 }

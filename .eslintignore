@@ -2,3 +2,4 @@ static/*
 node_modules/*
 .next
 coverage
+!.storybook

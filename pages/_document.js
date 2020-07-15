@@ -35,8 +35,8 @@ class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           {/* emoji-mart css */}
           <link
@@ -84,19 +84,6 @@ class MyDocument extends Document {
           </noscript>
           <Main />
           <NextScript />
-          <style jsx global>{`
-            html {
-              font-family: 思源黑體, 'Source Han Sans', 'Noto Sans CJK TC',
-                蘋方-繁, 'PingFang TC', 微軟正黑體, 'Microsoft JhengHei',
-                sans-serif;
-            }
-            #__next {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              min-height: 100vh;
-            }
-          `}</style>
         </body>
       </html>
     );
