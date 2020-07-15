@@ -8,12 +8,12 @@ exports[`Storyshots PlainList Description 1`] = `
   <Component
     classes={
       Object {
-        "root": "Component-root-6",
+        "root": "Component-root-633",
       }
     }
   >
     <ul
-      className="Component-root-6"
+      className="Component-root-633"
     >
       <li>
         item 1

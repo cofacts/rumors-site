@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, forwardRef } from 'react';
+import { useRef, useState, forwardRef } from 'react';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button, Menu, MenuItem } from '@material-ui/core';
@@ -62,19 +62,20 @@ export const options = [
   { value: 'all', label: c('Time range dropdown').t`All` },
   { value: 'now-1d/d', label: t`In 1 Day` },
   { value: 'now-1w/d', label: t`In 1 Week` },
-  { value: 'now-1m/d', label: t`In 1 Month` },
+  { value: 'now-1M/d', label: t`In 1 Month` },
   { value: 'custom', label: c('Time range dropdown').t`Custom` },
 ];
 
 /**
- * @param {{GTE: string?, LTE: string?}} range
+ * @param {string?} start
+ * @param {string?} end
  * @return {string} one of options' value
  */
-function getSelectedFromRange(range) {
-  if (!range) return 'all';
-  if (range.LTE) return 'custom';
+function getSelectedValue(start, end) {
+  if (start === undefined && end === undefined) return 'all';
+  if (end !== undefined) return 'custom';
 
-  const option = options.find(o => o.value === range.GTE);
+  const option = options.find(o => o.value === start);
   return option ? option.value : 'custom';
 }
 
@@ -94,44 +95,36 @@ const Input = forwardRef(({ value, className, type, onChange }, ref) => (
 ));
 Input.displayName = 'input';
 
-function TimeRange({ onChange = () => null, range }) {
+/**
+ * Controlled input of time range
+ *
+ * @param {string?} props.start - ISO date (YYYY-MM-DD) or relative date format supported by Elasticsearch.
+ * @param {string?} props.end - ISO date (YYYY-MM-DD) or relative date format supported by Elasticsearch.
+ * @param {(start: string, end: string) => void} onChange
+ */
+function BaseTimeRange({ start, end, onChange = () => null }) {
   const [anchor, setAnchor] = useState(null);
-  const [selected, setSelected] = useState(getSelectedFromRange(range));
-  const [customValue, setCustomValue] = useState({
-    GTE: range?.GTE,
-    LTE: range?.LTE,
-  });
   const anchorEl = useRef(null);
   const classes = useStyles();
 
   const openMenu = () => setAnchor(anchorEl.current);
   const closeMenu = () => setAnchor(null);
   const select = option => () => {
-    setSelected(option);
-    if (option !== 'custom') {
-      onChange(option === 'all' ? null : { GTE: option });
+    switch (option) {
+      case 'all':
+        onChange(undefined, undefined);
+        break;
+      case 'custom':
+        onChange('', '');
+        break;
+      default:
+        onChange(option, undefined);
     }
     closeMenu();
   };
 
-  const setAndUpdateValue = value => {
-    setCustomValue(value);
-    onChange(value);
-  };
-
-  // update state when range prop change
-  useEffect(() => {
-    setCustomValue(customValue => {
-      if (!range) return customValue;
-      return customValue.GTE !== range.GTE || customValue.LTE !== range.LTE
-        ? range
-        : customValue;
-    });
-
-    setSelected(() => getSelectedFromRange(range));
-  }, [range]);
-
-  const custom = selected === 'custom';
+  const selectedValue = getSelectedValue(start, end);
+  const isCustom = selectedValue === 'custom';
 
   return (
     <div className={classes.root}>
@@ -139,15 +132,13 @@ function TimeRange({ onChange = () => null, range }) {
         <Button className={classes.calendarButton} onClick={openMenu}>
           <DateRangeIcon className={classes.calendarIcon} />
         </Button>
-        {custom ? (
+        {isCustom ? (
           <Input
             ref={anchorEl}
-            value={customValue.GTE}
+            value={start}
             className={classes.startDate}
             onChange={e => {
-              e.persist();
-              const newValue = { ...customValue, GTE: e.target.value };
-              setAndUpdateValue(newValue);
+              onChange(e.target.value, end);
             }}
             type="date"
           />
@@ -157,27 +148,24 @@ function TimeRange({ onChange = () => null, range }) {
             ref={anchorEl}
             onClick={openMenu}
           >
-            {options.find(option => option.value === selected).label}
+            {options.find(option => option.value === selectedValue).label}
           </Button>
         )}
       </ButtonGroup>
-      {custom && (
+      {isCustom && (
         <>
           <span className={classes.to}>{t`to`}</span>
           <input
-            value={customValue.LTE}
+            value={end}
             className={classes.endDate}
             onChange={e => {
-              e.persist();
-              const newValue = { ...customValue, LTE: e.target.value };
-              setAndUpdateValue(newValue);
+              onChange(start, e.target.value);
             }}
             type="date"
           />
         </>
       )}
       <Menu
-        id="time-range"
         anchorEl={anchor}
         keepMounted
         open={Boolean(anchor)}
@@ -197,6 +185,4 @@ function TimeRange({ onChange = () => null, range }) {
   );
 }
 
-TimeRange.displayName = 'TimeRange';
-
-export default TimeRange;
+export default BaseTimeRange;
