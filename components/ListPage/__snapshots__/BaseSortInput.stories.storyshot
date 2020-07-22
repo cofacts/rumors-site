@@ -3,14 +3,14 @@
 exports[`Storyshots ListPage/BaseSortInput No Props Given 1`] = `
 <BaseSortInput>
   <div
-    className="MuiFormControl-root MuiTextField-root makeStyles-root-6"
+    className="MuiFormControl-root MuiTextField-root makeStyles-root"
   >
     <div
-      className="MuiInputBase-root MuiInput-root makeStyles-inputClass-7 makeStyles-inputClass-10 Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
+      className="MuiInputBase-root MuiInput-root makeStyles-inputClass makeStyles-inputClass Mui-disabled Mui-disabled MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
       onClick={[Function]}
     >
       <div
-        className="MuiInputAdornment-root makeStyles-adornment-8 MuiInputAdornment-positionStart"
+        className="MuiInputAdornment-root makeStyles-adornment MuiInputAdornment-positionStart"
       >
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
@@ -50,14 +50,14 @@ exports[`Storyshots ListPage/BaseSortInput With Options 1`] = `
   }
 >
   <div
-    className="MuiFormControl-root MuiTextField-root makeStyles-root-108"
+    className="MuiFormControl-root MuiTextField-root makeStyles-root"
   >
     <div
-      className="MuiInputBase-root MuiInput-root makeStyles-inputClass-109 makeStyles-inputClass-112 MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
+      className="MuiInputBase-root MuiInput-root makeStyles-inputClass makeStyles-inputClass MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart"
       onClick={[Function]}
     >
       <div
-        className="MuiInputAdornment-root makeStyles-adornment-110 MuiInputAdornment-positionStart"
+        className="MuiInputAdornment-root makeStyles-adornment MuiInputAdornment-positionStart"
       >
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
