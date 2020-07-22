@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
-import Tooltip from '@material-ui/core/Tooltip';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Tooltip from './Tooltip';
+import { makeStyles } from '@material-ui/core/styles';
 import isValid from 'date-fns/isValid';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import { TYPE_ICON } from 'constants/replyType';
@@ -29,16 +29,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: 14,
   },
 }));
-
-const CustomTooltip = withStyles(theme => ({
-  arrow: {
-    color: theme.palette.secondary[500],
-  },
-  tooltip: {
-    display: 'flex',
-    backgroundColor: theme.palette.secondary[500],
-  },
-}))(Tooltip);
 
 export default function ArticleInfo({ article }) {
   const createdAt = new Date(article.createdAt);
@@ -69,7 +59,7 @@ export default function ArticleInfo({ article }) {
       </span>
 
       {article.replyCount > 0 && (
-        <CustomTooltip
+        <Tooltip
           title={
             <>
               {Object.entries(opinions).map(([k, v]) => {
@@ -92,12 +82,12 @@ export default function ArticleInfo({ article }) {
               replyCount
             )}
           </span>
-        </CustomTooltip>
+        </Tooltip>
       )}
       {isValid(createdAt) && (
-        <CustomTooltip title={format(createdAt)} arrow>
+        <Tooltip title={format(createdAt)} arrow>
           <span className={classes.info}>{t`${timeAgoStr} ago`}</span>
-        </CustomTooltip>
+        </Tooltip>
       )}
     </div>
   );

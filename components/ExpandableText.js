@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import { t } from 'ttag';
 import { truncate } from 'lib/text';
 import { withStyles, makeStyles } from '@material-ui/core';
@@ -9,12 +9,30 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     overflow: 'hidden',
   },
+
+  /**
+   * Moving toggle button to bottom-right for line-clamp sytle ExpandableText
+   */
   toggleButtonContainer: {
     position: 'absolute',
     right: 0,
     bottom: 0,
-    paddingLeft: '3em',
-    backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0) 0%, ${theme.palette.common.white} 30%, ${theme.palette.common.white} 100%)`,
+    background: `var(--background, ${theme.palette.common.white})`,
+
+    /**
+     * Fade-out area
+     */
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      right: '100%',
+      top: 0,
+      bottom: 0,
+      width: '5em',
+      background: 'inherit',
+      maskImage:
+        'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 50%, #000 100%)',
+    },
   },
 }));
 
@@ -26,11 +44,12 @@ const ToggleButton = withStyles({
     cursor: 'pointer',
     background: 'transparent',
     fontSize: 'inherit',
-    padding: 0,
     lineHeight: 'inherit',
+    padding: 0,
+    margin: 0,
   },
-})(({ classes, toggleExpand, expanded }) => (
-  <button className={classes.root} onClick={toggleExpand}>
+})(({ classes, toggleExpand, expanded, ...otherProps }) => (
+  <button className={classes.root} onClick={toggleExpand} {...otherProps}>
     ({expanded ? t`Show Less` + ' ▲' : t`Show More` + ' ▼'})
   </button>
 ));
@@ -47,23 +66,18 @@ const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
 
   const toggleExpand = () => setExpanded(!expanded);
 
-  const cloneAndComputeHeight = () => {
-    const computedStyle = window.getComputedStyle(containerRef.current);
-    const lh = parseFloat(computedStyle.lineHeight);
-    setLineHeight(isNaN(lh) ? 14 : lh);
-    const clone = containerRef.current.cloneNode(true);
-    clone.style.maxHeight = '';
-    rootRef.current.appendChild(clone);
-    setHeight(parseFloat(window.getComputedStyle(clone).height));
-    rootRef.current.removeChild(clone);
-  };
-
   useEffect(() => {
     if (lineClamp) {
-      cloneAndComputeHeight();
+      const computedStyle = window.getComputedStyle(containerRef.current);
+      const lh = parseFloat(computedStyle.lineHeight);
+      setLineHeight(isNaN(lh) ? 14 : lh);
+      const clone = containerRef.current.cloneNode(true);
+      clone.style.maxHeight = '';
+      rootRef.current.appendChild(clone);
+      setHeight(parseFloat(window.getComputedStyle(clone).height));
+      rootRef.current.removeChild(clone);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lineClamp]);
 
   const renderWithLineChampLimits = () => {
     return (
@@ -73,11 +87,18 @@ const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
         style={{ maxHeight: expanded ? undefined : lineHeight * lineClamp }}
       >
         {children}
-        {height >= lineHeight * lineClamp && (
-          <div className={classes.toggleButtonContainer}>
-            <ToggleButton toggleExpand={toggleExpand} expanded={expanded} />
-          </div>
-        )}
+        {height >= lineHeight * lineClamp &&
+          (expanded ? (
+            <ToggleButton
+              style={{ float: 'right' }}
+              toggleExpand={toggleExpand}
+              expanded={expanded}
+            />
+          ) : (
+            <div className={classes.toggleButtonContainer}>
+              <ToggleButton toggleExpand={toggleExpand} expanded={expanded} />
+            </div>
+          ))}
       </div>
     );
   };
@@ -86,19 +107,27 @@ const ExpandableText = ({ className, lineClamp, wordCount = 40, children }) => {
     expanded ? (
       <>
         {children}
-        <ToggleButton toggleExpand={toggleExpand} expanded={expanded} />
+        <ToggleButton
+          style={{ marginLeft: '1em' }}
+          toggleExpand={toggleExpand}
+          expanded={expanded}
+        />
       </>
     ) : (
       truncate(children, {
         wordCount,
-        // eslint-disable-next-line react/display-name
-        moreElem: (() => (
-          <ToggleButton
-            key="expandable-text-more-button"
-            toggleExpand={toggleExpand}
-            expanded={expanded}
-          />
-        ))(),
+        moreElem: (
+          <Fragment
+            key="toggle" /* key required because truncate() returns array */
+          >
+            ⋯
+            <ToggleButton
+              key="expandable-text-more-button"
+              toggleExpand={toggleExpand}
+              expanded={expanded}
+            />
+          </Fragment>
+        ),
       })
     );
 
