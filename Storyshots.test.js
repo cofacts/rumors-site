@@ -4,6 +4,7 @@ import initStoryshots, {
   multiSnapshotWithOptions,
 } from '@storybook/addon-storyshots';
 import { createSerializer } from 'enzyme-to-json';
+import MockDate from 'mockdate';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -54,8 +55,12 @@ function removeMaterialUIInternals(json) {
 }
 
 initStoryshots({
-  test: multiSnapshotWithOptions({
-    renderer: mount,
-  }),
+  test: arg => {
+    MockDate.set('2020-01-01');
+    multiSnapshotWithOptions({
+      renderer: mount,
+    })(arg);
+    MockDate.reset();
+  },
   snapshotSerializers: [createSerializer({ map: removeMaterialUIInternals })],
 });

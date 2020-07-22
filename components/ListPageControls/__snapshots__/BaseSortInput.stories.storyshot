@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots ListPage/BaseSortInput No Props Given 1`] = `
+exports[`Storyshots ListPageControls/BaseSortInput No Props Given 1`] = `
 <BaseSortInput>
   <div
     className="MuiFormControl-root MuiTextField-root makeStyles-root"
@@ -33,7 +33,7 @@ exports[`Storyshots ListPage/BaseSortInput No Props Given 1`] = `
 </BaseSortInput>
 `;
 
-exports[`Storyshots ListPage/BaseSortInput With Options 1`] = `
+exports[`Storyshots ListPageControls/BaseSortInput With Options 1`] = `
 <BaseSortInput
   onChange={[Function]}
   options={

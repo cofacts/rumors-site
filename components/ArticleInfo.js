@@ -39,6 +39,7 @@ const CustomTooltip = withStyles(theme => ({
     backgroundColor: theme.palette.secondary[500],
   },
 }))(Tooltip);
+
 export default function ArticleInfo({ article }) {
   const createdAt = new Date(article.createdAt);
   const { replyRequestCount, replyCount } = article;

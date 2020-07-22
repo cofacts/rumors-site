@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
-import { makeStyles } from '@material-ui/core/styles';
-import ArticleInfo from './ArticleInfo';
-import ReplyItem from './ReplyItem';
-import ReplyFeedback from './ReplyFeedback';
 import { c, t } from 'ttag';
+import { makeStyles } from '@material-ui/core/styles';
 import { highlight } from 'lib/text';
-import ExpandableText from './ExpandableText';
+import ArticleInfo from 'components/ArticleInfo';
+import ReplyFeedback from 'components/ReplyFeedback';
+import ExpandableText from 'components/ExpandableText';
+import ReplyItem from './ReplyItem';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
