@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
 import Link from 'next/link';
-
 import { useMutation } from '@apollo/react-hooks';
-import { dataIdFromObject } from 'lib/apollo';
-import ArticleCategory from './ArticleCategory';
-
 import {
   Box,
   Chip,
@@ -16,8 +12,12 @@ import {
   Snackbar,
 } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { nl2br } from 'lib/text';
+import { dataIdFromObject } from 'lib/apollo';
+import ArticleCategory from './ArticleCategory';
 import DownVoteDialog from './DownVoteDialog';
+
+import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -346,16 +346,16 @@ function CategoryOption({
       )}
       <div>
         <Typography variant="body2" color="secondary">
-          {category.description}{' '}
-          <Link
-            href={{
-              pathname: '/articles',
-              query: { categoryIds: category.id },
-            }}
-          >
-            <a className={classes.example}>{t`See examples`}</a>
-          </Link>
+          {nl2br(category.description)}
         </Typography>
+        <Link
+          href={{
+            pathname: '/articles',
+            query: { categoryIds: category.id },
+          }}
+        >
+          <a className={classes.example}>{t`See examples`}</a>
+        </Link>
       </div>
       <Divider className={classes.divider} />
       <Snackbar
