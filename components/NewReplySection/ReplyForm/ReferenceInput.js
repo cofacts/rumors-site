@@ -20,6 +20,8 @@ const useStyles = makeStyles(theme => ({
     outline: 'none',
     padding: '14px 17px',
     [theme.breakpoints.up('md')]: {
+      flex: 'none', // Disable flex so that user can enlarge textarea by themselves
+      minHeight: 144,
       border: `1px solid ${theme.palette.secondary[100]}`,
       '&:focus': {
         border: `1px solid ${theme.palette.primary[500]}`,

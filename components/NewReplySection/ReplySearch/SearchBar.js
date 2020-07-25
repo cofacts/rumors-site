@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   iconButtonLabel: {
     color: theme.palette.common.white,
     '& svg': {
-      fontSize: 10,
+      fontSize: 16,
     },
   },
 }));
@@ -112,6 +112,7 @@ export default function SearchBar({ className }) {
       <Box position="relative" width="100%" display="flex" alignItems="center">
         <input
           className={classes.input}
+          placeholder="參考過往回應"
           type="text"
           value={buffer}
           onChange={e => setBuffer(e.target.value)}
@@ -125,7 +126,24 @@ export default function SearchBar({ className }) {
           }}
         />
         {buffer && (
-          <Box position="absolute" left={10 + getWidth(inputRef, buffer)}>
+          <Box position="absolute" left={14 + getWidth(inputRef, buffer)}>
+            <IconButton
+              classes={{
+                root: classes.iconButtonRoot,
+                label: classes.iconButtonLabel,
+              }}
+              disableElevation
+              aria-label="search"
+              onClick={() => {
+                setSearch(buffer);
+              }}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Box>
+        )}
+        {buffer && (
+          <Box position="absolute" left={44 + getWidth(inputRef, buffer)}>
             <IconButton
               classes={{
                 root: classes.iconButtonRoot,
