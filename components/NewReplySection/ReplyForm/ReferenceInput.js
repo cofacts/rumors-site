@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   textarea: {
-    flex: 1,
     width: '100%',
     borderRadius: 8,
     border: 'none',
