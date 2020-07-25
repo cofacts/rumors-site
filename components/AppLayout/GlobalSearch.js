@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function GlobalSearch({ displayLogo, hideLogo }) {
+function GlobalSearch({ setLogo }) {
   const router = useRouter();
   const { query } = router;
   const [expanded, setExpanded] = useState(false);
@@ -120,7 +120,7 @@ function GlobalSearch({ displayLogo, hideLogo }) {
         setFocus(false);
         if (value) return;
         setExpanded(false);
-        displayLogo();
+        setLogo(true);
       }}
     >
       <div className={classes.root}>
@@ -132,7 +132,7 @@ function GlobalSearch({ displayLogo, hideLogo }) {
             <SearchIcon
               onClick={() => {
                 setExpanded(!expanded);
-                hideLogo();
+                setLogo(false);
               }}
             />
           )}
