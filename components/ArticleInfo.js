@@ -99,6 +99,11 @@ ArticleInfo.fragments = {
       replyRequestCount
       replyCount
       createdAt
+      articleReplies(status: NORMAL) {
+        reply {
+          type
+        }
+      }
     }
   `,
 };
