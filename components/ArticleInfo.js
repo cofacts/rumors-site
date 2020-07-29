@@ -1,10 +1,8 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
-import isValid from 'date-fns/isValid';
 import { makeStyles } from '@material-ui/core/styles';
 import { TYPE_ICON } from 'constants/replyType';
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
-import Infos from './Infos';
+import Infos, { TimeInfo } from './Infos';
 import Tooltip from './Tooltip';
 
 const useStyles = makeStyles(() => ({
@@ -29,7 +27,6 @@ const useStyles = makeStyles(() => ({
 export default function ArticleInfo({ article }) {
   const createdAt = new Date(article.createdAt);
   const { replyRequestCount, replyCount } = article;
-  const timeAgoStr = formatDistanceToNow(createdAt);
 
   const opinions = (
     article?.articleReplies.map(({ reply }) => reply.type) || []
@@ -80,11 +77,7 @@ export default function ArticleInfo({ article }) {
           </span>
         </Tooltip>
       )}
-      {isValid(createdAt) && (
-        <Tooltip title={format(createdAt)} arrow>
-          <span>{t`${timeAgoStr} ago`}</span>
-        </Tooltip>
-      )}
+      <TimeInfo time={createdAt}>{timeAgoStr => t`${timeAgoStr} ago`}</TimeInfo>
     </Infos>
   );
 }

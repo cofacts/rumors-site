@@ -1,10 +1,7 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
 import Link from 'next/link';
-import isValid from 'date-fns/isValid';
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
-import Tooltip from './Tooltip';
-import Infos from './Infos';
+import Infos, { TimeInfo } from './Infos';
 
 export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
   const createdAt = articleReplyCreatedAt
@@ -12,19 +9,16 @@ export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
     : new Date();
   const { articleReplies, user } = reply;
   const referenceCount = articleReplies?.length;
-  const timeAgoStr = formatDistanceToNow(createdAt);
 
   return (
     <Infos>
-      {isValid(createdAt) && (
-        <Tooltip title={format(createdAt)} arrow>
-          <>
-            <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
-              <a>{t`replied ${timeAgoStr} ago`}</a>
-            </Link>
-          </>
-        </Tooltip>
-      )}
+      <TimeInfo time={createdAt}>
+        {timeAgoStr => (
+          <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
+            <a>{t`replied ${timeAgoStr} ago`}</a>
+          </Link>
+        )}
+      </TimeInfo>
 
       {user?.name && t`originally written by ${user.name}`}
 
