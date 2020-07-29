@@ -76,19 +76,18 @@ const useStyles = makeStyles(() => ({
  * @param {object} urlQuery - URL query object
  * @returns {object} ListArticleFilter
  */
-function urlQuery2Filter(
-  {
-    filters,
-    q,
-    categoryIds,
-    start,
-    end,
-    replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
-    searchUserByArticleId,
-    types,
-  } = {},
-  { defaultFilters = [], timeRangeKey = 'createdAt', user }
-) {
+function urlQuery2Filter({
+  filters,
+  q,
+  categoryIds,
+  start,
+  end,
+  replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
+  searchUserByArticleId,
+  types,
+  timeRangeKey,
+  userId,
+} = {}) {
   const filterObj = {};
 
   if (q) {
@@ -98,19 +97,17 @@ function urlQuery2Filter(
     };
   }
 
-  filterObj.replyRequestCount = { GTE: replyRequestCount };
-
   if (categoryIds) {
     filterObj.categoryIds = categoryIds.split(',');
   }
 
-  const selectedFilters = filters ? filters.split(',') : defaultFilters;
+  const selectedFilters = typeof filters === 'string' ? filters.split(',') : [];
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
-        if (!user) break;
+        if (!userId) break;
         filterObj.articleRepliesFrom = {
-          userId: user.id,
+          userId: userId,
           exists: true,
         };
         break;
@@ -146,6 +143,9 @@ function urlQuery2Filter(
   if (!Object.keys(filterObj).length) {
     return undefined;
   }
+
+  filterObj.replyRequestCount = { GTE: replyRequestCount };
+
   return filterObj;
 }
 
@@ -153,8 +153,8 @@ function urlQuery2Filter(
  * @param {object} urlQuery - URL query object
  * @returns {object[]} ListArticleOrderBy array
  */
-function urlQuery2OrderBy({ orderBy } = {}, defaultOrder) {
-  const key = orderBy || defaultOrder;
+function urlQuery2OrderBy({ orderBy } = {}) {
+  const key = orderBy || 'lastRequestedAt';
   return [{ [key]: 'DESC' }];
 }
 
@@ -163,14 +163,10 @@ function urlQuery2OrderBy({ orderBy } = {}, defaultOrder) {
  * @param {object} query
  * @returns {object}
  */
-export function getQueryVars(query, option) {
+export function getQueryVars(query) {
   return {
-    filter: urlQuery2Filter(query, {
-      defaultFilters: option?.filters,
-      timeRangeKey: option?.timeRangeKey,
-      user: option?.user,
-    }),
-    orderBy: urlQuery2OrderBy(query, option?.order),
+    filter: urlQuery2Filter(query),
+    orderBy: urlQuery2OrderBy(query),
   };
 }
 
@@ -189,12 +185,15 @@ function ArticlePageLayout({
   const classes = useStyles();
   const { query } = useRouter();
   const user = useCurrentUser();
-  const listQueryVars = getQueryVars(query, {
-    filters: defaultFilters,
-    order: defaultOrder,
-    timeRangeKey,
-    user,
-  });
+
+  let queryWithOptions = { ...query };
+  queryWithOptions.filters =
+    queryWithOptions.filters || defaultFilters.toString();
+  queryWithOptions.orderBy = queryWithOptions.orderBy || defaultOrder;
+  queryWithOptions.timeRangeKey = timeRangeKey;
+  queryWithOptions.userId = user?.id;
+
+  const listQueryVars = getQueryVars(queryWithOptions);
 
   const {
     loading,
@@ -227,7 +226,10 @@ function ArticlePageLayout({
     </mark>
   );
 
-  const queryString = querystring.stringify(query);
+  // if there's no repliedByMe in filter, we needn't userId field
+  if (!listQueryVars.articleRepliesFrom) delete queryWithOptions.userId;
+  const queryString = querystring.stringify(queryWithOptions);
+
   return (
     <Box pt={2}>
       {query.searchUserByArticleId && (

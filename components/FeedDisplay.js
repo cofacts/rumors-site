@@ -46,6 +46,7 @@ function FeedDisplay({ feedUrl }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const encodedFeedUrl = encodeURIComponent(feedUrl);
 
   return (
     <>
@@ -68,10 +69,12 @@ function FeedDisplay({ feedUrl }) {
       >
         <List>
           <ListSubheader>{t`Get update using Email`}</ListSubheader>
-          <ListItemLink href={`https://feedrabbit.com/?url=${feedUrl}`}>
+          <ListItemLink href={`https://feedrabbit.com/?url=${encodedFeedUrl}`}>
             {t`Via Feedrabbit`}
           </ListItemLink>
-          <ListItemLink href={`https://blogtrottr.com/?subscribe=${feedUrl}`}>
+          <ListItemLink
+            href={`https://blogtrottr.com/?subscribe=${encodedFeedUrl}`}
+          >
             {t`Via Blogtrottr`}
           </ListItemLink>
           <ListItemLink href="https://ifttt.com/feed">
@@ -80,9 +83,7 @@ function FeedDisplay({ feedUrl }) {
 
           <ListSubheader>{t`Get RSS updates`}</ListSubheader>
           <ListItemLink
-            href={`https://feedly.com/i/discover/sources/search/feed/${encodeURIComponent(
-              feedUrl
-            )}`}
+            href={`https://feedly.com/i/discover/sources/search/feed/${encodedFeedUrl}`}
           >
             {t`Via Feedly`}
           </ListItemLink>
