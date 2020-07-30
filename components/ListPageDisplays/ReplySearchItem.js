@@ -204,7 +204,7 @@ ReplySearchItem.fragments = {
           id
           text
           ...ArticleInfo
-          articleReplies {
+          articleReplies(status: NORMAL) {
             ownVote
             reply {
               id
