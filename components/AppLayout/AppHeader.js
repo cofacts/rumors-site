@@ -232,7 +232,7 @@ function AppHeader({
             <Links classes={classes} unsolvedCount={unsolvedCount} />
           </Box>
         </div>
-        <GlobalSearch onIconClick={() => setDisplayLogo(false)} />
+        <GlobalSearch onExpand={expanded => setDisplayLogo(!expanded)} />
         <Box display={['none', 'none', 'block']}>
           {user?.name ? (
             <>

@@ -5,15 +5,9 @@ exports[`Storyshots PlainList Description 1`] = `
   <p>
     Just an unordered list (ul) without default list-style. small utility.
   </p>
-  <Component
-    classes={
-      Object {
-        "root": "Component-root-633",
-      }
-    }
-  >
+  <PlainList>
     <ul
-      className="Component-root-633"
+      className="makeStyles-root"
     >
       <li>
         item 1
@@ -25,6 +19,6 @@ exports[`Storyshots PlainList Description 1`] = `
         item 3
       </li>
     </ul>
-  </Component>
+  </PlainList>
 </div>
 `;

@@ -2,11 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
-import { TYPE_NAME } from '../constants/replyType';
+import { TYPE_NAME } from 'constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
-import ExpandableText from './ExpandableText';
-import ReplyFeedback from './ReplyFeedback';
-import ReplyInfo from './ReplyInfo';
+import ExpandableText from 'components/ExpandableText';
+import ReplyFeedback from 'components/ReplyFeedback';
+import ReplyInfo from 'components/ReplyInfo';
 import { highlight } from 'lib/text';
 
 const useStyles = makeStyles(theme => ({

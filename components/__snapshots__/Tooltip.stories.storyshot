@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Tooltip Normal 1`] = `
+<p
+  style={
+    Object {
+      "display": "flex",
+      "flexFlow": "row wrap",
+      "justifyContent": "space-around",
+    }
+  }
+>
+  <Tooltip
+    title="1989-06-04"
+  >
+    <span
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="1989-06-04"
+    >
+      20 years ago
+    </span>
+  </Tooltip>
+  <Tooltip
+    title={
+      <React.Fragment>
+        Some 
+        <em>
+          HTML
+        </em>
+         
+        <b>
+          text
+        </b>
+      </React.Fragment>
+    }
+  >
+    <span
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title={null}
+    >
+      HTML title
+    </span>
+  </Tooltip>
+</p>
+`;
+
+exports[`Storyshots Tooltip Placements 1`] = `
+<p
+  style={
+    Object {
+      "display": "flex",
+      "flexFlow": "row wrap",
+      "justifyContent": "space-around",
+      "margin": 50,
+    }
+  }
+>
+  <Tooltip
+    placement="top"
+    title="top"
+  >
+    <code
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="top"
+    >
+      placement=top
+    </code>
+  </Tooltip>
+  <Tooltip
+    placement="bottom"
+    title="bottom"
+  >
+    <code
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="bottom"
+    >
+      placement=bottom
+    </code>
+  </Tooltip>
+  <Tooltip
+    placement="right"
+    title="right"
+  >
+    <code
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="right"
+    >
+      placement=right
+    </code>
+  </Tooltip>
+  <Tooltip
+    placement="bottom-end"
+    title="bottom-end"
+  >
+    <code
+      aria-describedby={null}
+      className=""
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      title="bottom-end"
+    >
+      placement=bottom-end
+    </code>
+  </Tooltip>
+</p>
+`;

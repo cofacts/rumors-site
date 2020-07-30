@@ -4,8 +4,11 @@ import initStoryshots, {
   multiSnapshotWithOptions,
 } from '@storybook/addon-storyshots';
 import { createSerializer } from 'enzyme-to-json';
+import MockDate from 'mockdate';
 
 Enzyme.configure({ adapter: new Adapter() });
+
+const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox)-.+?)-\d+/g;
 
 function removeMaterialUIInternals(json) {
   // Remove Portal containerInfo
@@ -31,15 +34,33 @@ function removeMaterialUIInternals(json) {
   if (json.type.match(/^(ForwardRef|WithStyles|ThemeProvider|Styled)/)) {
     // When skipping HOC or wrapper, the first children are usually setups (such as <CssBaseline>),
     // we should ignore together
-    return json.children && json.children[json.children.length - 1];
+    return (
+      json.children &&
+      removeMaterialUIInternals(json.children[json.children.length - 1])
+    );
+  }
+
+  // Remove makeStyle className serial numbers
+  if (json.props?.className?.match(MAKE_STYLE_REGEXP)) {
+    json = {
+      ...json,
+      props: {
+        ...json.props,
+        className: json.props.className.replace(MAKE_STYLE_REGEXP, '$1'),
+      },
+    };
   }
 
   return json;
 }
 
 initStoryshots({
-  test: multiSnapshotWithOptions({
-    renderer: mount,
-  }),
+  test: arg => {
+    MockDate.set('2020-01-01');
+    multiSnapshotWithOptions({
+      renderer: mount,
+    })(arg);
+    MockDate.reset();
+  },
   snapshotSerializers: [createSerializer({ map: removeMaterialUIInternals })],
 });

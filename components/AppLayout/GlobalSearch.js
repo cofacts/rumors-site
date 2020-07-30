@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function GlobalSearch({ onIconClick }) {
+function GlobalSearch({ onExpand }) {
   const router = useRouter();
   const { query } = router;
   const [expanded, setExpanded] = useState(false);
@@ -110,13 +110,19 @@ function GlobalSearch({ onIconClick }) {
       value={value}
       onChange={e => {
         setValue(e.target.value);
-        if (!e.target.value && expanded) setExpanded(false);
       }}
     />
   );
 
   return (
-    <ClickAwayListener onClickAway={() => setFocus(false)}>
+    <ClickAwayListener
+      onClickAway={() => {
+        setFocus(false);
+        if (value) return;
+        onExpand(false);
+        setExpanded(false);
+      }}
+    >
       <div className={classes.root}>
         <Box display={['none', 'none', 'block']}>{input}</Box>
         <Box display={['block', 'block', 'none']} textAlign="right">
@@ -125,8 +131,8 @@ function GlobalSearch({ onIconClick }) {
           ) : (
             <SearchIcon
               onClick={() => {
+                onExpand(!expanded);
                 setExpanded(!expanded);
-                onIconClick();
               }}
             />
           )}

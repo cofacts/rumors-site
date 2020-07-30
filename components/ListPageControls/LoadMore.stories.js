@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import LoadMore from './LoadMore';
 
 export default {
-  title: 'ListPage/LoadMore',
+  title: 'ListPageControls/LoadMore',
   component: 'LoadMore',
   decorators: [withKnobs],
 };

@@ -9,13 +9,13 @@ import {
   DialogTitle,
   DialogContent,
 } from '@material-ui/core';
-import ArticleInfo from './ArticleInfo';
+import ArticleInfo from 'components/ArticleInfo';
+import PlainList from 'components/PlainList';
+import ReplyFeedback from 'components/ReplyFeedback';
+import ExpandableText from 'components/ExpandableText';
 import ArticleItem from './ArticleItem';
-import PlainList from './PlainList';
 import ReplyItem from './ReplyItem';
-import ReplyFeedback from './ReplyFeedback';
 import { nl2br } from 'lib/text';
-import ExpandableText from './ExpandableText';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const useStyles = makeStyles(theme => ({
@@ -204,7 +204,7 @@ ReplySearchItem.fragments = {
           id
           text
           ...ArticleInfo
-          articleReplies {
+          articleReplies(status: NORMAL) {
             ownVote
             reply {
               id

@@ -23,7 +23,6 @@ import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import CreateReplyRequestForm from 'components/CreateReplyRequestForm';
 import NewReplySection from 'components/NewReplySection';
-import ArticleItem from 'components/ArticleItem';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import cx from 'clsx';
@@ -168,7 +167,9 @@ const LOAD_ARTICLE = gql`
       similarArticles: relatedArticles {
         edges {
           node {
-            ...ArticleItem
+            id
+            text
+            ...ArticleInfo
           }
         }
       }
@@ -182,9 +183,9 @@ const LOAD_ARTICLE = gql`
   ${ReplyRequestReason.fragments.ReplyRequestInfo}
   ${CurrentReplies.fragments.CurrentRepliesData}
   ${NewReplySection.fragments.RelatedArticleData}
-  ${ArticleItem.fragments.ArticleItem}
   ${ArticleCategories.fragments.ArticleCategoryData}
   ${ArticleCategories.fragments.AddCategoryDialogData}
+  ${ArticleInfo.fragments.articleInfo}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
