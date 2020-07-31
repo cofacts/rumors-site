@@ -12,6 +12,8 @@ import { ellipsis } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ListPageDisplays/ArticleItem';
+import ListPageCards from 'components/ListPageDisplays/ListPageCards';
+import ArticleCard from 'components/ListPageDisplays/ArticleCard';
 import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
@@ -29,16 +31,18 @@ const LIST_ARTICLES = gql`
     $orderBy: [ListArticleOrderBy]
     $after: String
   ) {
-    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 10) {
+    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 25) {
       edges {
         node {
           ...ArticleItem
+          ...ArticleCard
         }
         cursor
       }
     }
   }
   ${ArticleItem.fragments.ArticleItem}
+  ${ArticleCard.fragments.ArticleCard}
 `;
 
 const LIST_STAT = gql`
@@ -171,6 +175,12 @@ function ArticlePageLayout({
     consider: true,
     category: true,
   },
+
+  // What "page" the <ArticlePageLayout> is used.
+  // FIXME: this is a temporary variable bridging the current <ArticlePageLayout> with
+  //        future layout with no <ArticlePageLayout> at all.
+  //
+  page,
 }) {
   const classes = useStyles();
   const { query } = useRouter();
@@ -258,16 +268,24 @@ function ArticlePageLayout({
         listArticlesError.toString()
       ) : (
         <>
-          <ul className={classes.articleList}>
-            {articleEdges.map(({ node }) => (
-              <ArticleItem
-                key={node.id}
-                article={node}
-                query={query.q}
-                {...articleDisplayConfig}
-              />
-            ))}
-          </ul>
+          {page === 'replies' || page === 'search' ? (
+            <ul className={classes.articleList}>
+              {articleEdges.map(({ node }) => (
+                <ArticleItem
+                  key={node.id}
+                  article={node}
+                  query={query.q}
+                  {...articleDisplayConfig}
+                />
+              ))}
+            </ul>
+          ) : (
+            <ListPageCards>
+              {articleEdges.map(({ node }) => (
+                <ArticleCard key={node.id} article={node} query={query.q} />
+              ))}
+            </ListPageCards>
+          )}
 
           <LoadMore
             edges={articleEdges}
