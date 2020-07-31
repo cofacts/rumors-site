@@ -42,6 +42,7 @@ function HoaxForYouPage() {
           category: true,
         }}
         defaultFilters={[NO_USEFUL_REPLY_YET, ASKED_MANY_TIMES]}
+        page="hoax-for-you"
       />
     </AppLayout>
   );

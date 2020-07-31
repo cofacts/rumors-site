@@ -39,6 +39,7 @@ function ReplyListPage() {
         }}
         defaultOrder="lastRepliedAt"
         timeRangeKey="repliedAt"
+        page="replies"
       />
     </AppLayout>
   );

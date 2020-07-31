@@ -30,7 +30,7 @@ function ArticleListPage() {
           href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
         />
       </Head>
-      <ArticlePageLayout title={t`Dubious Messages`} />
+      <ArticlePageLayout title={t`Dubious Messages`} page="articles" />
     </AppLayout>
   );
 }
