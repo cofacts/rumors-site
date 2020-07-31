@@ -1,19 +1,13 @@
 import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
-import Tooltip from './Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
-import isValid from 'date-fns/isValid';
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import { TYPE_ICON } from 'constants/replyType';
+import Infos, { TimeInfo } from './Infos';
+import Tooltip from './Tooltip';
 
-const useStyles = makeStyles(theme => ({
-  info: {
-    color: theme.palette.secondary[200],
-    '&:not(:first-child)': {
-      marginLeft: 6,
-      paddingLeft: 6,
-      borderLeft: `1px solid ${theme.palette.secondary[200]}`,
-    },
+const useStyles = makeStyles(() => ({
+  opinions: {
+    display: 'flex',
   },
   opinion: {
     display: 'flex',
@@ -33,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 export default function ArticleInfo({ article }) {
   const createdAt = new Date(article.createdAt);
   const { replyRequestCount, replyCount } = article;
-  const timeAgoStr = formatDistanceToNow(createdAt);
 
   const opinions = (
     article?.articleReplies.map(({ reply }) => reply.type) || []
@@ -49,19 +42,19 @@ export default function ArticleInfo({ article }) {
   const classes = useStyles();
 
   return (
-    <div>
-      <span className={classes.info}>
+    <Infos>
+      <>
         {ngettext(
           msgid`${replyRequestCount} occurrence`,
           `${replyRequestCount} occurrences`,
           replyRequestCount
         )}
-      </span>
+      </>
 
       {article.replyCount > 0 && (
         <Tooltip
           title={
-            <>
+            <div className={classes.opinions}>
               {Object.entries(opinions).map(([k, v]) => {
                 const IconComponent = TYPE_ICON[k];
                 return (
@@ -71,11 +64,11 @@ export default function ArticleInfo({ article }) {
                   </span>
                 );
               })}
-            </>
+            </div>
           }
           arrow
         >
-          <span className={classes.info}>
+          <span>
             {ngettext(
               msgid`${replyCount} response`,
               `${replyCount} responses`,
@@ -84,12 +77,8 @@ export default function ArticleInfo({ article }) {
           </span>
         </Tooltip>
       )}
-      {isValid(createdAt) && (
-        <Tooltip title={format(createdAt)} arrow>
-          <span className={classes.info}>{t`${timeAgoStr} ago`}</span>
-        </Tooltip>
-      )}
-    </div>
+      <TimeInfo time={createdAt}>{timeAgoStr => t`${timeAgoStr} ago`}</TimeInfo>
+    </Infos>
   );
 }
 
