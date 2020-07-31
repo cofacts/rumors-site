@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
 
     // Adding visited styles
-    '&:visited': {
+    '&:visited > *': {
       backgroundColor: '#fafafa',
       '--background': '#fafafa', // ExpandableText
     },
