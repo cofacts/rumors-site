@@ -1,5 +1,5 @@
 import React from 'react';
-import Infos, { TimeInfo } from './';
+import Infos, { TimeInfo, ReplyCountInfo } from './';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 export default {
@@ -45,5 +45,20 @@ export const WithTimeInfo = () => (
     <TimeInfo time="Unsupport time string">
       {str => `Created ${str} ago`}
     </TimeInfo>
+  </Infos>
+);
+
+export const WithRpelyCountInfo = () => (
+  <Infos>
+    <ReplyCountInfo normalArticleReplies={[]} />
+    <ReplyCountInfo
+      normalArticleReplies={[
+        { replyType: 'NOT_ARTICLE' },
+        { replyType: 'NOT_ARTICLE' },
+        { replyType: 'OPINIONATED' },
+        { replyType: 'NOT_RUMOR' },
+        { replyType: 'RUMOR' },
+      ]}
+    />
   </Infos>
 );
