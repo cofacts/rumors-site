@@ -14,6 +14,9 @@ import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ListPageDisplays/ArticleItem';
 import ListPageCards from 'components/ListPageDisplays/ListPageCards';
 import ArticleCard from 'components/ListPageDisplays/ArticleCard';
+import ListPageCard from 'components/ListPageDisplays/ListPageCard';
+import Infos from 'components/Infos';
+import TimeInfo from 'components/Infos/TimeInfo';
 import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
@@ -268,24 +271,44 @@ function ArticlePageLayout({
         listArticlesError.toString()
       ) : (
         <>
-          {page === 'replies' || page === 'search' ? (
-            <ul className={classes.articleList}>
-              {articleEdges.map(({ node }) => (
-                <ArticleItem
-                  key={node.id}
-                  article={node}
-                  query={query.q}
-                  {...articleDisplayConfig}
-                />
-              ))}
-            </ul>
-          ) : (
-            <ListPageCards>
-              {articleEdges.map(({ node }) => (
+          <ListPageCards>
+            {articleEdges.map(({ node }) =>
+              page === 'replies' ? (
+                <ListPageCard key={node.id}>
+                  <Infos>
+                    <>
+                      {ngettext(
+                        msgid`${replyRequestCount} occurrence`,
+                        `${replyRequestCount} occurrences`,
+                        replyRequestCount
+                      )}
+                    </>
+                    <TimeInfo time={createdAt}>
+                      {timeAgo => t`First reported ${timeAgo} ago`}
+                    </TimeInfo>
+                  </Infos>
+                  <ExpandableText lineClamp={2}>
+                    {highlight(text, {
+                      query,
+                      highlightClassName: classes.highlight,
+                    })}
+                  </ExpandableText>
+                </ListPageCard>
+              ) : page === 'search' ? (
+                <ListPageCard key={node.id}>
+                  <Infos></Infos>
+                  <ExpandableText lineClamp={2}>
+                    {highlight(text, {
+                      query,
+                      highlightClassName: classes.highlight,
+                    })}
+                  </ExpandableText>
+                </ListPageCard>
+              ) : (
                 <ArticleCard key={node.id} article={node} query={query.q} />
-              ))}
-            </ListPageCards>
-          )}
+              )
+            )}
+          </ListPageCards>
 
           <LoadMore
             edges={articleEdges}
