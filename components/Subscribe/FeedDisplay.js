@@ -118,6 +118,39 @@ function FeedDisplay({ listQueryVars }) {
           </ListItemLink>
 
           <DividerWithText>{t`Through IFTTT to`}</DividerWithText>
+
+          <Grid
+            className={classes.grid}
+            container
+            direction="row"
+            alignItems="center"
+            justify="center"
+          >
+            <IFTTTItem
+              icon={lineIcon}
+              IFTTTAppletUrl={process.env.LINE_IFTTT_APPLET_URL}
+              feedUrl={feedUrl}
+              tutorialYoutubeId={process.env.LINE_IFTTT_TUTORIAL_YOUTUBEID}
+            >
+              {'Line'}
+            </IFTTTItem>
+            <IFTTTItem
+              icon={telegramIcon}
+              IFTTTAppletUrl={process.env.TELEGRAM_IFTTT_APPLET_URL}
+              feedUrl={feedUrl}
+              tutorialYoutubeId={process.env.TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID}
+            >
+              {'Telegram'}
+            </IFTTTItem>
+            <IFTTTItem
+              icon={slackIcon}
+              IFTTTAppletUrl={process.env.SLACK_IFTTT_APPLET_URL}
+              feedUrl={feedUrl}
+              tutorialYoutubeId={process.env.SLACK_IFTTT_TUTORIAL_YOUTUBEID}
+            >
+              {'Slack'}
+            </IFTTTItem>
+          </Grid>
         </List>
       </Popover>
     </>
