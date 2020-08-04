@@ -3,13 +3,27 @@ import { t } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
-import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
+
+import {
+  ListItemLink,
+  DividerWithText,
+  CustomTypography,
+} from './FeedDisplayComponents';
+import IFTTTItem from './IFTTTItem';
+
+import mailIcon from './images/mail.svg';
+import feedlyIcon from './images/feedly.svg';
+import rssIcon from './images/rss.svg';
+import lineIcon from './images/line.svg';
+import telegramIcon from './images/telegram.svg';
+import slackIcon from './images/slack.svg';
+
+import copy from 'copy-to-clipboard';
 
 import JsonUrl from 'json-url';
 import getConfig from 'next/config';
@@ -26,21 +40,8 @@ const useStyles = makeStyles(theme => ({
     padding: '5px 14px',
   },
   leftIcon: { marginLeft: theme.spacing(1) },
+  grid: { padding: '0px 20px', width: 'auto' },
 }));
-
-function ListItemLink({ href, children }) {
-  return (
-    <ListItem
-      button
-      component="a"
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <ListItemText>{children}</ListItemText>
-    </ListItem>
-  );
-}
 
 function FeedDisplay({ listQueryVars }) {
   const classes = useStyles();
@@ -85,36 +86,38 @@ function FeedDisplay({ listQueryVars }) {
         }}
       >
         <List>
-          <ListSubheader>{t`Get update using Email`}</ListSubheader>
-          <ListItemLink href={`https://feedrabbit.com/?url=${encodedFeedUrl}`}>
-            {t`Via Feedrabbit`}
-          </ListItemLink>
           <ListItemLink
-            href={`https://blogtrottr.com/?subscribe=${encodedFeedUrl}`}
+            email={true}
+            href={`https://feedrabbit.com/?url=${encodedFeedUrl}`}
+            icon={mailIcon}
           >
-            {t`Via Blogtrottr`}
+            <ListItemText
+              primary={t`Email`}
+              secondary={
+                <CustomTypography
+                  // https://stackoverflow.com/questions/41928567/div-cannot-appear-as-a-descendant-of-p
+                  component="span"
+                  variant="subtitle2"
+                  color="textSecondary"
+                >
+                  {t`Via Feedrabbit`}
+                </CustomTypography>
+              }
+            ></ListItemText>
           </ListItemLink>
-          <ListItemLink href="https://ifttt.com/feed">
-            {t`Via IFTTT (also connects to LINE)`}
-          </ListItemLink>
-
-          <ListSubheader>{t`Get RSS updates`}</ListSubheader>
           <ListItemLink
             href={`https://feedly.com/i/discover/sources/search/feed/${encodedFeedUrl}`}
+            icon={feedlyIcon}
           >
-            {t`Via Feedly`}
+            <ListItemText>{t`Feedly`}</ListItemText>
           </ListItemLink>
-          <ListItem>
-            <TextField
-              label={t`RSS Feed URL for this list`}
-              defaultValue={feedUrl}
-              margin="normal"
-              variant="outlined"
-              InputProps={{ readOnly: true }}
-              onFocus={e => e.target.select()}
-              fullWidth
-            />
-          </ListItem>
+
+          {/* <button>Copy to clipboard with button</button> */}
+          <ListItemLink icon={rssIcon} onClick={() => copy(feedUrl)}>
+            <ListItemText>{t`Get RSS Feed Link`}</ListItemText>
+          </ListItemLink>
+
+          <DividerWithText>{t`Through IFTTT to`}</DividerWithText>
         </List>
       </Popover>
     </>
