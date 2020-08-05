@@ -1,4 +1,6 @@
 import cx from 'clsx';
+import { t } from 'ttag';
+import { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -7,6 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+import Tooltip from '../Tooltip';
+import Fade from '@material-ui/core/Fade';
+import copy from 'copy-to-clipboard';
 
 const useStyles = makeStyles(() => ({
   emailButton: { paddingTop: 0, paddingBottom: 0 },
@@ -46,7 +52,7 @@ export function ButtonIcon({ children, icon, onClick }) {
   );
 }
 
-export function ListItemLink({ href, children, icon, onClick, email = false }) {
+export function ListItemLink({ href, children, icon, email = false }) {
   const classes = useStyles();
   return (
     <CustomListItem
@@ -56,7 +62,6 @@ export function ListItemLink({ href, children, icon, onClick, email = false }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cx({ [classes.emailButton]: email })}
-      onClick={() => onClick()}
     >
       <ListItemIcon>
         <img src={icon} height={28} width={28} />
@@ -66,14 +71,48 @@ export function ListItemLink({ href, children, icon, onClick, email = false }) {
   );
 }
 
-export function ListItemCopy({ children, icon, onClick }) {
+export function ListItemCopy({ children, icon, textToCopy }) {
+  const [open, setOpen] = useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
+
   return (
-    <CustomListItem button onClick={() => onClick()}>
-      <ListItemIcon>
-        <img src={icon} height={28} width={28} />
-      </ListItemIcon>
-      <ListItemText>{children}</ListItemText>
-    </CustomListItem>
+    <Tooltip
+      PopperProps={{
+        disablePortal: true,
+      }}
+      onClose={handleTooltipClose}
+      open={open}
+      disableFocusListener
+      disableHoverListener
+      disableTouchListener
+      title={t`Cpoied to clipboard.`}
+      TransitionComponent={Fade}
+      TransitionProps={{ timeout: 600 }}
+    >
+      <CustomListItem
+        button
+        onClick={() => {
+          if (copy(textToCopy)) {
+            handleTooltipOpen();
+            setTimeout(() => {
+              handleTooltipClose();
+            }, 1500);
+          }
+        }}
+      >
+        <ListItemIcon>
+          <img src={icon} height={28} width={28} />
+        </ListItemIcon>
+        <ListItemText>{children}</ListItemText>
+      </CustomListItem>
+    </Tooltip>
   );
 }
 

@@ -11,6 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonIcon } from './FeedDisplayComponents';
 
+import Tooltip from '../Tooltip';
+import Fade from '@material-ui/core/Fade';
 import copy from 'copy-to-clipboard';
 
 const useStyles = makeStyles(theme => ({
@@ -60,6 +62,17 @@ const useStyles = makeStyles(theme => ({
 const ModalBody = forwardRef(function ModalBody(props, ref) {
   const { IFTTTAppletUrl, feedUrl, tutorialYoutubeId, platform, close } = props;
   const classes = useStyles();
+
+  const [open, setOpen] = useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <div ref={ref} className={classes.paper} tabIndex={-1}>
       <IconButton className={classes.close} onClick={close}>
@@ -94,7 +107,30 @@ const ModalBody = forwardRef(function ModalBody(props, ref) {
               />
             </td>
             <td>
-              <Button onClick={() => copy(feedUrl)}>{t`Copy`}</Button>
+              <Tooltip
+                PopperProps={{
+                  disablePortal: true,
+                }}
+                onClose={handleTooltipClose}
+                open={open}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title={t`Cpoied to clipboard.`}
+                TransitionComponent={Fade}
+                TransitionProps={{ timeout: 600 }}
+              >
+                <Button
+                  onClick={() => {
+                    if (copy(feedUrl)) {
+                      handleTooltipOpen();
+                      setTimeout(() => {
+                        handleTooltipClose();
+                      }, 1500);
+                    }
+                  }}
+                >{t`Copy`}</Button>
+              </Tooltip>
             </td>
           </tr>
         </tbody>

@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import {
   ListItemLink,
+  ListItemCopy,
   DividerWithText,
   CustomTypography,
 } from './FeedDisplayComponents';
@@ -22,8 +23,6 @@ import rssIcon from './images/rss.svg';
 import lineIcon from './images/line.svg';
 import telegramIcon from './images/telegram.svg';
 import slackIcon from './images/slack.svg';
-
-import copy from 'copy-to-clipboard';
 
 import JsonUrl from 'json-url';
 import getConfig from 'next/config';
@@ -112,10 +111,9 @@ function FeedDisplay({ listQueryVars }) {
             <ListItemText>{t`Feedly`}</ListItemText>
           </ListItemLink>
 
-          {/* <button>Copy to clipboard with button</button> */}
-          <ListItemLink icon={rssIcon} onClick={() => copy(feedUrl)}>
-            <ListItemText>{t`Get RSS Feed Link`}</ListItemText>
-          </ListItemLink>
+          <ListItemCopy icon={rssIcon} textToCopy={feedUrl}>
+            {t`Get RSS Feed Link`}
+          </ListItemCopy>
 
           <DividerWithText>{t`Through IFTTT to`}</DividerWithText>
 
