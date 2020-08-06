@@ -39,14 +39,25 @@ const LIST_ARTICLES = gql`
     ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 25) {
       edges {
         node {
-          ...ArticleItem
+          id
+          replyRequestCount
+          createdAt
+          text
+          articleReplies(status: NORMAL) {
+            user {
+              ...ReplyItemUser
+            }
+            reply {
+              ...ReplyItem
+            }
+          }
+
           ...ArticleCard
         }
         cursor
       }
     }
   }
-  ${ArticleItem.fragments.ArticleItem}
   ${ArticleCard.fragments.ArticleCard}
 `;
 
