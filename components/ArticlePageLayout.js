@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { t, jt } from 'ttag';
-import { useRouter } from 'next/router';
+import { t, jt, ngettext, msgid } from 'ttag';
+import { useRouter, Link } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
@@ -8,16 +8,18 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ellipsis } from 'lib/text';
+import { ellipsis, highlight } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ListPageDisplays/ArticleItem';
 import ListPageCards from 'components/ListPageDisplays/ListPageCards';
 import ArticleCard from 'components/ListPageDisplays/ArticleCard';
 import ListPageCard from 'components/ListPageDisplays/ListPageCard';
+import ReplyItem from 'components/ListPageDisplays/ReplyItem';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import FeedDisplay from 'components/Subscribe/FeedDisplay';
+import ExpandableText from 'components/ExpandableText';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
 import CategoryFilter from 'components/ListPageControls/CategoryFilter';
@@ -63,12 +65,46 @@ const LIST_STAT = gql`
   }
 `;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   filters: {
     margin: '12px 0',
   },
   articleList: {
     padding: 0,
+  },
+  highlight: {
+    color: theme.palette.primary[500],
+  },
+  noStyleLink: {
+    // Canceling link styles
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  bustHoaxDivider: {
+    fontSize: theme.typography.htmlFontSize,
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '12px 0',
+    '&:before': {
+      position: 'absolute',
+      top: '50%',
+      display: 'block',
+      height: '1px',
+      width: '100%',
+      backgroundColor: theme.palette.secondary[100],
+      content: '""',
+    },
+    '& a': {
+      position: 'relative',
+      flex: '1 1 shrink',
+      borderRadius: 30,
+      padding: '10px 26px',
+      textAlign: 'center',
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
+      zIndex: 2,
+    },
   },
 }));
 
@@ -169,7 +205,6 @@ export function getQueryVars(query) {
 
 function ArticlePageLayout({
   title,
-  articleDisplayConfig = {},
   defaultOrder = 'lastRequestedAt',
   defaultFilters = [],
   timeRangeKey = 'createdAt',
@@ -272,38 +307,58 @@ function ArticlePageLayout({
       ) : (
         <>
           <ListPageCards>
+            {/**
+             * FIXME: the "page" logic will be removed when ArticlePageLayout is splitted into
+             * each separate page component.
+             */}
             {articleEdges.map(({ node }) =>
               page === 'replies' ? (
                 <ListPageCard key={node.id}>
                   <Infos>
                     <>
                       {ngettext(
-                        msgid`${replyRequestCount} occurrence`,
-                        `${replyRequestCount} occurrences`,
-                        replyRequestCount
+                        msgid`${node.replyRequestCount} occurrence`,
+                        `${node.replyRequestCount} occurrences`,
+                        node.replyRequestCount
                       )}
                     </>
-                    <TimeInfo time={createdAt}>
+                    <TimeInfo time={node.createdAt}>
                       {timeAgo => t`First reported ${timeAgo} ago`}
                     </TimeInfo>
                   </Infos>
-                  <ExpandableText lineClamp={2}>
-                    {highlight(text, {
-                      query,
-                      highlightClassName: classes.highlight,
-                    })}
-                  </ExpandableText>
+                  <ExpandableText lineClamp={2}>{node.text}</ExpandableText>
+
+                  <div
+                    className={classes.bustHoaxDivider}
+                    data-ga="Bust hoax button"
+                  >
+                    <Link href="/article/[id]" as={`/article/${node.id}`}>
+                      <a>{t`Bust Hoaxes`}</a>
+                    </Link>
+                  </div>
+
+                  {node.articleReplies.map(articleReply => (
+                    <ReplyItem key={articleReply.reply.id} {...articleReply} />
+                  ))}
                 </ListPageCard>
               ) : page === 'search' ? (
-                <ListPageCard key={node.id}>
-                  <Infos></Infos>
-                  <ExpandableText lineClamp={2}>
-                    {highlight(text, {
-                      query,
-                      highlightClassName: classes.highlight,
-                    })}
-                  </ExpandableText>
-                </ListPageCard>
+                <Link href="/article/[id]" as={`/article/${node.id}`}>
+                  <a className={classes.noStyleLink}>
+                    <ListPageCard key={node.id}>
+                      <Infos>
+                        <TimeInfo time={node.createdAt}>
+                          {timeAgo => t`First reported ${timeAgo} ago`}
+                        </TimeInfo>
+                      </Infos>
+                      <ExpandableText lineClamp={3}>
+                        {highlight(node.text, {
+                          query,
+                          highlightClassName: classes.highlight,
+                        })}
+                      </ExpandableText>
+                    </ListPageCard>
+                  </a>
+                </Link>
               ) : (
                 <ArticleCard key={node.id} article={node} query={query.q} />
               )
