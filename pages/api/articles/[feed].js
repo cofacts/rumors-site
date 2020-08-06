@@ -8,8 +8,8 @@ import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
 import { config } from 'lib/apollo';
 import rollbar from 'lib/rollbar';
-import { getQueryVars } from 'components/ArticlePageLayout';
 import { TYPE_NAME } from 'constants/replyType';
+import JsonUrl from 'json-url';
 
 const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
@@ -112,7 +112,8 @@ async function articleFeedHandler(req, res) {
     return;
   }
 
-  const listQueryVars = getQueryVars(query);
+  const lib = JsonUrl('lzma');
+  const listQueryVars = await lib.decompress(query.json);
 
   const { createCache, ...otherConfigs } = config;
   const client = new ApolloClient({ ...otherConfigs, cache: createCache() });

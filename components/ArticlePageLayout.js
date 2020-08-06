@@ -1,8 +1,6 @@
 import gql from 'graphql-tag';
-import querystring from 'querystring';
 import { t, jt } from 'ttag';
 import { useRouter } from 'next/router';
-import getConfig from 'next/config';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
@@ -25,10 +23,6 @@ import LoadMore from 'components/ListPageControls/LoadMore';
 
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
-
-const {
-  publicRuntimeConfig: { PUBLIC_URL },
-} = getConfig();
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -186,14 +180,13 @@ function ArticlePageLayout({
   const { query } = useRouter();
   const user = useCurrentUser();
 
-  let queryWithOptions = { ...query };
-  queryWithOptions.filters =
-    queryWithOptions.filters || defaultFilters.toString();
-  queryWithOptions.orderBy = queryWithOptions.orderBy || defaultOrder;
-  queryWithOptions.timeRangeKey = timeRangeKey;
-  queryWithOptions.userId = user?.id;
-
-  const listQueryVars = getQueryVars(queryWithOptions);
+  const listQueryVars = getQueryVars({
+    filters: defaultFilters.join(','),
+    orderBy: defaultOrder,
+    ...query,
+    timeRangeKey,
+    userId: user?.id,
+  });
 
   const {
     loading,
@@ -226,10 +219,6 @@ function ArticlePageLayout({
     </mark>
   );
 
-  // if there's no repliedByMe in filter, we needn't userId field
-  if (!listQueryVars.articleRepliesFrom) delete queryWithOptions.userId;
-  const queryString = querystring.stringify(queryWithOptions);
-
   return (
     <Box pt={2}>
       {query.searchUserByArticleId && (
@@ -245,9 +234,7 @@ function ArticlePageLayout({
       >
         <Typography variant="h4">{title}</Typography>
         <Box my={1}>
-          <FeedDisplay
-            feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
-          />
+          <FeedDisplay listQueryVars={listQueryVars} />
         </Box>
       </Box>
 

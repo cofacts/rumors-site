@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { t } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
@@ -10,6 +10,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 import { makeStyles } from '@material-ui/core/styles';
+
+import JsonUrl from 'json-url';
+import getConfig from 'next/config';
+
+const {
+  publicRuntimeConfig: { PUBLIC_URL },
+} = getConfig();
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -35,9 +42,19 @@ function ListItemLink({ href, children }) {
   );
 }
 
-function FeedDisplay({ feedUrl }) {
+function FeedDisplay({ listQueryVars }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [feedUrl, setFeedUrl] = useState(null);
+
+  useEffect(() => {
+    const generateUrl = async () => {
+      const lib = JsonUrl('lzma');
+      const queryString = await lib.compress(listQueryVars);
+      setFeedUrl(`${PUBLIC_URL}/api/articles/rss2?json=${queryString}`);
+    };
+    generateUrl();
+  }, [listQueryVars]);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
