@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import cx from 'clsx';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
@@ -90,5 +91,15 @@ function Avatar({
   }
   return avatar;
 }
+
+Avatar.fragments = {
+  AvatarData: gql`
+    fragment AvatarData on User {
+      id
+      avatarUrl
+      level
+    }
+  `,
+};
 
 export default Avatar;
