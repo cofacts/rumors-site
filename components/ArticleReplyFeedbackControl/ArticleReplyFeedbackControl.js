@@ -125,7 +125,7 @@ const ArticleReplyFeedbackControlData = gql`
       user {
         id
         name
-        avatarUrl
+        ...AvatarData
       }
     }
     ...ArticleReplyFeedbackControlDataForUser
@@ -133,6 +133,7 @@ const ArticleReplyFeedbackControlData = gql`
   }
   ${ArticleReplyFeedbackControlDataForUser}
   ${ButtonGroupDisplay.fragments.ButtonGroupDisplayArticleReply}
+  ${Avatar.fragments.AvatarData}
 `;
 
 const CREATE_REPLY_FEEDBACK = gql`
@@ -247,7 +248,7 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
           display={tab === 0 ? 'block' : 'none'}
           className={classes.feedbacks}
         >
-          {feedbacks
+          {articleReply.feedbacks
             .filter(({ vote, user }) => vote === 'UPVOTE' && user)
             .map(feedback => (
               <Feedback key={feedback.id} {...feedback} />
@@ -257,7 +258,7 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
           display={tab === 1 ? 'block' : 'none'}
           className={classes.feedbacks}
         >
-          {feedbacks
+          {articleReply.feedbacks
             .filter(({ vote, user }) => vote === 'DOWNVOTE' && user)
             .map(feedback => (
               <Feedback key={feedback.id} {...feedback} />
@@ -300,7 +301,12 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
             disabled={updatingReplyFeedback}
             onClick={() => {
               createReplyFeedback({
-                variables: { articleId, replyId, vote, comment: reason },
+                variables: {
+                  articleId: articleReply.articleId,
+                  replyId: articleReply.replyId,
+                  vote,
+                  comment: reason,
+                },
               });
             }}
           >{t`Send`}</button>
