@@ -13,7 +13,6 @@ import {
   ListItemLink,
   ListItemCopy,
   DividerWithText,
-  CustomTypography,
 } from './FeedDisplayComponents';
 import IFTTTItem from './IFTTTItem';
 
@@ -92,16 +91,11 @@ function FeedDisplay({ listQueryVars }) {
           >
             <ListItemText
               primary={t`Email`}
-              secondary={
-                <CustomTypography
-                  // https://stackoverflow.com/questions/41928567/div-cannot-appear-as-a-descendant-of-p
-                  component="span"
-                  variant="subtitle2"
-                  color="textSecondary"
-                >
-                  {t`Via Feedrabbit`}
-                </CustomTypography>
-              }
+              secondary={t`Via Feedrabbit`}
+              secondaryTypographyProps={{
+                variant: 'caption',
+                color: 'textSecondary',
+              }}
             ></ListItemText>
           </ListItemLink>
           <ListItemLink

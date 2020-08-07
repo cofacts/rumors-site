@@ -45,9 +45,9 @@ export function ButtonIcon({ children, icon, onClick }) {
       onClick={() => onClick()}
     >
       <img src={icon} height={44} width={44} />
-      <CustomTypography variant="subtitle2" color="textSecondary">
+      <Typography variant="caption" color="textSecondary">
         {children}
-      </CustomTypography>
+      </Typography>
     </Button>
   );
 }
@@ -121,13 +121,9 @@ export function DividerWithText({ children }) {
   return (
     <div className={classes.dividerWithText}>
       <Divider className="divider" />
-      <CustomTypography
-        className="text"
-        variant="subtitle1"
-        color="textSecondary"
-      >
+      <Typography className="text" variant="body2" color="textSecondary">
         {children}
-      </CustomTypography>
+      </Typography>
       <Divider className="divider" />
     </div>
   );
@@ -136,12 +132,3 @@ export function DividerWithText({ children }) {
 const CustomListItem = withStyles({
   gutters: { paddingLeft: '25px', paddingRight: '25px' },
 })(ListItem);
-
-export const CustomTypography = withStyles({
-  subtitle1: {
-    fontSize: 14,
-  },
-  subtitle2: {
-    fontSize: 12,
-  },
-})(Typography);
