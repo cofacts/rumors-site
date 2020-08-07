@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { t } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
@@ -151,4 +151,4 @@ function FeedDisplay({ listQueryVars }) {
 
 FeedDisplay.displayName = 'FeedDisplay';
 
-export default FeedDisplay;
+export default memo(FeedDisplay);

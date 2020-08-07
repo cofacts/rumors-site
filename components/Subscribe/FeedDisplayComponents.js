@@ -1,5 +1,4 @@
 import cx from 'clsx';
-import { t } from 'ttag';
 import { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
@@ -7,11 +6,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Portal from '@material-ui/core/Portal';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-import Tooltip from '../Tooltip';
-import Fade from '@material-ui/core/Fade';
 import copy from 'copy-to-clipboard';
 
 const useStyles = makeStyles(() => ({
@@ -72,47 +71,34 @@ export function ListItemLink({ href, children, icon, email = false }) {
 }
 
 export function ListItemCopy({ children, icon, textToCopy }) {
-  const [open, setOpen] = useState(false);
-
-  const handleTooltipClose = () => {
-    setOpen(false);
+  const SUCCESS = 'SUCCESS';
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState(null);
+  const onSuccess = text => {
+    setMessage(text);
+    setTimeout(() => setStatus('SUCCESS'), 0);
   };
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
+  const handleClickEvent = () => {
+    if (copy(textToCopy)) {
+      onSuccess('Copied to clipboard!');
+    }
   };
 
   return (
-    <Tooltip
-      PopperProps={{
-        disablePortal: true,
-      }}
-      onClose={handleTooltipClose}
-      open={open}
-      disableFocusListener
-      disableHoverListener
-      disableTouchListener
-      title={t`Cpoied to clipboard.`}
-      TransitionComponent={Fade}
-      TransitionProps={{ timeout: 600 }}
-    >
-      <CustomListItem
-        button
-        onClick={() => {
-          if (copy(textToCopy)) {
-            handleTooltipOpen();
-            setTimeout(() => {
-              handleTooltipClose();
-            }, 1500);
-          }
-        }}
-      >
-        <ListItemIcon>
-          <img src={icon} height={28} width={28} />
-        </ListItemIcon>
-        <ListItemText>{children}</ListItemText>
-      </CustomListItem>
-    </Tooltip>
+    <CustomListItem button onClick={handleClickEvent}>
+      <ListItemIcon>
+        <img src={icon} height={28} width={28} />
+      </ListItemIcon>
+      <ListItemText>{children}</ListItemText>
+      <Portal>
+        <Snackbar
+          onClose={() => setStatus(null)}
+          open={status === SUCCESS}
+          message={message}
+          autoHideDuration={3000}
+        />
+      </Portal>
+    </CustomListItem>
   );
 }
 
