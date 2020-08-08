@@ -1,8 +1,6 @@
 import gql from 'graphql-tag';
-import querystring from 'querystring';
 import { t, jt } from 'ttag';
 import { useRouter } from 'next/router';
-import getConfig from 'next/config';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
@@ -25,10 +23,6 @@ import LoadMore from 'components/ListPageControls/LoadMore';
 
 const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
-
-const {
-  publicRuntimeConfig: { PUBLIC_URL },
-} = getConfig();
 
 const LIST_ARTICLES = gql`
   query ListArticles(
@@ -76,19 +70,18 @@ const useStyles = makeStyles(() => ({
  * @param {object} urlQuery - URL query object
  * @returns {object} ListArticleFilter
  */
-function urlQuery2Filter(
-  {
-    filters,
-    q,
-    categoryIds,
-    start,
-    end,
-    replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
-    searchUserByArticleId,
-    types,
-  } = {},
-  { defaultFilters = [], timeRangeKey = 'createdAt', user }
-) {
+function urlQuery2Filter({
+  filters,
+  q,
+  categoryIds,
+  start,
+  end,
+  replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
+  searchUserByArticleId,
+  types,
+  timeRangeKey,
+  userId,
+} = {}) {
   const filterObj = {};
 
   if (q) {
@@ -98,19 +91,17 @@ function urlQuery2Filter(
     };
   }
 
-  filterObj.replyRequestCount = { GTE: replyRequestCount };
-
   if (categoryIds) {
     filterObj.categoryIds = categoryIds.split(',');
   }
 
-  const selectedFilters = filters ? filters.split(',') : defaultFilters;
+  const selectedFilters = typeof filters === 'string' ? filters.split(',') : [];
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
-        if (!user) break;
+        if (!userId) break;
         filterObj.articleRepliesFrom = {
-          userId: user.id,
+          userId: userId,
           exists: true,
         };
         break;
@@ -146,6 +137,9 @@ function urlQuery2Filter(
   if (!Object.keys(filterObj).length) {
     return undefined;
   }
+
+  filterObj.replyRequestCount = { GTE: replyRequestCount };
+
   return filterObj;
 }
 
@@ -153,8 +147,8 @@ function urlQuery2Filter(
  * @param {object} urlQuery - URL query object
  * @returns {object[]} ListArticleOrderBy array
  */
-function urlQuery2OrderBy({ orderBy } = {}, defaultOrder) {
-  const key = orderBy || defaultOrder;
+function urlQuery2OrderBy({ orderBy } = {}) {
+  const key = orderBy || 'lastRequestedAt';
   return [{ [key]: 'DESC' }];
 }
 
@@ -163,14 +157,10 @@ function urlQuery2OrderBy({ orderBy } = {}, defaultOrder) {
  * @param {object} query
  * @returns {object}
  */
-export function getQueryVars(query, option) {
+export function getQueryVars(query) {
   return {
-    filter: urlQuery2Filter(query, {
-      defaultFilters: option?.filters,
-      timeRangeKey: option?.timeRangeKey,
-      user: option?.user,
-    }),
-    orderBy: urlQuery2OrderBy(query, option?.order),
+    filter: urlQuery2Filter(query),
+    orderBy: urlQuery2OrderBy(query),
   };
 }
 
@@ -189,11 +179,13 @@ function ArticlePageLayout({
   const classes = useStyles();
   const { query } = useRouter();
   const user = useCurrentUser();
-  const listQueryVars = getQueryVars(query, {
-    filters: defaultFilters,
-    order: defaultOrder,
+
+  const listQueryVars = getQueryVars({
+    filters: defaultFilters.join(','),
+    orderBy: defaultOrder,
+    ...query,
     timeRangeKey,
-    user,
+    userId: user?.id,
   });
 
   const {
@@ -227,7 +219,6 @@ function ArticlePageLayout({
     </mark>
   );
 
-  const queryString = querystring.stringify(query);
   return (
     <Box pt={2}>
       {query.searchUserByArticleId && (
@@ -243,9 +234,7 @@ function ArticlePageLayout({
       >
         <Typography variant="h4">{title}</Typography>
         <Box my={1}>
-          <FeedDisplay
-            feedUrl={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
-          />
+          <FeedDisplay listQueryVars={listQueryVars} />
         </Box>
       </Box>
 
