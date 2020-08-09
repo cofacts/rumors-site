@@ -1,5 +1,5 @@
 import { t } from 'ttag';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import useCurrentUser from 'lib/useCurrentUser';
 

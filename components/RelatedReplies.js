@@ -2,13 +2,13 @@ import React from 'react';
 import { t } from 'ttag';
 import { Box, SvgIcon, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
+import Link from 'next/link';
 
 import { TYPE_NAME, TYPE_DESC } from 'constants/replyType';
-import ExpandableText from './ExpandableText';
 import { linkify, nl2br } from 'lib/text';
-import Link from 'next/link';
 import PlainList from 'components/PlainList';
+import ExpandableText from './ExpandableText';
 
 const useStyles = makeStyles(theme => ({
   root: {

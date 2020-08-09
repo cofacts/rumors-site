@@ -1,7 +1,6 @@
-import gql from 'graphql-tag';
+import { gql, useQuery } from '@apollo/client';
 import { Box, SvgIcon, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useQuery } from '@apollo/react-hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {

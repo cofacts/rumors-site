@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { t } from 'ttag';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { gql, useMutation } from '@apollo/client';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Tabs,

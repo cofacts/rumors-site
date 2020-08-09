@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import gql from 'graphql-tag';
+import { gql, useQuery } from '@apollo/client';
 import getConfig from 'next/config';
 import { t } from 'ttag';
-import { useQuery } from '@apollo/react-hooks';
 import { Box, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -55,7 +54,7 @@ function ArticleCategories({ articleId, articleCategories }) {
     {}
   );
 
-  const allCategories = (data.ListCategories?.edges || []).map(
+  const allCategories = (data?.ListCategories?.edges || []).map(
     ({ node }) => node
   );
   const hasOtherCategories = allCategories.some(({ id }) => !isInArticle[id]);

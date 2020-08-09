@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { t, jt } from 'ttag';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { Box, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
