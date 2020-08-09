@@ -136,7 +136,7 @@ const ArticleReplyFeedbackControlData = gql`
   ${Avatar.fragments.AvatarData}
 `;
 
-const CREATE_REPLY_FEEDBACK = gql`
+export const CREATE_REPLY_FEEDBACK = gql`
   mutation CreateOrUpdateArticleReplyFeedback(
     $articleId: String!
     $replyId: String!
