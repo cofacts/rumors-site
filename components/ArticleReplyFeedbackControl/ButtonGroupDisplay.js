@@ -1,6 +1,6 @@
 import React from 'react';
 import { t } from 'ttag';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button } from '@material-ui/core';
 import useCurrentUser from 'lib/useCurrentUser';
