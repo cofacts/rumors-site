@@ -8,7 +8,8 @@ import MockDate from 'mockdate';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox)-.+?)-\d+/g;
+/* makeStyle + useStyle hook, <Box> and withStyle HOC */
+const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox|Component)-.+?)-\d+/g;
 
 function removeMaterialUIInternals(json) {
   // Remove Portal containerInfo
