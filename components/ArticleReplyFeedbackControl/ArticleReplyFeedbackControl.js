@@ -324,6 +324,12 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
 ArticleReplyFeedbackControl.fragments = {
   ArticleReplyFeedbackControlData,
   ArticleReplyFeedbackControlDataForUser,
+  ArticleReplyFeedbackControlReply: gql`
+    fragment ArticleReplyFeedbackControlReply on Reply {
+      id
+      text
+    }
+  `,
 };
 
 export default ArticleReplyFeedbackControl;

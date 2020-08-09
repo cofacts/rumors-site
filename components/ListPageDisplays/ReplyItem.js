@@ -121,8 +121,10 @@ ReplyItem.fragments = {
       text
       type
       ...ReplyInfo
+      ...ArticleReplyFeedbackControlReply
     }
     ${ReplyInfo.fragments.replyInfo}
+    ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlReply}
   `,
   ReplyItemArticleReplyData: gql`
     fragment ReplyItemArticleReplyData on ArticleReply {
