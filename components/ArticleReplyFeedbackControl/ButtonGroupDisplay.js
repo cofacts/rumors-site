@@ -120,17 +120,17 @@ const ButtonGroupDisplayArticleReplyForUser = gql`
 `;
 
 const ButtonGroupDisplayArticleReply = gql`
-fragment ButtonGroupDisplayArticleReply on ArticleReply {
-  articleId
-  replyId
-  positiveFeedbackCount
-  negativeFeedbackCount
-  user {
-    id
+  fragment ButtonGroupDisplayArticleReply on ArticleReply {
+    articleId
+    replyId
+    positiveFeedbackCount
+    negativeFeedbackCount
+    user {
+      id
+    }
+    ...ButtonGroupDisplayArticleReplyForUser
   }
-  ...ButtonGroupDisplayArticleReplyForUser
-}
-{...ButtonGroupDisplay.fragments.ButtonGroupDisplayArticleReplyForUser}
+  ${ButtonGroupDisplayArticleReplyForUser}
 `;
 
 ButtonGroupDisplay.fragments = {
