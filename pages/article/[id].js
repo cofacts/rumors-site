@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { useQuery, useLazyQuery, gql } from '@apollo/client';
 import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,10 +6,9 @@ import { Box, Divider, Snackbar } from '@material-ui/core';
 import { ngettext, msgid, t } from 'ttag';
 
 import { useRouter } from 'next/router';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 
-import withData from 'lib/apollo';
+import withApollo from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { nl2br, linkify, ellipsis } from 'lib/text';
 import { usePushToDataLayer } from 'lib/gtm';
@@ -439,4 +438,4 @@ function ArticlePage() {
   );
 }
 
-export default withData(ArticlePage);
+export default withApollo({ ssr: true })(ArticlePage);
