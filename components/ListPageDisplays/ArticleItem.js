@@ -181,7 +181,11 @@ export default function ArticleItem({
 
       {showLastReply &&
         article.articleReplies.map(articleReply => (
-          <ReplyItem key={articleReply.reply.id} articleReply={articleReply} />
+          <ReplyItem
+            key={articleReply.reply.id}
+            articleReply={articleReply}
+            reply={articleReply.reply}
+          />
         ))}
     </li>
   );
