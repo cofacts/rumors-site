@@ -1,0 +1,1152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots LineChart Normal 1`] = `
+<LineChart
+  data={
+    Array [
+      Object {
+        "date": "2020-07-07",
+        "lineVisit": 5,
+        "webVisit": 277,
+      },
+      Object {
+        "date": "2020-07-08",
+        "lineVisit": 29,
+        "webVisit": 2969,
+      },
+      Object {
+        "date": "2020-07-09",
+        "lineVisit": 84,
+        "webVisit": 14865,
+      },
+      Object {
+        "date": "2020-07-10",
+        "lineVisit": 71,
+        "webVisit": 18923,
+      },
+      Object {
+        "date": "2020-07-11",
+        "lineVisit": 44,
+        "webVisit": 8213,
+      },
+      Object {
+        "date": "2020-07-12",
+        "lineVisit": 29,
+        "webVisit": 2981,
+      },
+      Object {
+        "date": "2020-07-13",
+        "lineVisit": 24,
+        "webVisit": 927,
+      },
+      Object {
+        "date": "2020-07-14",
+        "lineVisit": 6,
+        "webVisit": 366,
+      },
+      Object {
+        "date": "2020-07-15",
+        "lineVisit": 6,
+        "webVisit": 360,
+      },
+      Object {
+        "date": "2020-07-16",
+        "lineVisit": 8,
+        "webVisit": 434,
+      },
+      Object {
+        "date": "2020-07-17",
+        "lineVisit": 13,
+        "webVisit": 227,
+      },
+      Object {
+        "date": "2020-07-18",
+        "lineVisit": 2,
+        "webVisit": 78,
+      },
+      Object {
+        "date": "2020-07-19",
+        "lineVisit": 2,
+        "webVisit": 92,
+      },
+      Object {
+        "date": "2020-07-20",
+        "lineVisit": 2,
+        "webVisit": 50,
+      },
+      Object {
+        "date": "2020-07-21",
+        "webVisit": 50,
+      },
+      Object {
+        "date": "2020-07-22",
+        "webVisit": 42,
+      },
+      Object {
+        "date": "2020-07-23",
+        "webVisit": 55,
+      },
+      Object {
+        "date": "2020-07-24",
+        "webVisit": 45,
+      },
+      Object {
+        "date": "2020-07-25",
+        "webVisit": 36,
+      },
+      Object {
+        "date": "2020-07-26",
+        "webVisit": 36,
+      },
+      Object {
+        "date": "2020-07-27",
+        "webVisit": 18,
+      },
+      Object {
+        "date": "2020-07-28",
+        "lineVisit": 2,
+        "webVisit": 18,
+      },
+      Object {
+        "date": "2020-07-29",
+        "webVisit": 19,
+      },
+      Object {
+        "date": "2020-07-30",
+        "webVisit": 19,
+      },
+      Object {
+        "date": "2020-07-31",
+        "webVisit": 2,
+      },
+      Object {
+        "date": "2020-08-01",
+        "webVisit": 6,
+      },
+      Object {
+        "date": "2020-08-02",
+        "webVisit": 3,
+      },
+      Object {
+        "date": "2020-08-03",
+        "webVisit": 6,
+      },
+      Object {
+        "date": "2020-08-04",
+        "webVisit": 4,
+      },
+      Object {
+        "date": "2020-08-05",
+        "webVisit": 6,
+      },
+    ]
+  }
+  layout={
+    Object {
+      "height": 100,
+      "margin": Object {
+        "bottom": 20,
+        "left": 40,
+        "right": 20,
+        "top": 10,
+      },
+      "width": 600,
+    }
+  }
+>
+  <div>
+    <svg
+      height={100}
+      width={600}
+    >
+      <g
+        className="makeStyles-plot"
+        transform="translate(40, 10)"
+      >
+        <g
+          className="leftAxis"
+          textAnchor="end"
+        >
+          <TickGroup
+            gridline={
+              Object {
+                "x2": 540,
+              }
+            }
+            key="18930"
+            text={
+              Object {
+                "text": 18930,
+                "x": -9,
+                "y": 5,
+              }
+            }
+            x={0}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,0)"
+            >
+              <line
+                className="gridline"
+                x2={540}
+              />
+              <text
+                fill="currentColor"
+                x={-9}
+                y={5}
+              >
+                18930
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "x2": 540,
+              }
+            }
+            key="9465"
+            text={
+              Object {
+                "text": 9465,
+                "x": -9,
+                "y": 5,
+              }
+            }
+            x={0}
+            y={35}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,35)"
+            >
+              <line
+                className="gridline"
+                x2={540}
+              />
+              <text
+                fill="currentColor"
+                x={-9}
+                y={5}
+              >
+                9465
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "x2": 540,
+              }
+            }
+            key="0"
+            text={
+              Object {
+                "text": 0,
+                "x": -9,
+                "y": 5,
+              }
+            }
+            x={0}
+            y={70}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,70)"
+            >
+              <line
+                className="gridline"
+                x2={540}
+              />
+              <text
+                fill="currentColor"
+                x={-9}
+                y={5}
+              >
+                0
+              </text>
+            </g>
+          </TickGroup>
+        </g>
+        <g
+          className="rightAxis"
+          textAnchor="start"
+          transform="translate(540, 0)"
+        >
+          <TickGroup
+            gridline={Object {}}
+            key="90"
+            text={
+              Object {
+                "text": 90,
+                "x": 8,
+                "y": 5,
+              }
+            }
+            x={0}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,0)"
+            >
+              <line
+                className="gridline"
+              />
+              <text
+                fill="currentColor"
+                x={8}
+                y={5}
+              >
+                90
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={Object {}}
+            key="45"
+            text={
+              Object {
+                "text": 45,
+                "x": 8,
+                "y": 5,
+              }
+            }
+            x={0}
+            y={35}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,35)"
+            >
+              <line
+                className="gridline"
+              />
+              <text
+                fill="currentColor"
+                x={8}
+                y={5}
+              >
+                45
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={Object {}}
+            key="0"
+            text={
+              Object {
+                "text": 0,
+                "x": 8,
+                "y": 5,
+              }
+            }
+            x={0}
+            y={70}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,70)"
+            >
+              <line
+                className="gridline"
+              />
+              <text
+                fill="currentColor"
+                x={8}
+                y={5}
+              >
+                0
+              </text>
+            </g>
+          </TickGroup>
+        </g>
+        <g
+          className="bottomAxis"
+          textAnchor="middle"
+          transform="translate(0, 70)"
+        >
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1596585600000"
+            text={
+              Object {
+                "text": "8/5",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={540}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(540,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                8/5
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1596307200000"
+            text={
+              Object {
+                "text": "8/1",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={480}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(480,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                8/1
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1596028800000"
+            text={
+              Object {
+                "text": "7/29",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={420}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(420,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/29
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1595750400000"
+            text={
+              Object {
+                "text": "7/26",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={360}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(360,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/26
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1595472000000"
+            text={
+              Object {
+                "text": "7/23",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={300}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(300,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/23
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1595193600000"
+            text={
+              Object {
+                "text": "7/19",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={240}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(240,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/19
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1594915200000"
+            text={
+              Object {
+                "text": "7/16",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={180}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(180,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/16
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1594636800000"
+            text={
+              Object {
+                "text": "7/13",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={120}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(120,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/13
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1594358400000"
+            text={
+              Object {
+                "text": "7/10",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={60}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(60,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/10
+              </text>
+            </g>
+          </TickGroup>
+          <TickGroup
+            gridline={
+              Object {
+                "y2": -70,
+              }
+            }
+            key="1594080000000"
+            text={
+              Object {
+                "text": "7/7",
+                "x": 0,
+                "y": 20,
+              }
+            }
+            x={0}
+            y={0}
+          >
+            <g
+              className="tickGroup"
+              transform="translate(0,0)"
+            >
+              <line
+                className="gridline"
+                y2={-70}
+              />
+              <text
+                fill="currentColor"
+                x={0}
+                y={20}
+              >
+                7/7
+              </text>
+            </g>
+          </TickGroup>
+        </g>
+        <g
+          className="webGroup"
+        >
+          <path
+            className="line webLine"
+            d="M0,68.97569994717381C6.206896551724138,67.31660503609791,12.413793103448274,65.65751012502201,18.620689655172413,59.02113048071843C24.82758620689655,52.38475083641485,31.034482758620687,24.864236661384048,37.241379310344826,15.031695721077655C43.44827586206896,5.199154780771263,49.6551724137931,0.02588483888008586,55.86206896551724,0.02588483888008586C62.068965517241374,0.02588483888008586,68.27586206896551,29.804543053354458,74.48275862068965,39.6296883254094C80.6896551724138,49.454833597464344,86.89655172413794,54.48635323120267,93.10344827586208,58.97675647120972C99.3103448275862,63.46715971121676,105.51724137931035,65.18911780243,111.72413793103448,66.57210776545166C117.93103448275862,67.95509772847332,124.13793103448275,68.63180137348124,130.3448275862069,68.64659270998415C136.55172413793102,68.66138404648706,142.75862068965517,68.6687797147385,148.9655172413793,68.6687797147385C155.17241379310343,68.6687797147385,161.3793103448276,68.39513998943477,167.58620689655172,68.39513998943477C173.79310344827587,68.39513998943477,180,68.94118682866701,186.20689655172416,69.16059165346012C192.41379310344828,69.3799964782532,198.6206896551724,69.71156893819334,204.82758620689654,69.71156893819334C211.03448275862067,69.71156893819334,217.24137931034483,69.65979926043318,223.44827586206895,69.65979926043318C229.6551724137931,69.65979926043318,235.86206896551724,69.81510829371368,242.0689655172414,69.81510829371368C248.27586206896552,69.81510829371368,254.48275862068965,69.81510829371368,260.6896551724138,69.81510829371368C266.8965517241379,69.81510829371368,273.1034482758621,69.8446909667195,279.3103448275862,69.8446909667195C285.51724137931035,69.8446909667195,291.7241379310345,69.79661912308505,297.9310344827586,69.79661912308505C304.13793103448273,69.79661912308505,310.34482758620686,69.82188765627751,316.551724137931,69.8335974643423C322.7586206896551,69.84530727240711,328.9655172413793,69.86687797147385,335.17241379310343,69.86687797147385C341.37931034482756,69.86687797147385,347.58620689655174,69.86687797147385,353.7931034482759,69.86687797147385C360,69.86687797147385,366.2068965517242,69.93343898573693,372.4137931034483,69.93343898573693C378.62068965517244,69.93343898573693,384.82758620689657,69.93343898573693,391.0344827586207,69.93343898573693C397.2413793103448,69.93343898573693,403.44827586206895,69.9297411516112,409.6551724137931,69.9297411516112C415.8620689655172,69.9297411516112,422.0689655172414,69.9297411516112,428.2758620689655,69.9297411516112C434.48275862068965,69.9297411516112,440.6896551724138,69.99260433174855,446.8965517241379,69.99260433174855C453.10344827586204,69.99260433174855,459.31034482758616,69.97781299524564,465.5172413793103,69.97781299524564C471.7241379310345,69.97781299524564,477.9310344827586,69.98890649762282,484.1379310344828,69.98890649762282C490.3448275862069,69.98890649762282,496.55172413793105,69.97781299524564,502.7586206896552,69.97781299524564C508.9655172413793,69.97781299524564,515.1724137931035,69.98520866349709,521.3793103448276,69.98520866349709C527.5862068965517,69.98520866349709,533.7931034482758,69.98151082937136,540,69.97781299524564"
+          />
+          <circle
+            className="dot webDot"
+            cx={0}
+            cy={68.97569994717381}
+            key="0"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={18.620689655172413}
+            cy={59.02113048071843}
+            key="1"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={37.241379310344826}
+            cy={15.031695721077655}
+            key="2"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={55.86206896551724}
+            cy={0.02588483888008586}
+            key="3"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={74.48275862068965}
+            cy={39.6296883254094}
+            key="4"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={93.10344827586208}
+            cy={58.97675647120972}
+            key="5"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={111.72413793103448}
+            cy={66.57210776545166}
+            key="6"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={130.3448275862069}
+            cy={68.64659270998415}
+            key="7"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={148.9655172413793}
+            cy={68.6687797147385}
+            key="8"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={167.58620689655172}
+            cy={68.39513998943477}
+            key="9"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={186.20689655172416}
+            cy={69.16059165346012}
+            key="10"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={204.82758620689654}
+            cy={69.71156893819334}
+            key="11"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={223.44827586206895}
+            cy={69.65979926043318}
+            key="12"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={242.0689655172414}
+            cy={69.81510829371368}
+            key="13"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={260.6896551724138}
+            cy={69.81510829371368}
+            key="14"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={279.3103448275862}
+            cy={69.8446909667195}
+            key="15"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={297.9310344827586}
+            cy={69.79661912308505}
+            key="16"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={316.551724137931}
+            cy={69.8335974643423}
+            key="17"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={335.17241379310343}
+            cy={69.86687797147385}
+            key="18"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={353.7931034482759}
+            cy={69.86687797147385}
+            key="19"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={372.4137931034483}
+            cy={69.93343898573693}
+            key="20"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={391.0344827586207}
+            cy={69.93343898573693}
+            key="21"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={409.6551724137931}
+            cy={69.9297411516112}
+            key="22"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={428.2758620689655}
+            cy={69.9297411516112}
+            key="23"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={446.8965517241379}
+            cy={69.99260433174855}
+            key="24"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={465.5172413793103}
+            cy={69.97781299524564}
+            key="25"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={484.1379310344828}
+            cy={69.98890649762282}
+            key="26"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={502.7586206896552}
+            cy={69.97781299524564}
+            key="27"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={521.3793103448276}
+            cy={69.98520866349709}
+            key="28"
+            r="5"
+          />
+          <circle
+            className="dot webDot"
+            cx={540}
+            cy={69.97781299524564}
+            key="29"
+            r="5"
+          />
+        </g>
+        <g
+          className="chatbotGroup"
+        >
+          <path
+            className="line chatbotLine"
+            d="M0,66.11111111111111C6.206896551724138,61.89814814814815,12.413793103448274,57.68518518518519,18.620689655172413,47.44444444444445C24.82758620689655,37.20370370370371,31.034482758620687,4.666666666666666,37.241379310344826,4.666666666666666C43.44827586206896,4.666666666666666,49.6551724137931,9.592592592592595,55.86206896551724,14.77777777777778C62.068965517241374,19.962962962962965,68.27586206896551,30.33333333333333,74.48275862068965,35.77777777777777C80.6896551724138,41.22222222222222,86.89655172413794,44.851851851851855,93.10344827586208,47.44444444444445C99.3103448275862,50.03703703703704,105.51724137931035,48.74074074074075,111.72413793103448,51.333333333333336C117.93103448275862,53.92592592592593,124.13793103448275,65.33333333333333,130.3448275862069,65.33333333333333C136.55172413793102,65.33333333333333,142.75862068965517,65.33333333333333,148.9655172413793,65.33333333333333C155.17241379310343,65.33333333333333,161.3793103448276,64.68518518518518,167.58620689655172,63.77777777777778C173.79310344827587,62.870370370370374,180,59.88888888888889,186.20689655172416,59.88888888888889C192.41379310344828,59.88888888888889,198.6206896551724,68.44444444444444,204.82758620689654,68.44444444444444C211.03448275862067,68.44444444444444,217.24137931034483,68.44444444444444,223.44827586206895,68.44444444444444C229.6551724137931,68.44444444444444,235.86206896551724,68.44444444444444,242.0689655172414,68.44444444444444C248.27586206896552,68.44444444444444,254.48275862068965,70,260.6896551724138,70C266.8965517241379,70,273.1034482758621,70,279.3103448275862,70C285.51724137931035,70,291.7241379310345,70,297.9310344827586,70C304.13793103448273,70,310.34482758620686,70,316.551724137931,70C322.7586206896551,70,328.9655172413793,70,335.17241379310343,70C341.37931034482756,70,347.58620689655174,70,353.7931034482759,70C360,70,366.2068965517242,70,372.4137931034483,70C378.62068965517244,70,384.82758620689657,68.44444444444444,391.0344827586207,68.44444444444444C397.2413793103448,68.44444444444444,403.44827586206895,70,409.6551724137931,70C415.8620689655172,70,422.0689655172414,70,428.2758620689655,70C434.48275862068965,70,440.6896551724138,70,446.8965517241379,70C453.10344827586204,70,459.31034482758616,70,465.5172413793103,70C471.7241379310345,70,477.9310344827586,70,484.1379310344828,70C490.3448275862069,70,496.55172413793105,70,502.7586206896552,70C508.9655172413793,70,515.1724137931035,70,521.3793103448276,70C527.5862068965517,70,533.7931034482758,70,540,70"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={0}
+            cy={66.11111111111111}
+            key="0"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={18.620689655172413}
+            cy={47.44444444444445}
+            key="1"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={37.241379310344826}
+            cy={4.666666666666666}
+            key="2"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={55.86206896551724}
+            cy={14.77777777777778}
+            key="3"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={74.48275862068965}
+            cy={35.77777777777777}
+            key="4"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={93.10344827586208}
+            cy={47.44444444444445}
+            key="5"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={111.72413793103448}
+            cy={51.333333333333336}
+            key="6"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={130.3448275862069}
+            cy={65.33333333333333}
+            key="7"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={148.9655172413793}
+            cy={65.33333333333333}
+            key="8"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={167.58620689655172}
+            cy={63.77777777777778}
+            key="9"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={186.20689655172416}
+            cy={59.88888888888889}
+            key="10"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={204.82758620689654}
+            cy={68.44444444444444}
+            key="11"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={223.44827586206895}
+            cy={68.44444444444444}
+            key="12"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={242.0689655172414}
+            cy={68.44444444444444}
+            key="13"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={260.6896551724138}
+            cy={70}
+            key="14"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={279.3103448275862}
+            cy={70}
+            key="15"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={297.9310344827586}
+            cy={70}
+            key="16"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={316.551724137931}
+            cy={70}
+            key="17"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={335.17241379310343}
+            cy={70}
+            key="18"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={353.7931034482759}
+            cy={70}
+            key="19"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={372.4137931034483}
+            cy={70}
+            key="20"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={391.0344827586207}
+            cy={68.44444444444444}
+            key="21"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={409.6551724137931}
+            cy={70}
+            key="22"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={428.2758620689655}
+            cy={70}
+            key="23"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={446.8965517241379}
+            cy={70}
+            key="24"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={465.5172413793103}
+            cy={70}
+            key="25"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={484.1379310344828}
+            cy={70}
+            key="26"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={502.7586206896552}
+            cy={70}
+            key="27"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={521.3793103448276}
+            cy={70}
+            key="28"
+            r="5"
+          />
+          <circle
+            className="dot chatbotDot"
+            cx={540}
+            cy={70}
+            key="29"
+            r="5"
+          />
+        </g>
+      </g>
+    </svg>
+  </div>
+</LineChart>
+`;
