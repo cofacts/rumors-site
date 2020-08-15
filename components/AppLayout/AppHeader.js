@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
 
-import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+  useTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -18,6 +23,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
 
+import { darkTheme } from 'lib/theme';
 import NavLink from 'components/NavLink';
 import GlobalSearch from './GlobalSearch';
 import * as Widgets from './Widgets';
@@ -94,7 +100,6 @@ const useStyles = makeStyles(theme => ({
   profileMenu: {
     marginTop: 50,
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.common.white,
     overflow: 'inherit',
   },
   divider: {
@@ -237,43 +242,45 @@ function AppHeader({
           {user?.name ? (
             <>
               <Widgets.Avatar user={user} size={40} onClick={openProfileMenu} />
-              <Menu
-                id="profile-menu"
-                classes={{ paper: classes.profileMenu }}
-                anchorEl={anchor}
-                keepMounted
-                open={Boolean(anchor)}
-                onClose={closeProfileMenu}
-              >
-                <Widgets.Level user={user} />
-                <MenuItem onClick={closeProfileMenu}>
-                  <ListItemIcon>
-                    <Widgets.Avatar user={user} size={40} />
-                  </ListItemIcon>
-                  <Typography variant="inherit">{user?.name}</Typography>
-                </MenuItem>
-                <Divider classes={{ root: classes.divider }} />
-                <MenuItem onClick={closeProfileMenu}>
-                  <ListItemIcon className={classes.listIcon}>
-                    <AccountCircleOutlinedIcon />
-                  </ListItemIcon>
-                  <Typography variant="inherit">{t`My Profile`}</Typography>
-                </MenuItem>
-                <Divider classes={{ root: classes.divider }} />
-                <MenuItem onClick={closeProfileMenu}>
-                  <ListItemIcon className={classes.listIcon}>
-                    <InfoIcon />
-                  </ListItemIcon>
-                  <Typography variant="inherit">{t`About Cofacts`}</Typography>
-                </MenuItem>
-                <Divider classes={{ root: classes.divider }} />
-                <MenuItem onClick={onLogout}>
-                  <ListItemIcon className={classes.listIcon}>
-                    <ExitToAppRoundedIcon />
-                  </ListItemIcon>
-                  <Typography variant="inherit">{t`Logout`}</Typography>
-                </MenuItem>
-              </Menu>
+              <ThemeProvider theme={darkTheme}>
+                <Menu
+                  id="profile-menu"
+                  classes={{ paper: classes.profileMenu }}
+                  anchorEl={anchor}
+                  keepMounted
+                  open={Boolean(anchor)}
+                  onClose={closeProfileMenu}
+                >
+                  <Widgets.Level user={user} />
+                  <MenuItem onClick={closeProfileMenu}>
+                    <ListItemIcon>
+                      <Widgets.Avatar user={user} size={40} />
+                    </ListItemIcon>
+                    <Typography variant="inherit">{user?.name}</Typography>
+                  </MenuItem>
+                  <Divider classes={{ root: classes.divider }} />
+                  <MenuItem onClick={closeProfileMenu}>
+                    <ListItemIcon className={classes.listIcon}>
+                      <AccountCircleOutlinedIcon />
+                    </ListItemIcon>
+                    <Typography variant="inherit">{t`My Profile`}</Typography>
+                  </MenuItem>
+                  <Divider classes={{ root: classes.divider }} />
+                  <MenuItem onClick={closeProfileMenu}>
+                    <ListItemIcon className={classes.listIcon}>
+                      <InfoIcon />
+                    </ListItemIcon>
+                    <Typography variant="inherit">{t`About Cofacts`}</Typography>
+                  </MenuItem>
+                  <Divider classes={{ root: classes.divider }} />
+                  <MenuItem onClick={onLogout}>
+                    <ListItemIcon className={classes.listIcon}>
+                      <ExitToAppRoundedIcon />
+                    </ListItemIcon>
+                    <Typography variant="inherit">{t`Logout`}</Typography>
+                  </MenuItem>
+                </Menu>
+              </ThemeProvider>
             </>
           ) : (
             <Button
