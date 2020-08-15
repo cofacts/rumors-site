@@ -1,6 +1,6 @@
 import { useState, forwardRef, memo } from 'react';
 import { t } from 'ttag';
-import Modal from '@material-ui/core/Modal';
+import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -14,16 +14,8 @@ import { ButtonIcon } from './FeedDisplayComponents';
 import CopyButton from '../CopyButton';
 
 const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 730,
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: 10,
-    boxShadow: theme.shadows[5],
+  dialog: {
     padding: theme.spacing(3, 7),
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`,
   },
   close: {
     position: 'absolute',
@@ -34,72 +26,71 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     width: '100%',
     paddingTop: '56.25%',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 16,
+    marginBottom: 16,
     '& .iframe': {
       position: 'absolute',
       top: '0',
     },
   },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    borderRadius: '4px',
-    borderStyle: 'hidden',
-    boxShadow: '0 0 0 1px #ddd',
-    marginTop: 20,
-    marginBottom: 20,
-    '& td': {
-      border: '1px solid #ddd',
-      textAlign: 'center',
-    },
-  },
   textField: { padding: '0 14px' },
 }));
 
-const ModalBody = forwardRef(function ModalBody(props, ref) {
+const DialogBody = forwardRef(function DialogBody(props, ref) {
   const { IFTTTAppletUrl, feedUrl, tutorialYoutubeId, platform, close } = props;
   const classes = useStyles();
 
   return (
-    <div ref={ref} className={classes.paper} tabIndex={-1}>
+    <div ref={ref} className={classes.dialog}>
       <IconButton className={classes.close} onClick={close}>
         <CloseIcon />
       </IconButton>
       <Typography variant="h5">{t`Subscribe to ${platform}`}</Typography>
-      <div className={classes.youtube}>
-        <iframe
-          className="iframe"
-          width="100%"
-          height="100%"
-          src={`https://www.youtube.com/embed/${tutorialYoutubeId}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <table className={classes.table}>
-        <tbody>
-          <tr>
-            <td>
-              <Box px={1}>
-                <Typography variant="body1">{t`Feed URL`}</Typography>
-              </Box>
-            </td>
-            <td className={classes.textField}>
-              <TextField
-                defaultValue={feedUrl}
-                InputProps={{ readOnly: true, disableUnderline: true }}
-                onFocus={e => e.target.select()}
-                fullWidth
-              />
-            </td>
-            <td>
-              <CopyButton content={feedUrl}>{t`Copy`}</CopyButton>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {tutorialYoutubeId ? (
+        <div className={classes.youtube}>
+          <iframe
+            className="iframe"
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${tutorialYoutubeId}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      ) : null}
+      <Box
+        display="flex"
+        alignItems="stretch"
+        borderRadius={4}
+        border="1px solid #ddd"
+        marginBottom={2}
+      >
+        <Box
+          display="flex"
+          alignItems="center"
+          p={1}
+          borderRight="1px solid #ddd"
+        >
+          <Typography noWrap variant="body1">{t`Feed URL`}</Typography>
+        </Box>
+        <Box
+          display="flex"
+          alignItems="center"
+          px={1}
+          borderRight="1px solid #ddd"
+        >
+          <TextField
+            defaultValue={feedUrl}
+            InputProps={{ readOnly: true, disableUnderline: true }}
+            onFocus={e => e.target.select()}
+            fullWidth
+          />
+        </Box>
+        <Box display="flex" alignItems="center">
+          <CopyButton content={feedUrl}>{t`Copy`}</CopyButton>
+        </Box>
+      </Box>
       <Button
         variant="contained"
         color="default"
@@ -137,15 +128,15 @@ function IFTTTItem({
       <ButtonIcon icon={icon} onClick={handleOpen}>
         {children}
       </ButtonIcon>
-      <Modal open={open} onClose={handleClose}>
-        <ModalBody
+      <Dialog open={open} onClose={handleClose}>
+        <DialogBody
           platform={children}
           feedUrl={feedUrl}
           IFTTTAppletUrl={IFTTTAppletUrl}
           tutorialYoutubeId={tutorialYoutubeId}
           close={handleClose}
         />
-      </Modal>
+      </Dialog>
     </>
   );
 }
