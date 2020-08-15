@@ -1,3 +1,10 @@
+// Polyfills
+// Note: It's not safe to use noModule here. For instance, iOS 11 skips loading <script nomodule>
+// but needs polyfills to support Object.fromEntries.
+// @see https://nextjs.org/docs/basic-features/supported-browsers-features#custom-polyfills
+//
+import 'core-js/features/object/from-entries';
+
 import App from 'next/app';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
