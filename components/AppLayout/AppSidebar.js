@@ -3,7 +3,6 @@ import { t } from 'ttag';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  useMediaQuery,
   Box,
   Button,
   Typography,
