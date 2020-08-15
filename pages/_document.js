@@ -3,7 +3,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { AUTH_ERROR_MSG, NO_USER_FOR_ARTICLE } from 'constants/errors';
-import theme from 'lib/theme';
+import { lightTheme } from 'lib/theme';
 import agent from 'lib/stackimpact';
 import rollbar from 'lib/rollbar';
 
@@ -33,7 +33,7 @@ class MyDocument extends Document {
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={lightTheme.palette.primary.main} />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap"
             rel="stylesheet"
