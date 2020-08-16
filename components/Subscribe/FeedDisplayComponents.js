@@ -76,7 +76,7 @@ export function ListItemCopy({ children, icon, textToCopy }) {
   const [status, setStatus] = useState(null);
   const onSuccess = text => {
     setMessage(text);
-    setTimeout(() => setStatus('SUCCESS'), 0);
+    setStatus(SUCCESS);
   };
   const handleClickEvent = () => {
     if (copy(textToCopy)) {

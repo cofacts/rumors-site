@@ -11,7 +11,7 @@ const CopyButton = React.memo(({ content = '' }) => {
   const [status, setStatus] = useState(null);
   const onSuccess = text => {
     setMessage(text);
-    setTimeout(() => setStatus(SUCCESS), 0);
+    setStatus(SUCCESS);
   };
   const handleClickEvent = () => {
     if (copy(content)) {

@@ -53,7 +53,7 @@ const ReplyShare = ({ copyText }) => {
 
   const onSuccess = text => {
     setMessage(text);
-    setTimeout(() => setStatus(SUCCESS), 0);
+    setStatus(SUCCESS);
     closeMenu();
   };
 
