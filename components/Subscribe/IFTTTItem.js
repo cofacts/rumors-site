@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { ButtonIcon } from './FeedDisplayComponents';
@@ -36,9 +37,18 @@ const useStyles = makeStyles(theme => ({
   textField: { padding: '0 14px' },
 }));
 
+const SUCCESS = 'SUCCESS';
+
 const DialogBody = forwardRef(function DialogBody(props, ref) {
   const { IFTTTAppletUrl, feedUrl, tutorialYoutubeId, platform, close } = props;
   const classes = useStyles();
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState(null);
+
+  const copySuccess = text => {
+    setMessage(text);
+    setStatus(SUCCESS);
+  };
 
   return (
     <div ref={ref} className={classes.dialog}>
@@ -88,7 +98,10 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
           />
         </Box>
         <Box display="flex" alignItems="center">
-          <CopyButton content={feedUrl}>{t`Copy`}</CopyButton>
+          <CopyButton
+            content={feedUrl}
+            onSuccess={() => copySuccess(t`Copied to clipboard!`)}
+          >{t`Copy`}</CopyButton>
         </Box>
       </Box>
       <Button
@@ -103,6 +116,12 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
       >
         {t`Subscribe`}
       </Button>
+      <Snackbar
+        onClose={() => setStatus(null)}
+        open={status === SUCCESS}
+        message={message}
+        autoHideDuration={3000}
+      />
     </div>
   );
 });

@@ -6,6 +6,7 @@ import RssFeedIcon from '@material-ui/icons/RssFeed';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -42,9 +43,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function FeedDisplay({ listQueryVars }) {
+  const SUCCESS = 'SUCCESS';
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [feedUrl, setFeedUrl] = useState(null);
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     const generateUrl = async () => {
@@ -62,6 +66,13 @@ function FeedDisplay({ listQueryVars }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const copySuccess = text => {
+    setMessage(text);
+    setStatus(SUCCESS);
+    handleClose();
+  };
+
   const encodedFeedUrl = encodeURIComponent(feedUrl);
 
   return (
@@ -88,6 +99,7 @@ function FeedDisplay({ listQueryVars }) {
             email={true}
             href={`https://feedrabbit.com/?url=${encodedFeedUrl}`}
             icon={mailIcon}
+            onClick={handleClose}
           >
             <ListItemText
               primary={t`Email`}
@@ -101,11 +113,16 @@ function FeedDisplay({ listQueryVars }) {
           <ListItemLink
             href={`https://feedly.com/i/discover/sources/search/feed/${encodedFeedUrl}`}
             icon={feedlyIcon}
+            onClick={handleClose}
           >
             <ListItemText>{t`Feedly`}</ListItemText>
           </ListItemLink>
 
-          <ListItemCopy icon={rssIcon} textToCopy={feedUrl}>
+          <ListItemCopy
+            icon={rssIcon}
+            textToCopy={feedUrl}
+            onSuccess={() => copySuccess(t`Copied to clipboard!`)}
+          >
             {t`Get RSS Feed Link`}
           </ListItemCopy>
 
@@ -145,6 +162,12 @@ function FeedDisplay({ listQueryVars }) {
           </Grid>
         </List>
       </Popover>
+      <Snackbar
+        onClose={() => setStatus(null)}
+        open={status === SUCCESS}
+        message={message}
+        autoHideDuration={3000}
+      />
     </>
   );
 }

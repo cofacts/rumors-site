@@ -78,7 +78,12 @@ const ReplyShare = ({ copyText }) => {
           <ClickAwayListener onClickAway={closeMenu}>
             <Fade {...TransitionProps} timeout={350}>
               <Paper elevation={3}>
-                <CopyButton content={copyText}>{t`Copy`}</CopyButton>
+                <CopyButton
+                  content={copyText}
+                  onSuccess={() => onSuccess(t`Copied to clipboard!`)}
+                >
+                  {t`Copy`}
+                </CopyButton>
               </Paper>
             </Fade>
           </ClickAwayListener>
