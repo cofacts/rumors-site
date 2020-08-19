@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { t, ngettext, msgid } from 'ttag';
 import Link from 'next/link';
 import Infos, { TimeInfo } from './Infos';

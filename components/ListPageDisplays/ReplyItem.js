@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { t } from 'ttag';
 import { TYPE_NAME } from 'constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';

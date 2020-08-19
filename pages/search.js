@@ -10,7 +10,7 @@ import querystring from 'querystring';
 import ArticlePageLayout from 'components/ArticlePageLayout';
 import ReplySearchPageLayout from 'components/ReplySearchPageLayout';
 import AppLayout from 'components/AppLayout';
-import withData from 'lib/apollo';
+import withApollo from 'lib/apollo';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -179,4 +179,4 @@ function SearchPage() {
   );
 }
 
-export default withData(SearchPage);
+export default withApollo()(SearchPage);

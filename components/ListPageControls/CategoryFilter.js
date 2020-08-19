@@ -1,8 +1,7 @@
 import { memo } from 'react';
 import { useRouter } from 'next/router';
 import { t } from 'ttag';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { gql, useQuery } from '@apollo/client';
 
 import { goToUrlQueryAndResetPagination } from 'lib/listPage';
 import BaseFilter from './BaseFilter';

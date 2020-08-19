@@ -1,8 +1,7 @@
 import React from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { gql, useMutation } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, SvgIcon, Divider } from '@material-ui/core';
-import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 

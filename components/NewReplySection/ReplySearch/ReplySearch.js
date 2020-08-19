@@ -1,6 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { gql, useLazyQuery } from '@apollo/client';
 import { t } from 'ttag';
 
 import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
