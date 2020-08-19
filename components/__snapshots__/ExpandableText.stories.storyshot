@@ -100,14 +100,14 @@ exports[`Storyshots ExpandableText With Word Count Given 1`] = `
       <Component
         classes={
           Object {
-            "root": "Component-root-3",
+            "root": "Component-root-98",
           }
         }
         expanded={false}
         toggleExpand={[Function]}
       >
         <button
-          className="Component-root-3"
+          className="Component-root"
           onClick={[Function]}
         >
           (

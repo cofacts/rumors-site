@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core';
 import ArticleInfo from 'components/ArticleInfo';
 import PlainList from 'components/PlainList';
-import ReplyFeedback from 'components/ReplyFeedback';
 import ExpandableText from 'components/ExpandableText';
 import ArticleItem from './ArticleItem';
 import ReplyItem from './ReplyItem';
@@ -109,41 +108,22 @@ export default function ReplySearchItem({
 
   const replyCount = articleReplies.length - 1;
 
-  const {
-    article,
-    articleId,
-    replyId,
-    feedbacks,
-    positiveFeedbackCount,
-    negativeFeedbackCount,
-    ownVote,
-    createdAt,
-    user,
-  } = articleReply || {};
-
   return (
     <li className={classes.root}>
       <Box p={{ xs: 2, md: 4.5 }}>
-        <ArticleInfo article={article} />
+        <ArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
           <ExpandableText className={classes.content} lineClamp={3}>
-            {nl2br(article.text)}
+            {nl2br(articleReply.article.text)}
           </ExpandableText>
         </div>
         <Divider classes={{ root: classes.divider }} />
 
         <ReplyItem
           key={reply.id}
-          articleId={articleId}
-          replyId={replyId}
+          articleReply={articleReply}
           reply={reply}
-          feedbacks={feedbacks}
-          positiveFeedbackCount={positiveFeedbackCount}
-          negativeFeedbackCount={negativeFeedbackCount}
-          ownVote={ownVote}
           query={query}
-          createdAt={createdAt}
-          user={user}
         />
       </Box>
       {!!replyCount && (
@@ -192,33 +172,20 @@ ReplySearchItem.fragments = {
   ReplySearchItem: gql`
     fragment ReplySearchItem on Reply {
       id
-      createdAt
       articleReplies(status: NORMAL) {
-        createdAt
-        replyId
-        articleId
-        user {
-          ...ReplyItemUser
-        }
         article {
           id
           text
           ...ArticleInfo
-          articleReplies(status: NORMAL) {
-            ownVote
-            reply {
-              id
-              type
-            }
-          }
+          ...ArticleItem
         }
-        ...ArticleReplyFeedbackData
+        ...ReplyItemArticleReplyData
       }
       ...ReplyItem
     }
     ${ArticleInfo.fragments.articleInfo}
-    ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
+    ${ArticleItem.fragments.ArticleItem}
     ${ReplyItem.fragments.ReplyItem}
-    ${ReplyItem.fragments.User}
+    ${ReplyItem.fragments.ReplyItemArticleReplyData}
   `,
 };
