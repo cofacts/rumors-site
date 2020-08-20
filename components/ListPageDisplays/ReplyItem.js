@@ -96,10 +96,7 @@ function ReplyItem({ articleReply, reply, query }) {
           {highlight(text, { query, highlightClassName: classes.highlight })}
         </ExpandableText>
         <div className={classes.status}>
-          <ArticleReplyFeedbackControl
-            articleReply={articleReply}
-            reply={reply}
-          />
+          <ArticleReplyFeedbackControl articleReply={articleReply} />
           <Box display={['none', 'none', 'block']}>
             <ReplyInfo
               reply={reply}
@@ -121,10 +118,8 @@ ReplyItem.fragments = {
       text
       type
       ...ReplyInfo
-      ...ArticleReplyFeedbackControlReply
     }
     ${ReplyInfo.fragments.replyInfo}
-    ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlReply}
   `,
   ReplyItemArticleReplyData: gql`
     fragment ReplyItemArticleReplyData on ArticleReply {

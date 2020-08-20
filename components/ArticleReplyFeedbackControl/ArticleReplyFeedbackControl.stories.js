@@ -28,10 +28,10 @@ const mockArticleReply = {
   ],
 };
 
-const mockReply = {
-  id: mockArticleReply.replyId,
-  text: 'Text reply text',
-};
+// const mockReply = {
+//   id: mockArticleReply.replyId,
+//   text: 'Text reply text',
+// };
 
 // MockedProvider mocks
 //
@@ -114,14 +114,10 @@ export const WithArticleReplyAndReplySet = () => (
   <MockedProvider mocks={[...mocks, otherUserMock]}>
     <>
       <p>Not voted yet</p>
-      <ArticleReplyFeedbackControl
-        articleReply={mockArticleReply}
-        reply={mockReply}
-      />
+      <ArticleReplyFeedbackControl articleReply={mockArticleReply} />
       <p>Upvoted</p>
       <ArticleReplyFeedbackControl
         articleReply={{ ...mockArticleReply, ownVote: 'UPVOTE' }}
-        reply={mockReply}
       />
     </>
   </MockedProvider>
