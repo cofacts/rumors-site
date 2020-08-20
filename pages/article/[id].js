@@ -25,7 +25,7 @@ import NewReplySection from 'components/NewReplySection';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import cx from 'clsx';
-import Trendline from 'components/Trendline';
+import TrendPlot from 'components/TrendPlot';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -176,6 +176,11 @@ const LOAD_ARTICLE = gql`
         ...ArticleCategoryData
         ...AddCategoryDialogData
       }
+      stats {
+        date
+        webVisit
+        lineVisit
+      }
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}
@@ -229,6 +234,7 @@ function ArticlePage() {
 
   const replySectionRef = useRef(null);
   const newReplyRef = useRef(null);
+  const chartParentRef = useRef(null);
 
   const classes = useStyles();
 
@@ -324,7 +330,7 @@ function ArticlePage() {
                 >{t`First reported ${timeAgoStr} ago`}</span>
               )}
             </Box>
-            <Box px={{ xs: '12px', md: '19px' }}>
+            <Box px={{ xs: '12px', md: '19px' }} ref={chartParentRef}>
               <Box py={3} overflow="hidden">
                 {nl2br(
                   linkify(text, {
@@ -341,7 +347,7 @@ function ArticlePage() {
                   ({ status }) => status === 'NORMAL'
                 )}
               />
-              <Trendline id={article.id} />
+              <TrendPlot data={article.stats} parent={chartParentRef} />
               <Divider />
               <footer>
                 {article.replyRequests.map((replyRequest, idx) => (

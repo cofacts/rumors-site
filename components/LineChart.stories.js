@@ -1,7 +1,6 @@
 import React from 'react';
 
 import LineChart from './LineChart';
-
 export default {
   title: 'LineChart',
   component: 'LineChart',
@@ -38,13 +37,14 @@ const data = [
   { date: new Date('2020-08-03'), webVisit: 6, lineVisit: 0 },
   { date: new Date('2020-08-04'), webVisit: 4, lineVisit: 0 },
   { date: new Date('2020-08-05'), webVisit: 6, lineVisit: 0 },
+  { date: new Date('2020-08-06'), webVisit: 0, lineVisit: 0 },
 ];
 export const Normal = () => (
   <LineChart
     dataset={data}
     layout={{
-      height: 200,
-      width: 1000,
+      height: 100,
+      width: 600,
       margin: { top: 10, left: 40, right: 20, bottom: 20 },
     }}
   />
