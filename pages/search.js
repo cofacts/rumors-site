@@ -179,4 +179,10 @@ function SearchPage() {
   );
 }
 
-export default withApollo()(SearchPage);
+export default withApollo({
+  /**
+   * Although this page is mostly not server-rendered, we need this so that publicRuntimeConfig works.
+   * @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
+   * */
+  ssr: true,
+})(SearchPage);
