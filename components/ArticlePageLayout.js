@@ -11,7 +11,7 @@ import { ellipsis } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ArticleItem from 'components/ListPageDisplays/ArticleItem';
-import FeedDisplay from 'components/FeedDisplay';
+import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
 import CategoryFilter from 'components/ListPageControls/CategoryFilter';

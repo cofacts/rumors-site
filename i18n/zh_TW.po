@@ -685,35 +685,11 @@ msgstr ""
 msgid "List of messages reported by Cofacts users"
 msgstr ""
 
-#: components/FeedDisplay.js:70
-msgid "Get update using Email"
-msgstr ""
-
-#: components/FeedDisplay.js:72
+#: components/Subscribe/FeedDisplay.js:86
 msgid "Via Feedrabbit"
 msgstr ""
 
-#: components/FeedDisplay.js:75
-msgid "Via Blogtrottr"
-msgstr ""
-
-#: components/FeedDisplay.js:78
-msgid "Via IFTTT (also connects to LINE)"
-msgstr ""
-
-#: components/FeedDisplay.js:81
-msgid "Get RSS updates"
-msgstr ""
-
-#: components/FeedDisplay.js:87
-msgid "Via Feedly"
-msgstr ""
-
-#: components/FeedDisplay.js:91
-msgid "RSS Feed URL for this list"
-msgstr ""
-
-#: pages/api/articles/[feed].js:137
+#: pages/api/articles/[feed].js:170
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Latest reply"
 msgstr ""
@@ -983,3 +959,28 @@ msgstr "等你來答"
 msgctxt "App header"
 msgid "Forum"
 msgstr "討論區"
+
+#: components/Subscribe/FeedDisplay.js:78
+msgid "Email"
+msgstr "電子郵件訂閱"
+
+#: components/Subscribe/FeedDisplay.js:95
+msgid "Feedly"
+msgstr "Feedly 訂閱"
+
+#: components/Subscribe/FeedDisplay.js:102
+msgid "Get RSS Feed Link"
+msgstr "取得 RSS Feed 連結"
+
+#: components/Subscribe/FeedDisplay.js:104
+msgid "Through IFTTT to"
+msgstr "透過 IFTTT 訂閱到"
+
+#: components/Subscribe/IFTTTItem.js:68
+#, javascript-format
+msgid "Subscribe to ${ platform }"
+msgstr "訂閱更新到 ${ platform }"
+
+#: components/Subscribe/IFTTTItem.js:85
+msgid "Feed URL"
+msgstr "Feed URL"
