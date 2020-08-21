@@ -31,9 +31,6 @@ const ReasonsDisplayData = gql`
   fragment ReasonsDisplayData on ArticleReply {
     articleId
     replyId
-    reply {
-      text
-    }
     positiveFeedbackCount
     negativeFeedbackCount
   }
@@ -56,6 +53,10 @@ const LOAD_FEEDBACKS = gql`
         }
       }
     }
+    GetReply(id: $replyId) {
+      id
+      text
+    }
   }
   ${Feedback.fragments.ReasonDisplayFeedbackData}
 `;
@@ -74,9 +75,17 @@ function ReasonsDisplay({ articleReply }) {
   const feedbacks =
     data?.ListArticleReplyFeedbacks.edges.map(({ node }) => node) || [];
 
+  if (loading) {
+    return (
+      <Box textAlign="center">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
     <>
-      {articleReply.reply.text}
+      {data?.GetReply.text}
       <Tabs
         value={tab}
         onChange={(e, value) => setTab(value)}
@@ -93,32 +102,20 @@ function ReasonsDisplay({ articleReply }) {
           label={t`Not Helpful ${articleReply.negativeFeedbackCount}`}
         />
       </Tabs>
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <>
-          <Box
-            display={tab === 0 ? 'block' : 'none'}
-            className={classes.feedbacks}
-          >
-            {feedbacks
-              .filter(({ vote, user }) => vote === 'UPVOTE' && user)
-              .map(feedback => (
-                <Feedback key={feedback.id} feedback={feedback} />
-              ))}
-          </Box>
-          <Box
-            display={tab === 1 ? 'block' : 'none'}
-            className={classes.feedbacks}
-          >
-            {feedbacks
-              .filter(({ vote, user }) => vote === 'DOWNVOTE' && user)
-              .map(feedback => (
-                <Feedback key={feedback.id} feedback={feedback} />
-              ))}
-          </Box>
-        </>
-      )}
+      <Box display={tab === 0 ? 'block' : 'none'} className={classes.feedbacks}>
+        {feedbacks
+          .filter(({ vote, user }) => vote === 'UPVOTE' && user)
+          .map(feedback => (
+            <Feedback key={feedback.id} feedback={feedback} />
+          ))}
+      </Box>
+      <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
+        {feedbacks
+          .filter(({ vote, user }) => vote === 'DOWNVOTE' && user)
+          .map(feedback => (
+            <Feedback key={feedback.id} feedback={feedback} />
+          ))}
+      </Box>
     </>
   );
 }
