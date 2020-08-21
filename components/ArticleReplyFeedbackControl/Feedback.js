@@ -34,7 +34,7 @@ function Feedback({ feedback }) {
 
 Feedback.fragments = {
   ReasonDisplayFeedbackData: gql`
-    fragment ReasonDisplayFeedbackData on Feedback {
+    fragment ReasonDisplayFeedbackData on ArticleReplyFeedback {
       id
       user {
         name
