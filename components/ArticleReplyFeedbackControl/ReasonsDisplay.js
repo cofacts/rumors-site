@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { t } from 'ttag';
 import { useQuery, gql } from '@apollo/client';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -61,7 +61,7 @@ const LOAD_FEEDBACKS = gql`
   ${Feedback.fragments.ReasonDisplayFeedbackData}
 `;
 
-function ReasonsDisplay({ articleReply }) {
+function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
   const { data, loading } = useQuery(LOAD_FEEDBACKS, {
@@ -71,6 +71,18 @@ function ReasonsDisplay({ articleReply }) {
     },
     ssr: false,
   });
+
+  // Invoking onSizeChange on load and tab switch
+  //
+  useEffect(() => {
+    if (!loading && onSizeChange) {
+      return onSizeChange();
+    }
+  }, [loading, onSizeChange]);
+
+  useEffect(() => {
+    if (onSizeChange) return onSizeChange();
+  }, [tab, onSizeChange]);
 
   const feedbacks =
     data?.ListArticleReplyFeedbacks.edges.map(({ node }) => node) || [];

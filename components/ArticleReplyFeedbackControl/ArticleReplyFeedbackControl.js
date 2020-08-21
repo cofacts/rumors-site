@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
@@ -118,6 +118,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
   const [reason, setReason] = useState('');
   const [reasonsPopoverAnchorEl, setReasonsPopoverAnchorEl] = useState(null);
   const [votePopoverAnchorEl, setVotePopoverAnchorEl] = useState(null);
+  const reasonsPopoverRef = useRef();
 
   const [showReorderSnack, setReorderSnackShow] = useState(false);
   const [createReplyFeedback, { loading: updatingReplyFeedback }] = useMutation(
@@ -151,6 +152,12 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
     setVote(null);
   };
 
+  const handleReasonReposition = useCallback(() => {
+    if (reasonsPopoverRef.current) {
+      reasonsPopoverRef.current.updatePosition();
+    }
+  }, []);
+
   return (
     <div className={cx(classes.root, className)}>
       <ButtonGroupDisplay
@@ -162,6 +169,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
       <Popover
         open={!!reasonsPopoverAnchorEl}
         anchorEl={reasonsPopoverAnchorEl}
+        action={reasonsPopoverRef}
         onClose={closeReasonsPopover}
         anchorOrigin={{
           vertical: 'top',
@@ -177,7 +185,10 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
           <CloseIcon />
         </button>
         {!!reasonsPopoverAnchorEl && (
-          <ReasonsDisplay articleReply={articleReply} />
+          <ReasonsDisplay
+            articleReply={articleReply}
+            onSizeChange={handleReasonReposition}
+          />
         )}
       </Popover>
       <Popover
