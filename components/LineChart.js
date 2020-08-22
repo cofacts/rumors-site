@@ -192,7 +192,6 @@ function TickGroup({ x, y, gridline, text }) {
 /* Populates a list of tick values given a scale and number of ticks wanted. */
 const getTicks = (scale, roundFn, tickNum) => {
   const [max, min] = scale.domain();
-  debugger
   const diff = roundFn((max - min) / (tickNum - 1));
   let ticks = [];
   for (let i = 0; i < tickNum; i++) {

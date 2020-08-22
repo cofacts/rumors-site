@@ -7,7 +7,11 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import Grid from '@material-ui/core/Grid';
 
 const CHART_DURATION = 30;
-const layout = {
+const MAX_WIDTH = 1000;
+const MIN_HEIGHT = 80;
+const MAX_HEIGHT = 300;
+
+let LAYOUT = {
   height: 100,
   width: 600,
   margin: { top: 10, left: 40, right: 20, bottom: 20 },
@@ -46,7 +50,6 @@ const useStyles = makeStyles(theme => ({
  */
 const populateChartData = (data) => {
   let dataset = [];
-  debugger
   const endDate = startOfDay(new Date());
   const startDate = subDays(endDate, CHART_DURATION);
   const firstDateInData = data?startOfDay(new Date(data[0].date)):addDays(endDate, 1);
@@ -82,16 +85,24 @@ const populateChartData = (data) => {
   return { dataset, totalLineVisits, totalWebVisits };
 };
 
+const computeLayout = ({ bottom, height, left, right, top, width }) => {
+  const innerWidth = Math.min(width, MAX_WIDTH) - 15;
+  const innerHeight = Math.min(Math.max(Math.round(innerWidth / 6), MIN_HEIGHT), MAX_HEIGHT);
+  return {...LAYOUT, height: innerHeight, width: innerWidth};
+}
 
-export default function TrendPlot({ data }) {
+export default function TrendPlot({ data, parent }) {
   const classes = useStyles();
   const [showPlot, setPlotShow] = useState(true);
+  let layout = LAYOUT;
+  if (parent && parent.current)
+    layout = computeLayout(parent.current.getBoundingClientRect());
 
   const { dataset, totalLineVisits, totalWebVisits } = populateChartData(data)
   return (
     <div className={`${classes.root}`}>
-      <Grid container>
-        <Grid className={`${classes.plotLabel}`} xs={1}>
+      <Grid container justify='flex-start'>
+        <Grid className={`${classes.plotLabel}`} xs={2} s={1}>
           近31日
         </Grid>
         <Grid className={`${classes.webLabel}`} xs={3}>
@@ -100,8 +111,7 @@ export default function TrendPlot({ data }) {
         <Grid className={`${classes.lineLabel}`} xs={3}>
           Line 詢問 {totalLineVisits} 次
         </Grid>
-        <Grid className={`${classes.totalLabel}`}
-    justify="flex-end" xs={5}>
+        <Grid className={`${classes.totalLabel}`} justifySelf="flex-end" xs={4} md={5}>
           { totalWebVisits + totalLineVisits } 次瀏覽
           {showPlot?<KeyboardArrowUpIcon onClick={() =>setPlotShow(false)}/>:<KeyboardArrowDownIcon onClick={() =>setPlotShow(true)}/>}
         </Grid>
