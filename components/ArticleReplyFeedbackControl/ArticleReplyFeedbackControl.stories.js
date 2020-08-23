@@ -2,6 +2,7 @@ import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
 import ArticleReplyFeedbackControl from './';
 import { CREATE_REPLY_FEEDBACK } from './ArticleReplyFeedbackControl';
+import { LOAD_FEEDBACKS } from './ReasonsDisplay';
 import { USER_QUERY } from 'lib/useCurrentUser';
 
 // Mocked objects
@@ -13,25 +14,21 @@ const mockArticleReply = {
   positiveFeedbackCount: 1,
   negativeFeedbackCount: 1,
   ownVote: null,
-  feedbacks: [
-    { id: 'feedback1', comment: 'test comment', vote: 'UPVOTE', user: null },
-    {
-      id: 'feedback1',
-      comment: 'test comment',
-      vote: 'DOWNVOTE',
-      user: {
-        id: 'webUser1',
-        name: 'Web User',
-        avatarUrl: 'https://placekitten.com/100/100',
-      },
-    },
-  ],
 };
 
-// const mockReply = {
-//   id: mockArticleReply.replyId,
-//   text: 'Text reply text',
-// };
+const mockArticleReplyFeedbacks = [
+  { id: 'feedback1', comment: 'test comment', vote: 'UPVOTE', user: null },
+  {
+    id: 'feedback1',
+    comment: 'test comment',
+    vote: 'DOWNVOTE',
+    user: {
+      id: 'webUser1',
+      name: 'Web User',
+      avatarUrl: 'https://placekitten.com/100/100',
+    },
+  },
+];
 
 // MockedProvider mocks
 //
@@ -51,6 +48,7 @@ const mocks = [
       data: {
         CreateOrUpdateArticleReplyFeedback: {
           ...mockArticleReply,
+          feedbacks: mockArticleReplyFeedbacks,
           positiveFeedbackCount: mockArticleReply.positiveFeedbackCount + 1,
         },
       },
@@ -71,7 +69,31 @@ const mocks = [
       data: {
         CreateOrUpdateArticleReplyFeedback: {
           ...mockArticleReply,
+          feedbacks: mockArticleReplyFeedbacks,
           negativeFeedbackCount: mockArticleReply.negativeFeedbackCount + 1,
+        },
+      },
+    },
+  },
+  // Load reply mock
+  {
+    request: {
+      query: LOAD_FEEDBACKS,
+      variables: {
+        articleId: mockArticleReply.articleId,
+        replyId: mockArticleReply.replyId,
+      },
+    },
+    result: {
+      data: {
+        ListArticleReplyFeedbacks: {
+          edges: mockArticleReplyFeedbacks.map(feedback => ({
+            node: feedback,
+          })),
+        },
+        GetReply: {
+          id: mockArticleReply.replyId,
+          text: 'Text reply text',
         },
       },
     },

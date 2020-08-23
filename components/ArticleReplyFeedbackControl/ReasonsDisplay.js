@@ -36,7 +36,7 @@ const ReasonsDisplayData = gql`
   }
 `;
 
-const LOAD_FEEDBACKS = gql`
+export const LOAD_FEEDBACKS = gql`
   query LoadFeadbacksForArticleReply($articleId: String!, $replyId: String!) {
     ListArticleReplyFeedbacks(
       filter: { articleId: $articleId, replyId: $replyId }

@@ -100,7 +100,7 @@ exports[`Storyshots ExpandableText With Word Count Given 1`] = `
       <Component
         classes={
           Object {
-            "root": "Component-root-98",
+            "root": "Component-root-97",
           }
         }
         expanded={false}
