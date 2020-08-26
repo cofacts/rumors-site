@@ -137,8 +137,6 @@ function urlQuery2Filter({
     return undefined;
   }
 
-  filterObj.replyRequestCount = { GTE: replyRequestCount };
-
   return filterObj;
 }
 
