@@ -20,7 +20,6 @@ import TimeRange from 'components/ListPageControls/TimeRange';
 import SortInput from 'components/ListPageControls/SortInput';
 import LoadMore from 'components/ListPageControls/LoadMore';
 
-const DEFAULT_REPLY_REQUEST_COUNT = 1;
 const MAX_KEYWORD_LENGTH = 100;
 
 const LIST_ARTICLES = gql`
@@ -75,7 +74,6 @@ function urlQuery2Filter({
   categoryIds,
   start,
   end,
-  replyRequestCount = DEFAULT_REPLY_REQUEST_COUNT,
   searchUserByArticleId,
   types,
   timeRangeKey,
@@ -136,8 +134,6 @@ function urlQuery2Filter({
   if (!Object.keys(filterObj).length) {
     return undefined;
   }
-
-  filterObj.replyRequestCount = { GTE: replyRequestCount };
 
   return filterObj;
 }
