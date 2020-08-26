@@ -1,15 +1,16 @@
 import React from 'react';
 import { t } from 'ttag';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Box, useMediaQuery } from '@material-ui/core';
+import MailIcon from '@material-ui/icons/Mail';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import { withDarkTheme } from 'lib/theme';
 import {
   EDITOR_FACEBOOK_GROUP,
   PROJECT_HACKFOLDR,
   CONTACT_EMAIL,
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Box, useMediaQuery } from '@material-ui/core';
-import MailIcon from '@material-ui/icons/Mail';
-import FacebookIcon from '@material-ui/icons/Facebook';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   container: {
     width: 800,
-    color: '#FFFFFF',
+    color: theme.palette.text.primary,
     margin: 60,
     display: 'flex',
   },
@@ -52,11 +53,12 @@ const CustomLink = withStyles(theme => ({
     alignItems: 'center',
   },
   link: {
-    color: '#FFFFFF',
+    color: 'inherit',
     textDecoration: 'none',
     lineHeight: '28px',
     fontSize: 20,
     fontWeight: 500,
+    '&:hover': { color: theme.palette.text.secondary },
   },
   linkActive: {
     color: theme.palette.primary[500],
@@ -64,9 +66,9 @@ const CustomLink = withStyles(theme => ({
   icon: {
     marginRight: 8,
   },
-}))(({ classes, icon, ...rest }) => (
+}))(({ classes, icon: Icon, ...rest }) => (
   <div className={classes.linkWrapper}>
-    {icon && React.createElement(icon, { className: classes.icon })}
+    {Icon && <Icon className={classes.icon} />}
     <NavLink
       className={classes.link}
       activeClassName={classes.linkActive}
@@ -134,4 +136,4 @@ function AppFooter() {
   );
 }
 
-export default React.memo(AppFooter);
+export default React.memo(withDarkTheme(AppFooter));

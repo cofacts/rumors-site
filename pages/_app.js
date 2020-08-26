@@ -9,7 +9,7 @@ import App from 'next/app';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../lib/theme';
+import { lightTheme } from '../lib/theme';
 
 // https://nextjs.org/docs/basic-features/built-in-css-support
 import '../components/app.css';
@@ -26,7 +26,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
