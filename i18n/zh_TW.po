@@ -987,6 +987,7 @@ msgstr "Feed URL"
 
 #: components/LineChart.js:331
 #: components/LineChart.js:335
+msgctxt "LineChart"
 msgid "times"
 msgstr "次"
 
@@ -1003,31 +1004,31 @@ msgstr "Line 詢問"
 msgid "Line"
 msgstr "詢問"
 
-#: components/TrendPlot.js:117
+#: components/TrendPlot.js:127
 msgid "past 31 days"
 msgstr "近31日"
 
-#: components/TrendPlot.js:120
+#: components/TrendPlot.js:130
 #, javascript-format
 msgid "Web Visit: ${ totalWebVisits }"
 msgstr "網頁瀏覽 ${ totalWebVisits } 次"
 
-#: components/TrendPlot.js:128
+#: components/TrendPlot.js:138
 #, javascript-format
 msgid "Web: ${ totalWebVisits }"
 msgstr "瀏覽 ${ totalWebVisits } 次"
 
-#: components/TrendPlot.js:132
+#: components/TrendPlot.js:133
 #, javascript-format
 msgid "Line Inquery: ${ totalLineVisits }"
 msgstr "Line 詢問 ${ totalLineVisits } 次"
 
-#: components/TrendPlot.js:131
+#: components/TrendPlot.js:141
 #, javascript-format
 msgid "Line: ${ totalLineVisits }"
 msgstr "詢問 ${ totalLineVisits } 次"
 
-#: components/TrendPlot.js:135
+#: components/TrendPlot.js:145
 #, javascript-format
 msgid "Total Visit: ${ totalVisits }"
 msgstr "${ totalVisits } 次瀏覽"

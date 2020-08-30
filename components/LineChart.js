@@ -1,4 +1,4 @@
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { max, curveMonotoneX, scaleTime, scaleLinear, line } from 'd3';
 import { startOfDay } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
@@ -328,11 +328,11 @@ export default function LineChart({ dataset, width, margin }) {
               <div className="tooltip-body">
                 <p className="tooltip-subtitle">{t`Web Visit`}</p>
                 <p className="tooltip-text">
-                  {d.webVisit} {t`times`}
+                  {d.webVisit} {c('LineChart').t`times`}
                 </p>
                 <p className="tooltip-subtitle">{t`Line Inquiry`}</p>
                 <p className="tooltip-text">
-                  {d.lineVisit} {t`times`}
+                  {d.lineVisit} {c('LineChart').t`times`}
                 </p>
               </div>
             </div>

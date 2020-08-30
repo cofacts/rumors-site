@@ -2,7 +2,13 @@ import { t, jt } from 'ttag';
 import { useState } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { makeStyles } from '@material-ui/core/styles';
-import { startOfDay, eachDayOfInterval, subDays, addDays, differenceInDays } from 'date-fns';
+import {
+  startOfDay,
+  eachDayOfInterval,
+  subDays,
+  addDays,
+  differenceInDays,
+} from 'date-fns';
 import LineChart from './LineChart';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -57,7 +63,7 @@ const fillEmptyDates = (start, end, dataset) => {
   eachDayOfInterval({ start, end }).forEach(date =>
     dataset.push({ date, webVisit: 0, lineVisit: 0 })
   );
-}
+};
 
 /**
  * Given analytics stat, populate dataset for last 31 days.
@@ -76,8 +82,8 @@ const populateChartData = data => {
 
   // fill in zeros if first date in data is less than 31 days ago.
   if (firstDateInData > startDate) {
-     fillEmptyDates(startDate, subDays(firstDateInData, 1), dataset);
-     lastProcessedDate = subDays(firstDateInData, 1);
+    fillEmptyDates(startDate, subDays(firstDateInData, 1), dataset);
+    lastProcessedDate = subDays(firstDateInData, 1);
   }
 
   if (data) {
@@ -85,7 +91,11 @@ const populateChartData = data => {
       const date = startOfDay(new Date(d.date));
       // if there's a gap between dates, fill with zeros.
       if (differenceInDays(date, lastProcessedDate) > 1) {
-        fillEmptyDates(addDays(lastProcessedDate, 1), subDays(date, 1), dataset);
+        fillEmptyDates(
+          addDays(lastProcessedDate, 1),
+          subDays(date, 1),
+          dataset
+        );
       }
       const webVisit = +d.webVisit || 0;
       const lineVisit = +d.lineVisit || 0;
