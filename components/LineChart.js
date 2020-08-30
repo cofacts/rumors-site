@@ -1,10 +1,11 @@
+import { t } from 'ttag';
 import { max, curveMonotoneX, scaleTime, scaleLinear, line } from 'd3';
+import { startOfDay } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
-const ONEDAY = 86400000;
 
 const useStyles = makeStyles(theme => ({
   lineChartContainer: {
-    position: 'relative'
+    position: 'relative',
   },
   plot: {
     fontSize: '10px',
@@ -43,15 +44,15 @@ const useStyles = makeStyles(theme => ({
       zIndex: 1000,
 
       '&:hover .dot, &:hover .vLine, &:hover .tooltip': {
-        display: 'inline-block'
-      }
+        display: 'inline-block',
+      },
     },
 
     '& .vLine': {
       width: '1px',
       borderLeft: `1px solid ${theme.palette.error.main}`,
       position: 'absolute',
-      display: 'none'
+      display: 'none',
     },
     '& .dot': {
       width: '10px',
@@ -65,7 +66,7 @@ const useStyles = makeStyles(theme => ({
       },
       '&.chatbot': {
         background: theme.palette.primary.main,
-      }
+      },
     },
     '& .tooltip': {
       background: theme.palette.secondary[500],
@@ -96,10 +97,14 @@ const useStyles = makeStyles(theme => ({
       },
       '&.right': {
         marginLeft: '-100px',
-      }
-    }
-  }
+      },
+    },
+  },
 }));
+
+// round up to the nearest 10
+const getMax = (list, getter) =>
+  Math.max(Math.ceil(max(list, getter) / 10) * 10, 10);
 
 /**
  * Given analytics stat, performs computations needed to plot a line chart.
@@ -119,15 +124,8 @@ const useStyles = makeStyles(theme => ({
  }
  */
 const computeChartData = (dataset, width, height) => {
-  /*const dataset = data.map(({ date, webVisit, lineVisit }) => ({
-    date: new Date(date),
-    webVisit: webVisit ? +webVisit : 0,
-    lineVisit: lineVisit ? +lineVisit : 0,
-  }));*/
-
-  // round up to the nearest 10
-  const maxWebVisit = Math.ceil(max(dataset, d => d.webVisit) / 10) * 10;
-  const maxLineVisit = Math.ceil(max(dataset, d => d.lineVisit) / 10) * 10;
+  const maxWebVisit = getMax(dataset, d => d.webVisit);
+  const maxLineVisit = getMax(dataset, d => d.lineVisit);
 
   const xScale = scaleTime()
     .domain([dataset[0].date, dataset[dataset.length - 1].date])
@@ -150,9 +148,6 @@ const computeChartData = (dataset, width, height) => {
     .x(d => xScale(d.date))
     .y(d => yScaleLine(d.lineVisit))
     .curve(curveMonotoneX);
-
-
-
 
   const webDots = dataset.map(d => ({
     value: d.webVisit,
@@ -181,9 +176,9 @@ const computeChartData = (dataset, width, height) => {
 /* Renders gridline and axis tick label. */
 function TickGroup({ x, y, gridline, text }) {
   return (
-    <g className='tickGroup' transform={`translate(${x},${y})`}>
-      <line className='gridline' x2={gridline.x2} y2={gridline.y2}></line>
-      <text fill='currentColor' x={text.x} y={text.y}>
+    <g className="tickGroup" transform={`translate(${x},${y})`}>
+      <line className="gridline" x2={gridline.x2} y2={gridline.y2}></line>
+      <text fill="currentColor" x={text.x} y={text.y}>
         {text.text}
       </text>
     </g>
@@ -200,7 +195,7 @@ const getTicks = (scale, roundFn, tickNum) => {
   return ticks;
 };
 
-const formatDate = (date, withYear=false) => {
+const formatDate = (date, withYear = false) => {
   const d = new Date(date);
   const dateString = `${d.getMonth() + 1}/${d.getDate()}`; // MM/DD
   if (withYear) {
@@ -222,14 +217,9 @@ function plotTicks({ scale, x, y, text, roundFn, tickNum, gridline }) {
   ));
 }
 
-function plotDots(dots, className) {
-  return dots.map(({ cx, cy }, i) => (
-    <circle className={`dot ${className}`} key={i} cx={cx} cy={cy} r='5' />
-  ));
-}
-
-export default function LineChart({ dataset, layout: { width, height, margin } }) {
+export default function LineChart({ dataset, width, margin }) {
   const classes = useStyles();
+  const height = Math.max(Math.ceil(width / 6), 75);
 
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -244,7 +234,7 @@ export default function LineChart({ dataset, layout: { width, height, margin } }
           className={classes.plot}
           transform={`translate(${margin.left}, ${margin.top})`}
         >
-          <g className='leftAxis' textAnchor='end' key='left'>
+          <g className="leftAxis" textAnchor="end" key="left">
             {plotTicks({
               scale: chartData.yScaleWeb,
               tickNum: 3,
@@ -257,10 +247,10 @@ export default function LineChart({ dataset, layout: { width, height, margin } }
           </g>
 
           <g
-            className='rightAxis'
-            textAnchor='start'
+            className="rightAxis"
+            textAnchor="start"
             transform={`translate(${innerWidth}, 0)`}
-            key='right'
+            key="right"
           >
             {plotTicks({
               scale: chartData.yScaleLine,
@@ -274,57 +264,80 @@ export default function LineChart({ dataset, layout: { width, height, margin } }
           </g>
 
           <g
-            className='bottomAxis'
-            textAnchor='middle'
+            className="bottomAxis"
+            textAnchor="middle"
             transform={`translate(0, ${innerHeight})`}
-            key='bottom'
+            key="bottom"
           >
             {plotTicks({
               scale: chartData.xScale,
               tickNum: 11,
               x: (scale, tick) => scale(tick),
               y: () => 0,
-              roundFn: value => (Math.ceil(value/ONEDAY)*ONEDAY),
+              roundFn: d => startOfDay(d),
               text: tick => ({ x: 0, y: 20, text: formatDate(tick) }),
               gridline: { y2: -innerHeight },
             })}
           </g>
 
-          <g className='webGroup'>
-            <path
-              className='line webLine'
-              d={chartData.webLine(dataset)}
-            />
-            {/*plotDots(chartData.webDots, 'webDot')*/}
+          <g className="webGroup">
+            <path className="line webLine" d={chartData.webLine(dataset)} />
           </g>
-          <g className='chatbotGroup'>
+          <g className="chatbotGroup">
             <path
-              className='line chatbotLine'
+              className="line chatbotLine"
               d={chartData.chatbotLine(dataset)}
             />
-            {/*plotDots(chartData.chatbotDots, 'chatbotDot')*/}
           </g>
         </g>
       </svg>
-      <div className={classes.wrapper} style={{left: margin.left + 'px', top: margin.top + 'px'}}>
-        {dataset.map((d, i)=>
-          <div className='hitbox' key={i} style={{left: boxWidth * (i - 0.5) + 'px', width:boxWidth+'px', height:innerHeight+'px'}}>
-            <div className='vLine' style={{height:innerHeight+'px', left: boxWidth/2+'px'}}></div>
-            <div className='dot web' style={{top: chartData.yScaleWeb(d.webVisit) - 5 + 'px', left: boxWidth/2 - 5+'px'}}></div>
-            <div className='dot chatbot' style={{top: chartData.yScaleLine(d.lineVisit) - 5 + 'px', left: boxWidth/2 - 5+'px'}}></div>
-            <div className={`tooltip ${i<15?'left':'right'}`}>
-              <div className='tooltip-title'>
-                {formatDate(d.date, true)}
-              </div>
-              <div className='tooltip-body'>
-                <p className='tooltip-subtitle'>網頁瀏覽</p>
-                <p className='tooltip-text'>{d.webVisit} 次</p>
-                <p className='tooltip-subtitle'>Line瀏覽</p>
-                <p className='tooltip-text'>{d.lineVisit} 次</p>
+      <div
+        className={classes.wrapper}
+        style={{ left: margin.left + 'px', top: margin.top + 'px' }}
+      >
+        {dataset.map((d, i) => (
+          <div
+            className="hitbox"
+            key={i}
+            style={{
+              left: boxWidth * (i - 0.5) + 'px',
+              width: boxWidth + 'px',
+              height: innerHeight + 'px',
+            }}
+          >
+            <div
+              className="vLine"
+              style={{ height: innerHeight + 'px', left: boxWidth / 2 + 'px' }}
+            ></div>
+            <div
+              className="dot web"
+              style={{
+                top: chartData.yScaleWeb(d.webVisit) - 5 + 'px',
+                left: boxWidth / 2 - 5 + 'px',
+              }}
+            ></div>
+            <div
+              className="dot chatbot"
+              style={{
+                top: chartData.yScaleLine(d.lineVisit) - 5 + 'px',
+                left: boxWidth / 2 - 5 + 'px',
+              }}
+            ></div>
+            <div className={`tooltip ${i < 15 ? 'left' : 'right'}`}>
+              <div className="tooltip-title">{formatDate(d.date, true)}</div>
+              <div className="tooltip-body">
+                <p className="tooltip-subtitle">{t`Web Visit`}</p>
+                <p className="tooltip-text">
+                  {d.webVisit} {t`times`}
+                </p>
+                <p className="tooltip-subtitle">{t`Line Inquiry`}</p>
+                <p className="tooltip-text">
+                  {d.lineVisit} {t`times`}
+                </p>
               </div>
             </div>
           </div>
-        )}
+        ))}
       </div>
     </div>
   );

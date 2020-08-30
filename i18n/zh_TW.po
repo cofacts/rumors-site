@@ -984,3 +984,50 @@ msgstr "訂閱更新到 ${ platform }"
 #: components/Subscribe/IFTTTItem.js:85
 msgid "Feed URL"
 msgstr "Feed URL"
+
+#: components/LineChart.js:331
+#: components/LineChart.js:335
+msgid "times"
+msgstr "次"
+
+#: components/LineChart.js:329
+msgid "Web Visit"
+msgstr "網頁瀏覽"
+
+#: components/LineChart.js:333
+msgid "Line Inquiry"
+msgstr "Line 詢問"
+
+#: components/LineChart.js:343
+#: components/LineChart.js:345
+msgid "Line"
+msgstr "詢問"
+
+#: components/TrendPlot.js:117
+msgid "past 31 days"
+msgstr "近31日"
+
+#: components/TrendPlot.js:120
+#, javascript-format
+msgid "Web Visit: ${ totalWebVisits }"
+msgstr "網頁瀏覽 ${ totalWebVisits } 次"
+
+#: components/TrendPlot.js:128
+#, javascript-format
+msgid "Web: ${ totalWebVisits }"
+msgstr "瀏覽 ${ totalWebVisits } 次"
+
+#: components/TrendPlot.js:132
+#, javascript-format
+msgid "Line Inquery: ${ totalLineVisits }"
+msgstr "Line 詢問 ${ totalLineVisits } 次"
+
+#: components/TrendPlot.js:131
+#, javascript-format
+msgid "Line: ${ totalLineVisits }"
+msgstr "詢問 ${ totalLineVisits } 次"
+
+#: components/TrendPlot.js:135
+#, javascript-format
+msgid "Total Visit: ${ totalVisits }"
+msgstr "${ totalVisits } 次瀏覽"

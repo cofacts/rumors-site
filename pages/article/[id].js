@@ -234,7 +234,6 @@ function ArticlePage() {
 
   const replySectionRef = useRef(null);
   const newReplyRef = useRef(null);
-  const chartParentRef = useRef(null);
 
   const classes = useStyles();
 
@@ -330,7 +329,7 @@ function ArticlePage() {
                 >{t`First reported ${timeAgoStr} ago`}</span>
               )}
             </Box>
-            <Box px={{ xs: '12px', md: '19px' }} ref={chartParentRef}>
+            <Box px={{ xs: '12px', md: '19px' }}>
               <Box py={3} overflow="hidden">
                 {nl2br(
                   linkify(text, {
@@ -347,7 +346,7 @@ function ArticlePage() {
                   ({ status }) => status === 'NORMAL'
                 )}
               />
-              <TrendPlot data={article.stats} parent={chartParentRef} />
+              <TrendPlot data={article.stats} />
               <Divider />
               <footer>
                 {article.replyRequests.map((replyRequest, idx) => (

@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots TrendPlot Normal 1`] = `
+<div
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <TrendPlot
+    data={
+      Array [
+        Object {
+          "date": "2020-08-03",
+          "lineVisit": "29",
+          "webVisit": "2969",
+        },
+        Object {
+          "date": "2020-08-04",
+          "lineVisit": "84",
+          "webVisit": "14865",
+        },
+        Object {
+          "date": "2020-08-05",
+          "lineVisit": "71",
+          "webVisit": "18923",
+        },
+        Object {
+          "date": "2020-08-06",
+          "lineVisit": "44",
+          "webVisit": "8213",
+        },
+        Object {
+          "date": "2020-08-07",
+          "lineVisit": "29",
+          "webVisit": "2981",
+        },
+        Object {
+          "date": "2020-08-08",
+          "lineVisit": "24",
+          "webVisit": "927",
+        },
+        Object {
+          "date": "2020-08-09",
+          "lineVisit": "6",
+          "webVisit": "366",
+        },
+        Object {
+          "date": "2020-08-10",
+          "lineVisit": "6",
+          "webVisit": "360",
+        },
+        Object {
+          "date": "2020-08-11",
+          "lineVisit": "8",
+          "webVisit": "434",
+        },
+        Object {
+          "date": "2020-08-12",
+          "lineVisit": "13",
+          "webVisit": "227",
+        },
+        Object {
+          "date": "2020-08-13",
+          "lineVisit": "2",
+          "webVisit": "78",
+        },
+        Object {
+          "date": "2020-08-14",
+          "lineVisit": "2",
+          "webVisit": "92",
+        },
+        Object {
+          "date": "2020-08-15",
+          "lineVisit": "2",
+          "webVisit": "50",
+        },
+        Object {
+          "date": "2020-08-16",
+          "webVisit": "50",
+        },
+        Object {
+          "date": "2020-08-17",
+          "webVisit": "42",
+        },
+        Object {
+          "date": "2020-08-18",
+          "webVisit": "55",
+        },
+        Object {
+          "date": "2020-08-19",
+          "webVisit": "45",
+        },
+        Object {
+          "date": "2020-08-20",
+          "webVisit": "36",
+        },
+        Object {
+          "date": "2020-08-21",
+          "webVisit": "36",
+        },
+        Object {
+          "date": "2020-08-22",
+          "webVisit": "18",
+        },
+        Object {
+          "date": "2020-08-23",
+          "lineVisit": "2",
+          "webVisit": "18",
+        },
+        Object {
+          "date": "2020-08-24",
+          "webVisit": "19",
+        },
+        Object {
+          "date": "2020-08-25",
+          "webVisit": "19",
+        },
+        Object {
+          "date": "2020-08-27",
+          "webVisit": "2",
+        },
+        Object {
+          "date": "2020-08-28",
+          "webVisit": "6",
+        },
+        Object {
+          "date": "2020-08-29",
+          "webVisit": "3",
+        },
+      ]
+    }
+  >
+    <div
+      className="makeStyles-root"
+    >
+      <div
+        className="MuiBox-root MuiBox-root"
+      >
+        <div
+          className="MuiBox-root MuiBox-root makeStyles-label plotLabel"
+        >
+          past 31 days
+        </div>
+        <Hidden
+          xsDown={true}
+        >
+          <WithWidth(HiddenJs)
+            lgDown={false}
+            lgUp={false}
+            mdDown={false}
+            mdUp={false}
+            smDown={false}
+            smUp={false}
+            xlDown={false}
+            xlUp={false}
+            xsDown={true}
+            xsUp={false}
+          />
+        </Hidden>
+        <Hidden
+          smUp={true}
+        >
+          <WithWidth(HiddenJs)
+            lgDown={false}
+            lgUp={false}
+            mdDown={false}
+            mdUp={false}
+            smDown={false}
+            smUp={true}
+            xlDown={false}
+            xlUp={false}
+            xsDown={false}
+            xsUp={false}
+          />
+        </Hidden>
+        <div
+          className="MuiBox-root MuiBox-root makeStyles-label totalLabel"
+        >
+          Total Visit: 
+          51156
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root"
+            focusable="false"
+            onClick={[Function]}
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root"
+      >
+        <AutoSizer
+          disableHeight={true}
+          disableWidth={false}
+          onResize={[Function]}
+          style={Object {}}
+        >
+          <div
+            style={
+              Object {
+                "overflow": "visible",
+                "width": 0,
+              }
+            }
+          />
+        </AutoSizer>
+      </div>
+    </div>
+  </TrendPlot>
+</div>
+`;

@@ -42,10 +42,7 @@ const data = [
 export const Normal = () => (
   <LineChart
     dataset={data}
-    layout={{
-      height: 100,
-      width: 600,
-      margin: { top: 10, left: 40, right: 20, bottom: 20 },
-    }}
+    width={600}
+    margin={{ top: 10, left: 40, right: 20, bottom: 20 }}
   />
 );
