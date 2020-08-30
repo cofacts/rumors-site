@@ -1,5 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { t } from 'ttag';
+import getConfig from 'next/config';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
@@ -25,10 +26,17 @@ import telegramIcon from './images/telegram.svg';
 import slackIcon from './images/slack.svg';
 
 import JsonUrl from 'json-url';
-import getConfig from 'next/config';
 
 const {
-  publicRuntimeConfig: { PUBLIC_URL },
+  publicRuntimeConfig: {
+    PUBLIC_URL,
+    PUBLIC_LINE_IFTTT_APPLET_URL,
+    PUBLIC_LINE_IFTTT_TUTORIAL_YOUTUBEID,
+    PUBLICTELEGRAM_IFTTT_APPLET_URL,
+    PUBLIC_TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID,
+    PUBLIC_SLACK_IFTTT_APPLET_URL,
+    PUBLIC_SLACK_IFTTT_TUTORIAL_YOUTUBEID,
+  },
 } = getConfig();
 
 const useStyles = makeStyles(theme => ({
@@ -137,25 +145,25 @@ function FeedDisplay({ listQueryVars }) {
           >
             <IFTTTItem
               icon={lineIcon}
-              IFTTTAppletUrl={process.env.LINE_IFTTT_APPLET_URL}
+              IFTTTAppletUrl={PUBLIC_LINE_IFTTT_APPLET_URL}
               feedUrl={feedUrl}
-              tutorialYoutubeId={process.env.LINE_IFTTT_TUTORIAL_YOUTUBEID}
+              tutorialYoutubeId={PUBLIC_LINE_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Line'}
             </IFTTTItem>
             <IFTTTItem
               icon={telegramIcon}
-              IFTTTAppletUrl={process.env.TELEGRAM_IFTTT_APPLET_URL}
+              IFTTTAppletUrl={PUBLICTELEGRAM_IFTTT_APPLET_URL}
               feedUrl={feedUrl}
-              tutorialYoutubeId={process.env.TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID}
+              tutorialYoutubeId={PUBLIC_TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Telegram'}
             </IFTTTItem>
             <IFTTTItem
               icon={slackIcon}
-              IFTTTAppletUrl={process.env.SLACK_IFTTT_APPLET_URL}
+              IFTTTAppletUrl={PUBLIC_SLACK_IFTTT_APPLET_URL}
               feedUrl={feedUrl}
-              tutorialYoutubeId={process.env.SLACK_IFTTT_TUTORIAL_YOUTUBEID}
+              tutorialYoutubeId={PUBLIC_SLACK_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Slack'}
             </IFTTTItem>
