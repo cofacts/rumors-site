@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
-import gql from 'graphql-tag';
+import { gql, useMutation } from '@apollo/client';
 import { t, jt, ngettext, msgid } from 'ttag';
-import { useMutation } from '@apollo/react-hooks';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';

@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { t, jt } from 'ttag';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { Box, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { nl2br, linkify } from 'lib/text';
 import { TYPE_NAME } from 'constants/replyType';
 import ExpandableText from 'components/ExpandableText';
-import ReplyFeedback from 'components/ReplyFeedback';
+import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
 import EditorName from 'components/EditorName';
 import Hyperlinks from 'components/Hyperlinks';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
@@ -73,7 +73,7 @@ const ArticleReplyData = gql`
         id
         name
         level
-        avatarUrl
+        ...AvatarData
       }
       hyperlinks {
         ...HyperlinkData
@@ -84,13 +84,14 @@ const ArticleReplyData = gql`
       id
       name
       level
-      avatarUrl
+      ...AvatarData
     }
-    ...ArticleReplyFeedbackData
+    ...ArticleReplyFeedbackControlData
   }
   ${Hyperlinks.fragments.HyperlinkData}
-  ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
+  ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
   ${ReplyInfo.fragments.replyInfo}
+  ${Avatar.fragments.AvatarData}
 `;
 
 const ArticleReplyForUser = gql`
@@ -99,9 +100,10 @@ const ArticleReplyForUser = gql`
     articleId
     replyId
     canUpdateStatus
-    ...ArticleReplyFeedbackForUser
+    ...ArticleReplyFeedbackControlDataForUser
   }
-  ${ReplyFeedback.fragments.ArticleReplyFeedbackForUser}
+  ${ArticleReplyFeedbackControl.fragments
+    .ArticleReplyFeedbackControlDataForUser}
 `;
 
 const ArticleReply = React.memo(
@@ -115,13 +117,8 @@ const ArticleReply = React.memo(
   }) => {
     const {
       createdAt,
-      articleId,
-      positiveFeedbackCount,
-      negativeFeedbackCount,
-      feedbacks,
       reply,
       replyId,
-      ownVote,
       user: articleReplyAuthor,
     } = articleReply;
 
@@ -145,13 +142,8 @@ const ArticleReply = React.memo(
       return (
         <Box component="footer" display="flex" py={2}>
           {showFeedback && (
-            <ReplyFeedback
-              articleId={articleId}
-              replyId={replyId}
-              positiveFeedbackCount={positiveFeedbackCount}
-              negativeFeedbackCount={negativeFeedbackCount}
-              feedbacks={feedbacks}
-              ownVote={ownVote}
+            <ArticleReplyFeedbackControl
+              articleReply={articleReply}
               reply={reply}
               className={classes.feedbacks}
             />

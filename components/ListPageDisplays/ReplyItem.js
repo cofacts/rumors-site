@@ -1,11 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { t } from 'ttag';
 import { TYPE_NAME } from 'constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ExpandableText from 'components/ExpandableText';
-import ReplyFeedback from 'components/ReplyFeedback';
+import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
 import ReplyInfo from 'components/ReplyInfo';
 import { highlight } from 'lib/text';
 
@@ -68,31 +68,21 @@ const useStyles = makeStyles(theme => ({
 
 /**
  *
+ * @param {ArticleReply} props.articleReply - see ReplyItemArticleReplyData in GraphQL fragment
  * @param {ReplyItem} props.reply - see ReplyItem in GraphQL fragment
  * @param {boolean} showUser
  */
-function ReplyItem({
-  createdAt,
-  user,
-  articleId,
-  replyId,
-  reply,
-  feedbacks,
-  positiveFeedbackCount,
-  negativeFeedbackCount,
-  ownVote,
-  query,
-}) {
+function ReplyItem({ articleReply, reply, query }) {
   const { text, type: replyType } = reply;
 
   const classes = useStyles({ replyType });
-  const userName = user?.name ?? t`Anonymous`;
+  const userName = articleReply.user?.name ?? t`Anonymous`;
 
   return (
     <div className={classes.root}>
       <Box p={{ xs: '8px 14px 0 0', md: '24px' }}>
         <Avatar
-          user={user}
+          user={articleReply.user}
           className={classes.avatar}
           showLevel
           status={replyType}
@@ -106,17 +96,15 @@ function ReplyItem({
           {highlight(text, { query, highlightClassName: classes.highlight })}
         </ExpandableText>
         <div className={classes.status}>
-          <ReplyFeedback
-            articleId={articleId}
-            replyId={replyId}
-            positiveFeedbackCount={positiveFeedbackCount}
-            negativeFeedbackCount={negativeFeedbackCount}
-            feedbacks={feedbacks}
-            ownVote={ownVote}
+          <ArticleReplyFeedbackControl
+            articleReply={articleReply}
             reply={reply}
           />
           <Box display={['none', 'none', 'block']}>
-            <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
+            <ReplyInfo
+              reply={reply}
+              articleReplyCreatedAt={articleReply.createdAt}
+            />
           </Box>
         </div>
       </Box>
@@ -132,18 +120,22 @@ ReplyItem.fragments = {
       id
       text
       type
-      createdAt
       ...ReplyInfo
+      ...ArticleReplyFeedbackControlReply
     }
     ${ReplyInfo.fragments.replyInfo}
+    ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlReply}
   `,
-  User: gql`
-    fragment ReplyItemUser on User {
-      id
-      name
-      level
-      avatarUrl
+  ReplyItemArticleReplyData: gql`
+    fragment ReplyItemArticleReplyData on ArticleReply {
+      user {
+        name
+        ...AvatarData
+      }
+      ...ArticleReplyFeedbackControlData
     }
+    ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
+    ${Avatar.fragments.AvatarData}
   `,
 };
 

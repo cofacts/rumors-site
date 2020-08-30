@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
-import CopyButton from './CopyButton';
+import CopyButton from '../CopyButton';
 
 const useStyles = makeStyles(theme => ({
   button: ({ open }) => ({
@@ -53,7 +53,7 @@ const ReplyShare = ({ copyText }) => {
 
   const onSuccess = text => {
     setMessage(text);
-    setTimeout(() => setStatus('SUCCESS'), 0);
+    setStatus(SUCCESS);
     closeMenu();
   };
 
@@ -80,8 +80,10 @@ const ReplyShare = ({ copyText }) => {
               <Paper elevation={3}>
                 <CopyButton
                   content={copyText}
-                  onClick={() => onSuccess('Copied to clipboard!')}
-                >{t`Copy`}</CopyButton>
+                  onSuccess={() => onSuccess(t`Copied to clipboard!`)}
+                >
+                  {t`Copy`}
+                </CopyButton>
               </Paper>
             </Fade>
           </ClickAwayListener>

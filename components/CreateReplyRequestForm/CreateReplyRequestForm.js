@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { t } from 'ttag';
-import { useMutation } from '@apollo/react-hooks';
+import { gql, useMutation } from '@apollo/client';
 import {
   ButtonGroup,
   Button,
@@ -10,7 +10,6 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
 import useCurrentUser from 'lib/useCurrentUser';

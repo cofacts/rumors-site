@@ -1,16 +1,20 @@
 import React, { PureComponent } from 'react';
+import Button from '@material-ui/core/Button';
 
 class GoogleWebsiteTranslator extends PureComponent {
-  componentDidMount() {
-    window.googleTranslateElementInit = this.googleTranslateElementInit;
-    this.addGoogleTranslatorScript();
-  }
+  state = {
+    init: false,
+  };
 
-  addGoogleTranslatorScript = () => {
-    const newScript = document.createElement('script');
-    newScript.src =
-      '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    this.refContainer.appendChild(newScript);
+  handleScriptInsert = () => {
+    this.setState({ init: true }, () => {
+      window.googleTranslateElementInit = this.googleTranslateElementInit;
+
+      const newScript = document.createElement('script');
+      newScript.src =
+        '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      this.refContainer.appendChild(newScript);
+    });
   };
 
   googleTranslateElementInit = () => {
@@ -26,6 +30,19 @@ class GoogleWebsiteTranslator extends PureComponent {
   };
 
   render() {
+    const { init } = this.state;
+    if (!init) {
+      return (
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={this.handleScriptInsert}
+        >
+          Google Translate
+        </Button>
+      );
+    }
+
     return (
       <div ref={container => (this.refContainer = container)}>
         <div id="google_translate_element" />

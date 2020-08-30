@@ -31,8 +31,7 @@ module.exports = {
     node: true,
   },
   settings: {
-    'import/resolver': {
-      'babel-module': {}
-    }
+    'import/resolver': { 'babel-module': {} },
+    'react': { version: 'detect' }
   }
 };

@@ -5,7 +5,7 @@ import getConfig from 'next/config';
 import { t } from 'ttag';
 import querystring from 'querystring';
 import AppLayout from 'components/AppLayout';
-import withData from 'lib/apollo';
+import withApollo from 'lib/apollo';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -44,4 +44,4 @@ function ReplyListPage() {
   );
 }
 
-export default withData(ReplyListPage);
+export default withApollo({ ssr: true })(ReplyListPage);

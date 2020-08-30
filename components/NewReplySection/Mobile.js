@@ -1,5 +1,5 @@
 import { useState, useCallback, useContext } from 'react';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { Box, Select, MenuItem, InputBase, Tabs, Tab } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import useCurrentUser from 'lib/useCurrentUser';
@@ -145,10 +145,10 @@ export default function Mobile({
           classes={{ icon: classes.selectIcon }}
           input={<CustomSelectInput />}
         >
-          <MenuItem value={NEW_REPLY_VIEW}>{t`New Reply`}</MenuItem>
+          <MenuItem value={NEW_REPLY_VIEW}>{t`Compose a new reply`}</MenuItem>
           <MenuItem
             value={EXISTING_REPLY_VIEW}
-          >{t`Search Existing Reply`}</MenuItem>
+          >{t`Use existing replies`}</MenuItem>
         </Select>
         <Submit
           disabled={creatingReply}
@@ -167,9 +167,11 @@ export default function Mobile({
             value={selectedTab}
             onChange={handleTabChange}
           >
-            <CustomTab label={t`Message`} />
-            <CustomTab label={t`Editor`} />
-            {replyType !== 'NOT_ARTICLE' && <CustomTab label={t`Source`} />}
+            <CustomTab label={c('Mobile editor tab').t`Message`} />
+            <CustomTab label={c('Mobile editor tab').t`Compose`} />
+            {replyType !== 'NOT_ARTICLE' && (
+              <CustomTab label={c('Mobile editor tab').t`References`} />
+            )}
           </Tabs>
           <Box display="flex" flexDirection="column" flexGrow={1}>
             {selectedTab === 0 && (

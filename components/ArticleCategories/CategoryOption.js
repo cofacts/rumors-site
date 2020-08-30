@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { t } from 'ttag';
-import gql from 'graphql-tag';
+import { gql, useMutation } from '@apollo/client';
 import Link from 'next/link';
-import { useMutation } from '@apollo/react-hooks';
 import {
   Box,
   Chip,
@@ -296,7 +295,7 @@ function CategoryOption({
             disabled={loading}
             onClick={handleAdd}
           >
-            {t`Add`}
+            {t`Mark`}
           </button>
         )}
         {isAuthor && (
@@ -306,7 +305,7 @@ function CategoryOption({
             disabled={loading || deletingCategory}
             onClick={deleteCategory}
           >
-            {t`Remove`}
+            {t`Unmark`}
           </button>
         )}
       </div>

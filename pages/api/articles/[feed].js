@@ -1,21 +1,28 @@
 import accepts from 'accepts';
-import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t } from 'ttag';
 import { Feed } from 'feed';
-import { ApolloClient } from 'apollo-boost';
+import { gql } from '@apollo/client';
 import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
-import { config } from 'lib/apollo';
+import { createApolloClient } from 'lib/apollo';
 import rollbar from 'lib/rollbar';
-import { getQueryVars } from 'components/ArticlePageLayout';
 import { TYPE_NAME } from 'constants/replyType';
+import JsonUrl from 'json-url';
 
 const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
 const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
+
+// This should match article "time" fields in ListArticleOrderBy
+const IS_ARTICLE_TIME_FIELD = {
+  createdAt: true,
+  updatedAt: true,
+  lastRequestedAt: true,
+  lastRepliedAt: true,
+};
 
 // Arguments must match the ones in pages/articles.js
 const LIST_ARTICLES = gql`
@@ -36,13 +43,13 @@ const LIST_ARTICLES = gql`
         node {
           id
           text
-          createdAt
           hyperlinks {
             url
             title
           }
           articleReplies(status: NORMAL) {
             replyId
+            createdAt # IS_ARTICLE_TIME_FIELD
             user {
               name
             }
@@ -52,6 +59,10 @@ const LIST_ARTICLES = gql`
               reference
             }
           }
+          # IS_ARTICLE_TIME_FIELD
+          createdAt
+          updatedAt
+          lastRequestedAt
         }
       }
     }
@@ -77,6 +88,19 @@ function getArticleText({ text, hyperlinks }) {
   );
 }
 
+/**
+ * @param {object} article - article object from GraphQL
+ * @param {string} dateField - article's first time field in orderBy
+ * @return {string} date to fill in RSS <pubDate>
+ */
+function getDateValue(article, dateField) {
+  if (dateField === 'lastRepliedAt') {
+    return article.articleReplies[0].createdAt;
+  }
+
+  return article[dateField];
+}
+
 async function articleFeedHandler(req, res) {
   const {
     query: { feed, ...query },
@@ -87,10 +111,13 @@ async function articleFeedHandler(req, res) {
     return;
   }
 
-  const listQueryVars = getQueryVars(query);
+  const lib = JsonUrl('lzma');
+  const listQueryVars = await lib.decompress(query.json);
 
-  const { createCache, ...otherConfigs } = config;
-  const client = new ApolloClient({ ...otherConfigs, cache: createCache() });
+  const client = createApolloClient({
+    /** @see https://www.apollographql.com/docs/apollo-server/monitoring/metrics/#identifying-distinct-clients */
+    name: 'rumors-site RSS feed',
+  });
 
   const { data, errors } = await client.query({
     query: LIST_ARTICLES,
@@ -115,6 +142,14 @@ async function articleFeedHandler(req, res) {
 
   const feedInstance = new Feed(feedOption);
 
+  // first time field in article node specified in query
+  const dateField =
+    listQueryVars.orderBy.reduce((field, obj) => {
+      if (field) return field;
+
+      const [currentField] = Object.keys(obj);
+      return IS_ARTICLE_TIME_FIELD[currentField] ? currentField : null;
+    }, null) || 'createdAt';
   try {
     data.ListArticles.edges.forEach(({ node }) => {
       const text = getArticleText(node);
@@ -146,7 +181,7 @@ async function articleFeedHandler(req, res) {
             : ''),
 
         link: url,
-        date: new Date(node.createdAt),
+        date: new Date(getDateValue(node, dateField)),
       });
     });
 

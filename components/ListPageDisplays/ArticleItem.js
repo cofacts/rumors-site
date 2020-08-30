@@ -1,10 +1,9 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import Link from 'next/link';
 import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { highlight } from 'lib/text';
 import ArticleInfo from 'components/ArticleInfo';
-import ReplyFeedback from 'components/ReplyFeedback';
 import ExpandableText from 'components/ExpandableText';
 import ReplyItem from './ReplyItem';
 import cx from 'clsx';
@@ -182,7 +181,11 @@ export default function ArticleItem({
 
       {showLastReply &&
         article.articleReplies.map(articleReply => (
-          <ReplyItem key={articleReply.reply.id} {...articleReply} />
+          <ReplyItem
+            key={articleReply.reply.id}
+            articleReply={articleReply}
+            reply={articleReply.reply}
+          />
         ))}
     </li>
   );
@@ -196,22 +199,15 @@ ArticleItem.fragments = {
       id
       text
       articleReplies(status: NORMAL) {
-        createdAt
-        articleId
-        replyId
-        user {
-          ...ReplyItemUser
-        }
+        ...ReplyItemArticleReplyData
         reply {
           ...ReplyItem
         }
-        ...ArticleReplyFeedbackData
       }
       ...ArticleInfo
     }
     ${ArticleInfo.fragments.articleInfo}
-    ${ReplyFeedback.fragments.ArticleReplyFeedbackData}
     ${ReplyItem.fragments.ReplyItem}
-    ${ReplyItem.fragments.User}
+    ${ReplyItem.fragments.ReplyItemArticleReplyData}
   `,
 };

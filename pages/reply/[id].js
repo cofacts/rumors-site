@@ -1,12 +1,11 @@
-import gql from 'graphql-tag';
 import { useEffect } from 'react';
 import { t, ngettext, msgid } from 'ttag';
+import { useQuery, useLazyQuery, useMutation, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import withData from 'lib/apollo';
+import withApollo from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { usePushToDataLayer } from 'lib/gtm';
 import ExpandableText from 'components/ExpandableText';
@@ -245,4 +244,4 @@ function ReplyPage() {
   );
 }
 
-export default withData(ReplyPage);
+export default withApollo({ ssr: true })(ReplyPage);

@@ -8,7 +8,8 @@ import MockDate from 'mockdate';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox)-.+?)-\d+/g;
+/* makeStyle + useStyle hook, <Box> and withStyle HOC */
+const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox|Component)-.+?)-\d+/g;
 
 function removeMaterialUIInternals(json) {
   // Remove Portal containerInfo
@@ -31,7 +32,11 @@ function removeMaterialUIInternals(json) {
   }
 
   // Skip HOC components (single children) or excessive wrapper
-  if (json.type.match(/^(ForwardRef|WithStyles|ThemeProvider|Styled)/)) {
+  if (
+    json.type.match(
+      /^(ForwardRef|WithStyles|ThemeProvider|Styled|MockedProvider|ApolloProvider)/
+    )
+  ) {
     // When skipping HOC or wrapper, the first children are usually setups (such as <CssBaseline>),
     // we should ignore together
     return (

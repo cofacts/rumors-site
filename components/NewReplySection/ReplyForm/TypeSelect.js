@@ -1,3 +1,4 @@
+import { t } from 'ttag';
 import { withStyles } from '@material-ui/core/styles';
 import { Box, NativeSelect, InputBase } from '@material-ui/core';
 import { TYPE_NAME, TYPE_DESC } from 'constants/replyType';
@@ -28,7 +29,7 @@ const CustomInput = withStyles(theme => ({
 export default function TypeSelect({ replyType, onChange }) {
   return (
     <Box display="flex" alignItems="center">
-      <Box component="span" pr={1}>{`I think this message`}</Box>
+      <Box component="span" pr={1}>{t`I think this message`}</Box>
       <NativeSelect
         name="type"
         value={replyType}
