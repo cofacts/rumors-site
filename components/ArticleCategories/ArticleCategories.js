@@ -75,7 +75,7 @@ function ArticleCategories({ articleId, articleCategories }) {
           label={
             <Box display="flex" alignItems="center" pr={1}>
               <AddIcon className={classes.buttonIcon} />
-              {t`Add category`}
+              {t`Suggest categories`}
             </Box>
           }
         />
