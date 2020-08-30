@@ -295,7 +295,7 @@ function CategoryOption({
             disabled={loading}
             onClick={handleAdd}
           >
-            {t`Add`}
+            {t`Mark`}
           </button>
         )}
         {isAuthor && (
@@ -305,7 +305,7 @@ function CategoryOption({
             disabled={loading || deletingCategory}
             onClick={deleteCategory}
           >
-            {t`Remove`}
+            {t`Unmark`}
           </button>
         )}
       </div>

@@ -287,7 +287,7 @@ const ReasonEditor = ({
             relatedArticleReplies={relatedArticleReplies}
             existingReplyIds={existingReplyIds}
             onConnect={handleConnect}
-            actionText={t`Add this reply to my reply`}
+            actionText={t`Keep composing my reply with this`}
           />
         </div>
       )}
