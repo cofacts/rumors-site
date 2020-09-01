@@ -328,11 +328,13 @@ export default function LineChart({ dataset, width, margin }) {
               <div className="tooltip-body">
                 <p className="tooltip-subtitle">{t`Web Visit`}</p>
                 <p className="tooltip-text">
-                  <span>{d.webVisit}</span> <span>{c('LineChart').t`times`}</span>
+                  <span>{d.webVisit}</span>{' '}
+                  <span>{c('LineChart').t`times`}</span>
                 </p>
                 <p className="tooltip-subtitle">{t`Line Inquiry`}</p>
                 <p className="tooltip-text">
-                  <span>{d.lineVisit}</span> <span>{c('LineChart').t`times`}</span>
+                  <span>{d.lineVisit}</span>{' '}
+                  <span>{c('LineChart').t`times`}</span>
                 </p>
               </div>
             </div>
