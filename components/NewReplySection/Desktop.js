@@ -66,11 +66,11 @@ const Desktop = ({
         value={selectedTab}
         onChange={handleTabChange}
       >
-        <CustomTab label={t`New Reply`} />
+        <CustomTab label={t`Compose a new reply`} />
         <CustomTab
           label={
             <CustomBadge badgeContent={relatedArticleReplies.length || 1000}>
-              {t`Reuse existing reply`}
+              {t`Use existing replies`}
             </CustomBadge>
           }
         />
