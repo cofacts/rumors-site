@@ -58,13 +58,14 @@ function removeMaterialUIInternals(json) {
 
   return json;
 }
-MockDate.set('2020-01-01');
+
 initStoryshots({
   test: arg => {
+    MockDate.set('2020-01-01');
     multiSnapshotWithOptions({
       renderer: mount,
     })(arg);
+    MockDate.reset();
   },
   snapshotSerializers: [createSerializer({ map: removeMaterialUIInternals })],
 });
-MockDate.reset();

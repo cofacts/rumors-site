@@ -37,18 +37,22 @@ const stats = [
   { webVisit: '3' },
   { webVisit: '6' },
 ];
-let data = [];
-const today = startOfDay(new Date());
-eachDayOfInterval({
-  start: subDays(today, 29),
-  end: subDays(today, 1),
-}).forEach((date, i) => {
-  if (stats[i])
-    data.push({ ...stats[i], date: date.toISOString().substr(0, 10) });
-});
+
+const populateData = () => {
+  let data = [];
+  const today = startOfDay(new Date());
+  eachDayOfInterval({
+    start: subDays(today, 29),
+    end: subDays(today, 1),
+  }).forEach((date, i) => {
+    if (stats[i])
+      data.push({ ...stats[i], date: date.toISOString().substr(0, 10) });
+  });
+  return data;
+};
 
 export const Normal = () => (
   <div style={{ width: '100%' }}>
-    <TrendPlot data={data} />
+    <TrendPlot data={populateData()} />
   </div>
 );

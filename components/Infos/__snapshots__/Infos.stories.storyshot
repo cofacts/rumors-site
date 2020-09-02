@@ -56,7 +56,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onTouchStart={[Function]}
           title="06/04/1989, 12:00 AM"
         >
-          about 31 years
+          over 30 years
         </span>
       </Tooltip>
     </TimeInfo>
@@ -78,7 +78,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onTouchStart={[Function]}
           title="06/04/1989, 12:00 AM"
         >
-          about 31 years
+          over 30 years
         </span>
       </Tooltip>
     </TimeInfo>
@@ -100,7 +100,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onTouchStart={[Function]}
           title="06/04/1989, 12:00 AM"
         >
-          Created about 31 years ago
+          Created over 30 years ago
         </span>
       </Tooltip>
     </TimeInfo>
