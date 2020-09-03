@@ -1,5 +1,5 @@
 import React from 'react';
-import { MockedProvider } from '@apollo/client/testing';
+import { MockedProvider } from '@apollo/react-testing';
 import ArticleReplyFeedbackControl from './';
 import { CREATE_REPLY_FEEDBACK } from './ArticleReplyFeedbackControl';
 import { USER_QUERY } from 'lib/useCurrentUser';

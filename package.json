@@ -49,6 +49,7 @@
     "ttag": "^1.7.22"
   },
   "devDependencies": {
+    "@apollo/react-testing": "^3.0.1",
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "@storybook/addon-actions": "^5.3.17",
