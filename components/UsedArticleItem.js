@@ -1,6 +1,6 @@
 import { t, jt } from 'ttag';
 import Link from 'next/link';
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import isValid from 'date-fns/isValid';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import EditorName from 'components/EditorName';

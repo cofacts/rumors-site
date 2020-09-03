@@ -1,7 +1,8 @@
 // @todo: remove this. this components is deprecated and will be replaced by new UI components
 import React, { PureComponent, useState, useCallback, useEffect } from 'react';
 import { t } from 'ttag';
-import { gql, useLazyQuery, useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Link from 'next/link';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';

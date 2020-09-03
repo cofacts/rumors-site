@@ -1,11 +1,12 @@
 import accepts from 'accepts';
+import gql from 'graphql-tag';
 import querystring from 'querystring';
 import { t } from 'ttag';
 import { Feed } from 'feed';
-import { gql } from '@apollo/client';
+import { ApolloClient } from 'apollo-boost';
 import getConfig from 'next/config';
 import { ellipsis } from 'lib/text';
-import { createApolloClient } from 'lib/apollo';
+import { config } from 'lib/apollo';
 import rollbar from 'lib/rollbar';
 import { TYPE_NAME } from 'constants/replyType';
 import JsonUrl from 'json-url';
@@ -114,10 +115,8 @@ async function articleFeedHandler(req, res) {
   const lib = JsonUrl('lzma');
   const listQueryVars = await lib.decompress(query.json);
 
-  const client = createApolloClient({
-    /** @see https://www.apollographql.com/docs/apollo-server/monitoring/metrics/#identifying-distinct-clients */
-    name: 'rumors-site RSS feed',
-  });
+  const { createCache, ...otherConfigs } = config;
+  const client = new ApolloClient({ ...otherConfigs, cache: createCache() });
 
   const { data, errors } = await client.query({
     query: LIST_ARTICLES,

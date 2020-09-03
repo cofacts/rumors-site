@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { t } from 'ttag';
-import { gql, useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Box, Popover, Typography } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';

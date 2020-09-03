@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import { t, ngettext, msgid } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { TYPE_ICON } from 'constants/replyType';

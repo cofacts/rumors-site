@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { t } from 'ttag';
-import { gql, useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
 import Link from 'next/link';
+import { useMutation } from '@apollo/react-hooks';
 import {
   Box,
   Chip,
