@@ -10,7 +10,7 @@ import querystring from 'querystring';
 import ArticlePageLayout from 'components/ArticlePageLayout';
 import ReplySearchPageLayout from 'components/ReplySearchPageLayout';
 import AppLayout from 'components/AppLayout';
-import withApollo from 'lib/apollo';
+import withData from 'lib/apollo';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -179,10 +179,4 @@ function SearchPage() {
   );
 }
 
-export default withApollo({
-  /**
-   * Although this page is mostly not server-rendered, we need this so that publicRuntimeConfig works.
-   * @see https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
-   * */
-  ssr: true,
-})(SearchPage);
+export default withData(SearchPage);

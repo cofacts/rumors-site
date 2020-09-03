@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import { Box } from '@material-ui/core';

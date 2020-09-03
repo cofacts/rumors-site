@@ -1,5 +1,6 @@
 import { useCallback, useContext } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import { t } from 'ttag';
 
 import { Box } from '@material-ui/core';

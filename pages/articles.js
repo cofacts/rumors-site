@@ -5,7 +5,7 @@ import getConfig from 'next/config';
 import { t } from 'ttag';
 import querystring from 'querystring';
 import AppLayout from 'components/AppLayout';
-import withApollo from 'lib/apollo';
+import withData from 'lib/apollo';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
@@ -35,4 +35,4 @@ function ArticleListPage() {
   );
 }
 
-export default withApollo({ ssr: true })(ArticleListPage);
+export default withData(ArticleListPage);

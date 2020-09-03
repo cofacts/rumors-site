@@ -5,7 +5,7 @@ import getConfig from 'next/config';
 import { t } from 'ttag';
 import querystring from 'querystring';
 import AppLayout from 'components/AppLayout';
-import withApollo from 'lib/apollo';
+import withData from 'lib/apollo';
 import {
   NO_USEFUL_REPLY_YET,
   ASKED_MANY_TIMES,
@@ -47,4 +47,4 @@ function HoaxForYouPage() {
   );
 }
 
-export default withApollo({ ssr: true })(HoaxForYouPage);
+export default withData(HoaxForYouPage);

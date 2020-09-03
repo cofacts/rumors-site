@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import Chip from '@material-ui/core/Chip';
 
 import { makeStyles } from '@material-ui/core/styles';

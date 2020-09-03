@@ -1,6 +1,7 @@
-import { gql, useQuery } from '@apollo/client';
+import gql from 'graphql-tag';
 import { t, jt } from 'ttag';
 import { useRouter } from 'next/router';
+import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
