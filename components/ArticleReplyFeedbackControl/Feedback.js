@@ -20,12 +20,11 @@ const useStyles = makeStyles(theme => ({
 function Feedback({ feedback }) {
   const classes = useStyles();
 
-  if (!feedback.user) return null;
   return (
     <div className={classes.root}>
       <Avatar user={feedback.user} size={48} />
       <Box px={2}>
-        <div className={classes.name}>{feedback.user.name}</div>
+        <div className={classes.name}>{feedback.user?.name}</div>
         <div>{feedback.comment}</div>
       </Box>
     </div>

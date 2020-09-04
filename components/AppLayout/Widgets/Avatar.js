@@ -5,6 +5,9 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
 import { TYPE_ICON } from 'constants/replyType';
 
+const NULL_USER_IMG =
+  'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
+
 const useStyles = makeStyles({
   root: {
     width: size => size,
@@ -78,7 +81,7 @@ function Avatar({
   let avatar = (
     <img
       className={cx(classes.root, className)}
-      src={user?.avatarUrl}
+      src={user ? user.avatarUrl : NULL_USER_IMG}
       alt=""
       {...rest}
     />

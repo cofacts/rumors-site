@@ -117,14 +117,14 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
       </Tabs>
       <Box display={tab === 0 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
-          .filter(({ vote, user }) => vote === 'UPVOTE' && user)
+          .filter(({ vote }) => vote === 'UPVOTE')
           .map(feedback => (
             <Feedback key={feedback.id} feedback={feedback} />
           ))}
       </Box>
       <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
-          .filter(({ vote, user }) => vote === 'DOWNVOTE' && user)
+          .filter(({ vote }) => vote === 'DOWNVOTE')
           .map(feedback => (
             <Feedback key={feedback.id} feedback={feedback} />
           ))}
