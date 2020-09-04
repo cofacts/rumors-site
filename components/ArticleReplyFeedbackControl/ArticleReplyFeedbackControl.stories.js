@@ -25,6 +25,7 @@ const mockArticleReplyFeedbacks = [
     user: {
       id: 'webUser1',
       name: 'Web User',
+      level: 12,
       avatarUrl: 'https://placekitten.com/100/100',
     },
   },
@@ -106,7 +107,11 @@ const otherUserMock = {
   request: { query: USER_QUERY },
   result: {
     data: {
-      GetUser: { id: 'other user' },
+      GetUser: {
+        id: 'other user',
+        name: 'Other User',
+        avatarUrl: 'https://placekitten.com/84/84',
+      },
     },
   },
 };
@@ -133,7 +138,7 @@ export default {
 };
 
 export const WithArticleReplyAndReplySet = () => (
-  <MockedProvider mocks={[...mocks, otherUserMock]}>
+  <MockedProvider mocks={[...mocks, otherUserMock]} addTypename={false}>
     <>
       <p>Not voted yet</p>
       <ArticleReplyFeedbackControl articleReply={mockArticleReply} />

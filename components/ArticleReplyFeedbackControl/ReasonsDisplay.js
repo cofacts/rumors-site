@@ -86,7 +86,7 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
   }, [tab, onSizeChange]);
 
   const feedbacks =
-    data?.ListArticleReplyFeedbacks.edges.map(({ node }) => node) || [];
+    data?.ListArticleReplyFeedbacks?.edges.map(({ node }) => node) || [];
 
   if (loading) {
     return (
@@ -98,7 +98,7 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
 
   return (
     <>
-      {data?.GetReply.text}
+      {data?.GetReply?.text}
       <Tabs
         value={tab}
         onChange={(e, value) => setTab(value)}
