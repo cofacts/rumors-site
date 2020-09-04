@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 
 const useStyles = makeStyles(theme => ({

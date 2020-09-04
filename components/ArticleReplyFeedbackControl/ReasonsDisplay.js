@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { t } from 'ttag';
-import { useQuery, gql } from '@apollo/client';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Tab, Tabs, CircularProgress } from '@material-ui/core';
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
