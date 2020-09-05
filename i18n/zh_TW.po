@@ -1089,11 +1089,12 @@ msgctxt "App header"
 msgid "Forum"
 msgstr "討論區"
 
-#: components/LineChart.js:331
-#: components/LineChart.js:335
+#: components/LineChart.js:221
 msgctxt "LineChart"
-msgid "times"
-msgstr "次"
+msgid "${ visitNum } time"
+msgid_plural "${ visitNum } times"
+msgstr[0] "${ visitNum } 次"
+msgstr[1] "${ visitNum } 次"
 
 #: components/LineChart.js:329
 msgid "Web Visit"

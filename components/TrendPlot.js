@@ -1,4 +1,4 @@
-import { t, jt } from 'ttag';
+import { t } from 'ttag';
 import { useState } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { makeStyles } from '@material-ui/core/styles';
@@ -127,22 +127,22 @@ export default function TrendPlot({ data }) {
         <Box className={`${classes.label} plotLabel`}>{t`past 31 days`}</Box>
         <Hidden xsDown>
           <Box className={`${classes.label} webLabel `}>
-            {jt`Web Visit: ${totalWebVisits}`}
+            {t`Web Visit: ${totalWebVisits}`}
           </Box>
           <Box className={`${classes.label} lineLabel`}>
-            {jt`Line Inquery: ${totalLineVisits}`}
+            {t`Line Inquery: ${totalLineVisits}`}
           </Box>
         </Hidden>
         <Hidden smUp>
           <Box className={`${classes.label} webLabel `}>
-            {jt`Web: ${totalWebVisits}`}
+            {t`Web: ${totalWebVisits}`}
           </Box>
           <Box className={`${classes.label} lineLabel`}>
-            {jt`Line: ${totalLineVisits}`}
+            {t`Line: ${totalLineVisits}`}
           </Box>
         </Hidden>
         <Box flexGrow={1} className={`${classes.label} totalLabel`}>
-          {jt`Total Visit: ${totalVisits}`}
+          {t`Total Visit: ${totalVisits}`}
           {showPlot ? (
             <KeyboardArrowDownIcon onClick={() => setPlotShow(false)} />
           ) : (

@@ -31,7 +31,7 @@ const data = [
   { date: new Date('2020-07-28'), webVisit: 18, lineVisit: 2 },
   { date: new Date('2020-07-29'), webVisit: 19, lineVisit: 0 },
   { date: new Date('2020-07-30'), webVisit: 19, lineVisit: 0 },
-  { date: new Date('2020-07-31'), webVisit: 2, lineVisit: 0 },
+  { date: new Date('2020-07-31'), webVisit: 1, lineVisit: 0 },
   { date: new Date('2020-08-01'), webVisit: 6, lineVisit: 0 },
   { date: new Date('2020-08-02'), webVisit: 3, lineVisit: 0 },
   { date: new Date('2020-08-03'), webVisit: 6, lineVisit: 0 },

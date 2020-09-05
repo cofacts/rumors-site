@@ -1,4 +1,4 @@
-import { c, t } from 'ttag';
+import { c, t, msgid } from 'ttag';
 import { max, curveMonotoneX, scaleTime, scaleLinear, line } from 'd3';
 import { startOfDay } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
@@ -73,11 +73,11 @@ const useStyles = makeStyles(theme => ({
       borderRadius: '2px',
       display: 'none',
       fontSize: '12px',
-      height: '104px',
       lineHeight: '20px',
       padding: '5px',
       textAlign: 'center',
-      width: '79px',
+      minWidth: '79px',
+      position: 'absolute',
 
       '& .tooltip-title': {
         borderBottom: `1px solid ${theme.palette.secondary[400]}`,
@@ -85,18 +85,18 @@ const useStyles = makeStyles(theme => ({
       },
       '& .tooltip-text': {
         color: 'white',
-        lineHeight: '5px',
+        margin: 0,
       },
       '& .tooltip-subtitle': {
         color: theme.palette.secondary[300],
-        lineHeight: '5px',
+        margin: 0,
       },
 
       '&.left': {
-        marginLeft: '40px',
+        left: '40px',
       },
       '&.right': {
-        marginLeft: '-100px',
+        left: '-100px',
       },
     },
   },
@@ -217,6 +217,13 @@ function plotTicks({ scale, x, y, text, roundFn, tickNum, gridline }) {
   ));
 }
 
+const getVisitText = visitNum =>
+  c('LineChart').ngettext(
+    msgid`${visitNum} time`,
+    `${visitNum} times`,
+    visitNum
+  );
+
 export default function LineChart({ dataset, width, margin }) {
   const classes = useStyles();
   const height = Math.max(Math.ceil(width / 6), 75);
@@ -323,19 +330,15 @@ export default function LineChart({ dataset, width, margin }) {
                 left: boxWidth / 2 - 5 + 'px',
               }}
             ></div>
-            <div className={`tooltip ${i < 15 ? 'left' : 'right'}`}>
+            <div
+              className={`tooltip ${i < dataset.length / 2 ? 'left' : 'right'}`}
+            >
               <div className="tooltip-title">{formatDate(d.date, true)}</div>
               <div className="tooltip-body">
                 <p className="tooltip-subtitle">{t`Web Visit`}</p>
-                <p className="tooltip-text">
-                  <span>{d.webVisit}</span>{' '}
-                  <span>{c('LineChart').t`times`}</span>
-                </p>
+                <p className="tooltip-text">{getVisitText(d.webVisit)}</p>
                 <p className="tooltip-subtitle">{t`Line Inquiry`}</p>
-                <p className="tooltip-text">
-                  <span>{d.lineVisit}</span>{' '}
-                  <span>{c('LineChart').t`times`}</span>
-                </p>
+                <p className="tooltip-text">{getVisitText(d.lineVisit)}</p>
               </div>
             </div>
           </div>

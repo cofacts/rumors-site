@@ -127,7 +127,7 @@ exports[`Storyshots LineChart Normal 1`] = `
       Object {
         "date": 2020-07-31T00:00:00.000Z,
         "lineVisit": 0,
-        "webVisit": 2,
+        "webVisit": 1,
       },
       Object {
         "date": 2020-08-01T00:00:00.000Z,
@@ -770,7 +770,7 @@ exports[`Storyshots LineChart Normal 1`] = `
         >
           <path
             className="line webLine"
-            d="M0,68.97569994717381C6,67.31660503609791,12,65.65751012502201,18,59.02113048071843C24,52.38475083641485,30,24.864236661384048,36,15.031695721077655C42,5.199154780771263,48,0.02588483888008586,54,0.02588483888008586C60,0.02588483888008586,66,29.804543053354458,72,39.6296883254094C78,49.45483359746434,84,54.48635323120267,90,58.97675647120972C96,63.467159711216766,102,65.18911780243,108,66.57210776545166C114,67.95509772847332,120,68.63180137348124,126,68.64659270998415C132,68.66138404648706,138,68.6687797147385,144,68.6687797147385C150,68.6687797147385,156,68.39513998943477,162,68.39513998943477C168,68.39513998943477,174,68.94118682866701,180,69.16059165346012C186,69.37999647825322,192,69.71156893819334,198,69.71156893819334C204,69.71156893819334,210,69.65979926043318,216,69.65979926043318C222,69.65979926043318,228,69.81510829371368,234,69.81510829371368C240,69.81510829371368,246,69.81510829371368,252,69.81510829371368C258,69.81510829371368,264,69.8446909667195,270,69.8446909667195C276,69.8446909667195,282,69.79661912308505,288,69.79661912308505C294,69.79661912308505,300,69.82188765627751,306,69.8335974643423C312,69.8453072724071,318,69.86687797147385,324,69.86687797147385C330,69.86687797147385,336,69.86687797147385,342,69.86687797147385C348,69.86687797147385,354,69.93343898573693,360,69.93343898573693C366,69.93343898573693,372,69.93343898573693,378,69.93343898573693C384,69.93343898573693,390,69.9297411516112,396,69.9297411516112C402,69.9297411516112,408,69.9297411516112,414,69.9297411516112C420,69.9297411516112,426,69.99260433174855,432,69.99260433174855C438,69.99260433174855,444,69.97781299524564,450,69.97781299524564C456,69.97781299524564,462,69.98890649762282,468,69.98890649762282C474,69.98890649762282,480,69.97781299524564,486,69.97781299524564C492,69.97781299524564,498,69.98520866349709,504,69.98520866349709C510,69.98520866349709,516,69.97781299524564,522,69.97781299524564C528,69.97781299524564,534,69.98890649762282,540,70"
+            d="M0,68.97569994717381C6,67.31660503609791,12,65.65751012502201,18,59.02113048071843C24,52.38475083641485,30,24.864236661384048,36,15.031695721077655C42,5.199154780771263,48,0.02588483888008586,54,0.02588483888008586C60,0.02588483888008586,66,29.804543053354458,72,39.6296883254094C78,49.45483359746434,84,54.48635323120267,90,58.97675647120972C96,63.467159711216766,102,65.18911780243,108,66.57210776545166C114,67.95509772847332,120,68.63180137348124,126,68.64659270998415C132,68.66138404648706,138,68.6687797147385,144,68.6687797147385C150,68.6687797147385,156,68.39513998943477,162,68.39513998943477C168,68.39513998943477,174,68.94118682866701,180,69.16059165346012C186,69.37999647825322,192,69.71156893819334,198,69.71156893819334C204,69.71156893819334,210,69.65979926043318,216,69.65979926043318C222,69.65979926043318,228,69.81510829371368,234,69.81510829371368C240,69.81510829371368,246,69.81510829371368,252,69.81510829371368C258,69.81510829371368,264,69.8446909667195,270,69.8446909667195C276,69.8446909667195,282,69.79661912308505,288,69.79661912308505C294,69.79661912308505,300,69.82188765627751,306,69.8335974643423C312,69.8453072724071,318,69.86687797147385,324,69.86687797147385C330,69.86687797147385,336,69.86687797147385,342,69.86687797147385C348,69.86687797147385,354,69.93343898573693,360,69.93343898573693C366,69.93343898573693,372,69.93343898573693,378,69.93343898573693C384,69.93343898573693,390,69.9297411516112,396,69.9297411516112C402,69.9297411516112,408,69.9297411516112,414,69.9297411516112C420,69.9297411516112,426,69.99630216587427,432,69.99630216587427C438,69.99630216587427,444,69.97781299524564,450,69.97781299524564C456,69.97781299524564,462,69.98890649762282,468,69.98890649762282C474,69.98890649762282,480,69.97781299524564,486,69.97781299524564C492,69.97781299524564,498,69.98520866349709,504,69.98520866349709C510,69.98520866349709,516,69.97781299524564,522,69.97781299524564C528,69.97781299524564,534,69.98890649762282,540,70"
           />
         </g>
         <g
@@ -849,13 +849,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                277
-              </span>
-               
-              <span>
-                times
-              </span>
+              277 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -865,13 +859,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                5
-              </span>
-               
-              <span>
-                times
-              </span>
+              5 times
             </p>
           </div>
         </div>
@@ -933,13 +921,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2969
-              </span>
-               
-              <span>
-                times
-              </span>
+              2969 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -949,13 +931,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                29
-              </span>
-               
-              <span>
-                times
-              </span>
+              29 times
             </p>
           </div>
         </div>
@@ -1017,13 +993,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                14865
-              </span>
-               
-              <span>
-                times
-              </span>
+              14865 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1033,13 +1003,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                84
-              </span>
-               
-              <span>
-                times
-              </span>
+              84 times
             </p>
           </div>
         </div>
@@ -1101,13 +1065,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                18923
-              </span>
-               
-              <span>
-                times
-              </span>
+              18923 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1117,13 +1075,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                71
-              </span>
-               
-              <span>
-                times
-              </span>
+              71 times
             </p>
           </div>
         </div>
@@ -1185,13 +1137,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                8213
-              </span>
-               
-              <span>
-                times
-              </span>
+              8213 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1201,13 +1147,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                44
-              </span>
-               
-              <span>
-                times
-              </span>
+              44 times
             </p>
           </div>
         </div>
@@ -1269,13 +1209,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2981
-              </span>
-               
-              <span>
-                times
-              </span>
+              2981 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1285,13 +1219,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                29
-              </span>
-               
-              <span>
-                times
-              </span>
+              29 times
             </p>
           </div>
         </div>
@@ -1353,13 +1281,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                927
-              </span>
-               
-              <span>
-                times
-              </span>
+              927 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1369,13 +1291,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                24
-              </span>
-               
-              <span>
-                times
-              </span>
+              24 times
             </p>
           </div>
         </div>
@@ -1437,13 +1353,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                366
-              </span>
-               
-              <span>
-                times
-              </span>
+              366 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1453,13 +1363,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                6
-              </span>
-               
-              <span>
-                times
-              </span>
+              6 times
             </p>
           </div>
         </div>
@@ -1521,13 +1425,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                360
-              </span>
-               
-              <span>
-                times
-              </span>
+              360 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1537,13 +1435,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                6
-              </span>
-               
-              <span>
-                times
-              </span>
+              6 times
             </p>
           </div>
         </div>
@@ -1605,13 +1497,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                434
-              </span>
-               
-              <span>
-                times
-              </span>
+              434 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1621,13 +1507,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                8
-              </span>
-               
-              <span>
-                times
-              </span>
+              8 times
             </p>
           </div>
         </div>
@@ -1689,13 +1569,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                227
-              </span>
-               
-              <span>
-                times
-              </span>
+              227 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1705,13 +1579,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                13
-              </span>
-               
-              <span>
-                times
-              </span>
+              13 times
             </p>
           </div>
         </div>
@@ -1773,13 +1641,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                78
-              </span>
-               
-              <span>
-                times
-              </span>
+              78 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1789,13 +1651,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2
-              </span>
-               
-              <span>
-                times
-              </span>
+              2 times
             </p>
           </div>
         </div>
@@ -1857,13 +1713,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                92
-              </span>
-               
-              <span>
-                times
-              </span>
+              92 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1873,13 +1723,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2
-              </span>
-               
-              <span>
-                times
-              </span>
+              2 times
             </p>
           </div>
         </div>
@@ -1941,13 +1785,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                50
-              </span>
-               
-              <span>
-                times
-              </span>
+              50 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -1957,13 +1795,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2
-              </span>
-               
-              <span>
-                times
-              </span>
+              2 times
             </p>
           </div>
         </div>
@@ -2025,13 +1857,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                50
-              </span>
-               
-              <span>
-                times
-              </span>
+              50 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2041,13 +1867,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2091,7 +1911,7 @@ exports[`Storyshots LineChart Normal 1`] = `
           }
         />
         <div
-          className="tooltip right"
+          className="tooltip left"
         >
           <div
             className="tooltip-title"
@@ -2109,13 +1929,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                42
-              </span>
-               
-              <span>
-                times
-              </span>
+              42 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2125,13 +1939,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2193,13 +2001,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                55
-              </span>
-               
-              <span>
-                times
-              </span>
+              55 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2209,13 +2011,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2277,13 +2073,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                45
-              </span>
-               
-              <span>
-                times
-              </span>
+              45 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2293,13 +2083,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2361,13 +2145,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                36
-              </span>
-               
-              <span>
-                times
-              </span>
+              36 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2377,13 +2155,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2445,13 +2217,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                36
-              </span>
-               
-              <span>
-                times
-              </span>
+              36 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2461,13 +2227,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2529,13 +2289,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                18
-              </span>
-               
-              <span>
-                times
-              </span>
+              18 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2545,13 +2299,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2613,13 +2361,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                18
-              </span>
-               
-              <span>
-                times
-              </span>
+              18 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2629,13 +2371,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2
-              </span>
-               
-              <span>
-                times
-              </span>
+              2 times
             </p>
           </div>
         </div>
@@ -2697,13 +2433,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                19
-              </span>
-               
-              <span>
-                times
-              </span>
+              19 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2713,13 +2443,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2781,13 +2505,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                19
-              </span>
-               
-              <span>
-                times
-              </span>
+              19 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2797,13 +2515,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2833,7 +2545,7 @@ exports[`Storyshots LineChart Normal 1`] = `
           style={
             Object {
               "left": "4px",
-              "top": "64.99260433174855px",
+              "top": "64.99630216587427px",
             }
           }
         />
@@ -2865,13 +2577,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                2
-              </span>
-               
-              <span>
-                times
-              </span>
+              1 time
             </p>
             <p
               className="tooltip-subtitle"
@@ -2881,13 +2587,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -2949,13 +2649,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                6
-              </span>
-               
-              <span>
-                times
-              </span>
+              6 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -2965,13 +2659,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -3033,13 +2721,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                3
-              </span>
-               
-              <span>
-                times
-              </span>
+              3 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -3049,13 +2731,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -3117,13 +2793,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                6
-              </span>
-               
-              <span>
-                times
-              </span>
+              6 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -3133,13 +2803,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -3201,13 +2865,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                4
-              </span>
-               
-              <span>
-                times
-              </span>
+              4 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -3217,13 +2875,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -3285,13 +2937,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                6
-              </span>
-               
-              <span>
-                times
-              </span>
+              6 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -3301,13 +2947,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
@@ -3369,13 +3009,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
             <p
               className="tooltip-subtitle"
@@ -3385,13 +3019,7 @@ exports[`Storyshots LineChart Normal 1`] = `
             <p
               className="tooltip-text"
             >
-              <span>
-                0
-              </span>
-               
-              <span>
-                times
-              </span>
+              0 times
             </p>
           </div>
         </div>
