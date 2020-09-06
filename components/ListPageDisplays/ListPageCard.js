@@ -5,6 +5,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     borderRadius: 8,
     background: theme.palette.common.white,
+    overflowWrap: 'anywhere', // Make sure long URLs don't stretch card extend its container
     '& a': {
       textDecoration: 'none',
       color: 'inherit',
