@@ -367,7 +367,7 @@ function ArticlePageLayout({
                       </Infos>
                       <ExpandableText lineClamp={3}>
                         {highlight(node.text, {
-                          query,
+                          query: query.q,
                           highlightClassName: classes.highlight,
                         })}
                       </ExpandableText>
