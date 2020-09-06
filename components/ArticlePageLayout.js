@@ -357,6 +357,9 @@ function ArticlePageLayout({
                   ))}
                 </ListPageCard>
               ) : (
+                // This will be copied to pages/articles, pages/search and pages/hoax-for-you
+                // when we remove ArticlePageLayout.
+                //
                 <ArticleCard key={node.id} article={node} query={query.q} />
               )
             )}
