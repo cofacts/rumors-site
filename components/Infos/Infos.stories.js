@@ -48,7 +48,7 @@ export const WithTimeInfo = () => (
   </Infos>
 );
 
-export const WithRpelyCountInfo = () => (
+export const WithReplyCountInfo = () => (
   <Infos>
     <ReplyCountInfo normalArticleReplies={[]} />
     <ReplyCountInfo

@@ -34,7 +34,7 @@ exports[`Storyshots Infos With Multiple Children 1`] = `
 </Infos>
 `;
 
-exports[`Storyshots Infos With Rpely Count Info 1`] = `
+exports[`Storyshots Infos With Reply Count Info 1`] = `
 <Infos>
   <div
     className="makeStyles-root"
@@ -87,43 +87,43 @@ exports[`Storyshots Infos With Rpely Count Info 1`] = `
         arrow={true}
         title={
           <div
-            className="makeStyles-opinions-29"
+            className="makeStyles-opinions-123"
           >
             <span
-              className="makeStyles-opinion-30"
+              className="makeStyles-opinion-124"
             >
               <NOT_ARTICLE
-                className="makeStyles-optionIcon-31"
+                className="makeStyles-optionIcon-125"
               />
               <span>
                 2
               </span>
             </span>
             <span
-              className="makeStyles-opinion-30"
+              className="makeStyles-opinion-124"
             >
               <OPINIONATED
-                className="makeStyles-optionIcon-31"
+                className="makeStyles-optionIcon-125"
               />
               <span>
                 1
               </span>
             </span>
             <span
-              className="makeStyles-opinion-30"
+              className="makeStyles-opinion-124"
             >
               <NOT_RUMOR
-                className="makeStyles-optionIcon-31"
+                className="makeStyles-optionIcon-125"
               />
               <span>
                 1
               </span>
             </span>
             <span
-              className="makeStyles-opinion-30"
+              className="makeStyles-opinion-124"
             >
               <RUMOR
-                className="makeStyles-optionIcon-31"
+                className="makeStyles-optionIcon-125"
               />
               <span>
                 1
