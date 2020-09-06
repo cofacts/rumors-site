@@ -9,10 +9,10 @@ import {
   DialogTitle,
   DialogContent,
 } from '@material-ui/core';
-import ArticleInfo from 'components/ArticleInfo';
 import PlainList from 'components/PlainList';
 import ExpandableText from 'components/ExpandableText';
-import ArticleItem from './ArticleItem';
+import Infos from 'components/Infos';
+import TimeInfo from 'components/Infos/TimeInfo';
 import ReplyItem from './ReplyItem';
 import { nl2br } from 'lib/text';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -87,6 +87,23 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+function RepliedArticleInfo({ article }) {
+  return (
+    <Infos>
+      <>
+        {ngettext(
+          msgid`${article.replyRequestCount} occurrence`,
+          `${article.replyRequestCount} occurrences`,
+          article.replyRequestCount
+        )}
+      </>
+      <TimeInfo time={article.createdAt}>
+        {timeAgo => t`First reported ${timeAgo} ago`}
+      </TimeInfo>
+    </Infos>
+  );
+}
+
 export default function ReplySearchItem({
   articleReplies = [],
   query = '',
@@ -111,7 +128,7 @@ export default function ReplySearchItem({
   return (
     <li className={classes.root}>
       <Box p={{ xs: 2, md: 4.5 }}>
-        <ArticleInfo article={articleReply.article} />
+        <RepliedArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
           <ExpandableText className={classes.content} lineClamp={3}>
             {nl2br(articleReply.article.text)}
@@ -150,12 +167,12 @@ export default function ReplySearchItem({
                 {articleReplies
                   .filter(ar => ar !== articleReply)
                   .map(({ article }) => (
-                    <ArticleItem
-                      key={article.id}
-                      article={article}
-                      showReplyCount={false}
-                      className={classes.article}
-                    />
+                    <li key={article.id}>
+                      <RepliedArticleInfo article={article} />
+                      <ExpandableText lineClamp={3}>
+                        {article.text}
+                      </ExpandableText>
+                    </li>
                   ))}
               </PlainList>
             </DialogContent>
@@ -176,15 +193,13 @@ ReplySearchItem.fragments = {
         article {
           id
           text
-          ...ArticleInfo
-          ...ArticleItem
+          replyRequestCount
+          createdAt
         }
         ...ReplyItemArticleReplyData
       }
       ...ReplyItem
     }
-    ${ArticleInfo.fragments.articleInfo}
-    ${ArticleItem.fragments.ArticleItem}
     ${ReplyItem.fragments.ReplyItem}
     ${ReplyItem.fragments.ReplyItemArticleReplyData}
   `,
