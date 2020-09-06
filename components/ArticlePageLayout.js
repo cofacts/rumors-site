@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
-import { useRouter, Link } from 'next/router';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
@@ -11,7 +12,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ellipsis, highlight } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
-import ArticleItem from 'components/ListPageDisplays/ArticleItem';
 import ListPageCards from 'components/ListPageDisplays/ListPageCards';
 import ArticleCard from 'components/ListPageDisplays/ArticleCard';
 import ListPageCard from 'components/ListPageDisplays/ListPageCard';
@@ -44,14 +44,12 @@ const LIST_ARTICLES = gql`
           createdAt
           text
           articleReplies(status: NORMAL) {
-            user {
-              ...ReplyItemUser
-            }
             reply {
+              id
               ...ReplyItem
             }
+            ...ReplyItemArticleReplyData
           }
-
           ...ArticleCard
         }
         cursor
@@ -59,6 +57,8 @@ const LIST_ARTICLES = gql`
     }
   }
   ${ArticleCard.fragments.ArticleCard}
+  ${ReplyItem.fragments.ReplyItem}
+  ${ReplyItem.fragments.ReplyItemArticleReplyData}
 `;
 
 const LIST_STAT = gql`
@@ -348,8 +348,12 @@ function ArticlePageLayout({
                     </Link>
                   </div>
 
-                  {node.articleReplies.map(articleReply => (
-                    <ReplyItem key={articleReply.reply.id} {...articleReply} />
+                  {node.articleReplies.map(({ reply, ...articleReply }) => (
+                    <ReplyItem
+                      key={reply.id}
+                      articleReply={articleReply}
+                      reply={reply}
+                    />
                   ))}
                 </ListPageCard>
               ) : page === 'search' ? (
