@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import gql from 'graphql-tag';
 import { t, msgid, ngettext } from 'ttag';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -9,7 +10,6 @@ import {
   DialogTitle,
   DialogContent,
 } from '@material-ui/core';
-import PlainList from 'components/PlainList';
 import ExpandableText from 'components/ExpandableText';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
@@ -34,6 +34,9 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
       color: 'inherit',
     },
+  },
+  info: {
+    marginBottom: 12,
   },
   content: {
     // fix very very long string layout
@@ -76,20 +79,26 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'center',
     },
   },
-  article: {
-    padding: 0,
-    borderRadius: 0,
-    '&:not(:last-child)': {
-      paddingBottom: 12,
-      marginBottom: theme.spacing(3),
-      borderBottom: `1px solid ${theme.palette.secondary[200]}`,
+  otherArticleItem: {
+    display: 'block',
+    // Canceling link styles
+    color: 'inherit',
+    textDecoration: 'none',
+    paddingBottom: 24,
+    borderBottom: `1px solid ${theme.palette.secondary[200]}`,
+    marginBottom: 24,
+
+    '&:last-child': {
+      borderBottom: 0,
+      marginBottom: 0,
     },
   },
 }));
 
 function RepliedArticleInfo({ article }) {
+  const classes = useStyles()
   return (
-    <Infos>
+    <Infos className={classes.info}>
       <>
         {ngettext(
           msgid`${article.replyRequestCount} occurrence`,
@@ -163,18 +172,22 @@ export default function ReplySearchItem({
           <Dialog open={open} onClose={handleClose}>
             <DialogTitle>{t`This reply is used in following messages`}</DialogTitle>
             <DialogContent>
-              <PlainList>
-                {articleReplies
-                  .filter(ar => ar !== articleReply)
-                  .map(({ article }) => (
-                    <li key={article.id}>
+              {articleReplies
+                .filter(ar => ar !== articleReply)
+                .map(({ article }) => (
+                  <Link
+                    href="/article/[id]"
+                    as={`/article/${article.id}`}
+                    key={article.id}
+                  >
+                    <a className={classes.otherArticleItem}>
                       <RepliedArticleInfo article={article} />
                       <ExpandableText lineClamp={3}>
                         {article.text}
                       </ExpandableText>
-                    </li>
-                  ))}
-              </PlainList>
+                    </a>
+                  </Link>
+                ))}
             </DialogContent>
           </Dialog>
         </>
