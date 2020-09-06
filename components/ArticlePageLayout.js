@@ -322,33 +322,33 @@ function ArticlePageLayout({
              * FIXME: the "page" logic will be removed when ArticlePageLayout is splitted into
              * each separate page component.
              */}
-            {articleEdges.map(({ node }) =>
+            {articleEdges.map(({ node: article }) =>
               page === 'replies' ? (
-                <ListPageCard key={node.id}>
+                <ListPageCard key={article.id}>
                   <Infos>
                     <>
                       {ngettext(
-                        msgid`${node.replyRequestCount} occurrence`,
-                        `${node.replyRequestCount} occurrences`,
-                        node.replyRequestCount
+                        msgid`${article.replyRequestCount} occurrence`,
+                        `${article.replyRequestCount} occurrences`,
+                        article.replyRequestCount
                       )}
                     </>
-                    <TimeInfo time={node.createdAt}>
+                    <TimeInfo time={article.createdAt}>
                       {timeAgo => t`First reported ${timeAgo} ago`}
                     </TimeInfo>
                   </Infos>
-                  <ExpandableText lineClamp={2}>{node.text}</ExpandableText>
+                  <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
 
                   <div
                     className={classes.bustHoaxDivider}
                     data-ga="Bust hoax button"
                   >
-                    <Link href="/article/[id]" as={`/article/${node.id}`}>
+                    <Link href="/article/[id]" as={`/article/${article.id}`}>
                       <a>{t`Bust Hoaxes`}</a>
                     </Link>
                   </div>
 
-                  {node.articleReplies.map(({ reply, ...articleReply }) => (
+                  {article.articleReplies.map(({ reply, ...articleReply }) => (
                     <ReplyItem
                       key={reply.id}
                       articleReply={articleReply}
@@ -360,7 +360,11 @@ function ArticlePageLayout({
                 // This will be copied to pages/articles, pages/search and pages/hoax-for-you
                 // when we remove ArticlePageLayout.
                 //
-                <ArticleCard key={node.id} article={node} query={query.q} />
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  query={query.q}
+                />
               )
             )}
           </ListPageCards>
