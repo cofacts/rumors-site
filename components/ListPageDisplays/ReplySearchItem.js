@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function RepliedArticleInfo({ article }) {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Infos className={classes.info}>
       <>
