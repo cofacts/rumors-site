@@ -1,3 +1,5 @@
+// TODO: remove this file as this is deprecated
+
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import { c, t } from 'ttag';
