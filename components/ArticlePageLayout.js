@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ellipsis, highlight } from 'lib/text';
+import { ellipsis } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ListPageCards from 'components/ListPageDisplays/ListPageCards';
@@ -356,24 +356,6 @@ function ArticlePageLayout({
                     />
                   ))}
                 </ListPageCard>
-              ) : page === 'search' ? (
-                <Link href="/article/[id]" as={`/article/${node.id}`}>
-                  <a className={classes.noStyleLink}>
-                    <ListPageCard key={node.id}>
-                      <Infos>
-                        <TimeInfo time={node.createdAt}>
-                          {timeAgo => t`First reported ${timeAgo} ago`}
-                        </TimeInfo>
-                      </Infos>
-                      <ExpandableText lineClamp={3}>
-                        {highlight(node.text, {
-                          query: query.q,
-                          highlightClassName: classes.highlight,
-                        })}
-                      </ExpandableText>
-                    </ListPageCard>
-                  </a>
-                </Link>
               ) : (
                 <ArticleCard key={node.id} article={node} query={query.q} />
               )
