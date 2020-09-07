@@ -1,5 +1,6 @@
 import { t } from 'ttag';
-import { gql, useQuery } from '@apollo/client';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';

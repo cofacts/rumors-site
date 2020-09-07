@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
-import { gql, useLazyQuery } from '@apollo/client';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
@@ -7,6 +6,8 @@ import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
+import gql from 'graphql-tag';
+import { useLazyQuery } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
 import fetchAPI from 'lib/fetchAPI';
 

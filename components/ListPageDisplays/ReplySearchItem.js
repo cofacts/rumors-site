@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import { t, msgid, ngettext } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import {
