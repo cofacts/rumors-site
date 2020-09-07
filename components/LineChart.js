@@ -74,9 +74,9 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
       fontSize: '12px',
       lineHeight: '20px',
-      padding: '5px',
+      padding: '5px 10px',
       textAlign: 'center',
-      minWidth: '79px',
+      whiteSpace: 'nowrap',
       position: 'absolute',
 
       '& .tooltip-title': {
@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
         left: '40px',
       },
       '&.right': {
-        left: '-100px',
+        right: '40px',
       },
     },
   },
@@ -187,10 +187,10 @@ function TickGroup({ x, y, gridline, text }) {
 /* Populates a list of tick values given a scale and number of ticks wanted. */
 const getTicks = (scale, roundFn, tickNum) => {
   const [max, min] = scale.domain();
-  const diff = roundFn((max - min) / (tickNum - 1));
+  const diff = (max - min) / (tickNum - 1);
   let ticks = [];
   for (let i = 0; i < tickNum; i++) {
-    ticks.push(max - diff * i);
+    ticks.push(roundFn(max - diff * i));
   }
   return ticks;
 };
@@ -208,7 +208,7 @@ function plotTicks({ scale, x, y, text, roundFn, tickNum, gridline }) {
   const ticks = getTicks(scale, roundFn, tickNum);
   return ticks.map((tick, i) => (
     <TickGroup
-      key={`${tick}_${i}`}
+      key={`${tick - 0}_${i}`}
       x={x(scale, tick)}
       y={y(scale, tick)}
       text={text(tick)}
