@@ -30,6 +30,7 @@
     "clsx": "^1.0.4",
     "copy-to-clipboard": "^3.3.1",
     "core-js": "^3.6.5",
+    "d3": "^5.16.0",
     "date-fns": "^2.0.1",
     "dotenv": "^8.0.0",
     "emoji-mart": "^3.0.0",
@@ -44,6 +45,7 @@
     "pm2": "^4.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-virtualized-auto-sizer": "^1.0.2",
     "rollbar": "^2.14.4",
     "stackimpact": "^1.3.23",
     "ttag": "^1.7.22"

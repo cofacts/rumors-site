@@ -26,7 +26,7 @@ import NewReplySection from 'components/NewReplySection';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import cx from 'clsx';
-import Trendline from 'components/Trendline';
+import TrendPlot from 'components/TrendPlot';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -176,6 +176,11 @@ const LOAD_ARTICLE = gql`
       articleCategories {
         ...ArticleCategoryData
         ...AddCategoryDialogData
+      }
+      stats {
+        date
+        webVisit
+        lineVisit
       }
     }
   }
@@ -342,7 +347,7 @@ function ArticlePage() {
                   ({ status }) => status === 'NORMAL'
                 )}
               />
-              <Trendline id={article.id} />
+              <TrendPlot data={article.stats} />
               <Divider />
               <footer>
                 {article.replyRequests.map((replyRequest, idx) => (
