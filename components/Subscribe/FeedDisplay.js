@@ -32,7 +32,7 @@ const {
     PUBLIC_URL,
     PUBLIC_LINE_IFTTT_APPLET_URL,
     PUBLIC_LINE_IFTTT_TUTORIAL_YOUTUBEID,
-    PUBLICTELEGRAM_IFTTT_APPLET_URL,
+    PUBLIC_TELEGRAM_IFTTT_APPLET_URL,
     PUBLIC_TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID,
     PUBLIC_SLACK_IFTTT_APPLET_URL,
     PUBLIC_SLACK_IFTTT_TUTORIAL_YOUTUBEID,
@@ -153,7 +153,7 @@ function FeedDisplay({ listQueryVars }) {
             </IFTTTItem>
             <IFTTTItem
               icon={telegramIcon}
-              IFTTTAppletUrl={PUBLICTELEGRAM_IFTTT_APPLET_URL}
+              IFTTTAppletUrl={PUBLIC_TELEGRAM_IFTTT_APPLET_URL}
               feedUrl={feedUrl}
               tutorialYoutubeId={PUBLIC_TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID}
             >
