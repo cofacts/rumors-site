@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { t, jt, ngettext, msgid } from 'ttag';
+import { t, ngettext, msgid } from 'ttag';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ellipsis } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ListPageCards from 'components/ListPageDisplays/ListPageCards';
@@ -129,7 +128,6 @@ function urlQuery2Filter({
   categoryIds,
   start,
   end,
-  searchUserByArticleId,
   types,
   timeRangeKey,
   userId,
@@ -169,10 +167,6 @@ function urlQuery2Filter({
       default:
     }
   });
-
-  if (searchUserByArticleId) {
-    filterObj.fromUserOfArticleId = searchUserByArticleId;
-  }
 
   if (start) {
     filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], GTE: start };
@@ -264,22 +258,8 @@ function ArticlePageLayout({
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
 
-  // Flags
-  const searchedArticleEdge = articleEdges.find(
-    ({ node: { id } }) => id === query.searchUserByArticleId
-  );
-  const searchedUserArticleElem = (
-    <mark key="searched-user">
-      {ellipsis(searchedArticleEdge?.node?.text || '', { wordCount: 15 })}
-    </mark>
-  );
-
   return (
     <Box pt={2}>
-      {query.searchUserByArticleId && (
-        <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
-      )}
-
       <Box
         display="flex"
         alignItems="center"
