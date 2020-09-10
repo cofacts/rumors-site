@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,10 +14,12 @@ import ListPageCards from 'components/ListPageDisplays/ListPageCards';
 import ArticleCard from 'components/ListPageDisplays/ArticleCard';
 import ListPageCard from 'components/ListPageDisplays/ListPageCard';
 import ReplyItem from 'components/ListPageDisplays/ReplyItem';
+import ListPageHeader from 'components/ListPageDisplays/ListPageHeader';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import ExpandableText from 'components/ExpandableText';
+import Tools from 'components/ListPageControls/Tools';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
 import CategoryFilter from 'components/ListPageControls/CategoryFilter';
@@ -260,20 +261,11 @@ function ArticlePageLayout({
 
   return (
     <Box pt={2}>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent={{ xs: 'center', md: 'space-between' }}
-        flexDirection={{ xs: 'column', md: 'row' }}
-        mb={2}
-      >
-        <Typography variant="h4">{title}</Typography>
-        <Box my={1}>
-          <FeedDisplay listQueryVars={listQueryVars} />
-        </Box>
-      </Box>
+      <ListPageHeader title={title}>
+        <FeedDisplay listQueryVars={listQueryVars} />
+      </ListPageHeader>
 
-      <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+      <Tools>
         <TimeRange />
         <SortInput
           defaultOrderBy={defaultOrder}
@@ -283,7 +275,7 @@ function ArticlePageLayout({
             { value: 'replyRequestCount', label: t`Most asked` },
           ]}
         />
-      </Box>
+      </Tools>
 
       <Filters className={classes.filters}>
         {options.filters && <ArticleStatusFilter />}

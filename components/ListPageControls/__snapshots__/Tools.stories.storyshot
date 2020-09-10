@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPageControls/Tools Header 1`] = `
+<Tools>
+  <div
+    className="MuiBox-root MuiBox-root"
+  >
+    <div>
+      Tool #1 control
+    </div>
+    <div>
+      Tool #2 control
+    </div>
+  </div>
+</Tools>
+`;

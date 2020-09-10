@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPageDisplays/ListPageHeader Header 1`] = `
+<ListPageHeader
+  title="Header text"
+>
+  <div
+    className="MuiBox-root MuiBox-root"
+  >
+    <h4
+      className="MuiTypography-root MuiTypography-h4"
+    >
+      Header text
+    </h4>
+    <div
+      className="MuiBox-root MuiBox-root"
+    >
+      children content
+    </div>
+  </div>
+</ListPageHeader>
+`;
