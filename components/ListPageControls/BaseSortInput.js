@@ -7,7 +7,8 @@ import { t } from 'ttag';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexDirection: 'row',
+    // Override TextField's inline-flex to extend to whole container
+    display: 'flex',
   },
   inputClass: {
     border: `1px solid ${theme.palette.secondary[100]}`,
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     '&:focus': {
       backgroundColor: 'inherit',
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingTop: 2.5,
       paddingBottom: 2.5,
     },
