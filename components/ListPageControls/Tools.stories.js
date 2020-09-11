@@ -9,8 +9,12 @@ export default {
 };
 
 export const Header = () => (
-  <Tools>
-    <div>{text('Tool 1', 'Tool #1 control')}</div>
-    <div>{text('Tool 2', 'Tool #2 control')}</div>
-  </Tools>
+  <div>
+    Content above tools
+    <Tools>
+      <div>{text('Tool 1', 'Tool #1 control')}</div>
+      <div>{text('Tool 2', 'Tool #2 control')}</div>
+    </Tools>
+    Content below tools
+  </div>
 );
