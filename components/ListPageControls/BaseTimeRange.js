@@ -10,19 +10,15 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   buttonGroup: {
-    border: `1px solid ${theme.palette.secondary[100]}`,
+    display: 'flex', // Override ButtonGroup default inline-flex
+    flex: 1,
   },
   calendarButton: {
     background: theme.palette.common.white,
+    borderColor: theme.palette.secondary[100],
     padding: 5,
-    minWidth: 0,
-
-    '&:hover': {
-      background: theme.palette.secondary[100],
-      color: theme.palette.secondary[300],
-    },
     [theme.breakpoints.up('md')]: {
-      padding: 7,
+      padding: 8,
     },
   },
   calendarIcon: {
@@ -33,10 +29,12 @@ const useStyles = makeStyles(theme => ({
     },
   },
   selectButton: {
+    flex: 1,
     background: theme.palette.common.white,
     padding: '0px 8px',
   },
   startDate: {
+    flex: 1,
     background: theme.palette.common.white,
     marginLeft: '0 !important',
     border: `1px solid ${theme.palette.secondary[100]}`,
@@ -47,6 +45,7 @@ const useStyles = makeStyles(theme => ({
     padding: '0 11px',
   },
   endDate: {
+    flex: 1,
     background: theme.palette.common.white,
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderRadius: 4,
@@ -128,7 +127,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup classes={{ contained: classes.buttonGroup }}>
+      <ButtonGroup className={classes.buttonGroup}>
         <Button className={classes.calendarButton} onClick={openMenu}>
           <DateRangeIcon className={classes.calendarIcon} />
         </Button>
