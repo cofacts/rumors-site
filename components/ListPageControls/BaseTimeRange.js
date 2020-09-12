@@ -11,21 +11,24 @@ const useStyles = makeStyles(theme => ({
   },
   buttonGroup: {
     display: 'flex', // Override ButtonGroup default inline-flex
-    flex: 1,
+    minWidth: 0,
+    flex: '1 1 16px', // half of the calendar button to make the two button looks balanced
   },
   calendarButton: {
     background: theme.palette.common.white,
     borderColor: theme.palette.secondary[100],
-    padding: 5,
+    padding: '5px 0 4px',
+    minWidth: 32, // override ButtonGroup style
     [theme.breakpoints.up('md')]: {
-      padding: 8,
+      padding: 6,
     },
   },
   calendarIcon: {
-    fontSize: 14,
+    fontSize: 16,
+    lineHeight: 1,
     color: theme.palette.secondary[300],
     [theme.breakpoints.up('md')]: {
-      fontSize: 18,
+      fontSize: 21,
     },
   },
   selectButton: {
@@ -36,13 +39,17 @@ const useStyles = makeStyles(theme => ({
   startDate: {
     flex: 1,
     background: theme.palette.common.white,
-    marginLeft: '0 !important',
+    marginLeft: '0 !important', // ButtonGroup margin left
+    minWidth: '0',
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
   },
   to: {
-    padding: '0 11px',
+    padding: '0 4px',
+    [theme.breakpoints.up('md')]: {
+      padding: '0 11px',
+    },
   },
   endDate: {
     flex: 1,
@@ -50,7 +57,6 @@ const useStyles = makeStyles(theme => ({
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderRadius: 4,
     padding: '1.5px 0',
-    minWidth: 100,
     [theme.breakpoints.up('md')]: {
       padding: '5.5px 0',
     },
