@@ -3,9 +3,6 @@ import { t, ngettext, msgid } from 'ttag';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
-
-import Box from '@material-ui/core/Box';
-
 import { makeStyles } from '@material-ui/core/styles';
 
 import useCurrentUser from 'lib/useCurrentUser';
@@ -260,10 +257,12 @@ function ArticlePageLayout({
   const statsData = listStatData?.ListArticles || {};
 
   return (
-    <Box pt={2}>
-      <ListPageHeader title={title}>
-        <FeedDisplay listQueryVars={listQueryVars} />
-      </ListPageHeader>
+    <>
+      {title && (
+        <ListPageHeader title={title}>
+          <FeedDisplay listQueryVars={listQueryVars} />
+        </ListPageHeader>
+      )}
 
       <Tools>
         <TimeRange />
@@ -364,7 +363,7 @@ function ArticlePageLayout({
           />
         </>
       )}
-    </Box>
+    </>
   );
 }
 

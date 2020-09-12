@@ -145,7 +145,7 @@ function ReplySearchPageLayout() {
   const statsData = listStatData?.ListReplies || {};
 
   return (
-    <Box pt={2}>
+    <>
       <Tools>
         <TimeRange />
       </Tools>
@@ -189,7 +189,7 @@ function ReplySearchPageLayout() {
           />
         </>
       )}
-    </Box>
+    </>
   );
 }
 
