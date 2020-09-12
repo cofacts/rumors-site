@@ -74,20 +74,6 @@ const LIST_STAT = gql`
 `;
 
 const useStyles = makeStyles(theme => ({
-  filters: {
-    margin: '12px 0',
-  },
-  articleList: {
-    padding: 0,
-  },
-  highlight: {
-    color: theme.palette.primary[500],
-  },
-  noStyleLink: {
-    // Canceling link styles
-    color: 'inherit',
-    textDecoration: 'none',
-  },
   bustHoaxDivider: {
     fontSize: theme.typography.htmlFontSize,
     position: 'relative',
@@ -276,7 +262,7 @@ function ArticlePageLayout({
         />
       </Tools>
 
-      <Filters className={classes.filters}>
+      <Filters>
         {options.filters && <ArticleStatusFilter />}
         {options.consider && <ReplyTypeFilter />}
         {options.category && <CategoryFilter />}
