@@ -171,7 +171,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       marginBottom: 12,
     },
-  }
+  },
 }));
 
 function ReplyListPage() {
