@@ -136,30 +136,42 @@ const DEFAULT_ORDER = 'lastRepliedAt';
 const useStyles = makeStyles(theme => ({
   bustHoaxDivider: {
     fontSize: theme.typography.htmlFontSize,
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '12px 0',
+    textAlign: 'center',
+    position: 'relative', // For ::before
+    zIndex: 0, // Make a stacking context
+    margin: '8px 0 -8px',
+
     '&:before': {
       position: 'absolute',
       top: '50%',
       display: 'block',
       height: '1px',
+      zIndex: -1,
       width: '100%',
       backgroundColor: theme.palette.secondary[100],
       content: '""',
     },
     '& a': {
-      position: 'relative',
-      flex: '1 1 shrink',
+      display: 'inline-block',
       borderRadius: 30,
       padding: '10px 26px',
+      fontSize: 14,
+      lineHeight: '16px',
       textAlign: 'center',
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
-      zIndex: 2,
+      border: `5px solid ${theme.palette.common.white}`,
+      [theme.breakpoints.up('md')]: {
+        fontSize: 16,
+      },
     },
   },
+  infos: {
+    marginBottom: 4,
+    [theme.breakpoints.up('md')]: {
+      marginBottom: 12,
+    },
+  }
 }));
 
 function ReplyListPage() {
@@ -233,7 +245,7 @@ function ReplyListPage() {
           <ListPageCards>
             {articleEdges.map(({ node: article }) => (
               <ListPageCard key={article.id}>
-                <Infos>
+                <Infos className={classes.infos}>
                   <>
                     {ngettext(
                       msgid`${article.replyRequestCount} occurrence`,
