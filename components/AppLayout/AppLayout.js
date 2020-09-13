@@ -36,7 +36,10 @@ const apiLogout = () => {
   return fetchAPI('/logout').then(resp => resp.json());
 };
 
-function AppLayout({ children }) {
+/**
+ * @param {boolean} props.container - whether we should use container around children
+ */
+function AppLayout({ children, container = true }) {
   const [isRouteChanging, setRouteChanging] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -89,7 +92,11 @@ function AppLayout({ children }) {
         user={data?.GetUser}
         onLoginModalOpen={openLoginModal}
       />
-      <Container className={classes.container}>{children}</Container>
+      {container ? (
+        <Container className={classes.container}>{children}</Container>
+      ) : (
+        children
+      )}
       <AppFooter />
       {loginModalOpen && (
         <LoginModal onClose={() => setLoginModalOpen(false)} />
