@@ -144,7 +144,6 @@ const ArticleReply = React.memo(
           {showFeedback && (
             <ArticleReplyFeedbackControl
               articleReply={articleReply}
-              reply={reply}
               className={classes.feedbacks}
             />
           )}

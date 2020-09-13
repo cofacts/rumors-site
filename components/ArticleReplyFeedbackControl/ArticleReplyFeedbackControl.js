@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { Tabs, Tab, Box, Popover, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Popover, Typography } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
-import Avatar from 'components/AppLayout/Widgets/Avatar';
-import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
+import ReasonsDisplay from './ReasonsDisplay';
 import ButtonGroupDisplay from './ButtonGroupDisplay';
 import cx from 'clsx';
 
@@ -30,11 +29,6 @@ const useStyles = makeStyles(theme => ({
     border: 'none',
     outline: 'none',
     color: theme.palette.secondary[100],
-  },
-  feedbacks: {
-    marginTop: 16,
-    maxHeight: 300,
-    overflow: 'auto',
   },
   popupTitle: {
     fontSize: 18,
@@ -67,41 +61,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CustomTab = withStyles({
-  root: {
-    position: 'relative',
-    minHeight: 0,
-  },
-  wrapper: {
-    '& > svg': {
-      position: 'absolute',
-      left: 0,
-    },
-  },
-})(Tab);
-
-const Feedback = withStyles(theme => ({
-  root: {
-    marginTop: 16,
-    display: 'flex',
-    borderBottom: `1px solid ${theme.palette.secondary[100]}`,
-    alignItems: ({ comment }) => (comment ? 'flex-start' : 'center'),
-    paddingBottom: 10,
-  },
-  name: {
-    color: ({ comment }) =>
-      comment ? theme.palette.primary[500] : theme.palette.secondary[300],
-  },
-}))(({ comment, user, classes }) => (
-  <div className={classes.root}>
-    <Avatar user={user} size={48} />
-    <Box px={2}>
-      <div className={classes.name}>{user.name}</div>
-      <div>{comment}</div>
-    </Box>
-  </div>
-));
-
 // Subset of fields that needs to be updated after login
 //
 const ArticleReplyFeedbackControlDataForUser = gql`
@@ -116,25 +75,15 @@ const ArticleReplyFeedbackControlDataForUser = gql`
 
 const ArticleReplyFeedbackControlData = gql`
   fragment ArticleReplyFeedbackControlData on ArticleReply {
-    positiveFeedbackCount
-    negativeFeedbackCount
-    ownVote
-    feedbacks {
-      id
-      comment
-      vote
-      user {
-        id
-        name
-        ...AvatarData
-      }
-    }
+    articleId
+    replyId
     ...ArticleReplyFeedbackControlDataForUser
     ...ButtonGroupDisplayArticleReply
+    ...ReasonsDisplayData
   }
   ${ArticleReplyFeedbackControlDataForUser}
   ${ButtonGroupDisplay.fragments.ButtonGroupDisplayArticleReply}
-  ${Avatar.fragments.AvatarData}
+  ${ReasonsDisplay.fragments.ReasonsDisplayData}
 `;
 
 export const CREATE_REPLY_FEEDBACK = gql`
@@ -163,13 +112,14 @@ export const CREATE_REPLY_FEEDBACK = gql`
  *   Isolated because not all use case have reply nested under articleReply.
  * @param {string?} props.className
  */
-function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
+function ArticleReplyFeedbackControl({ articleReply, className }) {
   const classes = useStyles();
   const [vote, setVote] = useState(null);
   const [reason, setReason] = useState('');
   const [reasonsPopoverAnchorEl, setReasonsPopoverAnchorEl] = useState(null);
   const [votePopoverAnchorEl, setVotePopoverAnchorEl] = useState(null);
-  const [tab, setTab] = useState(0);
+  const reasonsPopoverRef = useRef();
+
   const [showReorderSnack, setReorderSnackShow] = useState(false);
   const [createReplyFeedback, { loading: updatingReplyFeedback }] = useMutation(
     CREATE_REPLY_FEEDBACK,
@@ -202,6 +152,12 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
     setVote(null);
   };
 
+  const handleReasonReposition = useCallback(() => {
+    if (reasonsPopoverRef.current) {
+      reasonsPopoverRef.current.updatePosition();
+    }
+  }, []);
+
   return (
     <div className={cx(classes.root, className)}>
       <ButtonGroupDisplay
@@ -211,9 +167,9 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
         onReasonClick={openReasonsPopover}
       />
       <Popover
-        id={`reply-reasons-${reply.id}`}
         open={!!reasonsPopoverAnchorEl}
         anchorEl={reasonsPopoverAnchorEl}
+        action={reasonsPopoverRef}
         onClose={closeReasonsPopover}
         anchorOrigin={{
           vertical: 'top',
@@ -228,46 +184,14 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
         >
           <CloseIcon />
         </button>
-        {reply.text}
-        <Tabs
-          value={tab}
-          onChange={(e, value) => setTab(value)}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-        >
-          <CustomTab
-            icon={<ThumbUpIcon />}
-            label={t`Helpful ${articleReply.positiveFeedbackCount}`}
+        {!!reasonsPopoverAnchorEl && (
+          <ReasonsDisplay
+            articleReply={articleReply}
+            onSizeChange={handleReasonReposition}
           />
-          <CustomTab
-            icon={<ThumbDownIcon />}
-            label={t`Not Helpful ${articleReply.negativeFeedbackCount}`}
-          />
-        </Tabs>
-        <Box
-          display={tab === 0 ? 'block' : 'none'}
-          className={classes.feedbacks}
-        >
-          {articleReply.feedbacks
-            .filter(({ vote, user }) => vote === 'UPVOTE' && user)
-            .map(feedback => (
-              <Feedback key={feedback.id} {...feedback} />
-            ))}
-        </Box>
-        <Box
-          display={tab === 1 ? 'block' : 'none'}
-          className={classes.feedbacks}
-        >
-          {articleReply.feedbacks
-            .filter(({ vote, user }) => vote === 'DOWNVOTE' && user)
-            .map(feedback => (
-              <Feedback key={feedback.id} {...feedback} />
-            ))}
-        </Box>
+        )}
       </Popover>
       <Popover
-        id={`feedback-reasons-${reply.id}`}
         open={!!votePopoverAnchorEl}
         anchorEl={votePopoverAnchorEl}
         onClose={closeVotePopover}
@@ -325,12 +249,6 @@ function ArticleReplyFeedbackControl({ articleReply, reply = {}, className }) {
 ArticleReplyFeedbackControl.fragments = {
   ArticleReplyFeedbackControlData,
   ArticleReplyFeedbackControlDataForUser,
-  ArticleReplyFeedbackControlReply: gql`
-    fragment ArticleReplyFeedbackControlReply on Reply {
-      id
-      text
-    }
-  `,
 };
 
 export default ArticleReplyFeedbackControl;
