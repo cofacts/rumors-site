@@ -9,7 +9,6 @@ import * as FILTERS from 'constants/articleFilters';
 import {
   ListPageCards,
   ArticleCard,
-  ReplyItem,
   ListPageHeader,
 } from 'components/ListPageDisplays';
 import {
@@ -39,25 +38,14 @@ const LIST_ARTICLES = gql`
       edges {
         node {
           id
-          replyRequestCount
-          createdAt
-          text
-          articleReplies(status: NORMAL) {
-            reply {
-              id
-              ...ReplyItem
-            }
-            ...ReplyItemArticleReplyData
-          }
           ...ArticleCard
         }
-        cursor
+        ...LoadMoreEdge
       }
     }
   }
   ${ArticleCard.fragments.ArticleCard}
-  ${ReplyItem.fragments.ReplyItem}
-  ${ReplyItem.fragments.ReplyItemArticleReplyData}
+  ${LoadMore.fragments.LoadMoreEdge}
 `;
 
 const LIST_STAT = gql`
@@ -65,14 +53,11 @@ const LIST_STAT = gql`
     $filter: ListArticleFilter
     $orderBy: [ListArticleOrderBy]
   ) {
-    ListArticles(filter: $filter, orderBy: $orderBy, first: 25) {
-      pageInfo {
-        firstCursor
-        lastCursor
-      }
-      totalCount
+    ListArticles(filter: $filter, orderBy: $orderBy) {
+      ...LoadMoreConnectionForStats
     }
   }
+  ${LoadMore.fragments.LoadMoreConnectionForStats}
 `;
 
 /**
