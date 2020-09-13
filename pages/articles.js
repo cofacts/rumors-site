@@ -1,36 +1,243 @@
-import ArticlePageLayout from 'components/ArticlePageLayout';
+import gql from 'graphql-tag';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import getConfig from 'next/config';
 import { t } from 'ttag';
-import querystring from 'querystring';
+import { useQuery } from '@apollo/react-hooks';
+
+import useCurrentUser from 'lib/useCurrentUser';
+import * as FILTERS from 'constants/articleFilters';
+import {
+  ListPageCards,
+  ArticleCard,
+  ReplyItem,
+  ListPageHeader,
+} from 'components/ListPageDisplays';
+import {
+  Tools,
+  Filters,
+  ArticleStatusFilter,
+  CategoryFilter,
+  ReplyTypeFilter,
+  TimeRange,
+  SortInput,
+  LoadMore,
+} from 'components/ListPageControls';
+import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
 
-const {
-  publicRuntimeConfig: { PUBLIC_URL },
-} = getConfig();
+const MAX_KEYWORD_LENGTH = 100;
+const DEFAULT_ORDER = 'lastRequestedAt';
+
+const LIST_ARTICLES = gql`
+  query GetArticlesList(
+    $filter: ListArticleFilter
+    $orderBy: [ListArticleOrderBy]
+    $after: String
+  ) {
+    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 25) {
+      edges {
+        node {
+          id
+          replyRequestCount
+          createdAt
+          text
+          articleReplies(status: NORMAL) {
+            reply {
+              id
+              ...ReplyItem
+            }
+            ...ReplyItemArticleReplyData
+          }
+          ...ArticleCard
+        }
+        cursor
+      }
+    }
+  }
+  ${ArticleCard.fragments.ArticleCard}
+  ${ReplyItem.fragments.ReplyItem}
+  ${ReplyItem.fragments.ReplyItemArticleReplyData}
+`;
+
+const LIST_STAT = gql`
+  query GetArticlesListStat(
+    $filter: ListArticleFilter
+    $orderBy: [ListArticleOrderBy]
+  ) {
+    ListArticles(filter: $filter, orderBy: $orderBy, first: 25) {
+      pageInfo {
+        firstCursor
+        lastCursor
+      }
+      totalCount
+    }
+  }
+`;
+
+/**
+ * @param {object} urlQuery - URL query object
+ * @returns {object} ListArticleFilter
+ */
+function urlQuery2Filter({
+  filters,
+  q,
+  categoryIds,
+  start,
+  end,
+  types,
+  userId,
+} = {}) {
+  const filterObj = {};
+
+  if (q) {
+    filterObj.moreLikeThis = {
+      like: q.slice(0, MAX_KEYWORD_LENGTH),
+      minimumShouldMatch: '0',
+    };
+  }
+
+  if (categoryIds) {
+    filterObj.categoryIds = categoryIds.split(',');
+  }
+
+  const selectedFilters = typeof filters === 'string' ? filters.split(',') : [];
+  selectedFilters.forEach(filter => {
+    switch (filter) {
+      case FILTERS.REPLIED_BY_ME:
+        if (!userId) break;
+        filterObj.articleRepliesFrom = {
+          userId: userId,
+          exists: true,
+        };
+        break;
+      case FILTERS.NO_USEFUL_REPLY_YET:
+        filterObj.hasArticleReplyWithMorePositiveFeedback = false;
+        break;
+      case FILTERS.ASKED_MANY_TIMES:
+        filterObj.replyRequestCount = { GTE: 2 };
+        break;
+      case FILTERS.REPLIED_MANY_TIMES:
+        filterObj.replyCount = { GTE: 3 };
+        break;
+      default:
+    }
+  });
+
+  if (start) {
+    filterObj.createdAt = { ...filterObj.createdAt, GTE: start };
+  }
+  if (end) {
+    filterObj.createdAt = { ...filterObj.createdAt, LTE: end };
+  }
+
+  if (types) {
+    filterObj.replyTypes = types.split(',');
+  }
+
+  // Return filterObj only when it is populated.
+  if (!Object.keys(filterObj).length) {
+    return undefined;
+  }
+
+  return filterObj;
+}
 
 function ArticleListPage() {
   const { query } = useRouter();
-  const queryString = querystring.stringify(query);
+  const user = useCurrentUser();
+
+  const listQueryVars = {
+    filter: urlQuery2Filter({
+      ...query,
+      userId: user?.id,
+    }),
+    orderBy: [{ [query.orderBy || DEFAULT_ORDER]: 'DESC' }],
+  };
+
+  const {
+    loading,
+    fetchMore,
+    data: listArticlesData,
+    error: listArticlesError,
+  } = useQuery(LIST_ARTICLES, {
+    variables: listQueryVars,
+    notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
+  });
+
+  // Separate these stats query so that it will be cached by apollo-client and sends no network request
+  // on page change, but still works when filter options are updated.
+  //
+  const { data: listStatData } = useQuery(LIST_STAT, {
+    variables: listQueryVars,
+  });
+
+  // List data
+  const articleEdges = listArticlesData?.ListArticles?.edges || [];
+  const statsData = listStatData?.ListArticles || {};
 
   return (
     <AppLayout>
       <Head>
         <title>{t`Dubious Messages`}</title>
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          href={`${PUBLIC_URL}/api/articles/rss2?${queryString}`}
-        />
-        <link
-          rel="alternate"
-          type="application/atom+xml"
-          href={`${PUBLIC_URL}/api/articles/atom1?${queryString}`}
-        />
       </Head>
-      <ArticlePageLayout title={t`Dubious Messages`} page="articles" />
+      <ListPageHeader title={t`Dubious Messages`}>
+        <FeedDisplay listQueryVars={listQueryVars} />
+      </ListPageHeader>
+
+      <Tools>
+        <TimeRange />
+        <SortInput
+          defaultOrderBy="lastRequestedAt"
+          options={[
+            { value: 'lastRequestedAt', label: t`Most recently asked` },
+            { value: 'replyRequestCount', label: t`Most asked` },
+            { value: 'lastRepliedAt', label: t`Most recently replied` },
+          ]}
+        />
+      </Tools>
+
+      <Filters>
+        <ArticleStatusFilter />
+        <ReplyTypeFilter />
+        <CategoryFilter />
+      </Filters>
+
+      {loading && !articleEdges.length ? (
+        t`Loading...`
+      ) : listArticlesError ? (
+        listArticlesError.toString()
+      ) : (
+        <>
+          <ListPageCards>
+            {articleEdges.map(({ node: article }) => (
+              <ArticleCard key={article.id} article={article} query={query.q} />
+            ))}
+          </ListPageCards>
+
+          <LoadMore
+            edges={articleEdges}
+            pageInfo={statsData?.pageInfo}
+            loading={loading}
+            onMoreRequest={args =>
+              fetchMore({
+                variables: args,
+                updateQuery(prev, { fetchMoreResult }) {
+                  if (!fetchMoreResult) return prev;
+                  const newArticleData = fetchMoreResult?.ListArticles;
+                  return {
+                    ...prev,
+                    ListArticles: {
+                      ...newArticleData,
+                      edges: [...articleEdges, ...newArticleData.edges],
+                    },
+                  };
+                },
+              })
+            }
+          />
+        </>
+      )}
     </AppLayout>
   );
 }
