@@ -25,8 +25,6 @@ import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
 
-const DEFAULT_ORDER = 'lastRequestedAt';
-
 const LIST_ARTICLES = gql`
   query GetArticlesList(
     $filter: ListArticleFilter
@@ -112,6 +110,8 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   return filterObj;
 }
 
+const DEFAULT_ORDER = 'lastRequestedAt';
+
 function ArticleListPage() {
   const { query } = useRouter();
   const user = useCurrentUser();
@@ -157,7 +157,7 @@ function ArticleListPage() {
       <Tools>
         <TimeRange />
         <SortInput
-          defaultOrderBy="lastRequestedAt"
+          defaultOrderBy={DEFAULT_ORDER}
           options={[
             { value: 'lastRequestedAt', label: t`Most recently asked` },
             { value: 'replyRequestCount', label: t`Most asked` },
