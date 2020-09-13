@@ -26,13 +26,21 @@ const LIST_CATEGORIES = gql`
   }
 `;
 
+/**
+ * @param {object} query - query from router
+ * @returns {string[]} list of category ids
+ */
+function getValues(query) {
+  return query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
+}
+
 function CategoryFilter() {
   const { query } = useRouter();
   const { data } = useQuery(LIST_CATEGORIES, {
     ssr: false, // No need to fetch on server
   });
 
-  const selectedValues = query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
+  const selectedValues = getValues(query);
   const options =
     data?.ListCategories?.edges.map(({ node }) => ({
       chip: true,
@@ -58,4 +66,6 @@ function CategoryFilter() {
   );
 }
 
-export default memo(CategoryFilter);
+const MemoizedCategoryFilter = memo(CategoryFilter);
+MemoizedCategoryFilter.getValues = getValues;
+export default MemoizedCategoryFilter;

@@ -25,7 +25,6 @@ import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import AppLayout from 'components/AppLayout';
 import withData from 'lib/apollo';
 
-const MAX_KEYWORD_LENGTH = 100;
 const DEFAULT_ORDER = 'lastRequestedAt';
 
 const LIST_ARTICLES = gql`
@@ -61,32 +60,16 @@ const LIST_STAT = gql`
 `;
 
 /**
- * @param {object} urlQuery - URL query object
+ * @param {object} urlQuery - URL query object and urserId
  * @returns {object} ListArticleFilter
  */
-function urlQuery2Filter({
-  filters,
-  q,
-  categoryIds,
-  start,
-  end,
-  types,
-  userId,
-} = {}) {
+function urlQuery2Filter({ userId, ...query } = {}) {
   const filterObj = {};
 
-  if (q) {
-    filterObj.moreLikeThis = {
-      like: q.slice(0, MAX_KEYWORD_LENGTH),
-      minimumShouldMatch: '0',
-    };
-  }
+  const selectedCategoryIds = CategoryFilter.getValues(query);
+  if (selectedCategoryIds.length) filterObj.categoryIds = selectedCategoryIds;
 
-  if (categoryIds) {
-    filterObj.categoryIds = categoryIds.split(',');
-  }
-
-  const selectedFilters = typeof filters === 'string' ? filters.split(',') : [];
+  const selectedFilters = ArticleStatusFilter.getValues(query);
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
@@ -109,6 +92,8 @@ function urlQuery2Filter({
     }
   });
 
+  const [start, end] = TimeRange.getValues(query);
+
   if (start) {
     filterObj.createdAt = { ...filterObj.createdAt, GTE: start };
   }
@@ -116,9 +101,8 @@ function urlQuery2Filter({
     filterObj.createdAt = { ...filterObj.createdAt, LTE: end };
   }
 
-  if (types) {
-    filterObj.replyTypes = types.split(',');
-  }
+  const selectedReplyTypes = ReplyTypeFilter.getValues(query);
+  if (selectedReplyTypes.length) filterObj.replyTypes = selectedReplyTypes;
 
   // Return filterObj only when it is populated.
   if (!Object.keys(filterObj).length) {
@@ -137,7 +121,7 @@ function ArticleListPage() {
       ...query,
       userId: user?.id,
     }),
-    orderBy: [{ [query.orderBy || DEFAULT_ORDER]: 'DESC' }],
+    orderBy: [{ [SortInput.getValue(query) || DEFAULT_ORDER]: 'DESC' }],
   };
 
   const {

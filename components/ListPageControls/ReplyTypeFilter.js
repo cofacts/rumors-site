@@ -16,9 +16,17 @@ const OPTIONS = Object.entries(TYPE_NAME).map(([value, label]) => ({
   label,
 }));
 
+/**
+ * @param {object} query - query from router
+ * @returns {Arary<keyof TYPE_NAME>} list of selected reply types; see constants/replyType for all possible values
+ */
+function getValues(query) {
+  return query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
+}
+
 function ReplyTypeFilter() {
   const { query } = useRouter();
-  const selectedValues = query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
+  const selectedValues = getValues(query);
 
   return (
     <BaseFilter
@@ -35,4 +43,6 @@ function ReplyTypeFilter() {
   );
 }
 
-export default memo(ReplyTypeFilter);
+const MemoizedReplyTypeFilter = memo(ReplyTypeFilter);
+MemoizedReplyTypeFilter.getValues = getValues;
+export default MemoizedReplyTypeFilter;
