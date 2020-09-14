@@ -120,7 +120,7 @@ function FeedDisplay({ listQueryVars }) {
           </ListItemLink>
           <ListItemLink
             href={`https://feedly.com/i/discover/sources/search/feed/${encodeURIComponent(
-              feedUrl + `&source=feedly`
+              feedUrl + `&source=Feedly`
             )}`}
             icon={feedlyIcon}
             onClick={handleClose}
@@ -130,7 +130,9 @@ function FeedDisplay({ listQueryVars }) {
 
           <ListItemCopy
             icon={rssIcon}
-            textToCopy={encodeURIComponent(feedUrl + `&source=others`)}
+            textToCopy={
+              feedUrl + `&source=others&utm_source=Others&utm_medium=Subcribe`
+            }
             onSuccess={() => copySuccess(t`Copied to clipboard!`)}
           >
             {t`Get RSS Feed Link`}
@@ -148,7 +150,7 @@ function FeedDisplay({ listQueryVars }) {
             <IFTTTItem
               icon={lineIcon}
               IFTTTAppletUrl={PUBLIC_LINE_IFTTT_APPLET_URL}
-              feedUrl={encodeURIComponent(feedUrl + `&source=IFTTT_Line`)}
+              feedUrl={feedUrl + `&source=IFTTT_Line`}
               tutorialYoutubeId={PUBLIC_LINE_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Line'}
@@ -156,7 +158,7 @@ function FeedDisplay({ listQueryVars }) {
             <IFTTTItem
               icon={telegramIcon}
               IFTTTAppletUrl={PUBLIC_TELEGRAM_IFTTT_APPLET_URL}
-              feedUrl={encodeURIComponent(feedUrl + `&source=IFTTT_Telegram`)}
+              feedUrl={feedUrl + `&source=IFTTT_Telegram`}
               tutorialYoutubeId={PUBLIC_TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Telegram'}
@@ -164,7 +166,7 @@ function FeedDisplay({ listQueryVars }) {
             <IFTTTItem
               icon={slackIcon}
               IFTTTAppletUrl={PUBLIC_SLACK_IFTTT_APPLET_URL}
-              feedUrl={encodeURIComponent(feedUrl + `&source=IFTTT_Slack`)}
+              feedUrl={feedUrl + `&source=IFTTT_Slack`}
               tutorialYoutubeId={PUBLIC_SLACK_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Slack'}
