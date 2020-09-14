@@ -152,7 +152,7 @@ async function articleFeedHandler(req, res) {
   try {
     data.ListArticles.edges.forEach(({ node }) => {
       const text = getArticleText(node);
-      const url = `${PUBLIC_URL}/article/${node.id}`;
+      const url = `${PUBLIC_URL}/article/${node.id}?utm_source=${query.source}&utm_medium=RSS`;
       const articleReply = node.articleReplies[0];
       feedInstance.addItem({
         id: url,
