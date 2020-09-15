@@ -188,7 +188,7 @@ async function articleFeedHandler(req, res) {
     const visitor = ua(PUBLIC_GA_TRACKING_ID);
     const params = {
       ec: 'RSS',
-      ea: 'Subscribe',
+      ea: 'Poll',
       el: query.source,
       dp: JSON.stringify(listQueryVars), // filter, document path: maxlength 2048 bytes
       dt: JSON.stringify(req.headers), // some headers contain follower number, document title: maxlength 1500 bytes
