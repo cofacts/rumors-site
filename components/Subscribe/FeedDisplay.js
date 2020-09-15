@@ -130,9 +130,7 @@ function FeedDisplay({ listQueryVars }) {
 
           <ListItemCopy
             icon={rssIcon}
-            textToCopy={
-              feedUrl + `&source=others&utm_source=Others&utm_medium=Subcribe`
-            }
+            textToCopy={feedUrl + `&source=Others`}
             onSuccess={() => copySuccess(t`Copied to clipboard!`)}
           >
             {t`Get RSS Feed Link`}
