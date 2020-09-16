@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
+<ListPageCards>
+  <div
+    className="makeStyles-root"
+  >
+    <ArticleCard
+      article={
+        Object {
+          "createdAt": "2020-01-01T00:00:00Z",
+          "id": "id1",
+          "replyCount": 3,
+          "replyRequestCount": 4,
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        }
+      }
+    >
+      <Link
+        as="/article/id1"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id1"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    time="2020-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="01/01/2020, 12:00 AM"
+                    >
+                      <span
+                        aria-describedby={null}
+                        className=""
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="01/01/2020, 12:00 AM"
+                      >
+                        First reported less than a minute ago
+                      </span>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-flex"
+              >
+                <div
+                  className="makeStyles-infoBox"
+                >
+                  <div>
+                    <h2>
+                      3
+                    </h2>
+                    <span>
+                      replies
+                    </span>
+                  </div>
+                  <div>
+                    <h2>
+                      4
+                    </h2>
+                    <span>
+                      reports
+                    </span>
+                  </div>
+                </div>
+                <ExpandableText
+                  className="makeStyles-content"
+                  lineClamp={3}
+                >
+                  <div
+                    className="makeStyles-content"
+                  >
+                    <div
+                      className="makeStyles-root"
+                      style={
+                        Object {
+                          "maxHeight": 42,
+                        }
+                      }
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                  </div>
+                </ExpandableText>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+    <ArticleCard
+      article={
+        Object {
+          "createdAt": "2019-01-01T00:00:00Z",
+          "id": "id2",
+          "replyCount": 0,
+          "replyRequestCount": 999,
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
+        }
+      }
+      query="dolor sit amet"
+    >
+      <Link
+        as="/article/id2"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id2"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    time="2019-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="01/01/2019, 12:00 AM"
+                    >
+                      <span
+                        aria-describedby={null}
+                        className=""
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="01/01/2019, 12:00 AM"
+                      >
+                        First reported about 1 year ago
+                      </span>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-flex"
+              >
+                <div
+                  className="makeStyles-infoBox"
+                >
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      replies
+                    </span>
+                  </div>
+                  <div>
+                    <h2>
+                      999
+                    </h2>
+                    <span>
+                      reports
+                    </span>
+                  </div>
+                </div>
+                <ExpandableText
+                  className="makeStyles-content"
+                  lineClamp={3}
+                >
+                  <div
+                    className="makeStyles-content"
+                  >
+                    <div
+                      className="makeStyles-root"
+                      style={
+                        Object {
+                          "maxHeight": 42,
+                        }
+                      }
+                    >
+                      Lorem ipsum 
+                      <span
+                        className="makeStyles-highlight"
+                        key="highlight-1"
+                      >
+                        dolor sit amet
+                      </span>
+                      , consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+                    </div>
+                  </div>
+                </ExpandableText>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+  </div>
+</ListPageCards>
+`;
+
+exports[`Storyshots ListPageDisplays/ListPageCards Cards And Card 1`] = `
+<ListPageCards>
+  <div
+    className="makeStyles-root"
+  >
+    <ListPageCard
+      key="0"
+    >
+      <article
+        className="makeStyles-root"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+      </article>
+    </ListPageCard>
+    <ListPageCard
+      key="1"
+    >
+      <article
+        className="makeStyles-root"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+      </article>
+    </ListPageCard>
+    <ListPageCard
+      key="2"
+    >
+      <article
+        className="makeStyles-root"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+      </article>
+    </ListPageCard>
+  </div>
+</ListPageCards>
+`;

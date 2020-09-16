@@ -171,7 +171,7 @@ function SearchPage() {
       </div>
       <div className={classes.content}>
         {query.type === 'messages' && (
-          <ArticlePageLayout displayHeader={false} />
+          <ArticlePageLayout page="search" displayHeader={false} />
         )}
         {query.type === 'replies' && <ReplySearchPageLayout />}
       </div>

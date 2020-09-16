@@ -32,13 +32,9 @@ function ReplyListPage() {
       </Head>
       <ArticlePageLayout
         title={t`Latest Replies`}
-        articleDisplayConfig={{
-          isLink: false,
-          showLastReply: true,
-          showReplyCount: false,
-        }}
         defaultOrder="lastRepliedAt"
         timeRangeKey="repliedAt"
+        page="replies"
       />
     </AppLayout>
   );

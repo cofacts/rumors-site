@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import gql from 'graphql-tag';
 import { t, msgid, ngettext } from 'ttag';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -9,10 +10,9 @@ import {
   DialogTitle,
   DialogContent,
 } from '@material-ui/core';
-import ArticleInfo from 'components/ArticleInfo';
-import PlainList from 'components/PlainList';
 import ExpandableText from 'components/ExpandableText';
-import ArticleItem from './ArticleItem';
+import Infos from 'components/Infos';
+import TimeInfo from 'components/Infos/TimeInfo';
 import ReplyItem from './ReplyItem';
 import { nl2br } from 'lib/text';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -34,6 +34,9 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
       color: 'inherit',
     },
+  },
+  info: {
+    marginBottom: 12,
   },
   content: {
     // fix very very long string layout
@@ -76,16 +79,39 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'center',
     },
   },
-  article: {
-    padding: 0,
-    borderRadius: 0,
-    '&:not(:last-child)': {
-      paddingBottom: 12,
-      marginBottom: theme.spacing(3),
-      borderBottom: `1px solid ${theme.palette.secondary[200]}`,
+  otherArticleItem: {
+    display: 'block',
+    // Canceling link styles
+    color: 'inherit',
+    textDecoration: 'none',
+    paddingBottom: 24,
+    borderBottom: `1px solid ${theme.palette.secondary[200]}`,
+    marginBottom: 24,
+
+    '&:last-child': {
+      borderBottom: 0,
+      marginBottom: 0,
     },
   },
 }));
+
+function RepliedArticleInfo({ article }) {
+  const classes = useStyles();
+  return (
+    <Infos className={classes.info}>
+      <>
+        {ngettext(
+          msgid`${article.replyRequestCount} occurrence`,
+          `${article.replyRequestCount} occurrences`,
+          article.replyRequestCount
+        )}
+      </>
+      <TimeInfo time={article.createdAt}>
+        {timeAgo => t`First reported ${timeAgo} ago`}
+      </TimeInfo>
+    </Infos>
+  );
+}
 
 export default function ReplySearchItem({
   articleReplies = [],
@@ -111,7 +137,7 @@ export default function ReplySearchItem({
   return (
     <li className={classes.root}>
       <Box p={{ xs: 2, md: 4.5 }}>
-        <ArticleInfo article={articleReply.article} />
+        <RepliedArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
           <ExpandableText className={classes.content} lineClamp={3}>
             {nl2br(articleReply.article.text)}
@@ -146,18 +172,22 @@ export default function ReplySearchItem({
           <Dialog open={open} onClose={handleClose}>
             <DialogTitle>{t`This reply is used in following messages`}</DialogTitle>
             <DialogContent>
-              <PlainList>
-                {articleReplies
-                  .filter(ar => ar !== articleReply)
-                  .map(({ article }) => (
-                    <ArticleItem
-                      key={article.id}
-                      article={article}
-                      showReplyCount={false}
-                      className={classes.article}
-                    />
-                  ))}
-              </PlainList>
+              {articleReplies
+                .filter(ar => ar !== articleReply)
+                .map(({ article }) => (
+                  <Link
+                    href="/article/[id]"
+                    as={`/article/${article.id}`}
+                    key={article.id}
+                  >
+                    <a className={classes.otherArticleItem}>
+                      <RepliedArticleInfo article={article} />
+                      <ExpandableText lineClamp={3}>
+                        {article.text}
+                      </ExpandableText>
+                    </a>
+                  </Link>
+                ))}
             </DialogContent>
           </Dialog>
         </>
@@ -176,15 +206,13 @@ ReplySearchItem.fragments = {
         article {
           id
           text
-          ...ArticleInfo
-          ...ArticleItem
+          replyRequestCount
+          createdAt
         }
         ...ReplyItemArticleReplyData
       }
       ...ReplyItem
     }
-    ${ArticleInfo.fragments.articleInfo}
-    ${ArticleItem.fragments.ArticleItem}
     ${ReplyItem.fragments.ReplyItem}
     ${ReplyItem.fragments.ReplyItemArticleReplyData}
   `,
