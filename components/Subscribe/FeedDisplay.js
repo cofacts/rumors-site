@@ -81,8 +81,6 @@ function FeedDisplay({ listQueryVars }) {
     handleClose();
   };
 
-  const encodedFeedUrl = encodeURIComponent(feedUrl);
-
   return (
     <>
       <Button onClick={handleClick} className={classes.button}>
@@ -105,7 +103,9 @@ function FeedDisplay({ listQueryVars }) {
         <List>
           <ListItemLink
             email={true}
-            href={`https://feedrabbit.com/?url=${encodedFeedUrl}`}
+            href={`https://feedrabbit.com/?url=${encodeURIComponent(
+              feedUrl + `&source=Feedrabbit`
+            )}`}
             icon={mailIcon}
             onClick={handleClose}
           >
@@ -119,7 +119,9 @@ function FeedDisplay({ listQueryVars }) {
             ></ListItemText>
           </ListItemLink>
           <ListItemLink
-            href={`https://feedly.com/i/discover/sources/search/feed/${encodedFeedUrl}`}
+            href={`https://feedly.com/i/discover/sources/search/feed/${encodeURIComponent(
+              feedUrl + `&source=Feedly`
+            )}`}
             icon={feedlyIcon}
             onClick={handleClose}
           >
@@ -128,7 +130,7 @@ function FeedDisplay({ listQueryVars }) {
 
           <ListItemCopy
             icon={rssIcon}
-            textToCopy={feedUrl}
+            textToCopy={feedUrl + `&source=Others`}
             onSuccess={() => copySuccess(t`Copied to clipboard!`)}
           >
             {t`Get RSS Feed Link`}
@@ -146,7 +148,7 @@ function FeedDisplay({ listQueryVars }) {
             <IFTTTItem
               icon={lineIcon}
               IFTTTAppletUrl={PUBLIC_LINE_IFTTT_APPLET_URL}
-              feedUrl={feedUrl}
+              feedUrl={feedUrl + `&source=IFTTT_Line`}
               tutorialYoutubeId={PUBLIC_LINE_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Line'}
@@ -154,7 +156,7 @@ function FeedDisplay({ listQueryVars }) {
             <IFTTTItem
               icon={telegramIcon}
               IFTTTAppletUrl={PUBLIC_TELEGRAM_IFTTT_APPLET_URL}
-              feedUrl={feedUrl}
+              feedUrl={feedUrl + `&source=IFTTT_Telegram`}
               tutorialYoutubeId={PUBLIC_TELEGRAM_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Telegram'}
@@ -162,7 +164,7 @@ function FeedDisplay({ listQueryVars }) {
             <IFTTTItem
               icon={slackIcon}
               IFTTTAppletUrl={PUBLIC_SLACK_IFTTT_APPLET_URL}
-              feedUrl={feedUrl}
+              feedUrl={feedUrl + `&source=IFTTT_Slack`}
               tutorialYoutubeId={PUBLIC_SLACK_IFTTT_TUTORIAL_YOUTUBEID}
             >
               {'Slack'}
