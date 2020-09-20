@@ -2,6 +2,7 @@ import React from 'react';
 import { t } from 'ttag';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
+
 import {
   Box,
   Button,
@@ -18,9 +19,11 @@ import {
   LINE_URL,
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
+import Ribbon from 'components/Ribbon';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { withDarkTheme } from 'lib/theme';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
+import LEVEL_NAMES from 'constants/levelNames';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -30,6 +33,10 @@ const useStyles = makeStyles(theme => ({
   },
   level: {
     margin: '16px 0',
+    padding: '2px 8px 4px 20px',
+    '& > strong': {
+      marginRight: 12,
+    },
   },
   name: {
     marginLeft: 16,
@@ -72,7 +79,9 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
     >
       {user?.name ? (
         <div>
-          <Widgets.Level user={user} className={classes.level} />
+          <Ribbon className={classes.level}>
+            <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[(user?.level)]}
+          </Ribbon>
           <Box px={1.5} pb={2} display="flex" alignItems="center">
             <Widgets.Avatar user={user} size={60} />
             <Typography className={classes.name} variant="h6">

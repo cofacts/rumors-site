@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
-
+import { useQuery } from '@apollo/react-hooks';
 import {
   makeStyles,
   withStyles,
@@ -25,13 +25,15 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import { darkTheme } from 'lib/theme';
 import NavLink from 'components/NavLink';
+import Ribbon from 'components/Ribbon';
 import GlobalSearch from './GlobalSearch';
 import * as Widgets from './Widgets';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
-import { useQuery } from '@apollo/react-hooks';
+
+import LEVEL_NAMES from 'constants/levelNames';
 
 const MENU_BUTTON_WIDTH = 48;
 
@@ -115,6 +117,12 @@ const useStyles = makeStyles(theme => ({
     padding: '4px 16px',
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
+  },
+  level: {
+    padding: '2px 8px 4px 20px',
+    '& > strong': {
+      marginRight: 12,
+    },
   },
   loadingProgress: {
     position: 'absolute',
@@ -251,7 +259,10 @@ function AppHeader({
                   open={Boolean(anchor)}
                   onClose={closeProfileMenu}
                 >
-                  <Widgets.Level user={user} />
+                  <Ribbon className={classes.level}>
+                    <strong>Lv. {user?.level}</strong>
+                    {LEVEL_NAMES[(user?.level)]}
+                  </Ribbon>
                   <MenuItem onClick={closeProfileMenu}>
                     <ListItemIcon>
                       <Widgets.Avatar user={user} size={40} />
