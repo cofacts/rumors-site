@@ -157,6 +157,7 @@ const ArticleReply = React.memo(
         articleReplyAuthor ? (
           <EditorName
             key="editor"
+            id={articleReplyAuthor?.id}
             editorName={articleReplyAuthor?.name}
             editorLevel={articleReplyAuthor?.level}
           />
