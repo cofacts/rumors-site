@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700,
     [theme.breakpoints.up('md')]: {
       fontSize: 14,
-      padding: '10px 32px',
+      padding: '10px 28px',
     },
   },
   firstReported: {
