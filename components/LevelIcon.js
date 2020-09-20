@@ -300,14 +300,19 @@ const GRADIENT = [
   </>,
 ];
 
+/**
+ *
+ * @param {number} props.level
+ * @param {number} props.width
+ * @param {number} props.height
+ * @param {string?} props.id - The ID for gradient. Must be different for each different <LevelIcon> on one page.
+ */
 function LevelIcon({
   level,
   width = 24,
   height = 24,
-  style,
-
-  /** The ID for gradient. Must be different for each different <LevelIcon> on one page. */
   id = '',
+  style,
   ...props
 }) {
   const levelShapeIdx = Math.floor((level - 1) / 5);
@@ -332,6 +337,7 @@ function LevelIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ ...style, color: COLOR[colorIdx] }}
+      {...(id ? { id: `${id}` } : {})}
       {...props}
     >
       {renderContent(gradientIdx)}

@@ -120,6 +120,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="1"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -211,6 +212,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="2"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -302,6 +304,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="3"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -389,6 +392,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="4"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -480,6 +484,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="5"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -579,6 +584,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="6"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -674,6 +680,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="7"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -769,6 +776,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="8"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -860,6 +868,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="9"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -955,6 +964,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="10"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1054,6 +1064,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="11"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1149,6 +1160,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="12"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1244,6 +1256,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="13"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1335,6 +1348,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="14"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1430,6 +1444,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="15"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1537,6 +1552,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="16"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1640,6 +1656,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="17"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1743,6 +1760,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="18"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1842,6 +1860,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="19"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -1945,6 +1964,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="20"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -2048,6 +2068,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="21"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -2147,6 +2168,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="22"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -2246,6 +2268,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="23"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
@@ -2341,6 +2364,7 @@ exports[`Storyshots LevelIcon All Levels 1`] = `
       <svg
         fill="none"
         height={24}
+        id="24"
         preserveAspectRatio="xMidYMid meet"
         style={
           Object {
