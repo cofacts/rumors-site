@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Ribbon Default 1`] = `
+<div
+  style={
+    Object {
+      "background": "#ccc",
+      "margin": 40,
+    }
+  }
+>
+  Text content
+  <Ribbon>
+    <aside
+      className="makeStyles-root"
+    >
+      ribbon children
+      <svg
+        className="makeStyles-tail"
+        viewBox="0 0 1 2"
+      >
+        <path
+          d="M0 0 H1 L0 1 L1 2 H0 Z"
+        />
+      </svg>
+    </aside>
+  </Ribbon>
+  Text content
+</div>
+`;
