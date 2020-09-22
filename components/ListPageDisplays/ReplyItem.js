@@ -13,10 +13,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flex: '1 0 auto',
-    '&:not(:last-child)': {
-      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
-      paddingBottom: theme.spacing(1),
-      marginBottom: theme.spacing(1),
+    borderBottom: `1px solid ${theme.palette.secondary[50]}`,
+    '&:last-child': {
+      borderBottom: 0,
+    },
+    [theme.breakpoints.up('md')]: {
+      marginLeft: 25,
+      borderBottomColor: theme.palette.secondary[100],
     },
   },
   replyType: {
@@ -80,7 +83,7 @@ function ReplyItem({ articleReply, reply, query }) {
 
   return (
     <div className={classes.root}>
-      <Box p={{ xs: '8px 14px 0 0', md: '24px' }}>
+      <Box p={{ xs: '15px 14px 0 0', md: '26px 34px 0 0' }}>
         <Avatar
           user={articleReply.user}
           className={classes.avatar}
@@ -88,10 +91,10 @@ function ReplyItem({ articleReply, reply, query }) {
           status={replyType}
         />
       </Box>
-      <Box py="12px" flexGrow={1}>
-        <div
-          className={classes.replyType}
-        >{t`${userName} mark this message ${TYPE_NAME[replyType]}`}</div>
+      <Box py={{ xs: '16px', md: '22px' }} flexGrow={1}>
+        <div className={classes.replyType}>
+          {t`${userName} mark this message ${TYPE_NAME[replyType]}`}
+        </div>
         <ExpandableText className={classes.content} lineClamp={3}>
           {highlight(text, { query, highlightClassName: classes.highlight })}
         </ExpandableText>

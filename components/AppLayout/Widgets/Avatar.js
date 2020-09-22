@@ -18,39 +18,41 @@ const useStyles = makeStyles({
 });
 
 const LevelBadge = withStyles(theme => ({
+  container: {
+    position: 'relative',
+  },
   badge: {
+    position: 'absolute',
+    left: -1,
+    bottom: -8,
+    right: -1,
     background: theme.palette.secondary[500],
     color: theme.palette.common.white,
-    left: 0,
-    bottom: -7,
-    right: 0,
-    width: 32,
-    // some browser (e.g. chrome) can't set fontSize to under 12px,
-    // use transform here to make font smaller.
-    transform: 'scale(.8)',
-    transformOrigin: '50% 50%',
-    margin: 'auto',
     border: `1px solid ${theme.palette.common.white}`,
+    fontSize: 10,
+    borderRadius: 25,
+    textAlign: 'center',
     [theme.breakpoints.up('md')]: {
-      width: 50,
+      width: 48,
+      margin: '0 auto',
       bottom: 0,
-      transform: 'none',
+      fontSize: 12,
+      fontWeight: 'bold',
     },
   },
-}))(({ level, ...props }) => (
-  <Badge
-    badgeContent={`Lv${+level}`}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'left',
-    }}
-    {...props}
-  />
+}))(({ level, classes, children, props }) => (
+  <div className={classes.container} {...props}>
+    {children}
+    <div className={classes.badge}>Lv{+level}</div>
+  </div>
 ));
 
 const StatusBadge = withStyles(theme => ({
   badge: {
-    transform: 'scale(1) translate(40%, -30%)',
+    transform: 'translate(30%, -20%)',
+    [theme.breakpoints.up('md')]: {
+      transform: 'translate(30%, -5%)',
+    },
   },
   icon: {
     fontSize: 16,

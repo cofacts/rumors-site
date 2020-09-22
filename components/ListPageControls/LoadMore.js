@@ -1,3 +1,4 @@
+import gql from 'graphql-tag';
 import { t } from 'ttag';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -63,5 +64,20 @@ function LoadMore({
     </Box>
   );
 }
+
+LoadMore.fragments = {
+  LoadMoreConnectionForStats: gql`
+    fragment LoadMoreConnectionForStats on Connection {
+      pageInfo {
+        lastCursor
+      }
+    }
+  `,
+  LoadMoreEdge: gql`
+    fragment LoadMoreEdge on Edge {
+      cursor
+    }
+  `,
+};
 
 export default LoadMore;

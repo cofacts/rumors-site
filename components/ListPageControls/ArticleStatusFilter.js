@@ -21,10 +21,18 @@ const OPTIONS = [
 
 const LOGIN_ONLY_OPTIONS = [FILTERS.REPLIED_BY_ME];
 
+/**
+ * @param {object} query - query from router
+ * @returns {Arary<keyof FILTERS>} list of selected filter values; see constants/articleFilters for all possible values
+ */
+function getValues(query) {
+  return query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
+}
+
 function ArticleStatusFilter() {
   const { query } = useRouter();
   const user = useCurrentUser();
-  const selectedValues = query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
+  const selectedValues = getValues(query);
 
   // Disable login-only options when not logged in
   const options = user
@@ -50,4 +58,6 @@ function ArticleStatusFilter() {
   );
 }
 
-export default memo(ArticleStatusFilter);
+const MemoizedArticleStatusFilter = memo(ArticleStatusFilter);
+MemoizedArticleStatusFilter.getValues = getValues;
+export default MemoizedArticleStatusFilter;
