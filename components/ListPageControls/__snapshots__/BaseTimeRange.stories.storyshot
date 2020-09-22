@@ -8,7 +8,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
     className="makeStyles-root"
   >
     <div
-      className="MuiButtonGroup-root"
+      className="MuiButtonGroup-root makeStyles-buttonGroup"
       role="group"
     >
       <button
@@ -329,7 +329,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
       className="makeStyles-root"
     >
       <div
-        className="MuiButtonGroup-root"
+        className="MuiButtonGroup-root makeStyles-buttonGroup"
         role="group"
       >
         <button
@@ -635,7 +635,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
       className="makeStyles-root"
     >
       <div
-        className="MuiButtonGroup-root"
+        className="MuiButtonGroup-root makeStyles-buttonGroup"
         role="group"
       >
         <button
@@ -950,7 +950,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
       className="makeStyles-root"
     >
       <div
-        className="MuiButtonGroup-root"
+        className="MuiButtonGroup-root makeStyles-buttonGroup"
         role="group"
       >
         <button

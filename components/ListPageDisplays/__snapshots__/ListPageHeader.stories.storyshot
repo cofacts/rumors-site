@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPageDisplays/ListPageHeader Header 1`] = `
+<ListPageHeader
+  title="Header text"
+>
+  <header
+    className="makeStyles-root"
+  >
+    <h1>
+      Header text
+    </h1>
+    children content
+  </header>
+</ListPageHeader>
+`;

@@ -11,6 +11,7 @@ import Filters from 'components/ListPageControls/Filters';
 import ReplyTypeFilter from 'components/ListPageControls/ReplyTypeFilter';
 import TimeRange from 'components/ListPageControls/TimeRange';
 import LoadMore from 'components/ListPageControls/LoadMore';
+import Tools from 'components/ListPageControls/Tools';
 
 const MAX_KEYWORD_LENGTH = 100;
 
@@ -144,10 +145,10 @@ function ReplySearchPageLayout() {
   const statsData = listStatData?.ListReplies || {};
 
   return (
-    <Box pt={2}>
-      <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+    <>
+      <Tools>
         <TimeRange />
-      </Box>
+      </Tools>
 
       <Filters className={classes.filters}>
         <ReplyTypeFilter />
@@ -188,7 +189,7 @@ function ReplySearchPageLayout() {
           />
         </>
       )}
-    </Box>
+    </>
   );
 }
 

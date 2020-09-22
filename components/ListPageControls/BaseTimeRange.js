@@ -10,48 +10,53 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   buttonGroup: {
-    border: `1px solid ${theme.palette.secondary[100]}`,
+    display: 'flex', // Override ButtonGroup default inline-flex
+    minWidth: 0,
+    flex: '1 1 16px', // half of the calendar button to make the two button looks balanced
   },
   calendarButton: {
     background: theme.palette.common.white,
-    padding: 5,
-    minWidth: 0,
-
-    '&:hover': {
-      background: theme.palette.secondary[100],
-      color: theme.palette.secondary[300],
-    },
+    borderColor: theme.palette.secondary[100],
+    padding: '5px 0 4px',
+    minWidth: 32, // override ButtonGroup style
     [theme.breakpoints.up('md')]: {
-      padding: 7,
+      padding: 6,
     },
   },
   calendarIcon: {
-    fontSize: 14,
+    fontSize: 16,
+    lineHeight: 1,
     color: theme.palette.secondary[300],
     [theme.breakpoints.up('md')]: {
-      fontSize: 18,
+      fontSize: 21,
     },
   },
   selectButton: {
+    flex: 1,
     background: theme.palette.common.white,
     padding: '0px 8px',
   },
   startDate: {
+    flex: 1,
     background: theme.palette.common.white,
-    marginLeft: '0 !important',
+    marginLeft: '0 !important', // ButtonGroup margin left
+    minWidth: '0',
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
   },
   to: {
-    padding: '0 11px',
+    padding: '0 4px',
+    [theme.breakpoints.up('md')]: {
+      padding: '0 11px',
+    },
   },
   endDate: {
+    flex: 1,
     background: theme.palette.common.white,
     border: `1px solid ${theme.palette.secondary[100]}`,
     borderRadius: 4,
     padding: '1.5px 0',
-    minWidth: 100,
     [theme.breakpoints.up('md')]: {
       padding: '5.5px 0',
     },
@@ -128,7 +133,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup classes={{ contained: classes.buttonGroup }}>
+      <ButtonGroup className={classes.buttonGroup}>
         <Button className={classes.calendarButton} onClick={openMenu}>
           <DateRangeIcon className={classes.calendarIcon} />
         </Button>

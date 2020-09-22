@@ -1,25 +1,22 @@
 import gql from 'graphql-tag';
-import { t, jt, ngettext, msgid } from 'ttag';
+import { t, ngettext, msgid } from 'ttag';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
-
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ellipsis } from 'lib/text';
 import useCurrentUser from 'lib/useCurrentUser';
 import * as FILTERS from 'constants/articleFilters';
 import ListPageCards from 'components/ListPageDisplays/ListPageCards';
 import ArticleCard from 'components/ListPageDisplays/ArticleCard';
 import ListPageCard from 'components/ListPageDisplays/ListPageCard';
 import ReplyItem from 'components/ListPageDisplays/ReplyItem';
+import ListPageHeader from 'components/ListPageDisplays/ListPageHeader';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import ExpandableText from 'components/ExpandableText';
+import Tools from 'components/ListPageControls/Tools';
 import Filters from 'components/ListPageControls/Filters';
 import ArticleStatusFilter from 'components/ListPageControls/ArticleStatusFilter';
 import CategoryFilter from 'components/ListPageControls/CategoryFilter';
@@ -77,20 +74,6 @@ const LIST_STAT = gql`
 `;
 
 const useStyles = makeStyles(theme => ({
-  filters: {
-    margin: '12px 0',
-  },
-  articleList: {
-    padding: 0,
-  },
-  highlight: {
-    color: theme.palette.primary[500],
-  },
-  noStyleLink: {
-    // Canceling link styles
-    color: 'inherit',
-    textDecoration: 'none',
-  },
   bustHoaxDivider: {
     fontSize: theme.typography.htmlFontSize,
     position: 'relative',
@@ -129,7 +112,6 @@ function urlQuery2Filter({
   categoryIds,
   start,
   end,
-  searchUserByArticleId,
   types,
   timeRangeKey,
   userId,
@@ -169,10 +151,6 @@ function urlQuery2Filter({
       default:
     }
   });
-
-  if (searchUserByArticleId) {
-    filterObj.fromUserOfArticleId = searchUserByArticleId;
-  }
 
   if (start) {
     filterObj[timeRangeKey] = { ...filterObj[timeRangeKey], GTE: start };
@@ -264,36 +242,15 @@ function ArticlePageLayout({
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
 
-  // Flags
-  const searchedArticleEdge = articleEdges.find(
-    ({ node: { id } }) => id === query.searchUserByArticleId
-  );
-  const searchedUserArticleElem = (
-    <mark key="searched-user">
-      {ellipsis(searchedArticleEdge?.node?.text || '', { wordCount: 15 })}
-    </mark>
-  );
-
   return (
-    <Box pt={2}>
-      {query.searchUserByArticleId && (
-        <h1>{jt`Messages reported by user that reported “${searchedUserArticleElem}”`}</h1>
+    <>
+      {title && (
+        <ListPageHeader title={title}>
+          <FeedDisplay listQueryVars={listQueryVars} />
+        </ListPageHeader>
       )}
 
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent={{ xs: 'center', md: 'space-between' }}
-        flexDirection={{ xs: 'column', md: 'row' }}
-        mb={2}
-      >
-        <Typography variant="h4">{title}</Typography>
-        <Box my={1}>
-          <FeedDisplay listQueryVars={listQueryVars} />
-        </Box>
-      </Box>
-
-      <Box display="flex" justifyContent="space-between" flexWrap="wrap">
+      <Tools>
         <TimeRange />
         <SortInput
           defaultOrderBy={defaultOrder}
@@ -303,9 +260,9 @@ function ArticlePageLayout({
             { value: 'replyRequestCount', label: t`Most asked` },
           ]}
         />
-      </Box>
+      </Tools>
 
-      <Filters className={classes.filters}>
+      <Filters>
         {options.filters && <ArticleStatusFilter />}
         {options.consider && <ReplyTypeFilter />}
         {options.category && <CategoryFilter />}
@@ -392,7 +349,7 @@ function ArticlePageLayout({
           />
         </>
       )}
-    </Box>
+    </>
   );
 }
 

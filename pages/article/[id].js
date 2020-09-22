@@ -350,12 +350,11 @@ function ArticlePage() {
               <TrendPlot data={article.stats} />
               <Divider />
               <footer>
-                {article.replyRequests.map((replyRequest, idx) => (
+                {article.replyRequests.map(replyRequest => (
                   <ReplyRequestReason
                     key={replyRequest.id}
                     articleId={article.id}
                     replyRequest={replyRequest}
-                    isArticleCreator={idx === 0}
                   />
                 ))}
                 <CreateReplyRequestForm

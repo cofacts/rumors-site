@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ListPageControls/Tools Header 1`] = `
+<div>
+  Content above tools
+  <Tools>
+    <div
+      className="makeStyles-root"
+    >
+      <div>
+        Tool #1 control
+      </div>
+      <div>
+        Tool #2 control
+      </div>
+    </div>
+  </Tools>
+  Content below tools
+</div>
+`;

@@ -11,7 +11,7 @@ import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   desktop: {
-    margin: 0 /* Cancel default style for <dl> */,
+    margin: '12px 0' /* Cancel default style for <dl> */,
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'grid',
@@ -20,9 +20,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 8,
     },
   },
-  mobile: {
-    margin: `${theme.spacing(3)} 0`,
-  },
+  mobile: {},
   fab: {
     position: 'fixed',
     zIndex: theme.zIndex.speedDial,
