@@ -18,6 +18,7 @@ import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import isValid from 'date-fns/isValid';
 
 import AppLayout from 'components/AppLayout';
+import Ribbon from 'components/Ribbon';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
@@ -25,8 +26,8 @@ import CreateReplyRequestForm from 'components/CreateReplyRequestForm';
 import NewReplySection from 'components/NewReplySection';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
-import cx from 'clsx';
 import TrendPlot from 'components/TrendPlot';
+import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,35 +40,21 @@ const useStyles = makeStyles(theme => ({
     },
   },
   title: {
-    position: 'relative',
-    left: -8,
-    fontWeight: 'bold',
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.secondary.main,
-    padding: '10px 32px',
-    [theme.breakpoints.down('md')]: {
-      padding: '10px 16px',
-      fontSize: 12,
+    padding: '2px 12px',
+    fontSize: 12,
+    lineHeight: '20px',
+    fontWeight: 700,
+    [theme.breakpoints.up('md')]: {
+      fontSize: 14,
+      padding: '10px 28px',
     },
-    '&:after': {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      borderRight: `20px solid ${theme.palette.common.white}`,
-      borderBottom: `20px solid ${theme.palette.primary[500]}`,
-      borderTop: `20px solid ${theme.palette.primary[500]}`,
-      height: 0,
-      content: '""',
-    },
-    '&:before': {
-      position: 'absolute',
-      bottom: -8,
-      left: 0,
-      height: 0,
-      borderTop: `8px solid ${theme.palette.primary[700]}`,
-      borderLeft: '8px solid transparent',
-      background: 'transparent',
-      content: '""',
+  },
+  firstReported: {
+    fontSize: 12,
+    lineHeight: '20px',
+    color: theme.palette.secondary[200],
+    [theme.breakpoints.up('md')]: {
+      fontSize: 14,
     },
   },
   card: {
@@ -314,20 +301,24 @@ function ArticlePage() {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
+              pt="12px"
               pr={{ xs: '12px', md: '19px' }}
             >
-              <h4 className={classes.title}>
+              <Ribbon className={classes.title}>
                 {ngettext(
                   msgid`${replyRequestCount} person report this message`,
                   `${replyRequestCount} people report this message`,
                   replyRequestCount
                 )}
-              </h4>
+              </Ribbon>
 
               {isValid(createdAt) && (
                 <span
+                  className={classes.firstReported}
                   title={format(createdAt)}
-                >{t`First reported ${timeAgoStr} ago`}</span>
+                >
+                  {t`First reported ${timeAgoStr} ago`}
+                </span>
               )}
             </Box>
             <Box px={{ xs: '12px', md: '19px' }}>
