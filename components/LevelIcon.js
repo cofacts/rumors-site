@@ -341,17 +341,18 @@ function LevelIcon({
       {...props}
     >
       {renderContent(gradientIdx)}
-
-      <linearGradient
-        id={gradientIdx}
-        x1="0"
-        y1="30.2724"
-        x2="0"
-        y2="2.31382"
-        gradientUnits="userSpaceOnUse"
-      >
-        {GRADIENT[colorIdx]}
-      </linearGradient>
+      <defs>
+        <linearGradient
+          id={gradientIdx}
+          x1="0"
+          y1="30.2724"
+          x2="0"
+          y2="2.31382"
+          gradientUnits="userSpaceOnUse"
+        >
+          {GRADIENT[colorIdx]}
+        </linearGradient>
+      </defs>
     </svg>
   );
 }
