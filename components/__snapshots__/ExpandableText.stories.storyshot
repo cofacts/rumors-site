@@ -98,11 +98,6 @@ exports[`Storyshots ExpandableText With Word Count Given 1`] = `
       toggleExpand={[Function]}
     >
       <Component
-        classes={
-          Object {
-            "root": "Component-root-97",
-          }
-        }
         expanded={false}
         toggleExpand={[Function]}
       >
