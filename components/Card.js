@@ -42,9 +42,14 @@ export const CardHeader = withStyles(theme => ({
 
 export const CardContent = withStyles(theme => ({
   root: {
-    padding: '16px var(--horizontal-padding)',
+    padding: '16px 0',
+    margin: '0 var(--horizontal-padding)',
     [theme.breakpoints.up('md')]: {
-      padding: '20px var(--horizontal-padding) 24px',
+      padding: '24px 0',
+    },
+
+    '& + &': {
+      borderTop: `1px solid ${theme.palette.secondary[100]}`,
     },
   },
 }))(MuiCardContent);

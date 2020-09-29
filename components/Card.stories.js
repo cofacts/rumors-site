@@ -12,6 +12,9 @@ export const CardWithContent = () => (
   <Card>
     <CardContent>Card content 1</CardContent>
     <CardContent>Card content 2</CardContent>
+    <div>Something else</div>
+    <CardContent>Card content 3</CardContent>
+    <CardContent>Card content 4</CardContent>
   </Card>
 );
 
