@@ -1,7 +1,10 @@
 import gql from 'graphql-tag';
-import { Box, SvgIcon, CircularProgress } from '@material-ui/core';
+import { t } from 'ttag';
+import { Box, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useQuery } from '@apollo/react-hooks';
+
+import { HyperlinkIcon } from 'components/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -78,7 +81,7 @@ const HyperlinkData = gql`
   }
 `;
 
-const POLLING_QUERY = {
+export const POLLING_QUERY = {
   articles: gql`
     query PollingArticleHyperlink($id: String!) {
       GetArticle(id: $id) {
@@ -103,28 +106,22 @@ const POLLING_QUERY = {
   `,
 };
 
-const LinkIcon = props => (
-  <SvgIcon {...props} viewBox="0 0 20 10">
-    <path d="M1.9 5C1.9 3.29 3.29 1.9 5 1.9H9V0H5C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10H9V8.1H5C3.29 8.1 1.9 6.71 1.9 5ZM6 6H14V4H6V6ZM15 0H11V1.9H15C16.71 1.9 18.1 3.29 18.1 5C18.1 6.71 16.71 8.1 15 8.1H11V10H15C17.76 10 20 7.76 20 5C20 2.24 17.76 0 15 0Z" />
-  </SvgIcon>
-);
-
 /**
  * @param {string} error - One of ResolveError https://github.com/cofacts/url-resolver/blob/master/src/typeDefs/ResolveError.graphql
  */
 function getErrorText(error) {
   switch (error) {
     case 'NAME_NOT_RESOLVED':
-      return 'Domain name cannot be resolved';
+      return t`Domain name cannot be resolved`;
     case 'UNSUPPORTED':
     case 'INVALID_URL':
-      return 'URL is malformed or not supported';
+      return t`URL is malformed or not supported`;
     case 'NOT_REACHABLE':
-      return 'Cannot get data from URL';
+      return t`Cannot get data from URL`;
     case 'HTTPS_ERROR':
-      return 'Target site contains HTTPS error';
+      return t`Target site contains HTTPS error`;
     default:
-      return 'Unknown error';
+      return t`Unknown error`;
   }
 }
 
@@ -148,7 +145,7 @@ function Hyperlink({ hyperlink }) {
         {error && <p className="error">{getErrorText(error)}</p>}
       </div>
       <span className={classes.url}>
-        <LinkIcon />
+        <HyperlinkIcon />
         <a href={url} target="_blank" rel="noopener noreferrer">
           {url}
         </a>
