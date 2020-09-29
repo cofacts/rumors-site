@@ -5,20 +5,21 @@ import MuiCardContent from '@material-ui/core/CardContent';
 import cx from 'clsx';
 
 /**
- * Provides custom CSS property --horizontal-padding
+ * Provides custom CSS property --card-px
  */
 export const Card = withStyles(theme => ({
   root: {
-    '--horizontal-padding': '16px',
+    overflow: 'visible',
+    '--card-px': '16px',
     [theme.breakpoints.up('md')]: {
-      '--horizontal-padding': '36px',
+      '--card-px': '36px',
     },
   },
 }))(props => <MuiCard elevation={0} {...props} />);
 
 export const CardHeader = withStyles(theme => ({
   root: {
-    margin: '0 var(--horizontal-padding)',
+    margin: '0 var(--card-px)',
     padding: '12px 0 8px',
     fontSize: 12,
     lineHeight: '20px',
@@ -43,7 +44,7 @@ export const CardHeader = withStyles(theme => ({
 export const CardContent = withStyles(theme => ({
   root: {
     padding: '16px 0',
-    margin: '0 var(--horizontal-padding)',
+    margin: '0 var(--card-px)',
     [theme.breakpoints.up('md')]: {
       padding: '24px 0',
     },

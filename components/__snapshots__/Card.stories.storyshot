@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Card Basic Card 1`] = `
+<Component>
+  <div
+    className="MuiPaper-root MuiCard-root Component-root MuiPaper-elevation0 MuiPaper-rounded"
+  >
+    Basic card
+  </div>
+</Component>
+`;
+
+exports[`Storyshots Card Card With Content 1`] = `
+<Component>
+  <div
+    className="MuiPaper-root MuiCard-root Component-root MuiPaper-elevation0 MuiPaper-rounded"
+  >
+    <div
+      className="MuiCardContent-root WithStyles(ForwardRef(CardContent))-root"
+    >
+      Card content 1
+    </div>
+    <div
+      className="MuiCardContent-root WithStyles(ForwardRef(CardContent))-root"
+    >
+      Card content 2
+    </div>
+    <div>
+      Something else
+    </div>
+    <div
+      className="MuiCardContent-root WithStyles(ForwardRef(CardContent))-root"
+    >
+      Card content 3
+    </div>
+    <div
+      className="MuiCardContent-root WithStyles(ForwardRef(CardContent))-root"
+    >
+      Card content 4
+    </div>
+  </div>
+</Component>
+`;
+
+exports[`Storyshots Card Card With Header 1`] = `
+<Component>
+  <div
+    className="MuiPaper-root MuiCard-root Component-root MuiPaper-elevation0 MuiPaper-rounded"
+  >
+    <Component>
+      <header
+        className="Component-root"
+      >
+        Card header here
+      </header>
+    </Component>
+    <div
+      className="MuiCardContent-root WithStyles(ForwardRef(CardContent))-root"
+    >
+      Card content
+    </div>
+  </div>
+</Component>
+`;
