@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
-import { Box, Divider } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { LINE_URL } from 'constants/urls';
@@ -13,21 +13,11 @@ import EditorName from 'components/EditorName';
 import Hyperlinks from 'components/Hyperlinks';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReplyInfo from 'components/ReplyInfo';
+import { CardContent } from 'components/Card';
 import ReplyActions from './ReplyActions';
 import ReplyShare from './ReplyShare';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    marginBottom: 16,
-    '&:not(:first)': {
-      borderTop: `1px solid ${theme.palette.secondary[100]}`,
-    },
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    [theme.breakpoints.up('md')]: {
-      marginBottom: 20,
-    },
-  },
   replyType: {
     color: ({ replyType }) => {
       switch (replyType) {
@@ -197,7 +187,7 @@ const ArticleReply = React.memo(
     const authorElem = renderAuthor();
 
     return (
-      <li className={classes.root}>
+      <CardContent className={classes.root}>
         <Box component="header" display="flex" alignItems="center">
           {user && <Avatar user={user} className={classes.avatar} />}
           <Box flexGrow={1}>
@@ -222,8 +212,7 @@ const ArticleReply = React.memo(
 
         {renderReference()}
         {renderFooter()}
-        <Divider />
-      </li>
+      </CardContent>
     );
   }
 );

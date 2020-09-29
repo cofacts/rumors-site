@@ -22,6 +22,7 @@ import AddIcon from '@material-ui/icons/AddCircleOutline';
 import Fab from '@material-ui/core/Fab';
 import AppLayout from 'components/AppLayout';
 import Ribbon from 'components/Ribbon';
+import { Card, CardHeader, CardContent } from 'components/Card';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
@@ -42,6 +43,13 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'flex-start',
     },
   },
+  textHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingRight: 'var(--card-px)',
+  },
   title: {
     padding: '2px 12px',
     fontSize: 12,
@@ -60,13 +68,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: 14,
     },
   },
-  card: {
-    background: theme.palette.common.white,
-    borderRadius: 8,
-  },
   main: {
     flex: 1,
-    marginRight: 0,
     minWidth: 0,
     [theme.breakpoints.up('md')]: {
       flex: 3,
@@ -291,7 +294,9 @@ function ArticlePage() {
         <Head>
           <title>{t`Loading`}</title>
         </Head>
-        Loading...
+        <Card>
+          <CardContent>{t`Loading`}...</CardContent>
+        </Card>
       </AppLayout>
     );
   }
@@ -302,12 +307,14 @@ function ArticlePage() {
         <Head>
           <title>{t`Not found`}</title>
         </Head>
-        {t`Message does not exist`}
+        <Card>
+          <CardContent>{t`Message does not exist`}</CardContent>
+        </Card>
       </AppLayout>
     );
   }
 
-  const { replyRequestCount, text, hyperlinks } = article;
+  const { replyRequestCount, text, hyperlinks, replyCount } = article;
   const similarArticles = article?.similarArticles?.edges || [];
 
   const createdAt = article.createdAt
@@ -325,18 +332,8 @@ function ArticlePage() {
       </Head>
       <div className={classes.root}>
         <div className={classes.main}>
-          <Box
-            className={classes.card}
-            position="relative"
-            pb={{ xs: '13px', md: '21px' }}
-          >
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              pt="12px"
-              pr={{ xs: '12px', md: '19px' }}
-            >
+          <Card>
+            <header className={classes.textHeader}>
               <Ribbon className={classes.title}>
                 {ngettext(
                   msgid`${replyRequestCount} person report this message`,
@@ -353,18 +350,16 @@ function ArticlePage() {
                   {t`First reported ${timeAgoStr} ago`}
                 </span>
               )}
-            </Box>
-            <Box px={{ xs: '12px', md: '19px' }}>
-              <Box py={3} overflow="hidden" onCopy={handleCopy}>
-                {nl2br(
-                  linkify(text, {
-                    props: {
-                      target: '_blank',
-                    },
-                  })
-                )}
-                <Hyperlinks hyperlinks={hyperlinks} />
-              </Box>
+            </header>
+            <CardContent>
+              {nl2br(
+                linkify(text, {
+                  props: {
+                    target: '_blank',
+                  },
+                })
+              )}
+              <Hyperlinks hyperlinks={hyperlinks} />
               <ArticleCategories
                 articleId={article.id}
                 articleCategories={article.articleCategories.filter(
@@ -372,33 +367,30 @@ function ArticlePage() {
                 )}
               />
               <TrendPlot data={article.stats} />
-              <Divider />
-              <footer>
-                {article.replyRequests.map(replyRequest => (
-                  <ReplyRequestReason
-                    key={replyRequest.id}
-                    articleId={article.id}
-                    replyRequest={replyRequest}
-                  />
-                ))}
-                <CreateReplyRequestForm
-                  requestedForReply={article.requestedForReply}
+              {article.replyRequests.map(replyRequest => (
+                <ReplyRequestReason
+                  key={replyRequest.id}
                   articleId={article.id}
-                  onNewReplyButtonClick={() => {
-                    setShowForm(true);
-                    // use setTimeout to make sure the form has shown
-                    setTimeout(
-                      () =>
-                        newReplyRef.current.scrollIntoView({
-                          behavior: 'smooth',
-                        }),
-                      0
-                    );
-                  }}
+                  replyRequest={replyRequest}
                 />
-              </footer>
-            </Box>
-          </Box>
+              ))}
+            </CardContent>
+            <CreateReplyRequestForm
+              requestedForReply={article.requestedForReply}
+              articleId={article.id}
+              onNewReplyButtonClick={() => {
+                setShowForm(true);
+                // use setTimeout to make sure the form has shown
+                setTimeout(
+                  () =>
+                    newReplyRef.current.scrollIntoView({
+                      behavior: 'smooth',
+                    }),
+                  0
+                );
+              }}
+            />
+          </Card>
 
           {showForm && (
             <div className={classes.newReplyContainer} ref={newReplyRef}>
@@ -415,20 +407,16 @@ function ArticlePage() {
             </div>
           )}
 
-          <Box
-            className={classes.card}
-            position="relative"
-            px={{ xs: '12px', md: '19px' }}
-            py={{ xs: '13px', md: '21px' }}
-            mt={3}
-            id="current-replies"
-            ref={replySectionRef}
-            onCopy={handleCopy}
-          >
-            <h2>{t`${article.articleReplies.length} replies to the message`}</h2>
-            <Divider classes={{ root: classes.divider }} />
+          <Card id="current-replies" ref={replySectionRef} onCopy={handleCopy}>
+            <CardHeader>
+              {ngettext(
+                msgid`${replyCount} reply to the message`,
+                `${replyCount} replies to the message`,
+                replyCount
+              )}
+            </CardHeader>
             <CurrentReplies articleReplies={article.articleReplies} />
-          </Box>
+          </Card>
         </div>
 
         <div className={cx(classes.card, classes.aside)}>

@@ -160,7 +160,7 @@ function CurrentReplies({ articleReplies = [] }) {
   );
 
   return (
-    <PlainList>
+    <>
       {validArticleReplies.map(ar => (
         <ArticleReply
           key={`${ar.articleId}__${ar.replyId}`}
@@ -175,7 +175,7 @@ function CurrentReplies({ articleReplies = [] }) {
         onRestore={handleRestore}
         disabled={updatingArticleReplyStatus}
       />
-    </PlainList>
+    </>
   );
 }
 
