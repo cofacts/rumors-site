@@ -9,9 +9,25 @@ import MockDate from 'mockdate';
 Enzyme.configure({ adapter: new Adapter() });
 
 /* makeStyle + useStyle hook, <Box> and withStyle HOC */
-const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox|Component)-.+?)-\d+/g;
+const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox|Component|WithStyles)\W.+?)-\d+/g;
 
 function removeMaterialUIInternals(json) {
+  // Remove props we don't want to snapshot
+  ['classes'].forEach(key => {
+    delete json.props[key];
+  });
+
+  // Remove makeStyle className serial numbers
+  if (json.props?.className?.match(MAKE_STYLE_REGEXP)) {
+    json = {
+      ...json,
+      props: {
+        ...json.props,
+        className: json.props.className.replace(MAKE_STYLE_REGEXP, '$1'),
+      },
+    };
+  }
+
   // Remove Portal containerInfo
   if (json.type === 'Portal') {
     return {
@@ -43,17 +59,6 @@ function removeMaterialUIInternals(json) {
       json.children &&
       removeMaterialUIInternals(json.children[json.children.length - 1])
     );
-  }
-
-  // Remove makeStyle className serial numbers
-  if (json.props?.className?.match(MAKE_STYLE_REGEXP)) {
-    json = {
-      ...json,
-      props: {
-        ...json.props,
-        className: json.props.className.replace(MAKE_STYLE_REGEXP, '$1'),
-      },
-    };
   }
 
   return json;

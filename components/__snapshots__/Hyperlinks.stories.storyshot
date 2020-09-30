@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Hyperlinks All Variants 1`] = `
+<div
+  style={
+    Object {
+      "background": "#fff",
+      "padding": 16,
+    }
+  }
+>
+  <Hyperlinks
+    hyperlinks={
+      Array [
+        Object {
+          "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "title": "Lorum Ipsum - Demo Site",
+          "url": "https://cofacts.org",
+        },
+        Object {
+          "summary": "Summary is so short",
+          "title": "This site has image",
+          "topImageUrl": "https://placekitten.com/400/300",
+          "url": "https://cofacts.org",
+        },
+        Object {
+          "error": "NOT_REACHABLE",
+          "url": "https://not-found.org",
+        },
+      ]
+    }
+  >
+    <section
+      className="MuiBox-root MuiBox-root"
+    >
+      <Hyperlink
+        hyperlink={
+          Object {
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "title": "Lorum Ipsum - Demo Site",
+            "url": "https://cofacts.org",
+          }
+        }
+        key="0"
+      >
+        <article
+          className="makeStyles-root"
+        >
+          <h1
+            title="Lorum Ipsum - Demo Site"
+          >
+            Lorum Ipsum - Demo Site
+          </h1>
+          <div
+            className="makeStyles-preview makeStyles-preview"
+          >
+            <p
+              className="summary"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a
+            </p>
+          </div>
+          <span
+            className="makeStyles-url"
+          >
+            <HyperlinkIcon>
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 20 10"
+              >
+                <path
+                  d="M1.9 5C1.9 3.29 3.29 1.9 5 1.9H9V0H5C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10H9V8.1H5C3.29 8.1 1.9 6.71 1.9 5ZM6 6H14V4H6V6ZM15 0H11V1.9H15C16.71 1.9 18.1 3.29 18.1 5C18.1 6.71 16.71 8.1 15 8.1H11V10H15C17.76 10 20 7.76 20 5C20 2.24 17.76 0 15 0Z"
+                />
+              </svg>
+            </HyperlinkIcon>
+            <a
+              href="https://cofacts.org"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              https://cofacts.org
+            </a>
+          </span>
+        </article>
+      </Hyperlink>
+      <Hyperlink
+        hyperlink={
+          Object {
+            "summary": "Summary is so short",
+            "title": "This site has image",
+            "topImageUrl": "https://placekitten.com/400/300",
+            "url": "https://cofacts.org",
+          }
+        }
+        key="1"
+      >
+        <article
+          className="makeStyles-root"
+        >
+          <h1
+            title="This site has image"
+          >
+            This site has image
+          </h1>
+          <div
+            className="makeStyles-preview makeStyles-preview"
+          >
+            <p
+              className="summary"
+              title="Summary is so short"
+            >
+              Summary is so short
+            </p>
+            <figure
+              className="image"
+            />
+          </div>
+          <span
+            className="makeStyles-url"
+          >
+            <HyperlinkIcon>
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 20 10"
+              >
+                <path
+                  d="M1.9 5C1.9 3.29 3.29 1.9 5 1.9H9V0H5C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10H9V8.1H5C3.29 8.1 1.9 6.71 1.9 5ZM6 6H14V4H6V6ZM15 0H11V1.9H15C16.71 1.9 18.1 3.29 18.1 5C18.1 6.71 16.71 8.1 15 8.1H11V10H15C17.76 10 20 7.76 20 5C20 2.24 17.76 0 15 0Z"
+                />
+              </svg>
+            </HyperlinkIcon>
+            <a
+              href="https://cofacts.org"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              https://cofacts.org
+            </a>
+          </span>
+        </article>
+      </Hyperlink>
+      <Hyperlink
+        hyperlink={
+          Object {
+            "error": "NOT_REACHABLE",
+            "url": "https://not-found.org",
+          }
+        }
+        key="2"
+      >
+        <article
+          className="makeStyles-root"
+        >
+          <h1 />
+          <div
+            className="makeStyles-preview makeStyles-preview"
+          >
+            <p
+              className="summary"
+              title=""
+            />
+            <p
+              className="error"
+            >
+              Cannot get data from URL
+            </p>
+          </div>
+          <span
+            className="makeStyles-url"
+          >
+            <HyperlinkIcon>
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 20 10"
+              >
+                <path
+                  d="M1.9 5C1.9 3.29 3.29 1.9 5 1.9H9V0H5C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10H9V8.1H5C3.29 8.1 1.9 6.71 1.9 5ZM6 6H14V4H6V6ZM15 0H11V1.9H15C16.71 1.9 18.1 3.29 18.1 5C18.1 6.71 16.71 8.1 15 8.1H11V10H15C17.76 10 20 7.76 20 5C20 2.24 17.76 0 15 0Z"
+                />
+              </svg>
+            </HyperlinkIcon>
+            <a
+              href="https://not-found.org"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              https://not-found.org
+            </a>
+          </span>
+        </article>
+      </Hyperlink>
+    </section>
+  </Hyperlinks>
+</div>
+`;
+
+exports[`Storyshots Hyperlinks Loaded Empty Hyperlinks 1`] = `
+<Hyperlinks
+  hyperlinks={Array []}
+/>
+`;
+
+exports[`Storyshots Hyperlinks Polling 1`] = `
+<div
+  style={
+    Object {
+      "background": "#fff",
+      "padding": 16,
+    }
+  }
+>
+  <Hyperlinks
+    hyperlinks={null}
+    pollingId="foo"
+    pollingType="articles"
+  >
+    <section
+      className="MuiBox-root MuiBox-root"
+    >
+      <PollingHyperlink
+        pollingId="foo"
+        pollingType="articles"
+      >
+        <div
+          className="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+          role="progressbar"
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        >
+          <svg
+            className="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+              cx={44}
+              cy={44}
+              fill="none"
+              r={20.2}
+              strokeWidth={3.6}
+              style={Object {}}
+            />
+          </svg>
+        </div>
+      </PollingHyperlink>
+    </section>
+  </Hyperlinks>
+</div>
+`;

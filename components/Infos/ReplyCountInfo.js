@@ -18,9 +18,6 @@ const useStyles = makeStyles(() => ({
       paddingLeft: 4,
     },
   },
-  optionIcon: {
-    fontSize: 14,
-  },
 }));
 
 function ReplyCountInfo({ normalArticleReplies }) {
@@ -47,7 +44,7 @@ function ReplyCountInfo({ normalArticleReplies }) {
               const IconComponent = TYPE_ICON[k];
               return (
                 <span key={k} className={classes.opinion}>
-                  <IconComponent className={classes.optionIcon} />
+                  <IconComponent fontSize="inherit" />
                   <span>{v}</span>
                 </span>
               );
