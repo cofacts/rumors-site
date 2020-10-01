@@ -425,8 +425,8 @@ function ArticlePage() {
           <Card ref={replySectionRef} onCopy={handleCopy}>
             <CardHeader>
               {ngettext(
-                msgid`${replyCount} reply to the message`,
-                `${replyCount} replies to the message`,
+                msgid`There is ${replyCount} fact-checking reply to the message`,
+                `There are ${replyCount} fact-checking replies to the message`,
                 replyCount
               )}
             </CardHeader>
