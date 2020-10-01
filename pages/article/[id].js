@@ -16,7 +16,10 @@ import { usePushToDataLayer } from 'lib/gtm';
 
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import isValid from 'date-fns/isValid';
+import { LINE_URL } from 'constants/urls';
 
+import AddIcon from '@material-ui/icons/AddCircleOutline';
+import Fab from '@material-ui/core/Fab';
 import AppLayout from 'components/AppLayout';
 import Ribbon from 'components/Ribbon';
 import Hyperlinks from 'components/Hyperlinks';
@@ -126,6 +129,24 @@ const useStyles = makeStyles(theme => ({
     boxOrient: 'vertical',
     textOverflow: 'ellipsis',
     lineClamp: 5,
+  },
+  lineFab: {
+    position: 'fixed',
+    zIndex: theme.zIndex.speedDial,
+    right: 20,
+    bottom: 20,
+    background: theme.palette.common.green1,
+    color: '#fff',
+    height: 52,
+    borderRadius: 32,
+
+    '&:hover': {
+      background: theme.palette.common.green2,
+    },
+  },
+  lineFabText: {
+    lineHeight: '20px',
+    margin: '0 12px',
   },
 }));
 
@@ -430,6 +451,24 @@ function ArticlePage() {
         onClose={() => setFlashMessage('')}
         message={flashMessage}
       />
+      {!currentUser && (
+        <Fab
+          size="large"
+          variant="extended"
+          aria-label="Add friend"
+          data-ga="Add LINE friend FAB"
+          className={classes.lineFab}
+          href={LINE_URL}
+          target="_blank"
+        >
+          <AddIcon />
+          <span className={classes.lineFabText}>
+            LINE 機器人
+            <br />
+            查謠言詐騙
+          </span>
+        </Fab>
+      )}
     </AppLayout>
   );
 }
