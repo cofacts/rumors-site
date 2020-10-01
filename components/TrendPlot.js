@@ -54,11 +54,6 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-  root: {
-    flex: 1,
-    height: '100%',
-    marginBottom: '20px',
-  },
 }));
 
 /**
@@ -127,7 +122,7 @@ export default function TrendPlot({ data }) {
   const totalVisits = totalWebVisits + totalLineVisits;
 
   return (
-    <div className={`${classes.root}`}>
+    <>
       <div className={classes.labels}>
         <Box className={`${classes.label} plotLabel`}>{t`Past 31 days`}</Box>
         <Hidden xsDown>
@@ -164,6 +159,6 @@ export default function TrendPlot({ data }) {
           </AutoSizer>
         )}
       </Box>
-    </div>
+    </>
   );
 }
