@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Box, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { LINE_URL } from 'constants/urls';
 import { nl2br, linkify } from 'lib/text';
 import { TYPE_NAME } from 'constants/replyType';
 import ExpandableText from 'components/ExpandableText';
@@ -130,13 +131,18 @@ const ArticleReply = React.memo(
     const classes = useStyles({ replyType });
 
     const renderFooter = () => {
+      const articleUrl =
+        typeof window !== 'undefined'
+          ? // Construct Article URL without search strings (usually gibberish 1st-party trackers)
+            window.location.origin + window.location.pathname
+          : '';
       const copyText =
         typeof window !== 'undefined'
           ? `${TYPE_NAME[reply.type]} \n【${t`Reason`}】${(
               reply.text || ''
-            ).trim()}\n↓${t`Details`}↓\n${
-              window.location.href
-            }\n↓${t`Reference`}↓\n${reply.reference}`
+            ).trim()}\n↓${t`Details`}↓\n${articleUrl}\n↓${t`Reference`}↓\n${
+              reply.reference
+            }\n--\n🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
           : '';
 
       return (
