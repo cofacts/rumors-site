@@ -267,18 +267,15 @@ function ArticlePage() {
     setFlashMessage(error.toString());
   }, []);
 
-  const handleCopy = useCallback(
-    e => {
-      const selection = document.getSelection();
-      e.clipboardData.setData(
-        'text/plain',
-        selection.toString() +
-          `\n\n節錄自 Cofacts 真的假的：https://cofacts.org/article/${query.id} ｜ 加 LINE 查謠言：${LINE_URL}`
-      );
-      e.preventDefault();
-    },
-    [query.id]
-  );
+  const handleCopy = useCallback(e => {
+    const selection = document.getSelection();
+    e.clipboardData.setData(
+      'text/plain',
+      selection.toString() +
+        `\n\n節錄自 Cofacts 真的假的：${window.location.origin}${window.location.pathname} ｜ 加 LINE 查謠言：${LINE_URL}`
+    );
+    e.preventDefault();
+  }, []);
 
   const handleFormClose = () => setShowForm(false);
 
