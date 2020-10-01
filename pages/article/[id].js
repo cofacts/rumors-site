@@ -269,10 +269,12 @@ function ArticlePage() {
 
   const handleCopy = useCallback(e => {
     const selection = document.getSelection();
+    const articleUrl = window.location.origin + window.location.pathname;
+
     e.clipboardData.setData(
       'text/plain',
       selection.toString() +
-        `\n\n節錄自 Cofacts 真的假的：${window.location.origin}${window.location.pathname} ｜ 加 LINE 查謠言：${LINE_URL}`
+        `\n📋 節錄自 Cofacts 真的假的：${articleUrl}\n🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
     );
     e.preventDefault();
   }, []);
