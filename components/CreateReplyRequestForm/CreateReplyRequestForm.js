@@ -10,8 +10,10 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
+import { CardContent } from 'components/Card';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
 import useCurrentUser from 'lib/useCurrentUser';
 import cx from 'clsx';
@@ -19,92 +21,56 @@ import cx from 'clsx';
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.common.white,
-    cursor: 'pointer',
-    border: 'none',
-    outline: 'none',
+  replyButton: {
+    [theme.breakpoints.down('xs')]: { display: 'none' },
+    marginRight: theme.spacing(1),
+    flex: 1,
     borderRadius: 30,
   },
   buttonGroup: {
     flex: 2,
-    display: 'flex',
-    alignItems: 'center',
-    whiteSpace: 'nowrap',
-    width: '100%',
-    marginBottom: 30,
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: 8,
-      width: 'auto',
-      marginBottom: 0,
-    },
-    '& button': {
+    '& > *': {
       flex: 1,
-      marginRight: 0,
-      color: theme.palette.secondary[300],
-      background: theme.palette.common.white,
-      outline: 'none',
-      cursor: 'pointer',
-      fontSize: 16,
-      border: `1px solid ${theme.palette.secondary[100]}`,
-      '&:first-child': {
-        borderRight: 0,
-        borderTopLeftRadius: 30,
-        borderBottomLeftRadius: 30,
-        paddingLeft: 24,
-      },
-      '&:last-child': {
-        borderTopRightRadius: 30,
-        borderBottomRightRadius: 30,
-        paddingRight: 24,
-      },
-      '&:not(:first-child):not(:last-child)': {
-        borderLeft: 0,
-        borderRight: 0,
-      },
-      '&:hover': {
-        background: theme.palette.secondary[50],
-      },
-      '&.active': {
-        color: theme.palette.primary[500],
-      },
+    },
+    '& > *:first-child': {
+      borderTopLeftRadius: 30,
+      borderBottomLeftRadius: 30,
+    },
+    '& > *:last-child': {
+      borderTopRightRadius: 30,
+      borderBottomRightRadius: 30,
     },
   },
-  form: {
-    position: 'relative',
-    flex: 1,
+  isButtonActive: {
+    color: theme.palette.primary[500],
   },
-  textarea: {
+  commentInput: {
+    flex: 1,
+    display: 'flex',
     borderRadius: 24,
     fontSize: 18,
-    width: '100%',
     border: `1px solid ${theme.palette.secondary[100]}`,
-    padding: '17px 14px',
-    '&:focus': {
-      paddingBottom: 17 + 37,
-      outline: 'none',
+    '& > textarea': {
+      flex: 1,
+      margin: '8px 0 8px 16px',
+      background: 'transparent',
+      border: 0,
+      outline: 0,
     },
   },
-  submit: {
-    position: 'absolute',
-    bottom: 12,
-    right: 8,
+  commentSubmitButton: {
+    borderRadius: 18,
+    margin: 6,
+    width: 'min-content', // Make it wrap
   },
-  replyButton: {
+  bottomReplyButton: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
     fontSize: 16,
-    flex: 1,
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
     borderRadius: 0,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
-    [theme.breakpoints.up('md')]: {
-      position: 'static',
-      borderRadius: 30,
-    },
+    borderBottomLeftRadius: theme.shape.borderRadius,
+    borderBottomRightRadius: theme.shape.borderRadius,
   },
   menu: {
     marginTop: 40,
@@ -119,7 +85,8 @@ const useStyles = makeStyles(theme => ({
       top: 50,
     },
     transition: 'opacity .2s ease-in',
-    '&.show': { opacity: 1 },
+    pointerEvents: 'none',
+    '&.show': { opacity: 1, pointerEvents: 'auto' },
   },
   floatButton: {
     [theme.breakpoints.down('sm')]: {
@@ -179,7 +146,13 @@ const PenIcon = props => (
   </SvgIcon>
 );
 
-const SubmitButton = ({ className, articleId, text, disabled, onFinish }) => {
+const SubmitButton = ({
+  articleId,
+  text,
+  onFinish,
+  disabled,
+  ...buttonProps
+}) => {
   const [createReplyRequest] = useMutation(CREATE_REPLY_REQUEST, {
     refetchQueries: ['LoadArticlePage'],
   });
@@ -192,9 +165,16 @@ const SubmitButton = ({ className, articleId, text, disabled, onFinish }) => {
   };
 
   return (
-    <button className={className} onClick={handleSubmit} disabled={disabled}>
-      {disabled ? '字數太少，無法送出' : '送出理由'}
-    </button>
+    <Button
+      disabled={disabled}
+      onClick={handleSubmit}
+      color="primary"
+      variant="contained"
+      disableElevation
+      {...buttonProps}
+    >
+      {disabled ? t`Please provide more info` : t`Submit`}
+    </Button>
   );
 };
 
@@ -254,97 +234,107 @@ const CreateReplyRequestForm = React.memo(
     const user = useCurrentUser();
 
     return (
-      <div>
-        {showForm && (
-          <>
-            <Box pl={7} pt={2}>
-              <Hint>{t`Did you find anything suspicious about the message?`}</Hint>
-            </Box>
-            <Box component="form" display="flex" pt={2}>
-              <Box pr={2} pt={0.5}>
-                <Avatar user={user} size={42} />
+      <>
+        <CardContent>
+          {showForm && (
+            <>
+              <Box pl={7}>
+                <Hint>{t`Did you find anything suspicious about the message after you search Facebook & Google?`}</Hint>
               </Box>
-              <Box flex={1}>
-                <div className={classes.form}>
-                  <textarea
-                    className={classes.textarea}
-                    placeholder="例：我用 OO 關鍵字查詢 Facebook，發現⋯⋯ / 我在 XX 官網上找到不一樣的說法如下⋯⋯"
+              <Box component="form" display="flex" py={2}>
+                <Box pr={2} pt={0.5} display={['none', 'block']}>
+                  <Avatar user={user} size={42} />
+                </Box>
+                <label
+                  className={cx(classes.commentInput, {
+                    [classes.hasContent]: text.length > 10,
+                  })}
+                >
+                  <TextareaAutosize
+                    placeholder={t`Please provide paragraphs you find controversial, or related news, image & video material you have found.`}
                     onChange={handleTextChange}
                     value={text}
                     rows={1}
                   />
                   <SubmitButton
-                    className={cx(classes.submit, classes.button)}
+                    className={cx(classes.commentSubmitButton)}
                     articleId={articleId}
                     text={text}
                     disabled={disabled}
                     onFinish={handleReasonSubmitted}
                   />
-                </div>
+                </label>
               </Box>
-            </Box>
-          </>
-        )}
-        <Box display="flex" py={2} alignItems="center" flexWrap="wrap">
-          <Button
-            ref={buttonRef}
-            className={cx(classes.button, classes.replyButton)}
-            onClick={onNewReplyButtonClick}
-            disableElevation
-          >
-            {t`Reply to this message`}
-          </Button>
-          <ButtonGroup
-            className={classes.buttonGroup}
-            aria-label="comment and share"
-          >
+            </>
+          )}
+          <Box display="flex" alignItems="center" ref={buttonRef}>
             <Button
-              className={cx(showForm && 'active')}
-              onClick={() => setShowForm(!showForm)}
+              className={cx(classes.replyButton)}
+              color="primary"
+              variant="contained"
+              onClick={onNewReplyButtonClick}
               disableElevation
             >
-              {requestedForReply === true ? t`Update comment` : t`Comment`}
+              {t`Reply to this message`}
             </Button>
-            {/*
+            <ButtonGroup
+              className={classes.buttonGroup}
+              aria-label="comment and share"
+              disableElevation
+            >
+              <Button
+                className={cx({ [classes.isButtonActive]: showForm })}
+                onClick={() => setShowForm(!showForm)}
+              >
+                {requestedForReply === true ? t`Update comment` : t`Comment`}
+              </Button>
               <Button
                 type="button"
-                className={cx(requestedForReply && 'active')}
-                disableElevation
-              >{t`Follow`}</Button>
-            */}
-            <Button
-              type="button"
-              onClick={e => setShareAnchor(e.currentTarget)}
-              disableElevation
-            >{t`Share`}</Button>
-          </ButtonGroup>
-          <Menu
-            id="share-article-menu"
-            anchorEl={shareAnchor}
-            keepMounted
-            getContentAnchorEl={null}
-            open={!!shareAnchor}
-            onClose={() => setShareAnchor(null)}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-          >
-            <MenuItem
-              onClick={() =>
-                window.open(
-                  `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
-                )
-              }
+                className={cx({ [classes.isButtonActive]: !!shareAnchor })}
+                onClick={e => setShareAnchor(e.currentTarget)}
+              >
+                {t`Share`}
+              </Button>
+            </ButtonGroup>
+            <Menu
+              id="share-article-menu"
+              anchorEl={shareAnchor}
+              keepMounted
+              getContentAnchorEl={null}
+              open={!!shareAnchor}
+              onClose={() => setShareAnchor(null)}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
             >
-              {t`Facebook`}
-            </MenuItem>
-          </Menu>
-        </Box>
+              <MenuItem
+                onClick={() =>
+                  window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
+                  )
+                }
+              >
+                {t`Facebook`}
+              </MenuItem>
+            </Menu>
+          </Box>
+        </CardContent>
+        <Button
+          color="primary"
+          variant="contained"
+          className={cx(classes.bottomReplyButton)}
+          onClick={onNewReplyButtonClick}
+          fullWidth
+          disableElevation
+        >
+          {t`Reply to this message`}
+        </Button>
+
         <div
           className={cx(
             classes.floatButtonContainer,
@@ -362,7 +352,7 @@ const CreateReplyRequestForm = React.memo(
             {t`Reply to this message`}
           </button>
         </div>
-      </div>
+      </>
     );
   }
 );
