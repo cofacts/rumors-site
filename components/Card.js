@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MuiCard from '@material-ui/core/Card';
 import MuiCardContent from '@material-ui/core/CardContent';
@@ -15,7 +16,7 @@ export const Card = withStyles(theme => ({
       '--card-px': '36px',
     },
   },
-}))(props => <MuiCard elevation={0} {...props} />);
+}))(forwardRef((props, ref) => <MuiCard ref={ref} elevation={0} {...props} />));
 
 export const CardHeader = withStyles(theme => ({
   root: {
