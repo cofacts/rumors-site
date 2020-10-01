@@ -10,8 +10,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    borderTop: `1px solid ${theme.palette.secondary[100]}`,
     padding: `${theme.spacing(2)}px 0`,
+    '& + &': {
+      borderTop: `1px solid ${theme.palette.secondary[100]}`,
+    },
   },
   reason: {
     marginTop: 0,
