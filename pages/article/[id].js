@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Divider, Snackbar } from '@material-ui/core';
+import { Box, Snackbar } from '@material-ui/core';
 import { ngettext, msgid, t } from 'ttag';
 
 import { useRouter } from 'next/router';
@@ -71,6 +71,9 @@ const useStyles = makeStyles(theme => ({
   main: {
     flex: 1,
     minWidth: 0,
+    '& > *': {
+      marginBottom: 12,
+    },
     [theme.breakpoints.up('md')]: {
       flex: 3,
       marginRight: 12,
@@ -169,6 +172,7 @@ const LOAD_ARTICLE = gql`
         ...HyperlinkData
       }
       replyRequests {
+        reason
         ...ReplyRequestInfo
       }
       articleReplies {
@@ -323,6 +327,10 @@ function ArticlePage() {
 
   const timeAgoStr = formatDistanceToNow(createdAt);
 
+  const replyRequestsWithComments = (article.replyRequests || []).filter(
+    ({ reason }) => reason
+  );
+
   return (
     <AppLayout>
       <Head>
@@ -367,14 +375,21 @@ function ArticlePage() {
                 )}
               />
               <TrendPlot data={article.stats} />
-              {article.replyRequests.map(replyRequest => (
-                <ReplyRequestReason
-                  key={replyRequest.id}
-                  articleId={article.id}
-                  replyRequest={replyRequest}
-                />
-              ))}
             </CardContent>
+            {replyRequestsWithComments.length > 0 ? (
+              <>
+                <CardHeader>{`Comments from people reporting this message`}</CardHeader>
+                <CardContent style={{ padding: 0 }}>
+                  {replyRequestsWithComments.map(replyRequest => (
+                    <ReplyRequestReason
+                      key={replyRequest.id}
+                      articleId={article.id}
+                      replyRequest={replyRequest}
+                    />
+                  ))}
+                </CardContent>
+              </>
+            ) : null}
             <CreateReplyRequestForm
               requestedForReply={article.requestedForReply}
               articleId={article.id}
@@ -407,7 +422,7 @@ function ArticlePage() {
             </div>
           )}
 
-          <Card id="current-replies" ref={replySectionRef} onCopy={handleCopy}>
+          <Card ref={replySectionRef} onCopy={handleCopy}>
             <CardHeader>
               {ngettext(
                 msgid`${replyCount} reply to the message`,
