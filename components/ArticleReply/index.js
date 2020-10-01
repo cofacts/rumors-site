@@ -13,7 +13,6 @@ import EditorName from 'components/EditorName';
 import Hyperlinks from 'components/Hyperlinks';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReplyInfo from 'components/ReplyInfo';
-import { CardContent } from 'components/Card';
 import ReplyActions from './ReplyActions';
 import ReplyShare from './ReplyShare';
 
