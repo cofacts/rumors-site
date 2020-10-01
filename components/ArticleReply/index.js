@@ -187,7 +187,7 @@ const ArticleReply = React.memo(
     const authorElem = renderAuthor();
 
     return (
-      <CardContent className={classes.root}>
+      <>
         <Box component="header" display="flex" alignItems="center">
           {user && <Avatar user={user} className={classes.avatar} />}
           <Box flexGrow={1}>
@@ -212,7 +212,7 @@ const ArticleReply = React.memo(
 
         {renderReference()}
         {renderFooter()}
-      </CardContent>
+      </>
     );
   }
 );

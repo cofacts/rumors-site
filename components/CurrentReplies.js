@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 
 import ArticleReply from './ArticleReply';
 import PlainList from './PlainList';
+import { CardContent } from './Card';
 
 const CurrentRepliesData = gql`
   fragment CurrentRepliesData on ArticleReply {
@@ -143,7 +144,9 @@ function CurrentReplies({ articleReplies = [] }) {
   );
 
   if (articleReplies.length === 0) {
-    return <p>{t`There is no existing replies for now.`}</p>;
+    return (
+      <CardContent>{t`There is no existing replies for now.`}</CardContent>
+    );
   }
 
   const { validArticleReplies, deletedArticleReplies } = articleReplies.reduce(
@@ -162,19 +165,24 @@ function CurrentReplies({ articleReplies = [] }) {
   return (
     <>
       {validArticleReplies.map(ar => (
-        <ArticleReply
-          key={`${ar.articleId}__${ar.replyId}`}
-          actionText={t`Delete`}
-          articleReply={ar}
-          onAction={handleDelete}
-          disabled={updatingArticleReplyStatus}
-        />
+        <CardContent key={`${ar.articleId}__${ar.replyId}`}>
+          <ArticleReply
+            actionText={t`Delete`}
+            articleReply={ar}
+            onAction={handleDelete}
+            disabled={updatingArticleReplyStatus}
+          />
+        </CardContent>
       ))}
-      <DeletedItems
-        items={deletedArticleReplies}
-        onRestore={handleRestore}
-        disabled={updatingArticleReplyStatus}
-      />
+      {deletedArticleReplies && deletedArticleReplies.length > 0 && (
+        <CardContent>
+          <DeletedItems
+            items={deletedArticleReplies}
+            onRestore={handleRestore}
+            disabled={updatingArticleReplyStatus}
+          />
+        </CardContent>
+      )}
     </>
   );
 }
