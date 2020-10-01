@@ -209,7 +209,9 @@ const ArticleReply = React.memo(
           )}
         </Box>
         <section className={classes.content}>
-          <ExpandableText>{nl2br(linkify(reply.text))}</ExpandableText>
+          <ExpandableText lineClamp={10}>
+            {nl2br(linkify(reply.text))}
+          </ExpandableText>
         </section>
 
         {renderReference()}
