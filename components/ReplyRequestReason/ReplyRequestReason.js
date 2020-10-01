@@ -1,42 +1,36 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, SvgIcon, Divider } from '@material-ui/core';
+import { Box, SvgIcon, Button } from '@material-ui/core';
+import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    borderTop: `1px solid ${theme.palette.secondary[100]}`,
+    padding: `${theme.spacing(2)}px 0`,
+  },
+  reason: {
+    marginTop: 0,
+  },
   userIcon: {
     fontSize: 40,
   },
   vote: {
-    display: 'flex',
-    alignItems: 'center',
     borderRadius: 45,
-    padding: '1px 8px',
     marginRight: 3,
-    outline: 'none',
-    cursor: 'pointer',
-    border: `1px solid ${theme.palette.secondary[100]}`,
-    color: theme.palette.secondary[100],
-    background: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
-      padding: '4px 18px',
       marginRight: 10,
     },
-    '&:hover': {
-      border: `1px solid ${theme.palette.secondary[300]}`,
-      color: theme.palette.secondary[300],
-    },
-  },
-  voted: {
-    border: `1px solid ${theme.palette.primary[500]}`,
-    color: theme.palette.primary[500],
   },
   thumbIcon: {
     fontSize: 16,
     margin: '0 2px',
+    fill: 'transparent',
+    stroke: 'currentColor',
   },
   reasonBody: {
     wordBreak: 'break-word',
@@ -83,18 +77,6 @@ const UserIcon = props => (
   </SvgIcon>
 );
 
-const ThumbUpIcon = props => (
-  <SvgIcon {...props} viewBox="0 0 17 15">
-    <path d="M1 13.8671H3.65455V6.51606H1V13.8671ZM15.6 7.12864C15.6 6.4548 15.0027 5.90347 14.2727 5.90347H10.0852L10.7156 3.10394L10.7355 2.90792C10.7355 2.65676 10.6227 2.42397 10.4435 2.25857L9.74009 1.61536L5.37336 5.65231C5.12782 5.87284 4.98182 6.17913 4.98182 6.51606V12.6419C4.98182 13.3158 5.57909 13.8671 6.30909 13.8671H12.2818C12.8326 13.8671 13.3038 13.5608 13.5029 13.1197L15.5071 8.80101C15.5668 8.66011 15.6 8.51309 15.6 8.35382V7.12864Z" />
-  </SvgIcon>
-);
-
-const ThumbDownIcon = props => (
-  <SvgIcon {...props} viewBox="0 0 17 15">
-    <path d="M10.2909 1.46155H4.31818C3.76736 1.46155 3.29618 1.76784 3.09709 2.2089L1.09291 6.52765C1.03318 6.66854 1 6.81556 1 6.97483V8.20001C1 8.87386 1.59727 9.42518 2.32727 9.42518H6.51482L5.88436 12.2247L5.86445 12.4207C5.86445 12.6719 5.97727 12.9047 6.15646 13.0701L6.85991 13.7133L11.2333 9.67635C11.4722 9.45581 11.6182 9.14952 11.6182 8.8126V2.68672C11.6182 2.01288 11.0209 1.46155 10.2909 1.46155ZM12.9455 1.46155V8.8126H15.6V1.46155H12.9455Z" />
-  </SvgIcon>
-);
-
 function ReplyRequestReason({ replyRequest }) {
   const {
     id: replyRequestId,
@@ -114,48 +96,41 @@ function ReplyRequestReason({ replyRequest }) {
   if (!replyRequestReason) return null;
 
   return (
-    <div>
-      <Box display="flex" alignItems="center" py={2}>
-        {replyRequestReason && (
-          <>
-            <Box color="primary.main" pr={2}>
-              <UserIcon className={classes.userIcon} />
-            </Box>
-            <Box flex={1} className={classes.reasonBody}>
-              <p className={classes.reason}>{replyRequestReason}</p>
-              <Box display="flex" justifyContent="space-between">
-                <Box display="flex">
-                  <button
-                    className={cx(
-                      classes.vote,
-                      ownVote === UPVOTE && classes.voted
-                    )}
-                    type="button"
-                    onClick={() => handleVote(UPVOTE)}
-                    disabled={loading || ownVote === UPVOTE}
-                  >
-                    <span>{positiveFeedbackCount}</span>
-                    <ThumbUpIcon className={classes.thumbIcon} />
-                  </button>
-                  <button
-                    className={cx(
-                      classes.vote,
-                      ownVote === DOWNVOTE && classes.voted
-                    )}
-                    type="button"
-                    onClick={() => handleVote(DOWNVOTE)}
-                    disabled={loading || ownVote === DOWNVOTE}
-                  >
-                    <span>{negativeFeedbackCount}</span>
-                    <ThumbDownIcon className={classes.thumbIcon} />
-                  </button>
-                </Box>
-              </Box>
-            </Box>
-          </>
-        )}
+    <div className={classes.root}>
+      <Box color="primary.main" pr={2}>
+        <UserIcon className={classes.userIcon} />
       </Box>
-      <Divider />
+      <Box flex={1} className={classes.reasonBody}>
+        <p className={classes.reason}>{replyRequestReason}</p>
+        <Box display="flex" justifyContent="space-between">
+          <Box display="flex">
+            <Button
+              size="small"
+              variant="outlined"
+              color={ownVote === UPVOTE ? 'primary' : 'default'}
+              className={classes.vote}
+              type="button"
+              onClick={() => handleVote(UPVOTE)}
+              disabled={loading}
+            >
+              <ThumbUpIcon className={classes.thumbIcon} />
+              {positiveFeedbackCount}
+            </Button>
+            <Button
+              size="small"
+              variant="outlined"
+              color={ownVote === DOWNVOTE ? 'primary' : 'default'}
+              className={classes.vote}
+              type="button"
+              onClick={() => handleVote(DOWNVOTE)}
+              disabled={loading}
+            >
+              <ThumbDownIcon className={classes.thumbIcon} />
+              {negativeFeedbackCount}
+            </Button>
+          </Box>
+        </Box>
+      </Box>
     </div>
   );
 }
