@@ -280,11 +280,11 @@ const CreateReplyRequestForm = React.memo(
             <ButtonGroup
               className={classes.buttonGroup}
               aria-label="comment and share"
-              disableElevation
             >
               <Button
                 className={cx({ [classes.isButtonActive]: showForm })}
                 onClick={() => setShowForm(!showForm)}
+                disableElevation
               >
                 {requestedForReply === true ? t`Update comment` : t`Comment`}
               </Button>
@@ -292,6 +292,7 @@ const CreateReplyRequestForm = React.memo(
                 type="button"
                 className={cx({ [classes.isButtonActive]: !!shareAnchor })}
                 onClick={e => setShareAnchor(e.currentTarget)}
+                disableElevation
               >
                 {t`Share`}
               </Button>
