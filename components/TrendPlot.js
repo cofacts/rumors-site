@@ -20,6 +20,11 @@ const CHART_DURATION = 31;
 const margin = { top: 10, left: 40, right: 20, bottom: 20 };
 
 const useStyles = makeStyles(theme => ({
+  labels: {
+    display: 'flex',
+    alignItems: 'center',
+    margin: `${theme.spacing(1)}px -5px`,
+  },
   label: {
     fontSize: 14,
     display: 'inline-block',
@@ -123,8 +128,8 @@ export default function TrendPlot({ data }) {
 
   return (
     <div className={`${classes.root}`}>
-      <Box display="flex" flexDirection="row" alignItems="center" p={1}>
-        <Box className={`${classes.label} plotLabel`}>{t`past 31 days`}</Box>
+      <div className={classes.labels}>
+        <Box className={`${classes.label} plotLabel`}>{t`Past 31 days`}</Box>
         <Hidden xsDown>
           <Box className={`${classes.label} webLabel `}>
             {t`Web Visit: ${totalWebVisits}`}
@@ -149,7 +154,7 @@ export default function TrendPlot({ data }) {
             <KeyboardArrowUpIcon onClick={() => setPlotShow(true)} />
           )}
         </Box>
-      </Box>
+      </div>
       <Box display="block">
         {showPlot && (
           <AutoSizer disableHeight>
