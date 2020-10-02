@@ -95,22 +95,6 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-  newReplyContainer: {
-    position: 'fixed',
-    zIndex: theme.zIndex.modal,
-    height: '100%',
-    width: '100%',
-    top: 0,
-    left: 0,
-    background: theme.palette.common.white,
-    [theme.breakpoints.up('md')]: {
-      zIndex: 10,
-      position: 'relative',
-      padding: '28px 16px',
-      marginTop: 24,
-      borderRadius: 8,
-    },
-  },
   similarMessageContainer: {
     backgroundColor: theme.palette.common.white,
     minWidth: '100%',
@@ -408,7 +392,7 @@ function ArticlePage() {
           </Card>
 
           {showForm && (
-            <div className={classes.newReplyContainer} ref={newReplyRef}>
+            <div ref={newReplyRef}>
               <NewReplySection
                 article={article}
                 existingReplyIds={(article?.articleReplies || []).map(

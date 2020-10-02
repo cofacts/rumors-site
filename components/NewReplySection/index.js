@@ -4,10 +4,12 @@ import gql from 'graphql-tag';
 import { t } from 'ttag';
 
 import { Box } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import Desktop from './Desktop';
 import Mobile from './Mobile';
+import { Card, CardContent } from 'components/Card';
 import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
 import RelatedReplies from 'components/RelatedReplies';
 import ReplyFormContext, { withReplyFormContext } from './ReplyForm/context';
@@ -134,11 +136,15 @@ const NewReplySection = withContext(
       <form onSubmit={handleSubmit}>
         {/* prevent chrome auto submit behavior when 'Enter' pressed */}
         <button type="submit" disabled hidden />
-        <Box display={{ xs: 'none', md: 'block' }}>
-          <Desktop {...sharedProps} />
+        <Box component={Card} display={{ xs: 'none', md: 'block' }}>
+          <CardContent style={{ paddingTop: 8 }}>
+            <Desktop {...sharedProps} />
+          </CardContent>
         </Box>
         <Box display={{ xs: 'block', md: 'none' }}>
-          <Mobile onClose={onClose} article={article} {...sharedProps} />
+          <Dialog fullScreen open>
+            <Mobile onClose={onClose} article={article} {...sharedProps} />
+          </Dialog>
         </Box>
       </form>
     );
