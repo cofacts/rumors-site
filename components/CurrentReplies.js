@@ -69,15 +69,16 @@ class DeletedItems extends React.Component {
     return (
       <Dialog onClose={this.handleClose} open={showModal}>
         <DialogTitle>{t`Deleted replies`}</DialogTitle>
-        <PlainList>
+        <PlainList style={{ padding: '0 12px' }}>
           {items.map(ar => (
-            <ArticleReply
-              key={`${ar.articleId}__${ar.replyId}`}
-              articleReply={ar}
-              onAction={this.handleRestore}
-              disabled={disabled}
-              actionText={t`Restore`}
-            />
+            <li key={`${ar.articleId}__${ar.replyId}`}>
+              <ArticleReply
+                articleReply={ar}
+                onAction={this.handleRestore}
+                disabled={disabled}
+                actionText={t`Restore`}
+              />
+            </li>
           ))}
         </PlainList>
       </Dialog>
@@ -100,20 +101,10 @@ class DeletedItems extends React.Component {
     );
 
     return (
-      <li>
-        <span className="prompt">{jt`There are ${replyLink} deleted by its author.`}</span>
+      <>
+        {jt`There are ${replyLink} deleted by its author.`}
         {this.renderModal()}
-
-        <style jsx>{`
-          li {
-            padding: 12px 24px 0;
-          }
-          .prompt {
-            font-size: 12px;
-            color: rgba(0, 0, 0, 0.5);
-          }
-        `}</style>
-      </li>
+      </>
     );
   }
 }
