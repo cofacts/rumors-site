@@ -21,18 +21,18 @@ const margin = { top: 10, left: 40, right: 20, bottom: 20 };
 
 const useStyles = makeStyles(theme => ({
   labels: {
+    '--gap': '5px',
     display: 'flex',
     alignItems: 'center',
-    margin: `${theme.spacing(1)}px -5px`,
+    margin: `${theme.spacing(1)}px -var(--gap)`,
+    [theme.breakpoints.down('xs')]: {
+      '--gap': '2px',
+    },
   },
   label: {
     fontSize: 14,
     display: 'inline-block',
-    margin: '0 5px',
-
-    [theme.breakpoints.down('xs')]: {
-      margin: '0 2px',
-    },
+    margin: '0 var(--gap)',
 
     '&.plotLabel': {
       color: theme.palette.secondary[500],
