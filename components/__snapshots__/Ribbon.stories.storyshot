@@ -10,21 +10,19 @@ exports[`Storyshots Ribbon Default 1`] = `
   }
 >
   Text content
-  <Ribbon>
-    <aside
-      className="makeStyles-root"
+  <aside
+    className="makeStyles-root"
+  >
+    ribbon children
+    <svg
+      className="makeStyles-tail"
+      viewBox="0 0 1 2"
     >
-      ribbon children
-      <svg
-        className="makeStyles-tail"
-        viewBox="0 0 1 2"
-      >
-        <path
-          d="M0 0 H1 L0 1 L1 2 H0 Z"
-        />
-      </svg>
-    </aside>
-  </Ribbon>
+      <path
+        d="M0 0 H1 L0 1 L1 2 H0 Z"
+      />
+    </svg>
+  </aside>
   Text content
 </div>
 `;
