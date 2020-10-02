@@ -238,7 +238,7 @@ const CreateReplyRequestForm = React.memo(
         <CardContent>
           {showForm && (
             <>
-              <Box pl={7}>
+              <Box pl={[0, 7]}>
                 <Hint>{t`Did you find anything suspicious about the message after you search Facebook & Google?`}</Hint>
               </Box>
               <Box component="form" display="flex" py={2}>
