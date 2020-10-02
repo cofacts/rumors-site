@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, Fragment } from 'react';
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
 import { useMutation } from '@apollo/react-hooks';
 
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import Divider from '@material-ui/core/Divider';
 
 import ArticleReply from './ArticleReply';
-import PlainList from './PlainList';
 import { CardContent } from './Card';
 
 const CurrentRepliesData = gql`
@@ -69,18 +70,19 @@ class DeletedItems extends React.Component {
     return (
       <Dialog onClose={this.handleClose} open={showModal}>
         <DialogTitle>{t`Deleted replies`}</DialogTitle>
-        <PlainList style={{ padding: '0 12px' }}>
-          {items.map(ar => (
-            <li key={`${ar.articleId}__${ar.replyId}`}>
+        <DialogContent dividers>
+          {items.map((ar, i) => (
+            <Fragment key={ar.replyId}>
+              {i > 0 && <Divider style={{ marginBottom: 12 }} />}
               <ArticleReply
                 articleReply={ar}
                 onAction={this.handleRestore}
                 disabled={disabled}
                 actionText={t`Restore`}
               />
-            </li>
+            </Fragment>
           ))}
-        </PlainList>
+        </DialogContent>
       </Dialog>
     );
   };
