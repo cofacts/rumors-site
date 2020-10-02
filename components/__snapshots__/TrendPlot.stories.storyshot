@@ -133,84 +133,80 @@ exports[`Storyshots TrendPlot Normal 1`] = `
     }
   >
     <div
-      className="makeStyles-root"
+      className="makeStyles-labels"
     >
       <div
-        className="MuiBox-root MuiBox-root"
+        className="MuiBox-root MuiBox-root makeStyles-label plotLabel"
       >
-        <div
-          className="MuiBox-root MuiBox-root makeStyles-label plotLabel"
-        >
-          past 31 days
-        </div>
-        <Hidden
+        Past 31 days
+      </div>
+      <Hidden
+        xsDown={true}
+      >
+        <WithWidth(HiddenJs)
+          lgDown={false}
+          lgUp={false}
+          mdDown={false}
+          mdUp={false}
+          smDown={false}
+          smUp={false}
+          xlDown={false}
+          xlUp={false}
           xsDown={true}
-        >
-          <WithWidth(HiddenJs)
-            lgDown={false}
-            lgUp={false}
-            mdDown={false}
-            mdUp={false}
-            smDown={false}
-            smUp={false}
-            xlDown={false}
-            xlUp={false}
-            xsDown={true}
-            xsUp={false}
-          />
-        </Hidden>
-        <Hidden
-          smUp={true}
-        >
-          <WithWidth(HiddenJs)
-            lgDown={false}
-            lgUp={false}
-            mdDown={false}
-            mdUp={false}
-            smDown={false}
-            smUp={true}
-            xlDown={false}
-            xlUp={false}
-            xsDown={false}
-            xsUp={false}
-          />
-        </Hidden>
-        <div
-          className="MuiBox-root MuiBox-root makeStyles-label totalLabel"
-        >
-          Total Visit: 51156
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            onClick={[Function]}
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        className="MuiBox-root MuiBox-root"
+          xsUp={false}
+        />
+      </Hidden>
+      <Hidden
+        smUp={true}
       >
-        <AutoSizer
-          disableHeight={true}
-          disableWidth={false}
-          onResize={[Function]}
-          style={Object {}}
+        <WithWidth(HiddenJs)
+          lgDown={false}
+          lgUp={false}
+          mdDown={false}
+          mdUp={false}
+          smDown={false}
+          smUp={true}
+          xlDown={false}
+          xlUp={false}
+          xsDown={false}
+          xsUp={false}
+        />
+      </Hidden>
+      <div
+        className="MuiBox-root MuiBox-root makeStyles-label totalLabel"
+      >
+        Total Visit: 51156
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root"
+          focusable="false"
+          onClick={[Function]}
+          viewBox="0 0 24 24"
         >
-          <div
-            style={
-              Object {
-                "overflow": "visible",
-                "width": 0,
-              }
-            }
+          <path
+            d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
           />
-        </AutoSizer>
+        </svg>
       </div>
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root"
+    >
+      <AutoSizer
+        disableHeight={true}
+        disableWidth={false}
+        onResize={[Function]}
+        style={Object {}}
+      >
+        <div
+          style={
+            Object {
+              "overflow": "visible",
+              "width": 0,
+            }
+          }
+        />
+      </AutoSizer>
     </div>
   </TrendPlot>
 </div>
