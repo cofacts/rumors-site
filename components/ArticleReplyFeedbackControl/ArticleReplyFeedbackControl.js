@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { Popover, Typography } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import ReasonsDisplay from './ReasonsDisplay';
 import ButtonGroupDisplay from './ButtonGroupDisplay';
@@ -46,18 +47,8 @@ const useStyles = makeStyles(theme => ({
   },
   textCenter: { textAlign: 'center' },
   sendButton: {
-    outline: 'none',
-    border: 'none',
     marginTop: 10,
-    padding: '10px 25px',
-    background: theme.palette.primary[500],
-    color: theme.palette.common.white,
-    cursor: 'pointer',
     borderRadius: 30,
-    '&:disabled': {
-      opacity: 0.7,
-      cursor: 'not-allowed',
-    },
   },
 }));
 
@@ -220,9 +211,11 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
           rows={10}
         />
         <div className={classes.textCenter}>
-          <button
-            type="button"
+          <Button
             className={classes.sendButton}
+            color="primary"
+            variant="contained"
+            disableElevation
             disabled={updatingReplyFeedback}
             onClick={() => {
               createReplyFeedback({
@@ -234,7 +227,9 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
                 },
               });
             }}
-          >{t`Send`}</button>
+          >
+            {t`Send`}
+          </Button>
         </div>
       </Popover>
       <Snackbar
