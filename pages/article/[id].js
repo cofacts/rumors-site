@@ -248,9 +248,13 @@ function ArticlePage() {
   }, [currentUser]);
 
   const handleNewReplySubmit = useCallback(() => {
-    if (!replySectionRef.current) return;
-    replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
     setFlashMessage(t`Your reply has been submitted.`);
+
+    // Wait for NewReplySection to collapse before scrolling to new reply
+    setTimeout(() => {
+      if (!replySectionRef.current) return;
+      replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
   }, []);
 
   const handleError = useCallback(error => {
