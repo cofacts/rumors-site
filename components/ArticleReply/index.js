@@ -135,7 +135,7 @@ const ArticleReply = React.memo(
           : '';
 
       return (
-        <Box component="footer" display="flex" py={2}>
+        <Box component="footer" display="flex" pt={2}>
           {showFeedback && (
             <ArticleReplyFeedbackControl
               articleReply={articleReply}

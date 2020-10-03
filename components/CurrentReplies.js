@@ -73,7 +73,7 @@ class DeletedItems extends React.Component {
         <DialogContent dividers>
           {items.map((ar, i) => (
             <Fragment key={ar.replyId}>
-              {i > 0 && <Divider style={{ marginBottom: 12 }} />}
+              {i > 0 && <Divider style={{ marginBottom: 12, marginTop: 16 }} />}
               <ArticleReply
                 articleReply={ar}
                 onAction={this.handleRestore}
