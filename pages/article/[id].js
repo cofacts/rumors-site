@@ -356,17 +356,21 @@ function ArticlePage() {
                 })
               )}
               <Hyperlinks hyperlinks={hyperlinks} />
-              <ArticleCategories
-                articleId={article.id}
-                articleCategories={article.articleCategories.filter(
-                  ({ status }) => status === 'NORMAL'
-                )}
-              />
+              <Box my={[1.5, 2]}>
+                <ArticleCategories
+                  articleId={article.id}
+                  articleCategories={article.articleCategories.filter(
+                    ({ status }) => status === 'NORMAL'
+                  )}
+                />
+              </Box>
               <TrendPlot data={article.stats} />
             </CardContent>
             {replyRequestsWithComments.length > 0 ? (
               <>
-                <CardHeader>{`Comments from people reporting this message`}</CardHeader>
+                <CardHeader style={{ paddingTop: 0 }}>
+                  {`Comments from people reporting this message`}
+                </CardHeader>
                 <CardContent style={{ padding: 0 }}>
                   {replyRequestsWithComments.map(replyRequest => (
                     <ReplyRequestReason
@@ -422,7 +426,7 @@ function ArticlePage() {
           </Card>
         </div>
 
-        <div className={cx(classes.card, classes.aside)}>
+        <div className={cx(classes.aside)}>
           <h4>{t`Similar messages`}</h4>
           {similarArticles.length ? (
             <Box

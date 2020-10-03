@@ -15,14 +15,15 @@ const {
 } = getConfig();
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    marginTop: -theme.spacing(1), // Counter margin-top for article category
+  },
   button: {
     marginTop: theme.spacing(1),
-    background: theme.palette.common.white,
-    border: `1px solid ${theme.palette.secondary[100]}`,
-    color: theme.palette.secondary[500],
   },
   buttonIcon: {
     fontSize: theme.typography.body1.fontSize,
+    marginRight: 4,
   },
 }));
 
@@ -61,7 +62,7 @@ function ArticleCategories({ articleId, articleCategories }) {
   const hasOtherCategories = allCategories.some(({ id }) => !isInArticle[id]);
 
   return (
-    <aside>
+    <aside className={classes.root}>
       {(articleCategories || []).map(articleCategory => (
         <ArticleCategory
           key={articleCategory.categoryId}
@@ -73,6 +74,7 @@ function ArticleCategories({ articleId, articleCategories }) {
         <Chip
           className={classes.button}
           onClick={() => setAddDialogShow(true)}
+          variant="outlined"
           label={
             <Box display="flex" alignItems="center" pr={1}>
               <AddIcon className={classes.buttonIcon} />
