@@ -323,7 +323,7 @@ function ArticlePage() {
           {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
       </Head>
-      <div className={classes.root} onCopy={handleCopy}>
+      <div className={classes.root}>
         <div className={classes.main}>
           <Box
             className={classes.card}
@@ -355,7 +355,7 @@ function ArticlePage() {
               )}
             </Box>
             <Box px={{ xs: '12px', md: '19px' }}>
-              <Box py={3} overflow="hidden">
+              <Box py={3} overflow="hidden" onCopy={handleCopy}>
                 {nl2br(
                   linkify(text, {
                     props: {
@@ -423,6 +423,7 @@ function ArticlePage() {
             mt={3}
             id="current-replies"
             ref={replySectionRef}
+            onCopy={handleCopy}
           >
             <h2>{t`${article.articleReplies.length} replies to the message`}</h2>
             <Divider classes={{ root: classes.divider }} />
