@@ -21,12 +21,13 @@ const margin = { top: 10, left: 40, right: 20, bottom: 20 };
 
 const useStyles = makeStyles(theme => ({
   labels: {
-    '--gap': '5px',
+    '--gap': '2px',
     display: 'flex',
     alignItems: 'center',
-    margin: `${theme.spacing(1)}px -var(--gap)`,
-    [theme.breakpoints.down('xs')]: {
-      '--gap': '2px',
+    margin: `${theme.spacing(1)}px calc(-1 * var(--gap))`,
+
+    [theme.breakpoints.up('md')]: {
+      '--gap': '5px',
     },
   },
   label: {
