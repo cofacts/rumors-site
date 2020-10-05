@@ -12,6 +12,7 @@ button, input {
 }
 
 /* Primary button should get white color */
-.MuiButton-containedPrimary.MuiButton-containedPrimary {
+.MuiButton-containedPrimary.MuiButton-containedPrimary,
+.MuiFab-primary.MuiFab-primary {
   color: #fff;
 }
