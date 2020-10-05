@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
+import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { useMutation } from '@apollo/react-hooks';
 import {
   ButtonGroup,
   Button,
-  SvgIcon,
   Box,
   Menu,
   MenuItem,
+  TextareaAutosize,
+  Fab,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import gql from 'graphql-tag';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import { CardContent } from 'components/Card';
+import { PenIcon } from 'components/icons';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
 import useCurrentUser from 'lib/useCurrentUser';
 import cx from 'clsx';
@@ -76,58 +77,19 @@ const useStyles = makeStyles(theme => ({
     marginTop: 40,
     marginLeft: 30,
   },
-  floatButtonContainer: {
-    position: 'absolute',
-    opacity: 0,
-    zIndex: 1000,
-    [theme.breakpoints.up('sm')]: {
-      right: 13,
-      top: 50,
-    },
+  newReplyFab: {
+    position: 'fixed',
+    zIndex: theme.zIndex.speedDial,
+    right: 20,
+    bottom: 20,
     transition: 'opacity .2s ease-in',
     pointerEvents: 'none',
+    opacity: 0,
     '&.show': { opacity: 1, pointerEvents: 'auto' },
   },
-  floatButton: {
-    [theme.breakpoints.down('sm')]: {
-      top: 120,
-      right: 5,
-      padding: '6px 13px',
-    },
-    position: 'fixed',
-    boxShadow:
-      '0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 0px 2px rgba(0, 0, 0, 0.14)',
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.common.white,
-    cursor: 'pointer',
-    border: 'none',
-    outline: 'none',
-    borderRadius: 40,
-    paddingRight: 10,
-  },
-  floatButtonIconContainer: {
-    borderRadius: '50%',
-    width: 20,
-    height: 20,
-    display: 'flex',
-    marginRight: 4,
-    [theme.breakpoints.up('md')]: {
-      marginRight: 22,
-      transformOrigin: '50% 50%',
-      transform: 'scale(3)',
-      border: `1px solid ${theme.palette.primary[500]}`,
-      background: theme.palette.common.white,
-    },
-  },
-  floatButtonIcon: {
-    fontSize: 14,
-    margin: 'auto',
-    [theme.breakpoints.up('md')]: {
-      fontSize: 10,
-      color: theme.palette.primary[500],
-    },
+  newReplyFabIcon: {
+    marginRight: 8,
+    fontSize: 22,
   },
 }));
 
@@ -139,12 +101,6 @@ const CREATE_REPLY_REQUEST = gql`
   }
 `;
 const MIN_REASON_LENGTH = 80;
-
-const PenIcon = props => (
-  <SvgIcon viewBox="0 0 22 22" {...props}>
-    <path d="M15.5812 0L22 6.43177L20.1494 8.25647L13.7435 1.85059L15.5812 0ZM0 21.0682L8.41177 12.6953C8.28235 12.2941 8.37294 11.7894 8.70941 11.4529C9.21412 10.9482 10.0424 10.9482 10.5471 11.4529C11.0518 11.9706 11.0518 12.7859 10.5471 13.2906C10.2106 13.6271 9.70588 13.7176 9.30471 13.5882L0.931764 22L14.6624 17.4059L19.2306 9.17529L12.8376 2.76941L4.59412 7.33765L0 21.0682Z" />
-  </SvgIcon>
-);
 
 const SubmitButton = ({
   articleId,
@@ -335,24 +291,20 @@ const CreateReplyRequestForm = React.memo(
         >
           {t`Reply to this message`}
         </Button>
-
-        <div
-          className={cx(
-            classes.floatButtonContainer,
-            showFloatButton && 'show'
-          )}
-        >
-          <button
-            type="button"
-            className={classes.floatButton}
+        {user && (
+          <Fab
+            color="primary"
+            size="medium"
+            variant="extended"
+            aria-label="Add new reply"
+            data-ga="Add new reply FAB"
+            className={cx(classes.newReplyFab, showFloatButton && 'show')}
             onClick={onNewReplyButtonClick}
           >
-            <div className={classes.floatButtonIconContainer}>
-              <PenIcon className={classes.floatButtonIcon} />
-            </div>
+            <PenIcon className={classes.newReplyFabIcon} />
             {t`Reply to this message`}
-          </button>
-        </div>
+          </Fab>
+        )}
       </>
     );
   }
