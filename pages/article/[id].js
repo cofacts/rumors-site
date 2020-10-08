@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Snackbar } from '@material-ui/core';
+import { Box, Hidden, Snackbar } from '@material-ui/core';
 import { ngettext, msgid, t } from 'ttag';
 
 import { useRouter } from 'next/router';
@@ -173,6 +173,10 @@ const useStyles = makeStyles(theme => ({
   lineFabText: {
     lineHeight: '20px',
     margin: '0 12px',
+  },
+  bannerImage: {
+    width: '100%',
+    borderRadius: theme.shape.borderRadius,
   },
 }));
 
@@ -460,6 +464,16 @@ function ArticlePage() {
             </CardHeader>
             <CurrentReplies articleReplies={article.articleReplies} />
           </Card>
+
+          <Hidden smDown implementation="css">
+            <a href={LINE_URL}>
+              <img
+                className={classes.bannerImage}
+                src="/line-banner-desktop@2x.png"
+                alt={t`Add Cofacts as friend in LINE`}
+              />
+            </a>
+          </Hidden>
         </div>
 
         <aside className={classes.aside}>
@@ -484,6 +498,16 @@ function ArticlePage() {
           )}
         </aside>
       </div>
+      <Hidden mdUp implementation="css">
+        <a href={LINE_URL}>
+          <img
+            className={classes.bannerImage}
+            src="/line-banner-mobile@2x.png"
+            alt={t`Add Cofacts as friend in LINE`}
+            style={{ marginBottom: 24 }}
+          />
+        </a>
+      </Hidden>
       <Snackbar
         open={!!flashMessage}
         onClose={() => setFlashMessage('')}
