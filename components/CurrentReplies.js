@@ -1,13 +1,15 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, Fragment } from 'react';
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
 import { useMutation } from '@apollo/react-hooks';
 
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import Divider from '@material-ui/core/Divider';
 
 import ArticleReply from './ArticleReply';
-import PlainList from './PlainList';
+import { CardContent } from './Card';
 
 const CurrentRepliesData = gql`
   fragment CurrentRepliesData on ArticleReply {
@@ -68,17 +70,19 @@ class DeletedItems extends React.Component {
     return (
       <Dialog onClose={this.handleClose} open={showModal}>
         <DialogTitle>{t`Deleted replies`}</DialogTitle>
-        <PlainList>
-          {items.map(ar => (
-            <ArticleReply
-              key={`${ar.articleId}__${ar.replyId}`}
-              articleReply={ar}
-              onAction={this.handleRestore}
-              disabled={disabled}
-              actionText={t`Restore`}
-            />
+        <DialogContent dividers>
+          {items.map((ar, i) => (
+            <Fragment key={ar.replyId}>
+              {i > 0 && <Divider style={{ marginBottom: 12, marginTop: 16 }} />}
+              <ArticleReply
+                articleReply={ar}
+                onAction={this.handleRestore}
+                disabled={disabled}
+                actionText={t`Restore`}
+              />
+            </Fragment>
           ))}
-        </PlainList>
+        </DialogContent>
       </Dialog>
     );
   };
@@ -99,20 +103,10 @@ class DeletedItems extends React.Component {
     );
 
     return (
-      <li>
-        <span className="prompt">{jt`There are ${replyLink} deleted by its author.`}</span>
+      <>
+        {jt`There are ${replyLink} deleted by its author.`}
         {this.renderModal()}
-
-        <style jsx>{`
-          li {
-            padding: 12px 24px 0;
-          }
-          .prompt {
-            font-size: 12px;
-            color: rgba(0, 0, 0, 0.5);
-          }
-        `}</style>
-      </li>
+      </>
     );
   }
 }
@@ -143,7 +137,9 @@ function CurrentReplies({ articleReplies = [] }) {
   );
 
   if (articleReplies.length === 0) {
-    return <p>{t`There is no existing replies for now.`}</p>;
+    return (
+      <CardContent>{t`There is no existing replies for now.`}</CardContent>
+    );
   }
 
   const { validArticleReplies, deletedArticleReplies } = articleReplies.reduce(
@@ -160,22 +156,27 @@ function CurrentReplies({ articleReplies = [] }) {
   );
 
   return (
-    <PlainList>
+    <>
       {validArticleReplies.map(ar => (
-        <ArticleReply
-          key={`${ar.articleId}__${ar.replyId}`}
-          actionText={t`Delete`}
-          articleReply={ar}
-          onAction={handleDelete}
-          disabled={updatingArticleReplyStatus}
-        />
+        <CardContent key={`${ar.articleId}__${ar.replyId}`}>
+          <ArticleReply
+            actionText={t`Delete`}
+            articleReply={ar}
+            onAction={handleDelete}
+            disabled={updatingArticleReplyStatus}
+          />
+        </CardContent>
       ))}
-      <DeletedItems
-        items={deletedArticleReplies}
-        onRestore={handleRestore}
-        disabled={updatingArticleReplyStatus}
-      />
-    </PlainList>
+      {deletedArticleReplies && deletedArticleReplies.length > 0 && (
+        <CardContent>
+          <DeletedItems
+            items={deletedArticleReplies}
+            onRestore={handleRestore}
+            disabled={updatingArticleReplyStatus}
+          />
+        </CardContent>
+      )}
+    </>
   );
 }
 

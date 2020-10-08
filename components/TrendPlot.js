@@ -20,14 +20,20 @@ const CHART_DURATION = 31;
 const margin = { top: 10, left: 40, right: 20, bottom: 20 };
 
 const useStyles = makeStyles(theme => ({
+  labels: {
+    '--gap': '2px',
+    display: 'flex',
+    alignItems: 'center',
+    margin: `${theme.spacing(1)}px calc(-1 * var(--gap))`,
+
+    [theme.breakpoints.up('md')]: {
+      '--gap': '5px',
+    },
+  },
   label: {
     fontSize: 14,
     display: 'inline-block',
-    margin: '0 5px',
-
-    [theme.breakpoints.down('xs')]: {
-      margin: '0 2px',
-    },
+    margin: '0 var(--gap)',
 
     '&.plotLabel': {
       color: theme.palette.secondary[500],
@@ -48,11 +54,6 @@ const useStyles = makeStyles(theme => ({
         width: 14,
       },
     },
-  },
-  root: {
-    flex: 1,
-    height: '100%',
-    marginBottom: '20px',
   },
 }));
 
@@ -122,9 +123,9 @@ export default function TrendPlot({ data }) {
   const totalVisits = totalWebVisits + totalLineVisits;
 
   return (
-    <div className={`${classes.root}`}>
-      <Box display="flex" flexDirection="row" alignItems="center" p={1}>
-        <Box className={`${classes.label} plotLabel`}>{t`past 31 days`}</Box>
+    <>
+      <div className={classes.labels}>
+        <Box className={`${classes.label} plotLabel`}>{t`Past 31 days`}</Box>
         <Hidden xsDown>
           <Box className={`${classes.label} webLabel `}>
             {t`Web Visit: ${totalWebVisits}`}
@@ -149,7 +150,7 @@ export default function TrendPlot({ data }) {
             <KeyboardArrowUpIcon onClick={() => setPlotShow(true)} />
           )}
         </Box>
-      </Box>
+      </div>
       <Box display="block">
         {showPlot && (
           <AutoSizer disableHeight>
@@ -159,6 +160,6 @@ export default function TrendPlot({ data }) {
           </AutoSizer>
         )}
       </Box>
-    </div>
+    </>
   );
 }

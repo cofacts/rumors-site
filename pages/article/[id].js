@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Divider, Snackbar } from '@material-ui/core';
+import { Box, Snackbar } from '@material-ui/core';
 import { ngettext, msgid, t } from 'ttag';
 
 import { useRouter } from 'next/router';
@@ -22,6 +22,7 @@ import AddIcon from '@material-ui/icons/AddCircleOutline';
 import Fab from '@material-ui/core/Fab';
 import AppLayout from 'components/AppLayout';
 import Ribbon from 'components/Ribbon';
+import { Card, CardHeader, CardContent } from 'components/Card';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
@@ -42,6 +43,13 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'flex-start',
     },
   },
+  textHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingRight: 'var(--card-px)',
+  },
   title: {
     padding: '2px 12px',
     fontSize: 12,
@@ -60,14 +68,12 @@ const useStyles = makeStyles(theme => ({
       fontSize: 14,
     },
   },
-  card: {
-    background: theme.palette.common.white,
-    borderRadius: 8,
-  },
   main: {
     flex: 1,
-    marginRight: 0,
     minWidth: 0,
+    '& > *': {
+      marginBottom: 12,
+    },
     [theme.breakpoints.up('md')]: {
       flex: 3,
       marginRight: 12,
@@ -87,22 +93,6 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: 16,
         borderBottom: `1px solid ${theme.palette.secondary[500]}`,
       },
-    },
-  },
-  newReplyContainer: {
-    position: 'fixed',
-    zIndex: theme.zIndex.modal,
-    height: '100%',
-    width: '100%',
-    top: 0,
-    left: 0,
-    background: theme.palette.common.white,
-    [theme.breakpoints.up('md')]: {
-      zIndex: 10,
-      position: 'relative',
-      padding: '28px 16px',
-      marginTop: 24,
-      borderRadius: 8,
     },
   },
   similarMessageContainer: {
@@ -166,6 +156,7 @@ const LOAD_ARTICLE = gql`
         ...HyperlinkData
       }
       replyRequests {
+        reason
         ...ReplyRequestInfo
       }
       articleReplies {
@@ -257,9 +248,13 @@ function ArticlePage() {
   }, [currentUser]);
 
   const handleNewReplySubmit = useCallback(() => {
-    if (!replySectionRef.current) return;
-    replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
     setFlashMessage(t`Your reply has been submitted.`);
+
+    // Wait for NewReplySection to collapse before scrolling to new reply
+    setTimeout(() => {
+      if (!replySectionRef.current) return;
+      replySectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
   }, []);
 
   const handleError = useCallback(error => {
@@ -291,7 +286,9 @@ function ArticlePage() {
         <Head>
           <title>{t`Loading`}</title>
         </Head>
-        Loading...
+        <Card>
+          <CardContent>{t`Loading`}...</CardContent>
+        </Card>
       </AppLayout>
     );
   }
@@ -302,12 +299,14 @@ function ArticlePage() {
         <Head>
           <title>{t`Not found`}</title>
         </Head>
-        {t`Message does not exist`}
+        <Card>
+          <CardContent>{t`Message does not exist`}</CardContent>
+        </Card>
       </AppLayout>
     );
   }
 
-  const { replyRequestCount, text, hyperlinks } = article;
+  const { replyRequestCount, text, hyperlinks, replyCount } = article;
   const similarArticles = article?.similarArticles?.edges || [];
 
   const createdAt = article.createdAt
@@ -315,6 +314,10 @@ function ArticlePage() {
     : new Date();
 
   const timeAgoStr = formatDistanceToNow(createdAt);
+
+  const replyRequestsWithComments = (article.replyRequests || []).filter(
+    ({ reason }) => reason
+  );
 
   return (
     <AppLayout>
@@ -325,18 +328,8 @@ function ArticlePage() {
       </Head>
       <div className={classes.root}>
         <div className={classes.main}>
-          <Box
-            className={classes.card}
-            position="relative"
-            pb={{ xs: '13px', md: '21px' }}
-          >
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              pt="12px"
-              pr={{ xs: '12px', md: '19px' }}
-            >
+          <Card>
+            <header className={classes.textHeader}>
               <Ribbon className={classes.title}>
                 {ngettext(
                   msgid`${replyRequestCount} person report this message`,
@@ -353,55 +346,61 @@ function ArticlePage() {
                   {t`First reported ${timeAgoStr} ago`}
                 </span>
               )}
-            </Box>
-            <Box px={{ xs: '12px', md: '19px' }}>
-              <Box py={3} overflow="hidden" onCopy={handleCopy}>
-                {nl2br(
-                  linkify(text, {
-                    props: {
-                      target: '_blank',
-                    },
-                  })
-                )}
-                <Hyperlinks hyperlinks={hyperlinks} />
-              </Box>
-              <ArticleCategories
-                articleId={article.id}
-                articleCategories={article.articleCategories.filter(
-                  ({ status }) => status === 'NORMAL'
-                )}
-              />
-              <TrendPlot data={article.stats} />
-              <Divider />
-              <footer>
-                {article.replyRequests.map(replyRequest => (
-                  <ReplyRequestReason
-                    key={replyRequest.id}
-                    articleId={article.id}
-                    replyRequest={replyRequest}
-                  />
-                ))}
-                <CreateReplyRequestForm
-                  requestedForReply={article.requestedForReply}
+            </header>
+            <CardContent>
+              {nl2br(
+                linkify(text, {
+                  props: {
+                    target: '_blank',
+                  },
+                })
+              )}
+              <Hyperlinks hyperlinks={hyperlinks} />
+              <Box my={[1.5, 2]}>
+                <ArticleCategories
                   articleId={article.id}
-                  onNewReplyButtonClick={() => {
-                    setShowForm(true);
-                    // use setTimeout to make sure the form has shown
-                    setTimeout(
-                      () =>
-                        newReplyRef.current.scrollIntoView({
-                          behavior: 'smooth',
-                        }),
-                      0
-                    );
-                  }}
+                  articleCategories={article.articleCategories.filter(
+                    ({ status }) => status === 'NORMAL'
+                  )}
                 />
-              </footer>
-            </Box>
-          </Box>
+              </Box>
+              <TrendPlot data={article.stats} />
+            </CardContent>
+            {replyRequestsWithComments.length > 0 ? (
+              <>
+                <CardHeader style={{ paddingTop: 0 }}>
+                  {`Comments from people reporting this message`}
+                </CardHeader>
+                <CardContent style={{ padding: 0 }}>
+                  {replyRequestsWithComments.map(replyRequest => (
+                    <ReplyRequestReason
+                      key={replyRequest.id}
+                      articleId={article.id}
+                      replyRequest={replyRequest}
+                    />
+                  ))}
+                </CardContent>
+              </>
+            ) : null}
+            <CreateReplyRequestForm
+              requestedForReply={article.requestedForReply}
+              articleId={article.id}
+              onNewReplyButtonClick={() => {
+                setShowForm(true);
+                // use setTimeout to make sure the form has shown
+                setTimeout(
+                  () =>
+                    newReplyRef.current.scrollIntoView({
+                      behavior: 'smooth',
+                    }),
+                  0
+                );
+              }}
+            />
+          </Card>
 
           {showForm && (
-            <div className={classes.newReplyContainer} ref={newReplyRef}>
+            <div ref={newReplyRef}>
               <NewReplySection
                 article={article}
                 existingReplyIds={(article?.articleReplies || []).map(
@@ -415,23 +414,19 @@ function ArticlePage() {
             </div>
           )}
 
-          <Box
-            className={classes.card}
-            position="relative"
-            px={{ xs: '12px', md: '19px' }}
-            py={{ xs: '13px', md: '21px' }}
-            mt={3}
-            id="current-replies"
-            ref={replySectionRef}
-            onCopy={handleCopy}
-          >
-            <h2>{t`${article.articleReplies.length} replies to the message`}</h2>
-            <Divider classes={{ root: classes.divider }} />
+          <Card ref={replySectionRef} onCopy={handleCopy}>
+            <CardHeader>
+              {ngettext(
+                msgid`There is ${replyCount} fact-checking reply to the message`,
+                `There are ${replyCount} fact-checking replies to the message`,
+                replyCount
+              )}
+            </CardHeader>
             <CurrentReplies articleReplies={article.articleReplies} />
-          </Box>
+          </Card>
         </div>
 
-        <div className={cx(classes.card, classes.aside)}>
+        <div className={cx(classes.aside)}>
           <h4>{t`Similar messages`}</h4>
           {similarArticles.length ? (
             <Box

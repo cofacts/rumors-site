@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
-import { Box, Divider } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { LINE_URL } from 'constants/urls';
@@ -17,17 +17,6 @@ import ReplyActions from './ReplyActions';
 import ReplyShare from './ReplyShare';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    marginBottom: 16,
-    '&:not(:first)': {
-      borderTop: `1px solid ${theme.palette.secondary[100]}`,
-    },
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    [theme.breakpoints.up('md')]: {
-      marginBottom: 20,
-    },
-  },
   replyType: {
     color: ({ replyType }) => {
       switch (replyType) {
@@ -146,7 +135,7 @@ const ArticleReply = React.memo(
           : '';
 
       return (
-        <Box component="footer" display="flex" py={2}>
+        <Box component="footer" display="flex" pt={2}>
           {showFeedback && (
             <ArticleReplyFeedbackControl
               articleReply={articleReply}
@@ -197,7 +186,7 @@ const ArticleReply = React.memo(
     const authorElem = renderAuthor();
 
     return (
-      <li className={classes.root}>
+      <>
         <Box component="header" display="flex" alignItems="center">
           {user && <Avatar user={user} className={classes.avatar} />}
           <Box flexGrow={1}>
@@ -222,8 +211,7 @@ const ArticleReply = React.memo(
 
         {renderReference()}
         {renderFooter()}
-        <Divider />
-      </li>
+      </>
     );
   }
 );

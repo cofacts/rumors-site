@@ -3,11 +3,13 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 
-import { Box } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import useCurrentUser from 'lib/useCurrentUser';
 import Desktop from './Desktop';
 import Mobile from './Mobile';
+import { Card, CardContent } from 'components/Card';
 import getDedupedArticleReplies from 'lib/getDedupedArticleReplies';
 import RelatedReplies from 'components/RelatedReplies';
 import ReplyFormContext, { withReplyFormContext } from './ReplyForm/context';
@@ -68,6 +70,8 @@ const NewReplySection = withContext(
   }) => {
     const { fields, handlers } = useContext(ReplyFormContext);
     const currentUser = useCurrentUser();
+    // NewReplySection is not server-rendered, thus we can use useMediaQuery
+    const isDesktop = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
     const [createReply, { loading: creatingReply }] = useMutation(
       CREATE_REPLY,
@@ -134,12 +138,17 @@ const NewReplySection = withContext(
       <form onSubmit={handleSubmit}>
         {/* prevent chrome auto submit behavior when 'Enter' pressed */}
         <button type="submit" disabled hidden />
-        <Box display={{ xs: 'none', md: 'block' }}>
-          <Desktop {...sharedProps} />
-        </Box>
-        <Box display={{ xs: 'block', md: 'none' }}>
-          <Mobile onClose={onClose} article={article} {...sharedProps} />
-        </Box>
+        {isDesktop ? (
+          <Card>
+            <CardContent style={{ paddingTop: 8 }}>
+              <Desktop {...sharedProps} />
+            </CardContent>
+          </Card>
+        ) : (
+          <Dialog fullScreen open>
+            <Mobile onClose={onClose} article={article} {...sharedProps} />
+          </Dialog>
+        )}
       </form>
     );
   }
