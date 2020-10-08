@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
@@ -32,10 +33,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Ribbon({ className, children, ...props }) {
+function Ribbon({ className, children, ...props }, ref) {
   const classes = useStyles();
   return (
-    <aside className={cx(classes.root, className)} {...props}>
+    <aside className={cx(classes.root, className)} ref={ref} {...props}>
       {children}
       <svg className={cx(classes.tail)} viewBox="0 0 1 2">
         <path d="M0 0 H1 L0 1 L1 2 H0 Z" />
@@ -44,4 +45,4 @@ function Ribbon({ className, children, ...props }) {
   );
 }
 
-export default Ribbon;
+export default forwardRef(Ribbon);
