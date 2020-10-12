@@ -16,6 +16,7 @@ import AppLayout from 'components/AppLayout';
 import ArticleReply from 'components/ArticleReply';
 import { Card, CardHeader, CardContent } from 'components/Card';
 import ArticleInfo from 'components/ArticleInfo';
+import Infos from 'components/Infos';
 import {
   SideSection,
   SideSectionHeader,
@@ -71,6 +72,17 @@ const LOAD_REPLY = gql`
         createdAt
         status
         ...ArticleReplyData
+      }
+      similarReplies(orderBy: [{ _score: DESC }]) {
+        edges {
+          node {
+            id
+            text
+            articleReplies(status: NORMAL) {
+              articleId
+            }
+          }
+        }
       }
     }
   }
@@ -155,15 +167,17 @@ function ReplyPage() {
   const reply = data?.GetReply;
   usePushToDataLayer(!!reply, { event: 'dataLoaded' });
 
-  if (loading) {
+  if (loading || true) {
     return (
       <AppLayout>
         <Head>
           <title>{t`Loading`}</title>
         </Head>
-        <Card>
-          <CardContent>{t`Loading`}...</CardContent>
-        </Card>
+        <div className={classes.root}>
+          <Card>
+            <CardContent>{t`Loading`}...</CardContent>
+          </Card>
+        </div>
       </AppLayout>
     );
   }
@@ -174,9 +188,11 @@ function ReplyPage() {
         <Head>
           <title>{t`Not found`}</title>
         </Head>
-        <Card>
-          <CardContent>{t`Reply does not exist`}</CardContent>
-        </Card>
+        <div className={classes.root}>
+          <Card>
+            <CardContent>{t`Reply does not exist`}</CardContent>
+          </Card>
+        </div>
       </AppLayout>
     );
   }
@@ -191,6 +207,8 @@ function ReplyPage() {
   const normalArticleReplies = reply.articleReplies
     .filter(({ status }) => status === 'NORMAL')
     .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+
+  const similarReplies = reply?.similarReplies?.edges || [];
 
   return (
     <AppLayout>
@@ -241,9 +259,33 @@ function ReplyPage() {
         </div>
         <SideSection>
           <SideSectionHeader>{t`Similar replies`}</SideSectionHeader>
-          <Box textAlign="center" pt={4} pb={3}>
-            {t`No similar replies found`}
-          </Box>
+          {similarReplies.length > 0 ? (
+            <SideSectionLinks>
+              {similarReplies.map(({ node }) => (
+                <Link
+                  key={node.id}
+                  href="/reply/[id]"
+                  as={`/reply/${node.id}`}
+                  passHref
+                >
+                  <SideSectionLink>
+                    <SideSectionText>{node.text}</SideSectionText>
+                    <Infos className={classes.asideInfo}>
+                      {ngettext(
+                        msgid`Used in ${node.articleReplies.length} message`,
+                        `Used in ${node.articleReplies.length} messages`,
+                        node.articleReplies.length
+                      )}
+                    </Infos>
+                  </SideSectionLink>
+                </Link>
+              ))}
+            </SideSectionLinks>
+          ) : (
+            <Box textAlign="center" pt={4} pb={3}>
+              {t`No similar replies found`}
+            </Box>
+          )}
         </SideSection>
       </div>
     </AppLayout>
