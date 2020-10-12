@@ -23,6 +23,13 @@ import Fab from '@material-ui/core/Fab';
 import AppLayout from 'components/AppLayout';
 import Ribbon from 'components/Ribbon';
 import { Card, CardHeader, CardContent } from 'components/Card';
+import {
+  SideSection,
+  SideSectionHeader,
+  SideSectionLinks,
+  SideSectionLink,
+  SideSectionText,
+} from 'components/SideSection';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
@@ -78,83 +85,8 @@ const useStyles = makeStyles(theme => ({
       marginRight: 12,
     },
   },
-  aside: {
-    [theme.breakpoints.up('md')]: {
-      minWidth: 0,
-      flex: 1,
-      padding: '0 20px',
-      background: theme.palette.background.paper,
-      borderRadius: theme.shape.borderRadius,
-    },
-  },
-  asideHeader: {
-    lineHeight: '20px',
-    padding: '12px 0',
-    fontWeight: 700,
-    [theme.breakpoints.up('md')]: {
-      padding: '20px 0 12px',
-      borderBottom: `1px solid ${theme.palette.secondary[500]}`,
-    },
-  },
-  asideItems: {
-    display: 'flex',
-    flexFlow: 'row',
-    overflowX: 'auto',
-
-    '--gutter': `${theme.spacing(2)}px`,
-    margin: `0 calc(-1 * var(--gutter))`,
-    padding: `0 var(--gutter)`,
-
-    '&::after': {
-      // Right-most gutter after the last item
-      content: '""',
-      flex: '0 0 var(--gutter)',
-    },
-
-    [theme.breakpoints.up('sm')]: {
-      '--gutter': `${theme.spacing(3)}px`,
-    },
-    [theme.breakpoints.up('md')]: {
-      '--gutter': 0,
-      flexFlow: 'column',
-      overflowX: 'visible',
-      '&::after': {
-        display: 'none',
-      },
-    },
-  },
-  asideItem: {
-    // override <a> defaults
-    textDecoration: 'none',
-    color: 'inherit',
-
-    [theme.breakpoints.down('sm')]: {
-      padding: 16,
-      background: theme.palette.background.paper,
-      borderRadius: theme.shape.borderRadius,
-      flex: '0 0 320px',
-      maxWidth: '66vw',
-      '& + &': {
-        marginLeft: 12,
-      },
-    },
-
-    [theme.breakpoints.up('md')]: {
-      padding: '16px 0',
-      '& + &': {
-        borderTop: `1px solid ${theme.palette.secondary[100]}`,
-      },
-    },
-  },
-  asideItemText: {
-    display: '-webkit-box',
-    overflow: 'hidden',
-    boxOrient: 'vertical',
-    textOverflow: 'ellipsis',
-    lineClamp: 5,
-
-    // distance between ArticleInfo
-    marginBottom: 12,
+  asideInfo: {
+    marginTop: 12,
   },
   lineFab: {
     position: 'fixed',
@@ -476,27 +408,25 @@ function ArticlePage() {
           </Hidden>
         </div>
 
-        <aside className={classes.aside}>
-          <header className={classes.asideHeader}>{t`Similar messages`}</header>
+        <SideSection>
+          <SideSectionHeader>{t`Similar messages`}</SideSectionHeader>
           {similarArticles.length ? (
-            <div className={classes.asideItems}>
+            <SideSectionLinks>
               {similarArticles.map(({ node }) => (
                 <Link key={node.id} href={`/article/${node.id}`}>
-                  <a className={classes.asideItem}>
-                    <article className={classes.asideItemText}>
-                      {node.text}
-                    </article>
-                    <ArticleInfo article={node} />
-                  </a>
+                  <SideSectionLink>
+                    <SideSectionText>{node.text}</SideSectionText>
+                    <ArticleInfo className={classes.asideInfo} article={node} />
+                  </SideSectionLink>
                 </Link>
               ))}
-            </div>
+            </SideSectionLinks>
           ) : (
             <Box textAlign="center" pt={4} pb={3}>
               {t`No similar messages found`}
             </Box>
           )}
-        </aside>
+        </SideSection>
       </div>
       <Hidden mdUp implementation="css">
         <a href={LINE_URL}>

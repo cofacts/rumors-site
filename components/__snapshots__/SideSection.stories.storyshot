@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots SideSection Side Section Structure 1`] = `
+<div
+  className="MuiContainer-root MuiContainer-maxWidthLg"
+>
+  <Component>
+    <aside
+      className="Component-aside"
+    >
+      <Component>
+        <header
+          className="Component-asideHeader"
+        >
+          Side section header
+        </header>
+      </Component>
+      <Component>
+        <div
+          className="Component-asideItems"
+        >
+          <Component>
+            <a
+              className="Component-asideItem"
+            >
+              <Component>
+                <article
+                  className="Component-asideText"
+                >
+                  Side section 1
+                </article>
+              </Component>
+            </a>
+          </Component>
+          <Component>
+            <a
+              className="Component-asideItem"
+            >
+              <Component>
+                <article
+                  className="Component-asideText"
+                >
+                  Side section 2 Side section 2 Side section 2 Side section 2 Side section 2 Side section 2 Side section 2 Side section 2 Side section 2 Side section 2
+                   
+                </article>
+              </Component>
+            </a>
+          </Component>
+          <Component>
+            <a
+              className="Component-asideItem"
+            >
+              <Component>
+                <article
+                  className="Component-asideText"
+                >
+                  Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3 Side section 3
+                   
+                </article>
+              </Component>
+            </a>
+          </Component>
+        </div>
+      </Component>
+    </aside>
+  </Component>
+</div>
+`;
