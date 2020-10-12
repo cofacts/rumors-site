@@ -258,9 +258,11 @@ function ArticlePage() {
         <Head>
           <title>{t`Loading`}</title>
         </Head>
-        <Card>
-          <CardContent>{t`Loading`}...</CardContent>
-        </Card>
+        <div className={classes.root}>
+          <Card>
+            <CardContent>{t`Loading`}...</CardContent>
+          </Card>
+        </div>
       </AppLayout>
     );
   }
@@ -271,9 +273,11 @@ function ArticlePage() {
         <Head>
           <title>{t`Not found`}</title>
         </Head>
-        <Card>
-          <CardContent>{t`Message does not exist`}</CardContent>
-        </Card>
+        <div className={classes.root}>
+          <Card>
+            <CardContent>{t`Message does not exist`}</CardContent>
+          </Card>
+        </div>
       </AppLayout>
     );
   }
@@ -413,7 +417,12 @@ function ArticlePage() {
           {similarArticles.length ? (
             <SideSectionLinks>
               {similarArticles.map(({ node }) => (
-                <Link key={node.id} href={`/article/${node.id}`}>
+                <Link
+                  key={node.id}
+                  href="/article/[id]"
+                  as={`/article/${node.id}`}
+                  passHref
+                >
                   <SideSectionLink>
                     <SideSectionText>{node.text}</SideSectionText>
                     <ArticleInfo className={classes.asideInfo} article={node} />
