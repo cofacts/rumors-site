@@ -5,45 +5,77 @@ import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Link from 'next/link';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { usePushToDataLayer } from 'lib/gtm';
 import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
-import Hyperlinks from 'components/Hyperlinks';
 import ArticleReply from 'components/ArticleReply';
-import UsedArticleItem from 'components/UsedArticleItem';
-import PlainList from 'components/PlainList';
+import { Card, CardHeader, CardContent } from 'components/Card';
+import ArticleInfo from 'components/ArticleInfo';
+import {
+  SideSection,
+  SideSectionHeader,
+  SideSectionLinks,
+  SideSectionLink,
+  SideSectionText,
+} from 'components/SideSection';
 
 import { nl2br, linkify, ellipsis } from 'lib/text';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    padding: '24px 0',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+    },
+  },
+  main: {
+    flex: 1,
+    minWidth: 0,
+    '& > *': {
+      marginBottom: 12,
+    },
+    [theme.breakpoints.up('md')]: {
+      flex: 3,
+      marginRight: 12,
+    },
+  },
+  articleLink: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  asideInfo: {
+    marginTop: 12,
+  },
+}));
 
 const LOAD_REPLY = gql`
   query LoadReplyPage($id: String!) {
     GetReply(id: $id) {
       id
-      type
       text
       createdAt
-      hyperlinks {
-        ...HyperlinkData
-      }
       articleReplies {
         article {
           id
           text
-          replyCount
+          ...ArticleInfo
         }
         createdAt
         status
         ...ArticleReplyData
-        ...UsedArticleItemData
       }
     }
   }
-  ${Hyperlinks.fragments.HyperlinkData}
   ${ArticleReply.fragments.ArticleReplyData}
-  ${UsedArticleItem.fragments.UsedArticleItemData}
+  ${ArticleInfo.fragments.articleInfo}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -108,6 +140,7 @@ function ReplyPage() {
   };
 
   const currentUser = useCurrentUser();
+  const classes = useStyles();
 
   // Load user field when currentUser changes
   useEffect(() => {
@@ -128,7 +161,9 @@ function ReplyPage() {
         <Head>
           <title>{t`Loading`}</title>
         </Head>
-        Loading...
+        <Card>
+          <CardContent>{t`Loading`}...</CardContent>
+        </Card>
       </AppLayout>
     );
   }
@@ -139,7 +174,9 @@ function ReplyPage() {
         <Head>
           <title>{t`Not found`}</title>
         </Head>
-        {t`Reply does not exist`}
+        <Card>
+          <CardContent>{t`Reply does not exist`}</CardContent>
+        </Card>
       </AppLayout>
     );
   }
@@ -149,11 +186,11 @@ function ReplyPage() {
       articleReply.createdAt < earliest.createdAt ? articleReply : earliest,
     reply.articleReplies[0]
   );
-  const otherArticleReplies = reply.articleReplies.filter(
-    ({ article }) => article.id !== originalArticleReply.article.id
-  );
-  const otherReplyCount = originalArticleReply.article.replyCount - 1;
   const isDeleted = originalArticleReply.status === 'DELETED';
+
+  const normalArticleReplies = reply.articleReplies
+    .filter(({ status }) => status === 'NORMAL')
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 
   return (
     <AppLayout>
@@ -162,85 +199,53 @@ function ReplyPage() {
           {ellipsis(reply.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
       </Head>
-      <section className="section">
-        <header className="header">
-          <h2>{t`Reported Message`}</h2>
-          <Link
-            href="/article/[id]"
-            as={`/article/${originalArticleReply.article.id}`}
-          >
-            <a style={{ marginLeft: 'auto' }}>
-              {otherReplyCount
-                ? ngettext(
-                    msgid`Check message and other ${otherReplyCount} reply`,
-                    `Check message and other ${otherReplyCount} replies`,
-                    otherReplyCount
-                  )
-                : t`Check message`}{' '}
-              &gt;
-            </a>
-          </Link>
-        </header>
-        <article className="message">
-          <ExpandableText>
-            {nl2br(
-              linkify(originalArticleReply.article.text, {
-                props: {
-                  target: '_blank',
-                },
-              })
-            )}
-          </ExpandableText>
-        </article>
-      </section>
-
-      <section className="section">
-        <h2>{t`This reply`}</h2>
-        <PlainList>
-          <ArticleReply
-            articleReply={originalArticleReply}
-            actionText={isDeleted ? t`Restore` : t`Delete`}
-            onAction={isDeleted ? handleRestore : handleDelete}
-            disabled={updatingArticleReplyStatus}
-            linkToReply={false}
-          />
-        </PlainList>
-        {isDeleted && (
-          <p className="deleted-prompt">{t`This reply has been deleted by its author.`}</p>
-        )}
-      </section>
-
-      <section className="section">
-        <h2>{t`The reply is also used in these messages`}</h2>
-        <PlainList>
-          {otherArticleReplies.map(ar => (
-            <UsedArticleItem key={ar.article.id} articleReply={ar} />
-          ))}
-        </PlainList>
-      </section>
-
-      <style jsx>{`
-        .section {
-          margin-bottom: 64px;
-        }
-        .header {
-          display: flex;
-          align-items: center;
-          flex-flow: row wrap;
-        }
-        .message {
-          border: 1px solid #ccc;
-          background: #eee;
-          border-radius: 3px;
-          padding: 24px;
-          word-break: break-all;
-        }
-        .deleted-prompt {
-          font-size: 12px;
-          color: rgba(0, 0, 0, 0.5);
-          font-style: italic;
-        }
-      `}</style>
+      <div className={classes.root}>
+        <div className={classes.main}>
+          <Card>
+            <CardHeader>{t`This reply`}</CardHeader>
+            <CardContent>
+              <ArticleReply
+                articleReply={originalArticleReply}
+                actionText={isDeleted ? t`Restore` : t`Delete`}
+                onAction={isDeleted ? handleRestore : handleDelete}
+                disabled={updatingArticleReplyStatus}
+                linkToReply={false}
+              />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>{t`The reply is used in the following messages`}</CardHeader>
+            {normalArticleReplies.map(ar => (
+              <Link
+                href="/article/[id]"
+                as={`/article/${ar.article.id}`}
+                key={ar.article.id}
+              >
+                <a className={classes.articleLink}>
+                  <CardContent>
+                    <ExpandableText>
+                      {nl2br(
+                        linkify(ar.article.text, {
+                          props: {
+                            target: '_blank',
+                          },
+                        })
+                      )}
+                    </ExpandableText>
+                    <ArticleInfo article={ar.article} />
+                  </CardContent>
+                </a>
+              </Link>
+            ))}
+          </Card>
+        </div>
+        <SideSection>
+          <SideSectionHeader>{t`Similar replies`}</SideSectionHeader>
+          <Box textAlign="center" pt={4} pb={3}>
+            {t`No similar replies found`}
+          </Box>
+        </SideSection>
+      </div>
     </AppLayout>
   );
 }
