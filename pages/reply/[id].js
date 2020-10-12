@@ -167,7 +167,7 @@ function ReplyPage() {
   const reply = data?.GetReply;
   usePushToDataLayer(!!reply, { event: 'dataLoaded' });
 
-  if (loading || true) {
+  if (loading) {
     return (
       <AppLayout>
         <Head>
