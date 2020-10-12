@@ -79,6 +79,7 @@ export const SideSectionLink = withStyles(theme => ({
     // override <a> defaults
     textDecoration: 'none',
     color: 'inherit',
+    cursor: 'pointer',
 
     [theme.breakpoints.down('sm')]: {
       padding: 16,
