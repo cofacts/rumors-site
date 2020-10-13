@@ -56,7 +56,7 @@ function ProfilePage() {
     );
   }
 
-  if (!data || !data.user) {
+  if (!data || !data.GetUser) {
     return (
       <AppLayout>
         <Head>
@@ -69,7 +69,7 @@ function ProfilePage() {
 
   return (
     <AppLayout>
-      <UserPageHeader user={data.user} isSelf={isSelf} />
+      <UserPageHeader user={data.GetUser} isSelf={isSelf} />
 
       <pre>{JSON.stringify(data, null, '  ')}</pre>
 
