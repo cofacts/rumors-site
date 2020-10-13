@@ -25,12 +25,14 @@ function Infos({ children, className, ...otherProps }) {
 
   return (
     <div className={cx(classes.root, className)} {...otherProps}>
-      {Children.map(children, (child, idx) => (
-        <Fragment key={idx}>
-          {idx > 0 && child ? '｜' : null}
-          {child}
-        </Fragment>
-      ))}
+      {Children.toArray(children)
+        .filter(child => !!child)
+        .map((child, idx) => (
+          <Fragment key={idx}>
+            {idx > 0 ? '｜' : null}
+            {child}
+          </Fragment>
+        ))}
     </div>
   );
 }

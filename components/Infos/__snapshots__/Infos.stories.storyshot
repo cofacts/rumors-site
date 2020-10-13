@@ -15,13 +15,17 @@ exports[`Storyshots Infos With Multiple Children 1`] = `
   <div
     className="makeStyles-root"
   >
-    <span>
+    <span
+      key=".1"
+    >
       Item in span
     </span>
     ｜
      Item in text
     ｜
-    <span>
+    <span
+      key=".3"
+    >
       Item in span 2
     </span>
     ｜
@@ -40,6 +44,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
     className="makeStyles-root"
   >
     <ReplyCountInfo
+      key=".0"
       normalArticleReplies={Array []}
     >
       <Tooltip
@@ -63,6 +68,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
     </ReplyCountInfo>
     ｜
     <ReplyCountInfo
+      key=".1"
       normalArticleReplies={
         Array [
           Object {
@@ -157,6 +163,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
     className="makeStyles-root"
   >
     <TimeInfo
+      key=".0"
       time={1989-06-04T00:00:00.000Z}
     >
       <Tooltip
@@ -179,6 +186,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
     </TimeInfo>
     ｜
     <TimeInfo
+      key=".1"
       time={612921600000}
     >
       <Tooltip
@@ -201,6 +209,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
     </TimeInfo>
     ｜
     <TimeInfo
+      key=".2"
       time="1989-06-04T00:00:00Z"
     >
       <Tooltip
@@ -223,12 +232,14 @@ exports[`Storyshots Infos With Time Info 1`] = `
     </TimeInfo>
     ｜
     <TimeInfo
+      key=".3"
       time={null}
     >
       null
     </TimeInfo>
     ｜
     <TimeInfo
+      key=".4"
       time="Unsupport time string"
     >
       Created Unsupport time string ago

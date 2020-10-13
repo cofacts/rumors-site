@@ -12,6 +12,7 @@ export const PureText = () => <Infos>Some text</Infos>;
 
 export const WithMultipleChildren = () => (
   <Infos>
+    {/* First empty item */ null}
     <span>Item in span</span>
     {/* Pure text between spans */} Item in text<span>Item in span 2</span>
     {/* Pure text between spans */}
