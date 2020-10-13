@@ -15,8 +15,8 @@ import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import ArticleReply from 'components/ArticleReply';
 import { Card, CardHeader, CardContent } from 'components/Card';
-import ArticleInfo from 'components/ArticleInfo';
-import Infos from 'components/Infos';
+import EditorName from 'components/EditorName';
+import Infos, { TimeInfo } from 'components/Infos';
 import {
   SideSection,
   SideSectionHeader,
@@ -25,7 +25,7 @@ import {
   SideSectionText,
 } from 'components/SideSection';
 
-import { nl2br, linkify, ellipsis } from 'lib/text';
+import { nl2br, ellipsis } from 'lib/text';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
     textDecoration: 'none',
   },
-  asideInfo: {
+  infos: {
     marginTop: 12,
   },
 }));
@@ -67,10 +67,15 @@ const LOAD_REPLY = gql`
         article {
           id
           text
-          ...ArticleInfo
+          replyCount
         }
         createdAt
         status
+        user {
+          id
+          name
+          level
+        }
         ...ArticleReplyData
       }
       similarReplies(orderBy: [{ _score: DESC }]) {
@@ -87,7 +92,6 @@ const LOAD_REPLY = gql`
     }
   }
   ${ArticleReply.fragments.ArticleReplyData}
-  ${ArticleInfo.fragments.articleInfo}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -119,6 +123,26 @@ const UPDATE_ARTICLE_REPLY_STATUS = gql`
     }
   }
 `;
+
+/**
+ * String wrapper for better i18n.
+ *
+ * @param {number} count
+ * @return {JSX | null} Text that indicates reply count, or null when no other replies.
+ */
+function getReplyCountElem(count) {
+  const otherCount = count - 1;
+  if (otherCount <= 0) return null;
+  return (
+    <span>
+      {ngettext(
+        msgid`${otherCount} other reply`,
+        `${otherCount} other replies`,
+        otherCount
+      )}
+    </span>
+  );
+}
 
 function ReplyPage() {
   const { query } = useRouter();
@@ -204,8 +228,11 @@ function ReplyPage() {
   );
   const isDeleted = originalArticleReply.status === 'DELETED';
 
-  const normalArticleReplies = reply.articleReplies
-    .filter(({ status }) => status === 'NORMAL')
+  const otherArticleReplies = reply.articleReplies
+    .filter(
+      ({ article, status }) =>
+        article.id !== originalArticleReply.article.id && status === 'NORMAL'
+    )
     .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 
   const similarReplies = reply?.similarReplies?.edges || [];
@@ -233,28 +260,57 @@ function ReplyPage() {
           </Card>
           <Card>
             <CardHeader>{t`The reply is used in the following messages`}</CardHeader>
-            {normalArticleReplies.map(ar => (
-              <Link
-                href="/article/[id]"
-                as={`/article/${ar.article.id}`}
-                key={ar.article.id}
-              >
-                <a className={classes.articleLink}>
-                  <CardContent>
-                    <ExpandableText>
-                      {nl2br(
-                        linkify(ar.article.text, {
-                          props: {
-                            target: '_blank',
-                          },
-                        })
-                      )}
-                    </ExpandableText>
-                    <ArticleInfo article={ar.article} />
-                  </CardContent>
-                </a>
-              </Link>
-            ))}
+            <Link
+              href="/article/[id]"
+              as={`/article/${originalArticleReply.article.id}`}
+            >
+              <a className={classes.articleLink}>
+                <CardContent>
+                  <ExpandableText lineClamp={5}>
+                    {nl2br(originalArticleReply.article.text)}
+                  </ExpandableText>
+                  <Infos className={classes.infos}>
+                    {isDeleted && <span>{t`Deleted by its author`}</span>}
+                    {getReplyCountElem(originalArticleReply.article.replyCount)}
+                    <TimeInfo time={originalArticleReply.createdAt}>
+                      {timeAgoStr => t`${timeAgoStr} ago`}
+                    </TimeInfo>
+                  </Infos>
+                </CardContent>
+              </a>
+            </Link>
+            {otherArticleReplies.map(ar => {
+              const editorElem = ar.user ? (
+                <EditorName
+                  key="editor"
+                  editorName={ar.user.name}
+                  editorLevel={ar.user.level}
+                />
+              ) : (
+                t`someone`
+              );
+
+              return (
+                <Link
+                  href="/article/[id]"
+                  as={`/article/${ar.article.id}`}
+                  key={ar.article.id}
+                >
+                  <a className={classes.articleLink}>
+                    <CardContent>
+                      <ExpandableText>{nl2br(ar.article.text)}</ExpandableText>
+                      <Infos className={classes.infos}>
+                        <>{t`Added by ${editorElem}`}</>
+                        {getReplyCountElem(ar.article.replyCount)}
+                        <TimeInfo time={ar.createdAt}>
+                          {timeAgoStr => t`${timeAgoStr} ago`}
+                        </TimeInfo>
+                      </Infos>
+                    </CardContent>
+                  </a>
+                </Link>
+              );
+            })}
           </Card>
         </div>
         <SideSection>
@@ -270,7 +326,7 @@ function ReplyPage() {
                 >
                   <SideSectionLink>
                     <SideSectionText>{node.text}</SideSectionText>
-                    <Infos className={classes.asideInfo}>
+                    <Infos className={classes.infos}>
                       {ngettext(
                         msgid`Used in ${node.articleReplies.length} message`,
                         `Used in ${node.articleReplies.length} messages`,
