@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useEffect } from 'react';
-import { t, ngettext, msgid } from 'ttag';
+import { t, jt, ngettext, msgid } from 'ttag';
 import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
@@ -260,12 +260,12 @@ function ReplyPage() {
           </Card>
           <Card>
             <CardHeader>{t`The reply is used in the following messages`}</CardHeader>
-            <Link
-              href="/article/[id]"
-              as={`/article/${originalArticleReply.article.id}`}
-            >
-              <a className={classes.articleLink}>
-                <CardContent>
+            <CardContent>
+              <Link
+                href="/article/[id]"
+                as={`/article/${originalArticleReply.article.id}`}
+              >
+                <a className={classes.articleLink}>
                   <ExpandableText lineClamp={5}>
                     {nl2br(originalArticleReply.article.text)}
                   </ExpandableText>
@@ -276,9 +276,9 @@ function ReplyPage() {
                       {timeAgoStr => t`${timeAgoStr} ago`}
                     </TimeInfo>
                   </Infos>
-                </CardContent>
-              </a>
-            </Link>
+                </a>
+              </Link>
+            </CardContent>
             {otherArticleReplies.map(ar => {
               const editorElem = ar.user ? (
                 <EditorName
@@ -291,24 +291,20 @@ function ReplyPage() {
               );
 
               return (
-                <Link
-                  href="/article/[id]"
-                  as={`/article/${ar.article.id}`}
-                  key={ar.article.id}
-                >
-                  <a className={classes.articleLink}>
-                    <CardContent>
+                <CardContent key={ar.article.id}>
+                  <Link href="/article/[id]" as={`/article/${ar.article.id}`}>
+                    <a className={classes.articleLink}>
                       <ExpandableText>{nl2br(ar.article.text)}</ExpandableText>
                       <Infos className={classes.infos}>
-                        <>{t`Added by ${editorElem}`}</>
+                        <>{jt`Added by ${editorElem}`}</>
                         {getReplyCountElem(ar.article.replyCount)}
                         <TimeInfo time={ar.createdAt}>
                           {timeAgoStr => t`${timeAgoStr} ago`}
                         </TimeInfo>
                       </Infos>
-                    </CardContent>
-                  </a>
-                </Link>
+                    </a>
+                  </Link>
+                </CardContent>
               );
             })}
           </Card>
