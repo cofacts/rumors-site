@@ -143,7 +143,8 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
                 className="iframe"
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${tutorialYoutubeId}`}
+                // https://developers.google.com/youtube/player_parameters
+                src={`https://www.youtube.com/embed/${tutorialYoutubeId}?rel=0&modestbranding=1`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
