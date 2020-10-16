@@ -153,7 +153,7 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
           </Box>
         ) : null}
         <Box textAlign="center">
-          <Typography variant="h6">{t`訂閱「等你來答」到 ${platform}`}</Typography>
+          <Typography variant="h6">{`訂閱「等你來答」到 ${platform}`}</Typography>
           <Box py={1}>
             <Button
               className={classes.subscribe}
@@ -165,14 +165,14 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
               color="primary"
               disableElevation
             >
-              {t`快速訂閱等你來答`}
+              {`快速訂閱等你來答`}
             </Button>
           </Box>
         </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <p>
-          {t`IFTTT（If this then
+          {`IFTTT（If this then
           that）是能把觸發事件（this）與執行動作（that）串在一起的平台。
           您可以設定 IFTTT，將您篩選過後
           Cofacts「訊息列表」、「最新查核」或「等你來答」的新資訊，傳到指定的
@@ -180,7 +180,7 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
         </p>
         <ol>
           <li>
-            {t`複製這個列表的 RSS URL`}
+            {`複製這個列表的 RSS URL`}
             <Box display="flex" borderRadius={4} border="1px solid #ddd">
               <Box
                 flexGrow={1}
@@ -209,7 +209,7 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
             </Box>
           </li>
           <li>
-            {t`進到 `}
+            {`進到 `}
             <a
               href="https://ifttt.com/create/"
               rel="noopener noreferrer"
@@ -219,11 +219,11 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
             </a>
           </li>
           <li>
-            {t`「If this」選擇 RSS Feed，在要填入 Feed URL 的時候貼上剛才複製的
+            {`「If this」選擇 RSS Feed，在要填入 Feed URL 的時候貼上剛才複製的
             Feed URL`}
           </li>
           <li>
-            {t`「Then that」選擇您要傳送新資訊的平台。IFTTT
+            {`「Then that」選擇您要傳送新資訊的平台。IFTTT
             會指導您進行必要的登入與設定。`}
           </li>
         </ol>
