@@ -53,6 +53,23 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const CustomTab = withStyles(theme => ({
+  root: {
+    fontSize: theme.typography.h6.fontSize,
+    fontWeight: theme.typography.h6.fontWeight,
+    [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.h5.fontSize,
+      fontWeight: theme.typography.h5.fontWeight,
+    },
+  },
+}))(Tab);
+
+const CustomCopyButton = withStyles(theme => ({
+  root: {
+    fontSize: theme.typography.caption.fontSize,
+  },
+}))(CopyButton);
+
 const SUCCESS = 'SUCCESS';
 
 function TabPanel(props) {
@@ -90,23 +107,6 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState(null);
   const [value, setValue] = useState(0);
-
-  const CustomTab = withStyles(theme => ({
-    root: {
-      fontSize: theme.typography.h6.fontSize,
-      fontWeight: theme.typography.h6.fontWeight,
-      [theme.breakpoints.up('md')]: {
-        fontSize: theme.typography.h5.fontSize,
-        fontWeight: theme.typography.h5.fontWeight,
-      },
-    },
-  }))(Tab);
-
-  const CustomCopyButton = withStyles(theme => ({
-    root: {
-      fontSize: theme.typography.caption.fontSize,
-    },
-  }))(CopyButton);
 
   const copySuccess = text => {
     setMessage(text);
