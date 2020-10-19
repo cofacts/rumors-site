@@ -9,14 +9,18 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { ButtonIcon } from './FeedDisplayComponents';
 
 import CopyButton from '../CopyButton';
 
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PropTypes from 'prop-types';
+
 const useStyles = makeStyles(theme => ({
   dialog: {
-    padding: theme.spacing(3, 7),
+    padding: theme.spacing(3, 3),
   },
   close: {
     position: 'absolute',
@@ -34,20 +38,83 @@ const useStyles = makeStyles(theme => ({
       top: '0',
     },
   },
-  textField: { padding: '0 14px' },
+  textFieldInput: {
+    fontSize: theme.typography.caption.fontSize,
+  },
+  subscribe: {
+    fontSize: theme.typography.h6.fontSize,
+    [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.h5.fontSize,
+    },
+    borderRadius: 30,
+    padding: '3px 30px',
+    textAlign: 'center',
+    border: 'none',
+  },
 }));
 
+const CustomTab = withStyles(theme => ({
+  root: {
+    fontSize: theme.typography.h6.fontSize,
+    fontWeight: theme.typography.h6.fontWeight,
+    [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.h5.fontSize,
+      fontWeight: theme.typography.h5.fontWeight,
+    },
+  },
+}))(Tab);
+
+const CustomCopyButton = withStyles(theme => ({
+  root: {
+    fontSize: theme.typography.caption.fontSize,
+  },
+}))(CopyButton);
+
 const SUCCESS = 'SUCCESS';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box>{children}</Box>}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const DialogBody = forwardRef(function DialogBody(props, ref) {
   const { IFTTTAppletUrl, feedUrl, tutorialYoutubeId, platform, close } = props;
   const classes = useStyles();
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState(null);
+  const [value, setValue] = useState(0);
 
   const copySuccess = text => {
     setMessage(text);
     setStatus(SUCCESS);
+  };
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
@@ -55,67 +122,112 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
       <IconButton className={classes.close} onClick={close}>
         <CloseIcon />
       </IconButton>
-      <Typography variant="h5">{t`Subscribe to ${platform}`}</Typography>
-      {tutorialYoutubeId ? (
-        <div className={classes.youtube}>
-          <iframe
-            className="iframe"
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${tutorialYoutubeId}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      ) : null}
-      <Box
-        display="flex"
-        alignItems="stretch"
-        borderRadius={4}
-        border="1px solid #ddd"
-        marginBottom={2}
-      >
-        <Box
-          display="flex"
-          alignItems="center"
-          p={1}
-          borderRight="1px solid #ddd"
+      <Box px={3}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="tabs"
+          variant="fullWidth"
+          indicatorColor="primary"
+          textColor="primary"
         >
-          <Typography noWrap variant="body1">{t`Feed URL`}</Typography>
-        </Box>
-        <Box
-          display="flex"
-          alignItems="center"
-          px={1}
-          borderRight="1px solid #ddd"
-        >
-          <TextField
-            defaultValue={feedUrl}
-            InputProps={{ readOnly: true, disableUnderline: true }}
-            onFocus={e => e.target.select()}
-            fullWidth
-          />
-        </Box>
-        <Box display="flex" alignItems="center">
-          <CopyButton
-            content={feedUrl}
-            onSuccess={() => copySuccess(t`Copied to clipboard!`)}
-          >{t`Copy`}</CopyButton>
-        </Box>
+          <CustomTab label="快速訂閱" {...a11yProps(0)} />
+          <CustomTab label="進階設定" {...a11yProps(1)} />
+        </Tabs>
       </Box>
-      <Button
-        variant="contained"
-        color="default"
-        component="a"
-        href={IFTTTAppletUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        fullWidth
-        size="large"
-      >
-        {t`Subscribe`}
-      </Button>
+      <TabPanel value={value} index={0}>
+        {tutorialYoutubeId ? (
+          <Box py={1}>
+            <div className={classes.youtube}>
+              <iframe
+                className="iframe"
+                width="100%"
+                height="100%"
+                // https://developers.google.com/youtube/player_parameters
+                src={`https://www.youtube.com/embed/${tutorialYoutubeId}?rel=0&modestbranding=1`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </Box>
+        ) : null}
+        <Box textAlign="center">
+          <Typography variant="h6">{`訂閱「等你來答」到 ${platform}`}</Typography>
+          <Box py={1}>
+            <Button
+              className={classes.subscribe}
+              variant="contained"
+              component="a"
+              href={IFTTTAppletUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              color="primary"
+              disableElevation
+            >
+              {`快速訂閱等你來答`}
+            </Button>
+          </Box>
+        </Box>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <p>
+          {`IFTTT（If this then
+          that）是能把觸發事件（this）與執行動作（that）串在一起的平台。
+          您可以設定 IFTTT，將您篩選過後
+          Cofacts「訊息列表」、「最新查核」或「等你來答」的新資訊，傳到指定的
+          LINE、Slack 或 Telegram 中。`}
+        </p>
+        <ol>
+          <li>
+            {`複製這個列表的 RSS URL`}
+            <Box display="flex" borderRadius={4} border="1px solid #ddd">
+              <Box
+                flexGrow={1}
+                display="flex"
+                alignItems="center"
+                px={1}
+                borderRight="1px solid #ddd"
+              >
+                <TextField
+                  defaultValue={feedUrl}
+                  InputProps={{
+                    className: classes.textFieldInput,
+                    readOnly: true,
+                    disableUnderline: true,
+                  }}
+                  onFocus={e => e.target.select()}
+                  fullWidth
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <CustomCopyButton
+                  content={feedUrl}
+                  onSuccess={() => copySuccess(t`Copied to clipboard!`)}
+                >{t`Copy`}</CustomCopyButton>
+              </Box>
+            </Box>
+          </li>
+          <li>
+            {`進到 `}
+            <a
+              href="https://ifttt.com/create/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              https://ifttt.com/create/
+            </a>
+          </li>
+          <li>
+            {`「If this」選擇 RSS Feed，在要填入 Feed URL 的時候貼上剛才複製的
+            Feed URL`}
+          </li>
+          <li>
+            {`「Then that」選擇您要傳送新資訊的平台。IFTTT
+            會指導您進行必要的登入與設定。`}
+          </li>
+        </ol>
+      </TabPanel>
       <Snackbar
         onClose={() => setStatus(null)}
         open={status === SUCCESS}
@@ -147,7 +259,7 @@ function IFTTTItem({
       <ButtonIcon icon={icon} onClick={handleOpen}>
         {children}
       </ButtonIcon>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} fullWidth>
         <DialogBody
           platform={children}
           feedUrl={feedUrl}
