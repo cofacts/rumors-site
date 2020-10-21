@@ -35,6 +35,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                   className="makeStyles-root"
                 >
                   <TimeInfo
+                    key=".0"
                     time="2020-01-01T00:00:00Z"
                   >
                     <Tooltip
@@ -136,6 +137,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                   className="makeStyles-root"
                 >
                   <TimeInfo
+                    key=".0"
                     time="2019-01-01T00:00:00Z"
                   >
                     <Tooltip

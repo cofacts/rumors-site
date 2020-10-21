@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ArticleInfo({ article }) {
+export default function ArticleInfo({ article, className }) {
   const createdAt = new Date(article.createdAt);
   const { replyRequestCount, replyCount } = article;
 
@@ -42,7 +42,7 @@ export default function ArticleInfo({ article }) {
   const classes = useStyles();
 
   return (
-    <Infos>
+    <Infos className={className}>
       <>
         {ngettext(
           msgid`${replyRequestCount} occurrence`,
