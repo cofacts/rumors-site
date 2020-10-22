@@ -91,6 +91,7 @@ function AppLayout({ children, container = true }) {
         toggle={setSidebarOpen}
         user={data?.GetUser}
         onLoginModalOpen={openLoginModal}
+        onLogout={logout}
       />
       {container ? (
         <Container className={classes.container}>{children}</Container>

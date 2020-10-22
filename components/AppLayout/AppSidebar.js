@@ -63,7 +63,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
+function AppSidebar({
+  open,
+  toggle,
+  user,
+  onLoginModalOpen,
+  onLogout,
+  onNameChange,
+}) {
   const classes = useStyles();
 
   return (
@@ -144,14 +151,16 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
           <GoogleWebsiteTranslator />
         </ListItem>
       </List>
-      {true && (
+      {user && (
         <>
           <Divider classes={{ root: classes.divider }} />
           <List className={classes.list}>
-            <ListItem classes={{ root: classes.listItem }} button>
-              <NavLink external href="#">
-                {t`Logout`}
-              </NavLink>
+            <ListItem
+              classes={{ root: classes.listItem }}
+              button
+              onClick={onLogout}
+            >
+              {t`Logout`}
             </ListItem>
           </List>
         </>
