@@ -89,7 +89,13 @@ function AppSidebar({
           <Ribbon className={classes.level}>
             <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[(user?.level)]}
           </Ribbon>
-          <Box px={1.5} pb={2} display="flex" alignItems="center">
+          <Box
+            px={1.5}
+            pb={2}
+            display="flex"
+            alignItems="center"
+            onClick={onNameChange}
+          >
             <Widgets.Avatar user={user} size={60} />
             <Typography className={classes.name} variant="h6">
               {user?.name}
