@@ -212,6 +212,7 @@ function AppHeader({
   onMenuButtonClick,
   onLoginModalOpen,
   onLogout,
+  onNameChange,
 }) {
   const [anchor, setAnchor] = useState(null);
   const [displayLogo, setDisplayLogo] = useState(true);
@@ -263,7 +264,7 @@ function AppHeader({
                     <strong>Lv. {user?.level}</strong>
                     {LEVEL_NAMES[(user?.level)]}
                   </Ribbon>
-                  <MenuItem onClick={closeProfileMenu}>
+                  <MenuItem onClick={onNameChange}>
                     <ListItemIcon>
                       <Widgets.Avatar user={user} size={40} />
                     </ListItemIcon>

@@ -63,7 +63,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
+function AppSidebar({
+  open,
+  toggle,
+  user,
+  onLoginModalOpen,
+  onLogout,
+  onNameChange,
+}) {
   const classes = useStyles();
 
   return (
@@ -82,7 +89,13 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
           <Ribbon className={classes.level}>
             <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[(user?.level)]}
           </Ribbon>
-          <Box px={1.5} pb={2} display="flex" alignItems="center">
+          <Box
+            px={1.5}
+            pb={2}
+            display="flex"
+            alignItems="center"
+            onClick={onNameChange}
+          >
             <Widgets.Avatar user={user} size={60} />
             <Typography className={classes.name} variant="h6">
               {user?.name}
@@ -144,14 +157,16 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen }) {
           <GoogleWebsiteTranslator />
         </ListItem>
       </List>
-      {true && (
+      {user && (
         <>
           <Divider classes={{ root: classes.divider }} />
           <List className={classes.list}>
-            <ListItem classes={{ root: classes.listItem }} button>
-              <NavLink external href="#">
-                {t`Logout`}
-              </NavLink>
+            <ListItem
+              classes={{ root: classes.listItem }}
+              button
+              onClick={onLogout}
+            >
+              {t`Logout`}
             </ListItem>
           </List>
         </>
