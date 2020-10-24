@@ -352,7 +352,7 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     padding: `0 48px 0 60px`,
-    background: theme.palette.primary[200],
+    background: theme.palette.common.yellow,
     zIndex: 100,
 
     [theme.breakpoints.down('md')]: {
