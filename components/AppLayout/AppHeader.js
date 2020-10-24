@@ -310,7 +310,7 @@ function AppHeader({
         <GlobalSearch onExpand={expanded => setDisplayLogo(!expanded)} />
         <Box display={['none', 'none', 'block']}>
           {user?.name ? (
-            <User user={user} onLogout={onLogout} onNameChang={onNameChange} />
+            <User user={user} onLogout={onLogout} onNameChange={onNameChange} />
           ) : (
             <Button
               onClick={onLoginModalOpen}
@@ -425,7 +425,7 @@ const LandingPageHeader = React.memo(
               <User
                 user={user}
                 onLogout={onLogout}
-                onNameChang={onNameChange}
+                onNameChange={onNameChange}
               />
             ) : (
               <div className={classes.item} onClick={onLoginModalOpen}>
