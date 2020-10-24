@@ -239,7 +239,7 @@ function ArticlePage() {
     let stringToCopy = selection.toString();
 
     // If not logged in, add a friend link.
-    if (typeof currentUser == 'undefined') {
+    if ((typeof currentUser == 'undefined') || (currentUser == null)) {
       stringToCopy += `\n📋 節錄自 Cofacts 真的假的：${articleUrl}\n🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
     }
 
