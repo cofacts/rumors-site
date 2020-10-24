@@ -2,9 +2,9 @@ import { t } from 'ttag';
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { pushToDataLayer } from 'lib/gtm';
-import AppHeader from './AppHeader';
+import AppHeader, { LandingPageHeader } from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
 import gql from 'graphql-tag';
@@ -56,6 +56,8 @@ function AppLayout({ children, container = true }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [snackMsg, setSnackMsg] = useState('');
+
+  const { pathname } = useRouter();
 
   const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
   const [changeUserName] = useMutation(CHANGE_NAME_QUERY, {
@@ -111,14 +113,25 @@ function AppLayout({ children, container = true }) {
 
   return (
     <Fragment>
-      <AppHeader
-        user={data?.GetUser}
-        showProgress={isRouteChanging}
-        onMenuButtonClick={toggleSidebar}
-        onLoginModalOpen={openLoginModal}
-        onLogout={logout}
-        onNameChange={handleNameChange}
-      />
+      {pathname === '/' ? (
+        <LandingPageHeader
+          user={data?.GetUser}
+          showProgress={isRouteChanging}
+          onMenuButtonClick={toggleSidebar}
+          onLoginModalOpen={openLoginModal}
+          onLogout={logout}
+          onNameChange={handleNameChange}
+        />
+      ) : (
+        <AppHeader
+          user={data?.GetUser}
+          showProgress={isRouteChanging}
+          onMenuButtonClick={toggleSidebar}
+          onLoginModalOpen={openLoginModal}
+          onLogout={logout}
+          onNameChange={handleNameChange}
+        />
+      )}
       <AppSidebar
         open={sidebarOpen}
         toggle={setSidebarOpen}
