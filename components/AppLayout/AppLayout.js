@@ -116,8 +116,6 @@ function AppLayout({ children, container = true }) {
       {pathname === '/' ? (
         <LandingPageHeader
           user={data?.GetUser}
-          showProgress={isRouteChanging}
-          onMenuButtonClick={toggleSidebar}
           onLoginModalOpen={openLoginModal}
           onLogout={logout}
           onNameChange={handleNameChange}
