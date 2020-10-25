@@ -397,6 +397,11 @@ const LandingPageHeader = React.memo(
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
+    const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
+      ssr: false, // no number needed for SSR
+    });
+    const unsolvedCount = data?.ListArticles?.totalCount;
+
     return (
       <nav className={classes.nav}>
         <NavLink href="/">
@@ -411,7 +416,9 @@ const LandingPageHeader = React.memo(
               {c('App header').t`Replies`}
             </NavLink>
             <NavLink className={classes.item} href="/hoax-for-you">
-              {c('App header').t`For You`}
+              <CustomBadge badgeContent={unsolvedCount} showZero={true}>
+                {c('App header').t`For You`}
+              </CustomBadge>
             </NavLink>
             <a
               className={classes.item}
