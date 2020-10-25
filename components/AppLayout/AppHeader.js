@@ -344,7 +344,7 @@ function AppHeader({
 const useLandingPageHeaderStyles = makeStyles(theme => ({
   nav: {
     display: 'flex',
-    position: 'fixed',
+    position: 'sticky',
     width: '100%',
     height: NAVBAR_HEIGHT,
     justifyContent: 'space-between',

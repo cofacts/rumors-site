@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import getConfig from 'next/config';
-// import cx from 'clsx';
 import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppLayout from 'components/AppLayout';
-// import { NEWS, Jumbotron, Stats } from 'components/LandingPage';
+import { SectionCanDo } from 'components/LandingPage';
 
 // import qrCodeURL from './../components/LandingPage/images/qr-code.png';
 import ogImage from 'components/LandingPage/images/ogimage.png';
@@ -24,10 +23,15 @@ const useStyles = makeStyles(theme => ({
     paddingTop: NAVBAR_HEIGHT,
     background: theme.palette.common.yellow,
 
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: 0,
+    },
+
     '& > img': {
       width: '100%',
     },
   },
+  sectionCanDo: {},
 }));
 function Home() {
   const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
@@ -76,6 +80,7 @@ function Home() {
       <section className={classes.sectionCover}>
         <img src={coverImage} />
       </section>
+      <SectionCanDo />
     </AppLayout>
   );
 }
