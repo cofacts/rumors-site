@@ -4,7 +4,7 @@ import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppLayout from 'components/AppLayout';
-import { SectionCanDo } from 'components/LandingPage';
+import { SectionCanDo, SectionHow } from 'components/LandingPage';
 
 // import qrCodeURL from './../components/LandingPage/images/qr-code.png';
 import ogImage from 'components/LandingPage/images/ogimage.png';
@@ -81,6 +81,7 @@ function Home() {
         <img src={coverImage} />
       </section>
       <SectionCanDo />
+      <SectionHow />
     </AppLayout>
   );
 }
