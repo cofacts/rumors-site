@@ -157,14 +157,14 @@ const Links = ({ classes, unsolvedCount }) => (
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {c('App header').t`Messages`}
+      {c('App layout').t`Messages`}
     </NavLink>
     <NavLink
       href="/replies"
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {c('App header').t`Replies`}
+      {c('App layout').t`Replies`}
     </NavLink>
     <NavLink
       href="/hoax-for-you"
@@ -176,7 +176,7 @@ const Links = ({ classes, unsolvedCount }) => (
         badgeContent={unsolvedCount}
         showZero={true}
       >
-        {c('App header').t`For You`}
+        {c('App layout').t`For You`}
       </CustomBadge>
     </NavLink>
     <Box
@@ -186,7 +186,7 @@ const Links = ({ classes, unsolvedCount }) => (
       href={EDITOR_FACEBOOK_GROUP}
       className={classes.tab}
     >
-      {c('App header').t`Forum`}
+      {c('App layout').t`Forum`}
     </Box>
   </>
 );
@@ -410,14 +410,14 @@ const LandingPageHeader = React.memo(
         {isDesktop ? (
           <div className={classes.navItemWrapper}>
             <NavLink className={classes.item} href="/articles">
-              {c('App header').t`Messages`}
+              {t`Messages`}
             </NavLink>
             <NavLink className={classes.item} href="/replies">
-              {c('App header').t`Replies`}
+              {c('App layout').t`Replies`}
             </NavLink>
             <NavLink className={classes.item} href="/hoax-for-you">
               <CustomBadge badgeContent={unsolvedCount} showZero={true}>
-                {c('App header').t`For You`}
+                {c('App layout').t`For You`}
               </CustomBadge>
             </NavLink>
             <a
@@ -426,7 +426,7 @@ const LandingPageHeader = React.memo(
               target="_blank"
               rel="noopener noreferrer"
             >
-              {c('App header').t`Forum`}
+              {c('App layout').t`Forum`}
             </a>
             {user?.name ? (
               <User
