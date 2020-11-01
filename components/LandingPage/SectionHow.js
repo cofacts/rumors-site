@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: 32,
         paddingRight: 13,
 
-        '&.firstImage': {
+        '&.rwd-order-1': {
           paddingTop: 0,
         },
       },
