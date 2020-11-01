@@ -7,7 +7,7 @@ import image2 from './images/feature-2.png';
 import image3 from './images/feature-3.png';
 import image4 from './images/feature-4.png';
 
-const useBlockStyles = makeStyles(() => ({
+const useBlockStyles = makeStyles(theme => ({
   block: {
     display: 'flex',
     flexDirection: 'column',
@@ -19,6 +19,11 @@ const useBlockStyles = makeStyles(() => ({
     maxWidth: 160,
     marginBottom: 36,
 
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 110,
+      marginBottom: 12,
+    },
+
     '& > img': {
       width: '100%',
     },
@@ -28,12 +33,22 @@ const useBlockStyles = makeStyles(() => ({
     lineHeight: '35px',
     color: 'white',
     marginBottom: 23,
+
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 12,
+    },
   },
   content: {
     fontSize: 18,
     lineHeight: 1.56,
     letterSpacing: 0.5,
     color: 'white',
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+      lineHeight: 1.43,
+      letterSpacing: 0.25,
+    },
   },
 }));
 
