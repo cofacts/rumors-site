@@ -148,7 +148,7 @@ function AppLayout({ children, container = true }) {
         <LoginModal onClose={() => setLoginModalOpen(false)} />
       )}
       <Snackbar
-        open={snackMsg}
+        open={snackMsg ? true : false}
         onClose={() => setSnackMsg('')}
         message={snackMsg}
       />

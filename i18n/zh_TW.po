@@ -6,233 +6,201 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components/AppLayout/AppFooter.js:97
-#: components/AppLayout/AppSidebar.js:120
+#: components\AppLayout\AppFooter.js:101
+#: components\AppLayout\AppSidebar.js:142
 msgid "About"
 msgstr "關於"
 
-#: pages/index.js:436
-msgid "Contact"
-msgstr "聯絡我們"
-
-#: pages/article/[id].js:297
-#: pages/index.js:22
-#: pages/index.js:68
-#: pages/index.js:416
-#: pages/reply/[id].js:161
+#: pages\article\[id].js:302
+#: pages\index.js:37
+#: pages\reply\[id].js:244
 msgid "Cofacts"
 msgstr "Cofacts"
 
-#: components/AppLayout/AppFooter.js:90
-msgid "Collected Messages"
-msgstr "訊息列表"
-
-#: components/AppLayout/AppFooter.js:93
+#: components\AppLayout\AppFooter.js:97
 msgid "Editor forum"
 msgstr "編輯討論區"
 
-#: components/AppLayout/UserName.js:136
-msgid "Save"
-msgstr "儲存"
-
-#: components/AppLayout/UserName.js:139
-#: components/ArticleCategories/DownVoteDialog.js:97
-#: components/NewReplySection/Mobile.js:138
+#: components\ArticleCategories\DownVoteDialog.js:98
+#: components\NewReplySection\Mobile.js:138
 msgid "Cancel"
 msgstr "取消"
 
-#: components/AppLayout/AppHeader.js:288
-#: components/AppLayout/AppSidebar.js:108
-#: components/AppLayout/UserName.js:193
+#: components\AppLayout\AppHeader.js:318
+#: components\AppLayout\AppHeader.js:439
+#: components\AppLayout\AppSidebar.js:130
 msgid "Login"
 msgstr "登入"
 
-#: components/AppLayout/AppHeader.js:279
-#: components/AppLayout/AppSidebar.js:144
-#: components/AppLayout/UserName.js:220
+#: components\AppLayout\AppHeader.js:259
+#: components\AppLayout\AppSidebar.js:169
 msgid "Logout"
 msgstr "登出"
 
-#: components/AppLayout/UserName.js:230
-msgid "Congratulations! You have leveled up!"
-msgstr "恭喜！您升級了！"
-
-#: components/AppLayout/UserName.js:234
-msgid "Close"
-msgstr "關閉"
-
-#: components/AppLayout/AppFooter.js:91
-#: pages/search.js:168
+#: components\SearchPageJumbotron.js:131
 msgid "Replies"
 msgstr "最新查核"
 
-#: components/ArticleInfo.js:72
+#: components\ArticleInfo.js:72
+#: components\Infos\ReplyCountInfo.js:58
 msgid "${ replyCount } response"
 msgid_plural "${ replyCount } responses"
 msgstr[0] "${ replyCount } 份回應"
 
-#: components/ListPageControls/BaseSortInput.js:59
+#: components\ListPageControls\BaseSortInput.js:60
 msgid "Sort by"
 msgstr "排序方式"
 
-#: components/ArticlePageLayout.js:241
+#: pages\articles.js:162
+#: pages\replies.js:227
 msgid "Most recently asked"
 msgstr "最近被查詢"
 
-#: components/ArticlePageLayout.js:242
+#: pages\articles.js:164
+#: pages\replies.js:226
 msgid "Most recently replied"
 msgstr "最近被回應"
 
-#: components/ArticlePageLayout.js:243
+#: pages\articles.js:163
+#: pages\replies.js:228
 msgid "Most asked"
 msgstr "最多人詢問"
 
-#: pages/api/articles/[feed].js:165
-#: pages/reply/[id].js:166
+#: pages\api\articles\[feed].js:165
+#. https://stackoverflow.com/a/54905457/1582110
 msgid "Reported Message"
 msgstr "使用者回報訊息"
 
-#: components/ArticleInfo.js:80
-#: components/UsedArticleItem.js:27
+#: components\ArticleInfo.js:80
+#: pages\reply\[id].js:276
+#: pages\reply\[id].js:302
 #, javascript-format
 msgid "${ timeAgoStr } ago"
 msgstr "${ timeAgoStr }前"
 
-#: components/ArticleReply/index.js:135
+#: components\ArticleReply\index.js:130
 msgid "Reason"
 msgstr "理由"
 
-#: components/ArticleReply/index.js:137
+#: components\ArticleReply\index.js:132
 msgid "Details"
 msgstr "詳細解釋"
 
-#: components/ArticleReply/index.js:139
-#: components/ArticleReply/index.js:177
-#: pages/api/articles/[feed].js:178
+#: components\ArticleReply\index.js:132
+#: components\ArticleReply\index.js:171
+#: pages\api\articles\[feed].js:178
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Reference"
 msgstr "出處"
 
-#: components/ArticleCategories/DownVoteDialog.js:69
-#: components/ArticleReply/index.js:165
+#: components\ArticleCategories\DownVoteDialog.js:70
+#: components\ArticleReply\index.js:159
 msgid "Someone"
 msgstr "有人"
 
-#: components/ArticleReply/index.js:177
+#: components\ArticleReply\index.js:171
 msgid "Different opinion"
 msgstr "不同意見"
 
-#: components/ArticleReply/index.js:181
+#: components\ArticleReply\index.js:175
 msgid "There is no reference for this reply. Its truthfulness may be doubtful."
 msgstr "這則回應沒有出處，請自行斟酌其真實性。"
 
-#: components/ArticleReply/ReplyShare.js:85
-#: components/CopyButton.js:15
-#: components/Subscribe/IFTTTItem.js:104
+#: components\ArticleReply\ReplyShare.js:85
+#: components\CopyButton.js:15
+#: components\Subscribe\IFTTTItem.js:207
 msgid "Copy"
 msgstr "複製"
 
-#: components/CurrentReplies.js:69
+#: components\CurrentReplies.js:72
 msgid "Deleted replies"
 msgstr "已刪除的回應"
 
-#: components/CurrentReplies.js:77
-#: pages/reply/[id].js:201
+#: components\CurrentReplies.js:81
+#: pages\reply\[id].js:254
 msgid "Restore"
 msgstr "恢復"
 
-#: components/CurrentReplies.js:92
+#: components\CurrentReplies.js:97
 #, javascript-format
 msgid "${ items.length } reply"
 msgid_plural "${ items.length } replies"
 msgstr[0] " ${ items.length } 則回應"
 
-#: components/CurrentReplies.js:102
+#: components\CurrentReplies.js:107
 msgid "There are ${ replyLink } deleted by its author."
 msgstr "有${ replyLink }被作者自行刪除。"
 
-#: components/CurrentReplies.js:145
+#: components\CurrentReplies.js:141
 msgid "There is no existing replies for now."
 msgstr "目前沒有已撰寫的回應。"
 
-#: components/CurrentReplies.js:166
-#: pages/reply/[id].js:201
+#: components\CurrentReplies.js:163
+#: pages\reply\[id].js:254
 msgid "Delete"
 msgstr "刪除"
 
-#: components/EditorName.js:8
+#: components\EditorName.js:8
 #, javascript-format
 msgid "Lv.${ editorLevel } ${ levelName }"
 msgstr "等級 ${ editorLevel }. ${ levelName }"
 
-#: components/ArticleCategories/DownVoteDialog.js:98
-#: components/NewReplySection/ReplyForm/Submit.js:28
+#: components\ArticleCategories\DownVoteDialog.js:99
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:132
+#: components\NewReplySection\ReplyForm\Submit.js:28
 msgid "Submit"
 msgstr "送出"
 
-#: components/ArticleCategories/CategoryOption.js:363
-#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:318
+#: components\ArticleCategories\CategoryOption.js:364
+#: components\ArticleReplyFeedbackControl\ArticleReplyFeedbackControl.js:238
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/article/[id].js:248
+#: pages\article\[id].js:223
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
-#: components/NewReplySection/index.js:120
+#: components\NewReplySection\index.js:125
 msgid "Please login first."
 msgstr "請先登入。"
 
-#: pages/search.js:130
+#: pages\search.js:290
 msgid "Search"
 msgstr "搜尋"
 
-#: components/NewReplySection/ReplySearch/ReplySearch.js:103
+#: components\NewReplySection\ReplySearch\ReplySearch.js:104
 #, javascript-format
 msgid "Searching for messages and replies containing “${ variables.query }”..."
 msgstr "正在搜尋含有「${ variables.query }」的訊息與回應⋯⋯"
 
-#: components/AppLayout/LoginModal.js:73
+#: components\AppLayout\LoginModal.js:73
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
-#: constants/replyType.js:79
+#: constants\replyType.js:79
 msgid "This message cannot or should not be processed by Cofacts editors."
 msgstr "這篇訊息不是編輯能夠處理、或 Cofacts 不應該受理此類文章。"
 
-#: constants/replyType.js:80
+#: constants\replyType.js:80
 msgid "The message has some of its content proved to be true."
 msgstr "轉傳訊息或網路文章有一部分內容查證屬實。"
 
-#: constants/replyType.js:81
+#: constants\replyType.js:81
 msgid ""
 "The message contains personal opinion, unproven hypotheses, conspiracy "
 "theories, studies that has not reached concensus, inferences of political "
 "policies, etc."
 msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論、尚無共識的研究、對政策的推論等等。"
 
-#: constants/replyType.js:82
+#: constants\replyType.js:82
 msgid "This message has some of its content proved to be false."
 msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 
-#: pages/index.js:83
-msgid "Hoax Search"
-msgstr "謠言資料庫"
-
-#: pages/index.js:88
-msgid "Response List"
-msgstr "回應列表"
-
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:343
-#: pages/index.js:96
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:279
 msgid "Facebook"
 msgstr "Facebook"
 
-#: pages/index.js:101
-msgid "Hackfoldr"
-msgstr "公開資料夾"
-
-#: pages/index.js:118
+#: components\LandingPage\SectionCanDo.js:246
 msgid ""
 "Search by ID “@cofacts” or scan our QR Code to follow our Cofacts\n"
 "LINE@ account, forward any possible hoax, scam, rumor, or urban\n"
@@ -242,749 +210,537 @@ msgstr ""
 "id 搜尋 @cofacts 或是掃描 QR Code 成為真的假的 Cofacts 的 LINE "
 "好友後，轉傳可疑的謠言訊息給他，就可以讓機器人幫你查謠言囉！"
 
-#: pages/index.js:130
+#: components\LandingPage\SectionCanDo.js:257
 msgid "TUTORIAL"
 msgstr "使用教學"
 
-#: pages/index.js:154
-msgid "Write your own response and share your wisdom!"
-msgstr "自己的回應自己寫"
-
-#: pages/index.js:157
-msgid ""
-"The responses a user see are also submitted by other users. Here we\n"
-"do not have all-knowing judges, only citizens who cooperate and\n"
-"contribute. Think others’ response not good enough? Is there\n"
-"something you’d like to find out but it has not been requested yet?\n"
-"Write your own response and help others!"
-msgstr ""
-"使用者所看到的回應，是由其他同樣是使用者的人所寫出來的喔。我們沒有全知全能的判斷者，只有互相貢獻的公民協作。覺得別人的回應回得不夠好嗎？你想知道的事情還"
-"沒有人查證過嗎？自己寫出新回應，一起幫助更多人。"
-
-#: pages/index.js:164
-msgid ""
-"Every suspicious source is sent from an user, which is open to\n"
-"public for examination and response. One single request can be\n"
-"responded by different people, allowing each response to take a step\n"
-"closer to unravelling its truth."
-msgstr "資料庫裡每一則可疑的轉傳文章都是來自某位使用者，公開檢索，讓你查證後給予回應。一則文章也可以有不同人分別給予各自的回應，讓新的回應比舊的回應更好。"
-
-#: pages/index.js:171
-msgid "HOAX SEARCH"
-msgstr "謠言資料庫檢索"
-
-#: pages/index.js:178
-msgid "A war between hoaxes and facts"
-msgstr "謠言與回應的追逐戰"
-
-#: pages/index.js:179
-msgid "The difficulties we face..."
-msgstr "這是我們目前在面對的事情"
-
-#: pages/index.js:246
-msgid "Features"
-msgstr "Cofacts 特色"
-
-#: pages/index.js:249
-msgid ""
-"Cofacts program encourages people to become part of a chatbot for\n"
-"helping others. With your research, you can add your hoax busting\n"
-"responses into our database to help people acknowledge its lies."
-msgstr "Cofacts 謠言查證專案 致力於鼓勵所有人都一起成為別人的聊天機器人。只要主動查證謠言訊息，把你查到的回應加入資料庫，就能進而幫助更多人。"
-
-#: pages/index.js:260
-msgid "Crowdsourcing"
-msgstr "群眾協作"
-
-#: pages/index.js:269
-msgid ""
-"Anyone can verify and respond to other’s requests on\n"
-"possible hoax and upload it into our database. We encourage\n"
-"citizens to join our program, even invite your mom and dad\n"
-"to join."
-msgstr "任何人都可以查證且回應別人的謠言或訊息，並寫在資料庫裡。我們鼓勵公眾參與，最好把你爸爸媽媽都一起找來闢謠。"
-
-#: pages/index.js:282
-msgid "Real-Time Response"
-msgstr "即時回應"
-
-#: pages/index.js:291
-msgid ""
-"Once someone respond to your pending request, the chatbot\n"
-"will answer you through LINE. It’s fast and immediate, you\n"
-"don’t even have to wait. Better yet, you don’t even need to\n"
-"say ‘thank you’. Ask the bot to verify for you, no need to\n"
-"feel uncomfortable asking it for favors."
-msgstr "只要資料庫裡有回應，機器人就透過程式找答案給你，即時方便不用等。連問候答謝都省了，聊天機器人讓你查謠言都不用不好意思。"
-
-#: pages/index.js:305
-msgid "Different Views"
-msgstr "意見交鋒"
-
-#: pages/index.js:314
-msgid ""
-"Knowing what’s fact and what’s an opinion. Seeing different\n"
-"sides of the story makes you realize your own blindspot,\n"
-"allowing everyone to respect each other’s perspectives."
-msgstr "了解事實與評論的差異，同時看見不同立場的意見，覺察自己的盲點，互相尊重。你聽你的鳥鳴，但也可以湊過去看她的日出。"
-
-#: pages/index.js:326
-msgid "Open Source Authorization"
-msgstr "開源授權"
-
-#: pages/index.js:335
-msgid ""
-"Codes of different patches, meeting records and database\n"
-"statistics are all opened to public. We encourage more open\n"
-"source data; work and share with others in a transparent\n"
-"environment, create different possibilities."
-msgstr "過往的程式碼、會議紀錄、數據資料都完全公開，鼓勵更多的開放資料，透明化地與每個人分享合作，創造不同的可能性。"
-
-#: pages/index.js:348
-msgid "See what others have to say"
-msgstr "媒體報導"
-
-#: pages/index.js:361
-msgid "Join our open source community"
-msgstr "一起來開源"
-
-#: pages/index.js:364
-msgid ""
-"Cofacts needs all of you to help our current program to be more\n"
-"efficient and complete. This collaborate program cannot be completed\n"
-"by a small community, we need everyone to contribute, write codes,\n"
-"bust hoaxes and research. Self-motivated researching and responding\n"
-"is the way to transcend this program into something great."
-msgstr ""
-"Cofacts "
-"需要大家一起來幫忙讓目前的專案做得更好更完整。協作專案無法由少數人來完成，我們需要每一個人都一起付出、寫程式、闢謠、仔細研究查資料，自發性的查證與寫回應"
-"才能成就背後龐大的資料庫。"
-
-#: pages/index.js:370
-msgid "We welcome everyone to join us, here is what we’re looking for."
-msgstr "這裡列出我們需要的協助，歡迎每一個朋友加入我們。"
-
-#: pages/index.js:373
-msgid ""
-"People with curiosity and a sense of justice that can help us bust\n"
-"hoaxes and help others."
-msgstr "有好奇心、有正義感，就能查詢資料協助闢謠，幫助身邊的人。"
-
-#: pages/index.js:377
-msgid ""
-"Coding is a piece of cake to you? Join us fast and work together\n"
-"with us on our issues."
-msgstr "寫程式難不倒你嗎？快快來幫助我們一起解 issue。"
-
-#: pages/index.js:391
-msgid "I want to learn how to use Cofacts"
-msgstr "我想學用「真的假的」"
-
-#: pages/index.js:398
-msgid "I can help bust hoaxes"
-msgstr "我可以闢謠"
-
-#: pages/index.js:405
-msgid "I can help with coding"
-msgstr "我會寫 Code"
-
-#: pages/index.js:419
-msgid "Program Introduction"
-msgstr "專案介紹"
-
-#: pages/index.js:424
-msgid "Original Program"
-msgstr "原始提案"
-
-#: pages/index.js:428
-msgid "Source code"
-msgstr "Source code"
-
-#: pages/index.js:432
-msgid "Facebook Club"
-msgstr "FB 社團"
-
-#: pages/index.js:440
-msgid "Notices"
-msgstr "注意事項"
-
-#: pages/index.js:443
-msgid "Cofacts Copyrights"
-msgstr "成果授權"
-
-#: pages/reply/[id].js:173
-#, javascript-format
-msgid "Check message and other ${ otherReplyCount } reply"
-msgid_plural "Check message and other ${ otherReplyCount } replies"
-msgstr[0] "查看原始訊息訊息與其他 ${ otherReplyCount } 則回應"
-msgstr[1] "查看原始訊息訊息與其他 ${ otherReplyCount } 則回應"
-
-#: pages/reply/[id].js:197
+#: pages\reply\[id].js:250
 msgid "This reply"
 msgstr "本篇回應"
 
-#: pages/reply/[id].js:208
-msgid "This reply has been deleted by its author."
-msgstr "此回應已被原作者刪除。"
-
-#: components/LandingPage/Jumbotron.js:6
-#: components/UsedArticleItem.js:16
-#: pages/api/articles/[feed].js:174
-#. https://stackoverflow.com/a/54905457/1582110
+#: components\LandingPage\Jumbotron.js:6
+#: pages\api\articles\[feed].js:174
+#: pages\reply\[id].js:290
 msgid "someone"
 msgstr "有人"
 
-#: components/LandingPage/Jumbotron.js:7
-#. local ~ need your help!
+#: components\LandingPage\Jumbotron.js:7
+#. local ~ need your help! 
 msgid "people"
 msgstr "的人"
 
-#: components/LandingPage/Jumbotron.js:11
+#: components\LandingPage\Jumbotron.js:11
 msgid "your mom"
 msgstr "你媽"
 
-#: components/LandingPage/Jumbotron.js:11
+#: components\LandingPage\Jumbotron.js:11
 msgid "moms"
 msgstr "媽媽"
 
-#: components/LandingPage/Jumbotron.js:12
+#: components\LandingPage\Jumbotron.js:12
 msgid "your dad"
 msgstr "你爸"
 
-#: components/LandingPage/Jumbotron.js:12
+#: components\LandingPage\Jumbotron.js:12
 msgid "dads"
 msgstr "爸爸"
 
-#: components/LandingPage/Jumbotron.js:13
+#: components\LandingPage\Jumbotron.js:13
 msgid "your sister"
 msgstr "你姊"
 
-#: components/LandingPage/Jumbotron.js:13
+#: components\LandingPage\Jumbotron.js:13
 msgid "sis"
 msgstr "姐姐"
 
-#: components/LandingPage/Jumbotron.js:14
+#: components\LandingPage\Jumbotron.js:14
 msgid "your brother"
 msgstr "你哥"
 
-#: components/LandingPage/Jumbotron.js:14
+#: components\LandingPage\Jumbotron.js:14
 msgid "bro"
 msgstr "哥哥"
 
-#: components/LandingPage/Jumbotron.js:15
+#: components\LandingPage\Jumbotron.js:15
 msgid "your colleague"
 msgstr "你同事"
 
-#: components/LandingPage/Jumbotron.js:15
+#: components\LandingPage\Jumbotron.js:15
 msgid "colleagues"
 msgstr "同事們"
 
-#: components/LandingPage/Jumbotron.js:16
+#: components\LandingPage\Jumbotron.js:16
 msgid "your child"
 msgstr "你家小孩"
 
-#: components/LandingPage/Jumbotron.js:16
+#: components\LandingPage\Jumbotron.js:16
 msgid "children"
 msgstr "小朋友"
 
-#: components/LandingPage/Jumbotron.js:56
+#: components\LandingPage\Jumbotron.js:56
 #, javascript-format
 msgid ""
 "Are you aware that ${ someone } is helping the spread of ${ internetHoaxes "
 "}?"
 msgstr "你知道${ someone }在${ internetHoaxes }嗎？"
 
-#: components/LandingPage/Jumbotron.js:65
+#: components\LandingPage\Jumbotron.js:65
 msgid "Follow our LINE bot or join as one of our Cofacts editor."
 msgstr "現在就加入 LINE bot 與 Cofacts 編輯"
 
-#: components/LandingPage/Jumbotron.js:67
+#: components\LandingPage\Jumbotron.js:67
 #, javascript-format
 msgid "Local ${ someones } need your protection!"
 msgstr "地方的${ someones }需要你來闢謠！"
 
-#: components/LandingPage/Jumbotron.js:71
+#: components\LandingPage\Jumbotron.js:71
 msgid "Start busting hoaxes now"
 msgstr "立刻開始闢謠"
 
-#: components/LandingPage/Stats.js:26
-#. we hold ~
+#: components\LandingPage\Stats.js:26
+#. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
-#: components/LandingPage/Stats.js:33
+#: components\LandingPage\Stats.js:33
 #, javascript-format
 msgid "About ${ newMessageCount } new messages entering our database each week."
 msgstr "每週有 ${ newMessageCount } 則新訊息進入資料庫"
 
-#: components/LandingPage/Stats.js:36
+#: components\LandingPage\Stats.js:36
 msgid ""
 "About ${ userForwardingCount } people forwarding new messages to our "
 "database each week."
 msgstr "每週有 ${ userForwardingCount } 人發新訊息至資料庫"
 
-#: components/LandingPage/Stats.js:39
+#: components\LandingPage\Stats.js:39
 #, javascript-format
 msgid "But less than ${ editorCount } active editors can help us respond each week."
 msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 
-#: components/LandingPage/Stats.js:42
+#: components\LandingPage\Stats.js:42
 #, javascript-format
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
 
-#: pages/index.js:22
+#: pages\index.js:37
 msgid "Connecting facts and instant messages"
 msgstr "Connecting facts and instant messages"
 
-#: pages/index.js:23
+#: pages\index.js:38
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It’s a grass-root effort "
 "fighting mis/disinformation in Taiwan."
 msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
 
-#: pages/index.js:113
-msgid ""
-"Follow our LINE@, and send any suspected hoax, scam, rumor, or\n"
-"urban legend to verify its truth"
-msgstr "開 LINE 加好友，謠言隨手查!"
-
-#: components/LandingPage/Jumbotron.js:48
+#: components\LandingPage\Jumbotron.js:48
 msgid "internet hoaxes"
 msgstr "轉傳謠言"
 
-#: pages/article/[id].js:266
-#: pages/reply/[id].js:128
+#: pages\article\[id].js:259
+#: pages\article\[id].js:263
+#: pages\reply\[id].js:198
+#: pages\reply\[id].js:202
 msgid "Loading"
 msgstr "載入中"
 
-#: pages/article/[id].js:277
-#: pages/reply/[id].js:139
+#: pages\article\[id].js:274
+#: pages\reply\[id].js:213
 msgid "Not found"
 msgstr "找不到此頁面"
 
-#: pages/reply/[id].js:141
+#: pages\reply\[id].js:217
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages/reply/[id].js:213
-msgid "The reply is also used in these messages"
-msgstr "這則回應也被用在下面訊息"
-
-#: pages/article/[id].js:279
+#: pages\article\[id].js:278
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
-#: components/UsedArticleItem.js:25
+#: pages\reply\[id].js:299
 #, javascript-format
 msgid "Added by ${ editorElem }"
 msgstr "${editorElem} 加的"
 
-#: pages/reply/[id].js:178
-msgid "Check message"
-msgstr "查看原始訊息"
-
-#: components/ArticlePageLayout.js:220
-#, javascript-format
-msgid "Messages reported by user that reported “${ searchedUserArticleElem }”"
-msgstr "回報了「${ searchedUserArticleElem }」的使用者所回報的訊息"
-
-#: pages/api/articles/[feed].js:133
+#: pages\api\articles\[feed].js:133
 #. Use &amp; for XML meta tags
 msgid "Cofacts reported messages"
 msgstr "Cofacts 回報訊息"
 
-#: pages/api/articles/[feed].js:135
+#: pages\api\articles\[feed].js:135
 #. Use &amp; for XML meta tags
 msgid "List of messages reported by Cofacts users"
 msgstr "Cofacts 使用者所回報的訊息"
 
-#: components/Subscribe/FeedDisplay.js:114
+#: components\Subscribe\FeedDisplay.js:114
 msgid "Via Feedrabbit"
 msgstr "透過 Feedrabbit"
 
-#: pages/api/articles/[feed].js:172
+#: pages\api\articles\[feed].js:172
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Latest reply"
 msgstr "最新回應"
 
-#: components/AppLayout/AppFooter.js:89
+#: components\AppLayout\AppFooter.js:89
 msgid "Fact Check"
 msgstr "闢謠"
 
-#: components/AppLayout/AppFooter.js:103
-#: components/AppLayout/AppFooter.js:109
-#: components/AppLayout/AppSidebar.js:125
+#: components\AppLayout\AppFooter.js:114
+#: components\AppLayout\AppSidebar.js:147
 msgid "Contact Us"
 msgstr "聯絡我們"
 
-#: components/AppLayout/AppHeader.js:265
+#: components\AppLayout\AppHeader.js:245
 msgid "My Profile"
 msgstr "我的主頁"
 
-#: components/AppLayout/AppSidebar.js:115
+#: components\AppLayout\AppSidebar.js:137
 msgid "Forum"
 msgstr "討論區"
 
-#: components/AppLayout/AppFooter.js:116
+#: components\AppLayout\AppFooter.js:121
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
-#: constants/replyType.js:72
+#: constants\replyType.js:72
 msgid "invalid request"
 msgstr "不在查證範圍"
 
-#: constants/replyType.js:73
+#: constants\replyType.js:73
 msgid "contains personal perspective"
 msgstr "含有個人意見"
 
-#: constants/replyType.js:74
+#: constants\replyType.js:74
 msgid "contains true information"
 msgstr "含有正確訊息"
 
-#: constants/replyType.js:75
+#: constants\replyType.js:75
 msgid "contains misinformation"
 msgstr "含有錯誤訊息"
 
-#: components/ListPageDisplays/ArticleItem.js:177
+#: pages\replies.js:267
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
-#: pages/search.js:167
+#: components\SearchPageJumbotron.js:130
 msgid "Messages"
 msgstr "可疑訊息"
 
-#: components/ListPageControls/ArticleStatusFilter.js:16
+#: components\ListPageControls\ArticleStatusFilter.js:16
+#: pages\search.js:304
 msgid "Replied by me"
 msgstr "我查核過"
 
-#: components/ListPageControls/ArticleStatusFilter.js:17
+#: components\ListPageControls\ArticleStatusFilter.js:17
 msgid "No useful reply yet"
 msgstr "還未有有效查核"
 
-#: components/ListPageControls/ArticleStatusFilter.js:18
+#: components\ListPageControls\ArticleStatusFilter.js:18
 msgid "Asked many times"
 msgstr "熱門回報"
 
-#: components/ListPageControls/ArticleStatusFilter.js:19
+#: components\ListPageControls\ArticleStatusFilter.js:19
 msgid "Replied many times"
 msgstr "熱門討論"
 
-#: components/ListPageControls/ArticleStatusFilter.js:39
-#: components/ListPageControls/Filters.js:72
+#: components\ListPageControls\ArticleStatusFilter.js:47
+#: components\ListPageControls\Filters.js:70
+#: pages\search.js:302
 msgid "Filter"
 msgstr "篩選"
 
-#: components/ListPageControls/CategoryFilter.js:45
+#: components\ListPageControls\CategoryFilter.js:54
 msgid "Topic"
 msgstr "主題"
 
-#: components/ListPageControls/CategoryFilter.js:48
+#: components\ListPageControls\CategoryFilter.js:57
 msgid "All Topics"
 msgstr "全部主題"
 
-#: components/ListPageControls/LoadMore.js:60
+#: components\ListPageControls\LoadMore.js:61
 msgid "Load More"
 msgstr "查看更多"
 
-#: pages/hoax-for-you.js:25
-#: pages/hoax-for-you.js:38
+#: pages\hoax-for-you.js:118
+#: pages\hoax-for-you.js:120
 msgid "Hoax for you"
 msgstr "等你來答"
 
-#: pages/replies.js:21
+#: pages\replies.js:214
+#: pages\replies.js:217
 msgid "Latest replies"
 msgstr "最新查核"
 
-#: components/ExpandableText.js:53
+#: components\ExpandableText.js:53
 msgid "Show Less"
 msgstr "收合全文"
 
-#: components/ExpandableText.js:53
+#: components\ExpandableText.js:53
 msgid "Show More"
 msgstr "閱讀全文"
 
-#: components/Subscribe/FeedDisplay.js:89
-#: components/Subscribe/IFTTTItem.js:117
+#: components\Subscribe\FeedDisplay.js:87
 msgid "Subscribe"
 msgstr "訂閱本頁"
 
-#: components/ArticleReplyFeedbackControl/ButtonGroupDisplay.js:108
+#: components\ArticleReplyFeedbackControl\ButtonGroupDisplay.js:108
 msgid "See Reasons"
 msgstr "看理由"
 
-#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:312
+#: components\ArticleReplyFeedbackControl\ArticleReplyFeedbackControl.js:231
 msgid "Send"
 msgstr "送出"
 
-#: components/ListPageDisplays/ReplyItem.js:79
+#: components\ListPageDisplays\ReplyItem.js:82
 msgid "Anonymous"
 msgstr "有人"
 
-#: components/ListPageControls/BaseTimeRange.js:63
+#: components\ListPageControls\BaseTimeRange.js:68
 msgid "In 1 Day"
 msgstr "一天內"
 
-#: components/ListPageControls/BaseTimeRange.js:64
+#: components\ListPageControls\BaseTimeRange.js:69
 msgid "In 1 Week"
 msgstr "一週內"
 
-#: components/ListPageControls/BaseTimeRange.js:65
+#: components\ListPageControls\BaseTimeRange.js:70
 msgid "In 1 Month"
 msgstr "一個月內"
 
-#: components/ListPageControls/BaseTimeRange.js:157
+#: components\ListPageControls\BaseTimeRange.js:162
 msgid "to"
 msgstr "到"
 
-#: components/ArticleCategories/CategoryOption.js:356
+#: components\ArticleCategories\CategoryOption.js:357
 msgid "See examples"
 msgstr "查看範例"
 
-#: components/ArticleCategories/AddCategoryDialog.js:62
+#: components\ArticleCategories\AddCategoryDialog.js:62
 msgid "Categorize this message"
 msgstr "可疑訊息分類"
 
-#: components/ArticleCategories/DownVoteDialog.js:56
+#: components\ArticleCategories\DownVoteDialog.js:57
 msgid "Report wrong category"
 msgstr "回報分類有誤"
 
-#: components/ArticleCategories/DownVoteDialog.js:84
+#: components\ArticleCategories\DownVoteDialog.js:85
 msgid ""
 "Please share with us why you think this message does not belong to this "
 "category"
 msgstr "請告訴我們您為何覺得此訊息不該標註此分類"
 
-#: components/AppLayout/GlobalSearch.js:145
+#: components\AppLayout\GlobalSearch.js:145
 msgid "in Messages"
 msgstr "在 可疑訊息"
 
-#: components/AppLayout/GlobalSearch.js:150
+#: components\AppLayout\GlobalSearch.js:150
 msgid "in Replies"
 msgstr "在 最新查核"
 
-#: pages/articles.js:21
-#: pages/articles.js:33
+#: pages\articles.js:151
+#: pages\articles.js:153
 msgid "Dubious Messages"
 msgstr "可疑訊息"
 
-#: pages/replies.js:34
-msgid "Latest Replies"
-msgstr "最新查核"
-
-#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:288
+#: components\ArticleReplyFeedbackControl\ArticleReplyFeedbackControl.js:204
 msgid "Do you have any thing to add?"
 msgstr "您有沒有什麼想補充的呢？"
 
-#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:289
+#: components\ArticleReplyFeedbackControl\ArticleReplyFeedbackControl.js:205
 msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
 
-#: components/ArticlePageLayout.js:255
-#: components/ReplySearchPageLayout.js:156
+#: pages\articles.js:176
+#: pages\hoax-for-you.js:133
+#: pages\replies.js:240
+#: pages\search.js:173
+#: pages\search.js:246
 msgid "Loading..."
 msgstr "載入中⋯"
 
-#: components/AppLayout/AppFooter.js:99
-#: components/AppLayout/AppHeader.js:272
+#: components\AppLayout\AppFooter.js:103
+#: components\AppLayout\AppHeader.js:252
 msgid "About Cofacts"
 msgstr "關於 Cofacts"
 
-#: components/Subscribe/FeedDisplay.js:113
+#: components\Subscribe\FeedDisplay.js:113
 msgid "Email"
 msgstr "電子郵件訂閱"
 
-#: components/Subscribe/FeedDisplay.js:126
+#: components\Subscribe\FeedDisplay.js:128
 msgid "Feedly"
 msgstr "Feedly 訂閱"
 
-#: components/Subscribe/FeedDisplay.js:134
+#: components\Subscribe\FeedDisplay.js:136
 msgid "Get RSS Feed Link"
 msgstr "取得 RSS Feed 連結"
 
-#: components/Subscribe/FeedDisplay.js:137
+#: components\Subscribe\FeedDisplay.js:139
 msgid "Through IFTTT to"
 msgstr "透過 IFTTT 訂閱到"
 
-#: components/Subscribe/IFTTTItem.js:58
-#, javascript-format
-msgid "Subscribe to ${ platform }"
-msgstr "訂閱更新到 ${ platform }"
-
-#: components/Subscribe/IFTTTItem.js:85
-msgid "Feed URL"
-msgstr "Feed URL"
-
-#: components/ArticleInfo.js:47
+#: components\ArticleInfo.js:47
 #, javascript-format
 msgid "${ replyRequestCount } occurrence"
 msgid_plural "${ replyRequestCount } occurrences"
 msgstr[0] "被回報 ${ replyRequestCount } 次"
 
-#: pages/search.js:145
+#: components\SearchPageJumbotron.js:110
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages/article/[id].js:314
+#: pages\article\[id].js:310
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:324
+#: pages\article\[id].js:322
 msgid "First reported ${ timeAgoStr } ago"
 msgstr "首次回報於 ${ timeAgoStr }前"
 
-#: pages/article/[id].js:398
-#, javascript-format
-msgid "${ article.articleReplies.length } replies to the message"
-msgstr "本訊息有 ${ article.articleReplies.length } 則查核回應"
-
-#: pages/article/[id].js:405
+#: pages\article\[id].js:416
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages/article/[id].js:428
+#: pages\article\[id].js:435
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
-#: components/RelatedReplies.js:97
+#: components\RelatedReplies.js:97
 msgid "View in new tab"
 msgstr "新分頁查看原文"
 
-#: components/RelatedReplies.js:106
+#: components\RelatedReplies.js:106
 msgid "Message below was considered"
 msgstr "以下訊息被標示為"
 
-#: components/RelatedReplies.js:110
+#: components\RelatedReplies.js:110
 msgid "Related article"
 msgstr "相關訊息原文"
 
-#: components/RelatedReplies.js:122
+#: components\RelatedReplies.js:122
 msgid "Related reply"
 msgstr "查核回應"
 
-#: components/ReplyInfo.js:18
+#: components\ReplyInfo.js:18
 #, javascript-format
 msgid "replied ${ timeAgoStr } ago"
 msgstr "回應於 ${ timeAgoStr }前"
 
-#: components/ReplyInfo.js:23
+#: components\ReplyInfo.js:23
 msgid "originally written by ${ user.name }"
 msgstr "引用自 ${user.name} 查核回應"
 
-#: components/ReplyInfo.js:26
+#: components\ReplyInfo.js:26
 #, javascript-format
 msgid "${ referenceCount } reference"
 msgid_plural "${ referenceCount } references"
 msgstr[0] "原始回應被引用 ${ referenceCount } 次"
 
-#: components/ArticleReply/ReplyShare.js:83
-#: components/Subscribe/FeedDisplay.js:132
-#: components/Subscribe/IFTTTItem.js:103
+#: components\ArticleReply\ReplyShare.js:83
+#: components\Subscribe\FeedDisplay.js:134
+#: components\Subscribe\IFTTTItem.js:206
 msgid "Copied to clipboard!"
 msgstr "已複製到剪貼簿！"
 
-#: components/NewReplySection/Desktop.js:104
+#: components\NewReplySection\Desktop.js:104
 msgid "You will gain 1 point by submitting the reply"
 msgstr "送出這篇查核回應你可以獲得公道值 1 點"
 
-#: components/NewReplySection/Desktop.js:113
+#: components\NewReplySection\Desktop.js:113
 msgid "Related messages and replies"
 msgstr "相關可疑訊息及回應"
 
-#: components/NewReplySection/Desktop.js:124
-#: components/NewReplySection/Mobile.js:233
+#: components\NewReplySection\Desktop.js:124
+#: components\NewReplySection\Mobile.js:233
 msgid "Use this reply"
 msgstr "直接用此回應"
 
-#: components/NewReplySection/ReplySearch/SearchBar.js:107
+#: components\NewReplySection\ReplySearch\SearchBar.js:107
 msgid "All messages"
 msgstr "全部訊息"
 
-#: components/NewReplySection/ReplySearch/SearchBar.js:108
+#: components\NewReplySection\ReplySearch\SearchBar.js:108
 msgid "My messages"
 msgstr "我的訊息"
 
-#: components/NewReplySection/ReplySearch/SearchBar.js:109
+#: components\NewReplySection\ReplySearch\SearchBar.js:109
 msgid "All replies"
 msgstr "全部回應"
 
-#: components/NewReplySection/ReplySearch/SearchBar.js:110
+#: components\NewReplySection\ReplySearch\SearchBar.js:110
 msgid "My replies"
 msgstr "我的回應"
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:66
+#: components\NewReplySection\ReplyForm\ReferenceInput.js:66
 msgid ""
 "Inserting blank lines between reference items can improve readability in "
 "LINE."
 msgstr "多個來源用斷行分開，會幫助 Line 的使用者更好閱讀 "
 
-#: components/ListPageDisplays/ReplyItem.js:94
+#: components\ListPageDisplays\ReplyItem.js:96
 #, javascript-format
 msgid "${ userName } mark this message ${ TYPE_NAME[replyType] }"
 msgstr "${ userName } 認為 ${ TYPE_NAME[replyType] }"
 
-#: components/ListPageDisplays/ReplySearchItem.js:136
+#: components\ListPageDisplays\ReplySearchItem.js:162
 #, javascript-format
 msgid "This reply is also used in ${ replyCount } other message"
 msgid_plural "This reply is also used in ${ replyCount } other messages"
 msgstr[0] "此查核回應曾經被用於 ${ replyCount } 個可疑訊息"
 
-#: components/ListPageDisplays/ReplySearchItem.js:142
+#: components\ListPageDisplays\ReplySearchItem.js:168
 msgid "view"
 msgstr "查看"
 
-#: components/ListPageDisplays/ReplySearchItem.js:147
+#: components\ListPageDisplays\ReplySearchItem.js:173
 msgid "This reply is used in following messages"
 msgstr "此查核回應尚被用於以下的可疑訊息"
 
-#: components/ListPageControls/ReplyTypeFilter.js:25
+#: components\ListPageControls\ReplyTypeFilter.js:33
 msgid "Marked as"
 msgstr "被認為"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:260
-msgid "Did you find anything suspicious about the message?"
-msgstr "搜尋臉書或Google後，你發現了什麼可疑的地方，想給其他編輯參考呢？"
-
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:294
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:361
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:234
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:292
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:305
 msgid "Reply to this message"
 msgstr "我要查核闢謠"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:305
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:245
 msgid "Update comment"
 msgstr "更新補充"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:305
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:245
 msgid "Comment"
 msgstr "我想補充"
 
-#: components/ArticleReply/ReplyShare.js:74
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:318
+#: components\ArticleReply\ReplyShare.js:74
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:253
 msgid "Share"
 msgstr "分享"
 
-#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:240
+#: components\ArticleReplyFeedbackControl\ReasonsDisplay.js:111
 #, javascript-format
 msgid "Helpful ${ articleReply.positiveFeedbackCount }"
 msgstr "有幫助 ${ articleReply.positiveFeedbackCount }"
 
-#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:244
+#: components\ArticleReplyFeedbackControl\ReasonsDisplay.js:115
 msgid "Not Helpful ${ articleReply.negativeFeedbackCount }"
 msgstr "沒有幫助  ${ articleReply.negativeFeedbackCount }"
 
-#: components/ArticleReply/ReplyShare.js:64
+#: components\ArticleReply\ReplyShare.js:64
 msgid "Successfylly Shared!"
 msgstr "分享成功！"
 
-#: components/ArticleReply/index.js:200
+#: components\ArticleReply\index.js:194
 #, javascript-format
 msgid "${ authorElem } mark this message ${ TYPE_NAME[replyType] }"
 msgstr "${ authorElem } 認為 ${ TYPE_NAME[replyType] }"
 
-#: components/ArticleCategories/AddCategoryDialog.js:65
+#: components\ArticleCategories\AddCategoryDialog.js:65
 msgid ""
 "Articles are mostly categorized by AI based on our current data, but you "
 "can provide your own opinion to improved the categorization."
@@ -992,148 +748,252 @@ msgstr ""
 "訊息分類是由吸收日月天地精華的人工智慧所自動分類的，但有可能人工智慧經驗不足判斷錯誤，我們需要您協助調整分類，讓人工智慧可以吸收您的智慧，做出更好的判斷"
 "。"
 
-#: components/ArticleCategories/CategoryOption.js:285
+#: components\ArticleCategories\CategoryOption.js:286
 msgid "Marked"
 msgstr "被標註"
 
-#: components/ArticleCategories/CategoryOption.js:315
+#: components\ArticleCategories\CategoryOption.js:316
 msgid "Agree"
 msgstr "同意"
 
-#: components/ArticleCategories/CategoryOption.js:336
+#: components\ArticleCategories\CategoryOption.js:337
 msgid "Disagree"
 msgstr "反對"
 
-#: components/ArticleCategories/ArticleCategories.js:78
+#: components\ArticleCategories\ArticleCategories.js:81
 msgid "Suggest categories"
 msgstr "分類建議"
 
-#: components/ArticleCategories/CategoryOption.js:298
+#: components\ArticleCategories\CategoryOption.js:299
 msgid "Mark"
 msgstr "新增標註"
 
-#: components/NewReplySection/Desktop.js:69
-#: components/NewReplySection/Mobile.js:148
+#: components\NewReplySection\Desktop.js:69
+#: components\NewReplySection\Mobile.js:148
 msgid "Compose a new reply"
 msgstr "撰寫新回應"
 
-#: components/NewReplySection/Desktop.js:73
-#: components/NewReplySection/Mobile.js:151
+#: components\NewReplySection\Desktop.js:73
+#: components\NewReplySection\Mobile.js:151
 msgid "Use existing replies"
 msgstr "使用現有回應"
 
-#: components/NewReplySection/ReplyForm/ReasonEditor.js:290
+#: components\NewReplySection\ReplyForm\ReasonEditor.js:290
 msgid "Keep composing my reply with this"
 msgstr "延伸此回應來查核"
 
-#: components/NewReplySection/ReplyForm/TypeSelect.js:32
+#: components\NewReplySection\ReplyForm\TypeSelect.js:32
 msgid "I think this message"
 msgstr "我認為"
 
-#: components/ArticleCategories/CategoryOption.js:308
+#: components\ArticleCategories\CategoryOption.js:309
 msgid "Unmark"
 msgstr "取消標注"
 
-#: components/NewReplySection/Mobile.js:170
-msgctxt "Mobile editor tab"
-msgid "Message"
-msgstr "原始文章"
+#: components\LineChart.js:338
+msgid "Web Visit"
+msgstr "網頁瀏覽"
 
-#: components/NewReplySection/Mobile.js:171
-msgctxt "Mobile editor tab"
-msgid "Compose"
-msgstr "撰寫回應"
+#: components\LineChart.js:340
+msgid "Line Inquiry"
+msgstr "Line 詢問"
 
-#: components/NewReplySection/Mobile.js:173
-msgctxt "Mobile editor tab"
-msgid "References"
-msgstr "資料來源"
+#: components\TrendPlot.js:131
+#, javascript-format
+msgid "Web Visit: ${ totalWebVisits }"
+msgstr "網頁瀏覽 ${ totalWebVisits } 次"
 
-#: components/ListPageDisplays/ArticleItem.js:147
-msgctxt "Info box"
-msgid "replies"
-msgstr "回應"
+#: components\TrendPlot.js:139
+#, javascript-format
+msgid "Web: ${ totalWebVisits }"
+msgstr "瀏覽 ${ totalWebVisits } 次"
 
-#: components/ListPageDisplays/ArticleItem.js:151
-msgctxt "Info box"
-msgid "requests"
-msgstr "回報"
+#: components\TrendPlot.js:134
+msgid "Line Inquery: ${ totalLineVisits }"
+msgstr "Line 詢問 ${ totalLineVisits } 次"
 
-#: components/ListPageControls/BaseTimeRange.js:62
-msgctxt "Time range dropdown"
-msgid "All"
-msgstr "時間不限"
+#: components\TrendPlot.js:142
+msgid "Line: ${ totalLineVisits }"
+msgstr "詢問 ${ totalLineVisits } 次"
 
-#: components/ListPageControls/BaseTimeRange.js:66
-msgctxt "Time range dropdown"
-msgid "Custom"
-msgstr "自訂範圍"
+#: components\TrendPlot.js:146
+#, javascript-format
+msgid "Total Visit: ${ totalVisits }"
+msgstr "${ totalVisits } 次瀏覽"
 
-#: components/AppLayout/AppHeader.js:159
-msgctxt "App header"
-msgid "Messages"
-msgstr "可疑訊息"
+#: components\ListPageDisplays\ReplySearchItem.js:103
+#: pages\replies.js:250
+#, javascript-format
+msgid "${ article.replyRequestCount } occurrence"
+msgid_plural "${ article.replyRequestCount } occurrences"
+msgstr[0] ""
+msgstr[1] ""
 
-#: components/AppLayout/AppHeader.js:166
-msgctxt "App header"
-msgid "Replies"
-msgstr "最新查核"
+#: components\ListPageDisplays\ArticleCard.js:98
+#: components\ListPageDisplays\ReplySearchItem.js:110
+#: pages\replies.js:257
+msgid "First reported ${ timeAgo } ago"
+msgstr ""
 
-#: components/AppLayout/AppHeader.js:178
-msgctxt "App header"
-msgid "For You"
-msgstr "等你來答"
+#: pages\reply\[id].js:138
+#, javascript-format
+msgid "${ otherCount } other reply"
+msgid_plural "${ otherCount } other replies"
+msgstr[0] ""
+msgstr[1] ""
 
-#: components/AppLayout/AppHeader.js:188
-msgctxt "App header"
-msgid "Forum"
-msgstr "討論區"
+#: pages\reply\[id].js:262
+msgid "The reply is used in the following messages"
+msgstr ""
 
-#: components/LineChart.js:221
+#: pages\reply\[id].js:273
+msgid "Deleted by its author"
+msgstr ""
+
+#: pages\reply\[id].js:313
+msgid "Similar replies"
+msgstr ""
+
+#: pages\reply\[id].js:326
+#, javascript-format
+msgid "Used in ${ node.articleReplies.length } message"
+msgid_plural "Used in ${ node.articleReplies.length } messages"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pages\reply\[id].js:338
+msgid "No similar replies found"
+msgstr ""
+
+#: components\Hyperlinks.js:115
+msgid "Domain name cannot be resolved"
+msgstr ""
+
+#: components\Hyperlinks.js:118
+msgid "URL is malformed or not supported"
+msgstr ""
+
+#: components\Hyperlinks.js:120
+msgid "Cannot get data from URL"
+msgstr ""
+
+#: components\Hyperlinks.js:122
+msgid "Target site contains HTTPS error"
+msgstr ""
+
+#: components\Hyperlinks.js:124
+msgid "Unknown error"
+msgstr ""
+
+#: pages\article\[id].js:395
+#, javascript-format
+msgid "There is ${ replyCount } fact-checking reply to the message"
+msgid_plural "There are ${ replyCount } fact-checking replies to the message"
+msgstr[0] ""
+msgstr[1] ""
+
+#: pages\article\[id].js:409
+#: pages\article\[id].js:445
+msgid "Add Cofacts as friend in LINE"
+msgstr ""
+
+#: components\TrendPlot.js:128
+msgid "Past 31 days"
+msgstr ""
+
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:132
+msgid "Please provide more info"
+msgstr ""
+
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:198
+msgid ""
+"Did you find anything suspicious about the message after you search "
+"Facebook & Google?"
+msgstr ""
+
+#: components\CreateReplyRequestForm\CreateReplyRequestForm.js:210
+msgid ""
+"Please provide paragraphs you find controversial, or related news, image & "
+"video material you have found."
+msgstr ""
+
+#: components\AppLayout\AppLayout.js:65
+msgid "Your display name has been updated."
+msgstr ""
+
+#: components\AppLayout\AppLayout.js:77
+msgid "Please enter new display name"
+msgstr ""
+
+#: components\AppLayout\AppLayout.js:82
+msgid "Display name cannot be empty."
+msgstr ""
+
+#: components\LineChart.js:221
+#, javascript-format
 msgctxt "LineChart"
 msgid "${ visitNum } time"
 msgid_plural "${ visitNum } times"
 msgstr[0] "${ visitNum } 次"
 msgstr[1] "${ visitNum } 次"
 
-#: components/LineChart.js:329
-msgid "Web Visit"
-msgstr "網頁瀏覽"
+#: components\NewReplySection\Mobile.js:170
+msgctxt "Mobile editor tab"
+msgid "Message"
+msgstr "原始文章"
 
-#: components/LineChart.js:333
-msgid "Line Inquiry"
-msgstr "Line 詢問"
+#: components\NewReplySection\Mobile.js:171
+msgctxt "Mobile editor tab"
+msgid "Compose"
+msgstr "撰寫回應"
 
-#: components/LineChart.js:343
-#: components/LineChart.js:345
-msgid "Line"
-msgstr "詢問"
+#: components\NewReplySection\Mobile.js:173
+msgctxt "Mobile editor tab"
+msgid "References"
+msgstr "資料來源"
 
-#: components/TrendPlot.js:127
-msgid "past 31 days"
-msgstr "近31日"
+#: components\ListPageDisplays\ArticleCard.js:105
+msgctxt "Info box"
+msgid "replies"
+msgstr "回應"
 
-#: components/TrendPlot.js:130
-#, javascript-format
-msgid "Web Visit: ${ totalWebVisits }"
-msgstr "網頁瀏覽 ${ totalWebVisits } 次"
+#: components\ListPageDisplays\ArticleCard.js:109
+msgctxt "Info box"
+msgid "reports"
+msgstr ""
 
-#: components/TrendPlot.js:138
-#, javascript-format
-msgid "Web: ${ totalWebVisits }"
-msgstr "瀏覽 ${ totalWebVisits } 次"
+#: components\ListPageControls\BaseTimeRange.js:67
+msgctxt "Time range dropdown"
+msgid "All"
+msgstr "時間不限"
 
-#: components/TrendPlot.js:133
-#, javascript-format
-msgid "Line Inquery: ${ totalLineVisits }"
-msgstr "Line 詢問 ${ totalLineVisits } 次"
+#: components\ListPageControls\BaseTimeRange.js:71
+msgctxt "Time range dropdown"
+msgid "Custom"
+msgstr "自訂範圍"
 
-#: components/TrendPlot.js:141
-#, javascript-format
-msgid "Line: ${ totalLineVisits }"
-msgstr "詢問 ${ totalLineVisits } 次"
+#: components\AppLayout\AppFooter.js:91
+#: components\AppLayout\AppHeader.js:160
+#: components\AppLayout\AppHeader.js:413
+msgctxt "App layout"
+msgid "Messages"
+msgstr "可疑訊息"
 
-#: components/TrendPlot.js:145
-#, javascript-format
-msgid "Total Visit: ${ totalVisits }"
-msgstr "${ totalVisits } 次瀏覽"
+#: components\AppLayout\AppFooter.js:94
+#: components\AppLayout\AppHeader.js:167
+#: components\AppLayout\AppHeader.js:416
+msgctxt "App layout"
+msgid "Replies"
+msgstr "最新查核"
+
+#: components\AppLayout\AppHeader.js:179
+#: components\AppLayout\AppHeader.js:420
+msgctxt "App layout"
+msgid "For You"
+msgstr "等你來答"
+
+#: components\AppLayout\AppHeader.js:189
+#: components\AppLayout\AppHeader.js:429
+msgctxt "App layout"
+msgid "Forum"
+msgstr "討論區"
