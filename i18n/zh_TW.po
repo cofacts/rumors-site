@@ -6,20 +6,16 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components\AppLayout\AppFooter.js:101
+#: components\AppLayout\AppFooter.js:112
 #: components\AppLayout\AppSidebar.js:142
 msgid "About"
 msgstr "關於"
 
 #: pages\article\[id].js:302
-#: pages\index.js:37
+#: pages\index.js:41
 #: pages\reply\[id].js:244
 msgid "Cofacts"
 msgstr "Cofacts"
-
-#: components\AppLayout\AppFooter.js:97
-msgid "Editor forum"
-msgstr "編輯討論區"
 
 #: components\ArticleCategories\DownVoteDialog.js:98
 #: components\NewReplySection\Mobile.js:138
@@ -323,11 +319,11 @@ msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
 
-#: pages\index.js:37
+#: pages\index.js:41
 msgid "Connecting facts and instant messages"
 msgstr "Connecting facts and instant messages"
 
-#: pages\index.js:38
+#: pages\index.js:42
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It’s a grass-root effort "
@@ -382,11 +378,11 @@ msgstr "透過 Feedrabbit"
 msgid "Latest reply"
 msgstr "最新回應"
 
-#: components\AppLayout\AppFooter.js:89
+#: components\AppLayout\AppFooter.js:100
 msgid "Fact Check"
 msgstr "闢謠"
 
-#: components\AppLayout\AppFooter.js:114
+#: components\AppLayout\AppFooter.js:141
 #: components\AppLayout\AppSidebar.js:147
 msgid "Contact Us"
 msgstr "聯絡我們"
@@ -399,7 +395,7 @@ msgstr "我的主頁"
 msgid "Forum"
 msgstr "討論區"
 
-#: components\AppLayout\AppFooter.js:121
+#: components\AppLayout\AppFooter.js:154
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
@@ -423,6 +419,8 @@ msgstr "含有錯誤訊息"
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
+#: components\AppLayout\AppFooter.js:101
+#: components\AppLayout\AppHeader.js:413
 #: components\SearchPageJumbotron.js:130
 msgid "Messages"
 msgstr "可疑訊息"
@@ -559,7 +557,7 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 msgid "Loading..."
 msgstr "載入中⋯"
 
-#: components\AppLayout\AppFooter.js:103
+#: components\AppLayout\AppFooter.js:114
 #: components\AppLayout\AppHeader.js:252
 msgid "About Cofacts"
 msgstr "關於 Cofacts"
@@ -929,6 +927,54 @@ msgstr ""
 msgid "Display name cannot be empty."
 msgstr ""
 
+#: components\LandingPage\SectionFeature.js:80
+msgid "Real-Time Response"
+msgstr "即時回應"
+
+#: components\LandingPage\SectionFeature.js:81
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It’s fast and immediate, you\n"
+"don’t even have to wait. Better yet, you don’t even need to\n"
+"say ‘thank you’. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr "只要資料庫裡有回應，機器人就透過程式找答案給你，即時方便不用等。連問候答謝都省了，聊天機器人讓你查謠言都不用不好意思。"
+
+#: components\LandingPage\SectionFeature.js:90
+msgid "Crowdsourcing"
+msgstr "群眾協作"
+
+#: components\LandingPage\SectionFeature.js:91
+msgid ""
+"Anyone can verify and respond to other’s requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr "任何人都可以查證且回應別人的謠言或訊息，並寫在資料庫裡。我們鼓勵公眾參與，最好把你爸爸媽媽都一起找來闢謠。"
+
+#: components\LandingPage\SectionFeature.js:99
+msgid "Different Views"
+msgstr "意見交鋒"
+
+#: components\LandingPage\SectionFeature.js:100
+msgid ""
+"Knowing what’s fact and what’s an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other’s perspectives."
+msgstr "了解事實與評論的差異，同時看見不同立場的意見，覺察自己的盲點，互相尊重。你聽你的鳥鳴，但也可以湊過去看她的日出。"
+
+#: components\LandingPage\SectionFeature.js:107
+msgid "Open Source Authorization"
+msgstr "開源授權"
+
+#: components\LandingPage\SectionFeature.js:108
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr "過往的程式碼、會議紀錄、數據資料都完全公開，鼓勵更多的開放資料，透明化地與每個人分享合作，創造不同的可能性。"
+
 #: components\LineChart.js:221
 #, javascript-format
 msgctxt "LineChart"
@@ -972,20 +1018,19 @@ msgctxt "Time range dropdown"
 msgid "Custom"
 msgstr "自訂範圍"
 
-#: components\AppLayout\AppFooter.js:91
 #: components\AppLayout\AppHeader.js:160
-#: components\AppLayout\AppHeader.js:413
 msgctxt "App layout"
 msgid "Messages"
 msgstr "可疑訊息"
 
-#: components\AppLayout\AppFooter.js:94
+#: components\AppLayout\AppFooter.js:103
 #: components\AppLayout\AppHeader.js:167
 #: components\AppLayout\AppHeader.js:416
 msgctxt "App layout"
 msgid "Replies"
 msgstr "最新查核"
 
+#: components\AppLayout\AppFooter.js:106
 #: components\AppLayout\AppHeader.js:179
 #: components\AppLayout\AppHeader.js:420
 msgctxt "App layout"
