@@ -146,7 +146,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SectionFeature = ({ className }) => {
+const SectionJoin = ({ className }) => {
   const classes = useStyles();
 
   const theme = useTheme();
@@ -178,4 +178,4 @@ const SectionFeature = ({ className }) => {
   );
 };
 
-export default SectionFeature;
+export default SectionJoin;
