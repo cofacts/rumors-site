@@ -107,10 +107,26 @@ const useStyles = makeStyles(theme => ({
 function Stats() {
   const classes = useStyles();
 
-  const newMessageCount = <div className={classes.count}>250</div>;
-  const userForwardingCount = <div className={classes.count}>210</div>;
-  const editorCount = <div className={classes.count}>12</div>;
-  const meetupFrequency = <div className={classes.count}>2</div>;
+  const newMessageCount = (
+    <div key="newMessageCount" className={classes.count}>
+      250
+    </div>
+  );
+  const userForwardingCount = (
+    <div key="userForwardingCount" className={classes.count}>
+      210
+    </div>
+  );
+  const editorCount = (
+    <div key="editorCount" className={classes.count}>
+      12
+    </div>
+  );
+  const meetupFrequency = (
+    <div key="meetupFrequency" className={classes.count}>
+      2
+    </div>
+  );
   const gathering = (
     <a
       key="link"
