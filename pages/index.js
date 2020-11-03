@@ -9,6 +9,7 @@ import {
   SectionHow,
   SectionFeature,
   SectionJoin,
+  Stats,
 } from 'components/LandingPage';
 
 // import qrCodeURL from './../components/LandingPage/images/qr-code.png';
@@ -89,6 +90,7 @@ function Home() {
       <SectionHow />
       <SectionFeature />
       <SectionJoin />
+      <Stats />
     </AppLayout>
   );
 }
