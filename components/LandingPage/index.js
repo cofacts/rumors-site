@@ -6,3 +6,4 @@ export { default as SectionHow } from './SectionHow';
 export { default as SectionFeature } from './SectionFeature';
 export { default as SectionJoin } from './SectionJoin';
 export { default as SectionContribute } from './SectionContribute';
+export { default as SectionIndex } from './SectionIndex';

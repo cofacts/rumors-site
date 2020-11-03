@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import AppLayout from 'components/AppLayout';
 import {
+  SectionIndex,
   SectionCanDo,
   SectionHow,
   SectionFeature,
@@ -13,33 +14,15 @@ import {
   SectionContribute,
 } from 'components/LandingPage';
 
-// import qrCodeURL from './../components/LandingPage/images/qr-code.png';
 import ogImage from 'components/LandingPage/images/ogimage.png';
-import coverImage from 'components/LandingPage/images/cover.png';
 
 import withData from 'lib/apollo';
-import { NAVBAR_HEIGHT } from 'constants/size';
 
 const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
 
-const useStyles = makeStyles(theme => ({
-  sectionCover: {
-    width: '100%',
-    paddingTop: NAVBAR_HEIGHT,
-    background: theme.palette.common.yellow,
-
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: 0,
-    },
-
-    '& > img': {
-      width: '100%',
-    },
-  },
-  sectionCanDo: {},
-}));
+const useStyles = makeStyles(theme => ({}));
 function Home() {
   const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
   const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
@@ -84,9 +67,7 @@ function Home() {
           type="text/css"
         />
       </Head>
-      <section className={classes.sectionCover}>
-        <img src={coverImage} />
-      </section>
+      <SectionIndex />
       <SectionCanDo />
       <SectionHow />
       <SectionFeature />
