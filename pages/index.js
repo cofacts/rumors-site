@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import getConfig from 'next/config';
 import { t } from 'ttag';
-import { makeStyles } from '@material-ui/core/styles';
 
 import AppLayout from 'components/AppLayout';
 import {
@@ -22,12 +21,9 @@ const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
 
-const useStyles = makeStyles(theme => ({}));
 function Home() {
   const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
   const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
-
-  const classes = useStyles();
 
   return (
     <AppLayout container={false}>
