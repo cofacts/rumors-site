@@ -47,6 +47,7 @@ const SectionIndex = () => {
   const ref = useRef();
   const [backImageStyles, setBackImageStyles] = useSpring(() => ({
     backgroundPositionY: 0,
+    config: { mass: 1, tension: 300, friction: 26 },
   }));
 
   const handleScroll = () => {
