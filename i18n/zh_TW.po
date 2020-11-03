@@ -12,7 +12,7 @@ msgid "About"
 msgstr "關於"
 
 #: pages\article\[id].js:302
-#: pages\index.js:41
+#: pages\index.js:44
 #: pages\reply\[id].js:244
 msgid "Cofacts"
 msgstr "Cofacts"
@@ -293,37 +293,37 @@ msgstr "地方的${ someones }需要你來闢謠！"
 msgid "Start busting hoaxes now"
 msgstr "立刻開始闢謠"
 
-#: components\LandingPage\Stats.js:26
+#: components\LandingPage\Stats.js:121
 #. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
-#: components\LandingPage\Stats.js:33
+#: components\LandingPage\Stats.js:139
 #, javascript-format
 msgid "About ${ newMessageCount } new messages entering our database each week."
 msgstr "每週有 ${ newMessageCount } 則新訊息進入資料庫"
 
-#: components\LandingPage\Stats.js:36
+#: components\LandingPage\Stats.js:142
 msgid ""
 "About ${ userForwardingCount } people forwarding new messages to our "
 "database each week."
 msgstr "每週有 ${ userForwardingCount } 人發新訊息至資料庫"
 
-#: components\LandingPage\Stats.js:39
+#: components\LandingPage\Stats.js:145
 #, javascript-format
 msgid "But less than ${ editorCount } active editors can help us respond each week."
 msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 
-#: components\LandingPage\Stats.js:42
+#: components\LandingPage\Stats.js:148
 #, javascript-format
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
 
-#: pages\index.js:41
+#: pages\index.js:44
 msgid "Connecting facts and instant messages"
 msgstr "Connecting facts and instant messages"
 
-#: pages\index.js:42
+#: pages\index.js:45
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It’s a grass-root effort "
@@ -927,11 +927,11 @@ msgstr ""
 msgid "Display name cannot be empty."
 msgstr ""
 
-#: components\LandingPage\SectionFeature.js:80
+#: components\LandingPage\SectionFeature.js:108
 msgid "Real-Time Response"
 msgstr "即時回應"
 
-#: components\LandingPage\SectionFeature.js:81
+#: components\LandingPage\SectionFeature.js:109
 msgid ""
 "Once someone respond to your pending request, the chatbot\n"
 "will answer you through LINE. It’s fast and immediate, you\n"
@@ -940,11 +940,11 @@ msgid ""
 "feel uncomfortable asking it for favors."
 msgstr "只要資料庫裡有回應，機器人就透過程式找答案給你，即時方便不用等。連問候答謝都省了，聊天機器人讓你查謠言都不用不好意思。"
 
-#: components\LandingPage\SectionFeature.js:90
+#: components\LandingPage\SectionFeature.js:118
 msgid "Crowdsourcing"
 msgstr "群眾協作"
 
-#: components\LandingPage\SectionFeature.js:91
+#: components\LandingPage\SectionFeature.js:119
 msgid ""
 "Anyone can verify and respond to other’s requests on\n"
 "possible hoax and upload it into our database. We encourage\n"
@@ -952,28 +952,53 @@ msgid ""
 "to join."
 msgstr "任何人都可以查證且回應別人的謠言或訊息，並寫在資料庫裡。我們鼓勵公眾參與，最好把你爸爸媽媽都一起找來闢謠。"
 
-#: components\LandingPage\SectionFeature.js:99
+#: components\LandingPage\SectionFeature.js:127
 msgid "Different Views"
 msgstr "意見交鋒"
 
-#: components\LandingPage\SectionFeature.js:100
+#: components\LandingPage\SectionFeature.js:128
 msgid ""
 "Knowing what’s fact and what’s an opinion. Seeing different\n"
 "sides of the story makes you realize your own blindspot,\n"
 "allowing everyone to respect each other’s perspectives."
 msgstr "了解事實與評論的差異，同時看見不同立場的意見，覺察自己的盲點，互相尊重。你聽你的鳥鳴，但也可以湊過去看她的日出。"
 
-#: components\LandingPage\SectionFeature.js:107
+#: components\LandingPage\SectionFeature.js:135
 msgid "Open Source Authorization"
 msgstr "開源授權"
 
-#: components\LandingPage\SectionFeature.js:108
+#: components\LandingPage\SectionFeature.js:136
 msgid ""
 "Codes of different patches, meeting records and database\n"
 "statistics are all opened to public. We encourage more open\n"
 "source data; work and share with others in a transparent\n"
 "environment, create different possibilities."
 msgstr "過往的程式碼、會議紀錄、數據資料都完全公開，鼓勵更多的開放資料，透明化地與每個人分享合作，創造不同的可能性。"
+
+#: components\LandingPage\SectionContribute.js:118
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+"Cofacts 需要大家一起來幫忙讓目前的專案做得更好更完整。\n"
+"協作專案無法由少數人來完成，\n"
+"我們需要每一個人都一起付出、寫程式、闢謠、仔細研究查資料，\n"
+"自發性的查證與寫回應才能成就背後龐大的資料庫。"
+
+#: components\LandingPage\SectionContribute.js:126
+msgid "I want to learn how to use Cofacts"
+msgstr "我想先學怎麼用"
+
+#: components\LandingPage\SectionContribute.js:129
+msgid "I can help bust hoaxes"
+msgstr "我可以闢謠"
+
+#: components\LandingPage\SectionContribute.js:136
+msgid "I can help with coding"
+msgstr "我會寫 Code"
 
 #: components\LineChart.js:221
 #, javascript-format
