@@ -59,7 +59,7 @@ exports[`Storyshots ListPageControls/LoadMore Shows Up 1`] = `
       <span
         className="MuiButton-label"
       >
-        查看更多
+        Load More
       </span>
       <NoSsr>
         <span
