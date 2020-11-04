@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
@@ -22,6 +22,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
+import { animated, useSpring } from 'react-spring';
 
 import { darkTheme } from 'lib/theme';
 import NavLink from 'components/NavLink';
@@ -396,14 +397,45 @@ const LandingPageHeader = React.memo(
 
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
       ssr: false, // no number needed for SSR
     });
     const unsolvedCount = data?.ListArticles?.totalCount;
 
+    const [springProps, setSpringProps] = useSpring(() => ({
+      background: theme.palette.common.yellow,
+      config: { mass: 1, tension: 250, friction: 26 },
+    }));
+
+    const handleScroll = () => {
+      const standard = isSmallScreen
+        ? window.innerWidth * 0.8 + 60
+        : window.innerHeight;
+
+      if (window.pageYOffset > standard) {
+        setSpringProps({
+          background: 'white',
+        });
+      } else {
+        setSpringProps({
+          background: theme.palette.common.yellow,
+        });
+      }
+    };
+
+    useEffect(() => {
+      handleScroll();
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    });
+
     return (
-      <nav className={classes.nav}>
+      <animated.nav className={classes.nav} style={springProps}>
         <NavLink href="/">
           <img src={isDesktop ? desktopBlackLogo : mobileBlackLogo} />
         </NavLink>
@@ -445,7 +477,7 @@ const LandingPageHeader = React.memo(
             <img src={menuIcon} />
           </div>
         )}
-      </nav>
+      </animated.nav>
     );
   }
 );
