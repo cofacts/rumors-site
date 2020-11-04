@@ -82,6 +82,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[500],
     padding: '0 27px',
     width: '25%',
+    whiteSpace: 'nowrap',
 
     [theme.breakpoints.down('sm')]: {
       padding: '20px',
