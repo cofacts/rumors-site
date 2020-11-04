@@ -10,7 +10,7 @@ import bg from './images/contribute-bg.png';
 const useStyles = makeStyles(theme => ({
   top: {
     background: theme.palette.common.red1,
-    paddingTop: 35,
+    paddingTop: 60,
 
     [theme.breakpoints.down('sm')]: {
       paddingTop: 30,

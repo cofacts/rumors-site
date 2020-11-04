@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 40,
+    padding: '60px 40px',
     background: theme.palette.common.red1,
     width: '100%',
     overflow: 'hidden',
