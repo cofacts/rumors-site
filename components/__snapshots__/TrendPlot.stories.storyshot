@@ -12,85 +12,89 @@ exports[`Storyshots TrendPlot Normal 1`] = `
     data={
       Array [
         Object {
-          "date": "2019-12-05",
+          "date": "2019-12-04",
           "lineVisit": "29",
           "webVisit": "2969",
         },
         Object {
-          "date": "2019-12-06",
+          "date": "2019-12-05",
           "lineVisit": "84",
           "webVisit": "14865",
         },
         Object {
-          "date": "2019-12-07",
+          "date": "2019-12-06",
           "lineVisit": "71",
           "webVisit": "18923",
         },
         Object {
-          "date": "2019-12-08",
+          "date": "2019-12-07",
           "lineVisit": "44",
           "webVisit": "8213",
         },
         Object {
-          "date": "2019-12-09",
+          "date": "2019-12-08",
           "lineVisit": "29",
           "webVisit": "2981",
         },
         Object {
-          "date": "2019-12-10",
+          "date": "2019-12-09",
           "lineVisit": "24",
           "webVisit": "927",
         },
         Object {
-          "date": "2019-12-11",
+          "date": "2019-12-10",
           "lineVisit": "6",
           "webVisit": "366",
         },
         Object {
-          "date": "2019-12-12",
+          "date": "2019-12-11",
           "lineVisit": "6",
           "webVisit": "360",
         },
         Object {
-          "date": "2019-12-13",
+          "date": "2019-12-12",
           "lineVisit": "8",
           "webVisit": "434",
         },
         Object {
-          "date": "2019-12-14",
+          "date": "2019-12-13",
           "lineVisit": "13",
           "webVisit": "227",
         },
         Object {
-          "date": "2019-12-15",
+          "date": "2019-12-14",
           "lineVisit": "2",
           "webVisit": "78",
         },
         Object {
-          "date": "2019-12-16",
+          "date": "2019-12-15",
           "lineVisit": "2",
           "webVisit": "92",
         },
         Object {
-          "date": "2019-12-17",
+          "date": "2019-12-16",
           "lineVisit": "2",
           "webVisit": "50",
         },
         Object {
-          "date": "2019-12-18",
+          "date": "2019-12-17",
           "webVisit": "50",
         },
         Object {
-          "date": "2019-12-19",
+          "date": "2019-12-18",
           "webVisit": "42",
         },
         Object {
-          "date": "2019-12-20",
+          "date": "2019-12-19",
           "webVisit": "55",
         },
         Object {
-          "date": "2019-12-21",
+          "date": "2019-12-20",
           "webVisit": "45",
+        },
+        Object {
+          "date": "2019-12-21",
+          "webVisit": "36",
         },
         Object {
           "date": "2019-12-22",
@@ -98,35 +102,31 @@ exports[`Storyshots TrendPlot Normal 1`] = `
         },
         Object {
           "date": "2019-12-23",
-          "webVisit": "36",
+          "webVisit": "18",
         },
         Object {
           "date": "2019-12-24",
+          "lineVisit": "2",
           "webVisit": "18",
         },
         Object {
           "date": "2019-12-25",
-          "lineVisit": "2",
-          "webVisit": "18",
+          "webVisit": "19",
         },
         Object {
           "date": "2019-12-26",
           "webVisit": "19",
         },
         Object {
-          "date": "2019-12-27",
-          "webVisit": "19",
-        },
-        Object {
-          "date": "2019-12-29",
+          "date": "2019-12-28",
           "webVisit": "2",
         },
         Object {
-          "date": "2019-12-30",
+          "date": "2019-12-29",
           "webVisit": "6",
         },
         Object {
-          "date": "2019-12-31",
+          "date": "2019-12-30",
           "webVisit": "3",
         },
       ]
@@ -175,7 +175,7 @@ exports[`Storyshots TrendPlot Normal 1`] = `
       <div
         className="MuiBox-root MuiBox-root makeStyles-label totalLabel"
       >
-        Total Visit: 51156
+        51156 次瀏覽
         <svg
           aria-hidden="true"
           className="MuiSvgIcon-root"

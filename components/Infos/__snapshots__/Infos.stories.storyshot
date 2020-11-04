@@ -62,7 +62,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
           onTouchStart={[Function]}
           title=""
         >
-          0 responses
+          0 份回應
         </span>
       </Tooltip>
     </ReplyCountInfo>
@@ -93,10 +93,10 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
         arrow={true}
         title={
           <div
-            className="makeStyles-opinions-250"
+            className="makeStyles-opinions-259"
           >
             <span
-              className="makeStyles-opinion-251"
+              className="makeStyles-opinion-260"
             >
               <NOT_ARTICLE
                 fontSize="inherit"
@@ -106,7 +106,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
               </span>
             </span>
             <span
-              className="makeStyles-opinion-251"
+              className="makeStyles-opinion-260"
             >
               <OPINIONATED
                 fontSize="inherit"
@@ -116,7 +116,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
               </span>
             </span>
             <span
-              className="makeStyles-opinion-251"
+              className="makeStyles-opinion-260"
             >
               <NOT_RUMOR
                 fontSize="inherit"
@@ -126,7 +126,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
               </span>
             </span>
             <span
-              className="makeStyles-opinion-251"
+              className="makeStyles-opinion-260"
             >
               <RUMOR
                 fontSize="inherit"
@@ -149,7 +149,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
           onTouchStart={[Function]}
           title={null}
         >
-          5 responses
+          5 份回應
         </span>
       </Tooltip>
     </ReplyCountInfo>
@@ -167,7 +167,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time={1989-06-04T00:00:00.000Z}
     >
       <Tooltip
-        title="06/04/1989, 12:00 AM"
+        title="06/04/1989, 8:00 AM"
       >
         <span
           aria-describedby={null}
@@ -178,7 +178,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 12:00 AM"
+          title="06/04/1989, 8:00 AM"
         >
           over 30 years
         </span>
@@ -190,7 +190,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time={612921600000}
     >
       <Tooltip
-        title="06/04/1989, 12:00 AM"
+        title="06/04/1989, 8:00 AM"
       >
         <span
           aria-describedby={null}
@@ -201,7 +201,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 12:00 AM"
+          title="06/04/1989, 8:00 AM"
         >
           over 30 years
         </span>
@@ -213,7 +213,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time="1989-06-04T00:00:00Z"
     >
       <Tooltip
-        title="06/04/1989, 12:00 AM"
+        title="06/04/1989, 8:00 AM"
       >
         <span
           aria-describedby={null}
@@ -224,7 +224,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 12:00 AM"
+          title="06/04/1989, 8:00 AM"
         >
           Created over 30 years ago
         </span>

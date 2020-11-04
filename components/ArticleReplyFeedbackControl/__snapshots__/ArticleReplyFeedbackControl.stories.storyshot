@@ -161,7 +161,7 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
           <span
             className="MuiButton-label"
           >
-            See Reasons
+            看理由
           </span>
           <NoSsr>
             <span
