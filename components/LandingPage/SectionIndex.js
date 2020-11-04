@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     width: '100%',
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+    minHeight: '45vw',
     overflow: 'hidden',
 
     [theme.breakpoints.down('sm')]: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover',
     backgroundPosition: 'bottom',
     backgroundColor: theme.palette.common.yellow,
-    backgroundRepeat: 'no-repeat',
+    backgroundRepeat: 'repeat-x',
     zIndex: -1,
   },
   front: {
@@ -45,17 +46,19 @@ const SectionIndex = () => {
   const classes = useStyles();
 
   const ref = useRef();
-  const [backImageStyles, setBackImageStyles] = useSpring(() => ({
-    backgroundPositionY: 0,
+  const [{ offset }, setOffset] = useSpring(() => ({
+    offset: 0,
     config: { mass: 1, tension: 300, friction: 26 },
   }));
 
   const handleScroll = () => {
     if (window.pageYOffset <= window.innerHeight) {
       const posY = ref.current.getBoundingClientRect().top;
-      const offset = window.pageYOffset - posY + NAVBAR_HEIGHT;
+      const nextOffset = window.pageYOffset - posY + NAVBAR_HEIGHT;
 
-      setBackImageStyles({ backgroundPositionY: offset * 0.05 });
+      setOffset({
+        offset: nextOffset,
+      });
     }
   };
 
@@ -72,7 +75,10 @@ const SectionIndex = () => {
       <animated.div
         className={classes.back}
         style={{
-          ...backImageStyles,
+          backgroundPositionX: offset.interpolate(
+            value => `calc(50% - ${value * 0.05 * -1}px)`
+          ),
+          // backgroundPositionY: offset.interpolate(value => value * 0.05),
         }}
       />
       <div className={classes.front} />
