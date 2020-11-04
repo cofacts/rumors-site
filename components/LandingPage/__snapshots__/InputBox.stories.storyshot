@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots LandingPage/InputBox Normal 1`] = `
+<div
+  style={
+    Object {
+      "width": "400px",
+    }
+  }
+>
+  <InputBox
+    onChange={[Function]}
+    tags={
+      Array [
+        "aaaaa",
+        "bbbbb",
+        "ccccc",
+        "ddddd",
+      ]
+    }
+    value="text"
+  >
+    <div
+      className="makeStyles-inputBox"
+    >
+      <textarea
+        onChange={[Function]}
+        rows={4}
+        value="text"
+      />
+      <div
+        className="makeStyles-tagWrapper"
+        onScroll={[Function]}
+      >
+        <div
+          className="makeStyles-tag"
+          key="aaaaa"
+          onClick={[Function]}
+        >
+          aaaaa
+        </div>
+        <div
+          className="makeStyles-tag"
+          key="bbbbb"
+          onClick={[Function]}
+        >
+          bbbbb
+        </div>
+        <div
+          className="makeStyles-tag"
+          key="ccccc"
+          onClick={[Function]}
+        >
+          ccccc
+        </div>
+        <div
+          className="makeStyles-tag"
+          key="ddddd"
+          onClick={[Function]}
+        >
+          ddddd
+        </div>
+      </div>
+    </div>
+  </InputBox>
+</div>
+`;

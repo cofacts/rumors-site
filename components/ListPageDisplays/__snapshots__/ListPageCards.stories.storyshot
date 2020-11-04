@@ -39,7 +39,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     time="2020-01-01T00:00:00Z"
                   >
                     <Tooltip
-                      title="01/01/2020, 12:00 AM"
+                      title="01/01/2020, 8:00 AM"
                     >
                       <span
                         aria-describedby={null}
@@ -50,7 +50,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         onMouseOver={[Function]}
                         onTouchEnd={[Function]}
                         onTouchStart={[Function]}
-                        title="01/01/2020, 12:00 AM"
+                        title="01/01/2020, 8:00 AM"
                       >
                         First reported less than a minute ago
                       </span>
@@ -69,7 +69,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       3
                     </h2>
                     <span>
-                      replies
+                      回應
                     </span>
                   </div>
                   <div>
@@ -141,7 +141,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     time="2019-01-01T00:00:00Z"
                   >
                     <Tooltip
-                      title="01/01/2019, 12:00 AM"
+                      title="01/01/2019, 8:00 AM"
                     >
                       <span
                         aria-describedby={null}
@@ -152,7 +152,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         onMouseOver={[Function]}
                         onTouchEnd={[Function]}
                         onTouchStart={[Function]}
-                        title="01/01/2019, 12:00 AM"
+                        title="01/01/2019, 8:00 AM"
                       >
                         First reported about 1 year ago
                       </span>
@@ -171,7 +171,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       0
                     </h2>
                     <span>
-                      replies
+                      回應
                     </span>
                   </div>
                   <div>
