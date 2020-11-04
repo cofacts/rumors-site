@@ -175,7 +175,7 @@ exports[`Storyshots TrendPlot Normal 1`] = `
       <div
         className="MuiBox-root MuiBox-root makeStyles-label totalLabel"
       >
-        51156 次瀏覽
+        Total Visit: 51156
         <svg
           aria-hidden="true"
           className="MuiSvgIcon-root"
