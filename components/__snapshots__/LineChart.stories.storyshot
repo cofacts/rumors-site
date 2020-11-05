@@ -396,7 +396,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1594051200000_0"
+            key="1594080000000_0"
             text={
               Object {
                 "text": "7/7",
@@ -404,12 +404,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={-6}
+            x={0}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(-6,0)"
+              transform="translate(0,0)"
             >
               <line
                 className="gridline"
@@ -430,7 +430,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1594310400000_1"
+            key="1594339200000_1"
             text={
               Object {
                 "text": "7/10",
@@ -438,12 +438,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={48}
+            x={54}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(48,0)"
+              transform="translate(54,0)"
             >
               <line
                 className="gridline"
@@ -464,7 +464,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1594569600000_2"
+            key="1594598400000_2"
             text={
               Object {
                 "text": "7/13",
@@ -472,12 +472,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={102}
+            x={108}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(102,0)"
+              transform="translate(108,0)"
             >
               <line
                 className="gridline"
@@ -498,7 +498,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1594828800000_3"
+            key="1594857600000_3"
             text={
               Object {
                 "text": "7/16",
@@ -506,12 +506,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={155.99999999999997}
+            x={162}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(155.99999999999997,0)"
+              transform="translate(162,0)"
             >
               <line
                 className="gridline"
@@ -532,7 +532,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1595088000000_4"
+            key="1595116800000_4"
             text={
               Object {
                 "text": "7/19",
@@ -540,12 +540,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={210}
+            x={216}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(210,0)"
+              transform="translate(216,0)"
             >
               <line
                 className="gridline"
@@ -566,7 +566,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1595347200000_5"
+            key="1595376000000_5"
             text={
               Object {
                 "text": "7/22",
@@ -574,12 +574,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={264}
+            x={270}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(264,0)"
+              transform="translate(270,0)"
             >
               <line
                 className="gridline"
@@ -600,7 +600,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1595606400000_6"
+            key="1595635200000_6"
             text={
               Object {
                 "text": "7/25",
@@ -608,12 +608,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={318}
+            x={324}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(318,0)"
+              transform="translate(324,0)"
             >
               <line
                 className="gridline"
@@ -634,7 +634,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1595865600000_7"
+            key="1595894400000_7"
             text={
               Object {
                 "text": "7/28",
@@ -642,12 +642,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={372}
+            x={378}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(372,0)"
+              transform="translate(378,0)"
             >
               <line
                 className="gridline"
@@ -668,7 +668,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1596124800000_8"
+            key="1596153600000_8"
             text={
               Object {
                 "text": "7/31",
@@ -676,12 +676,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={426}
+            x={432}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(426,0)"
+              transform="translate(432,0)"
             >
               <line
                 className="gridline"
@@ -702,7 +702,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1596384000000_9"
+            key="1596412800000_9"
             text={
               Object {
                 "text": "8/3",
@@ -710,12 +710,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={480}
+            x={486}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(480,0)"
+              transform="translate(486,0)"
             >
               <line
                 className="gridline"
@@ -736,7 +736,7 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y2": -70,
               }
             }
-            key="1596643200000_10"
+            key="1596672000000_10"
             text={
               Object {
                 "text": "8/6",
@@ -744,12 +744,12 @@ exports[`Storyshots LineChart Normal 1`] = `
                 "y": 20,
               }
             }
-            x={534}
+            x={540}
             y={0}
           >
             <g
               className="tickGroup"
-              transform="translate(534,0)"
+              transform="translate(540,0)"
             >
               <line
                 className="gridline"
