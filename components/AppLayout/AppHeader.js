@@ -405,7 +405,7 @@ const LandingPageHeader = React.memo(
     const unsolvedCount = data?.ListArticles?.totalCount;
 
     const [springProps, setSpringProps] = useSpring(() => ({
-      background: theme.palette.common.yellow,
+      background: 'rgba(255, 255, 255, 0)',
       config: { mass: 1, tension: 250, friction: 26 },
     }));
 
@@ -420,7 +420,7 @@ const LandingPageHeader = React.memo(
         });
       } else {
         setSpringProps({
-          background: theme.palette.common.yellow,
+          background: 'rgba(255, 255, 255, 0)',
         });
       }
     };

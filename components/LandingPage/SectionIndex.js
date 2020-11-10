@@ -23,9 +23,11 @@ const useStyles = makeStyles(theme => ({
   sectionIndex: {
     position: 'relative',
     width: '100%',
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+    height: '100vh',
     minHeight: '45vw',
     overflow: 'hidden',
+    marginTop: -NAVBAR_HEIGHT,
+    paddingTop: NAVBAR_HEIGHT,
 
     [theme.breakpoints.down('sm')]: {
       height: '80vw',
