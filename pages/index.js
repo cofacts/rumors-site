@@ -11,6 +11,7 @@ import {
   SectionJoin,
   Stats,
   SectionContribute,
+  SectionNews,
 } from 'components/LandingPage';
 
 import ogImage from 'components/LandingPage/images/ogimage.png';
@@ -70,6 +71,7 @@ function Home() {
       <SectionJoin />
       <Stats />
       <SectionContribute />
+      <SectionNews />
     </AppLayout>
   );
 }
