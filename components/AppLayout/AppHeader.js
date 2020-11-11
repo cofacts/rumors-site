@@ -427,6 +427,11 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
     fontSize: 14,
     letterSpacing: 0.75,
 
+    '&:hover': {
+      color: 'white',
+      textDecoration: 'none',
+    },
+
     '& *': {
       color: 'white',
     },
@@ -555,17 +560,20 @@ const LandingPageHeader = React.memo(
               style={mobileMenuSpringProps}
             >
               <div className={classes.mobileMenu}>
-                <span className={classes.mobileTab}>
-                  <Link href="/articles">{c('App layout').t`Messages`}</Link>
-                </span>
+                <Link href="/articles">
+                  <a className={classes.mobileTab}>{c('App layout')
+                    .t`Messages`}</a>
+                </Link>
 
-                <span className={classes.mobileTab}>
-                  <Link href="/replies">{c('App layout').t`Replies`}</Link>
-                </span>
+                <Link href="/replies">
+                  <a className={classes.mobileTab}>{c('App layout')
+                    .t`Replies`}</a>
+                </Link>
 
-                <span className={classes.mobileTab}>
-                  <Link href="/hoax-for-you">{c('App layout').t`For You`}</Link>
-                </span>
+                <Link href="/hoax-for-you">
+                  <a className={classes.mobileTab}>{c('App layout')
+                    .t`For You`}</a>
+                </Link>
 
                 {user?.name ? (
                   <Widgets.Avatar
