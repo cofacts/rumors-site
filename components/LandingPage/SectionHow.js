@@ -2,11 +2,23 @@ import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 import image1 from './images/section-how-1.png';
+import image1Flash from './images/section-how-1-flash.png';
 import image2 from './images/section-how-2.png';
 
 const useStyles = makeStyles(theme => ({
+  '@keyframes flashing': {
+    '0%': {
+      opacity: 1,
+    },
+    '50%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 1,
+    },
+  },
   sectionHow: {
-    padding: '27px 24px 52px',
+    padding: '50px 24px 52px',
     background: theme.palette.primary[200],
 
     [theme.breakpoints.down('sm')]: {
@@ -70,21 +82,6 @@ const useStyles = makeStyles(theme => ({
       },
     },
 
-    '&.image': {
-      paddingTop: 65,
-
-      [theme.breakpoints.down('sm')]: {
-        paddingLeft: 32,
-        paddingRight: 13,
-        maxWidth: 400,
-        margin: '0 auto',
-
-        '&.rwd-order-1': {
-          paddingTop: 12,
-        },
-      },
-    },
-
     '& > .title': {
       fontWeight: 'bold',
       fontSize: 48,
@@ -120,10 +117,6 @@ const useStyles = makeStyles(theme => ({
         marginBottom: 12,
       },
     },
-
-    '& > img': {
-      width: '100%',
-    },
   },
   content: {
     fontSize: 24,
@@ -142,6 +135,29 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: 0.5,
     },
   },
+  image: {
+    position: 'relative',
+    paddingTop: 65,
+
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 400,
+      margin: '0 auto',
+
+      '&.rwd-order-1': {
+        paddingTop: 12,
+      },
+    },
+
+    '& > img': {
+      width: '100%',
+    },
+  },
+  flash: {
+    position: 'absolute',
+    width: '100%',
+    animation: '$flashing 1s infinite',
+    animationTimingFunction: 'ease-in-out',
+  },
 }));
 
 const SectionHow = () => {
@@ -154,8 +170,9 @@ const SectionHow = () => {
         <h3 className={cx(classes.block, 'title', 'rwd-order-2')}>
           要怎麼判斷真假？
         </h3>
-        <div className={cx(classes.block, 'image', 'rwd-order-1')}>
-          <img src={image2} />
+        <div className={cx(classes.block, classes.image, 'rwd-order-1')}>
+          <img className={classes.flash} src={image1Flash} />
+          <img src={image1} />
         </div>
         <div className={cx(classes.block, 'text', 'rwd-order-2')}>
           {/* TODO: translate */}
@@ -181,8 +198,8 @@ const SectionHow = () => {
             只要主動查證謠言訊息，把你查到的回應加入資料庫，就能幫助更多人。
           </div>
         </div>
-        <div className={cx(classes.block, 'image', 'rwd-order-2')}>
-          <img src={image1} />
+        <div className={cx(classes.block, classes.image, 'rwd-order-2')}>
+          <img src={image2} />
         </div>
       </div>
     </section>
