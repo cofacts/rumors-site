@@ -1,5 +1,7 @@
+import { useState, useEffect, useRef } from 'react';
 import { t, jt } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
+import { animated, useSpring } from 'react-spring';
 
 import image from './images/stats.png';
 
@@ -139,6 +141,35 @@ function Stats() {
     </a>
   );
 
+  const [showImage, setShowImage] = useState(false);
+
+  const ref = useRef();
+  const { offset, opacity } = useSpring({
+    offset: showImage ? 0 : 100,
+    opacity: showImage ? 1 : 0,
+  });
+
+  const handleScroll = () => {
+    if (ref.current) {
+      const imageBottom = ref.current.getBoundingClientRect().bottom;
+
+      if (imageBottom <= window.innerHeight) {
+        setShowImage(true);
+      } else {
+        setShowImage(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [ref]);
+
   return (
     <section className={classes.sectionStats}>
       <div className={classes.top}>
@@ -147,8 +178,14 @@ function Stats() {
           <h3>闢謠戰士的日常</h3>
           <h4>謠言與回應的追逐戰</h4>
         </div>
-        <div className={classes.image}>
-          <img src={image} />
+        <div className={classes.image} ref={ref}>
+          <animated.img
+            src={image}
+            style={{
+              opacity,
+              transform: offset.interpolate(value => `translateX(${-value}px)`),
+            }}
+          />
         </div>
       </div>
       <div className={classes.stats}>
