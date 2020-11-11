@@ -22,15 +22,17 @@ const useStyles = makeStyles(theme => ({
   },
   sectionIndex: {
     position: 'relative',
-    width: '100%',
-    height: '100vh',
-    minHeight: '45vw',
     overflow: 'hidden',
     marginTop: -NAVBAR_HEIGHT,
     paddingTop: NAVBAR_HEIGHT,
+  },
+  imageWrapper: {
+    width: '100%',
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+    minHeight: '45vw',
 
     [theme.breakpoints.down('sm')]: {
-      height: '80vw',
+      height: `calc(80vw)`,
     },
   },
   back: {
@@ -107,34 +109,35 @@ const SectionIndex = () => {
   }, []);
 
   return (
-    <section className={classes.sectionIndex} ref={ref}>
-      <animated.div
-        className={classes.back}
-        style={{
-          backgroundPositionX: offset.interpolate(
-            value => `calc(50% - ${value * 0.05 * -1}px)`
-          ),
-          // backgroundPositionY: offset.interpolate(value => value * 0.05),
-        }}
-      />
-      <div
-        className={cx(classes.front, classes.translateWrapper)}
-        style={{
-          transform: `translateX(calc(
+    <section className={classes.sectionIndex}>
+      <div className={classes.imageWrapper} ref={ref}>
+        <animated.div
+          className={classes.back}
+          style={{
+            backgroundPositionX: offset.interpolate(
+              value => `calc(50% - ${value * 0.05 * -1}px)`
+            ),
+          }}
+        />
+        <div
+          className={cx(classes.front, classes.translateWrapper)}
+          style={{
+            transform: `translateX(calc(
             (
               ${coverHeight *
                 (COVER_ORIGINAL_WIDTH / 3 / COVER_ORIGINAL_HEIGHT)}px
                   - 100vw) / 2 * -1
           ))`,
-        }}
-      >
-        <div
-          className={classes.scaleWrapper}
-          style={{
-            transform: `scale(${coverHeight / COVER_ORIGINAL_HEIGHT})`,
           }}
         >
-          <img className={classes.image} src={frontImage} />
+          <div
+            className={classes.scaleWrapper}
+            style={{
+              transform: `scale(${coverHeight / COVER_ORIGINAL_HEIGHT})`,
+            }}
+          >
+            <img className={classes.image} src={frontImage} />
+          </div>
         </div>
       </div>
     </section>
