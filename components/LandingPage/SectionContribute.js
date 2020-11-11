@@ -1,7 +1,9 @@
+import { useState, useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { t } from 'ttag';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { animated, useSpring } from 'react-spring';
 
 import { TUTORIAL, EDITOR_ENTRANCE, DEVELOPER_HOMEPAGE } from 'constants/urls';
 
@@ -11,6 +13,7 @@ const useStyles = makeStyles(theme => ({
   top: {
     background: theme.palette.common.red1,
     paddingTop: 60,
+    overflow: 'hidden',
 
     [theme.breakpoints.down('sm')]: {
       paddingTop: 30,
@@ -102,16 +105,49 @@ const SectionContribute = ({ className }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const [showImage, setShowImage] = useState(false);
+
+  const ref = useRef();
+  const { offset } = useSpring({
+    offset: showImage ? 0 : window.innerWidth / 8,
+  });
+
+  const handleScroll = () => {
+    if (ref.current) {
+      const sectionBottom = ref.current.getBoundingClientRect().bottom;
+
+      if (sectionBottom <= window.innerHeight) {
+        setShowImage(true);
+      } else {
+        setShowImage(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [ref]);
+
   return (
     <section className={cx(className, classes.sectionContribute)}>
-      <div className={classes.top}>
+      <div className={classes.top} ref={ref}>
         {/* TODO: translate */}
         <h3>
           {isSmallScreen
             ? `看見了嗎？\n闢謠者聯盟\n正在對你招手`
             : `看見了嗎？\n闢謠者聯盟正在對你招手`}
         </h3>
-        <img src={bg} />
+        <animated.img
+          src={bg}
+          style={{
+            transform: offset.interpolate(value => `translateY(${value}px)`),
+          }}
+        />
       </div>
       <div className={classes.bottom}>
         <div className={classes.content}>
