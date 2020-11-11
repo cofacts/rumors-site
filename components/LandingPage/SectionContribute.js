@@ -105,21 +105,19 @@ const SectionContribute = ({ className }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [showImage, setShowImage] = useState(false);
-
   const ref = useRef();
-  const { offset } = useSpring({
-    offset: showImage ? 0 : window.innerWidth / 8,
-  });
+  const [{ offset }, setOffset] = useSpring(() => ({
+    offset: 0,
+  }));
 
   const handleScroll = () => {
     if (ref.current) {
       const sectionBottom = ref.current.getBoundingClientRect().bottom;
 
       if (sectionBottom <= window.innerHeight) {
-        setShowImage(true);
+        setOffset({ offset: 0 });
       } else {
-        setShowImage(false);
+        setOffset({ offset: window.innerWidth / 8 });
       }
     }
   };
@@ -131,7 +129,7 @@ const SectionContribute = ({ className }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [ref]);
+  });
 
   return (
     <section className={cx(className, classes.sectionContribute)}>
