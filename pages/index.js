@@ -6,6 +6,7 @@ import AppLayout from 'components/AppLayout';
 import {
   SectionIndex,
   SectionCanDo,
+  SectionArticles,
   SectionHow,
   SectionFeature,
   SectionJoin,
@@ -66,6 +67,7 @@ function Home() {
       </Head>
       <SectionIndex />
       <SectionCanDo />
+      <SectionArticles />
       <SectionHow />
       <SectionFeature />
       <SectionJoin />
