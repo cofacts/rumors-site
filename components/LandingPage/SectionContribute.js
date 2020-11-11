@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { t } from 'ttag';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
