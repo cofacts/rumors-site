@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
+import cx from 'clsx';
 import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 import {
   makeStyles,
   withStyles,
@@ -24,6 +26,8 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import InfoIcon from '@material-ui/icons/Info';
 import { animated, useSpring } from 'react-spring';
 
+import Link from 'next/link';
+
 import { darkTheme } from 'lib/theme';
 import NavLink from 'components/NavLink';
 import Ribbon from 'components/Ribbon';
@@ -36,7 +40,7 @@ import desktopLogo from './images/logo-desktop.svg';
 import desktopBlackLogo from './images/logo-desktop-black.svg';
 import mobileLogo from './images/logo-mobile.svg';
 import mobileBlackLogo from './images/logo-mobile-black.svg';
-import menuIcon from './images/menu.svg';
+import triangleIcon from './images/triangle.svg';
 
 import LEVEL_NAMES from 'constants/levelNames';
 
@@ -384,6 +388,54 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
       textDecoration: 'none',
     },
   },
+  menuIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    width: 14,
+    height: 14,
+
+    '& > img': {
+      transform: 'rotate(180deg)',
+    },
+
+    '&.active': {
+      '& > img': {
+        transform: 'rotate(0)',
+      },
+    },
+  },
+  mobileMenuWrapper: {
+    position: 'fixed',
+    top: NAVBAR_HEIGHT,
+    left: 0,
+    width: '100%',
+    height: 0,
+    background: theme.palette.secondary[500],
+    overflow: 'hidden',
+  },
+  mobileMenu: {
+    display: 'flex',
+    position: 'relative',
+    width: '100%',
+    height: 45,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0 20px',
+  },
+  mobileTab: {
+    color: 'white',
+    fontSize: 14,
+    letterSpacing: 0.75,
+
+    '& *': {
+      color: 'white',
+    },
+
+    '& *:hover': {
+      color: 'white',
+      textDecoration: 'none',
+    },
+  },
 }));
 
 const LandingPageHeader = React.memo(
@@ -394,17 +446,19 @@ const LandingPageHeader = React.memo(
     onNameChange = () => {},
   }) => {
     const classes = useLandingPageHeaderStyles();
-
+    const router = useRouter();
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
       ssr: false, // no number needed for SSR
     });
     const unsolvedCount = data?.ListArticles?.totalCount;
 
-    const [springProps, setSpringProps] = useSpring(() => ({
+    const [navSpringProps, setNavSpringProps] = useSpring(() => ({
       background: 'rgba(255, 255, 255, 0)',
       config: { mass: 1, tension: 250, friction: 26 },
     }));
@@ -415,12 +469,14 @@ const LandingPageHeader = React.memo(
         : window.innerHeight;
 
       if (window.pageYOffset > standard) {
-        setSpringProps({
+        setNavSpringProps({
           background: 'white',
         });
       } else {
-        setSpringProps({
-          background: 'rgba(255, 255, 255, 0)',
+        setNavSpringProps({
+          background: isMobileMenuOpen
+            ? theme.palette.common.yellow
+            : 'rgba(255, 234, 41, 0)',
         });
       }
     };
@@ -434,8 +490,17 @@ const LandingPageHeader = React.memo(
       };
     });
 
+    const toggleMobileMenu = () => {
+      setMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const mobileMenuSpringProps = useSpring({
+      height: isMobileMenuOpen ? 45 : 0,
+      config: { mass: 1, tension: 250, friction: 26 },
+    });
+
     return (
-      <animated.nav className={classes.nav} style={springProps}>
+      <animated.nav className={classes.nav} style={navSpringProps}>
         <NavLink href="/">
           <img src={isDesktop ? desktopBlackLogo : mobileBlackLogo} />
         </NavLink>
@@ -467,15 +532,64 @@ const LandingPageHeader = React.memo(
                 onNameChange={onNameChange}
               />
             ) : (
-              <div className={classes.item} onClick={onLoginModalOpen}>
+              <div
+                className={classes.item}
+                onClick={() => {
+                  onLoginModalOpen();
+                }}
+              >
                 {t`Login`}
               </div>
             )}
           </div>
         ) : (
-          <div>
-            <img src={menuIcon} />
-          </div>
+          <>
+            <div
+              className={cx(classes.menuIcon, { active: isMobileMenuOpen })}
+              onClick={toggleMobileMenu}
+            >
+              <img src={triangleIcon} />
+            </div>
+            <animated.div
+              className={classes.mobileMenuWrapper}
+              style={mobileMenuSpringProps}
+            >
+              <div className={classes.mobileMenu}>
+                <span className={classes.mobileTab}>
+                  <Link href="/articles">{c('App layout').t`Messages`}</Link>
+                </span>
+
+                <span className={classes.mobileTab}>
+                  <Link href="/replies">{c('App layout').t`Replies`}</Link>
+                </span>
+
+                <span className={classes.mobileTab}>
+                  <Link href="/hoax-for-you">{c('App layout').t`For You`}</Link>
+                </span>
+
+                {user?.name ? (
+                  <Widgets.Avatar
+                    user={user}
+                    size={30}
+                    onClick={() => {
+                      router.push({
+                        pathname: '/hoax-for-you',
+                      });
+                    }}
+                  />
+                ) : (
+                  <span
+                    className={classes.mobileTab}
+                    onClick={() => {
+                      onLoginModalOpen();
+                    }}
+                  >
+                    {t`Login`}
+                  </span>
+                )}
+              </div>
+            </animated.div>
+          </>
         )}
       </animated.nav>
     );
