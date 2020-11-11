@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
 
 import { ListPageCards, ArticleCard } from 'components/ListPageDisplays';
 import { LoadMore } from 'components/ListPageControls';
@@ -10,8 +11,12 @@ import leftImage from './images/article-left.png';
 import rightImage from './images/article-right.png';
 
 const LIST_ARTICLES = gql`
-  query GetArticlesList($orderBy: [ListArticleOrderBy], $after: String) {
-    ListArticles(orderBy: $orderBy, after: $after, first: 10) {
+  query GetArticlesList(
+    $filter: ListArticleFilter
+    $orderBy: [ListArticleOrderBy]
+    $after: String
+  ) {
+    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 10) {
       edges {
         node {
           id
@@ -23,15 +28,6 @@ const LIST_ARTICLES = gql`
   }
   ${ArticleCard.fragments.ArticleCard}
   ${LoadMore.fragments.LoadMoreEdge}
-`;
-
-const LIST_STAT = gql`
-  query GetArticlesListStat($orderBy: [ListArticleOrderBy]) {
-    ListArticles(orderBy: $orderBy) {
-      ...LoadMoreConnectionForStats
-    }
-  }
-  ${LoadMore.fragments.LoadMoreConnectionForStats}
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -126,14 +122,18 @@ const useStyles = makeStyles(theme => ({
 
 const SectionArticles = () => {
   const classes = useStyles();
+  const router = useRouter();
 
   const listQueryVars = {
+    filter: {
+      replyRequestCount: { GTE: 2 },
+      hasArticleReplyWithMorePositiveFeedback: false,
+    },
     orderBy: [{ lastRequestedAt: 'DESC' }],
   };
 
   const {
     loading,
-    fetchMore,
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
@@ -141,16 +141,8 @@ const SectionArticles = () => {
     notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
   });
 
-  // Separate these stats query so that it will be cached by apollo-client and sends no network request
-  // on page change, but still works when filter options are updated.
-  //
-  const { data: listStatData } = useQuery(LIST_STAT, {
-    variables: listQueryVars,
-  });
-
   // List data
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
-  const statsData = listStatData?.ListArticles || {};
 
   return (
     <section className={classes.root}>
@@ -173,24 +165,12 @@ const SectionArticles = () => {
               </ListPageCards>
               <LoadMore
                 edges={articleEdges}
-                pageInfo={statsData?.pageInfo}
                 loading={loading}
-                onMoreRequest={args =>
-                  fetchMore({
-                    variables: args,
-                    updateQuery(prev, { fetchMoreResult }) {
-                      if (!fetchMoreResult) return prev;
-                      const newArticleData = fetchMoreResult?.ListArticles;
-                      return {
-                        ...prev,
-                        ListArticles: {
-                          ...newArticleData,
-                          edges: [...articleEdges, ...newArticleData.edges],
-                        },
-                      };
-                    },
-                  })
-                }
+                onMoreRequest={() => {
+                  router.push({
+                    pathname: '/hoax-for-you',
+                  });
+                }}
               />
             </>
           )}
