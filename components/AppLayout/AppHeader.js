@@ -443,166 +443,163 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
   },
 }));
 
-const LandingPageHeader = React.memo(
-  ({
-    user,
-    onLoginModalOpen,
-    onLogout = () => {},
-    onNameChange = () => {},
-  }) => {
-    const classes = useLandingPageHeaderStyles();
-    const router = useRouter();
-    const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
+  const classes = useLandingPageHeaderStyles();
+  const router = useRouter();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
-      ssr: false, // no number needed for SSR
-    });
-    const unsolvedCount = data?.ListArticles?.totalCount;
+  const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
+    ssr: false, // no number needed for SSR
+  });
+  const unsolvedCount = data?.ListArticles?.totalCount;
 
-    const [navSpringProps, setNavSpringProps] = useSpring(() => ({
-      background: 'rgba(255, 255, 255, 0)',
-      config: { mass: 1, tension: 250, friction: 26 },
-    }));
+  const [navSpringProps, setNavSpringProps] = useSpring(() => ({
+    background: 'rgba(255, 255, 255, 0)',
+    config: { mass: 1, tension: 250, friction: 26 },
+  }));
 
-    const handleScroll = () => {
-      const standard = isSmallScreen
-        ? window.innerWidth * 0.8 + 60
-        : window.innerHeight;
+  const handleScroll = () => {
+    const standard = isSmallScreen
+      ? window.innerWidth * 0.8 + 60
+      : window.innerHeight;
 
-      if (window.pageYOffset > standard) {
-        setNavSpringProps({
-          background: 'white',
-        });
-      } else {
-        setNavSpringProps({
-          background: isMobileMenuOpen
-            ? theme.palette.common.yellow
-            : 'rgba(255, 234, 41, 0)',
-        });
-      }
+    if (window.pageYOffset > standard) {
+      setNavSpringProps({
+        background: 'white',
+      });
+    } else {
+      setNavSpringProps({
+        background: isMobileMenuOpen
+          ? theme.palette.common.yellow
+          : 'rgba(255, 234, 41, 0)',
+      });
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
+  });
 
-    useEffect(() => {
-      handleScroll();
-      window.addEventListener('scroll', handleScroll);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    });
+  const mobileMenuSpringProps = useSpring({
+    height: isMobileMenuOpen ? 45 : 0,
+    config: { mass: 1, tension: 250, friction: 26 },
+  });
 
-    const toggleMobileMenu = () => {
-      setMobileMenuOpen(!isMobileMenuOpen);
-    };
-
-    const mobileMenuSpringProps = useSpring({
-      height: isMobileMenuOpen ? 45 : 0,
-      config: { mass: 1, tension: 250, friction: 26 },
-    });
-
-    return (
-      <animated.nav className={classes.nav} style={navSpringProps}>
-        <NavLink href="/">
-          <img src={isDesktop ? desktopBlackLogo : mobileBlackLogo} />
-        </NavLink>
-        {isDesktop ? (
-          <div className={classes.navItemWrapper}>
-            <NavLink className={classes.item} href="/articles">
-              {t`Messages`}
-            </NavLink>
-            <NavLink className={classes.item} href="/replies">
-              {c('App layout').t`Replies`}
-            </NavLink>
-            <NavLink className={classes.item} href="/hoax-for-you">
-              <CustomBadge badgeContent={unsolvedCount} showZero={true}>
-                {c('App layout').t`For You`}
-              </CustomBadge>
-            </NavLink>
-            <a
-              className={classes.item}
-              href={EDITOR_FACEBOOK_GROUP}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {c('App layout').t`Forum`}
-            </a>
-            {user?.name ? (
-              <User
-                user={user}
-                onLogout={onLogout}
-                onNameChange={onNameChange}
-              />
-            ) : (
-              <div
-                className={classes.item}
-                onClick={() => {
-                  onLoginModalOpen();
-                }}
-              >
-                {t`Login`}
-              </div>
-            )}
-          </div>
-        ) : (
-          <>
+  return (
+    <animated.nav className={classes.nav} style={navSpringProps}>
+      <NavLink href="/">
+        <img src={isDesktop ? desktopBlackLogo : mobileBlackLogo} />
+      </NavLink>
+      {isDesktop ? (
+        <div className={classes.navItemWrapper}>
+          <NavLink className={classes.item} href="/articles">
+            {t`Messages`}
+          </NavLink>
+          <NavLink className={classes.item} href="/replies">
+            {c('App layout').t`Replies`}
+          </NavLink>
+          <NavLink className={classes.item} href="/hoax-for-you">
+            <CustomBadge badgeContent={unsolvedCount} showZero={true}>
+              {c('App layout').t`For You`}
+            </CustomBadge>
+          </NavLink>
+          <a
+            className={classes.item}
+            href={EDITOR_FACEBOOK_GROUP}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {c('App layout').t`Forum`}
+          </a>
+          {user?.name ? (
+            <Widgets.Avatar
+              user={user}
+              size={40}
+              onClick={() => {
+                router.push({
+                  pathname: '/hoax-for-you',
+                });
+              }}
+            />
+          ) : (
             <div
-              className={cx(classes.menuIcon, { active: isMobileMenuOpen })}
-              onClick={toggleMobileMenu}
+              className={classes.item}
+              onClick={() => {
+                onLoginModalOpen();
+              }}
             >
-              <img src={triangleIcon} />
+              {t`Login`}
             </div>
-            <animated.div
-              className={classes.mobileMenuWrapper}
-              style={mobileMenuSpringProps}
-            >
-              <div className={classes.mobileMenu}>
-                <Link href="/articles">
-                  <a className={classes.mobileTab}>{c('App layout')
-                    .t`Messages`}</a>
-                </Link>
+          )}
+        </div>
+      ) : (
+        <>
+          <div
+            className={cx(classes.menuIcon, { active: isMobileMenuOpen })}
+            onClick={toggleMobileMenu}
+          >
+            <img src={triangleIcon} />
+          </div>
+          <animated.div
+            className={classes.mobileMenuWrapper}
+            style={mobileMenuSpringProps}
+          >
+            <div className={classes.mobileMenu}>
+              <Link href="/articles">
+                <a className={classes.mobileTab}>{c('App layout')
+                  .t`Messages`}</a>
+              </Link>
 
-                <Link href="/replies">
-                  <a className={classes.mobileTab}>{c('App layout')
-                    .t`Replies`}</a>
-                </Link>
+              <Link href="/replies">
+                <a className={classes.mobileTab}>{c('App layout')
+                  .t`Replies`}</a>
+              </Link>
 
-                <Link href="/hoax-for-you">
-                  <a className={classes.mobileTab}>{c('App layout')
-                    .t`For You`}</a>
-                </Link>
+              <Link href="/hoax-for-you">
+                <a className={classes.mobileTab}>{c('App layout')
+                  .t`For You`}</a>
+              </Link>
 
-                {user?.name ? (
-                  <Widgets.Avatar
-                    user={user}
-                    size={30}
-                    onClick={() => {
-                      router.push({
-                        pathname: '/hoax-for-you',
-                      });
-                    }}
-                  />
-                ) : (
-                  <span
-                    className={classes.mobileTab}
-                    onClick={() => {
-                      onLoginModalOpen();
-                    }}
-                  >
-                    {t`Login`}
-                  </span>
-                )}
-              </div>
-            </animated.div>
-          </>
-        )}
-      </animated.nav>
-    );
-  }
-);
+              {user?.name ? (
+                <Widgets.Avatar
+                  user={user}
+                  size={30}
+                  onClick={() => {
+                    router.push({
+                      pathname: '/hoax-for-you',
+                    });
+                  }}
+                />
+              ) : (
+                <span
+                  className={classes.mobileTab}
+                  onClick={() => {
+                    onLoginModalOpen();
+                  }}
+                >
+                  {t`Login`}
+                </span>
+              )}
+            </div>
+          </animated.div>
+        </>
+      )}
+    </animated.nav>
+  );
+});
 LandingPageHeader.displayName = 'LandingPageHeader';
 
 export default React.memo(AppHeader);

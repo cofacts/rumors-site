@@ -117,8 +117,6 @@ function AppLayout({ children, container = true }) {
         <LandingPageHeader
           user={data?.GetUser}
           onLoginModalOpen={openLoginModal}
-          onLogout={logout}
-          onNameChange={handleNameChange}
         />
       ) : (
         <AppHeader
