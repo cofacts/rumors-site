@@ -47,14 +47,21 @@ const {
   publicRuntimeConfig: { PUBLIC_API_URL },
 } = getConfig();
 
-const ProviderLink = ({ provider, logo, color, children }) => {
-  const redirectUrl = location.href.replace(
-    new RegExp(`^${location.origin}`),
-    ''
-  );
+const ProviderLink = ({
+  provider,
+  logo,
+  color,
+  children,
+  redirectPath = '',
+}) => {
+  const redirectUrl =
+    redirectPath ||
+    location.href.replace(new RegExp(`^${location.origin}`), '');
+
   const urlFor = provider =>
     `${PUBLIC_API_URL}/login/${provider}?redirect=${redirectUrl}`;
   const classes = useProviderStyles({ color });
+
   return (
     <div className={classes.root}>
       <div className={classes.logoWrapper}>
@@ -65,20 +72,35 @@ const ProviderLink = ({ provider, logo, color, children }) => {
   );
 };
 
-function LoginModal({ onClose }) {
+function LoginModal({ onClose, redirectPath }) {
   const classes = useStyles();
 
   return (
     <Dialog open onClose={onClose}>
       <DialogTitle className={classes.title}>{t`Login / Signup`}</DialogTitle>
       <DialogContent className={classes.content}>
-        <ProviderLink provider="facebook" logo={Facebook} color="#1976D2">
+        <ProviderLink
+          provider="facebook"
+          logo={Facebook}
+          color="#1976D2"
+          redirectPath={redirectPath}
+        >
           Facebook
         </ProviderLink>
-        <ProviderLink provider="twitter" logo={Twitter} color="#03A9F4">
+        <ProviderLink
+          provider="twitter"
+          logo={Twitter}
+          color="#03A9F4"
+          redirectPath={redirectPath}
+        >
           Twitter
         </ProviderLink>
-        <ProviderLink provider="github" logo={Github} color="#2B414D">
+        <ProviderLink
+          provider="github"
+          logo={Github}
+          color="#2B414D"
+          redirectPath={redirectPath}
+        >
           Github
         </ProviderLink>
       </DialogContent>
