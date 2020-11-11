@@ -173,10 +173,11 @@ const useStyles = makeStyles(theme => ({
   },
   newsWrapper: {
     maxWidth: 1000,
+    paddingLeft: 20,
   },
   news: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: 500,
     lineHeight: 1.45,
     color: theme.palette.secondary[500],
     margin: '8px 0',
