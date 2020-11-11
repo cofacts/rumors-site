@@ -1,0 +1,203 @@
+import gql from 'graphql-tag';
+import { t } from 'ttag';
+import { useQuery } from '@apollo/react-hooks';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { ListPageCards, ArticleCard } from 'components/ListPageDisplays';
+import { LoadMore } from 'components/ListPageControls';
+
+import leftImage from './images/article-left.png';
+import rightImage from './images/article-right.png';
+
+const LIST_ARTICLES = gql`
+  query GetArticlesList($orderBy: [ListArticleOrderBy], $after: String) {
+    ListArticles(orderBy: $orderBy, after: $after, first: 10) {
+      edges {
+        node {
+          id
+          ...ArticleCard
+        }
+        ...LoadMoreEdge
+      }
+    }
+  }
+  ${ArticleCard.fragments.ArticleCard}
+  ${LoadMore.fragments.LoadMoreEdge}
+`;
+
+const LIST_STAT = gql`
+  query GetArticlesListStat($orderBy: [ListArticleOrderBy]) {
+    ListArticles(orderBy: $orderBy) {
+      ...LoadMoreConnectionForStats
+    }
+  }
+  ${LoadMore.fragments.LoadMoreConnectionForStats}
+`;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    background: theme.palette.primary[200],
+    padding: '60px 30px',
+    overflow: 'hidden',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: 0,
+      background: theme.palette.background.default,
+    },
+
+    '& > h3': {
+      width: '80%',
+      maxWidth: 1200,
+      fontSize: 48,
+      fontWeight: 'bold',
+      lineHeight: 1.45,
+      margin: '0 auto 26px',
+
+      [theme.breakpoints.only('md')]: {
+        width: '100%',
+        paddingLeft: 40,
+      },
+
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+        fontWeight: 'normal',
+        textAlign: 'center',
+        width: 'unset',
+        margin: '16px auto 4px',
+      },
+    },
+  },
+  articleContainer: {
+    position: 'relative',
+    width: '80%',
+    maxWidth: 1200,
+    height: 600,
+    background: theme.palette.background.default,
+    borderRadius: 8,
+    padding: '15px 0 15px 15px',
+    margin: '0 auto',
+
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      orderRadius: 0,
+      padding: 12,
+    },
+  },
+  scrollbarWrapper: {
+    width: '100%',
+    height: '100%',
+    overflow: 'auto',
+  },
+  leftImage: {
+    position: 'absolute',
+    left: -180,
+    bottom: -100,
+
+    [theme.breakpoints.down('md')]: {
+      width: 295,
+      left: -55,
+      bottom: -75,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  rightImage: {
+    position: 'absolute',
+    right: -160,
+    top: -120,
+
+    [theme.breakpoints.down('md')]: {
+      width: 255,
+      right: -30,
+      top: -140,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+}));
+
+const SectionArticles = () => {
+  const classes = useStyles();
+
+  const listQueryVars = {
+    orderBy: [{ lastRequestedAt: 'DESC' }],
+  };
+
+  const {
+    loading,
+    fetchMore,
+    data: listArticlesData,
+    error: listArticlesError,
+  } = useQuery(LIST_ARTICLES, {
+    variables: listQueryVars,
+    notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
+  });
+
+  // Separate these stats query so that it will be cached by apollo-client and sends no network request
+  // on page change, but still works when filter options are updated.
+  //
+  const { data: listStatData } = useQuery(LIST_STAT, {
+    variables: listQueryVars,
+  });
+
+  // List data
+  const articleEdges = listArticlesData?.ListArticles?.edges || [];
+  const statsData = listStatData?.ListArticles || {};
+
+  return (
+    <section className={classes.root}>
+      {/* TODO: translate */}
+      <h3>大家都想知道 ...</h3>
+      <div className={classes.articleContainer}>
+        <img className={classes.leftImage} src={leftImage} />
+        <img className={classes.rightImage} src={rightImage} />
+        <div className={classes.scrollbarWrapper}>
+          {loading && !articleEdges.length ? (
+            t`Loading...`
+          ) : listArticlesError ? (
+            listArticlesError.toString()
+          ) : (
+            <>
+              <ListPageCards>
+                {articleEdges.map(({ node: article }) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))}
+              </ListPageCards>
+              <LoadMore
+                edges={articleEdges}
+                pageInfo={statsData?.pageInfo}
+                loading={loading}
+                onMoreRequest={args =>
+                  fetchMore({
+                    variables: args,
+                    updateQuery(prev, { fetchMoreResult }) {
+                      if (!fetchMoreResult) return prev;
+                      const newArticleData = fetchMoreResult?.ListArticles;
+                      return {
+                        ...prev,
+                        ListArticles: {
+                          ...newArticleData,
+                          edges: [...articleEdges, ...newArticleData.edges],
+                        },
+                      };
+                    },
+                  })
+                }
+              />
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SectionArticles;
