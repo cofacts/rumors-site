@@ -99,6 +99,7 @@ function AppLayout({ children, container = true }) {
     };
     const handleRouteChangeComplete = () => {
       setRouteChanging(false);
+      window.scrollTo(0, 0);
       pushToDataLayer({ event: 'routeChangeComplete' });
     };
 
