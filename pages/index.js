@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { useRouter } from 'next/router';
 import { t } from 'ttag';
 
 import AppLayout from 'components/AppLayout';
@@ -26,22 +24,8 @@ const {
 } = getConfig();
 
 function Home() {
-  const router = useRouter();
-
   const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
   const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      window.scrollTo(0, 0);
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
 
   return (
     <AppLayout container={false}>
