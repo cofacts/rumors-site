@@ -76,9 +76,11 @@ const useStyles = makeStyles(theme => ({
       [theme.breakpoints.down('sm')]: {
         paddingLeft: 32,
         paddingRight: 13,
+        maxWidth: 400,
+        margin: '0 auto',
 
         '&.rwd-order-1': {
-          paddingTop: 0,
+          paddingTop: 12,
         },
       },
     },
