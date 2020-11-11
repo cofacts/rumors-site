@@ -145,7 +145,10 @@ function AppLayout({ children, container = true }) {
       )}
       <AppFooter />
       {loginModalOpen && (
-        <LoginModal onClose={() => setLoginModalOpen(false)} />
+        <LoginModal
+          onClose={() => setLoginModalOpen(false)}
+          redirectPath={pathname === '/' && '/hoax-for-you'}
+        />
       )}
       <Snackbar
         open={snackMsg ? true : false}
