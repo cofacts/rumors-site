@@ -1,9 +1,18 @@
+import { useState, useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { animated, useSpring } from 'react-spring';
 
 import leftImage from './images/join-left.png';
 import rightImage from './images/join-right.png';
+
+const buttonLink = {
+  en_US:
+    'https://hackmd.io/@mrorz/SklM4dV9m/https%3A%2F%2Fg0v.hackmd.io%2Fz7PY2mQeSMyWBoZpaVhAPg?type=book',
+  zh_TW:
+    'https://beta.hackfoldr.org/1yXwRJwFNFHNJibKENnLCAV5xB8jnUvEwY_oUq-KcETU/https%253A%252F%252Fhackmd.io%252Fs%252FSyMRyrfEl',
+}[process.env.LOCALE];
 
 const useStyles = makeStyles(theme => ({
   sectionJoin: {
@@ -135,6 +144,13 @@ const useStyles = makeStyles(theme => ({
     border: '3px solid white',
     borderRadius: 40,
     cursor: 'pointer',
+    color: 'white',
+    textDecoration: 'none',
+
+    '&:hover': {
+      color: 'white',
+      textDecoration: 'none',
+    },
 
     [theme.breakpoints.down('sm')]: {
       fontSize: 18,
@@ -152,11 +168,48 @@ const SectionJoin = ({ className }) => {
   const theme = useTheme();
   const isBreakpointMd = useMediaQuery(theme.breakpoints.only('md'));
 
+  const [showImage, setShowImage] = useState(false);
+
+  const ref = useRef();
+  const { offset, opacity } = useSpring({
+    offset: showImage ? 0 : 200,
+    opacity: showImage ? 1 : 0,
+  });
+
+  const handleScroll = () => {
+    if (ref.current) {
+      const imageBottom = ref.current.getBoundingClientRect().bottom;
+      const imageHeight = ref.current.getBoundingClientRect().height;
+
+      if (imageBottom - imageHeight / 3 <= window.innerHeight) {
+        setShowImage(true);
+      } else {
+        setShowImage(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [ref]);
+
   return (
     <section className={cx(className, classes.sectionJoin)}>
-      <div className={classes.image}>
+      <animated.div
+        ref={ref}
+        className={classes.image}
+        style={{
+          opacity,
+          transform: offset.interpolate(value => `translateX(${-value}px)`),
+        }}
+      >
         <img src={leftImage} />
-      </div>
+      </animated.div>
       <div className={classes.container}>
         {/* TODO: translate*/}
         <h3>想成為闢謠戰士嗎？</h3>
@@ -169,11 +222,24 @@ const SectionJoin = ({ className }) => {
           或是純粹充滿正義感與好奇心， <br />
           都非常有潛力成為一名傑出的闢謠戰士喔！
         </p>
-        <div className={classes.button}>算我一個！</div>
+        <a
+          className={classes.button}
+          href={buttonLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          算我一個！
+        </a>
       </div>
-      <div className={classes.image}>
+      <animated.div
+        className={classes.image}
+        style={{
+          opacity,
+          transform: offset.interpolate(value => `translateX(${value}px)`),
+        }}
+      >
         <img src={rightImage} />
-      </div>
+      </animated.div>
     </section>
   );
 };
