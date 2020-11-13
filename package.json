@@ -47,7 +47,6 @@
     "react-dom": "^16.8.6",
     "react-virtualized-auto-sizer": "^1.0.2",
     "rollbar": "^2.14.4",
-    "stackimpact": "^1.3.23",
     "ttag": "^1.7.22",
     "universal-analytics": "^0.4.23"
   },
