@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
@@ -146,8 +146,7 @@ const SectionArticles = () => {
 
   return (
     <section className={classes.root}>
-      {/* TODO: translate */}
-      <h3>大家都想知道 ...</h3>
+      <h3> {c('landing page').t`Messages reported in Cofacts`}</h3>
       <div className={classes.articleContainer}>
         <img className={classes.leftImage} src={leftImage} />
         <img className={classes.rightImage} src={rightImage} />

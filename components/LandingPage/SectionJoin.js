@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import cx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { c } from 'ttag';
+import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 
 import leftImage from './images/join-left.png';
@@ -57,6 +57,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     padding: '0 14px 0 60px',
     flexShrink: 0,
+    maxWidth: 600,
 
     [theme.breakpoints.only('md')]: {
       width: 956,
@@ -65,6 +66,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     [theme.breakpoints.down('md')]: {
+      maxWidth: 'unset',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -100,6 +102,10 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: 0.25,
       marginBottom: 36,
       whiteSpace: 'pre-line',
+
+      [theme.breakpoints.only('md')]: {
+        whiteSpace: 'initial',
+      },
 
       [theme.breakpoints.down('md')]: {
         textAlign: 'center',
@@ -165,9 +171,6 @@ const useStyles = makeStyles(theme => ({
 const SectionJoin = ({ className }) => {
   const classes = useStyles();
 
-  const theme = useTheme();
-  const isBreakpointMd = useMediaQuery(theme.breakpoints.only('md'));
-
   const [showImage, setShowImage] = useState(false);
 
   const ref = useRef();
@@ -211,16 +214,17 @@ const SectionJoin = ({ className }) => {
         <img src={leftImage} />
       </animated.div>
       <div className={classes.container}>
-        {/* TODO: translate*/}
-        <h3>想成為闢謠戰士嗎？</h3>
-        <h4>{`現在就加入闢謠者聯盟，${
-          isBreakpointMd ? '' : '\n'
-        }真真假假的世界需要你來拯救！`}</h4>
+        <h3>
+          {c('landing page')
+            .t`Wanna be one of the Warriors of Disinformation？`}
+        </h3>
+        <h4>{c('landing page').t`Cofacts Need You！
+          Be a hero simply by checking the facts`}</h4>
         <p>
-          無論你覺得別人的回應回得不夠好、 <br />
-          想知道的事情還沒有人查證過， <br />
-          或是純粹充滿正義感與好奇心， <br />
-          都非常有潛力成為一名傑出的闢謠戰士喔！
+          {c('landing page').t`If you think the replies could be improved, 
+            what you want to know hasn't been fact checked yet, 
+            or have a sense of justice and curiosity, 
+            YOU might be the right person to become a Warrior of Disinformation!`}
         </p>
         <a
           className={classes.button}
@@ -228,7 +232,7 @@ const SectionJoin = ({ className }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          算我一個！
+          {c('landing page').t`Count me in!`}
         </a>
       </div>
       <animated.div

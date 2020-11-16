@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import cx from 'clsx';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { animated, useSpring } from 'react-spring';
@@ -134,11 +134,13 @@ const SectionContribute = ({ className }) => {
   return (
     <section className={cx(className, classes.sectionContribute)}>
       <div className={classes.top} ref={ref}>
-        {/* TODO: translate */}
         <h3>
           {isSmallScreen
-            ? `看見了嗎？\n闢謠者聯盟\n正在對你招手`
-            : `看見了嗎？\n闢謠者聯盟正在對你招手`}
+            ? c('landing page').t`Come join us 
+                                  and become
+                                  a fake news terminator`
+            : c('landing page').t`Come join us
+                                  and become a fake news terminator`}
         </h3>
         <animated.img
           src={bg}
