@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { t, jt } from 'ttag';
+import { c, t, jt } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 
@@ -173,10 +173,12 @@ function Stats() {
   return (
     <section className={classes.sectionStats}>
       <div className={classes.top}>
-        {/* TODO: translate */}
         <div className={classes.title}>
-          <h3>闢謠戰士的日常</h3>
-          <h4>謠言與回應的追逐戰</h4>
+          <h3> {c('landing page').t`Fact checker daily`}</h3>
+          <h4>
+            {c('landing page')
+              .t`the longest hundred miles of combating disinformation`}
+          </h4>
         </div>
         <div className={classes.image} ref={ref}>
           <animated.img

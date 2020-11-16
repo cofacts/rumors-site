@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import cx from 'clsx';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
 
@@ -214,13 +214,11 @@ const SectionCanDo = ({ className }) => {
 
   return (
     <section className={cx(classes.sectionCanDo, className)}>
-      {/* TODO: translate */}
-      <h3 className={classes.title}>你可以這麼做：</h3>
+      <h3 className={classes.title}>{c('landing page').t`Give it a try:`}</h3>
       <div className={classes.cardContainer}>
         <div className={cx(classes.card, classes.searchCard)}>
-          {/* TODO: translate */}
           <div className={cx(classes.text, classes.searchTitle)}>
-            在下方貼上可疑的文字內容
+            {c('landing page').t`Paste suspicious text message below`}
           </div>
           <InputBox
             className={classes.inputBox}
@@ -228,18 +226,19 @@ const SectionCanDo = ({ className }) => {
             tags={LANG === 'zh-TW' ? SEARCH_KEYWORDS_ZH : SEARCH_KEYWORDS_EN}
             onChange={setSearchKeyword}
           />
-          {/* TODO: translate */}
           <div className={cx(classes.button, classes.text)} onClick={onSearch}>
-            快速查詢
+            {c('landing page').t`Search`}
           </div>
         </div>
-        {/* TODO: translate */}
-        <div className={cx(classes.text, classes.or)}>或</div>
+        <div className={cx(classes.text, classes.or)}>
+          {c('landing page').t`or`}
+        </div>
         <div className={cx(classes.card, classes.lineCard)}>
           <div className={classes.top}>
             <img src={lineQrcode} />
             <div className={classes.text}>
-              {`開 LINE \n 加好友 \n 謠言隨手查！`}
+              {c('landing page')
+                .t`Send hoax message to Cofacts via the LINE app`}
             </div>
           </div>
           <div className={cx(classes.smText, classes.lineContent)}>

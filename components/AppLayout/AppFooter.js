@@ -105,17 +105,16 @@ function AppFooter() {
             <CustomLink href="/hoax-for-you">
               {c('App layout').t`For You`}
             </CustomLink>
-            {/* TODO: translate, add link */}
-            <CustomLink href="">我的關注</CustomLink>
+            {/* TODO: add link */}
+            <CustomLink href="">{t`Following`}</CustomLink>
           </div>
           <div className={classes.column}>
             <h3>{t`About`}</h3>
             <CustomLink external href="">
               {t`About Cofacts`}
             </CustomLink>
-            {/* TODO: translate */}
             <CustomLink external href={PROJECT_HACKFOLDR}>
-              專案介紹
+              {t`Introduction`}
             </CustomLink>
             <CustomLink external href={PROJECT_SOURCE_CODE}>
               Source Code
@@ -125,8 +124,7 @@ function AppFooter() {
             </CustomLink>
           </div>
           <div className={classes.column}>
-            {/* TODO: translate */}
-            <h3>聯繫</h3>
+            <h3>{t`Contact`}</h3>
             <CustomLink
               external
               href={`mailto:${CONTACT_EMAIL}`}

@@ -1,3 +1,4 @@
+import { c } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 
 const NEWS = {
@@ -196,8 +197,7 @@ const SectionNews = () => {
   const classes = useStyles();
   return (
     <section className={classes.sectionNews}>
-      {/* TODO: translate */}
-      <h3>媽！我在這裡！</h3>
+      <h3>{c('landing page').t`Hey!!! That's YOU.`}</h3>
       <ul className={classes.newsWrapper}>
         {NEWS.map(([press, newsTitle, link]) => (
           <li key={newsTitle} className={classes.news}>
