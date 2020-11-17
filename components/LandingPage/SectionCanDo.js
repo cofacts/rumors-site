@@ -13,6 +13,8 @@ import {
   SEARCH_KEYWORDS_EN,
 } from 'constants/searchKeywords';
 
+const LANG = (process.env.LOCALE || 'en').replace('_', '-');
+
 const useStyles = makeStyles(theme => ({
   sectionCanDo: {
     padding: '45px 0 68px',
@@ -47,8 +49,8 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     fontWeight: 500,
-    fontSize: 34,
-    lineHeight: '49px',
+    fontSize: LANG === 'en-US' ? 32 : 34,
+    lineHeight: 1.45,
     letterSpacing: '0.25px',
     color: 'white',
     whiteSpace: 'pre-line',
@@ -65,7 +67,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       fontWeight: 'normal',
       fontSize: 24,
-      lineHeight: '35px',
       letterSpacing: 0,
     },
   },
@@ -101,7 +102,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     width: 'calc(50% - 30px)',
     maxWidth: 480,
-    height: 425,
+    height: LANG === 'en-US' ? 520 : 425,
     borderRadius: 8,
 
     [theme.breakpoints.down('md')]: {
@@ -195,8 +196,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LANG = (process.env.LOCALE || 'en').replace('_', '-');
-
 const SectionCanDo = ({ className }) => {
   const classes = useStyles();
   const router = useRouter();
@@ -253,7 +252,7 @@ const SectionCanDo = ({ className }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t`TUTORIAL`}
+            {t`Tutorial`}
           </a>
         </div>
       </div>

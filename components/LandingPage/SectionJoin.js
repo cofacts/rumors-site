@@ -146,7 +146,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: 34,
     lineHeight: '49px',
     letterSpacing: 0.25,
-    padding: '10px 30px 10px 40px',
+    padding:
+      process.env.LOCALE === 'en_US' ? '10px 40px' : '10px 30px 10px 40px',
     border: '3px solid white',
     borderRadius: 40,
     cursor: 'pointer',

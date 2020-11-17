@@ -208,7 +208,7 @@ msgstr ""
 "好友後，轉傳可疑的謠言訊息給他，就可以讓機器人幫你查謠言囉！"
 
 #: components\LandingPage\SectionCanDo.js:256
-msgid "TUTORIAL"
+msgid "Tutorial"
 msgstr "使用教學"
 
 #: pages\reply\[id].js:250

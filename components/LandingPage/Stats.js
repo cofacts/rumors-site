@@ -29,6 +29,10 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[500],
     marginBottom: -100,
 
+    [theme.breakpoints.up('md')]: {
+      maxWidth: process.env.LOCALE === 'en_US' ? 500 : 'unset',
+    },
+
     [theme.breakpoints.down('sm')]: {
       marginBottom: 20,
     },
@@ -84,7 +88,11 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[500],
     padding: '0 27px',
     width: '25%',
-    whiteSpace: 'nowrap',
+    whiteSpace: process.env.LOCALE === 'en_US' ? '' : 'nowrap',
+
+    '& a': {
+      textAlign: process.env.LOCALE === 'en_US' ? 'center' : '',
+    },
 
     [theme.breakpoints.down('sm')]: {
       padding: '20px',
