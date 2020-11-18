@@ -216,10 +216,9 @@ const SectionJoin = ({ className }) => {
       </animated.div>
       <div className={classes.container}>
         <h3>
-          {c('landing page')
-            .t`Wanna be one of the Warriors of Disinformation？`}
+          {c('landing page').t`Wanna be one of the Warriors of Disinformation?`}
         </h3>
-        <h4>{c('landing page').t`Cofacts Need You！
+        <h4>{c('landing page').t`Cofacts Need You!
           Be a hero simply by checking the facts`}</h4>
         <p>
           {c('landing page').t`If you think the replies could be improved, 

@@ -33,6 +33,7 @@ const useBlockStyles = makeStyles(theme => ({
     lineHeight: '35px',
     color: 'white',
     marginBottom: 23,
+    textAlign: 'center',
 
     [theme.breakpoints.down('sm')]: {
       marginBottom: 12,
@@ -43,6 +44,7 @@ const useBlockStyles = makeStyles(theme => ({
     lineHeight: 1.56,
     letterSpacing: 0.5,
     color: 'white',
+    textAlign: 'justify',
 
     [theme.breakpoints.down('sm')]: {
       fontSize: 14,
@@ -107,16 +109,16 @@ const SectionFeature = ({ className }) => {
           image={image1}
           title={t`Real-Time Response`}
           content={t`Once someone respond to your pending request, the chatbot
-            will answer you through LINE. It’s fast and immediate, you
-            don’t even have to wait. Better yet, you don’t even need to
-            say ‘thank you’. Ask the bot to verify for you, no need to
+            will answer you through LINE. It's fast and immediate, you
+            don't even have to wait. Better yet, you don't even need to
+            say ‘thank you'. Ask the bot to verify for you, no need to
             feel uncomfortable asking it for favors.`}
         />
         <Block
           className={classes.block}
           image={image2}
           title={t`Crowdsourcing`}
-          content={t`Anyone can verify and respond to other’s requests on
+          content={t`Anyone can verify and respond to other's requests on
           possible hoax and upload it into our database. We encourage
           citizens to join our program, even invite your mom and dad
           to join.`}
@@ -125,9 +127,9 @@ const SectionFeature = ({ className }) => {
           className={classes.block}
           image={image3}
           title={t`Different Views`}
-          content={t`Knowing what’s fact and what’s an opinion. Seeing different
+          content={t`Knowing what's fact and what's an opinion. Seeing different
           sides of the story makes you realize your own blindspot,
-          allowing everyone to respect each other’s perspectives.`}
+          allowing everyone to respect each other's perspectives.`}
         />
         <Block
           className={classes.block}

@@ -89,9 +89,10 @@ const useStyles = makeStyles(theme => ({
     padding: '0 27px',
     width: '25%',
     whiteSpace: process.env.LOCALE === 'en_US' ? '' : 'nowrap',
+    textAlign: 'center',
 
     '& a': {
-      textAlign: process.env.LOCALE === 'en_US' ? 'center' : '',
+      textAlign: 'center',
     },
 
     [theme.breakpoints.down('sm')]: {

@@ -25,7 +25,7 @@ const {
 
 function Home() {
   const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
-  const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It’s a grass-root effort fighting mis/disinformation in Taiwan.`;
+  const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It's a grass-root effort fighting mis/disinformation in Taiwan.`;
 
   return (
     <AppLayout container={false}>
