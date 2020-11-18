@@ -327,7 +327,7 @@ msgstr "Connecting facts and instant messages"
 #: pages\index.js:28
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
-"fact-check reports or different opinions together. It’s a grass-root effort "
+"fact-check reports or different opinions together. It's a grass-root effort "
 "fighting mis/disinformation in Taiwan."
 msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
 
@@ -832,7 +832,7 @@ msgstr[0] "被回報 ${ article.replyRequestCount } 次"
 #: components\ListPageDisplays\ReplySearchItem.js:110
 #: pages\replies.js:257
 msgid "First reported ${ timeAgo } ago"
-msgstr "首次回報於 ${ timeAgoStr }前"
+msgstr "首次回報於 ${ timeAgo }前"
 
 #: pages\reply\[id].js:138
 #, javascript-format
@@ -934,9 +934,9 @@ msgstr "即時回應"
 #: components\LandingPage\SectionFeature.js:109
 msgid ""
 "Once someone respond to your pending request, the chatbot\n"
-"will answer you through LINE. It’s fast and immediate, you\n"
-"don’t even have to wait. Better yet, you don’t even need to\n"
-"say ‘thank you’. Ask the bot to verify for you, no need to\n"
+"will answer you through LINE. It's fast and immediate, you\n"
+"don't even have to wait. Better yet, you don't even need to\n"
+"say ‘thank you'. Ask the bot to verify for you, no need to\n"
 "feel uncomfortable asking it for favors."
 msgstr "只要資料庫裡有回應，機器人就透過程式找答案給你，即時方便不用等。連問候答謝都省了，聊天機器人讓你查謠言都不用不好意思。"
 
@@ -946,7 +946,7 @@ msgstr "群眾協作"
 
 #: components\LandingPage\SectionFeature.js:119
 msgid ""
-"Anyone can verify and respond to other’s requests on\n"
+"Anyone can verify and respond to other's requests on\n"
 "possible hoax and upload it into our database. We encourage\n"
 "citizens to join our program, even invite your mom and dad\n"
 "to join."
@@ -958,9 +958,9 @@ msgstr "意見交鋒"
 
 #: components\LandingPage\SectionFeature.js:128
 msgid ""
-"Knowing what’s fact and what’s an opinion. Seeing different\n"
+"Knowing what's fact and what's an opinion. Seeing different\n"
 "sides of the story makes you realize your own blindspot,\n"
-"allowing everyone to respect each other’s perspectives."
+"allowing everyone to respect each other's perspectives."
 msgstr "了解事實與評論的差異，同時看見不同立場的意見，覺察自己的盲點，互相尊重。你聽你的鳥鳴，但也可以湊過去看她的日出。"
 
 #: components\LandingPage\SectionFeature.js:135
@@ -1090,7 +1090,7 @@ msgstr "大家都想知道 ..."
 
 #: components\LandingPage\SectionHow.js:171
 msgctxt "landing page"
-msgid "Message is Fact-checked in Cofacts"
+msgid "Message is fact-checked in Cofacts"
 msgstr "要怎麼判斷真假？"
 
 #: components\LandingPage\SectionHow.js:180
@@ -1125,10 +1125,10 @@ msgstr "你所看到的回應，是由其他同樣是使用者的人所寫出來
 #: components\LandingPage\SectionHow.js:191
 msgctxt "landing page"
 msgid ""
-"\"We believe There is no omniscient judge,\n"
+"We believe There is no omniscient judge,\n"
 "we feel only civic collaboraing contributions works to see the truth.\n"
 "You can review other's point of view and share your ideas on Cofacts "
-"platform.\""
+"platform."
 msgstr ""
 "我們相信，世界上沒有全知全能的判斷者，只有互相貢獻的公民協作，才能更接近真相。在 Cofacts "
 "平台上，你可以看見其他人的觀點，除了透過平台資訊幫助自己作出獨立判斷外，更能在 Cofacts 平台與其他人分享你的想法。"
@@ -1143,7 +1143,7 @@ msgstr "只要主動查證謠言訊息，把你查到的回應加入資料庫，
 
 #: components\LandingPage\SectionJoin.js:218
 msgctxt "landing page"
-msgid "Wanna be one of the Warriors of Disinformation？"
+msgid "Wanna be one of the Warriors of Disinformation?"
 msgstr "想成為闢謠戰士嗎？"
 
 #: components\LandingPage\SectionJoin.js:235
@@ -1163,7 +1163,7 @@ msgstr "無論你覺得別人的回應回得不夠好、想知道的事情還沒
 #: components\LandingPage\SectionJoin.js:221
 msgctxt "landing page"
 msgid ""
-"Cofacts Need You！\n"
+"Cofacts Need You!\n"
 "Be a hero simply by checking the facts"
 msgstr ""
 "現在就加入闢謠者聯盟，\n"

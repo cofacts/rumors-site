@@ -168,7 +168,7 @@ const SectionHow = () => {
     <section className={classes.sectionHow}>
       <div className={classes.container}>
         <h3 className={cx(classes.block, 'title', 'rwd-order-2')}>
-          {c('landing page').t`Message is Fact-checked in Cofacts`}
+          {c('landing page').t`Message is fact-checked in Cofacts`}
         </h3>
         <div className={cx(classes.block, classes.image, 'rwd-order-1')}>
           <img className={classes.flash} src={image1Flash} />
@@ -188,9 +188,9 @@ const SectionHow = () => {
             {c('landing page').t`Everybody can fact-check the fact checkers`}
           </div>
           <div className={classes.content}>
-            {c('landing page').t`"We believe There is no omniscient judge,
+            {c('landing page').t`We believe There is no omniscient judge,
               we feel only civic collaboraing contributions works to see the truth.
-              You can review other's point of view and share your ideas on Cofacts platform."`}
+              You can review other's point of view and share your ideas on Cofacts platform.`}
           </div>
         </div>
         <div className={cx(classes.block, 'text', 'rwd-order-3')}>
