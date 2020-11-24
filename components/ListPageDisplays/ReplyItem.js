@@ -101,7 +101,10 @@ function ReplyItem({ articleReply, reply, query }) {
         <div className={classes.status}>
           <ArticleReplyFeedbackControl articleReply={articleReply} />
           <Box display={['none', 'none', 'block']}>
-            <ReplyInfo reply={reply} articleReplyCreatedAt={reply.createdAt} />
+            <ReplyInfo
+              reply={reply}
+              articleReplyCreatedAt={articleReply.createdAt}
+            />
           </Box>
         </div>
       </Box>
