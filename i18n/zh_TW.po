@@ -865,67 +865,67 @@ msgstr "沒有相似的可疑訊息"
 
 #: components\Hyperlinks.js:115
 msgid "Domain name cannot be resolved"
-msgstr ""
+msgstr "找不到網域"
 
 #: components\Hyperlinks.js:118
 msgid "URL is malformed or not supported"
-msgstr ""
+msgstr "不支援或錯誤的 URL"
 
 #: components\Hyperlinks.js:120
 msgid "Cannot get data from URL"
-msgstr ""
+msgstr "無法取得資料"
 
 #: components\Hyperlinks.js:122
 msgid "Target site contains HTTPS error"
-msgstr ""
+msgstr "目標網站有 HTTPS 錯誤"
 
 #: components\Hyperlinks.js:124
 msgid "Unknown error"
-msgstr ""
+msgstr "未知錯誤"
 
 #: pages\article\[id].js:395
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
+msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
 #: pages\article\[id].js:409
 #: pages\article\[id].js:445
 msgid "Add Cofacts as friend in LINE"
-msgstr ""
+msgstr "加 LINE 查謠言"
 
 #: components\TrendPlot.js:128
 msgid "Past 31 days"
-msgstr ""
+msgstr "近 31 日"
 
 #: components\CreateReplyRequestForm\CreateReplyRequestForm.js:132
 msgid "Please provide more info"
-msgstr ""
+msgstr "字數不足"
 
 #: components\CreateReplyRequestForm\CreateReplyRequestForm.js:198
 msgid ""
 "Did you find anything suspicious about the message after you search "
 "Facebook & Google?"
-msgstr ""
+msgstr "搜尋臉書或 Google 後，你發現了什麼可疑的地方，想給其他編輯參考呢？"
 
 #: components\CreateReplyRequestForm\CreateReplyRequestForm.js:210
 msgid ""
 "Please provide paragraphs you find controversial, or related news, image & "
 "video material you have found."
-msgstr ""
+msgstr "請分享你覺得訊息中的爭議點或是你查核到的相關圖片、影片以及報導資訊"
 
 #: components\AppLayout\AppLayout.js:65
 msgid "Your display name has been updated."
-msgstr ""
+msgstr "暱稱已更新"
 
 #: components\AppLayout\AppLayout.js:77
 msgid "Please enter new display name"
-msgstr ""
+msgstr "請輸入新的暱稱"
 
 #: components\AppLayout\AppLayout.js:82
 msgid "Display name cannot be empty."
-msgstr ""
+msgstr "暱稱不能是空白"
 
 #: components\LandingPage\SectionFeature.js:108
 msgid "Real-Time Response"
@@ -1043,7 +1043,7 @@ msgstr "回應"
 #: components\ListPageDisplays\ArticleCard.js:115
 msgctxt "Info box"
 msgid "reports"
-msgstr ""
+msgstr "回報"
 
 #: components\ListPageControls\BaseTimeRange.js:67
 msgctxt "Time range dropdown"
