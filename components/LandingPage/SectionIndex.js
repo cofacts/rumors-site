@@ -7,6 +7,7 @@ import { NAVBAR_HEIGHT } from 'constants/size';
 
 import backImage from './images/index-back.png';
 import frontImage from './images/index-front.png';
+import frontImageEn from './images/index-front-en.png';
 
 const COVER_ORIGINAL_WIDTH = 7812;
 const COVER_ORIGINAL_HEIGHT = 1261;
@@ -136,7 +137,10 @@ const SectionIndex = () => {
               transform: `scale(${coverHeight / COVER_ORIGINAL_HEIGHT})`,
             }}
           >
-            <img className={classes.image} src={frontImage} />
+            <img
+              className={classes.image}
+              src={process.env.LOCALE === 'en_US' ? frontImageEn : frontImage}
+            />
           </div>
         </div>
       </div>
