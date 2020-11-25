@@ -4,6 +4,7 @@ import cx from 'clsx';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
 import { TYPE_ICON } from 'constants/replyType';
+import Peep from 'react-peeps';
 
 const NULL_USER_IMG =
   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
@@ -16,6 +17,18 @@ const useStyles = makeStyles({
     cursor: 'pointer',
   },
 });
+
+const peepsStyles = {
+  peepStyle: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  circleStyle: {
+    alignSelf: 'center',
+    borderRadius: '50%',
+    overflow: 'hidden',
+  },
+};
 
 const LevelBadge = withStyles(theme => ({
   container: {
@@ -71,6 +84,41 @@ const StatusBadge = withStyles(theme => ({
   );
 });
 
+const OpenPeepsAvatar = withStyles(theme => ({
+  showcaseWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: '-webkit-fill-available',
+    '& div': {
+      width: ({ size }) => size,
+      height: ({ size }) => size,
+    },
+    '& svg': {
+      width: ({ size }) => size,
+      height: ({ size }) => size,
+      backgroundColor: ({ avatarData }) => {
+        const cofactsColors = Object.values(theme.palette.common);
+        if (avatarData.backgroundColor) return avatarData.backgroundColor;
+        const index = Math.floor(
+          cofactsColors.length * avatarData.backgroundColorIndex
+        );
+        return cofactsColors[index];
+      },
+    },
+  },
+}))(({ classes, avatarData }) => {
+  return (
+    <div className={classes.showcaseWrapper}>
+      <Peep
+        {...avatarData}
+        style={peepsStyles.peepStyle}
+        circleStyle={peepsStyles.circleStyle}
+        strokeColor="#000"
+      />
+    </div>
+  );
+});
+
 function Avatar({
   user,
   size = 24,
@@ -80,14 +128,27 @@ function Avatar({
   ...rest
 }) {
   const classes = useStyles(size);
-  let avatar = (
-    <img
-      className={cx(classes.root, className)}
-      src={user ? user.avatarUrl : NULL_USER_IMG}
-      alt=""
-      {...rest}
-    />
-  );
+  let avatarData;
+  let avatar;
+
+  if (user?.avatarType === 'OpenPeeps') {
+    try {
+      avatarData = JSON.parse(user.avatarData);
+      avatar = <OpenPeepsAvatar avatarData={avatarData} size={size} />;
+    } catch {} // eslint-disable-line no-empty
+  }
+
+  if (!avatar) {
+    avatar = (
+      <img
+        className={cx(classes.root, className)}
+        src={user?.avatarUrl ? user.avatarUrl : NULL_USER_IMG}
+        alt=""
+        {...rest}
+      />
+    );
+  }
+
   if (showLevel) {
     avatar = <LevelBadge level={user?.level}>{avatar}</LevelBadge>;
   }
@@ -101,8 +162,10 @@ Avatar.fragments = {
   AvatarData: gql`
     fragment AvatarData on User {
       id
-      avatarUrl
       level
+      avatarUrl
+      avatarType
+      avatarData
     }
   `,
 };
