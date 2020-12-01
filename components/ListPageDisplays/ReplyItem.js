@@ -89,6 +89,8 @@ function ReplyItem({ articleReply, reply, query }) {
           className={classes.avatar}
           showLevel
           status={replyType}
+          size={30}
+          mdSize={72}
         />
       </Box>
       <Box py={{ xs: '16px', md: '22px' }} flexGrow={1}>

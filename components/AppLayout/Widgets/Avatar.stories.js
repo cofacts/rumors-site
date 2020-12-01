@@ -55,6 +55,7 @@ const users = [
       level: 1,
     },
     size: 40,
+    mdSize: 72,
     showLevel: false,
   },
   {
@@ -76,7 +77,7 @@ const users = [
   },
 ];
 export const Normal = () =>
-  users.map(({ user, size, showLevel }, i) => (
+  users.map(({ user, size, mdSize, showLevel }, i) => (
     <div
       key={i}
       style={{
@@ -87,6 +88,6 @@ export const Normal = () =>
         'vertical-align': 'middle',
       }}
     >
-      <Avatar user={user} size={size} showLevel={showLevel} />
+      <Avatar user={user} size={size} showLevel={showLevel} mdSize={mdSize} />
     </div>
   ));

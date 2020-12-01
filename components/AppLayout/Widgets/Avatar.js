@@ -92,29 +92,42 @@ const OpenPeepsAvatar = withStyles(theme => ({
     '& div': {
       width: ({ size }) => size,
       height: ({ size }) => size,
+      [theme.breakpoints.up('md')]: {
+        width: ({ size, mdSize }) => mdSize ?? size,
+        height: ({ size, mdSize }) => mdSize ?? size,
+      },
     },
     '& svg': {
       width: ({ size }) => size,
       height: ({ size }) => size,
+      [theme.breakpoints.up('md')]: {
+        width: ({ size, mdSize }) => mdSize ?? size,
+        height: ({ size, mdSize }) => mdSize ?? size,
+      },
       backgroundColor: ({ avatarData }) => {
         const cofactsColors = Object.values(theme.palette.common);
-        if (avatarData.backgroundColor) return avatarData.backgroundColor;
-        const index = Math.floor(
-          cofactsColors.length * avatarData.backgroundColorIndex
-        );
-        return cofactsColors[index];
+        if (avatarData?.backgroundColor) return avatarData.backgroundColor;
+        if (avatarData?.backgroundColorIndex) {
+          const index = Math.floor(
+            cofactsColors.length * avatarData.backgroundColorIndex
+          );
+          return cofactsColors[index];
+        }
+        return "#FFF";
       },
     },
   },
-}))(({ classes, avatarData }) => {
+}))(({ className, classes, avatarData }) => {
   return (
-    <div className={classes.showcaseWrapper}>
-      <Peep
-        {...avatarData}
-        style={peepsStyles.peepStyle}
-        circleStyle={peepsStyles.circleStyle}
-        strokeColor="#000"
-      />
+    <div className={className}>
+      <div className={classes.showcaseWrapper}>
+        <Peep
+          {...avatarData}
+          style={peepsStyles.peepStyle}
+          circleStyle={peepsStyles.circleStyle}
+          strokeColor="#000"
+          />
+      </div>
     </div>
   );
 });
@@ -122,6 +135,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
 function Avatar({
   user,
   size = 24,
+  mdSize = null,
   showLevel = false,
   status = null,
   className,
@@ -134,7 +148,8 @@ function Avatar({
   if (user?.avatarType === 'OpenPeeps') {
     try {
       avatarData = JSON.parse(user.avatarData);
-      avatar = <OpenPeepsAvatar avatarData={avatarData} size={size} />;
+      avatar = <OpenPeepsAvatar className={className} avatarData={avatarData} size={size} mdSize={mdSize} />;
+      console.log(JSON.stringify(avatarData, null, 2))
     } catch {} // eslint-disable-line no-empty
   }
 
