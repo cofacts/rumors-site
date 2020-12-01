@@ -98,16 +98,6 @@ const OpenPeepsAvatar = withStyles(theme => ({
         width: ({ size, mdSize }) => mdSize ?? size,
         height: ({ size, mdSize }) => mdSize ?? size,
       },
-    },
-    '& svg': {
-      width: ({ size }) => size,
-      height: ({ size }) => size,
-      [theme.breakpoints.up('md')]: {
-        width: ({ size, mdSize }) => mdSize ?? size,
-        height: ({ size, mdSize }) => mdSize ?? size,
-      },
-      transform: ({ avatarData }) =>
-        avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)',
       backgroundColor: ({ avatarData }) => {
         const cofactsColors = Object.values(omit(theme.palette.common, ['black', 'white']));
         if (avatarData?.backgroundColor) return avatarData.backgroundColor;
@@ -119,6 +109,16 @@ const OpenPeepsAvatar = withStyles(theme => ({
         }
         return theme.palette.common.yellow;
       },
+    },
+    '& svg': {
+      width: ({ size }) => size,
+      height: ({ size }) => size,
+      [theme.breakpoints.up('md')]: {
+        width: ({ size, mdSize }) => mdSize ?? size,
+        height: ({ size, mdSize }) => mdSize ?? size,
+      },
+      transform: ({ avatarData,size }) =>
+        `${avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'} translateY(${size/15}px)`
     },
   },
   // eslint-disable-next-line no-unused-vars
