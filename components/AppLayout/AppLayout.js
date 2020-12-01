@@ -19,6 +19,9 @@ const USER_QUERY = gql`
       id
       name
       avatarUrl
+      avatarType
+      avatarData
+
       level
       points {
         total

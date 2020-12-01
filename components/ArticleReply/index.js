@@ -188,7 +188,14 @@ const ArticleReply = React.memo(
     return (
       <>
         <Box component="header" display="flex" alignItems="center">
-          {user && <Avatar user={user} className={classes.avatar} size={30} mdSize={42} />}
+          {user && (
+            <Avatar
+              user={user}
+              className={classes.avatar}
+              size={30}
+              mdSize={42}
+            />
+          )}
           <Box flexGrow={1}>
             <div className={classes.replyType}>
               {jt`${authorElem} mark this message ${TYPE_NAME[replyType]}`}

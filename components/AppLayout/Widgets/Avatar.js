@@ -89,6 +89,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     height: '-webkit-fill-available',
+    cursor: 'pointer',
     '& div': {
       width: ({ size }) => size,
       height: ({ size }) => size,
@@ -104,6 +105,8 @@ const OpenPeepsAvatar = withStyles(theme => ({
         width: ({ size, mdSize }) => mdSize ?? size,
         height: ({ size, mdSize }) => mdSize ?? size,
       },
+      transform: ({ avatarData }) =>
+        avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)',
       backgroundColor: ({ avatarData }) => {
         const cofactsColors = Object.values(theme.palette.common);
         if (avatarData?.backgroundColor) return avatarData.backgroundColor;
@@ -113,20 +116,21 @@ const OpenPeepsAvatar = withStyles(theme => ({
           );
           return cofactsColors[index];
         }
-        return "#FFF";
+        return '#FFF';
       },
     },
   },
-}))(({ className, classes, avatarData }) => {
+  // eslint-disable-next-line no-unused-vars
+}))(({ className, classes, avatarData, size, mdSize, ...rest }) => {
   return (
-    <div className={className}>
+    <div className={className} {...rest}>
       <div className={classes.showcaseWrapper}>
         <Peep
           {...avatarData}
           style={peepsStyles.peepStyle}
           circleStyle={peepsStyles.circleStyle}
           strokeColor="#000"
-          />
+        />
       </div>
     </div>
   );
@@ -148,8 +152,15 @@ function Avatar({
   if (user?.avatarType === 'OpenPeeps') {
     try {
       avatarData = JSON.parse(user.avatarData);
-      avatar = <OpenPeepsAvatar className={className} avatarData={avatarData} size={size} mdSize={mdSize} />;
-      console.log(JSON.stringify(avatarData, null, 2))
+      avatar = (
+        <OpenPeepsAvatar
+          className={className}
+          avatarData={avatarData}
+          size={size}
+          mdSize={mdSize}
+          {...rest}
+        />
+      );
     } catch {} // eslint-disable-line no-empty
   }
 

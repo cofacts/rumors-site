@@ -1,6 +1,6 @@
 import React from 'react';
-
 import Avatar from './Avatar';
+
 export default {
   title: 'Avatar',
   component: 'Avatar',
@@ -76,18 +76,29 @@ const users = [
     showLevel: false,
   },
 ];
-export const Normal = () =>
-  users.map(({ user, size, mdSize, showLevel }, i) => (
-    <div
-      key={i}
-      style={{
-        width: '80px',
-        height: '80px',
-        display: 'block',
-        'text-align': 'center',
-        'vertical-align': 'middle',
-      }}
-    >
-      <Avatar user={user} size={size} showLevel={showLevel} mdSize={mdSize} />
+
+export const Normal = () => {
+  return (
+    <div>
+      {users.map(({ user, size, mdSize, showLevel }, i) => (
+        <div
+          key={i}
+          style={{
+            width: '80px',
+            height: '80px',
+            display: 'block',
+            textAlign: 'center',
+            verticalAlign: 'middle',
+          }}
+        >
+          <Avatar
+            user={user}
+            size={size}
+            showLevel={showLevel}
+            mdSize={mdSize}
+          />
+        </div>
+      ))}
     </div>
-  ));
+  );
+};
