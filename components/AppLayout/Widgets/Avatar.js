@@ -5,6 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
 import { TYPE_ICON } from 'constants/replyType';
 import Peep from 'react-peeps';
+import { omit } from 'lodash';
 
 const NULL_USER_IMG =
   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
@@ -108,7 +109,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
       transform: ({ avatarData }) =>
         avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)',
       backgroundColor: ({ avatarData }) => {
-        const cofactsColors = Object.values(theme.palette.common);
+        const cofactsColors = Object.values(omit(theme.palette.common, ['black', 'white']));
         if (avatarData?.backgroundColor) return avatarData.backgroundColor;
         if (avatarData?.backgroundColorIndex) {
           const index = Math.floor(
@@ -116,7 +117,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
           );
           return cofactsColors[index];
         }
-        return '#FFF';
+        return theme.palette.common.yellow;
       },
     },
   },
