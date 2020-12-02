@@ -99,7 +99,9 @@ const OpenPeepsAvatar = withStyles(theme => ({
         height: ({ size, mdSize }) => mdSize ?? size,
       },
       backgroundColor: ({ avatarData }) => {
-        const cofactsColors = Object.values(omit(theme.palette.common, ['black', 'white']));
+        const cofactsColors = Object.values(
+          omit(theme.palette.common, ['black', 'white'])
+        );
         if (avatarData?.backgroundColor) return avatarData.backgroundColor;
         if (avatarData?.backgroundColorIndex) {
           const index = Math.floor(
@@ -117,8 +119,10 @@ const OpenPeepsAvatar = withStyles(theme => ({
         width: ({ size, mdSize }) => mdSize ?? size,
         height: ({ size, mdSize }) => mdSize ?? size,
       },
-      transform: ({ avatarData,size }) =>
-        `${avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'} translateY(${size/15}px)`
+      transform: ({ avatarData, size }) =>
+        `${
+          avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'
+        } translateY(${size / 15}px)`,
     },
   },
   // eslint-disable-next-line no-unused-vars
