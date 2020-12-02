@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Router, { useRouter } from 'next/router';
 import { pushToDataLayer } from 'lib/gtm';
-import AppHeader, { LandingPageHeader } from './AppHeader';
+import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
 import gql from 'graphql-tag';
@@ -114,21 +114,14 @@ function AppLayout({ children, container = true }) {
 
   return (
     <Fragment>
-      {pathname === '/' ? (
-        <LandingPageHeader
-          user={data?.GetUser}
-          onLoginModalOpen={openLoginModal}
-        />
-      ) : (
-        <AppHeader
-          user={data?.GetUser}
-          showProgress={isRouteChanging}
-          onMenuButtonClick={toggleSidebar}
-          onLoginModalOpen={openLoginModal}
-          onLogout={logout}
-          onNameChange={handleNameChange}
-        />
-      )}
+      <AppHeader
+        user={data?.GetUser}
+        showProgress={isRouteChanging}
+        onMenuButtonClick={toggleSidebar}
+        onLoginModalOpen={openLoginModal}
+        onLogout={logout}
+        onNameChange={handleNameChange}
+      />
       <AppSidebar
         open={sidebarOpen}
         toggle={setSidebarOpen}
