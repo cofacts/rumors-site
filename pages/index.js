@@ -1,9 +1,14 @@
+import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
 import { t } from 'ttag';
+import { useLazyQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
-import AppLayout from 'components/AppLayout';
+import { LoginModal, AppFooter } from 'components/AppLayout';
+
 import {
+  Header,
   SectionIndex,
   SectionCanDo,
   SectionArticles,
@@ -19,6 +24,16 @@ import ogImage from 'components/LandingPage/images/ogimage.png';
 
 import withData from 'lib/apollo';
 
+const USER_QUERY = gql`
+  query UserLevelQuery {
+    GetUser {
+      id
+      name
+      avatarUrl
+    }
+  }
+`;
+
 const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
@@ -27,8 +42,16 @@ function Home() {
   const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
   const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It's a grass-root effort fighting mis/disinformation in Taiwan.`;
 
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
+
+  const [loadUser, { data }] = useLazyQuery(USER_QUERY);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => loadUser(), []);
+
   return (
-    <AppLayout container={false}>
+    <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -65,6 +88,7 @@ function Home() {
           type="text/css"
         />
       </Head>
+      <Header user={data?.GetUser} onLoginModalOpen={openLoginModal} />
       <SectionIndex />
       <SectionCanDo />
       <SectionArticles />
@@ -74,7 +98,14 @@ function Home() {
       <Stats />
       <SectionContribute />
       <SectionNews />
-    </AppLayout>
+      <AppFooter />
+      {loginModalOpen && (
+        <LoginModal
+          onClose={() => setLoginModalOpen(false)}
+          redirectPath="/hoax-for-you"
+        />
+      )}
+    </>
   );
 }
 
