@@ -2,7 +2,7 @@ import { t } from 'ttag';
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
@@ -57,8 +57,6 @@ function AppLayout({ children, container = true }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [snackMsg, setSnackMsg] = useState('');
-
-  const { pathname } = useRouter();
 
   const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
   const [changeUserName] = useMutation(CHANGE_NAME_QUERY, {
@@ -137,10 +135,7 @@ function AppLayout({ children, container = true }) {
       )}
       <AppFooter />
       {loginModalOpen && (
-        <LoginModal
-          onClose={() => setLoginModalOpen(false)}
-          redirectPath={pathname === '/' && '/hoax-for-you'}
-        />
+        <LoginModal onClose={() => setLoginModalOpen(false)} />
       )}
       <Snackbar
         open={snackMsg ? true : false}
