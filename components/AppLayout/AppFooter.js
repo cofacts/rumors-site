@@ -117,7 +117,7 @@ function AppFooter() {
               {t`Introduction`}
             </CustomLink>
             <CustomLink external href={PROJECT_SOURCE_CODE}>
-              Source Code
+              {t`Source Code`}
             </CustomLink>
             <CustomLink external href={PROJECT_MEDIUM}>
               Medium
