@@ -76,7 +76,7 @@ const NewReplySection = withContext(
     const [createReply, { loading: creatingReply }] = useMutation(
       CREATE_REPLY,
       {
-        refetchQueries: ['LoadArticlePage'],
+        refetchQueries: ['LoadArticlePage', 'UserLevelQuery'],
         awaitRefetchQueries: true,
         onCompleted() {
           onSubmissionComplete(); // Notify upper component of submission
