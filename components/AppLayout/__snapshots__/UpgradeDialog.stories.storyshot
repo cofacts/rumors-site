@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots UpgradeDialog Default 1`] = `
+<UpgradeDialogLayout
+  nextLevel={2}
+  nextLevelScore={200}
+  onClose={[Function]}
+  open={false}
+  prevLevel={1}
+  prevLevelScore={100}
+  stage={0}
+>
+  <Portal>
+    <div
+      className="MuiDialog-root makeStyles-root"
+      onKeyDown={[Function]}
+      role="presentation"
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "fixed",
+          "right": 0,
+          "top": 0,
+          "visibility": "hidden",
+          "zIndex": 1300,
+        }
+      }
+    >
+      <Transition>
+        <div
+          aria-hidden={true}
+          className="MuiBackdrop-root"
+          onClick={[Function]}
+          style={
+            Object {
+              "opacity": 0,
+              "visibility": "hidden",
+            }
+          }
+        />
+      </Transition>
+      <TrapFocus>
+        <div
+          data-test="sentinelStart"
+          tabIndex={0}
+        />
+        <Transition>
+          <div
+            className="MuiDialog-container MuiDialog-scrollBody"
+            onClick={[Function]}
+            onMouseDown={[Function]}
+            role="none presentation"
+            style={
+              Object {
+                "visibility": "hidden",
+              }
+            }
+            tabIndex="-1"
+          >
+            <div
+              className="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollBody MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
+              role="dialog"
+            >
+              <div
+                className="makeStyles-dialogContent"
+              >
+                <div
+                  className="makeStyles-top makeStyles-top"
+                />
+                <div
+                  className="makeStyles-bottom"
+                >
+                  <div
+                    className="makeStyles-close"
+                    onClick={[Function]}
+                  >
+                    <img
+                      alt="close-icon"
+                      src={Object {}}
+                    />
+                  </div>
+                  <h3
+                    className="makeStyles-titleLg"
+                  >
+                    恭喜你！
+                  </h3>
+                  <p
+                    className="makeStyles-contentText"
+                  >
+                    公道值又破表了，只好讓你繼續升級啦！
+                  </p>
+                  <div
+                    className="makeStyles-levelContainer"
+                  >
+                    <div
+                      className="makeStyles-level"
+                    >
+                      <img
+                        alt="prev-level-icon"
+                        src={Object {}}
+                      />
+                      <div>
+                        Lv. 
+                        1
+                      </div>
+                    </div>
+                    <div
+                      className="makeStyles-progress"
+                    >
+                      <div
+                        className="makeStyles-progressBarContainer"
+                      >
+                        <div
+                          className="makeStyles-progressBar"
+                          style={
+                            Object {
+                              "width": "50%",
+                            }
+                          }
+                        />
+                      </div>
+                      <div
+                        className="makeStyles-progressText"
+                      >
+                        <span>
+                          公道值
+                        </span>
+                        <span>
+                          100
+                        </span>
+                        <span>
+                          /
+                          200
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className="makeStyles-level"
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <img
+                        alt="next-level-icon"
+                        src={Object {}}
+                      />
+                      <div>
+                        Lv. 
+                        2
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Transition>
+        <div
+          data-test="sentinelEnd"
+          tabIndex={0}
+        />
+      </TrapFocus>
+    </div>
+  </Portal>
+</UpgradeDialogLayout>
+`;
