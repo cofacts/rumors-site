@@ -7,6 +7,7 @@ import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
+import UpgradeDialog from './UpgradeDialog';
 import gql from 'graphql-tag';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
@@ -56,6 +57,11 @@ function AppLayout({ children, container = true }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [snackMsg, setSnackMsg] = useState('');
+  const [isUpgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
+  const [prevCurrentLevel, setPrevCurrentLevel] = useState(null);
+  const [prevNextLevel, setPrevNextLevel] = useState(null);
+  const [prevCurrentScore, setPrevCurrentScore] = useState(null);
+  const [prevNextScore, setPrevNextScore] = useState(null);
 
   const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
   const [changeUserName] = useMutation(CHANGE_NAME_QUERY, {
@@ -69,6 +75,18 @@ function AppLayout({ children, container = true }) {
   const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
 
   const logout = useCallback(() => apiLogout().then(refetch), [refetch]);
+
+  const closeUpgradeDialog = () => {
+    setUpgradeDialogOpen(false);
+
+    if (data) {
+      const { total, currentLevel, nextLevel } = data.GetUser.points;
+
+      setPrevCurrentLevel(currentLevel);
+      setPrevNextLevel(nextLevel);
+      setPrevCurrentScore(total);
+    }
+  };
 
   const userName = data?.GetUser?.name;
   const handleNameChange = useCallback(() => {
@@ -109,6 +127,22 @@ function AppLayout({ children, container = true }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      const { total, currentLevel, nextLevel } = data.GetUser.points;
+
+      if (prevCurrentLevel === null) {
+        setPrevCurrentLevel(currentLevel);
+        setPrevNextLevel(nextLevel);
+        setPrevCurrentScore(total);
+        setPrevNextScore(total);
+      } else if (currentLevel !== prevCurrentLevel) {
+        setPrevNextScore(total);
+        setUpgradeDialogOpen(true);
+      }
+    }
+  }, [data, prevCurrentLevel]);
+
   return (
     <Fragment>
       <AppHeader
@@ -140,6 +174,14 @@ function AppLayout({ children, container = true }) {
         open={snackMsg ? true : false}
         onClose={() => setSnackMsg('')}
         message={snackMsg}
+      />
+      <UpgradeDialog
+        open={isUpgradeDialogOpen}
+        prevLevel={prevCurrentLevel || 0}
+        prevLevelScore={prevCurrentScore || 0}
+        nextLevel={prevNextLevel || 0}
+        nextLevelScore={prevNextScore || 0}
+        onClose={closeUpgradeDialog}
       />
     </Fragment>
   );
