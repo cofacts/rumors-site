@@ -79,7 +79,7 @@ function AppLayout({ children, container = true }) {
   const closeUpgradeDialog = () => {
     setUpgradeDialogOpen(false);
 
-    if (data) {
+    if (data && data.GetUser) {
       const { total, currentLevel, nextLevel } = data.GetUser.points;
 
       setPrevCurrentLevel(currentLevel);
@@ -128,7 +128,7 @@ function AppLayout({ children, container = true }) {
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.GetUser) {
       const { total, currentLevel, nextLevel } = data.GetUser.points;
 
       if (prevCurrentLevel === null) {
