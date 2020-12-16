@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { UpgradeDialogLayout } from './UpgradeDialog';
@@ -12,6 +12,12 @@ export default {
 
 export const Default = () => (
   <UpgradeDialogLayout
+    stage={number('stage', 0, {
+      range: true,
+      step: 1,
+      min: 0,
+      max: 4,
+    })}
     open={boolean('open', false)}
     prevLevel={1}
     prevLevelScore={100}
