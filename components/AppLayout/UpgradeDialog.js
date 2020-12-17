@@ -4,6 +4,8 @@ import cx from 'clsx';
 import { Dialog } from '@material-ui/core';
 import Slide from '@material-ui/core/Slide';
 import { animated, useSpring } from 'react-spring';
+import gql from 'graphql-tag';
+import { useLazyQuery } from '@apollo/react-hooks';
 
 import upgradeImage from './images/upgrade.png';
 import prevLevelIcon from './images/prev-level-icon.svg';
@@ -226,8 +228,8 @@ const Transition = React.forwardRef(TransitionComponent);
 export const UpgradeDialogLayout = ({
   open,
   onClose,
-  prevLevel,
-  prevLevelScore,
+  currentLevel,
+  currentLevelScore,
   nextLevel,
   nextLevelScore,
 }) => {
@@ -237,7 +239,10 @@ export const UpgradeDialogLayout = ({
   const classes = useStyles({ stage });
 
   const { progress } = useSpring({
-    progress: stage <= 1 ? (prevLevelScore / nextLevelScore) * 100 : 100,
+    progress:
+      stage <= 1 && nextLevelScore > 0
+        ? (currentLevelScore / nextLevelScore) * 100
+        : 100,
   });
   const nextLevelProps = useSpring({
     scale: stage >= 3 ? 3.5 : 1,
@@ -301,7 +306,7 @@ export const UpgradeDialogLayout = ({
                 <div className={classes.levelContainer}>
                   <div className={classes.level}>
                     <img src={prevLevelIcon} alt="prev-level-icon" />
-                    <div>Lv. {prevLevel}</div>
+                    <div>Lv. {currentLevel}</div>
                   </div>
                   <div className={classes.progress}>
                     <div className={classes.progressBarContainer}>
@@ -371,14 +376,73 @@ export const UpgradeDialogLayout = ({
   );
 };
 
-const UpgradeDialog = () => {
-  const [stage, setStage] = useState(0);
+const USER_QUERY = gql`
+  query UserLevelQuery {
+    GetUser {
+      id
+      name
+      avatarUrl
+      level
+      points {
+        total
+        currentLevel
+        nextLevel
+      }
+    }
+  }
+`;
 
-  const handleClose = () => {
-    setStage(0);
+const UpgradeDialog = () => {
+  const [isActive, setIsActive] = useState(false);
+  const [prevCurrentLevel, setPrevCurrentLevel] = useState(-1);
+  const [prevNextLevel, setPrevNextLevel] = useState(-1);
+  const [prevCurrentScore, setPrevCurrentScore] = useState(-1);
+  const [prevNextScore, setPrevNextScore] = useState(-1);
+
+  const [loadUser, { data }] = useLazyQuery(USER_QUERY);
+
+  const closeUpgradeDialog = () => {
+    setIsActive(false);
+
+    if (data && data.GetUser) {
+      const { total, currentLevel, nextLevel } = data.GetUser.points;
+
+      setPrevCurrentLevel(currentLevel);
+      setPrevNextLevel(nextLevel);
+      setPrevCurrentScore(total);
+    }
   };
 
-  return <UpgradeDialogLayout stage={stage} onClose={handleClose} />;
+  // load user when first loaded
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => loadUser(), []);
+
+  useEffect(() => {
+    if (data && data.GetUser) {
+      const { total, currentLevel, nextLevel } = data.GetUser.points;
+
+      if (prevCurrentLevel === -1) {
+        setPrevCurrentLevel(currentLevel);
+        setPrevNextLevel(nextLevel);
+        setPrevCurrentScore(total);
+        setPrevNextScore(total);
+      } else if (currentLevel > prevCurrentLevel) {
+        setPrevNextScore(total);
+        setIsActive(true);
+      }
+    }
+  }, [data, prevCurrentLevel]);
+
+  return (
+    <UpgradeDialogLayout
+      open={isActive}
+      currentLevel={prevCurrentLevel || 0}
+      currentLevelScore={prevCurrentScore || 0}
+      nextLevel={prevNextLevel || 0}
+      nextLevelScore={prevNextScore || 0}
+      onClose={closeUpgradeDialog}
+    />
+  );
 };
 
 export default UpgradeDialog;
