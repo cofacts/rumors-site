@@ -2,12 +2,12 @@
 
 exports[`Storyshots UpgradeDialog Default 1`] = `
 <UpgradeDialogLayout
+  currentLevel={1}
+  currentLevelScore={100}
   nextLevel={2}
   nextLevelScore={200}
   onClose={[Function]}
   open={false}
-  prevLevel={1}
-  prevLevelScore={100}
   stage={0}
 >
   <Portal>
