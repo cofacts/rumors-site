@@ -14,3 +14,4 @@ export const TUTORIAL =
   'https://hackmd.io/@B4gs1CECTRyI5Ny7vSy6dQ/SklM4dV9m/https%3A%2F%2Fg0v.hackmd.io%2FWaz-B9sORSOPLp6nAOS82w?type=book&fbclid=IwAR0pNUVLOllNTgoPE8dxbJSt8VCvIeCK_h0MszfAS2aiUFLj3XFfTfKXM4Q';
 export const EDITOR_ENTRANCE = 'https://hackmd.io/s/SyMRyrfEl';
 export const DEVELOPER_HOMEPAGE = 'https://hackmd.io/s/r1nfwTrgM';
+export const LICNESE_URL = 'https://github.com/cofacts/opendata#terms';
