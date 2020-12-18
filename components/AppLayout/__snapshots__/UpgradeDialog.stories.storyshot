@@ -2,9 +2,9 @@
 
 exports[`Storyshots UpgradeDialog Default 1`] = `
 <UpgradeDialogLayout
-  currentLevel={1}
+  currentLevel={18}
   currentLevelScore={100}
-  nextLevel={2}
+  nextLevel={19}
   nextLevelScore={200}
   onClose={[Function]}
   open={false}
@@ -83,12 +83,12 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                   <h3
                     className="makeStyles-titleLg"
                   >
-                    恭喜你！
+                    Congratulations!
                   </h3>
                   <p
                     className="makeStyles-contentText"
                   >
-                    公道值又破表了，只好讓你繼續升級啦！
+                    You can keep leveling up after your level-up!
                   </p>
                   <div
                     className="makeStyles-levelContainer"
@@ -102,7 +102,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                       />
                       <div>
                         Lv. 
-                        1
+                        18
                       </div>
                     </div>
                     <div
@@ -124,7 +124,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                         className="makeStyles-progressText"
                       >
                         <span>
-                          公道值
+                          EXP
                         </span>
                         <span>
                           100
@@ -149,7 +149,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                       />
                       <div>
                         Lv. 
-                        2
+                        19
                       </div>
                     </div>
                   </div>
