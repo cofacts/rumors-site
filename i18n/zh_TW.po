@@ -12,7 +12,7 @@ msgid "About"
 msgstr "關於"
 
 #: pages\article\[id].js:302
-#: pages\index.js:27
+#: pages\index.js:42
 #: pages\reply\[id].js:244
 msgid "Cofacts"
 msgstr "Cofacts"
@@ -22,14 +22,14 @@ msgstr "Cofacts"
 msgid "Cancel"
 msgstr "取消"
 
-#: components\AppLayout\AppHeader.js:323
-#: components\AppLayout\AppHeader.js:544
-#: components\AppLayout\AppHeader.js:593
+#: components\AppLayout\AppHeader.js:314
 #: components\AppLayout\AppSidebar.js:130
+#: components\LandingPage\Header.js:241
+#: components\LandingPage\Header.js:290
 msgid "Login"
 msgstr "登入"
 
-#: components\AppLayout\AppHeader.js:264
+#: components\AppLayout\AppHeader.js:255
 #: components\AppLayout\AppSidebar.js:169
 msgid "Logout"
 msgstr "登出"
@@ -197,7 +197,7 @@ msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: components\LandingPage\SectionCanDo.js:245
+#: components\LandingPage\SectionCanDo.js:244
 msgid ""
 "Search by ID “@cofacts” or scan our QR Code to follow our Cofacts\n"
 "LINE@ account, forward any possible hoax, scam, rumor, or urban\n"
@@ -207,7 +207,7 @@ msgstr ""
 "id 搜尋 @cofacts 或是掃描 QR Code 成為真的假的 Cofacts 的 LINE "
 "好友後，轉傳可疑的謠言訊息給他，就可以讓機器人幫你查謠言囉！"
 
-#: components\LandingPage\SectionCanDo.js:256
+#: components\LandingPage\SectionCanDo.js:255
 msgid "Tutorial"
 msgstr "使用教學"
 
@@ -294,37 +294,37 @@ msgstr "地方的${ someones }需要你來闢謠！"
 msgid "Start busting hoaxes now"
 msgstr "立刻開始闢謠"
 
-#: components\LandingPage\Stats.js:140
+#: components\LandingPage\Stats.js:149
 #. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
-#: components\LandingPage\Stats.js:195
+#: components\LandingPage\Stats.js:204
 #, javascript-format
 msgid "About ${ newMessageCount } new messages entering our database each week."
 msgstr "每週有 ${ newMessageCount } 則新訊息進入資料庫"
 
-#: components\LandingPage\Stats.js:198
+#: components\LandingPage\Stats.js:207
 msgid ""
 "About ${ userForwardingCount } people forwarding new messages to our "
 "database each week."
 msgstr "每週有 ${ userForwardingCount } 人發新訊息至資料庫"
 
-#: components\LandingPage\Stats.js:201
+#: components\LandingPage\Stats.js:210
 #, javascript-format
 msgid "But less than ${ editorCount } active editors can help us respond each week."
 msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 
-#: components\LandingPage\Stats.js:204
+#: components\LandingPage\Stats.js:213
 #, javascript-format
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
 
-#: pages\index.js:27
+#: pages\index.js:42
 msgid "Connecting facts and instant messages"
 msgstr "Connecting facts and instant messages"
 
-#: pages\index.js:28
+#: pages\index.js:43
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It's a grass-root effort "
@@ -388,7 +388,7 @@ msgstr "闢謠"
 msgid "Contact Us"
 msgstr "聯絡我們"
 
-#: components\AppLayout\AppHeader.js:250
+#: components\AppLayout\AppHeader.js:241
 msgid "My Profile"
 msgstr "我的主頁"
 
@@ -421,7 +421,7 @@ msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
 #: components\AppLayout\AppFooter.js:101
-#: components\AppLayout\AppHeader.js:509
+#: components\LandingPage\Header.js:206
 #: components\SearchPageJumbotron.js:130
 msgid "Messages"
 msgstr "可疑訊息"
@@ -560,7 +560,7 @@ msgid "Loading..."
 msgstr "載入中⋯"
 
 #: components\AppLayout\AppFooter.js:114
-#: components\AppLayout\AppHeader.js:257
+#: components\AppLayout\AppHeader.js:248
 msgid "About Cofacts"
 msgstr "關於 Cofacts"
 
@@ -915,23 +915,23 @@ msgid ""
 "video material you have found."
 msgstr "請分享你覺得訊息中的爭議點或是你查核到的相關圖片、影片以及報導資訊"
 
-#: components\AppLayout\AppLayout.js:65
+#: components\AppLayout\AppLayout.js:66
 msgid "Your display name has been updated."
 msgstr "暱稱已更新"
 
-#: components\AppLayout\AppLayout.js:77
+#: components\AppLayout\AppLayout.js:78
 msgid "Please enter new display name"
 msgstr "請輸入新的暱稱"
 
-#: components\AppLayout\AppLayout.js:82
+#: components\AppLayout\AppLayout.js:83
 msgid "Display name cannot be empty."
 msgstr "暱稱不能是空白"
 
-#: components\LandingPage\SectionFeature.js:108
+#: components\LandingPage\SectionFeature.js:110
 msgid "Real-Time Response"
 msgstr "即時回應"
 
-#: components\LandingPage\SectionFeature.js:109
+#: components\LandingPage\SectionFeature.js:111
 msgid ""
 "Once someone respond to your pending request, the chatbot\n"
 "will answer you through LINE. It's fast and immediate, you\n"
@@ -940,11 +940,11 @@ msgid ""
 "feel uncomfortable asking it for favors."
 msgstr "只要資料庫裡有回應，機器人就透過程式找答案給你，即時方便不用等。連問候答謝都省了，聊天機器人讓你查謠言都不用不好意思。"
 
-#: components\LandingPage\SectionFeature.js:118
+#: components\LandingPage\SectionFeature.js:120
 msgid "Crowdsourcing"
 msgstr "群眾協作"
 
-#: components\LandingPage\SectionFeature.js:119
+#: components\LandingPage\SectionFeature.js:121
 msgid ""
 "Anyone can verify and respond to other's requests on\n"
 "possible hoax and upload it into our database. We encourage\n"
@@ -952,22 +952,22 @@ msgid ""
 "to join."
 msgstr "任何人都可以查證且回應別人的謠言或訊息，並寫在資料庫裡。我們鼓勵公眾參與，最好把你爸爸媽媽都一起找來闢謠。"
 
-#: components\LandingPage\SectionFeature.js:127
+#: components\LandingPage\SectionFeature.js:129
 msgid "Different Views"
 msgstr "意見交鋒"
 
-#: components\LandingPage\SectionFeature.js:128
+#: components\LandingPage\SectionFeature.js:130
 msgid ""
 "Knowing what's fact and what's an opinion. Seeing different\n"
 "sides of the story makes you realize your own blindspot,\n"
 "allowing everyone to respect each other's perspectives."
 msgstr "了解事實與評論的差異，同時看見不同立場的意見，覺察自己的盲點，互相尊重。你聽你的鳥鳴，但也可以湊過去看她的日出。"
 
-#: components\LandingPage\SectionFeature.js:135
+#: components\LandingPage\SectionFeature.js:137
 msgid "Open Source Authorization"
 msgstr "開源授權"
 
-#: components\LandingPage\SectionFeature.js:136
+#: components\LandingPage\SectionFeature.js:138
 msgid ""
 "Codes of different patches, meeting records and database\n"
 "statistics are all opened to public. We encourage more open\n"
@@ -975,7 +975,7 @@ msgid ""
 "environment, create different possibilities."
 msgstr "過往的程式碼、會議紀錄、數據資料都完全公開，鼓勵更多的開放資料，透明化地與每個人分享合作，創造不同的可能性。"
 
-#: components\LandingPage\SectionContribute.js:154
+#: components\LandingPage\SectionContribute.js:156
 msgid ""
 "Cofacts needs all of you to help our current program to be more\n"
 "efficient and complete. This collaborate program cannot be completed\n"
@@ -988,15 +988,15 @@ msgstr ""
 "我們需要每一個人都一起付出、寫程式、闢謠、仔細研究查資料，\n"
 "自發性的查證與寫回應才能成就背後龐大的資料庫。"
 
-#: components\LandingPage\SectionContribute.js:162
+#: components\LandingPage\SectionContribute.js:164
 msgid "I want to learn how to use Cofacts"
 msgstr "我想先學怎麼用"
 
-#: components\LandingPage\SectionContribute.js:165
+#: components\LandingPage\SectionContribute.js:167
 msgid "I can help bust hoaxes"
 msgstr "我可以闢謠"
 
-#: components\LandingPage\SectionContribute.js:172
+#: components\LandingPage\SectionContribute.js:174
 msgid "I can help with coding"
 msgstr "我會寫 Code"
 
@@ -1055,22 +1055,50 @@ msgctxt "Time range dropdown"
 msgid "Custom"
 msgstr "自訂範圍"
 
-#: components\LandingPage\SectionCanDo.js:217
+#: components\AppLayout\AppHeader.js:156
+#: components\LandingPage\Header.js:259
+msgctxt "App layout"
+msgid "Messages"
+msgstr "可疑訊息"
+
+#: components\AppLayout\AppFooter.js:103
+#: components\AppLayout\AppHeader.js:163
+#: components\LandingPage\Header.js:209
+#: components\LandingPage\Header.js:264
+msgctxt "App layout"
+msgid "Replies"
+msgstr "最新查核"
+
+#: components\AppLayout\AppFooter.js:106
+#: components\AppLayout\AppHeader.js:175
+#: components\LandingPage\Header.js:213
+#: components\LandingPage\Header.js:269
+msgctxt "App layout"
+msgid "For You"
+msgstr "等你來答"
+
+#: components\AppLayout\AppHeader.js:185
+#: components\LandingPage\Header.js:222
+msgctxt "App layout"
+msgid "Forum"
+msgstr "討論區"
+
+#: components\LandingPage\SectionCanDo.js:216
 msgctxt "landing page"
 msgid "Give it a try:"
 msgstr "你可以這麼做："
 
-#: components\LandingPage\SectionCanDo.js:221
+#: components\LandingPage\SectionCanDo.js:220
 msgctxt "landing page"
 msgid "Paste suspicious text message below"
 msgstr "在下方貼上可疑的文字內容"
 
-#: components\LandingPage\SectionCanDo.js:234
+#: components\LandingPage\SectionCanDo.js:233
 msgctxt "landing page"
 msgid "or"
 msgstr "或"
 
-#: components\LandingPage\SectionCanDo.js:240
+#: components\LandingPage\SectionCanDo.js:239
 msgctxt "landing page"
 msgid "Send hoax message to Cofacts via the LINE app"
 msgstr ""
@@ -1078,7 +1106,7 @@ msgstr ""
 " 加好友 \n"
 " 謠言隨手查！"
 
-#: components\LandingPage\SectionCanDo.js:230
+#: components\LandingPage\SectionCanDo.js:229
 msgctxt "landing page"
 msgid "Search"
 msgstr "快速查詢"
@@ -1141,7 +1169,7 @@ msgid ""
 "world."
 msgstr "只要主動查證謠言訊息，把你查到的回應加入資料庫，就能幫助更多人。"
 
-#: components\LandingPage\SectionJoin.js:218
+#: components\LandingPage\SectionJoin.js:219
 msgctxt "landing page"
 msgid "Wanna be one of the Warriors of Disinformation?"
 msgstr "想成為闢謠戰士嗎？"
@@ -1169,12 +1197,12 @@ msgstr ""
 "現在就加入闢謠者聯盟，\n"
 "真真假假的世界需要你來拯救！"
 
-#: components\LandingPage\Stats.js:177
+#: components\LandingPage\Stats.js:186
 msgctxt "landing page"
 msgid "Fact checker daily"
 msgstr "闢謠戰士的日常"
 
-#: components\LandingPage\Stats.js:179
+#: components\LandingPage\Stats.js:188
 msgctxt "landing page"
 msgid "the longest hundred miles of combating disinformation"
 msgstr "謠言與回應的追逐戰"
@@ -1184,7 +1212,7 @@ msgctxt "landing page"
 msgid "Hey!!! That's YOU."
 msgstr "媽！我在這裡！"
 
-#: components\LandingPage\SectionContribute.js:139
+#: components\LandingPage\SectionContribute.js:141
 msgctxt "landing page"
 msgid ""
 "Come join us \n"
@@ -1195,7 +1223,7 @@ msgstr ""
 " 闢謠者聯盟 \n"
 " 正在對你招手"
 
-#: components\LandingPage\SectionContribute.js:142
+#: components\LandingPage\SectionContribute.js:144
 msgctxt "landing page"
 msgid ""
 "Come join us\n"
@@ -1204,30 +1232,33 @@ msgstr ""
 "看見了嗎？ \n"
 " 闢謠者聯盟正在對你招手"
 
-#: components\AppLayout\AppHeader.js:165
-#: components\AppLayout\AppHeader.js:562
-msgctxt "App layout"
-msgid "Messages"
-msgstr "可疑訊息"
+#: components\AppLayout\UpgradeDialog.js:306
+msgctxt "upgrade dialog"
+msgid "Congratulations!"
+msgstr "恭喜你！"
 
-#: components\AppLayout\AppFooter.js:103
-#: components\AppLayout\AppHeader.js:172
-#: components\AppLayout\AppHeader.js:512
-#: components\AppLayout\AppHeader.js:567
-msgctxt "App layout"
-msgid "Replies"
-msgstr "最新查核"
+#: components\AppLayout\UpgradeDialog.js:309
+msgctxt "upgrade dialog"
+msgid "You can keep leveling up after your level-up!"
+msgstr "公道值又破表了，只好讓你繼續升級啦！"
 
-#: components\AppLayout\AppFooter.js:106
-#: components\AppLayout\AppHeader.js:184
-#: components\AppLayout\AppHeader.js:516
-#: components\AppLayout\AppHeader.js:572
-msgctxt "App layout"
-msgid "For You"
-msgstr "等你來答"
+#: components\AppLayout\UpgradeDialog.js:328
+msgctxt "upgrade dialog"
+msgid "EXP"
+msgstr "公道值"
 
-#: components\AppLayout\AppHeader.js:194
-#: components\AppLayout\AppHeader.js:525
-msgctxt "App layout"
-msgid "Forum"
-msgstr "討論區"
+#: components\AppLayout\UpgradeDialog.js:358
+msgctxt "upgrade dialog"
+msgid "Keep up the good work and save the world!"
+msgstr "請繼續為真真假假的世界盡一份力！"
+
+#: components\AppLayout\UpgradeDialog.js:362
+msgctxt "upgrade dialog"
+msgid "I've got your back"
+msgstr "好的"
+
+#: components\AppLayout\UpgradeDialog.js:355
+#, javascript-format
+msgctxt "upgrade dialog"
+msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
+msgstr ""

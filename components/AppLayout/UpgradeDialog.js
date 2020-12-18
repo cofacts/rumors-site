@@ -6,6 +6,9 @@ import Slide from '@material-ui/core/Slide';
 import { animated, useSpring } from 'react-spring';
 import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
+import { c } from 'ttag';
+
+import LEVEL_NAMES from 'constants/levelNames';
 
 import upgradeImage from './images/upgrade.png';
 import prevLevelIcon from './images/prev-level-icon.svg';
@@ -138,6 +141,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 42,
     fontWeight: 'bold',
     lineHeight: 1.46,
+    textAlign: 'center',
     margin: '0 0 16px 0',
   },
   contentText: {
@@ -204,18 +208,17 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: 'flex',
-    width: 156,
-    height: 46,
     justifyContent: 'center',
     alignItems: 'center',
     background: theme.palette.primary.main,
     borderRadius: 31,
     fontSize: 24,
     fontWeight: 500,
-    lineHeight: 1.55,
+    lineHeight: 1,
     color: 'white',
     marginTop: 36,
     cursor: 'pointer',
+    padding: '12px 32px',
   },
 }));
 
@@ -299,9 +302,12 @@ export const UpgradeDialogLayout = ({
             {stage <= 3 && (
               <>
                 {/* TODO: translate */}
-                <h3 className={classes.titleLg}>恭喜你！</h3>
+                <h3 className={classes.titleLg}>
+                  {c('upgrade dialog').t`Congratulations!`}
+                </h3>
                 <p className={classes.contentText}>
-                  公道值又破表了，只好讓你繼續升級啦！
+                  {c('upgrade dialog')
+                    .t`You can keep leveling up after your level-up!`}
                 </p>
                 <div className={classes.levelContainer}>
                   <div className={classes.level}>
@@ -319,7 +325,7 @@ export const UpgradeDialogLayout = ({
                     </div>
                     {/* TODO: translate */}
                     <div className={classes.progressText}>
-                      <span>公道值</span>
+                      <span>{c('upgrade dialog').t`EXP`}</span>
                       <animated.span>
                         {progress.interpolate(
                           value =>
@@ -345,12 +351,15 @@ export const UpgradeDialogLayout = ({
             {stage >= 4 && (
               <>
                 {/* TODO: translate */}
-                <h3 className={classes.titleMd}>嗨嗨！闢謠天師</h3>
+                <h3 className={classes.titleMd}>
+                  {c('upgrade dialog').t`Cheers! ${LEVEL_NAMES[nextLevel]}`}
+                </h3>
                 <p className={classes.contentText}>
-                  請繼續為真真假假的世界盡一份力！
+                  {c('upgrade dialog')
+                    .t`Keep up the good work and save the world!`}
                 </p>
                 <div className={classes.button} onClick={onClose}>
-                  好的
+                  {c('upgrade dialog').t`I've got your back`}
                 </div>
               </>
             )}
