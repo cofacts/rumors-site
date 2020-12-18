@@ -129,6 +129,7 @@ const useStyles = makeStyles(theme => ({
       [theme.breakpoints.down('md')]: {
         textAlign: 'center',
         marginBottom: 60,
+        maxWidth: 400,
       },
 
       [theme.breakpoints.down('sm')]: {
@@ -137,6 +138,7 @@ const useStyles = makeStyles(theme => ({
         letterSpacing: 0.25,
         fontWeight: 'normal',
         marginBottom: 28,
+        maxWidth: 300,
       },
     },
   },
