@@ -138,6 +138,7 @@ msgid "Delete"
 msgstr "刪除"
 
 #: components/EditorName.js:8
+#, javascript-format
 msgid "Lv.${ editorLevel } ${ levelName }"
 msgstr "等級 ${ editorLevel }. ${ levelName }"
 
@@ -222,7 +223,7 @@ msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Jumbotron.js:7
-#. local ~ need your help!
+#. local ~ need your help! 
 msgid "people"
 msgstr "的人"
 
@@ -295,7 +296,7 @@ msgid "Start busting hoaxes now"
 msgstr "立刻開始闢謠"
 
 #: components/LandingPage/Stats.js:146
-#. we hold ~
+#. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -915,15 +916,15 @@ msgid ""
 "video material you have found."
 msgstr "請分享你覺得訊息中的爭議點或是你查核到的相關圖片、影片以及報導資訊"
 
-#: components/AppLayout/AppLayout.js:63
+#: components/AppLayout/AppLayout.js:64
 msgid "Your display name has been updated."
 msgstr "暱稱已更新"
 
-#: components/AppLayout/AppLayout.js:75
+#: components/AppLayout/AppLayout.js:76
 msgid "Please enter new display name"
 msgstr "請輸入新的暱稱"
 
-#: components/AppLayout/AppLayout.js:80
+#: components/AppLayout/AppLayout.js:81
 msgid "Display name cannot be empty."
 msgstr "暱稱不能是空白"
 
@@ -1053,7 +1054,9 @@ msgid ""
 "By logging in you agree to ${ termsLink }, and you agree to license your "
 "contribution under ${ licenseLink } as ${ authorLink } and release as ${ "
 "workLink }."
-msgstr "登入本站即表示您同意${ termsLink }，以${ authorLink }之名義，將您在本站的貢獻以${ licenseLink }釋出為${workLink}。"
+msgstr ""
+"登入本站即表示您同意${ termsLink }，以${ authorLink }之名義，將您在本站的貢獻以${ licenseLink "
+"}釋出為${workLink}。"
 
 #: components/LineChart.js:221
 #, javascript-format
@@ -1274,3 +1277,34 @@ msgid ""
 msgstr ""
 "看見了嗎？ \n"
 " 闢謠者聯盟正在對你招手"
+
+#: components/AppLayout/UpgradeDialog.js:306
+msgctxt "upgrade dialog"
+msgid "Congratulations!"
+msgstr "恭喜你！"
+
+#: components/AppLayout/UpgradeDialog.js:309
+msgctxt "upgrade dialog"
+msgid "You can keep leveling up after your level-up!"
+msgstr "公道值又破表了，只好讓你繼續升級啦！"
+
+#: components/AppLayout/UpgradeDialog.js:328
+msgctxt "upgrade dialog"
+msgid "EXP"
+msgstr "公道值"
+
+#: components/AppLayout/UpgradeDialog.js:358
+msgctxt "upgrade dialog"
+msgid "Keep up the good work and save the world!"
+msgstr "請繼續為真真假假的世界盡一份力！"
+
+#: components/AppLayout/UpgradeDialog.js:362
+msgctxt "upgrade dialog"
+msgid "I've got your back"
+msgstr "好的"
+
+#: components/AppLayout/UpgradeDialog.js:355
+#, javascript-format
+msgctxt "upgrade dialog"
+msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
+msgstr ""
