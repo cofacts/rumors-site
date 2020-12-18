@@ -79,10 +79,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   item: {
-    display: 'flex',
     position: 'relative',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
     fontSize: 24,
     lineHeight: 1.45,
     color: theme.palette.secondary[500],
