@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     height: 600,
     background: theme.palette.background.default,
     borderRadius: 8,
-    padding: '15px 0 15px 15px',
+    padding: '0 15px',
     margin: '0 auto',
 
     [theme.breakpoints.down('md')]: {
@@ -86,7 +86,14 @@ const useStyles = makeStyles(theme => ({
   scrollbarWrapper: {
     width: '100%',
     height: '100%',
+    padding: '15px 0',
     overflow: 'auto',
+    msOverflowStyle: 'none' /* hide scrollbar on IE and Edge */,
+    scrollbarWidth: 'none' /* hide scrollbar on Firefox */,
+
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   leftImage: {
     position: 'absolute',
