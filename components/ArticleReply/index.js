@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
 import { Box } from '@material-ui/core';
@@ -61,10 +61,8 @@ const ArticleReplyData = gql`
       text
       reference
       user {
-        id
-        name
-        level
         ...AvatarData
+        ...EditorNameUserData
       }
       hyperlinks {
         ...HyperlinkData
@@ -83,6 +81,7 @@ const ArticleReplyData = gql`
   ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
+  ${EditorName.fragments.EditorNameUserData}
 `;
 
 const ArticleReplyForUser = gql`
@@ -152,21 +151,6 @@ const ArticleReply = React.memo(
       );
     };
 
-    const renderAuthor = useCallback(
-      () =>
-        articleReplyAuthor ? (
-          <EditorName
-            key="editor"
-            id={articleReplyAuthor?.id}
-            editorName={articleReplyAuthor?.name}
-            editorLevel={articleReplyAuthor?.level}
-          />
-        ) : (
-          t`Someone`
-        ),
-      [articleReplyAuthor]
-    );
-
     const renderReference = () => {
       if (replyType === 'NOT_ARTICLE') return null;
 
@@ -189,7 +173,7 @@ const ArticleReply = React.memo(
       );
     };
 
-    const authorElem = renderAuthor();
+    const authorElem = <EditorName key="editor" user={articleReplyAuthor} />;
 
     return (
       <>

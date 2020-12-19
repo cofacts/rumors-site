@@ -75,9 +75,7 @@ const LOAD_REPLY = gql`
         createdAt
         status
         user {
-          id
-          name
-          level
+          ...EditorNameUserData
         }
         ...ArticleReplyData
       }
@@ -95,6 +93,7 @@ const LOAD_REPLY = gql`
     }
   }
   ${ArticleReply.fragments.ArticleReplyData}
+  ${EditorName.fragments.EditorNameUserData}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -283,15 +282,7 @@ function ReplyPage() {
               </Link>
             </CardContent>
             {otherArticleReplies.map(ar => {
-              const editorElem = ar.user ? (
-                <EditorName
-                  key="editor"
-                  editorName={ar.user.name}
-                  editorLevel={ar.user.level}
-                />
-              ) : (
-                t`someone`
-              );
+              const editorElem = <EditorName key="editor" user={ar.user} />;
 
               return (
                 <CardContent key={ar.article.id}>
