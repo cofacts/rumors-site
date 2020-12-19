@@ -1,18 +1,16 @@
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 
 import AppLayout from 'components/AppLayout';
 import UserPageHeader from 'components/UserPageHeader';
 
 const LOAD_USER = gql`
-  query LoadUserPage($id: String!) {
-    GetUser(id: $id) {
+  query LoadUserPage($id: String, $slug: String) {
+    GetUser(id: $id, slug: $slug) {
       id
       ...UserHeaderData
     }
@@ -34,15 +32,12 @@ const LOAD_USER = gql`
   ${UserPageHeader.fragments.UserHeaderData}
 `;
 
-function ProfilePage() {
-  const {
-    query: { id },
-  } = useRouter();
+function ProfilePage({ id, slug }) {
   const currentUser = useCurrentUser();
   const isSelf = currentUser && id === currentUser.id;
 
   const { data, loading } = useQuery(LOAD_USER, {
-    variables: { id },
+    variables: { id, slug },
   });
 
   if (loading) {
@@ -78,4 +73,4 @@ function ProfilePage() {
   );
 }
 
-export default withData(ProfilePage);
+export default ProfilePage;
