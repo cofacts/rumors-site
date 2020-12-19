@@ -1307,4 +1307,4 @@ msgstr "好的"
 #, javascript-format
 msgctxt "upgrade dialog"
 msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
-msgstr ""
+msgstr "嗨嗨！闢謠天師"
