@@ -71,8 +71,10 @@ function ProfilePage({ id, slug }) {
       <Container maxWidth="md">
         <UserPageHeader user={data.GetUser} isSelf={isSelf} />
 
-        {/* <pre>{JSON.stringify(data, null, '  ')}</pre> */}
-        {/* {isSelf ? 'self' : 'not self'} */}
+        <div style={{ minHeight: '100vh' /* temp stub */ }}>
+          {/* <pre>{JSON.stringify(data, null, '  ')}</pre> */}
+          {/* {isSelf ? 'self' : 'not self'} */}
+        </div>
       </Container>
     </AppLayout>
   );
