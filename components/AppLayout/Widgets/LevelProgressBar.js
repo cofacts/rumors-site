@@ -1,3 +1,4 @@
+import gql from 'graphql-tag';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
@@ -6,16 +7,15 @@ const useStyles = makeStyles(theme => ({
   root: {},
   progressBar: {
     border: `1px solid ${theme.palette.secondary[300]}`,
-    borderRadius: 10,
-    height: 14,
+    borderRadius: 6,
+    padding: 2,
   },
   progress: {
     display: 'block',
-    margin: 1,
     width: percent => `${percent}%`,
     backgroundColor: theme.palette.primary[500],
-    borderRadius: 10,
-    height: 10,
+    borderRadius: 3,
+    height: 6,
   },
 }));
 
@@ -38,5 +38,17 @@ function LevelProgressBar({ user, className }) {
     )
   );
 }
+
+LevelProgressBar.fragments = {
+  LevelProgressBarData: gql`
+    fragment LevelProgressBarData on User {
+      points {
+        total
+        currentLevel
+        nextLevel
+      }
+    }
+  `,
+};
 
 export default LevelProgressBar;
