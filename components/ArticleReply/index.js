@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { LINE_URL } from 'constants/urls';
 import { nl2br, linkify } from 'lib/text';
+import getTermsString from 'lib/terms';
 import { TYPE_NAME } from 'constants/replyType';
 import ExpandableText from 'components/ExpandableText';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
@@ -127,11 +128,15 @@ const ArticleReply = React.memo(
           : '';
       const copyText =
         typeof window !== 'undefined'
-          ? `${TYPE_NAME[reply.type]} \n【${t`Reason`}】${(
-              reply.text || ''
-            ).trim()}\n↓${t`Details`}↓\n${articleUrl}\n↓${t`Reference`}↓\n${
-              reply.reference
-            }\n--\n🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
+          ? `${TYPE_NAME[reply.type]}\n` +
+            `【${t`Reason`}】${(reply.text || '').trim()}\n` +
+            `↓${t`Details`}↓\n` +
+            `${articleUrl}\n` +
+            `↓${t`Reference`}↓\n` +
+            `${reply.reference}\n` +
+            `--\n` +
+            `ℹ️ ${getTermsString('此資訊')}\n` +
+            `🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
           : '';
 
       return (
