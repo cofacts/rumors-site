@@ -8,14 +8,20 @@ import Facebook from './images/facebook.svg';
 import Twitter from './images/twitter.svg';
 import Github from './images/github.svg';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
   },
   content: {
     padding: '0 2rem 1.5rem',
   },
-});
+  terms: {
+    color: theme.palette.secondary[200],
+    textAlign: 'justify',
+    marginTop: theme.spacing(2),
+    '& > a': { color: 'inherit' },
+  },
+}));
 
 const useProviderStyles = makeStyles(theme => ({
   root: {
@@ -105,7 +111,7 @@ function LoginModal({ onClose, redirectPath }) {
         >
           Github
         </ProviderLink>
-        <Typography variant="body2" style={{ marginTop: 16 }}>
+        <Typography variant="body2" className={classes.terms}>
           登入或註冊即表示您同意<a href={EDITOR_REFERENCE}>使用者條款</a>，以
           Cofacts 社群的名義，將您在本網站輸入的內容以 CC BY-SA 4.0 條款釋出為
           <a href={LICENSE_URL}>開放資料</a>。
