@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 
 const env = {};
 const publicRuntimeConfig = {};
@@ -28,7 +29,7 @@ module.exports = {
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
-  webpack(config, { isServer }) {
+  webpack(config, { isServer, defaultLoaders }) {
     //
     // Simplified from https://github.com/twopluszero/next-images/blob/master/index.js
     //
@@ -46,6 +47,14 @@ module.exports = {
         },
       ],
     });
+
+    if (!isServer) {
+      config.module.rules.push({
+        test: /\.js$/,
+        include: [path.resolve(__dirname, 'node_modules', 'react-spring')],
+        use: [defaultLoaders.babel],
+      });
+    }
 
     return config;
   },

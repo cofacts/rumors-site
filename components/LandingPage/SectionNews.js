@@ -1,3 +1,6 @@
+import { c } from 'ttag';
+import { makeStyles } from '@material-ui/core/styles';
+
 const NEWS = {
   en_US: [
     [
@@ -145,4 +148,67 @@ const NEWS = {
   ],
 }[process.env.LOCALE];
 
-export default NEWS;
+const useStyles = makeStyles(theme => ({
+  sectionNews: {
+    margin: '0 auto',
+    padding: '64px 30px',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '40px 30px',
+    },
+
+    '& > h3': {
+      fontSize: 48,
+      fontWeight: 'bold',
+      lineHeight: 1.45,
+      color: theme.palette.secondary[500],
+      textAlign: 'center',
+      marginBottom: 40,
+
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+        fontWeight: 'normal',
+        marginBottom: 16,
+      },
+    },
+  },
+  newsWrapper: {
+    maxWidth: 1000,
+    paddingLeft: 20,
+  },
+  news: {
+    fontSize: 20,
+    fontWeight: 500,
+    lineHeight: 1.45,
+    color: theme.palette.secondary[500],
+    margin: '8px 0',
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+      fontWeight: 'normal',
+    },
+  },
+  divider: {
+    margin: '0 8px',
+  },
+}));
+
+const SectionNews = () => {
+  const classes = useStyles();
+  return (
+    <section className={classes.sectionNews}>
+      <h3>{c('landing page').t`Hey!!! That's YOU.`}</h3>
+      <ul className={classes.newsWrapper}>
+        {NEWS.map(([press, newsTitle, link]) => (
+          <li key={newsTitle} className={classes.news}>
+            <span className={classes.press}>{press}</span>
+            <span className={classes.divider}>/</span>
+            <a href={link}>{newsTitle}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default SectionNews;
