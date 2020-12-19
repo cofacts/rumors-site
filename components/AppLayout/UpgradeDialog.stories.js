@@ -19,9 +19,9 @@ export const Default = () => (
       max: 4,
     })}
     open={boolean('open', false)}
-    currentLevel={18}
+    currentLevel={1}
     currentLevelScore={100}
-    nextLevel={19}
+    nextLevel={2}
     nextLevelScore={200}
     onClose={action('onClose')}
   />
