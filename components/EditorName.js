@@ -12,7 +12,7 @@ export default function EditorName({ user }) {
   const levelName = levelNames[user.level];
   const linkProps = user.slug
     ? {
-        href: '/user/slug',
+        href: '/user/[slug]',
         as: `/user/${user.slug}`,
       }
     : {
