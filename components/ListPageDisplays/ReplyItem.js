@@ -130,6 +130,7 @@ ReplyItem.fragments = {
         name
         ...AvatarData
       }
+      createdAt
       ...ArticleReplyFeedbackControlData
     }
     ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}

@@ -77,7 +77,6 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'center',
       alignItems: 'center',
       width: process.env.LOCALE === 'en_US' ? 380 : 315,
-      height: 65,
       margin: '0 12px',
       fontSize: process.env.LOCALE === 'en_US' ? 22 : 34,
       lineHeight: 1.45,
@@ -85,7 +84,7 @@ const useStyles = makeStyles(theme => ({
       color: 'white',
       background: theme.palette.primary[500],
       borderRadius: 65,
-      padding: '0 10px',
+      padding: '16px 10px',
       textAlign: 'center',
 
       [theme.breakpoints.down('sm')]: {

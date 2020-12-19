@@ -915,15 +915,15 @@ msgid ""
 "video material you have found."
 msgstr "請分享你覺得訊息中的爭議點或是你查核到的相關圖片、影片以及報導資訊"
 
-#: components\AppLayout\AppLayout.js:66
+#: components\AppLayout\AppLayout.js:63
 msgid "Your display name has been updated."
 msgstr "暱稱已更新"
 
-#: components\AppLayout\AppLayout.js:78
+#: components\AppLayout\AppLayout.js:75
 msgid "Please enter new display name"
 msgstr "請輸入新的暱稱"
 
-#: components\AppLayout\AppLayout.js:83
+#: components\AppLayout\AppLayout.js:80
 msgid "Display name cannot be empty."
 msgstr "暱稱不能是空白"
 
@@ -1007,6 +1007,10 @@ msgstr "我的關注"
 #: components\AppLayout\AppFooter.js:117
 msgid "Introduction"
 msgstr "專案介紹"
+
+#: components\AppLayout\AppFooter.js:120
+msgid "Source Code"
+msgstr "原始碼"
 
 #: components\AppLayout\AppFooter.js:127
 msgid "Contact"

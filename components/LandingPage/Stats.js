@@ -79,16 +79,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   item: {
-    display: 'flex',
     position: 'relative',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
     fontSize: 24,
     lineHeight: 1.45,
     color: theme.palette.secondary[500],
     padding: '0 27px',
     width: '25%',
-    whiteSpace: process.env.LOCALE === 'en_US' ? '' : 'nowrap',
+    whiteSpace: process.env.LOCALE === 'en_US' ? 'initial' : 'nowrap',
     textAlign: 'center',
 
     '& a': {

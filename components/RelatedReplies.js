@@ -71,6 +71,7 @@ const RelatedArticleReplyData = gql`
       createdAt
       type
       text
+      reference
     }
     article {
       id
