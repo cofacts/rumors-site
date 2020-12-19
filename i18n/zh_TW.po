@@ -223,7 +223,7 @@ msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Jumbotron.js:7
-#. local ~ need your help! 
+#. local ~ need your help!
 msgid "people"
 msgstr "的人"
 
@@ -296,7 +296,7 @@ msgid "Start busting hoaxes now"
 msgstr "立刻開始闢謠"
 
 #: components/LandingPage/Stats.js:146
-#. we hold ~ 
+#. we hold ~
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -1307,4 +1307,4 @@ msgstr "好的"
 #, javascript-format
 msgctxt "upgrade dialog"
 msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
-msgstr "嗨嗨！闢謠天師"
+msgstr "嗨嗨！${ LEVEL_NAMES[nextLevel] }"
