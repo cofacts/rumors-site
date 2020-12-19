@@ -7,7 +7,7 @@ export default function EditorName({ id, editorName, editorLevel }) {
   const levelName = levelNames[editorLevel];
   return (
     <Tooltip title={t`Lv.${editorLevel} ${levelName}`} placement="top">
-      <Link href="/user" as={`/user?id=${id}`}>
+      <Link href={`/user?id=${id}`}>
         <a>{editorName}</a>
       </Link>
     </Tooltip>
