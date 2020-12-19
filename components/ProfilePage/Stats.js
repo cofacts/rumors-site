@@ -65,7 +65,7 @@ function Stat({ value, label }) {
 function Stats({ userId }) {
   const classes = useStyles();
   const { data } = useQuery(LOAD_USER_STATS, {
-    ssr: false,
+    ssr: false, // Calculating these numbers are expensive; cralwers also don't need these numbers.
     variables: { userId },
   });
 
