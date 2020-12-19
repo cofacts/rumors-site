@@ -2,9 +2,9 @@
 
 exports[`Storyshots UpgradeDialog Default 1`] = `
 <UpgradeDialogLayout
-  currentLevel={18}
+  currentLevel={1}
   currentLevelScore={100}
-  nextLevel={19}
+  nextLevel={2}
   nextLevelScore={200}
   onClose={[Function]}
   open={false}
@@ -59,7 +59,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
             tabIndex="-1"
           >
             <div
-              className="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollBody MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
+              className="MuiPaper-root MuiDialog-paper makeStyles-paper MuiDialog-paperScrollBody makeStyles-paper MuiDialog-paperWidthSm makeStyles-paper MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
               role="dialog"
             >
               <div
@@ -80,76 +80,80 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                       src={Object {}}
                     />
                   </div>
-                  <h3
-                    className="makeStyles-titleLg"
-                  >
-                    Congratulations!
-                  </h3>
-                  <p
-                    className="makeStyles-contentText"
-                  >
-                    You can keep leveling up after your level-up!
-                  </p>
                   <div
-                    className="makeStyles-levelContainer"
+                    className="makeStyles-bottomContent"
                   >
-                    <div
-                      className="makeStyles-level"
+                    <h3
+                      className="makeStyles-titleLg"
                     >
-                      <img
-                        alt="prev-level-icon"
-                        src={Object {}}
-                      />
-                      <div>
-                        Lv. 
-                        18
-                      </div>
-                    </div>
+                      Congratulations!
+                    </h3>
+                    <p
+                      className="makeStyles-contentText"
+                    >
+                      You can keep leveling up after your level-up!
+                    </p>
                     <div
-                      className="makeStyles-progress"
+                      className="makeStyles-levelContainer"
                     >
                       <div
-                        className="makeStyles-progressBarContainer"
+                        className="makeStyles-level"
+                      >
+                        <img
+                          alt="prev-level-icon"
+                          src={Object {}}
+                        />
+                        <div>
+                          Lv. 
+                          1
+                        </div>
+                      </div>
+                      <div
+                        className="makeStyles-progress"
                       >
                         <div
-                          className="makeStyles-progressBar"
-                          style={
-                            Object {
-                              "width": "50%",
+                          className="makeStyles-progressBarContainer"
+                        >
+                          <div
+                            className="makeStyles-progressBar"
+                            style={
+                              Object {
+                                "width": "50%",
+                              }
                             }
-                          }
-                        />
+                          />
+                        </div>
+                        <div
+                          className="makeStyles-progressText"
+                        >
+                          <span>
+                            EXP
+                          </span>
+                          <span>
+                            100
+                          </span>
+                          <span>
+                            /
+                            200
+                          </span>
+                        </div>
                       </div>
                       <div
-                        className="makeStyles-progressText"
-                      >
-                        <span>
-                          EXP
-                        </span>
-                        <span>
-                          100
-                        </span>
-                        <span>
-                          /
-                          200
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="makeStyles-level"
-                      style={
-                        Object {
-                          "opacity": 1,
+                        className="makeStyles-level"
+                        style={
+                          Object {
+                            "opacity": 1,
+                          }
                         }
-                      }
-                    >
-                      <img
-                        alt="next-level-icon"
-                        src={Object {}}
-                      />
-                      <div>
-                        Lv. 
-                        19
+                      >
+                        <img
+                          alt="next-level-icon"
+                          src={Object {}}
+                        />
+                        <div>
+                          Lv. 
+                          2
+                        </div>
                       </div>
                     </div>
                   </div>
