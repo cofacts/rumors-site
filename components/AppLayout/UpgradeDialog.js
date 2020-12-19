@@ -98,6 +98,11 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
+  paper: {
+    width: 300,
+    maxWidth: 'unset !important',
+    margin: '32px 0',
+  },
   top: {
     position: 'relative',
     height: 0,
@@ -117,44 +122,64 @@ const useStyles = makeStyles(theme => ({
     animationTimingFunction: 'linear',
   },
   bottom: {
-    display: 'flex',
     position: 'relative',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 300,
-    padding: 24,
+    width: '100%',
+    paddingBottom: '50%',
   },
   close: {
     position: 'absolute',
-    top: 24,
-    right: 24,
+    width: '4%',
+    height: '8%',
+    top: '8%',
+    right: '4%',
     cursor: 'pointer',
+    zIndex: 100,
+
+    '& > img': {
+      display: 'block',
+      width: '100%',
+      height: '100%',
+    },
+  },
+  bottomContent: {
+    display: 'flex',
+    position: 'absolute',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    padding: '4%',
+    overflow: 'hidden',
   },
   titleLg: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    lineHeight: 1.46,
-    margin: '0 0 16px 0',
-  },
-  titleMd: {
-    fontSize: 42,
+    fontSize: 24,
     fontWeight: 'bold',
     lineHeight: 1.46,
     textAlign: 'center',
-    margin: '0 0 16px 0',
+    margin: '0 0 8px 0',
+  },
+  titleMd: {
+    fontSize: 21,
+    fontWeight: 'bold',
+    lineHeight: 1.46,
+    textAlign: 'center',
+    margin: '0 0 8px 0',
   },
   contentText: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: 500,
     lineHeight: 1.45,
+    textAlign: 'center',
     margin: 0,
   },
   levelContainer: {
     display: 'flex',
-    marginTop: 46,
+    marginTop: process.env.LOCALE === 'en_US' ? 7 : 23,
     width: '100%',
-    padding: '0 16px',
+    padding: '0 8px',
     justifyContent: 'space-between',
   },
   level: {
@@ -162,12 +187,14 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    fontSize: 18,
+    fontSize: 9,
     fontWeight: 'bold',
     lineHeight: 1.55,
+    whiteSpace: 'nowrap',
 
     '& > img': {
-      marginBottom: 5,
+      width: 23,
+      marginBottom: 2.5,
     },
   },
   progress: {
@@ -181,21 +208,21 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    width: 'calc(100% - 32px)',
-    height: 24,
-    borderRadius: 24,
+    width: 'calc(100% - 16px)',
+    height: 14,
+    borderRadius: 13,
     border: `2px solid ${theme.palette.primary.main}`,
-    padding: '0 5px',
+    padding: '0 2.5px',
     marginBottom: 6,
   },
   progressBar: {
     position: 'relative',
-    height: 12,
-    borderRadius: 24,
+    height: 6,
+    borderRadius: 12,
     background: theme.palette.primary.main,
   },
   progressText: {
-    fontSize: 18,
+    fontSize: 9,
     fontWeight: 500,
     lineHeight: 1.55,
 
@@ -211,14 +238,14 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     background: theme.palette.primary.main,
-    borderRadius: 31,
-    fontSize: 24,
+    borderRadius: 15,
+    fontSize: 12,
     fontWeight: 500,
     lineHeight: 1,
     color: 'white',
-    marginTop: 36,
+    marginTop: process.env.LOCALE === 'en_US' ? 10 : 18,
     cursor: 'pointer',
-    padding: '12px 32px',
+    padding: '6px 32px',
   },
 }));
 
@@ -236,10 +263,9 @@ export const UpgradeDialogLayout = ({
   nextLevel,
   nextLevelScore,
 }) => {
-  const timerRef = useRef(null);
   const [stage, setStage] = useState(0);
-
   const classes = useStyles({ stage });
+  const timerRef = useRef(null);
 
   const { progress } = useSpring({
     progress:
@@ -249,8 +275,8 @@ export const UpgradeDialogLayout = ({
   });
   const nextLevelProps = useSpring({
     scale: stage >= 3 ? 3.5 : 1,
-    right: stage >= 3 ? 'calc(25% + 135px)' : 'calc(0% + 40px)',
-    bottom: stage >= 3 ? 'calc(50% + 90px)' : 'calc(0% + 28px)',
+    right: stage >= 3 ? 'calc(50% + -40px)' : 'calc(0% + 20px)',
+    bottom: stage >= 3 ? 'calc(150% + -30px)' : 'calc(0% + 9px)',
   });
 
   useEffect(() => {
@@ -289,6 +315,11 @@ export const UpgradeDialogLayout = ({
         onClose={onClose}
         scroll="body"
         fullWidth
+        classes={{
+          paper: classes.paper,
+          paperScrollBody: classes.paper,
+          paperWidthSm: classes.paper,
+        }}
       >
         <div className={classes.dialogContent}>
           <div className={classes.top}>
@@ -298,87 +329,102 @@ export const UpgradeDialogLayout = ({
             <div className={classes.close} onClick={onClose}>
               <img src={closeIcon} alt="close-icon" />
             </div>
-
-            {stage <= 3 && (
-              <>
-                {/* TODO: translate */}
-                <h3 className={classes.titleLg}>
-                  {c('upgrade dialog').t`Congratulations!`}
-                </h3>
-                <p className={classes.contentText}>
-                  {c('upgrade dialog')
-                    .t`You can keep leveling up after your level-up!`}
-                </p>
-                <div className={classes.levelContainer}>
-                  <div className={classes.level}>
-                    <img src={prevLevelIcon} alt="prev-level-icon" />
-                    <div>Lv. {currentLevel}</div>
-                  </div>
-                  <div className={classes.progress}>
-                    <div className={classes.progressBarContainer}>
-                      <animated.div
-                        className={classes.progressBar}
-                        style={{
-                          width: progress.interpolate(value => `${value}%`),
-                        }}
-                      />
+            <div className={classes.bottomContent}>
+              {stage <= 3 && (
+                <>
+                  {/* TODO: translate */}
+                  <h3 className={classes.titleLg}>
+                    {c('upgrade dialog').t`Congratulations!`}
+                  </h3>
+                  <p className={classes.contentText}>
+                    {c('upgrade dialog')
+                      .t`You can keep leveling up after your level-up!`}
+                  </p>
+                  <div className={classes.levelContainer}>
+                    <div className={classes.level}>
+                      <img src={prevLevelIcon} alt="prev-level-icon" />
+                      <div>Lv. {currentLevel}</div>
                     </div>
-                    {/* TODO: translate */}
-                    <div className={classes.progressText}>
-                      <span>{c('upgrade dialog').t`EXP`}</span>
-                      <animated.span>
-                        {progress.interpolate(
-                          value =>
-                            `${((value / 100) * nextLevelScore).toFixed(0)}`
-                        )}
-                      </animated.span>
-                      <span>/{nextLevelScore}</span>
+                    <div className={classes.progress}>
+                      <div className={classes.progressBarContainer}>
+                        <animated.div
+                          className={classes.progressBar}
+                          style={{
+                            width: progress.interpolate(value => `${value}%`),
+                          }}
+                        />
+                      </div>
+                      {/* TODO: translate */}
+                      <div className={classes.progressText}>
+                        <span>{c('upgrade dialog').t`EXP`}</span>
+                        <animated.span>
+                          {progress.interpolate(
+                            value =>
+                              `${((value / 100) * nextLevelScore).toFixed(0)}`
+                          )}
+                        </animated.span>
+                        <span>/{nextLevelScore}</span>
+                      </div>
+                    </div>
+                    <div
+                      className={classes.level}
+                      style={{
+                        opacity: stage >= 2 ? 0 : 1,
+                      }}
+                    >
+                      <img src={nextLevelIcon} alt="next-level-icon" />
+                      <div>Lv. {nextLevel}</div>
                     </div>
                   </div>
-                  <div
-                    className={classes.level}
-                    style={{
-                      opacity: stage >= 2 ? 0 : 1,
-                    }}
-                  >
-                    <img src={nextLevelIcon} alt="next-level-icon" />
-                    <div>Lv. {nextLevel}</div>
-                  </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
 
-            {stage >= 4 && (
-              <>
-                {/* TODO: translate */}
-                <h3 className={classes.titleMd}>
-                  {c('upgrade dialog').t`Cheers! ${LEVEL_NAMES[nextLevel]}`}
-                </h3>
-                <p className={classes.contentText}>
-                  {c('upgrade dialog')
-                    .t`Keep up the good work and save the world!`}
-                </p>
-                <div className={classes.button} onClick={onClose}>
-                  {c('upgrade dialog').t`I've got your back`}
-                </div>
-              </>
+              {stage >= 4 && (
+                <>
+                  {/* TODO: translate */}
+                  <h3 className={classes.titleMd}>
+                    {c('upgrade dialog').t`Cheers! ${LEVEL_NAMES[nextLevel]}`}
+                  </h3>
+                  <p className={classes.contentText}>
+                    {c('upgrade dialog')
+                      .t`Keep up the good work and save the world!`}
+                  </p>
+                  <div className={classes.button} onClick={onClose}>
+                    {c('upgrade dialog').t`I've got your back`}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {stage >= 2 && (
+              <animated.div
+                className={cx(classes.level, classes.dynamticNextLevel)}
+                style={{
+                  right: nextLevelProps.right,
+                  bottom: nextLevelProps.bottom,
+                }}
+              >
+                <animated.img
+                  src={nextLevelIcon}
+                  alt="next-level-icon"
+                  style={{
+                    width: nextLevelProps.scale.interpolate(
+                      value => value * 23
+                    ),
+                  }}
+                />
+                <animated.div
+                  style={{
+                    fontSize: nextLevelProps.scale.interpolate(
+                      value => value * 9
+                    ),
+                  }}
+                >
+                  Lv. {nextLevel}
+                </animated.div>
+              </animated.div>
             )}
           </div>
-
-          {stage >= 2 && (
-            <animated.div
-              className={cx(classes.level, classes.dynamticNextLevel)}
-              style={{
-                ...nextLevelProps,
-                transform: nextLevelProps.scale.interpolate(
-                  value => `scale(${value})`
-                ),
-              }}
-            >
-              <img src={nextLevelIcon} alt="next-level-icon" />
-              <div>Lv. {nextLevel}</div>
-            </animated.div>
-          )}
         </div>
       </Dialog>
     </>
