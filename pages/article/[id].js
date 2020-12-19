@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Hidden, Snackbar } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import { ngettext, msgid, t } from 'ttag';
 
 import { useRouter } from 'next/router';
@@ -17,6 +18,7 @@ import { usePushToDataLayer } from 'lib/gtm';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import isValid from 'date-fns/isValid';
 import { LINE_URL } from 'constants/urls';
+import getTermsString from 'lib/terms';
 
 import AddIcon from '@material-ui/icons/AddCircleOutline';
 import Fab from '@material-ui/core/Fab';
@@ -400,6 +402,16 @@ function ArticlePage() {
             </CardHeader>
             <CurrentReplies articleReplies={article.articleReplies} />
           </Card>
+
+          {replyCount > 0 && (
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              style={{ margin: '16px 0' }}
+            >
+              {getTermsString(t`The content above`, true)}
+            </Typography>
+          )}
 
           <Hidden smDown implementation="css">
             <a href={LINE_URL}>
