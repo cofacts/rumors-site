@@ -10,7 +10,7 @@ import AppLayout from 'components/AppLayout';
 import UserPageHeader from './UserPageHeader';
 
 const LOAD_USER = gql`
-  query LoadUserPage($id: String, $slug: String) {
+  query LoadProfilePage($id: String, $slug: String) {
     GetUser(id: $id, slug: $slug) {
       id
       ...UserHeaderData
@@ -35,11 +35,12 @@ const LOAD_USER = gql`
 
 function ProfilePage({ id, slug }) {
   const currentUser = useCurrentUser();
-  const isSelf = currentUser && id === currentUser.id;
 
   const { data, loading } = useQuery(LOAD_USER, {
     variables: { id, slug },
   });
+
+  const isSelf = currentUser && data?.GetUser?.id === currentUser.id;
 
   if (loading) {
     return (
