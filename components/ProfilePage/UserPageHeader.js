@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import gql from 'graphql-tag';
 import { t, jt } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
-import { withDarkTheme } from 'lib/theme';
+import { lightTheme, withDarkTheme } from 'lib/theme';
 import { linkify, nl2br } from 'lib/text';
 import LEVEL_NAMES from 'constants/levelNames';
 import { LINE_URL } from 'constants/urls';
@@ -15,6 +16,7 @@ import LevelIcon from 'components/LevelIcon';
 import LevelProgressBar from 'components/AppLayout/Widgets/LevelProgressBar';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import Stats from './Stats';
+import EditProfileDialog from './EditProfileDialog';
 
 import cx from 'clsx';
 
@@ -110,9 +112,15 @@ const useStyles = makeStyles(theme => ({
  */
 function UserPageHeader({ user, isSelf }) {
   const classes = useStyles();
+  const [isEditDialogOpen, setEditDialogOpen] = useState(false);
 
   const editButtonElem = isSelf && (
-    <Button className={classes.editButton} size="small" variant="outlined">
+    <Button
+      className={classes.editButton}
+      size="small"
+      variant="outlined"
+      onClick={() => setEditDialogOpen(true)}
+    >
       {t`Edit`}
     </Button>
   );
@@ -177,6 +185,15 @@ function UserPageHeader({ user, isSelf }) {
           <Stats userId={user.id} />
         </aside>
       </div>
+
+      {isEditDialogOpen && (
+        <ThemeProvider theme={lightTheme}>
+          <EditProfileDialog
+            user={user}
+            onClose={() => setEditDialogOpen(false)}
+          />
+        </ThemeProvider>
+      )}
     </header>
   );
 }
@@ -197,10 +214,12 @@ exported.fragments = {
       }
       ...AvatarData
       ...LevelProgressBarData
+      ...EditProfileDialogUserData
     }
 
     ${Avatar.fragments.AvatarData}
     ${LevelProgressBar.fragments.LevelProgressBarData}
+    ${EditProfileDialog.fragments.EditProfileDialogUserData}
   `,
 };
 
