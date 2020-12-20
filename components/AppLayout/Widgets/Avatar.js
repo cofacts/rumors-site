@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import cx from 'clsx';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
+import ProfileLink from 'components/ProfileLink';
 import { TYPE_ICON } from 'constants/replyType';
 
 const NULL_USER_IMG =
@@ -13,7 +14,6 @@ const useStyles = makeStyles({
     width: size => size,
     height: size => size,
     borderRadius: '50%',
-    cursor: 'pointer',
   },
 });
 
@@ -76,6 +76,7 @@ function Avatar({
   size = 24,
   showLevel = false,
   status = null,
+  hasLink = false,
   className,
   ...rest
 }) {
@@ -94,6 +95,9 @@ function Avatar({
   if (status) {
     avatar = <StatusBadge status={status}>{avatar}</StatusBadge>;
   }
+  if (hasLink) {
+    avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
+  }
   return avatar;
 }
 
@@ -103,7 +107,9 @@ Avatar.fragments = {
       id
       avatarUrl
       level
+      ...ProfileLinkUserData
     }
+    ${ProfileLink.fragments.ProfileLinkUserData}
   `,
 };
 

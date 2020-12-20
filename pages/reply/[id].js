@@ -18,7 +18,7 @@ import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import ArticleReply from 'components/ArticleReply';
 import { Card, CardHeader, CardContent } from 'components/Card';
-import EditorName from 'components/EditorName';
+import ProfileLink from 'components/ProfileLink';
 import Infos, { TimeInfo } from 'components/Infos';
 import {
   SideSection,
@@ -75,7 +75,7 @@ const LOAD_REPLY = gql`
         createdAt
         status
         user {
-          ...EditorNameUserData
+          ...ProfileLinkUserData
         }
         ...ArticleReplyData
       }
@@ -93,7 +93,7 @@ const LOAD_REPLY = gql`
     }
   }
   ${ArticleReply.fragments.ArticleReplyData}
-  ${EditorName.fragments.EditorNameUserData}
+  ${ProfileLink.fragments.ProfileLinkUserData}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -282,7 +282,11 @@ function ReplyPage() {
               </Link>
             </CardContent>
             {otherArticleReplies.map(ar => {
-              const editorElem = <EditorName key="editor" user={ar.user} />;
+              const editorElem = (
+                <ProfileLink key="editor" user={ar.user} hasTooltip>
+                  {ar?.user?.name || t`someone`}
+                </ProfileLink>
+              );
 
               return (
                 <CardContent key={ar.article.id}>
