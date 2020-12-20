@@ -61,6 +61,8 @@ function EditProfileDialog({ user, onClose = () => {} }) {
             label={t`Display name`}
             name="name"
             defaultValue={user.name}
+            fullWidth
+            margin="dense"
             required
           />
           <TextField
@@ -69,12 +71,17 @@ function EditProfileDialog({ user, onClose = () => {} }) {
             value={slug || ''}
             onChange={e => setSlug(e.target.value)}
             helperText={t`Your profile URL will become ${profileURL}`}
+            fullWidth
+            margin="dense"
           />
           <TextField
             label={t`Bio`}
             name="bio"
             defaultValue={user.bio}
             multiline
+            rows={3}
+            fullWidth
+            margin="dense"
           />
         </DialogContent>
         <DialogActions>
