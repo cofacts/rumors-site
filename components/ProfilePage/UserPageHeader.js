@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
   },
-  editButton: { marginLeft: 'auto', borderRadius: 15 },
+  editButton: { borderRadius: 15 },
   progress: {
     marginTop: 8,
     display: 'flex',
@@ -127,7 +127,7 @@ function UserPageHeader({ user, isSelf }) {
             <Hidden implementation="css" mdUp>
               <Avatar user={user} size={60} style={{ marginRight: 12 }} />
             </Hidden>
-            <Typography className={classes.name} variant="h6">
+            <Typography variant="h6" style={{ marginRight: 'auto' }}>
               {user.name}
             </Typography>
             <Hidden implementation="css" mdUp>
