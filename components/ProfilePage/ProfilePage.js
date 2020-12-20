@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 
@@ -41,6 +43,17 @@ function ProfilePage({ id, slug }) {
   });
 
   const isSelf = currentUser && data?.GetUser?.id === currentUser.id;
+
+  // Automatic redirect to (new) slug
+  //
+  const router = useRouter();
+  const latestSlug = data?.GetUser?.slug; // slug may update after user edits
+  useEffect(() => {
+    const targetPath = `/user/${latestSlug}`;
+    if (latestSlug && window.location.pathname !== targetPath) {
+      router.replace(targetPath);
+    }
+  }, [latestSlug, router]);
 
   if (loading) {
     return (
