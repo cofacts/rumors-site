@@ -7,10 +7,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { usePushToDataLayer } from 'lib/gtm';
+import getTermsString from 'lib/terms';
+
 import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import ArticleReply from 'components/ArticleReply';
@@ -308,6 +311,13 @@ function ReplyPage() {
               );
             })}
           </Card>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            style={{ margin: '16px 0' }}
+          >
+            {getTermsString(t`The content above`, true)}
+          </Typography>
         </div>
         <SideSection>
           <SideSectionHeader>{t`Similar replies`}</SideSectionHeader>

@@ -1,26 +1,39 @@
-import { t } from 'ttag';
+import { t, jt } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import getConfig from 'next/config';
+import {
+  LICENSE_URL,
+  EDITOR_REFERENCE,
+  EDITOR_FACEBOOK_GROUP,
+} from 'constants/urls';
+import { AUTHOR, LICENSE } from 'lib/terms';
 import Facebook from './images/facebook.svg';
 import Twitter from './images/twitter.svg';
 import Github from './images/github.svg';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
   },
   content: {
-    padding: '1.5rem 3rem',
+    padding: '0 2rem 1.5rem',
   },
-});
+  terms: {
+    color: theme.palette.secondary[200],
+    textAlign: 'justify',
+    marginTop: theme.spacing(2),
+    '& > a': { color: 'inherit' },
+  },
+}));
 
 const useProviderStyles = makeStyles(theme => ({
   root: {
     borderRadius: 30,
     display: 'flex',
     alignItems: 'center',
-    marginTop: 6,
+    marginBottom: 8,
     background: ({ color }) => color,
     '& > div': {
       position: 'absolute',
@@ -75,8 +88,23 @@ const ProviderLink = ({
 function LoginModal({ onClose, redirectPath }) {
   const classes = useStyles();
 
+  const termsLink = (
+    <a key="termsLink" href={EDITOR_REFERENCE}>{t`Terms of Use`}</a>
+  );
+  const licenseLink = (
+    <a key="licenseLink" href={LICENSE_URL}>
+      {LICENSE}
+    </a>
+  );
+  const authorLink = (
+    <a key="authorLink" href={EDITOR_FACEBOOK_GROUP}>
+      {AUTHOR}
+    </a>
+  );
+  const workLink = <a key="workLink" href={LICENSE_URL}>{t`open data`}</a>;
+
   return (
-    <Dialog open onClose={onClose}>
+    <Dialog open maxWidth="xs" onClose={onClose}>
       <DialogTitle className={classes.title}>{t`Login / Signup`}</DialogTitle>
       <DialogContent className={classes.content}>
         <ProviderLink
@@ -103,6 +131,9 @@ function LoginModal({ onClose, redirectPath }) {
         >
           Github
         </ProviderLink>
+        <Typography variant="body2" className={classes.terms}>
+          {jt`By logging in you agree to ${termsLink}, and you agree to license your contribution under ${licenseLink} as ${authorLink} and release as ${workLink}.`}
+        </Typography>
       </DialogContent>
     </Dialog>
   );
