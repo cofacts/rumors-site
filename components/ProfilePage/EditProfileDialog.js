@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 
 const EditProfileDialogUserData = gql`
   fragment EditProfileDialogUserData on User {
+    id
     name
     slug
     bio
@@ -39,7 +40,11 @@ function EditProfileDialog({ user, onClose = () => {} }) {
     e.preventDefault();
     const form = e.target;
     updateUser({
-      variables: { name: form.name, slug: form.slug, bio: form.bio },
+      variables: {
+        name: form.name.value,
+        slug: form.slug.value,
+        bio: form.bio.value,
+      },
     });
   };
 
