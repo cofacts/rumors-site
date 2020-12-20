@@ -117,7 +117,7 @@ function UserPageHeader({ user, isSelf }) {
     </Button>
   );
 
-  const isChatbotUser = user.appId === COFACTS_CHATBOT_ID || true;
+  const isChatbotUser = user.appId === COFACTS_CHATBOT_ID;
   const cofactsChatbotLink = (
     <a
       key="chatbot"
