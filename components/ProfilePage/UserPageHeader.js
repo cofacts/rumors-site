@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { t } from 'ttag';
+import { t, jt } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
@@ -7,13 +7,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { withDarkTheme } from 'lib/theme';
 import { linkify, nl2br } from 'lib/text';
+import LEVEL_NAMES from 'constants/levelNames';
+import { LINE_URL } from 'constants/urls';
 
 import Ribbon from 'components/Ribbon';
 import LevelIcon from 'components/LevelIcon';
 import LevelProgressBar from 'components/AppLayout/Widgets/LevelProgressBar';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
-import LEVEL_NAMES from 'constants/levelNames';
 import Stats from './Stats';
+
+import cx from 'clsx';
+
+const COFACTS_CHATBOT_ID = 'RUMORS_LINE_BOT';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,6 +82,10 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     lineClamp: 3,
   },
+  chatbotUser: {
+    fontStyle: 'italic',
+    color: theme.palette.secondary[200],
+  },
   aside: {
     [theme.breakpoints.down('sm')]: {
       padding: '16px 0 20px',
@@ -106,6 +115,15 @@ function UserPageHeader({ user, isSelf }) {
     <Button className={classes.editButton} size="small" variant="outlined">
       {t`Edit`}
     </Button>
+  );
+
+  const isChatbotUser = user.appId === COFACTS_CHATBOT_ID || true;
+  const cofactsChatbotLink = (
+    <a
+      key="chatbot"
+      style={{ color: 'inherit' }}
+      href={LINE_URL}
+    >{t`Cofacts chatbot`}</a>
   );
 
   return (
@@ -140,11 +158,16 @@ function UserPageHeader({ user, isSelf }) {
               {t`EXP`} {user.points.total} / {user.points.nextLevel}
             </Typography>
           </div>
-          {user.bio && (
-            <Typography variant="body2" className={classes.bio}>
-              {nl2br(linkify(user.bio))}
-            </Typography>
-          )}
+          <Typography
+            variant="body2"
+            className={cx(classes.bio, {
+              [classes.chatbotUser]: isChatbotUser,
+            })}
+          >
+            {isChatbotUser
+              ? jt`This is a user of ${cofactsChatbotLink}. The profile picture and the pseudonym are randomly generated.`
+              : user.bio && nl2br(linkify(user.bio))}
+          </Typography>
         </div>
 
         <aside className={classes.aside}>
@@ -167,6 +190,7 @@ exported.fragments = {
       name
       bio
       level
+      appId
       points {
         total
         nextLevel
