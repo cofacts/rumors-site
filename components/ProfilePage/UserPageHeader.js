@@ -65,9 +65,17 @@ const useStyles = makeStyles(theme => ({
       padding: '0 16px',
     },
   },
-  name: {
+  nameSection: {
     display: 'flex',
     alignItems: 'center',
+  },
+  name: {
+    flex: '1 1 0',
+    display: '-webkit-box',
+    overflow: 'hidden',
+    boxOrient: 'vertical',
+    textOverflow: 'ellipsis',
+    lineClamp: 2,
   },
   editButton: { borderRadius: 15 },
   progress: {
@@ -149,11 +157,11 @@ function UserPageHeader({ user, isSelf }) {
           <Avatar user={user} size={100} />
         </Hidden>
         <div className={classes.info}>
-          <div className={classes.name}>
+          <div className={classes.nameSection}>
             <Hidden implementation="css" mdUp>
               <Avatar user={user} size={60} style={{ marginRight: 12 }} />
             </Hidden>
-            <Typography variant="h6" style={{ marginRight: 'auto' }}>
+            <Typography variant="h6" className={classes.name}>
               {user.name}
             </Typography>
             <Hidden implementation="css" mdUp>
