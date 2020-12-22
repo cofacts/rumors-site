@@ -484,7 +484,7 @@ const UpgradeDialog = () => {
     }
   };
 
-  useEffect(() => loadUser(), []);
+  useEffect(() => loadUser(), [loadUser]);
 
   useEffect(() => {
     if (data && data.GetUser) {
