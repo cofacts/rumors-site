@@ -8,12 +8,13 @@ import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { c } from 'ttag';
 
+import { CloseIcon } from 'components/icons';
+
 import LEVEL_NAMES from 'constants/levelNames';
 
 import upgradeImage from './images/upgrade.png';
 import prevLevelIcon from './images/prev-level-icon.svg';
 import nextLevelIcon from './images/next-level-icon.svg';
-import closeIcon from './images/close.svg';
 
 const getConicGradient = (color1, color2, startAngle) => {
   return `conic-gradient( 
@@ -134,8 +135,9 @@ const useStyles = makeStyles(theme => ({
     right: '4%',
     cursor: 'pointer',
     zIndex: 100,
+    color: '#ADADAD',
 
-    '& > img': {
+    '& > svg': {
       display: 'block',
       width: '100%',
       height: '100%',
@@ -327,7 +329,7 @@ export const UpgradeDialogLayout = ({
           </div>
           <div className={classes.bottom}>
             <div className={classes.close} onClick={onClose}>
-              <img src={closeIcon} alt="close-icon" />
+              <CloseIcon />
             </div>
             <div className={classes.bottomContent}>
               {stage <= 3 && (
