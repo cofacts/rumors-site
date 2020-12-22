@@ -9,12 +9,11 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import { c } from 'ttag';
 
 import { CloseIcon } from 'components/icons';
+import LevelIcon from 'components/LevelIcon';
 
 import LEVEL_NAMES from 'constants/levelNames';
 
 import upgradeImage from './images/upgrade.png';
-import prevLevelIcon from './images/prev-level-icon.svg';
-import nextLevelIcon from './images/next-level-icon.svg';
 
 const getConicGradient = (color1, color2, startAngle) => {
   return `repeating-conic-gradient( 
@@ -210,10 +209,15 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     lineHeight: 1.55,
     whiteSpace: 'nowrap',
+  },
+  levelIcon: {
+    width: 23,
+    height: 23,
+    marginBottom: 2.5,
 
-    '& > img': {
-      width: 23,
-      marginBottom: 2.5,
+    '& > svg': {
+      width: '100%',
+      height: '100%',
     },
   },
   progress: {
@@ -295,7 +299,7 @@ export const UpgradeDialogLayout = ({
   const nextLevelProps = useSpring({
     scale: stage >= 3 ? 3.5 : 1,
     right: stage >= 3 ? 'calc(50% + -40px)' : 'calc(0% + 20px)',
-    bottom: stage >= 3 ? 'calc(150% + -30px)' : 'calc(0% + 9px)',
+    bottom: stage >= 3 ? 'calc(150% + -26px)' : 'calc(0% + 9px)',
   });
 
   useEffect(() => {
@@ -361,7 +365,9 @@ export const UpgradeDialogLayout = ({
                   </p>
                   <div className={classes.levelContainer}>
                     <div className={classes.level}>
-                      <img src={prevLevelIcon} alt="prev-level-icon" />
+                      <div className={classes.levelIcon}>
+                        <LevelIcon level={currentLevel} />
+                      </div>
                       <div>Lv. {currentLevel}</div>
                     </div>
                     <div className={classes.progress}>
@@ -391,7 +397,9 @@ export const UpgradeDialogLayout = ({
                         opacity: stage >= 2 ? 0 : 1,
                       }}
                     >
-                      <img src={nextLevelIcon} alt="next-level-icon" />
+                      <div className={classes.levelIcon}>
+                        <LevelIcon level={nextLevel} />
+                      </div>
                       <div>Lv. {nextLevel}</div>
                     </div>
                   </div>
@@ -423,15 +431,19 @@ export const UpgradeDialogLayout = ({
                   bottom: nextLevelProps.bottom,
                 }}
               >
-                <animated.img
-                  src={nextLevelIcon}
-                  alt="next-level-icon"
+                <animated.div
+                  className={classes.levelIcon}
                   style={{
                     width: nextLevelProps.scale.interpolate(
-                      value => value * 23
+                      value => `${value * 23}px`
+                    ),
+                    height: nextLevelProps.scale.interpolate(
+                      value => `${value * 23}px`
                     ),
                   }}
-                />
+                >
+                  <LevelIcon level={nextLevel} />
+                </animated.div>
                 <animated.div
                   style={{
                     fontSize: nextLevelProps.scale.interpolate(
