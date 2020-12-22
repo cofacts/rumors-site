@@ -17,28 +17,10 @@ import prevLevelIcon from './images/prev-level-icon.svg';
 import nextLevelIcon from './images/next-level-icon.svg';
 
 const getConicGradient = (color1, color2, startAngle) => {
-  return `conic-gradient( 
-  ${Array.from(Array(25).keys())
-    .map((_, i) => {
-      const start = startAngle;
-      const angle = 360 / 24;
-      const color = i % 2 === 1 ? color1 : color2;
-
-      if (i === 0) {
-        return `
-         ${color} ${start + angle * i}deg,
-       `;
-      }
-
-      if (i === 24) {
-        return `${color} ${start + angle * (i - 1)}deg ${start + angle * i}deg
-        `;
-      }
-
-      return `${color} ${start + angle * (i - 1)}deg ${start + angle * i}deg,
-       `;
-    })
-    .join('')} 
+  return `repeating-conic-gradient( 
+      from ${startAngle}deg, 
+      ${color1} ${startAngle}deg ${startAngle + 15}deg, 
+      ${color2} ${startAngle + 15}deg ${startAngle + 30}deg
 )`;
 };
 
@@ -51,11 +33,25 @@ const useStyles = makeStyles(theme => ({
         0
       ),
     },
+    '10%': {
+      background: getConicGradient(
+        theme.palette.common.yellow,
+        theme.palette.common.orange2,
+        1.5
+      ),
+    },
     '20%': {
       background: getConicGradient(
         theme.palette.common.yellow,
         theme.palette.common.orange2,
         3
+      ),
+    },
+    '30%': {
+      background: getConicGradient(
+        theme.palette.common.yellow,
+        theme.palette.common.orange2,
+        4.5
       ),
     },
     '40%': {
@@ -65,6 +61,13 @@ const useStyles = makeStyles(theme => ({
         6
       ),
     },
+    '50%': {
+      background: getConicGradient(
+        theme.palette.common.yellow,
+        theme.palette.common.orange2,
+        7.5
+      ),
+    },
     '60%': {
       background: getConicGradient(
         theme.palette.common.yellow,
@@ -72,11 +75,25 @@ const useStyles = makeStyles(theme => ({
         9
       ),
     },
+    '70%': {
+      background: getConicGradient(
+        theme.palette.common.yellow,
+        theme.palette.common.orange2,
+        10.5
+      ),
+    },
     '80%': {
       background: getConicGradient(
         theme.palette.common.yellow,
         theme.palette.common.orange2,
         12
+      ),
+    },
+    '90%': {
+      background: getConicGradient(
+        theme.palette.common.yellow,
+        theme.palette.common.orange2,
+        13.5
       ),
     },
     '100%': {
@@ -119,7 +136,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     paddingBottom: '100%',
-    animation: '$spin 1s infinite',
+    animation: '$spin 1.3s infinite',
     animationTimingFunction: 'linear',
   },
   bottom: {
