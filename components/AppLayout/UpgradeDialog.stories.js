@@ -12,12 +12,6 @@ export default {
 
 export const Default = () => (
   <UpgradeDialogLayout
-    stage={number('stage', 0, {
-      range: true,
-      step: 1,
-      min: 0,
-      max: 4,
-    })}
     open={boolean('open', false)}
     currentLevel={1}
     currentLevelScore={100}
