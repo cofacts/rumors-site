@@ -149,5 +149,40 @@ exports[`Storyshots Icons Default 1`] = `
       </svg>
     </PenIcon>
   </div>
+  <div
+    key="CloseIcon"
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 24,
+        "padding": "1em",
+        "textAlign": "center",
+      }
+    }
+  >
+    <code
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      CloseIcon
+    </code>
+    <CloseIcon
+      fontSize="inherit"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
+        focusable="false"
+        viewBox="0 0 14 14"
+      >
+        <path
+          d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+        />
+      </svg>
+    </CloseIcon>
+  </div>
 </div>
 `;
