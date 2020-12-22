@@ -432,7 +432,7 @@ export const UpgradeDialogLayout = ({
 };
 
 const USER_QUERY = gql`
-  query UserLevelQuery {
+  query UserForUpgradeDialog {
     GetUser {
       id
       name
