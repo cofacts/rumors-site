@@ -434,9 +434,6 @@ export const UpgradeDialogLayout = ({
 const USER_QUERY = gql`
   query UserForUpgradeDialog {
     GetUser {
-      id
-      name
-      avatarUrl
       level
       points {
         total
