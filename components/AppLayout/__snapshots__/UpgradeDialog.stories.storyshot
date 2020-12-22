@@ -8,7 +8,6 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
   nextLevelScore={200}
   onClose={[Function]}
   open={false}
-  stage={0}
 >
   <Portal>
     <div
