@@ -467,7 +467,6 @@ const USER_QUERY = gql`
     GetUser {
       level
       points {
-        total
         currentLevel
         nextLevel
       }
@@ -476,53 +475,33 @@ const USER_QUERY = gql`
 `;
 
 const UpgradeDialog = () => {
-  const [isActive, setIsActive] = useState(false);
-  const [prevCurrentLevel, setPrevCurrentLevel] = useState(-1);
-  const [prevNextLevel, setPrevNextLevel] = useState(-1);
-  const [prevCurrentScore, setPrevCurrentScore] = useState(-1);
-  const [prevNextScore, setPrevNextScore] = useState(-1);
+  const [fetchedUser, setFetchedUser] = useState(null);
 
   const [loadUser, { data }] = useLazyQuery(USER_QUERY);
 
   const closeUpgradeDialog = () => {
-    setIsActive(false);
-
-    if (data && data.GetUser) {
-      const { total, currentLevel, nextLevel } = data.GetUser.points;
-
-      setPrevCurrentLevel(currentLevel);
-      setPrevNextLevel(nextLevel);
-      setPrevCurrentScore(total);
-    }
+    setFetchedUser(data.GetUser);
   };
 
   useEffect(() => loadUser(), [loadUser]);
 
   useEffect(() => {
-    if (data && data.GetUser) {
-      const { total, currentLevel, nextLevel } = data.GetUser.points;
-
-      if (prevCurrentLevel === -1) {
-        setPrevCurrentLevel(currentLevel);
-        setPrevNextLevel(nextLevel);
-        setPrevCurrentScore(total);
-        setPrevNextScore(total);
-      } else if (currentLevel > prevCurrentLevel) {
-        setPrevNextScore(total);
-        setIsActive(true);
-      }
+    if (!fetchedUser && data && data.GetUser) {
+      setFetchedUser(data.GetUser);
     }
-  }, [data, prevCurrentLevel]);
+  }, [data, fetchedUser]);
 
   return (
-    <UpgradeDialogLayout
-      open={isActive}
-      currentLevel={prevCurrentLevel || 0}
-      currentLevelScore={prevCurrentScore || 0}
-      nextLevel={prevNextLevel || 0}
-      nextLevelScore={prevNextScore || 0}
-      onClose={closeUpgradeDialog}
-    />
+    fetchedUser && (
+      <UpgradeDialogLayout
+        open={fetchedUser.level !== data.GetUser.level}
+        currentLevel={fetchedUser.level}
+        currentLevelScore={fetchedUser.points.currentLevel}
+        nextLevel={fetchedUser.level + 1}
+        nextLevelScore={fetchedUser.points.nextLevel}
+        onClose={closeUpgradeDialog}
+      />
+    )
   );
 };
 
