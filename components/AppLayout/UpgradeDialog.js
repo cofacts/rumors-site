@@ -299,7 +299,7 @@ export const UpgradeDialogLayout = ({
   const nextLevelProps = useSpring({
     scale: stage >= 3 ? 3.5 : 1,
     right: stage >= 3 ? 'calc(50% + -40px)' : 'calc(0% + 20px)',
-    bottom: stage >= 3 ? 'calc(150% + -26px)' : 'calc(0% + 9px)',
+    bottom: stage >= 3 ? 'calc(200% + -85px)' : 'calc(0% + 9px)',
   });
 
   useEffect(() => {
