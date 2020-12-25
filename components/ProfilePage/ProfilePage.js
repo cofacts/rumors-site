@@ -41,6 +41,9 @@ const LOAD_CONTRIBUTION = gql`
     ) {
       totalCount
     }
+    commentedReplies: ListArticleReplyFeedbacks(filter: { userId: $id }) {
+      totalCount
+    }
   }
 `;
 
@@ -110,7 +113,14 @@ function ProfilePage({ id, slug }) {
         <title>{data.GetUser.name}</title>
       </Head>
       <Container maxWidth="md" className={classes.container}>
-        <UserPageHeader user={data.GetUser} isSelf={isSelf} />
+        <UserPageHeader
+          user={data.GetUser}
+          isSelf={isSelf}
+          stats={{
+            repliedArticles: contributionData?.repliedArticles?.totalCount,
+            commentedReplies: contributionData?.commentedReplies?.totalCount,
+          }}
+        />
         <Card>
           <Tabs
             value={tab}
