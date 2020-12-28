@@ -12,11 +12,8 @@ import {
   SortInput,
   LoadMore,
 } from 'components/ListPageControls';
-import {
-  ListPageCards,
-  ListPageCard,
-  ReplyItem,
-} from 'components/ListPageDisplays';
+import ArticleReply from 'components/ArticleReply';
+import { CardContent } from 'components/Card';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import ExpandableText from 'components/ExpandableText';
@@ -40,22 +37,18 @@ const LOAD_REPLIED_ARTICLES = gql`
           createdAt
           text
           articleReplies(status: NORMAL) {
+            replyId
             user {
               id
             }
-            reply {
-              id
-              ...ReplyItem
-            }
-            ...ReplyItemArticleReplyData
+            ...ArticleReplyData
           }
         }
         ...LoadMoreEdge
       }
     }
   }
-  ${ReplyItem.fragments.ReplyItem}
-  ${ReplyItem.fragments.ReplyItemArticleReplyData}
+  ${ArticleReply.fragments.ArticleReplyData}
   ${LoadMore.fragments.LoadMoreEdge}
 `;
 
@@ -72,36 +65,8 @@ const LOAD_REPLIED_ARTICLES_STAT = gql`
 
 const useStyles = makeStyles(theme => ({
   bustHoaxDivider: {
-    fontSize: theme.typography.htmlFontSize,
-    textAlign: 'center',
-    position: 'relative', // For ::before
-    zIndex: 0, // Make a stacking context
-    margin: '8px 0 -8px',
-
-    '&:before': {
-      position: 'absolute',
-      top: '50%',
-      display: 'block',
-      height: '1px',
-      zIndex: -1,
-      width: '100%',
-      backgroundColor: theme.palette.secondary[100],
-      content: '""',
-    },
-    '& a': {
-      display: 'inline-block',
-      borderRadius: 30,
-      padding: '10px 26px',
-      fontSize: 14,
-      lineHeight: '16px',
-      textAlign: 'center',
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.common.white,
-      border: `5px solid ${theme.palette.common.white}`,
-      [theme.breakpoints.up('md')]: {
-        fontSize: 16,
-      },
-    },
+    border: 0,
+    borderBottom: `1px dashed ${theme.palette.secondary[100]}`,
   },
   infos: {
     marginBottom: 4,
@@ -119,6 +84,7 @@ function RepliedArticleTab({ userId }) {
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LOAD_REPLIED_ARTICLES, {
+    skip: !userId,
     variables: { userId },
     notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
   });
@@ -126,11 +92,18 @@ function RepliedArticleTab({ userId }) {
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
   // on page change, but still works when filter options are updated.
   //
-  const { data: listStatData } = useQuery(LOAD_REPLIED_ARTICLES_STAT);
+  const { data: listStatData } = useQuery(LOAD_REPLIED_ARTICLES_STAT, {
+    skip: !userId,
+    variables: { userId },
+  });
 
   // List data
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
+
+  if (!userId) {
+    return null;
+  }
 
   return (
     <>
@@ -148,44 +121,34 @@ function RepliedArticleTab({ userId }) {
         listArticlesError.toString()
       ) : (
         <>
-          <ListPageCards>
-            {articleEdges.map(({ node: article }) => (
-              <ListPageCard key={article.id}>
-                <Infos className={classes.infos}>
-                  <>
-                    {ngettext(
-                      msgid`${article.replyRequestCount} occurrence`,
-                      `${article.replyRequestCount} occurrences`,
-                      article.replyRequestCount
-                    )}
-                  </>
-                  <TimeInfo time={article.createdAt}>
-                    {timeAgo => t`First reported ${timeAgo} ago`}
-                  </TimeInfo>
-                </Infos>
-                <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
+          {articleEdges.map(({ node: article }) => (
+            <CardContent key={article.id}>
+              <Infos className={classes.infos}>
+                <>
+                  {ngettext(
+                    msgid`${article.replyRequestCount} occurrence`,
+                    `${article.replyRequestCount} occurrences`,
+                    article.replyRequestCount
+                  )}
+                </>
+                <TimeInfo time={article.createdAt}>
+                  {timeAgo => t`First reported ${timeAgo} ago`}
+                </TimeInfo>
+              </Infos>
+              <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
 
-                <div
-                  className={classes.bustHoaxDivider}
-                  data-ga="Bust hoax button"
-                >
-                  <Link href="/article/[id]" as={`/article/${article.id}`}>
-                    <a>{t`Bust Hoaxes`}</a>
-                  </Link>
-                </div>
+              <hr className={classes.bustHoaxDivider} />
 
-                {article.articleReplies
-                  .filter(articleReply => userId === articleReply.user.id)
-                  .map(({ reply, ...articleReply }) => (
-                    <ReplyItem
-                      key={reply.id}
-                      articleReply={articleReply}
-                      reply={reply}
-                    />
-                  ))}
-              </ListPageCard>
-            ))}
-          </ListPageCards>
+              {article.articleReplies
+                .filter(articleReply => userId === articleReply.user.id)
+                .map(articleReply => (
+                  <ArticleReply
+                    key={articleReply.replyId}
+                    articleReply={articleReply}
+                  />
+                ))}
+            </CardContent>
+          ))}
 
           <LoadMore
             edges={articleEdges}
