@@ -15,95 +15,41 @@ import LEVEL_NAMES from 'constants/levelNames';
 
 import upgradeImage from './images/upgrade.png';
 
-const getConicGradient = (color1, color2, startAngle) => {
-  return `repeating-conic-gradient( 
-      from ${startAngle}deg, 
-      ${color1} ${startAngle}deg ${startAngle + 15}deg, 
-      ${color2} ${startAngle + 15}deg ${startAngle + 30}deg
-)`;
+const getSpinKeyframes = (steps, startDeg, color1, color2) => {
+  const keyframes = {};
+  const progressUnit = 100 / steps;
+  const degUnit = 360 / steps;
+
+  Array.from({ length: steps }).forEach((_, index) => {
+    const progress = `${index * progressUnit}%`;
+
+    keyframes[progress] = {
+      background: `repeating-conic-gradient( 
+        from ${startDeg + index * degUnit}deg, 
+        ${color1} 0deg 15deg, 
+        ${color2} 15deg 30deg
+      )`,
+    };
+  });
+
+  keyframes['100%'] = {
+    background: `repeating-conic-gradient( 
+      from ${startDeg + steps * degUnit}deg, 
+      ${color1} 0deg 15deg, 
+      ${color2} 15deg 30deg
+    )`,
+  };
+
+  return keyframes;
 };
 
 const useStyles = makeStyles(theme => ({
-  '@keyframes spin': {
-    '0%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        0
-      ),
-    },
-    '10%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        1.5
-      ),
-    },
-    '20%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        3
-      ),
-    },
-    '30%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        4.5
-      ),
-    },
-    '40%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        6
-      ),
-    },
-    '50%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        7.5
-      ),
-    },
-    '60%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        9
-      ),
-    },
-    '70%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        10.5
-      ),
-    },
-    '80%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        12
-      ),
-    },
-    '90%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        13.5
-      ),
-    },
-    '100%': {
-      background: getConicGradient(
-        theme.palette.common.yellow,
-        theme.palette.common.orange2,
-        15
-      ),
-    },
-  },
-
+  '@keyframes spin': getSpinKeyframes(
+    10,
+    -15,
+    theme.palette.common.yellow,
+    theme.palette.common.orange2
+  ),
   root: {
     overflow: 'hidden',
   },
@@ -135,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     paddingBottom: '100%',
-    animation: '$spin 1.3s infinite',
+    animation: '$spin 1.5s infinite',
     animationTimingFunction: 'linear',
   },
   bottom: {
