@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { t, jt, ngettext, msgid } from 'ttag';
 import { Box } from '@material-ui/core';
@@ -33,10 +34,12 @@ const REPLIES_ORDER = [
 const DEFAULT_ORDER = REPLIES_ORDER[0].value;
 
 const LOAD_REPLIED_ARTICLES = gql`
-  query LoadRepliedArticles($userId: String!) {
-    ListArticles(
-      filter: { articleRepliesFrom: { userId: $userId, exists: true } }
-    ) {
+  query LoadRepliedArticles(
+    $filter: ListArticleFilter!
+    $orderBy: [ListArticleOrderBy]
+    $after: String
+  ) {
+    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 15) {
       edges {
         node {
           id
@@ -73,10 +76,11 @@ const LOAD_REPLIED_ARTICLES = gql`
 `;
 
 const LOAD_REPLIED_ARTICLES_STAT = gql`
-  query LoadRepliedArticlesStat($userId: String!) {
-    ListArticles(
-      filter: { articleRepliesFrom: { userId: $userId, exists: true } }
-    ) {
+  query LoadRepliedArticlesStat(
+    $filter: ListArticleFilter!
+    $orderBy: [ListArticleOrderBy]
+  ) {
+    ListArticles(filter: $filter, orderBy: $orderBy) {
       ...LoadMoreConnectionForStats
     }
   }
@@ -129,8 +133,51 @@ function ArticleReply({ articleReply }) {
   );
 }
 
+/**
+ * @param {object} urlQuery - URL query object and urserId
+ * @returns {object} ListArticleFilter
+ */
+function urlQuery2Filter(query = {}) {
+  const filterObj = {
+    // Default filters
+    replyCount: { GTE: 1 },
+  };
+
+  const selectedCategoryIds = CategoryFilter.getValues(query);
+  if (selectedCategoryIds.length) filterObj.categoryIds = selectedCategoryIds;
+
+  const [start, end] = TimeRange.getValues(query);
+
+  if (start) {
+    filterObj.repliedAt = { ...filterObj.repliedAt, GTE: start };
+  }
+  if (end) {
+    filterObj.repliedAt = { ...filterObj.repliedAt, LTE: end };
+  }
+
+  const selectedReplyTypes = ReplyTypeFilter.getValues(query);
+  if (selectedReplyTypes.length) filterObj.replyTypes = selectedReplyTypes;
+
+  // Return filterObj only when it is populated.
+  if (!Object.keys(filterObj).length) {
+    return undefined;
+  }
+
+  return filterObj;
+}
+
 function RepliedArticleTab({ userId }) {
   const classes = useStyles();
+  const { query } = useRouter();
+
+  const listQueryVars = {
+    filter: {
+      ...urlQuery2Filter(query),
+      articleRepliesFrom: { userId, exists: true },
+    },
+    orderBy: [{ [SortInput.getValue(query) || DEFAULT_ORDER]: 'DESC' }],
+  };
+
   const {
     loading,
     fetchMore,
@@ -138,7 +185,7 @@ function RepliedArticleTab({ userId }) {
     error: listArticlesError,
   } = useQuery(LOAD_REPLIED_ARTICLES, {
     skip: !userId,
-    variables: { userId },
+    variables: listQueryVars,
     notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
   });
 
@@ -147,7 +194,7 @@ function RepliedArticleTab({ userId }) {
   //
   const { data: listStatData } = useQuery(LOAD_REPLIED_ARTICLES_STAT, {
     skip: !userId,
-    variables: { userId },
+    variables: listQueryVars,
   });
 
   // List data
