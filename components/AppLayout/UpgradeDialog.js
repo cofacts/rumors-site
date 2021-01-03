@@ -411,6 +411,7 @@ export const UpgradeDialogLayout = ({
 const USER_QUERY = gql`
   query UserForUpgradeDialog {
     GetUser {
+      id
       level
       points {
         currentLevel
@@ -438,7 +439,8 @@ const UpgradeDialog = () => {
   }, [data, fetchedUser]);
 
   return (
-    fetchedUser && (
+    fetchedUser &&
+    data.GetUser && (
       <UpgradeDialogLayout
         open={fetchedUser.level !== data.GetUser.level}
         currentLevel={fetchedUser.level}
