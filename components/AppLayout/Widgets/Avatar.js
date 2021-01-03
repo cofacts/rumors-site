@@ -11,9 +11,10 @@ const NULL_USER_IMG =
 
 const useStyles = makeStyles({
   root: {
-    width: size => size,
-    height: size => size,
+    width: ({ size }) => size,
+    height: ({ size }) => size,
     borderRadius: '50%',
+    verticalAlign: ({ hasLink }) => (hasLink ? 'bottom' : undefined), // Fix bottom margin
   },
 });
 
@@ -80,7 +81,7 @@ function Avatar({
   className,
   ...rest
 }) {
-  const classes = useStyles(size);
+  const classes = useStyles({ size, hasLink });
   let avatar = (
     <img
       className={cx(classes.root, className)}
