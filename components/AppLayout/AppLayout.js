@@ -7,6 +7,7 @@ import { pushToDataLayer } from 'lib/gtm';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
+import UpgradeDialog from './UpgradeDialog';
 import gql from 'graphql-tag';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
@@ -141,6 +142,7 @@ function AppLayout({ children, container = true }) {
         onClose={() => setSnackMsg('')}
         message={snackMsg}
       />
+      <UpgradeDialog />
     </Fragment>
   );
 }
