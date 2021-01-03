@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { t, ngettext, msgid } from 'ttag';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -85,6 +84,16 @@ const LOAD_REPLIED_ARTICLES_STAT = gql`
 `;
 
 const useStyles = makeStyles(theme => ({
+  tools: {
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: 'var(--card-px)',
+      marginRight: 'var(--card-px)',
+    },
+  },
+  filters: {
+    margin: '0 var(--card-px)',
+    background: theme.palette.secondary[50],
+  },
   bustHoaxDivider: {
     border: 0,
     borderBottom: `1px dashed ${theme.palette.secondary[100]}`,
@@ -196,11 +205,11 @@ function RepliedArticleTab({ userId }) {
 
   return (
     <>
-      <Tools>
+      <Tools className={classes.tools}>
         <TimeRange />
         <SortInput defaultOrderBy={DEFAULT_ORDER} options={REPLIES_ORDER} />
       </Tools>
-      <Filters>
+      <Filters className={classes.filters}>
         <ReplyTypeFilter />
         <CategoryFilter />
       </Filters>
