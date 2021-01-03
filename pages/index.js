@@ -23,7 +23,6 @@ import {
 import ogImage from 'components/LandingPage/images/ogimage.png';
 
 import withData from 'lib/apollo';
-import { Title } from '@material-ui/icons';
 
 const USER_QUERY = gql`
   query UserLevelQuery {
@@ -40,7 +39,7 @@ const {
 } = getConfig();
 
 const TITLE = `${c('site title')
-  .t`Cofacts`} - ${t`Crowd-sourced instant message fact-checking community`}`;
+  .t`Cofacts`} - ${t`Message reporting chatbot and crowd-sourced fact-checking community`}`;
 const DESCRIPTION = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It's a grass-root effort fighting mis/disinformation in Taiwan.`;
 
 function Home() {
