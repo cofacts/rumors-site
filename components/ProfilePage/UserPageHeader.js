@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   bio: {
     marginTop: 8,
     overflow: 'hidden',
-    display: 'box',
+    display: '-webkit-box',
     boxOrient: 'vertical',
     textOverflow: 'ellipsis',
     lineClamp: 3,

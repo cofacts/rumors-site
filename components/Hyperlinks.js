@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.secondary[500],
       overflow: 'hidden',
       margin: 0,
-      display: 'box',
+      display: '-webkit-box',
       boxOrient: 'vertical',
       textOverflow: 'ellipsis',
       lineClamp: 2,
