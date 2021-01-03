@@ -1,5 +1,4 @@
 import React from 'react';
-import { TYPE_NAME } from 'constants/replyType';
 import ArticleReplySummary from './ArticleReplySummary';
 
 export default {
