@@ -18,24 +18,24 @@ import upgradeImage from './images/upgrade.png';
 const getSpinKeyframes = (steps, startDeg, color1, color2) => {
   const keyframes = {};
   const progressUnit = 100 / steps;
-  const degUnit = 360 / steps;
+  const degUnit = 30 / steps;
 
   Array.from({ length: steps }).forEach((_, index) => {
     const progress = `${index * progressUnit}%`;
 
     keyframes[progress] = {
-      background: `repeating-conic-gradient( 
-        from ${startDeg + index * degUnit}deg, 
-        ${color1} 0deg 15deg, 
+      background: `repeating-conic-gradient(
+        from ${startDeg + index * degUnit}deg,
+        ${color1} 0deg 15deg,
         ${color2} 15deg 30deg
       )`,
     };
   });
 
   keyframes['100%'] = {
-    background: `repeating-conic-gradient( 
-      from ${startDeg + steps * degUnit}deg, 
-      ${color1} 0deg 15deg, 
+    background: `repeating-conic-gradient(
+      from ${startDeg + steps * degUnit}deg,
+      ${color1} 0deg 15deg,
       ${color2} 15deg 30deg
     )`,
   };
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     paddingBottom: '100%',
-    animation: '$spin 1.5s infinite',
+    animation: '$spin 0.75s infinite',
     animationTimingFunction: 'linear',
   },
   bottom: {
