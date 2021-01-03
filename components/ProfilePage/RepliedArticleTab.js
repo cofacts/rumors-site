@@ -230,9 +230,11 @@ function RepliedArticleTab({ userId }) {
         <CategoryFilter />
       </Filters>
       {loading && !articleEdges.length ? (
-        t`Loading...`
+        <CardContent>{t`Loading...`}</CardContent>
       ) : listArticlesError ? (
-        listArticlesError.toString()
+        <CardContent>{listArticlesError.toString()}</CardContent>
+      ) : articleEdges.length === 0 ? (
+        <CardContent>{t`No replied messages.`}</CardContent>
       ) : (
         <>
           {articleEdges.map(({ node: article }) => (
