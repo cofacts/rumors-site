@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { t, jt, ngettext, msgid } from 'ttag';
+import { t, ngettext, msgid } from 'ttag';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -19,12 +19,11 @@ import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import ExpandableText from 'components/ExpandableText';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
-import ProfileLink from 'components/ProfileLink';
+import ArticleReplySummary from 'components/ArticleReplySummary';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReplyInfo from 'components/ReplyInfo';
 
 import { nl2br, linkify } from 'lib/text';
-import { TYPE_NAME } from 'constants/replyType';
 
 const REPLIES_ORDER = [
   { value: 'lastRepliedAt', label: t`Most recently replied` },
@@ -48,19 +47,17 @@ const LOAD_REPLIED_ARTICLES = gql`
           text
           articleReplies(status: NORMAL) {
             replyId
-            replyType
             createdAt
             user {
               id
-              name
               ...AvatarData
-              ...ProfileLinkUserData
             }
             reply {
               id
               text
               ...ReplyInfo
             }
+            ...ArticleReplySummaryData
             ...ArticleReplyFeedbackControlData
           }
         }
@@ -72,7 +69,7 @@ const LOAD_REPLIED_ARTICLES = gql`
   ${LoadMore.fragments.LoadMoreEdge}
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
-  ${ProfileLink.fragments.ProfileLinkUserData}
+  ${ArticleReplySummary.fragments.ArticleReplySummaryData}
 `;
 
 const LOAD_REPLIED_ARTICLES_STAT = gql`
@@ -103,22 +100,14 @@ const useStyles = makeStyles(theme => ({
 function ArticleReply({ articleReply }) {
   const classes = useStyles();
 
-  const { replyType, user, reply, createdAt } = articleReply;
-
-  const authorElem = (
-    <ProfileLink key="editor" user={user}>
-      <span>{user?.name || t`Someone`}</span>
-    </ProfileLink>
-  );
+  const { user, reply, createdAt } = articleReply;
 
   return (
     <>
       <Box component="header" display="flex" alignItems="center">
         {user && <Avatar user={user} className={classes.avatar} hasLink />}
         <Box flexGrow={1}>
-          <div className={classes.replyType}>
-            {jt`${authorElem} mark this message ${TYPE_NAME[replyType]}`}
-          </div>
+          <ArticleReplySummary articleReply={articleReply} />
           <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
         </Box>
       </Box>
