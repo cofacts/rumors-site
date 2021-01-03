@@ -22,6 +22,19 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(2),
     },
   },
+  tabs: {
+    margin: '0 var(--card-px)',
+    paddingTop: theme.spacing(1),
+    position: 'relative', // for ::after
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+    },
+  },
 }));
 
 const LOAD_USER = gql`
@@ -123,7 +136,10 @@ function ProfilePage({ id, slug }) {
         />
         <Card>
           <Tabs
+            classes={{ root: classes.tabs }}
             value={tab}
+            indicatorColor="primary"
+            textColor="primary"
             onChange={(e, tab) => {
               router.push({ query: { tab } });
             }}
