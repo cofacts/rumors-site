@@ -1017,10 +1017,6 @@ msgstr "聯繫"
 msgid "The content above"
 msgstr "以上內容"
 
-#: lib/terms.js:41
-msgid "Cofacts crowd-sourced fact-checking community"
-msgstr "Cofacts 群眾查核社群"
-
 #: lib/terms.js:42
 msgid "CC BY-SA 4.0"
 msgstr "創用 CC 姓名標示-相同方式分享 4.0"
@@ -1053,9 +1049,13 @@ msgstr ""
 "登入本站即表示您同意${ termsLink }，以${ authorLink }之名義，將您在本站的貢獻以${ licenseLink "
 "}釋出為${workLink}。"
 
+#: lib/terms.js:41
+msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "「Cofacts 真的假的」訊息回報機器人與查證協作社群"
+
 #: pages/index.js:43
-msgid "Crowd-sourced instant message fact-checking community"
-msgstr "訊息回報與查證協作社群"
+msgid "Message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "訊息回報機器人與查證協作社群"
 
 #: pages/index.js:42
 msgctxt "site title"
