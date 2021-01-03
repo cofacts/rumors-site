@@ -7,6 +7,11 @@ import Tooltip from './Tooltip';
 export default function ProfileLink({
   user,
   children,
+
+  /**
+   * When hasTooltip is true, children must be wrapped with something that can accept ref
+   * (such as a <span>) for Material-UI tooltip to attach.
+   */
   hasTooltip = false,
   ...otherProps
 }) {

@@ -284,7 +284,7 @@ function ReplyPage() {
             {otherArticleReplies.map(ar => {
               const editorElem = (
                 <ProfileLink key="editor" user={ar.user} hasTooltip>
-                  {ar?.user?.name || t`someone`}
+                  <span>{ar?.user?.name || t`someone`}</span>
                 </ProfileLink>
               );
 
