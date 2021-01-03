@@ -94,8 +94,12 @@ const useStyles = makeStyles(theme => ({
     margin: '0 var(--card-px)',
     background: theme.palette.secondary[50],
   },
+  articleReply: {
+    '& + &': { marginTop: 24 },
+  },
   bustHoaxDivider: {
     border: 0,
+    margin: '16px 0',
     borderBottom: `1px dashed ${theme.palette.secondary[100]}`,
   },
   infos: {
@@ -104,6 +108,8 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 12,
     },
   },
+  reply: { marginLeft: 56 },
+  replyControl: { marginTop: 16 },
 }));
 
 function ArticleReply({ articleReply }) {
@@ -112,22 +118,32 @@ function ArticleReply({ articleReply }) {
   const { user, reply, createdAt } = articleReply;
 
   return (
-    <>
-      <Box component="header" display="flex" alignItems="center">
-        {user && <Avatar user={user} className={classes.avatar} hasLink />}
+    <article className={classes.articleReply}>
+      <Box
+        component="header"
+        display="flex"
+        alignItems="center"
+        mb={1}
+        style={{ gap: '16px' }}
+      >
+        {user && (
+          <Avatar size={40} user={user} className={classes.avatar} hasLink />
+        )}
         <Box flexGrow={1}>
           <ArticleReplySummary articleReply={articleReply} />
           <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
         </Box>
       </Box>
-      <section className={classes.content}>
-        <ExpandableText lineClamp={10}>
+      <section className={classes.reply}>
+        <ExpandableText lineClamp={4}>
           {nl2br(linkify(reply.text))}
         </ExpandableText>
+        <ArticleReplyFeedbackControl
+          className={classes.replyControl}
+          articleReply={articleReply}
+        />
       </section>
-
-      <ArticleReplyFeedbackControl articleReply={articleReply} />
-    </>
+    </article>
   );
 }
 
@@ -233,7 +249,7 @@ function RepliedArticleTab({ userId }) {
                   {timeAgo => t`First reported ${timeAgo} ago`}
                 </TimeInfo>
               </Infos>
-              <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
+              <ExpandableText lineClamp={3}>{article.text}</ExpandableText>
 
               <hr className={classes.bustHoaxDivider} />
 
