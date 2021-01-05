@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
-import { c } from 'ttag';
 
 import logo from 'components/Tutorial/images/logo.svg';
 
