@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { useLazyQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -38,10 +38,11 @@ const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
 
-function Home() {
-  const title = `${t`Cofacts`} - ${t`Connecting facts and instant messages`}`;
-  const description = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It's a grass-root effort fighting mis/disinformation in Taiwan.`;
+const TITLE = `${c('site title')
+  .t`Cofacts`} - ${t`Message reporting chatbot and crowd-sourced fact-checking community`}`;
+const DESCRIPTION = t`Cofacts is a collaborative system connecting instant messages and fact-check reports or different opinions together. It's a grass-root effort fighting mis/disinformation in Taiwan.`;
 
+function Home() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
 
@@ -53,40 +54,17 @@ function Home() {
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:locale" content={process.env.LOCALE} />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content={PUBLIC_URL} />
         <meta property="og:image" content={`${PUBLIC_URL}${ogImage}`} />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1920" />
-        <meta property="og:image:height" content="1271" />
-        <meta property="article:author" content="MrOrz" />
-        <meta property="article:section" content="Taiwan" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css"
-        />
-        <link
-          href="//fonts.googleapis.com/css?family=Lato:400,700"
-          rel="stylesheet"
-          type="text/css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap&subset=chinese-traditional"
-          rel="stylesheet"
-          type="text/css"
-        />
+        <meta property="og:image:width" content="702" />
+        <meta property="og:image:height" content="484" />
       </Head>
       <Header user={data?.GetUser} onLoginModalOpen={openLoginModal} />
       <SectionIndex />

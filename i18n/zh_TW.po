@@ -12,7 +12,6 @@ msgid "About"
 msgstr "關於"
 
 #: pages/article/[id].js:306
-#: pages/index.js:42
 #: pages/reply/[id].js:247
 msgid "Cofacts"
 msgstr "Cofacts"
@@ -321,11 +320,7 @@ msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
 
-#: pages/index.js:42
-msgid "Connecting facts and instant messages"
-msgstr "Connecting facts and instant messages"
-
-#: pages/index.js:43
+#: pages/index.js:44
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It's a grass-root effort "
@@ -1022,10 +1017,6 @@ msgstr "聯繫"
 msgid "The content above"
 msgstr "以上內容"
 
-#: lib/terms.js:41
-msgid "Cofacts crowd-sourced fact-checking community"
-msgstr "Cofacts 群眾查核社群"
-
 #: lib/terms.js:42
 msgid "CC BY-SA 4.0"
 msgstr "創用 CC 姓名標示-相同方式分享 4.0"
@@ -1057,6 +1048,19 @@ msgid ""
 msgstr ""
 "登入本站即表示您同意${ termsLink }，以${ authorLink }之名義，將您在本站的貢獻以${ licenseLink "
 "}釋出為${workLink}。"
+
+#: lib/terms.js:41
+msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "「Cofacts 真的假的」訊息回報機器人與查證協作社群"
+
+#: pages/index.js:43
+msgid "Message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "訊息回報機器人與查證協作社群"
+
+#: pages/index.js:42
+msgctxt "site title"
+msgid "Cofacts"
+msgstr "Cofacts 真的假的"
 
 #: components/LineChart.js:221
 #, javascript-format

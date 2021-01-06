@@ -145,7 +145,7 @@ const SectionArticles = () => {
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
     variables: listQueryVars,
-    notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
+    ssr: false, // Fetch on browser is OK
   });
 
   // List data

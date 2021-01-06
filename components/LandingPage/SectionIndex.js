@@ -1,24 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
-import cx from 'clsx';
 
 import { NAVBAR_HEIGHT } from 'constants/size';
 
 import backImage from './images/index-back.png';
-import frontImage from './images/index-front.png';
-import frontImageEn from './images/index-front-en.png';
+import landingZh from './images/landing-zh.png';
+import landingEn from './images/landing-en.png';
+import landingAnimated from './images/landing-animated.png';
 
-const COVER_ORIGINAL_WIDTH = 7812;
-const COVER_ORIGINAL_HEIGHT = 1261;
+const landingImage = process.env.LOCALE === 'en_US' ? landingEn : landingZh;
 
 const useStyles = makeStyles(theme => ({
   '@keyframes flashing': {
-    from: {
-      transform: 'translateX(0)',
+    '33%': {
+      backgroundPosition: 'center top',
     },
-    to: {
-      transform: `translateX(-${COVER_ORIGINAL_WIDTH}px)`,
+    '66%': {
+      backgroundPosition: 'center center',
+    },
+    '100%': {
+      backgroundPosition: 'center bottom',
     },
   },
   sectionIndex: {
@@ -29,11 +31,25 @@ const useStyles = makeStyles(theme => ({
   },
   imageWrapper: {
     width: '100%',
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    minHeight: '45vw',
+    height: '80vw',
+    background: `url(${landingImage}) center center no-repeat`,
+    backgroundSize: 'auto 100%',
+    position: 'relative', // for ::before
 
-    [theme.breakpoints.down('sm')]: {
-      height: `calc(80vw)`,
+    [theme.breakpoints.up('md')]: {
+      height: `calc(80vh - ${NAVBAR_HEIGHT}px)`,
+    },
+
+    '&::before': {
+      position: 'absolute',
+      content: '""',
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      background: `url(${landingAnimated}) center top no-repeat`,
+      backgroundSize: 'auto 300%',
+      animation: '$flashing 1.5s step-start infinite',
     },
   },
   back: {
@@ -49,17 +65,6 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'repeat-x',
     zIndex: -1,
   },
-  scaleWrapper: {
-    width: COVER_ORIGINAL_WIDTH,
-    height: COVER_ORIGINAL_HEIGHT,
-    transformOrigin: 'left top',
-    flexShrink: 0,
-
-    '& > img': {
-      width: '100%',
-      animation: '$flashing 1.5s steps(3) infinite',
-    },
-  },
 }));
 
 const SectionIndex = () => {
@@ -70,8 +75,6 @@ const SectionIndex = () => {
     offset: 0,
     config: { mass: 1, tension: 300, friction: 26 },
   }));
-
-  const [coverHeight, setCoverHeight] = useState(0);
 
   const handleScroll = () => {
     if (ref.current && window.pageYOffset <= window.innerHeight) {
@@ -84,13 +87,6 @@ const SectionIndex = () => {
     }
   };
 
-  const handleResize = () => {
-    if (ref.current) {
-      const { height } = ref.current.getBoundingClientRect();
-      setCoverHeight(height);
-    }
-  };
-
   useEffect(() => {
     handleScroll();
     window.addEventListener('scroll', handleScroll);
@@ -100,50 +96,17 @@ const SectionIndex = () => {
     };
   });
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <section className={classes.sectionIndex}>
-      <div className={classes.imageWrapper} ref={ref}>
-        <animated.div
-          className={classes.back}
-          style={{
-            backgroundPositionX: offset.interpolate(
-              value => `calc(50% - ${value * 0.05 * -1}px)`
-            ),
-          }}
-        />
-        <div
-          className={cx(classes.front, classes.translateWrapper)}
-          style={{
-            transform: `translateX(calc(
-            (
-              ${coverHeight *
-                (COVER_ORIGINAL_WIDTH / 3 / COVER_ORIGINAL_HEIGHT)}px
-                  - 100vw) / 2 * -1
-          ))`,
-          }}
-        >
-          <div
-            className={classes.scaleWrapper}
-            style={{
-              transform: `scale(${coverHeight / COVER_ORIGINAL_HEIGHT})`,
-            }}
-          >
-            <img
-              className={classes.image}
-              src={process.env.LOCALE === 'en_US' ? frontImageEn : frontImage}
-            />
-          </div>
-        </div>
-      </div>
+      <div className={classes.imageWrapper} ref={ref} />
+      <animated.div
+        className={classes.back}
+        style={{
+          backgroundPositionX: offset.interpolate(
+            value => `calc(50% - ${value * 0.05 * -1}px)`
+          ),
+        }}
+      />
     </section>
   );
 };

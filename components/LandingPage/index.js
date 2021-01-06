@@ -1,5 +1,4 @@
 export { default as Header } from './Header';
-export { default as Jumbotron } from './Jumbotron';
 export { default as SectionIndex } from './SectionIndex';
 export { default as SectionCanDo } from './SectionCanDo';
 export { default as SectionArticles } from './SectionArticles';
