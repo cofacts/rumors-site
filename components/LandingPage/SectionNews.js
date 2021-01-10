@@ -175,6 +175,14 @@ const useStyles = makeStyles(theme => ({
   newsWrapper: {
     maxWidth: 1000,
     paddingLeft: 20,
+    '& a': {
+      color: theme.palette.common.blue1,
+      textDecoration: 'none',
+
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
   },
   news: {
     fontSize: 20,

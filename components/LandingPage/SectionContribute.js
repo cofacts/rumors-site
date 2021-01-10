@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { c, t } from 'ttag';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 
 import { TUTORIAL, EDITOR_ENTRANCE, DEVELOPER_HOMEPAGE } from 'constants/urls';
@@ -82,6 +81,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 65,
       padding: '16px 10px',
       textAlign: 'center',
+      textDecoration: 'none',
 
       [theme.breakpoints.down('sm')]: {
         width: 285,
@@ -89,19 +89,12 @@ const useStyles = makeStyles(theme => ({
         fontSize: process.env.LOCALE === 'en_US' ? 16 : 18,
         margin: '5px 0',
       },
-
-      '&:hover': {
-        textDecoration: 'none',
-      },
     },
   },
 }));
 
 const SectionContribute = ({ className }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
   const ref = useRef();
   const [{ offset }, setOffset] = useSpring(() => ({
     offset: 0,
