@@ -63,6 +63,13 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       padding: `0 15px 0 13px`,
     },
+
+    '& a:link': {
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+    },
   },
   navItemWrapper: {
     display: 'flex',
@@ -162,7 +169,7 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
   const handleScroll = () => {
     const standard = isSmallScreen
       ? window.innerWidth * 0.8 + 60
-      : window.innerHeight;
+      : window.innerHeight * 0.8 - 60;
 
     if (window.pageYOffset > standard) {
       setNavSpringProps({
