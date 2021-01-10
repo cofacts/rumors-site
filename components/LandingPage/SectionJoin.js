@@ -218,15 +218,17 @@ const SectionJoin = ({ className }) => {
       </animated.div>
       <div className={classes.container}>
         <h3>
-          {c('landing page').t`Wanna be one of the Warriors of Disinformation?`}
+          {c('landing page')
+            .t`Do you want to join us in fighting disinformation?`}
         </h3>
-        <h4>{c('landing page').t`Cofacts Need You!
-          Be a hero simply by checking the facts`}</h4>
+        <h4>{c('landing page').t`Join us today.
+          The world needs YOUR help! `}</h4>
         <p>
-          {c('landing page').t`If you think the replies could be improved, 
-            what you want to know hasn't been fact checked yet, 
-            or have a sense of justice and curiosity, 
-            YOU might be the right person to become a Warrior of Disinformation!`}
+          {c('landing page')
+            .t`It doesn't matter whether you've been unhappy with how previous fact checks were written,
+              found a hoax that hasn't been busted,
+              or are just full of a sense of justice and a desire for truth,
+              YOU could be the next misinformation-busting warrior!`}
         </p>
         <a
           className={classes.button}

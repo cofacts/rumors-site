@@ -108,7 +108,7 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: 0.25,
       color: theme.palette.secondary[500],
       textAlign: 'center',
-      marginBottom: 26,
+      margin: '0 0 26px',
 
       [theme.breakpoints.down('sm')]: {
         fontWeight: 400,
@@ -167,44 +167,43 @@ const SectionHow = () => {
   return (
     <section className={classes.sectionHow}>
       <div className={classes.container}>
-        <h3 className={cx(classes.block, 'title', 'rwd-order-2')}>
-          {c('landing page').t`Message is fact-checked in Cofacts`}
-        </h3>
+        <h2 className={cx(classes.block, 'title', 'rwd-order-2')}>
+          {c('landing page').t`How do we determine truth?`}
+        </h2>
         <div className={cx(classes.block, classes.image, 'rwd-order-1')}>
           <img className={classes.flash} src={image1Flash} />
           <img src={image1} />
         </div>
         <div className={cx(classes.block, 'text', 'rwd-order-2')}>
           {/* TODO: translate */}
-          <div className="smTitle">
+          <h3 className="smTitle">
             {c('landing page').t`Crowdsourced and Diverse`}
-          </div>
+          </h3>
           <div className={classes.content}>
             {c('landing page')
               .t`The fact checking replies are written from other contributors,
-                 Cofacts helps you see the diversity and  of the fact checking process.`}
+                 Cofacts helps you see the diversity of the fact checking process.`}
           </div>
-          <div className="smTitle">
+          <h3 className="smTitle">
             {c('landing page').t`Everybody can fact-check the fact checkers`}
-          </div>
+          </h3>
           <div className={classes.content}>
-            {c('landing page').t`We believe There is no omniscient judge,
-              we feel only civic collaboraing contributions works to see the truth.
-              You can review other's point of view and share your ideas on Cofacts platform.`}
+            {c('landing page').t`We believe there is no omniscient judge.
+            We feel that only through individuals working together can we determine truth.
+            You can review the others' viewpoints and share your perspective on the Cofacts platform.`}
           </div>
         </div>
         <div className={cx(classes.block, 'text', 'rwd-order-3')}>
-          <div className="title">
-            {c('landing page').t`Here, you can Help and get help together`}
-          </div>
+          <h2 className="title">
+            {c('landing page').t`A Community of Mutual Support`}
+          </h2>
           <div className={classes.content}>
             {c('landing page')
-              .t`Cofacts encourage everyone  to become a "fact checking chatbot" for the general public`}
+              .t`Cofacts is building a community where everyone plays a part in fact-checking.`}
             <br />
             <br />
             {c('landing page')
-              .t`By actively fact-checking the suspicious messages, 
-              you can add your discovery to the database, help people, and change the world.`}
+              .t`You can make a difference in others' lives through your contributions to the fact-checking repository.`}
           </div>
         </div>
         <div className={cx(classes.block, classes.image, 'rwd-order-2')}>

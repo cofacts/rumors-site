@@ -12,12 +12,7 @@ import bg from './images/contribute-bg.png';
 const useStyles = makeStyles(theme => ({
   top: {
     background: theme.palette.common.red1,
-    paddingTop: 60,
     overflow: 'hidden',
-
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: 30,
-    },
 
     '& > h3': {
       fontWeight: 'bold',
@@ -37,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 
     '& > img': {
       width: '100%',
+      verticalAlign: 'bottom', // Eliminate bottom gap between the image and section border
     },
   },
   bottom: {
@@ -135,14 +131,8 @@ const SectionContribute = ({ className }) => {
   return (
     <section className={cx(className, classes.sectionContribute)}>
       <div className={classes.top} ref={ref}>
-        <h3>
-          {isSmallScreen
-            ? c('landing page').t`Come join us 
-                                  and become
-                                  a fake news terminator`
-            : c('landing page').t`Come join us
-                                  and become a fake news terminator`}
-        </h3>
+        <h3>{c('landing page').t`We need your help!
+        Join us today!`}</h3>
         <animated.img
           src={bg}
           style={{

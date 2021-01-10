@@ -218,7 +218,7 @@ const SectionCanDo = ({ className }) => {
       <div className={classes.cardContainer}>
         <div className={cx(classes.card, classes.searchCard)}>
           <div className={cx(classes.text, classes.searchTitle)}>
-            {c('landing page').t`Paste suspicious text message below`}
+            {c('landing page').t`Paste a suspicious text message below`}
           </div>
           <InputBox
             className={classes.inputBox}
@@ -242,10 +242,9 @@ const SectionCanDo = ({ className }) => {
             </div>
           </div>
           <div className={cx(classes.smText, classes.lineContent)}>
-            {t`Search by ID “@cofacts” or scan our QR Code to follow our Cofacts
-              LINE@ account, forward any possible hoax, scam, rumor, or urban
-              legend sources to it, then our chatbot will help you check the
-              credibility of the source!`}
+            {t`Search by ID “@cofacts” or scan the QR Code above to follow Cofacts
+              LINE account. Forward suspicious text to it, the chatbot will help you
+              check the credibility of the text!`}
           </div>
           <a
             className={cx(classes.button, classes.text)}

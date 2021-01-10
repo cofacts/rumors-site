@@ -153,7 +153,7 @@ const SectionArticles = () => {
 
   return (
     <section className={classes.root}>
-      <h3>{c('landing page').t`Messages reported in Cofacts`}</h3>
+      <h3>{c('landing page').t`Everyone wants to know...`}</h3>
       <div className={classes.articleContainer}>
         <img className={classes.leftImage} src={leftImage} />
         <img className={classes.rightImage} src={rightImage} />
