@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { c } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import { animated, useSpring } from 'react-spring';
 
+import { withDarkTheme } from 'lib/theme';
 import leftImage from './images/join-left.png';
 import rightImage from './images/join-right.png';
 
@@ -144,29 +146,14 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: 'inline-flex',
-    fontWeight: 500,
-    fontSize: 34,
-    lineHeight: '49px',
-    letterSpacing: 0.25,
-    padding:
-      process.env.LOCALE === 'en_US' ? '10px 40px' : '10px 30px 10px 40px',
+    paddingLeft: 40,
+    paddingRight: 40,
     border: '3px solid white',
     borderRadius: 40,
-    cursor: 'pointer',
-    color: 'white',
-    textDecoration: 'none',
+    fontSize: 18,
 
-    '&:hover': {
-      color: 'white',
-      textDecoration: 'none',
-    },
-
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 18,
-      lineHeight: '26px',
-      letterSpacing: 0.15,
-      fontWeight: 'normal',
-      padding: '1px 35px 1px 45px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: 34,
     },
   },
 }));
@@ -230,14 +217,15 @@ const SectionJoin = ({ className }) => {
               or are just full of a sense of justice and a desire for truth,
               YOU could be the next misinformation-busting warrior!`}
         </p>
-        <a
+        <Button
           className={classes.button}
+          variant="outlined"
           href={buttonLink}
           target="_blank"
           rel="noopener noreferrer"
         >
           {c('landing page').t`Count me in!`}
-        </a>
+        </Button>
       </div>
       <animated.div
         className={classes.image}
@@ -252,4 +240,4 @@ const SectionJoin = ({ className }) => {
   );
 };
 
-export default SectionJoin;
+export default withDarkTheme(SectionJoin);
