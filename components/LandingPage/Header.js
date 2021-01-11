@@ -94,9 +94,9 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
   },
   menuIcon: {
     display: 'flex',
+    alignSelf: 'stretch',
+    paddingLeft: 44, // Enlarge clickable area
     alignItems: 'center',
-    width: 14,
-    height: 14,
 
     '& > img': {
       transform: 'rotate(180deg)',
@@ -239,14 +239,15 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
               }}
             />
           ) : (
-            <div
+            <a
+              href="javascript:;"
               className={classes.item}
               onClick={() => {
                 onLoginModalOpen();
               }}
             >
               {t`Login`}
-            </div>
+            </a>
           )}
         </div>
       ) : (
@@ -288,14 +289,15 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
                   }}
                 />
               ) : (
-                <span
+                <a
+                  href="javascript:;"
                   className={classes.mobileTab}
                   onClick={() => {
                     onLoginModalOpen();
                   }}
                 >
                   {t`Login`}
-                </span>
+                </a>
               )}
             </div>
           </animated.div>
