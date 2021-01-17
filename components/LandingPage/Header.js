@@ -63,6 +63,13 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       padding: `0 15px 0 13px`,
     },
+
+    '& a:link': {
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+    },
   },
   navItemWrapper: {
     display: 'flex',
@@ -87,9 +94,9 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
   },
   menuIcon: {
     display: 'flex',
+    alignSelf: 'stretch',
+    paddingLeft: 44, // Enlarge clickable area
     alignItems: 'center',
-    width: 14,
-    height: 14,
 
     '& > img': {
       transform: 'rotate(180deg)',
@@ -162,7 +169,7 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
   const handleScroll = () => {
     const standard = isSmallScreen
       ? window.innerWidth * 0.8 + 60
-      : window.innerHeight;
+      : window.innerHeight * 0.8 - 60;
 
     if (window.pageYOffset > standard) {
       setNavSpringProps({
@@ -232,14 +239,15 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
               }}
             />
           ) : (
-            <div
+            <a
+              href="javascript:;"
               className={classes.item}
               onClick={() => {
                 onLoginModalOpen();
               }}
             >
               {t`Login`}
-            </div>
+            </a>
           )}
         </div>
       ) : (
@@ -281,14 +289,15 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
                   }}
                 />
               ) : (
-                <span
+                <a
+                  href="javascript:;"
                   className={classes.mobileTab}
                   onClick={() => {
                     onLoginModalOpen();
                   }}
                 >
                   {t`Login`}
-                </span>
+                </a>
               )}
             </div>
           </animated.div>

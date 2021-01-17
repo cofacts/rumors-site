@@ -3,7 +3,8 @@ import cx from 'clsx';
 import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
-
+import { withDarkTheme } from 'lib/theme';
+import Button from '@material-ui/core/Button';
 import InputBox from 'components/LandingPage/InputBox';
 
 import lineQrcode from './images/line-qrcode.png';
@@ -116,14 +117,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   button: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: 230,
-    padding: '8px 0',
-    lineHeight: 1,
-    cursor: 'pointer',
-    border: '3px solid white',
+    border: '3px solid #fff',
     borderRadius: 50,
     marginTop: 'auto',
 
@@ -218,7 +213,7 @@ const SectionCanDo = ({ className }) => {
       <div className={classes.cardContainer}>
         <div className={cx(classes.card, classes.searchCard)}>
           <div className={cx(classes.text, classes.searchTitle)}>
-            {c('landing page').t`Paste suspicious text message below`}
+            {c('landing page').t`Paste a suspicious text message below`}
           </div>
           <InputBox
             className={classes.inputBox}
@@ -226,9 +221,13 @@ const SectionCanDo = ({ className }) => {
             tags={LANG === 'zh-TW' ? SEARCH_KEYWORDS_ZH : SEARCH_KEYWORDS_EN}
             onChange={setSearchKeyword}
           />
-          <div className={cx(classes.button, classes.text)} onClick={onSearch}>
+          <Button
+            variant="outlined"
+            className={cx(classes.button, classes.text)}
+            onClick={onSearch}
+          >
             {c('landing page').t`Search`}
-          </div>
+          </Button>
         </div>
         <div className={cx(classes.text, classes.or)}>
           {c('landing page').t`or`}
@@ -242,23 +241,22 @@ const SectionCanDo = ({ className }) => {
             </div>
           </div>
           <div className={cx(classes.smText, classes.lineContent)}>
-            {t`Search by ID “@cofacts” or scan our QR Code to follow our Cofacts
-              LINE@ account, forward any possible hoax, scam, rumor, or urban
-              legend sources to it, then our chatbot will help you check the
-              credibility of the source!`}
+            {t`Search by ID “@cofacts” or scan the QR Code above to follow Cofacts
+              LINE account. Forward suspicious text to it, the chatbot will help you
+              check the credibility of the text!`}
           </div>
-          <a
+          <Button
             className={cx(classes.button, classes.text)}
             href="https://g0v.hackmd.io/s/rkVVQDmqQ"
             target="_blank"
             rel="noopener noreferrer"
           >
             {t`Tutorial`}
-          </a>
+          </Button>
         </div>
       </div>
     </section>
   );
 };
 
-export default SectionCanDo;
+export default withDarkTheme(SectionCanDo);

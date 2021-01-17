@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { c } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import { animated, useSpring } from 'react-spring';
 
+import { withDarkTheme } from 'lib/theme';
 import leftImage from './images/join-left.png';
 import rightImage from './images/join-right.png';
 
@@ -144,29 +146,14 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: 'inline-flex',
-    fontWeight: 500,
-    fontSize: 34,
-    lineHeight: '49px',
-    letterSpacing: 0.25,
-    padding:
-      process.env.LOCALE === 'en_US' ? '10px 40px' : '10px 30px 10px 40px',
+    paddingLeft: 40,
+    paddingRight: 40,
     border: '3px solid white',
     borderRadius: 40,
-    cursor: 'pointer',
-    color: 'white',
-    textDecoration: 'none',
+    fontSize: 18,
 
-    '&:hover': {
-      color: 'white',
-      textDecoration: 'none',
-    },
-
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 18,
-      lineHeight: '26px',
-      letterSpacing: 0.15,
-      fontWeight: 'normal',
-      padding: '1px 35px 1px 45px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: 34,
     },
   },
 }));
@@ -218,24 +205,27 @@ const SectionJoin = ({ className }) => {
       </animated.div>
       <div className={classes.container}>
         <h3>
-          {c('landing page').t`Wanna be one of the Warriors of Disinformation?`}
+          {c('landing page')
+            .t`Do you want to join us in fighting disinformation?`}
         </h3>
-        <h4>{c('landing page').t`Cofacts Need You!
-          Be a hero simply by checking the facts`}</h4>
+        <h4>{c('landing page').t`Join us today.
+          The world needs YOUR help! `}</h4>
         <p>
-          {c('landing page').t`If you think the replies could be improved, 
-            what you want to know hasn't been fact checked yet, 
-            or have a sense of justice and curiosity, 
-            YOU might be the right person to become a Warrior of Disinformation!`}
+          {c('landing page')
+            .t`It doesn't matter whether you've been unhappy with how previous fact checks were written,
+              found a hoax that hasn't been busted,
+              or are just full of a sense of justice and a desire for truth,
+              YOU could be the next misinformation-busting warrior!`}
         </p>
-        <a
+        <Button
           className={classes.button}
+          variant="outlined"
           href={buttonLink}
           target="_blank"
           rel="noopener noreferrer"
         >
           {c('landing page').t`Count me in!`}
-        </a>
+        </Button>
       </div>
       <animated.div
         className={classes.image}
@@ -250,4 +240,4 @@ const SectionJoin = ({ className }) => {
   );
 };
 
-export default SectionJoin;
+export default withDarkTheme(SectionJoin);

@@ -1,23 +1,19 @@
 import { useEffect, useRef } from 'react';
 import cx from 'clsx';
 import { c, t } from 'ttag';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import { animated, useSpring } from 'react-spring';
 
 import { TUTORIAL, EDITOR_ENTRANCE, DEVELOPER_HOMEPAGE } from 'constants/urls';
+import { withDarkTheme } from 'lib/theme';
 
 import bg from './images/contribute-bg.png';
 
 const useStyles = makeStyles(theme => ({
   top: {
     background: theme.palette.common.red1,
-    paddingTop: 60,
     overflow: 'hidden',
-
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: 30,
-    },
 
     '& > h3': {
       fontWeight: 'bold',
@@ -37,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 
     '& > img': {
       width: '100%',
+      verticalAlign: 'bottom', // Eliminate bottom gap between the image and section border
     },
   },
   bottom: {
@@ -65,37 +62,25 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    gap: '10px',
+    maxWidth: 280,
+    margin: '0 auto',
 
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
       alignItems: 'center',
+      justifyContent: 'center',
+      gap: '20px',
+      maxWidth: 'unset',
     },
 
-    '& > a': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: process.env.LOCALE === 'en_US' ? 380 : 315,
-      margin: '0 12px',
-      fontSize: process.env.LOCALE === 'en_US' ? 22 : 34,
-      lineHeight: 1.45,
-      letterSpacing: 0.25,
-      color: 'white',
-      background: theme.palette.primary[500],
+    '& > *': {
       borderRadius: 65,
-      padding: '16px 10px',
       textAlign: 'center',
-
-      [theme.breakpoints.down('sm')]: {
-        width: 285,
-        height: 35,
-        fontSize: process.env.LOCALE === 'en_US' ? 16 : 18,
-        margin: '5px 0',
-      },
-
-      '&:hover': {
-        textDecoration: 'none',
+      color: '#fff',
+      [theme.breakpoints.up('md')]: {
+        fontSize: 24,
       },
     },
   },
@@ -103,9 +88,6 @@ const useStyles = makeStyles(theme => ({
 
 const SectionContribute = ({ className }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
   const ref = useRef();
   const [{ offset }, setOffset] = useSpring(() => ({
     offset: 0,
@@ -135,14 +117,8 @@ const SectionContribute = ({ className }) => {
   return (
     <section className={cx(className, classes.sectionContribute)}>
       <div className={classes.top} ref={ref}>
-        <h3>
-          {isSmallScreen
-            ? c('landing page').t`Come join us 
-                                  and become
-                                  a fake news terminator`
-            : c('landing page').t`Come join us
-                                  and become a fake news terminator`}
-        </h3>
+        <h3>{c('landing page').t`We need your help!
+        Join us today!`}</h3>
         <animated.img
           src={bg}
           style={{
@@ -159,23 +135,37 @@ const SectionContribute = ({ className }) => {
                is the way to transcend this program into something great.`}
         </div>
         <div className={classes.actions}>
-          <a href={TUTORIAL} target="_blank" rel="noopener noreferrer">
+          <Button
+            color="primary"
+            variant="contained"
+            href={TUTORIAL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {t`I want to learn how to use Cofacts`}
-          </a>
-          <a href={EDITOR_ENTRANCE} target="_blank" rel="noopener noreferrer">
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            href={EDITOR_ENTRANCE}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {t`I can help bust hoaxes`}
-          </a>
-          <a
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
             href={DEVELOPER_HOMEPAGE}
             target="_blank"
             rel="noopener noreferrer"
           >
             {t`I can help with coding`}
-          </a>
+          </Button>
         </div>
       </div>
     </section>
   );
 };
 
-export default SectionContribute;
+export default withDarkTheme(SectionContribute);

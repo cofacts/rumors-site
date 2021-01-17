@@ -180,10 +180,10 @@ function Stats() {
     <section className={classes.sectionStats}>
       <div className={classes.top}>
         <div className={classes.title}>
-          <h3> {c('landing page').t`Fact checker daily`}</h3>
+          <h3> {c('landing page').t`Fact Checker Daily Statistics`}</h3>
           <h4>
             {c('landing page')
-              .t`the longest hundred miles of combating disinformation`}
+              .t`Check out what we've been able to accomplish together.`}
           </h4>
         </div>
         <div className={classes.image} ref={ref}>

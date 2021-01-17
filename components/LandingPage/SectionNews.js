@@ -175,6 +175,14 @@ const useStyles = makeStyles(theme => ({
   newsWrapper: {
     maxWidth: 1000,
     paddingLeft: 20,
+    '& a': {
+      color: theme.palette.common.blue1,
+      textDecoration: 'none',
+
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
   },
   news: {
     fontSize: 20,
@@ -197,7 +205,7 @@ const SectionNews = () => {
   const classes = useStyles();
   return (
     <section className={classes.sectionNews}>
-      <h3>{c('landing page').t`Hey!!! That's YOU.`}</h3>
+      <h3>{c('landing page').t`Look mom, it's me!`}</h3>
       <ul className={classes.newsWrapper}>
         {NEWS.map(([press, newsTitle, link]) => (
           <li key={newsTitle} className={classes.news}>
