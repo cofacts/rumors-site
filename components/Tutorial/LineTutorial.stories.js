@@ -1,5 +1,5 @@
 import React from 'react';
-import LineTutorial from './LineTutorial';
+import { LineTutorialDesktop, LineTutorialMobile } from './LineTutorial';
 import { withKnobs } from '@storybook/addon-knobs';
 
 export default {
@@ -8,4 +8,10 @@ export default {
   decorators: [withKnobs],
 };
 
-export const normal = () => <LineTutorial />;
+export const desktop = () => <LineTutorialDesktop />;
+
+export const mobile = () => (
+  <div style={{ maxWidth: '500px' }}>
+    <LineTutorialMobile />
+  </div>
+);
