@@ -9,6 +9,7 @@ exports[`Storyshots Tutorial/LinePreview Normal 1`] = `
   }
 >
   <LinePreview
+    autoplay={false}
     images={
       Array [
         Object {},

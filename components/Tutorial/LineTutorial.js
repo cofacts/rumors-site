@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import cx from 'clsx';
+
+import Slider from 'components/Slider';
 
 import step1A from './images/line-step-1-1.png';
 import step2A from './images/line-step-2-1.png';
@@ -51,7 +55,7 @@ const data = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
+const useDesktopStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     justifyContent: 'space-evenly',
@@ -68,8 +72,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LineTutorial = () => {
-  const classes = useStyles();
+export const LineTutorialDesktop = () => {
+  const classes = useDesktopStyles();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onClickStep = index => {
@@ -81,6 +85,7 @@ const LineTutorial = () => {
       <LinePreview
         className={classes.linePreview}
         images={data[activeIndex].images}
+        autoplay
       />
       <Accordion
         className={classes.accordion}
@@ -90,6 +95,100 @@ const LineTutorial = () => {
       />
     </div>
   );
+};
+
+const useMobileStyles = makeStyles(theme => ({
+  root: {
+    scrollPadding: '12.5%',
+  },
+  slideWrapper: {
+    width: '75%',
+    scrollSnapAlign: 'center',
+
+    '&:first-child': {
+      marginLeft: '12.5%',
+    },
+
+    '&:last-child': {
+      paddingRight: '12.5%',
+      width: '87.7%',
+    },
+  },
+  slide: {
+    padding: '0 2.5%',
+  },
+  linePreview: {
+    pointerEvents: 'none',
+    margin: '0 4px 0 7px',
+  },
+  info: {
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  title: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    lineHeight: 1.43,
+    letterSpacing: 0.25,
+    color: 'white',
+    background: theme.palette.secondary[200],
+    padding: 13,
+  },
+  activeTitle: {
+    background: theme.palette.primary.main,
+  },
+  content: {
+    height: 86,
+    padding: 13,
+    background: 'white',
+
+    [theme.breakpoints.down('xs')]: {
+      height: 130,
+    },
+  },
+}));
+export const LineTutorialMobile = () => {
+  const classes = useMobileStyles();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const onSlideChange = value => {
+    setActiveIndex(value);
+  };
+
+  return (
+    <Slider
+      className={classes.root}
+      slideWrapperClassName={classes.slideWrapper}
+      onSlideChange={onSlideChange}
+    >
+      {data.map(({ id, title, content, images }, index) => (
+        <div key={id} className={classes.slide}>
+          <LinePreview
+            className={classes.linePreview}
+            autoplay={index === activeIndex}
+            images={images}
+          />
+          <div className={classes.info}>
+            <div
+              className={cx(classes.title, {
+                [classes.activeTitle]: index === activeIndex,
+              })}
+            >
+              {title}
+            </div>
+            <div className={classes.content}>{content}</div>
+          </div>
+        </div>
+      ))}
+    </Slider>
+  );
+};
+
+const LineTutorial = () => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+
+  return isDesktop ? <LineTutorialDesktop /> : <LineTutorialMobile />;
 };
 
 export default LineTutorial;

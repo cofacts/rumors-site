@@ -42,6 +42,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     width: '100%',
     bottom: 12,
+
+    [theme.breakpoints.down('md')]: {
+      bottom: 8,
+    },
   },
   page: {
     width: 32,
@@ -52,13 +56,20 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 2,
     border: 'none',
     outline: 'none',
+    pointerEvents: 'auto',
+
+    [theme.breakpoints.down('md')]: {
+      width: 20,
+      height: 6,
+      margin: '0 6px',
+    },
   },
   activePage: {
     background: theme.palette.primary.main,
   },
 }));
 
-const LinePreview = ({ className, images = [] }) => {
+const LinePreview = ({ className, autoplay = false, images = [] }) => {
   const classes = useStyles();
   const [activeIndex, setActiveIndex] = useState(1);
 
@@ -86,7 +97,7 @@ const LinePreview = ({ className, images = [] }) => {
       <Slider
         ref={sliderRef}
         className={classes.slider}
-        autoplay
+        autoplay={autoplay}
         onSlideChange={onSlideChange}
       >
         {images.map(url => (
