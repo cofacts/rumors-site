@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Tutorial/LinePreview Normal 1`] = `
+<div
+  style={
+    Object {
+      "width": "500px",
+    }
+  }
+>
+  <LinePreview
+    images={
+      Array [
+        Object {},
+        Object {},
+      ]
+    }
+  >
+    <div
+      className="makeStyles-root"
+    >
+      <img
+        alt={Object {}}
+        className="makeStyles-device"
+        src={Object {}}
+      />
+      <div
+        className="makeStyles-slider makeStyles-slider"
+      >
+        <div
+          className="makeStyles-slideWrapper"
+          key="0"
+        >
+          <Screenshot
+            key=".$[object Object]"
+            screenshotUrl={Object {}}
+          >
+            <div
+              className="makeStyles-screenshot makeStyles-screenshot"
+            />
+          </Screenshot>
+        </div>
+        <div
+          className="makeStyles-slideWrapper"
+          key="1"
+        >
+          <Screenshot
+            key=".$[object Object]"
+            screenshotUrl={Object {}}
+          >
+            <div
+              className="makeStyles-screenshot makeStyles-screenshot"
+            />
+          </Screenshot>
+        </div>
+      </div>
+      <div
+        className="makeStyles-pagination"
+      >
+        <div
+          className="makeStyles-page makeStyles-activePage"
+          key="0"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        />
+        <div
+          className="makeStyles-page"
+          key="1"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        />
+      </div>
+    </div>
+  </LinePreview>
+</div>
+`;
