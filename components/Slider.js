@@ -50,6 +50,7 @@ const Slider = (
   const sliderRef = useRef(null);
 
   const slides = React.Children.toArray(children);
+  const slidesAmount = slides.length;
 
   const slideTo = useCallback(
     (index, smooth = true) => {
@@ -57,12 +58,12 @@ const Slider = (
 
       if (slider) {
         slider.scrollTo({
-          left: slider.scrollWidth * (index / slides.length),
+          left: slider.scrollWidth * (index / slidesAmount),
           behavior: smooth ? 'smooth' : 'auto',
         });
       }
     },
-    [slides]
+    [slidesAmount]
   );
 
   const autoplayNext = useCallback(() => {
@@ -72,20 +73,27 @@ const Slider = (
     }
 
     const id = setTimeout(() => {
-      const nextSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1;
+      const nextSlide = activeSlide === slidesAmount - 1 ? 0 : activeSlide + 1;
       slideTo(nextSlide);
     }, interval);
 
     setTimeoutId(id);
-  }, [slides, activeSlide, interval, timeoutId, slideTo]);
+  }, [slidesAmount, activeSlide, interval, timeoutId, slideTo]);
 
   useImperativeHandle(
     ref,
     () => ({
       activeIndex: activeSlide,
       slideTo,
+      reset: () => {
+        slideTo(initIndex);
+
+        if (autoplay) {
+          autoplayNext();
+        }
+      },
     }),
-    [activeSlide, slideTo]
+    [activeSlide, slideTo, initIndex, autoplay, autoplayNext]
   );
 
   useEffect(() => {
@@ -94,9 +102,11 @@ const Slider = (
     slideTo(initIndex, false);
 
     const onScroll = () => {
+      const slider = sliderRef.current;
+
       if (slider) {
         const index = Math.round(
-          (slider.scrollLeft / slider.scrollWidth) * slides.length
+          (slider.scrollLeft / slider.scrollWidth) * slidesAmount
         );
 
         setActiveSlide(index);
@@ -114,7 +124,7 @@ const Slider = (
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sliderRef]);
+  }, [sliderRef, slidesAmount]);
 
   useEffect(() => {
     if (autoplay) {
