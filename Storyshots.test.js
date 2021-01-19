@@ -74,3 +74,5 @@ initStoryshots({
   },
   snapshotSerializers: [createSerializer({ map: removeMaterialUIInternals })],
 });
+
+Element.prototype.scrollTo = () => {};
