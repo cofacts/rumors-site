@@ -10,5 +10,6 @@ module.exports = {
     // Ignore CSS imports in jest
     // Ref: https://jestjs.io/docs/en/webpack#handling-static-assets
     '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(png|jpg|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
 };
