@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LinePreview = ({ images = [] }) => {
+const LinePreview = ({ className, images = [] }) => {
   const classes = useStyles();
   const [activeIndex, setActiveIndex] = useState(1);
 
@@ -74,8 +74,14 @@ const LinePreview = ({ images = [] }) => {
     setActiveIndex(index);
   };
 
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.reset();
+    }
+  }, [images]);
+
   return (
-    <div className={classes.root}>
+    <div className={cx(classes.root, className)}>
       <img className={classes.device} src={device} alt={device} />
       <Slider
         ref={sliderRef}

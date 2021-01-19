@@ -18,6 +18,12 @@ const Example = () => {
     }
   };
 
+  const reset = () => {
+    if (sliderRef.current) {
+      sliderRef.current.reset();
+    }
+  };
+
   const onSlideChange = index => {
     setActiveIndex(index);
   };
@@ -68,6 +74,7 @@ const Example = () => {
 
       <div>active slide: {activeIndex}</div>
       <button onClick={() => slideTo(2)}>slide to 2</button>
+      <button onClick={reset}>reset</button>
     </div>
   );
 };

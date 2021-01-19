@@ -5,7 +5,7 @@ import cx from 'clsx';
 import Link from 'next/link';
 
 import AppLayout from 'components/AppLayout';
-import { TutorialHeader } from 'components/Tutorial';
+import { TutorialHeader, LineTutorial } from 'components/Tutorial';
 
 import withData from 'lib/apollo';
 
@@ -100,6 +100,14 @@ const useStyles = makeStyles(theme => ({
   how: {
     paddingTop: 40,
 
+    '& > h3': {
+      marginBottom: 32,
+
+      [theme.breakpoints.down('md')]: {
+        marginBottom: 24,
+      },
+    },
+
     [theme.breakpoints.down('md')]: {
       paddingTop: 24,
       paddingBottom: 20,
@@ -109,11 +117,15 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    margin: '36px 0 45px',
+    margin: '50px 0 45px',
 
     [theme.breakpoints.down('md')]: {
       maxWidth: 600,
       margin: '36px auto 38px',
+    },
+
+    '&::before': {
+      background: 'white',
     },
 
     '& > h3': {
@@ -241,6 +253,7 @@ const TutorialPage = () => {
         <section className={classes.how}>
           {/* TODO: translate */}
           <h3>可疑訊息怎麼被查核的？</h3>
+          <LineTutorial />
         </section>
         <section className={classes.when}>
           {/* TODO: translate */}

@@ -38,7 +38,7 @@ class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={lightTheme.palette.primary.main} />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
             rel="stylesheet"
           />
           {/* emoji-mart css */}
