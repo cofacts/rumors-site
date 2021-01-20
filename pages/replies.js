@@ -131,7 +131,12 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   return filterObj;
 }
 
-const DEFAULT_ORDER = 'lastRepliedAt';
+const REPLIES_ORDER = [
+  { value: 'lastRepliedAt', label: t`Most recently replied` },
+  { value: 'lastRequestedAt', label: t`Most recently asked` },
+  { value: 'replyRequestCount', label: t`Most asked` },
+];
+const DEFAULT_ORDER = REPLIES_ORDER[0].value;
 
 const useStyles = makeStyles(theme => ({
   bustHoaxDivider: {
@@ -220,14 +225,7 @@ function ReplyListPage() {
 
       <Tools>
         <TimeRange />
-        <SortInput
-          defaultOrderBy={DEFAULT_ORDER}
-          options={[
-            { value: 'lastRepliedAt', label: t`Most recently replied` },
-            { value: 'lastRequestedAt', label: t`Most recently asked` },
-            { value: 'replyRequestCount', label: t`Most asked` },
-          ]}
-        />
+        <SortInput defaultOrderBy={DEFAULT_ORDER} options={REPLIES_ORDER} />
       </Tools>
 
       <Filters>
