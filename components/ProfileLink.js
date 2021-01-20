@@ -4,6 +4,27 @@ import Link from 'next/link';
 import levelNames from '../constants/levelNames';
 import Tooltip from './Tooltip';
 
+export function ProfileTooltip({ user, children }) {
+  if (!user) {
+    return children;
+  }
+
+  const levelName = levelNames[user.level];
+  return (
+    <Tooltip title={t`Lv.${user.level} ${levelName}`} placement="top">
+      {children}
+    </Tooltip>
+  );
+}
+
+ProfileTooltip.fragments = {
+  ProfileTooltipUserData: gql`
+    fragment ProfileTooltipUserData on User {
+      level
+    }
+  `,
+};
+
 export default function ProfileLink({
   user,
   children,
@@ -19,7 +40,6 @@ export default function ProfileLink({
     return children;
   }
 
-  const levelName = levelNames[user.level];
   const linkProps = user.slug
     ? {
         href: '/user/[slug]',
@@ -33,9 +53,7 @@ export default function ProfileLink({
     <Link {...linkProps}>
       <a style={{ color: 'inherit' }} {...otherProps}>
         {hasTooltip ? (
-          <Tooltip title={t`Lv.${user.level} ${levelName}`} placement="top">
-            {children}
-          </Tooltip>
+          <ProfileTooltip user={user}>{children}</ProfileTooltip>
         ) : (
           children
         )}
@@ -49,7 +67,8 @@ ProfileLink.fragments = {
     fragment ProfileLinkUserData on User {
       id
       slug
-      level
+      ...ProfileTooltipUserData
     }
+    ${ProfileTooltip.fragments.ProfileTooltipUserData}
   `,
 };
