@@ -1,4 +1,4 @@
-import { t } from 'ttag';
+import gql from 'graphql-tag';
 import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,35 +8,20 @@ import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import AppFooter from './AppFooter';
 import UpgradeDialog from './UpgradeDialog';
-import gql from 'graphql-tag';
-import { useLazyQuery, useMutation } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
 import fetchAPI from 'lib/fetchAPI';
 import Snackbar from '@material-ui/core/Snackbar';
 
 const USER_QUERY = gql`
-  query UserLevelQuery {
+  query AppLayoutQuery {
     GetUser {
-      id
-      name
-      avatarUrl
-      level
-      points {
-        total
-        currentLevel
-        nextLevel
-      }
+      ...AppSidebarUserData
+      ...AppHeaderUserData
     }
   }
-`;
-
-const CHANGE_NAME_QUERY = gql`
-  mutation ChangeUserName($name: String!) {
-    UpdateUser(name: $name) {
-      id
-      name
-    }
-  }
+  ${AppSidebar.fragments.AppSidebarUserData}
+  ${AppHeader.fragments.AppHeaderUserData}
 `;
 
 const useStyles = makeStyles({
@@ -59,31 +44,9 @@ function AppLayout({ children, container = true }) {
   const [snackMsg, setSnackMsg] = useState('');
 
   const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
-  const [changeUserName] = useMutation(CHANGE_NAME_QUERY, {
-    onCompleted() {
-      setSnackMsg(t`Your display name has been updated.`);
-    },
-  });
-
   const toggleSidebar = useCallback(() => setSidebarOpen(open => !open), []);
-
   const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
-
   const logout = useCallback(() => apiLogout().then(refetch), [refetch]);
-
-  const userName = data?.GetUser?.name;
-  const handleNameChange = useCallback(() => {
-    const newName = window.prompt(t`Please enter new display name`, userName);
-    if (newName === null) return;
-
-    const trimmed = newName.trim();
-    if (trimmed.length === 0) {
-      setSnackMsg(t`Display name cannot be empty.`);
-      return;
-    }
-
-    changeUserName({ variables: { name: trimmed } });
-  }, [userName, changeUserName]);
 
   const classes = useStyles();
 
@@ -118,7 +81,6 @@ function AppLayout({ children, container = true }) {
         onMenuButtonClick={toggleSidebar}
         onLoginModalOpen={openLoginModal}
         onLogout={logout}
-        onNameChange={handleNameChange}
       />
       <AppSidebar
         open={sidebarOpen}
@@ -126,7 +88,6 @@ function AppLayout({ children, container = true }) {
         user={data?.GetUser}
         onLoginModalOpen={openLoginModal}
         onLogout={logout}
-        onNameChange={handleNameChange}
       />
       {container ? (
         <Container className={classes.container}>{children}</Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import { t } from 'ttag';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +12,8 @@ import {
   List,
   ListItem,
 } from '@material-ui/core';
-import * as Widgets from './Widgets';
+import Avatar from './Widgets/Avatar';
+import LevelProgressBar from './Widgets/LevelProgressBar';
 import {
   EDITOR_FACEBOOK_GROUP,
   PROJECT_HACKFOLDR,
@@ -20,6 +22,7 @@ import {
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
 import Ribbon from 'components/Ribbon';
+import ProfileLink from 'components/ProfileLink';
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { withDarkTheme } from 'lib/theme';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
@@ -30,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     top: `${NAVBAR_HEIGHT + TABS_HEIGHT}px !important`,
     background: theme.palette.background.default,
     overflow: 'inherit',
+    maxWidth: '80vw',
   },
   level: {
     margin: '16px 0',
@@ -40,6 +44,12 @@ const useStyles = makeStyles(theme => ({
   },
   name: {
     marginLeft: 16,
+    flex: '1 1 0',
+    display: '-webkit-box',
+    overflow: 'hidden',
+    boxOrient: 'vertical',
+    textOverflow: 'ellipsis',
+    lineClamp: 2,
   },
   login: {
     margin: '24px auto',
@@ -63,16 +73,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AppSidebar({
-  open,
-  toggle,
-  user,
-  onLoginModalOpen,
-  onLogout,
-  onNameChange,
-}) {
+function AppSidebar({ open, toggle, user, onLoginModalOpen, onLogout }) {
   const classes = useStyles();
 
+  const pointsLeft = user?.points?.nextLevel - user?.points?.total;
   return (
     <SwipeableDrawer
       anchor="right"
@@ -84,44 +88,7 @@ function AppSidebar({
         paper: classes.paper,
       }}
     >
-      {user?.name ? (
-        <div>
-          <Ribbon className={classes.level}>
-            <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[(user?.level)]}
-          </Ribbon>
-          <Box
-            px={1.5}
-            pb={2}
-            display="flex"
-            alignItems="center"
-            onClick={onNameChange}
-          >
-            <Widgets.Avatar user={user} size={60} />
-            <Typography className={classes.name} variant="h6">
-              {user?.name}
-            </Typography>
-          </Box>
-          <Box px={1.5} pb={2}>
-            <Widgets.LevelProgressBar user={user} />
-          </Box>
-
-          {/* not implemented yet */}
-          {/*
-            <List>
-              <ListItem classes={{ root: classes.listItem }} button>
-                <NavLink href='/'>
-                  {t`My Profile`}
-                </NavLink>
-              </ListItem>
-              <ListItem classes={{ root: classes.listItem }} button>
-                <NavLink href='/'>
-                  {t`Watching`}
-                </NavLink>
-              </ListItem>
-            </List>
-          */}
-        </div>
-      ) : (
+      {!user ? (
         <Button
           variant="outlined"
           className={classes.login}
@@ -129,6 +96,35 @@ function AppSidebar({
         >
           {t`Login`}
         </Button>
+      ) : (
+        <div>
+          <Ribbon className={classes.level}>
+            <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[(user?.level)]}
+          </Ribbon>
+          <Box px={1.5} pb={2} display="flex" alignItems="center">
+            <Avatar user={user} size={60} />
+            <Typography className={classes.name} variant="h6">
+              {user?.name}
+            </Typography>
+          </Box>
+          <Box px={1.5} pb={2}>
+            <Typography
+              variant="caption"
+              color="textSecondary"
+              display="block"
+              gutterBottom
+            >
+              {t`Earn ${pointsLeft} EXP to next level`}
+            </Typography>
+            <LevelProgressBar user={user} />
+          </Box>
+
+          <List>
+            <ListItem classes={{ root: classes.listItem }} button>
+              <ProfileLink user={user}>{t`My Profile`}</ProfileLink>
+            </ListItem>
+          </List>
+        </div>
       )}
       <Divider classes={{ root: classes.divider }} />
       <List className={classes.list}>
@@ -175,4 +171,25 @@ function AppSidebar({
   );
 }
 
-export default React.memo(withDarkTheme(AppSidebar));
+const exported = React.memo(withDarkTheme(AppSidebar));
+
+exported.fragments = {
+  AppSidebarUserData: gql`
+    fragment AppSidebarUserData on User {
+      name
+      level
+      points {
+        total
+        nextLevel
+      }
+      ...AvatarData
+      ...LevelProgressBarData
+      ...ProfileLinkUserData
+    }
+    ${Avatar.fragments.AvatarData}
+    ${LevelProgressBar.fragments.LevelProgressBarData}
+    ${ProfileLink.fragments.ProfileLinkUserData}
+  `,
+};
+
+export default exported;

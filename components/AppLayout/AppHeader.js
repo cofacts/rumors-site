@@ -20,13 +20,14 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import InfoIcon from '@material-ui/icons/Info';
 
 import { darkTheme } from 'lib/theme';
 import NavLink from 'components/NavLink';
 import Ribbon from 'components/Ribbon';
+import ProfileLink from 'components/ProfileLink';
 import GlobalSearch from './GlobalSearch';
-import * as Widgets from './Widgets';
+import Avatar from './Widgets/Avatar';
+import LevelProgressBar from './Widgets/LevelProgressBar';
 
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
@@ -106,12 +107,6 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 70,
     border: `1px solid ${theme.palette.secondary[500]}`,
   },
-  level: {
-    padding: '2px 8px 4px 20px',
-    '& > strong': {
-      marginRight: 12,
-    },
-  },
   loadingProgress: {
     position: 'absolute',
     top: '100%',
@@ -188,10 +183,26 @@ const Links = ({ classes, unsolvedCount }) => (
 );
 
 const useUserStyles = makeStyles(theme => ({
+  level: {
+    padding: '2px 8px 4px 20px',
+    '& > strong': {
+      marginRight: 12,
+    },
+  },
   profileMenu: {
     marginTop: 50,
     backgroundColor: theme.palette.secondary.main,
     overflow: 'inherit',
+    maxWidth: '50vw',
+  },
+  name: {
+    minWidth: 0, // Cancel flexbox min-sizing behavior
+    flex: '1 1 0',
+    display: '-webkit-box',
+    overflow: 'hidden',
+    boxOrient: 'vertical',
+    textOverflow: 'ellipsis',
+    lineClamp: 2,
   },
   divider: {
     backgroundColor: theme.palette.secondary[400],
@@ -203,7 +214,7 @@ const useUserStyles = makeStyles(theme => ({
   },
 }));
 
-const User = ({ user, onLogout, onNameChange }) => {
+const User = ({ user, onLogout }) => {
   const classes = useUserStyles();
 
   const [anchor, setAnchor] = useState(null);
@@ -211,9 +222,10 @@ const User = ({ user, onLogout, onNameChange }) => {
   const openProfileMenu = e => setAnchor(e.currentTarget);
   const closeProfileMenu = () => setAnchor(null);
 
+  const pointsLeft = user?.points?.nextLevel - user?.points?.total;
   return (
     <>
-      <Widgets.Avatar user={user} size={40} onClick={openProfileMenu} />
+      <Avatar user={user} size={40} onClick={openProfileMenu} />
       <ThemeProvider theme={darkTheme}>
         <Menu
           id="profile-menu"
@@ -227,26 +239,35 @@ const User = ({ user, onLogout, onNameChange }) => {
             <strong>Lv. {user?.level}</strong>
             {LEVEL_NAMES[(user?.level)]}
           </Ribbon>
-          <MenuItem onClick={onNameChange}>
-            <ListItemIcon>
-              <Widgets.Avatar user={user} size={40} />
-            </ListItemIcon>
-            <Typography variant="inherit">{user?.name}</Typography>
-          </MenuItem>
+          <Box px={2} py={1} display="flex" alignItems="center">
+            <Avatar user={user} size={40} style={{ marginRight: 12 }} />
+            <Typography variant="h5" className={classes.name}>
+              {user?.name}
+            </Typography>
+          </Box>
+          <Box px={2} pb={1}>
+            <Typography
+              variant="caption"
+              color="textSecondary"
+              display="block"
+              gutterBottom
+            >
+              {t`Earn ${pointsLeft} EXP to next level`}
+            </Typography>
+            <LevelProgressBar user={user} />
+          </Box>
           <Divider classes={{ root: classes.divider }} />
-          <MenuItem onClick={closeProfileMenu}>
-            <ListItemIcon className={classes.listIcon}>
-              <AccountCircleOutlinedIcon />
-            </ListItemIcon>
-            <Typography variant="inherit">{t`My Profile`}</Typography>
-          </MenuItem>
-          <Divider classes={{ root: classes.divider }} />
-          <MenuItem onClick={closeProfileMenu}>
-            <ListItemIcon className={classes.listIcon}>
-              <InfoIcon />
-            </ListItemIcon>
-            <Typography variant="inherit">{t`About Cofacts`}</Typography>
-          </MenuItem>
+          <ProfileLink
+            user={user}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <MenuItem onClick={closeProfileMenu}>
+              <ListItemIcon className={classes.listIcon}>
+                <AccountCircleOutlinedIcon />
+              </ListItemIcon>
+              <Typography variant="inherit">{t`My Profile`}</Typography>
+            </MenuItem>
+          </ProfileLink>
           <Divider classes={{ root: classes.divider }} />
           <MenuItem onClick={onLogout}>
             <ListItemIcon className={classes.listIcon}>
@@ -273,7 +294,6 @@ function AppHeader({
   onMenuButtonClick,
   onLoginModalOpen,
   onLogout,
-  onNameChange,
 }) {
   const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
@@ -305,8 +325,8 @@ function AppHeader({
         </div>
         <GlobalSearch onExpand={expanded => setDisplayLogo(!expanded)} />
         <Box display={['none', 'none', 'block']}>
-          {user?.name ? (
-            <User user={user} onLogout={onLogout} onNameChange={onNameChange} />
+          {user ? (
+            <User user={user} onLogout={onLogout} />
           ) : (
             <Button
               onClick={onLoginModalOpen}
@@ -337,4 +357,23 @@ function AppHeader({
   );
 }
 
-export default React.memo(AppHeader);
+const exported = React.memo(AppHeader);
+
+exported.fragments = {
+  AppHeaderUserData: gql`
+    fragment AppHeaderUserData on User {
+      name
+      level
+      points {
+        total
+        nextLevel
+      }
+      ...AvatarData
+    }
+    ${Avatar.fragments.AvatarData}
+    ${LevelProgressBar.fragments.LevelProgressBarData}
+    ${ProfileLink.fragments.ProfileLinkUserData}
+  `,
+};
+
+export default exported;
