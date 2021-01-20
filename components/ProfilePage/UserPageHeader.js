@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   bio: {
     marginTop: 8,
     overflow: 'hidden',
-    display: 'box',
+    display: '-webkit-box',
     boxOrient: 'vertical',
     textOverflow: 'ellipsis',
     lineClamp: 3,
@@ -117,8 +117,9 @@ const useStyles = makeStyles(theme => ({
  *
  * @param {object} props.user
  * @param {boolean} props.isSelf - If the current user is the one in `user` prop
+ * @param {{repliedArticles: number, commentedReplies: number}} props.stats
  */
-function UserPageHeader({ user, isSelf }) {
+function UserPageHeader({ user, isSelf, stats }) {
   const classes = useStyles();
   const [isEditDialogOpen, setEditDialogOpen] = useState(false);
 
@@ -190,7 +191,7 @@ function UserPageHeader({ user, isSelf }) {
           <Hidden implementation="css" smDown>
             {isSelf && editButtonElem}
           </Hidden>
-          <Stats userId={user.id} />
+          <Stats stats={stats} />
         </aside>
       </div>
 
