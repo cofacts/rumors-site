@@ -1,17 +1,22 @@
 import React from 'react';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, useMediaQuery } from '@material-ui/core';
-import MailIcon from '@material-ui/icons/Mail';
-import FacebookIcon from '@material-ui/icons/Facebook';
 import { withDarkTheme } from 'lib/theme';
 import {
   EDITOR_FACEBOOK_GROUP,
   PROJECT_HACKFOLDR,
+  PROJECT_SOURCE_CODE,
+  PROJECT_MEDIUM,
   CONTACT_EMAIL,
+  LINE_URL,
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
+
+import facebookIcon from './images/facebook.svg';
+import mailIcon from './images/mail.svg';
+import lineIcon from './images/line.svg';
 
 const useStyles = makeStyles(theme => ({
   first: {
@@ -20,6 +25,10 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.secondary.main,
     '& h3': {
       color: theme.palette.secondary[300],
+      fontSize: 18,
+      lineHeight: 1.56,
+      letterSpacing: 0.5,
+      marginBottom: 27,
     },
   },
   container: {
@@ -48,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 const CustomLink = withStyles(theme => ({
   linkWrapper: {
-    margin: '10px 0',
+    margin: '20px 0',
     display: 'flex',
     alignItems: 'center',
   },
@@ -56,15 +65,17 @@ const CustomLink = withStyles(theme => ({
     color: 'inherit',
     textDecoration: 'none',
     lineHeight: '28px',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 500,
+    letterSpacing: 0.15,
+
     '&:hover': { color: theme.palette.text.secondary },
   },
   linkActive: {
     color: theme.palette.primary[500],
   },
   icon: {
-    marginRight: 8,
+    marginRight: 20,
   },
 }))(({ classes, icon: Icon, ...rest }) => (
   <div className={classes.linkWrapper}>
@@ -87,33 +98,71 @@ function AppFooter() {
         <div className={classes.container}>
           <div className={classes.column}>
             <h3>{t`Fact Check`}</h3>
-            <CustomLink href="/articles">{t`Collected Messages`}</CustomLink>
-            <CustomLink href="/replies">{t`Replies`}</CustomLink>
-            <CustomLink external href={EDITOR_FACEBOOK_GROUP}>
-              {t`Editor forum`}
+            <CustomLink href="/articles">{t`Messages`}</CustomLink>
+            <CustomLink href="/replies">
+              {c('App layout').t`Replies`}
             </CustomLink>
+            <CustomLink href="/hoax-for-you">
+              {c('App layout').t`For You`}
+            </CustomLink>
+            {/* TODO: add link */}
+            <CustomLink href="">{t`Following`}</CustomLink>
           </div>
           <div className={classes.column}>
             <h3>{t`About`}</h3>
-            <CustomLink external href={PROJECT_HACKFOLDR}>
+            <CustomLink external href="">
               {t`About Cofacts`}
+            </CustomLink>
+            <CustomLink external href={PROJECT_HACKFOLDR}>
+              {t`Introduction`}
+            </CustomLink>
+            <CustomLink external href={PROJECT_SOURCE_CODE}>
+              {t`Source Code`}
+            </CustomLink>
+            <CustomLink external href={PROJECT_MEDIUM}>
+              Medium
             </CustomLink>
           </div>
           <div className={classes.column}>
-            <h3>{t`Contact Us`}</h3>
+            <h3>{t`Contact`}</h3>
             <CustomLink
               external
               href={`mailto:${CONTACT_EMAIL}`}
-              icon={MailIcon}
+              icon={({ className }) => (
+                <img
+                  className={className}
+                  src={mailIcon}
+                  style={{ width: '30px' }}
+                />
+              )}
             >
               {t`Contact Us`}
             </CustomLink>
             <CustomLink
               external
               href={EDITOR_FACEBOOK_GROUP}
-              icon={FacebookIcon}
+              icon={({ className }) => (
+                <img
+                  className={className}
+                  src={facebookIcon}
+                  style={{ width: '30px' }}
+                />
+              )}
             >
               {t`Facebook forum`}
+            </CustomLink>
+            <CustomLink
+              external
+              href={LINE_URL}
+              icon={({ className }) => (
+                <img
+                  className={className}
+                  src={lineIcon}
+                  style={{ width: '30px' }}
+                />
+              )}
+            >
+              Line: @cofacts
             </CustomLink>
             {matches && <GoogleWebsiteTranslator />}
           </div>

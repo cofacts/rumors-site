@@ -17,7 +17,6 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
@@ -28,6 +27,7 @@ import NavLink from 'components/NavLink';
 import Ribbon from 'components/Ribbon';
 import GlobalSearch from './GlobalSearch';
 import * as Widgets from './Widgets';
+
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
 import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import desktopLogo from './images/logo-desktop.svg';
@@ -99,19 +99,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.secondary[300],
     color: theme.palette.common.white,
   },
-  profileMenu: {
-    marginTop: 50,
-    backgroundColor: theme.palette.secondary.main,
-    overflow: 'inherit',
-  },
-  divider: {
-    backgroundColor: theme.palette.secondary[400],
-  },
-  listIcon: {
-    color: theme.palette.secondary[300],
-    minWidth: 0,
-    paddingRight: 8,
-  },
+
   login: {
     fontSize: 18,
     padding: '4px 16px',
@@ -165,14 +153,14 @@ const Links = ({ classes, unsolvedCount }) => (
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {c('App header').t`Messages`}
+      {c('App layout').t`Messages`}
     </NavLink>
     <NavLink
       href="/replies"
       className={classes.tab}
       activeClassName={classes.activeTab}
     >
-      {c('App header').t`Replies`}
+      {c('App layout').t`Replies`}
     </NavLink>
     <NavLink
       href="/hoax-for-you"
@@ -184,7 +172,7 @@ const Links = ({ classes, unsolvedCount }) => (
         badgeContent={unsolvedCount}
         showZero={true}
       >
-        {c('App header').t`For You`}
+        {c('App layout').t`For You`}
       </CustomBadge>
     </NavLink>
     <Box
@@ -194,10 +182,83 @@ const Links = ({ classes, unsolvedCount }) => (
       href={EDITOR_FACEBOOK_GROUP}
       className={classes.tab}
     >
-      {c('App header').t`Forum`}
+      {c('App layout').t`Forum`}
     </Box>
   </>
 );
+
+const useUserStyles = makeStyles(theme => ({
+  profileMenu: {
+    marginTop: 50,
+    backgroundColor: theme.palette.secondary.main,
+    overflow: 'inherit',
+  },
+  divider: {
+    backgroundColor: theme.palette.secondary[400],
+  },
+  listIcon: {
+    color: theme.palette.secondary[300],
+    minWidth: 0,
+    paddingRight: 8,
+  },
+}));
+
+const User = ({ user, onLogout, onNameChange }) => {
+  const classes = useUserStyles();
+
+  const [anchor, setAnchor] = useState(null);
+
+  const openProfileMenu = e => setAnchor(e.currentTarget);
+  const closeProfileMenu = () => setAnchor(null);
+
+  return (
+    <>
+      <Widgets.Avatar user={user} size={40} onClick={openProfileMenu} />
+      <ThemeProvider theme={darkTheme}>
+        <Menu
+          id="profile-menu"
+          classes={{ paper: classes.profileMenu }}
+          anchorEl={anchor}
+          keepMounted
+          open={Boolean(anchor)}
+          onClose={closeProfileMenu}
+        >
+          <Ribbon className={classes.level}>
+            <strong>Lv. {user?.level}</strong>
+            {LEVEL_NAMES[(user?.level)]}
+          </Ribbon>
+          <MenuItem onClick={onNameChange}>
+            <ListItemIcon>
+              <Widgets.Avatar user={user} size={40} />
+            </ListItemIcon>
+            <Typography variant="inherit">{user?.name}</Typography>
+          </MenuItem>
+          <Divider classes={{ root: classes.divider }} />
+          <MenuItem onClick={closeProfileMenu}>
+            <ListItemIcon className={classes.listIcon}>
+              <AccountCircleOutlinedIcon />
+            </ListItemIcon>
+            <Typography variant="inherit">{t`My Profile`}</Typography>
+          </MenuItem>
+          <Divider classes={{ root: classes.divider }} />
+          <MenuItem onClick={closeProfileMenu}>
+            <ListItemIcon className={classes.listIcon}>
+              <InfoIcon />
+            </ListItemIcon>
+            <Typography variant="inherit">{t`About Cofacts`}</Typography>
+          </MenuItem>
+          <Divider classes={{ root: classes.divider }} />
+          <MenuItem onClick={onLogout}>
+            <ListItemIcon className={classes.listIcon}>
+              <ExitToAppRoundedIcon />
+            </ListItemIcon>
+            <Typography variant="inherit">{t`Logout`}</Typography>
+          </MenuItem>
+        </Menu>
+      </ThemeProvider>
+    </>
+  );
+};
 
 /**
  * @param {User | null} user
@@ -214,7 +275,6 @@ function AppHeader({
   onLogout,
   onNameChange,
 }) {
-  const [anchor, setAnchor] = useState(null);
   const [displayLogo, setDisplayLogo] = useState(true);
   const classes = useStyles();
   const theme = useTheme();
@@ -223,9 +283,6 @@ function AppHeader({
   });
 
   const unsolvedCount = data?.ListArticles?.totalCount;
-
-  const openProfileMenu = e => setAnchor(e.currentTarget);
-  const closeProfileMenu = () => setAnchor(null);
 
   return (
     <header className={classes.root}>
@@ -249,51 +306,7 @@ function AppHeader({
         <GlobalSearch onExpand={expanded => setDisplayLogo(!expanded)} />
         <Box display={['none', 'none', 'block']}>
           {user?.name ? (
-            <>
-              <Widgets.Avatar user={user} size={40} onClick={openProfileMenu} />
-              <ThemeProvider theme={darkTheme}>
-                <Menu
-                  id="profile-menu"
-                  classes={{ paper: classes.profileMenu }}
-                  anchorEl={anchor}
-                  keepMounted
-                  open={Boolean(anchor)}
-                  onClose={closeProfileMenu}
-                >
-                  <Ribbon className={classes.level}>
-                    <strong>Lv. {user?.level}</strong>
-                    {LEVEL_NAMES[(user?.level)]}
-                  </Ribbon>
-                  <MenuItem onClick={onNameChange}>
-                    <ListItemIcon>
-                      <Widgets.Avatar user={user} size={40} />
-                    </ListItemIcon>
-                    <Typography variant="inherit">{user?.name}</Typography>
-                  </MenuItem>
-                  <Divider classes={{ root: classes.divider }} />
-                  <MenuItem onClick={closeProfileMenu}>
-                    <ListItemIcon className={classes.listIcon}>
-                      <AccountCircleOutlinedIcon />
-                    </ListItemIcon>
-                    <Typography variant="inherit">{t`My Profile`}</Typography>
-                  </MenuItem>
-                  <Divider classes={{ root: classes.divider }} />
-                  <MenuItem onClick={closeProfileMenu}>
-                    <ListItemIcon className={classes.listIcon}>
-                      <InfoIcon />
-                    </ListItemIcon>
-                    <Typography variant="inherit">{t`About Cofacts`}</Typography>
-                  </MenuItem>
-                  <Divider classes={{ root: classes.divider }} />
-                  <MenuItem onClick={onLogout}>
-                    <ListItemIcon className={classes.listIcon}>
-                      <ExitToAppRoundedIcon />
-                    </ListItemIcon>
-                    <Typography variant="inherit">{t`Logout`}</Typography>
-                  </MenuItem>
-                </Menu>
-              </ThemeProvider>
-            </>
+            <User user={user} onLogout={onLogout} onNameChange={onNameChange} />
           ) : (
             <Button
               onClick={onLoginModalOpen}

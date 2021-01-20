@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
   loadMore: {
     minWidth: '33%',
     borderRadius: 18,
+    outline: 'none',
   },
   loading: {
     color: theme.palette.secondary[300],

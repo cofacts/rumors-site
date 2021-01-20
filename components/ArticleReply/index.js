@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
 import { Box } from '@material-ui/core';
@@ -6,10 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { LINE_URL } from 'constants/urls';
 import { nl2br, linkify } from 'lib/text';
+import getTermsString from 'lib/terms';
 import { TYPE_NAME } from 'constants/replyType';
 import ExpandableText from 'components/ExpandableText';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
-import EditorName from 'components/EditorName';
+import ProfileLink from 'components/ProfileLink';
 import Hyperlinks from 'components/Hyperlinks';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReplyInfo from 'components/ReplyInfo';
@@ -62,8 +63,8 @@ const ArticleReplyData = gql`
       user {
         id
         name
-        level
         ...AvatarData
+        ...ProfileLinkUserData
       }
       hyperlinks {
         ...HyperlinkData
@@ -73,8 +74,8 @@ const ArticleReplyData = gql`
     user {
       id
       name
-      level
       ...AvatarData
+      ...ProfileLinkUserData
     }
     ...ArticleReplyFeedbackControlData
   }
@@ -82,6 +83,7 @@ const ArticleReplyData = gql`
   ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
+  ${ProfileLink.fragments.ProfileLinkUserData}
 `;
 
 const ArticleReplyForUser = gql`
@@ -127,11 +129,15 @@ const ArticleReply = React.memo(
           : '';
       const copyText =
         typeof window !== 'undefined'
-          ? `${TYPE_NAME[reply.type]} \n【${t`Reason`}】${(
-              reply.text || ''
-            ).trim()}\n↓${t`Details`}↓\n${articleUrl}\n↓${t`Reference`}↓\n${
-              reply.reference
-            }\n--\n🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
+          ? `${TYPE_NAME[reply.type]}\n` +
+            `【${t`Reason`}】${(reply.text || '').trim()}\n` +
+            `↓${t`Details`}↓\n` +
+            `${articleUrl}\n` +
+            `↓${t`Reference`}↓\n` +
+            `${reply.reference}\n` +
+            `--\n` +
+            `ℹ️ ${getTermsString('此資訊')}\n` +
+            `🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
           : '';
 
       return (
@@ -146,20 +152,6 @@ const ArticleReply = React.memo(
         </Box>
       );
     };
-
-    const renderAuthor = useCallback(
-      () =>
-        articleReplyAuthor ? (
-          <EditorName
-            key="editor"
-            editorName={articleReplyAuthor?.name}
-            editorLevel={articleReplyAuthor?.level}
-          />
-        ) : (
-          t`Someone`
-        ),
-      [articleReplyAuthor]
-    );
 
     const renderReference = () => {
       if (replyType === 'NOT_ARTICLE') return null;
@@ -183,7 +175,11 @@ const ArticleReply = React.memo(
       );
     };
 
-    const authorElem = renderAuthor();
+    const authorElem = (
+      <ProfileLink key="editor" user={articleReplyAuthor} hasTooltip>
+        <span>{articleReplyAuthor?.name || t`Someone`}</span>
+      </ProfileLink>
+    );
 
     return (
       <>
@@ -194,6 +190,7 @@ const ArticleReply = React.memo(
               className={classes.avatar}
               size={30}
               mdSize={42}
+              hasLink
             />
           )}
           <Box flexGrow={1}>

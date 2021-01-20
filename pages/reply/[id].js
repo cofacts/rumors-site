@@ -7,15 +7,18 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { usePushToDataLayer } from 'lib/gtm';
+import getTermsString from 'lib/terms';
+
 import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import ArticleReply from 'components/ArticleReply';
 import { Card, CardHeader, CardContent } from 'components/Card';
-import EditorName from 'components/EditorName';
+import ProfileLink from 'components/ProfileLink';
 import Infos, { TimeInfo } from 'components/Infos';
 import {
   SideSection,
@@ -72,9 +75,7 @@ const LOAD_REPLY = gql`
         createdAt
         status
         user {
-          id
-          name
-          level
+          ...ProfileLinkUserData
         }
         ...ArticleReplyData
       }
@@ -92,6 +93,7 @@ const LOAD_REPLY = gql`
     }
   }
   ${ArticleReply.fragments.ArticleReplyData}
+  ${ProfileLink.fragments.ProfileLinkUserData}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -280,14 +282,10 @@ function ReplyPage() {
               </Link>
             </CardContent>
             {otherArticleReplies.map(ar => {
-              const editorElem = ar.user ? (
-                <EditorName
-                  key="editor"
-                  editorName={ar.user.name}
-                  editorLevel={ar.user.level}
-                />
-              ) : (
-                t`someone`
+              const editorElem = (
+                <ProfileLink key="editor" user={ar.user} hasTooltip>
+                  <span>{ar?.user?.name || t`someone`}</span>
+                </ProfileLink>
               );
 
               return (
@@ -308,6 +306,13 @@ function ReplyPage() {
               );
             })}
           </Card>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            style={{ margin: '16px 0' }}
+          >
+            {getTermsString(t`The content above`, true)}
+          </Typography>
         </div>
         <SideSection>
           <SideSectionHeader>{t`Similar replies`}</SideSectionHeader>

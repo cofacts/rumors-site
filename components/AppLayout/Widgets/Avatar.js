@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import cx from 'clsx';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
+import ProfileLink from 'components/ProfileLink';
 import { TYPE_ICON } from 'constants/replyType';
 import Peep from 'react-peeps';
 import { omit } from 'lodash';
@@ -12,10 +13,10 @@ const NULL_USER_IMG =
 
 const useStyles = makeStyles({
   root: {
-    width: size => size,
-    height: size => size,
+    width: ({ size }) => size,
+    height: ({ size }) => size,
     borderRadius: '50%',
-    cursor: 'pointer',
+    verticalAlign: ({ hasLink }) => (hasLink ? 'bottom' : undefined), // Fix bottom margin
   },
 });
 
@@ -147,10 +148,11 @@ function Avatar({
   mdSize = null,
   showLevel = false,
   status = null,
+  hasLink = false,
   className,
   ...rest
 }) {
-  const classes = useStyles(size);
+  const classes = useStyles({ size, hasLink });
   let avatarData;
   let avatar;
 
@@ -186,6 +188,9 @@ function Avatar({
   if (status) {
     avatar = <StatusBadge status={status}>{avatar}</StatusBadge>;
   }
+  if (hasLink) {
+    avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
+  }
   return avatar;
 }
 
@@ -197,7 +202,9 @@ Avatar.fragments = {
       avatarUrl
       avatarType
       avatarData
+      ...ProfileLinkUserData
     }
+    ${ProfileLink.fragments.ProfileLinkUserData}
   `,
 };
 

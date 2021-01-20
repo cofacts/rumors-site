@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ProfileLink All Props 1`] = `
+<ProfileLink
+  hasTooltip={true}
+  user={
+    Object {
+      "id": "123",
+      "level": 10,
+      "slug": "slug123",
+    }
+  }
+>
+  <Link
+    as="/user/slug123"
+    href="/user/[slug]"
+  >
+    <a
+      href="/user/slug123"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      style={
+        Object {
+          "color": "inherit",
+        }
+      }
+    >
+      <Tooltip
+        placement="top"
+        title="Lv.10 闢謠天行者"
+      >
+        <span
+          aria-describedby={null}
+          className=""
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          title="Lv.10 闢謠天行者"
+        >
+          Child
+        </span>
+      </Tooltip>
+    </a>
+  </Link>
+</ProfileLink>
+`;
+
+exports[`Storyshots ProfileLink Renders Child When No User 1`] = `
+<ProfileLink>
+  Child
+</ProfileLink>
+`;

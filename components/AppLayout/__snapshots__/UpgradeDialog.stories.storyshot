@@ -1,0 +1,352 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots UpgradeDialog Default 1`] = `
+<UpgradeDialogLayout
+  currentLevel={1}
+  currentLevelScore={100}
+  nextLevel={2}
+  nextLevelScore={200}
+  onClose={[Function]}
+  open={false}
+>
+  <Portal>
+    <div
+      className="MuiDialog-root makeStyles-root"
+      onKeyDown={[Function]}
+      role="presentation"
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "fixed",
+          "right": 0,
+          "top": 0,
+          "visibility": "hidden",
+          "zIndex": 1300,
+        }
+      }
+    >
+      <Transition>
+        <div
+          aria-hidden={true}
+          className="MuiBackdrop-root"
+          onClick={[Function]}
+          style={
+            Object {
+              "opacity": 0,
+              "visibility": "hidden",
+            }
+          }
+        />
+      </Transition>
+      <TrapFocus>
+        <div
+          data-test="sentinelStart"
+          tabIndex={0}
+        />
+        <Transition>
+          <div
+            className="MuiDialog-container MuiDialog-scrollBody"
+            onClick={[Function]}
+            onMouseDown={[Function]}
+            role="none presentation"
+            style={
+              Object {
+                "visibility": "hidden",
+              }
+            }
+            tabIndex="-1"
+          >
+            <div
+              className="MuiPaper-root MuiDialog-paper makeStyles-paper MuiDialog-paperScrollBody makeStyles-paper MuiDialog-paperWidthSm makeStyles-paper MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
+              role="dialog"
+            >
+              <div
+                className="makeStyles-dialogContent"
+              >
+                <div
+                  className="makeStyles-top makeStyles-top"
+                />
+                <div
+                  className="makeStyles-bottom"
+                >
+                  <div
+                    className="makeStyles-close"
+                    onClick={[Function]}
+                  >
+                    <CloseIcon>
+                      <svg
+                        aria-hidden="true"
+                        className="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 14 14"
+                      >
+                        <path
+                          d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                        />
+                      </svg>
+                    </CloseIcon>
+                  </div>
+                  <div
+                    className="makeStyles-bottomContent"
+                  >
+                    <h3
+                      className="makeStyles-titleLg"
+                    >
+                      Congratulations!
+                    </h3>
+                    <p
+                      className="makeStyles-contentText"
+                    >
+                      You can keep leveling up after your level-up!
+                    </p>
+                    <div
+                      className="makeStyles-levelContainer"
+                    >
+                      <div
+                        className="makeStyles-level"
+                      >
+                        <div
+                          className="makeStyles-levelIcon"
+                        >
+                          <LevelIcon
+                            level={1}
+                          >
+                            <svg
+                              fill="none"
+                              height={24}
+                              preserveAspectRatio="xMidYMid meet"
+                              style={
+                                Object {
+                                  "color": "#FFB600",
+                                }
+                              }
+                              viewBox="0 0 37 39"
+                              width={24}
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M18.3 0C9 0 1.5 7.5 1.5 16.8C1.5 26.1 9.1 33.6 18.3 33.6C27.5 33.6 35.1 26 35.1 16.8C35.1 7.5 27.6 0 18.3 0Z"
+                                fill="#323232"
+                              />
+                              <path
+                                d="M19.2288 37.4766C28.4932 36.9626 35.5868 29.0355 35.0728 19.771C34.5587 10.5066 26.6317 3.41295 17.3672 3.92701C8.10274 4.44106 1.00913 12.3681 1.52319 21.6326C2.03724 30.8971 9.9643 37.9907 19.2288 37.4766Z"
+                                fill="#323232"
+                              />
+                              <path
+                                d="M18.3 30.2C10.9 30.2 4.90002 24.2 4.90002 16.8C4.90002 9.40002 10.9 3.40002 18.3 3.40002C25.7 3.40002 31.7 9.40002 31.7 16.8C31.7 24.2 25.7 30.2 18.3 30.2Z"
+                                fill="url(#gradient-)"
+                              />
+                              <path
+                                d="M18.3 27.9C24.4303 27.9 29.4 23.378 29.4 17.7999C29.4 12.2219 24.4303 7.69995 18.3 7.69995C12.1696 7.69995 7.19995 12.2219 7.19995 17.7999C7.19995 23.378 12.1696 27.9 18.3 27.9Z"
+                                fill="currentColor"
+                              />
+                              <path
+                                d="M19.5 29.1C19.5 28.5 19 27.9 18.3 27.9C17.6 27.9 17.1 28.4 17.1 29.1C17.1 29.8 17.6 30.3 18.3 30.3C19 30.3 19.5 29.7 19.5 29.1Z"
+                                fill="white"
+                              />
+                              <path
+                                d="M15.8001 11.7001C15.3001 11.2001 14.6001 11.2001 14.1001 11.7001C13.6001 12.2001 13.6001 12.9001 14.1001 13.4001L19.7001 19.0001C19.9001 19.2001 20.2001 19.3001 20.5001 19.3001C20.8001 19.3001 21.1001 19.2001 21.3001 19.0001C21.8001 18.5001 21.8001 17.8001 21.3001 17.3001L15.8001 11.7001Z"
+                                fill="white"
+                              />
+                              <path
+                                d="M12.4 16.3001C12.1 16.0001 11.7 16.0001 11.4 16.3001C11.1 16.6001 11.1 17.0001 11.4 17.3001L13.4 19.3001C13.5 19.4001 13.7 19.5001 13.9 19.5001C14.1 19.5001 14.3 19.4001 14.4 19.3001C14.7 19.0001 14.7 18.6001 14.4 18.3001L12.4 16.3001Z"
+                                fill="white"
+                              />
+                              <path
+                                d="M22.1 13L20.1 11C19.8 10.7 19.4 10.7 19.1 11C18.8 11.3 18.8 11.7 19.1 12L21.1 14C21.2 14.1 21.4 14.2 21.6 14.2C21.8 14.2 22 14.1 22.1 14C22.4 13.7 22.4 13.3 22.1 13Z"
+                                fill="white"
+                              />
+                              <defs>
+                                <linearGradient
+                                  gradientUnits="userSpaceOnUse"
+                                  id="gradient-"
+                                  x1="0"
+                                  x2="0"
+                                  y1="30.2724"
+                                  y2="2.31382"
+                                >
+                                  <stop
+                                    stopColor="#FFEA29"
+                                  />
+                                  <stop
+                                    offset="0.0967848"
+                                    stopColor="#FFEB31"
+                                  />
+                                  <stop
+                                    offset="0.2488"
+                                    stopColor="#FFED48"
+                                  />
+                                  <stop
+                                    offset="0.4369"
+                                    stopColor="#FFF16C"
+                                  />
+                                  <stop
+                                    offset="0.6539"
+                                    stopColor="#FFF69F"
+                                  />
+                                  <stop
+                                    offset="0.8923"
+                                    stopColor="#FFFCDF"
+                                  />
+                                  <stop
+                                    offset="1"
+                                    stopColor="white"
+                                  />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          </LevelIcon>
+                        </div>
+                        <div>
+                          Lv. 
+                          1
+                        </div>
+                      </div>
+                      <div
+                        className="makeStyles-progress"
+                      >
+                        <div
+                          className="makeStyles-progressBarContainer"
+                        >
+                          <div
+                            className="makeStyles-progressBar"
+                            style={
+                              Object {
+                                "width": "50%",
+                              }
+                            }
+                          />
+                        </div>
+                        <div
+                          className="makeStyles-progressText"
+                        >
+                          <span>
+                            EXP
+                          </span>
+                          <span>
+                            100
+                          </span>
+                          <span>
+                            /
+                            200
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        className="makeStyles-level"
+                        style={
+                          Object {
+                            "opacity": 1,
+                          }
+                        }
+                      >
+                        <div
+                          className="makeStyles-levelIcon"
+                        >
+                          <LevelIcon
+                            level={2}
+                          >
+                            <svg
+                              fill="none"
+                              height={24}
+                              preserveAspectRatio="xMidYMid meet"
+                              style={
+                                Object {
+                                  "color": "#02D88B",
+                                }
+                              }
+                              viewBox="0 0 37 39"
+                              width={24}
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M18.3 0C9 0 1.5 7.5 1.5 16.8C1.5 26.1 9.1 33.6 18.3 33.6C27.5 33.6 35.1 26 35.1 16.8C35.1 7.5 27.6 0 18.3 0Z"
+                                fill="#323232"
+                              />
+                              <path
+                                d="M19.2288 37.4766C28.4932 36.9626 35.5868 29.0355 35.0728 19.771C34.5587 10.5066 26.6317 3.41295 17.3672 3.92701C8.10274 4.44106 1.00913 12.3681 1.52319 21.6326C2.03724 30.8971 9.9643 37.9907 19.2288 37.4766Z"
+                                fill="#323232"
+                              />
+                              <path
+                                d="M18.3 30.2C10.9 30.2 4.90002 24.2 4.90002 16.8C4.90002 9.40002 10.9 3.40002 18.3 3.40002C25.7 3.40002 31.7 9.40002 31.7 16.8C31.7 24.2 25.7 30.2 18.3 30.2Z"
+                                fill="url(#gradient-)"
+                              />
+                              <path
+                                d="M18.3 27.9C24.4303 27.9 29.4 23.378 29.4 17.7999C29.4 12.2219 24.4303 7.69995 18.3 7.69995C12.1696 7.69995 7.19995 12.2219 7.19995 17.7999C7.19995 23.378 12.1696 27.9 18.3 27.9Z"
+                                fill="currentColor"
+                              />
+                              <path
+                                d="M19.5 29.1C19.5 28.5 19 27.9 18.3 27.9C17.6 27.9 17.1 28.4 17.1 29.1C17.1 29.8 17.6 30.3 18.3 30.3C19 30.3 19.5 29.7 19.5 29.1Z"
+                                fill="white"
+                              />
+                              <path
+                                d="M15.8001 11.7001C15.3001 11.2001 14.6001 11.2001 14.1001 11.7001C13.6001 12.2001 13.6001 12.9001 14.1001 13.4001L19.7001 19.0001C19.9001 19.2001 20.2001 19.3001 20.5001 19.3001C20.8001 19.3001 21.1001 19.2001 21.3001 19.0001C21.8001 18.5001 21.8001 17.8001 21.3001 17.3001L15.8001 11.7001Z"
+                                fill="white"
+                              />
+                              <path
+                                d="M12.4 16.3001C12.1 16.0001 11.7 16.0001 11.4 16.3001C11.1 16.6001 11.1 17.0001 11.4 17.3001L13.4 19.3001C13.5 19.4001 13.7 19.5001 13.9 19.5001C14.1 19.5001 14.3 19.4001 14.4 19.3001C14.7 19.0001 14.7 18.6001 14.4 18.3001L12.4 16.3001Z"
+                                fill="white"
+                              />
+                              <path
+                                d="M22.1 13L20.1 11C19.8 10.7 19.4 10.7 19.1 11C18.8 11.3 18.8 11.7 19.1 12L21.1 14C21.2 14.1 21.4 14.2 21.6 14.2C21.8 14.2 22 14.1 22.1 14C22.4 13.7 22.4 13.3 22.1 13Z"
+                                fill="white"
+                              />
+                              <defs>
+                                <linearGradient
+                                  gradientUnits="userSpaceOnUse"
+                                  id="gradient-"
+                                  x1="0"
+                                  x2="0"
+                                  y1="30.2724"
+                                  y2="2.31382"
+                                >
+                                  <stop
+                                    stopColor="#4FF695"
+                                  />
+                                  <stop
+                                    offset="0.1113"
+                                    stopColor="#57F69A"
+                                  />
+                                  <stop
+                                    offset="0.286"
+                                    stopColor="#6EF8A7"
+                                  />
+                                  <stop
+                                    offset="0.5023"
+                                    stopColor="#92F9BE"
+                                  />
+                                  <stop
+                                    offset="0.7511"
+                                    stopColor="#C5FCDC"
+                                  />
+                                  <stop
+                                    offset="1"
+                                    stopColor="white"
+                                  />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          </LevelIcon>
+                        </div>
+                        <div>
+                          Lv. 
+                          2
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Transition>
+        <div
+          data-test="sentinelEnd"
+          tabIndex={0}
+        />
+      </TrapFocus>
+    </div>
+  </Portal>
+</UpgradeDialogLayout>
+`;

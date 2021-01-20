@@ -19,6 +19,12 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#fafafa',
       '--background': '#fafafa', // ExpandableText
     },
+
+    // Adding visited styles
+    '&:hover': {
+      textDecoration: 'none',
+      color: theme.palette.secondary[500],
+    },
   },
   flex: {
     display: 'flex',

@@ -25,6 +25,7 @@ const mockArticleReplyFeedbacks = [
     user: {
       id: 'webUser1',
       name: 'Web User',
+      slug: null,
       level: 12,
       avatarUrl: 'https://placekitten.com/100/100',
     },

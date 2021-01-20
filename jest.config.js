@@ -7,8 +7,8 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
   },
   moduleNameMapper: {
-    // Ignore CSS imports in jest
+    // Ignore CSS and image imports in jest
     // Ref: https://jestjs.io/docs/en/webpack#handling-static-assets
-    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(css|png|svg)$': '<rootDir>/__mocks__/styleMock.js',
   },
 };
