@@ -12,7 +12,8 @@ msgid "About"
 msgstr "關於"
 
 #: pages/article/[id].js:306
-#: pages/reply/[id].js:247
+#: pages/index.js:42
+#: pages/reply/[id].js:246
 msgid "Cofacts"
 msgstr "Cofacts"
 
@@ -68,37 +69,37 @@ msgid "Reported Message"
 msgstr "使用者回報訊息"
 
 #: components/ArticleInfo.js:80
-#: pages/reply/[id].js:279
-#: pages/reply/[id].js:305
+#: pages/reply/[id].js:278
+#: pages/reply/[id].js:300
 #, javascript-format
 msgid "${ timeAgoStr } ago"
 msgstr "${ timeAgoStr }前"
 
-#: components/ArticleReply/index.js:132
+#: components/ArticleReply/index.js:133
 msgid "Reason"
 msgstr "理由"
 
-#: components/ArticleReply/index.js:133
+#: components/ArticleReply/index.js:134
 msgid "Details"
 msgstr "詳細解釋"
 
-#: components/ArticleReply/index.js:135
-#: components/ArticleReply/index.js:176
+#: components/ArticleReply/index.js:136
+#: components/ArticleReply/index.js:163
 #: pages/api/articles/[feed].js:178
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Reference"
 msgstr "出處"
 
 #: components/ArticleCategories/DownVoteDialog.js:70
-#: components/ArticleReply/index.js:164
+#: components/ArticleReply/index.js:180
 msgid "Someone"
 msgstr "有人"
 
-#: components/ArticleReply/index.js:176
+#: components/ArticleReply/index.js:163
 msgid "Different opinion"
 msgstr "不同意見"
 
-#: components/ArticleReply/index.js:180
+#: components/ArticleReply/index.js:167
 msgid "There is no reference for this reply. Its truthfulness may be doubtful."
 msgstr "這則回應沒有出處，請自行斟酌其真實性。"
 
@@ -113,7 +114,7 @@ msgid "Deleted replies"
 msgstr "已刪除的回應"
 
 #: components/CurrentReplies.js:81
-#: pages/reply/[id].js:257
+#: pages/reply/[id].js:256
 msgid "Restore"
 msgstr "恢復"
 
@@ -132,13 +133,9 @@ msgid "There is no existing replies for now."
 msgstr "目前沒有已撰寫的回應。"
 
 #: components/CurrentReplies.js:163
-#: pages/reply/[id].js:257
+#: pages/reply/[id].js:256
 msgid "Delete"
 msgstr "刪除"
-
-#: components/EditorName.js:8
-msgid "Lv.${ editorLevel } ${ levelName }"
-msgstr "等級 ${ editorLevel }. ${ levelName }"
 
 #: components/ArticleCategories/DownVoteDialog.js:99
 #: components/CreateReplyRequestForm/CreateReplyRequestForm.js:132
@@ -200,12 +197,12 @@ msgstr "Facebook"
 msgid "Tutorial"
 msgstr "使用教學"
 
-#: pages/reply/[id].js:253
+#: pages/reply/[id].js:252
 msgid "This reply"
 msgstr "本篇回應"
 
 #: pages/api/articles/[feed].js:174
-#: pages/reply/[id].js:293
+#: pages/reply/[id].js:287
 msgid "someone"
 msgstr "有人"
 
@@ -242,19 +239,20 @@ msgid ""
 "fighting mis/disinformation in Taiwan."
 msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
 
+#: components/ProfilePage/ProfilePage.js:49
 #: pages/article/[id].js:263
 #: pages/article/[id].js:267
-#: pages/reply/[id].js:201
-#: pages/reply/[id].js:205
+#: pages/reply/[id].js:200
+#: pages/reply/[id].js:204
 msgid "Loading"
 msgstr "載入中"
 
 #: pages/article/[id].js:278
-#: pages/reply/[id].js:216
+#: pages/reply/[id].js:215
 msgid "Not found"
 msgstr "找不到此頁面"
 
-#: pages/reply/[id].js:220
+#: pages/reply/[id].js:219
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
@@ -262,7 +260,7 @@ msgstr "此回應不存在"
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
-#: pages/reply/[id].js:302
+#: pages/reply/[id].js:297
 #, javascript-format
 msgid "Added by ${ editorElem }"
 msgstr "${editorElem} 加的"
@@ -642,7 +640,7 @@ msgstr "沒有幫助  ${ articleReply.negativeFeedbackCount }"
 msgid "Successfylly Shared!"
 msgstr "分享成功！"
 
-#: components/ArticleReply/index.js:199
+#: components/ArticleReply/index.js:190
 #, javascript-format
 msgid "${ authorElem } mark this message ${ TYPE_NAME[replyType] }"
 msgstr "${ authorElem } 認為 ${ TYPE_NAME[replyType] }"
@@ -741,32 +739,32 @@ msgstr[0] "被回報 ${ article.replyRequestCount } 次"
 msgid "First reported ${ timeAgo } ago"
 msgstr "首次回報於 ${ timeAgo }前"
 
-#: pages/reply/[id].js:141
+#: pages/reply/[id].js:140
 #, javascript-format
 msgid "${ otherCount } other reply"
 msgid_plural "${ otherCount } other replies"
 msgstr[0] ""
 msgstr[1] ""
 
-#: pages/reply/[id].js:265
+#: pages/reply/[id].js:264
 msgid "The reply is used in the following messages"
 msgstr "此查核回應尚被用於以下的可疑訊息"
 
-#: pages/reply/[id].js:276
+#: pages/reply/[id].js:275
 msgid "Deleted by its author"
 msgstr "此回應已被原作者刪除。"
 
-#: pages/reply/[id].js:323
+#: pages/reply/[id].js:318
 msgid "Similar replies"
 msgstr "相似可疑訊息"
 
-#: pages/reply/[id].js:336
+#: pages/reply/[id].js:331
 #, javascript-format
 msgid "Used in ${ node.articleReplies.length } message"
 msgid_plural "Used in ${ node.articleReplies.length } messages"
 msgstr[0] "此查核回應曾經被用於 ${ node.articleReplies.length } 個可疑訊息"
 
-#: pages/reply/[id].js:348
+#: pages/reply/[id].js:343
 msgid "No similar replies found"
 msgstr "沒有相似的可疑訊息"
 
@@ -924,7 +922,7 @@ msgid "Contact"
 msgstr "聯繫"
 
 #: pages/article/[id].js:414
-#: pages/reply/[id].js:319
+#: pages/reply/[id].js:314
 msgid "The content above"
 msgstr "以上內容"
 
