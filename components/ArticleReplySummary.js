@@ -1,7 +1,7 @@
 import React from 'react';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
-import ProfileLink from 'components/ProfileLink';
+import { ProfileTooltip } from 'components/ProfileLink';
 import cx from 'clsx';
 import { TYPE_NAME } from 'constants/replyType';
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,9 +33,9 @@ function ArticleReplySummary({ articleReply, className, ...props }) {
   const classes = useStyles({ replyType });
 
   const authorElem = (
-    <ProfileLink key="editor" user={user} hasTooltip>
+    <ProfileTooltip key="editor" user={user}>
       <span>{user?.name || t`Someone`}</span>
-    </ProfileLink>
+    </ProfileTooltip>
   );
 
   return (
@@ -51,9 +51,10 @@ ArticleReplySummary.fragments = {
       replyType
       user {
         name
-        ...ProfileLinkUserData
+        ...ProfileTooltipUserData
       }
     }
+    ${ProfileTooltip.fragments.ProfileTooltipUserData}
   `,
 };
 
