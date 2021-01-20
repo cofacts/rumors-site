@@ -10,7 +10,7 @@ import getTermsString from 'lib/terms';
 import { TYPE_NAME } from 'constants/replyType';
 import ExpandableText from 'components/ExpandableText';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
-import EditorName from 'components/EditorName';
+import ProfileLink from 'components/ProfileLink';
 import Hyperlinks from 'components/Hyperlinks';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReplyInfo from 'components/ReplyInfo';
@@ -61,8 +61,10 @@ const ArticleReplyData = gql`
       text
       reference
       user {
+        id
+        name
         ...AvatarData
-        ...EditorNameUserData
+        ...ProfileLinkUserData
       }
       hyperlinks {
         ...HyperlinkData
@@ -72,8 +74,8 @@ const ArticleReplyData = gql`
     user {
       id
       name
-      level
       ...AvatarData
+      ...ProfileLinkUserData
     }
     ...ArticleReplyFeedbackControlData
   }
@@ -81,7 +83,7 @@ const ArticleReplyData = gql`
   ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
-  ${EditorName.fragments.EditorNameUserData}
+  ${ProfileLink.fragments.ProfileLinkUserData}
 `;
 
 const ArticleReplyForUser = gql`
@@ -173,12 +175,16 @@ const ArticleReply = React.memo(
       );
     };
 
-    const authorElem = <EditorName key="editor" user={articleReplyAuthor} />;
+    const authorElem = (
+      <ProfileLink key="editor" user={articleReplyAuthor} hasTooltip>
+        <span>{articleReplyAuthor?.name || t`Someone`}</span>
+      </ProfileLink>
+    );
 
     return (
       <>
         <Box component="header" display="flex" alignItems="center">
-          {user && <Avatar user={user} className={classes.avatar} />}
+          {user && <Avatar user={user} className={classes.avatar} hasLink />}
           <Box flexGrow={1}>
             <div className={classes.replyType}>
               {jt`${authorElem} mark this message ${TYPE_NAME[replyType]}`}
