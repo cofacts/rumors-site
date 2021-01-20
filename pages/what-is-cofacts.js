@@ -110,6 +110,9 @@ const useStyles = makeStyles(theme => ({
 
     [theme.breakpoints.down('md')]: {
       paddingTop: 24,
+    },
+
+    [theme.breakpoints.down('sm')]: {
       paddingBottom: 20,
     },
   },
@@ -117,22 +120,21 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    margin: '50px 0 45px',
-
-    [theme.breakpoints.down('md')]: {
-      maxWidth: 600,
-      margin: '36px auto 38px',
-    },
-
-    '&::before': {
-      background: 'white',
-    },
+    padding: '50px 0 45px',
+    background: 'white',
 
     '& > h3': {
       marginBottom: 54,
 
       [theme.breakpoints.down('md')]: {
         marginBottom: 24,
+      },
+    },
+
+    '& > div': {
+      [theme.breakpoints.down('md')]: {
+        maxWidth: 600,
+        margin: '0 auto',
       },
     },
   },
