@@ -25,24 +25,34 @@ exports[`Storyshots ProfileLink All Props 1`] = `
         }
       }
     >
-      <Tooltip
-        placement="top"
-        title="Lv.10 闢謠天行者"
+      <ProfileTooltip
+        user={
+          Object {
+            "id": "123",
+            "level": 10,
+            "slug": "slug123",
+          }
+        }
       >
-        <span
-          aria-describedby={null}
-          className=""
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
-          onTouchEnd={[Function]}
-          onTouchStart={[Function]}
+        <Tooltip
+          placement="top"
           title="Lv.10 闢謠天行者"
         >
-          Child
-        </span>
-      </Tooltip>
+          <span
+            aria-describedby={null}
+            className=""
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseLeave={[Function]}
+            onMouseOver={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            title="Lv.10 闢謠天行者"
+          >
+            Child
+          </span>
+        </Tooltip>
+      </ProfileTooltip>
     </a>
   </Link>
 </ProfileLink>
