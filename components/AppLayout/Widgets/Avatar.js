@@ -11,14 +11,18 @@ import { omit } from 'lodash';
 const NULL_USER_IMG =
   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     width: ({ size }) => size,
     height: ({ size }) => size,
     borderRadius: '50%',
     verticalAlign: ({ hasLink }) => (hasLink ? 'bottom' : undefined), // Fix bottom margin
+    [theme.breakpoints.up('md')]: {
+      width: ({ size, mdSize }) => mdSize ?? size,
+      height: ({ size, mdSize }) => mdSize ?? size,
+    },
   },
-});
+}));
 
 const peepsStyles = {
   peepStyle: {
@@ -152,7 +156,7 @@ function Avatar({
   className,
   ...rest
 }) {
-  const classes = useStyles({ size, hasLink });
+  const classes = useStyles({ size, mdSize, hasLink });
   let avatarData;
   let avatar;
 

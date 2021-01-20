@@ -26,10 +26,6 @@ const useStyles = makeStyles(theme => ({
       marginRight: 10,
     },
   },
-  avatar: {
-    width: 40,
-    height: 40,
-  },
   thumbIcon: {
     fontSize: 16,
     margin: '0 2px',
@@ -103,7 +99,7 @@ function ReplyRequestReason({ replyRequest }) {
   return (
     <div className={classes.root}>
       <Box color="primary.main" pr={2}>
-        <Avatar user={user} size={40} className={classes.avatar} />
+        <Avatar user={user} size={40} />
       </Box>
       <Box flex={1} className={classes.reasonBody}>
         <p className={classes.reason}>{replyRequestReason}</p>
