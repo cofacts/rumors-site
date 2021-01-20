@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import { c } from 'ttag';
 import cx from 'clsx';
-import Link from 'next/link';
+import Button from '@material-ui/core/Button';
 
 import AppLayout from 'components/AppLayout';
 import { TutorialHeader, LineTutorial } from 'components/Tutorial';
@@ -151,13 +151,16 @@ const useStyles = makeStyles(theme => ({
   howToUseButton: {
     fontSize: 24,
     fontWeight: 500,
-    lineHeight: 1,
-    color: 'white',
-    background: theme.palette.primary.main,
     borderRadius: 65,
     textDecoration: 'none',
-    padding: '12px 48px',
+    padding: '6px 48px',
     margin: '25px auto 0',
+    boxShadow: 'none',
+    textTransform: 'none',
+
+    '&:hover': {
+      boxShadow: 'none',
+    },
 
     [theme.breakpoints.down('md')]: {
       fontSize: 18,
@@ -288,11 +291,14 @@ const TutorialPage = () => {
               <img className={classes.colImage} src={discussImg} />
             </div>
           </div>
-          <Link href="/how-to-use">
-            <a className={classes.howToUseButton}>
-              快來了解 Cofacts 怎麼使用吧
-            </a>
-          </Link>
+          <Button
+            className={classes.howToUseButton}
+            variant="contained"
+            color="primary"
+            href="/how-to-use"
+          >
+            快來了解 Cofacts 怎麼使用吧
+          </Button>
         </section>
         <section className={classes.coreValue}>
           {/* TODO: translate */}
