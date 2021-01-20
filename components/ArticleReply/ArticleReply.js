@@ -153,7 +153,10 @@ const ArticleReply = React.memo(
     return (
       <>
         <Box component="header" display="flex" alignItems="center">
-          <Avatar user={articleReply.user} className={classes.avatar} hasLink />
+          <Avatar
+            user={articleReply.user}
+            className={classes.avatar} /*hasLink*/
+          />
           <Box flexGrow={1}>
             <ArticleReplySummary articleReply={articleReply} />
             <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />

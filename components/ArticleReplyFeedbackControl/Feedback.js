@@ -22,7 +22,7 @@ function Feedback({ feedback }) {
 
   return (
     <div className={classes.root}>
-      <Avatar user={feedback.user} size={48} hasLink />
+      <Avatar user={feedback.user} size={48} /*hasLink*/ />
       <Box px={2}>
         <div className={classes.name}>{feedback.user?.name}</div>
         <div>{feedback.comment}</div>
