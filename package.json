@@ -36,7 +36,7 @@
     "emoji-mart": "^3.0.0",
     "feed": "^4.1.0",
     "graphql": "^14.4.2",
-    "immer": "^5.0.0",
+    "immer": "^8.0.1",
     "isomorphic-unfetch": "^3.0.0",
     "json-url": "^2.6.0",
     "lodash": "^4.17.19",
