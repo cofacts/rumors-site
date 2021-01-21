@@ -16,8 +16,7 @@ exports[`Storyshots ArticleReplySummary Different Reply Types 1`] = `
   <div
     className="makeStyles-replyType makeStyles-replyType"
   >
-    <ProfileLink
-      hasTooltip={true}
+    <ProfileTooltip
       key="editor"
       user={
         Object {
@@ -27,40 +26,25 @@ exports[`Storyshots ArticleReplySummary Different Reply Types 1`] = `
         }
       }
     >
-      <Link
-        href="/user?id=test-user"
+      <Tooltip
+        placement="top"
+        title="Lv.10 闢謠天行者"
       >
-        <a
-          href="/user?id=test-user"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          style={
-            Object {
-              "color": "inherit",
-            }
-          }
+        <span
+          aria-describedby={null}
+          className=""
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          title="Lv.10 闢謠天行者"
         >
-          <Tooltip
-            placement="top"
-            title="Lv.10 闢謠天行者"
-          >
-            <span
-              aria-describedby={null}
-              className=""
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseLeave={[Function]}
-              onMouseOver={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
-              title="Lv.10 闢謠天行者"
-            >
-              The user
-            </span>
-          </Tooltip>
-        </a>
-      </Link>
-    </ProfileLink>
+          The user
+        </span>
+      </Tooltip>
+    </ProfileTooltip>
      mark this message 
     invalid request
   </div>
@@ -79,15 +63,14 @@ exports[`Storyshots ArticleReplySummary No Valid User 1`] = `
   <div
     className="makeStyles-replyType makeStyles-replyType"
   >
-    <ProfileLink
-      hasTooltip={true}
+    <ProfileTooltip
       key="editor"
       user={null}
     >
       <span>
         Someone
       </span>
-    </ProfileLink>
+    </ProfileTooltip>
      mark this message 
     contains true information
   </div>

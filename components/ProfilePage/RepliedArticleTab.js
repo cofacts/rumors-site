@@ -127,7 +127,11 @@ function ArticleReply({ articleReply }) {
         style={{ gap: '16px' }}
       >
         {user && (
-          <Avatar size={40} user={user} className={classes.avatar} hasLink />
+          <Avatar
+            size={40}
+            user={user}
+            className={classes.avatar} /*hasLink*/
+          />
         )}
         <Box flexGrow={1}>
           <ArticleReplySummary articleReply={articleReply} />
