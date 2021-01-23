@@ -47,7 +47,7 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
         required
         className={classes.textarea}
         id="reference"
-        placeholder="超連結與連結說明文字"
+        placeholder={t`Source URL`}
         onChange={onChange}
         value={value}
         rows={3}
@@ -58,9 +58,13 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
       >
         <label className={classes.label} htmlFor="reference">
           <strong>
-            {replyType === 'OPINIONATED'
-              ? '請提供與原文「不同觀點」的文章連結，促使讀者接觸不同意見'
-              : '資料來源'}
+            {(() => {
+              if (replyType === 'OPINIONATED') {
+                return t`Opinion Sources`;
+              } else {
+                return t`References`;
+              }
+            })()}
           </strong>
         </label>
         <Hint>{t`Inserting blank lines between reference items can improve readability in LINE.`}</Hint>
