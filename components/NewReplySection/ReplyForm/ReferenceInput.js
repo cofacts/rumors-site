@@ -47,7 +47,8 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
         required
         className={classes.textarea}
         id="reference"
-        placeholder={t`Source URL`}
+        placeholder={t`One line summary
+        » Source URL`}
         onChange={onChange}
         value={value}
         rows={3}
