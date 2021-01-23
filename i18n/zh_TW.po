@@ -679,7 +679,7 @@ msgstr "撰寫新回應"
 msgid "Use existing replies"
 msgstr "使用現有回應"
 
-#: components/NewReplySection/ReplyForm/ReasonEditor.js:290
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:304
 msgid "Keep composing my reply with this"
 msgstr "延伸此回應來查核"
 
@@ -1048,6 +1048,32 @@ msgstr "資料佐證"
 #: components/NewReplySection/ReplyForm/ReferenceInput.js:50
 msgid "Source URL"
 msgstr "連結網址"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:262
+msgid "Please briefly explain why this message should not be processed in Cofacts."
+msgstr "請簡單說明為何 Cofacts 不該處理這則訊息"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:264
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is correct."
+msgstr "請簡單說明它哪個部分是正確的，作為「資料來源」的導讀"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:266
+msgid ""
+"Please briefly\n"
+"1. explain which part of the message contains personal opinion\n"
+"2. remind the audience that this is not factual"
+msgstr ""
+"請簡單說明：\n"
+"1. 它哪個部分含有主觀意見之處\n"
+"2. 提醒讀者這不是客觀事實"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:270
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is incorrect."
+msgstr "請簡單說明不實之處，作為「資料來源」的導讀"
 
 #: pages/index.js:41
 msgctxt "site title"
