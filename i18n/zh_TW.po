@@ -580,7 +580,7 @@ msgstr "全部回應"
 msgid "My replies"
 msgstr "我的回應"
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:70
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:71
 msgid ""
 "Inserting blank lines between reference items can improve readability in "
 "LINE."
@@ -1037,17 +1037,21 @@ msgstr ""
 msgid "Earn ${ pointsLeft } EXP to next level"
 msgstr ""
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:63
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:64
 msgid "Opinion Sources"
 msgstr "不同意見出處"
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:65
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:66
 msgid "References"
 msgstr "資料佐證"
 
 #: components/NewReplySection/ReplyForm/ReferenceInput.js:50
-msgid "Source URL"
-msgstr "連結網址"
+msgid ""
+"One line summary\n"
+"» Source URL"
+msgstr ""
+"來源說明\n"
+"» 連結網址"
 
 #: components/NewReplySection/ReplyForm/ReasonEditor.js:262
 msgid "Please briefly explain why this message should not be processed in Cofacts."
