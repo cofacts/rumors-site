@@ -19,7 +19,7 @@ module.exports = {
     "@babel/plugin-proposal-class-properties", // ttag extraction & resolve needs it, even though it's included in next/babel...
     "@babel/plugin-proposal-optional-chaining",
     [ // Need to be put last so that it can replace all strings
-      'ttag', {resolve: {translations: `i18n/${process.env.LOCALE || 'en_US'}.po`}}
+      'ttag', {resolve: {translations: `i18n/${process.env.LOCALE || 'en_US'}.po`}, dedent: true,}
     ],
   ]
 }
