@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
-  root: {},
   item: {
     border: 'none',
     outline: 'none',
@@ -57,6 +56,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[500],
   },
 }));
+
 const Accordion = ({
   className,
   data = [],
@@ -66,7 +66,7 @@ const Accordion = ({
   const classes = useStyles();
 
   return (
-    <div className={cx(classes.root, className)}>
+    <div className={className}>
       {data.map(({ title, content }, index) => (
         <div
           key={index}
