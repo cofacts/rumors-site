@@ -211,7 +211,7 @@ msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Stats.js:146
-#. we hold ~ 
+#. we hold ~
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -912,20 +912,6 @@ msgstr "聯繫"
 msgid "The content above"
 msgstr "以上內容"
 
-#: lib/terms.js:42
-msgid "CC BY-SA 4.0"
-msgstr "創用 CC 姓名標示-相同方式分享 4.0"
-
-#: lib/terms.js:65
-#, javascript-format
-msgid "${ subject } by ${ authorLink } is licensed under ${ licenseLink }"
-msgstr "${ subject }由 ${ authorLink } 提供，以${ licenseLink } 釋出。"
-
-#: lib/terms.js:46
-#, javascript-format
-msgid "${ subject } by ${ AUTHOR } is licensed under ${ LICENSE }."
-msgstr "${ subject }由 ${ AUTHOR } 提供，以${ LICENSE } 釋出。"
-
 #: components/AppLayout/LoginModal.js:92
 msgid "Terms of Use"
 msgstr "使用者條款"
@@ -1078,6 +1064,29 @@ msgid ""
 "As a brief intro for the references, please point out which part of the "
 "message is incorrect."
 msgstr "請簡單說明不實之處，作為「資料來源」的導讀"
+
+#: lib/terms.js:66
+#, javascript-format
+msgid ""
+"${ subject } by ${ authorLink } is licensed under ${ licenseLink }, the "
+"community name and the provenance link for each item shall be fully cited "
+"for further reproduction or redistribution."
+msgstr ""
+"${ subject }由${ authorLink }提供，以 ${ licenseLink } "
+"釋出，於後續重製或散布時，原社群顯名及每一則查證的出處連結皆必須被完整引用。"
+
+#: lib/terms.js:42
+msgid "CC BY-SA 4.0"
+msgstr "CC BY-SA 4.0"
+
+#: lib/terms.js:43
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "CC授權 姓名標示-相同方式分享 4.0"
+
+#: lib/terms.js:47
+#, javascript-format
+msgid "${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }."
+msgstr "${ subject }由 ${ AUTHOR } 提供，以${ SHORT_LICENSE } 釋出。"
 
 #: pages/index.js:41
 msgctxt "site title"
