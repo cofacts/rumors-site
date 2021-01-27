@@ -32,19 +32,6 @@ const USER_QUERY = gql`
   }
 `;
 
-const CHANGE_NAME_QUERY = gql`
-  mutation ChangeUserName($name: String!) {
-    UpdateUser(name: $name) {
-      id
-      name
-      ...AppSidebarUserData
-      ...AppHeaderUserData
-    }
-  }
-  ${AppSidebar.fragments.AppSidebarUserData}
-  ${AppHeader.fragments.AppHeaderUserData}
-`;
-
 const useStyles = makeStyles({
   container: {
     flex: 1,
