@@ -36,9 +36,7 @@ exports[`Storyshots Tutorial/Accordion Normal 1`] = `
     }
     onClick={[Function]}
   >
-    <div
-      className="makeStyles-root"
-    >
+    <div>
       <div
         className="makeStyles-item"
         key="0"

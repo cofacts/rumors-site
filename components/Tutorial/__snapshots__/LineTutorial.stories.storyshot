@@ -94,7 +94,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
       onClick={[Function]}
     >
       <div
-        className="makeStyles-root makeStyles-accordion"
+        className="makeStyles-accordion"
       >
         <div
           className="makeStyles-item"
