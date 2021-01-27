@@ -43,7 +43,7 @@ function LoadMore({
   }
 
   return (
-    <Box display="flex" mt={3} mb={3} justifyContent="center">
+    <Box display="flex" py={/* avoid collapsing */ 3} justifyContent="center">
       <Button
         className={classes.loadMore}
         variant="outlined"

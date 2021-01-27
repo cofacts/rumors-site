@@ -1,23 +1,8 @@
-import gql from 'graphql-tag';
 import { useSpring, animated } from 'react-spring';
 import { t } from 'ttag';
-import { useQuery } from '@apollo/react-hooks';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
-
-const LOAD_USER_STATS = gql`
-  query LoadUserStats($userId: String!) {
-    repliedArticles: ListArticles(
-      filter: { articleRepliesFrom: { userId: $userId, exists: true } }
-    ) {
-      totalCount
-    }
-    commentedReplies: ListArticleReplyFeedbacks(filter: { userId: $userId }) {
-      totalCount
-    }
-  }
-`;
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -62,23 +47,18 @@ function Stat({ value, label }) {
   );
 }
 
-function Stats({ userId }) {
+/**
+ *
+ * @param {string} props.userId
+ * @param {{repliedArticles: number, commentedReplies: number}} props.stats
+ */
+function Stats({ stats }) {
   const classes = useStyles();
-  const { data } = useQuery(LOAD_USER_STATS, {
-    ssr: false, // Calculating these numbers are expensive; cralwers also don't need these numbers.
-    variables: { userId },
-  });
 
   return (
     <ul className={classes.root}>
-      <Stat
-        label={t`replied messages`}
-        value={data?.repliedArticles?.totalCount}
-      />
-      <Stat
-        label={t`voted replies`}
-        value={data?.commentedReplies?.totalCount}
-      />
+      <Stat label={t`replied messages`} value={stats?.repliedArticles} />
+      <Stat label={t`voted replies`} value={stats?.commentedReplies} />
     </ul>
   );
 }

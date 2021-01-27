@@ -1,19 +1,26 @@
+import { useState } from 'react';
 import gql from 'graphql-tag';
-import { t } from 'ttag';
+import { t, jt } from 'ttag';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
-import { withDarkTheme } from 'lib/theme';
+import { lightTheme, withDarkTheme } from 'lib/theme';
 import { linkify, nl2br } from 'lib/text';
+import LEVEL_NAMES from 'constants/levelNames';
+import { LINE_URL } from 'constants/urls';
 
 import Ribbon from 'components/Ribbon';
 import LevelIcon from 'components/LevelIcon';
 import LevelProgressBar from 'components/AppLayout/Widgets/LevelProgressBar';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
-import LEVEL_NAMES from 'constants/levelNames';
 import Stats from './Stats';
+import EditProfileDialog from './EditProfileDialog';
+
+import cx from 'clsx';
+
+const COFACTS_CHATBOT_ID = 'RUMORS_LINE_BOT';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,9 +65,17 @@ const useStyles = makeStyles(theme => ({
       padding: '0 16px',
     },
   },
-  name: {
+  nameSection: {
     display: 'flex',
     alignItems: 'center',
+  },
+  name: {
+    flex: '1 1 0',
+    display: '-webkit-box',
+    overflow: 'hidden',
+    boxOrient: 'vertical',
+    textOverflow: 'ellipsis',
+    lineClamp: 2,
   },
   editButton: { borderRadius: 15 },
   progress: {
@@ -72,10 +87,14 @@ const useStyles = makeStyles(theme => ({
   bio: {
     marginTop: 8,
     overflow: 'hidden',
-    display: 'box',
+    display: '-webkit-box',
     boxOrient: 'vertical',
     textOverflow: 'ellipsis',
     lineClamp: 3,
+  },
+  chatbotUser: {
+    fontStyle: 'italic',
+    color: theme.palette.secondary[200],
   },
   aside: {
     [theme.breakpoints.down('sm')]: {
@@ -98,14 +117,30 @@ const useStyles = makeStyles(theme => ({
  *
  * @param {object} props.user
  * @param {boolean} props.isSelf - If the current user is the one in `user` prop
+ * @param {{repliedArticles: number, commentedReplies: number}} props.stats
  */
-function UserPageHeader({ user, isSelf }) {
+function UserPageHeader({ user, isSelf, stats }) {
   const classes = useStyles();
+  const [isEditDialogOpen, setEditDialogOpen] = useState(false);
 
   const editButtonElem = isSelf && (
-    <Button className={classes.editButton} size="small" variant="outlined">
+    <Button
+      className={classes.editButton}
+      size="small"
+      variant="outlined"
+      onClick={() => setEditDialogOpen(true)}
+    >
       {t`Edit`}
     </Button>
+  );
+
+  const isChatbotUser = user.appId === COFACTS_CHATBOT_ID;
+  const cofactsChatbotLink = (
+    <a
+      key="chatbot"
+      style={{ color: 'inherit' }}
+      href={LINE_URL}
+    >{t`Cofacts chatbot`}</a>
   );
 
   return (
@@ -123,11 +158,11 @@ function UserPageHeader({ user, isSelf }) {
           <Avatar user={user} size={100} />
         </Hidden>
         <div className={classes.info}>
-          <div className={classes.name}>
+          <div className={classes.nameSection}>
             <Hidden implementation="css" mdUp>
               <Avatar user={user} size={60} style={{ marginRight: 12 }} />
             </Hidden>
-            <Typography variant="h6" style={{ marginRight: 'auto' }}>
+            <Typography variant="h6" className={classes.name}>
               {user.name}
             </Typography>
             <Hidden implementation="css" mdUp>
@@ -140,20 +175,34 @@ function UserPageHeader({ user, isSelf }) {
               {t`EXP`} {user.points.total} / {user.points.nextLevel}
             </Typography>
           </div>
-          {user.bio && (
-            <Typography variant="body2" className={classes.bio}>
-              {nl2br(linkify(user.bio))}
-            </Typography>
-          )}
+          <Typography
+            variant="body2"
+            className={cx(classes.bio, {
+              [classes.chatbotUser]: isChatbotUser,
+            })}
+          >
+            {isChatbotUser
+              ? jt`This is a user of ${cofactsChatbotLink}. The profile picture and the pseudonym are randomly generated.`
+              : user.bio && nl2br(linkify(user.bio))}
+          </Typography>
         </div>
 
         <aside className={classes.aside}>
           <Hidden implementation="css" smDown>
             {isSelf && editButtonElem}
           </Hidden>
-          <Stats userId={user.id} />
+          <Stats stats={stats} />
         </aside>
       </div>
+
+      {isEditDialogOpen && (
+        <ThemeProvider theme={lightTheme}>
+          <EditProfileDialog
+            user={user}
+            onClose={() => setEditDialogOpen(false)}
+          />
+        </ThemeProvider>
+      )}
     </header>
   );
 }
@@ -167,16 +216,19 @@ exported.fragments = {
       name
       bio
       level
+      appId
       points {
         total
         nextLevel
       }
       ...AvatarData
       ...LevelProgressBarData
+      ...EditProfileDialogUserData
     }
 
     ${Avatar.fragments.AvatarData}
     ${LevelProgressBar.fragments.LevelProgressBarData}
+    ${EditProfileDialog.fragments.EditProfileDialogUserData}
   `,
 };
 

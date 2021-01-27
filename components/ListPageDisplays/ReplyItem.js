@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import gql from 'graphql-tag';
-import { t } from 'ttag';
-import { TYPE_NAME } from 'constants/replyType';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ExpandableText from 'components/ExpandableText';
+import ArticleReplySummary from 'components/ArticleReplySummary';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
 import ReplyInfo from 'components/ReplyInfo';
 import { highlight } from 'lib/text';
@@ -20,21 +19,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       marginLeft: 25,
       borderBottomColor: theme.palette.secondary[100],
-    },
-  },
-  replyType: {
-    fontWeight: 'bold',
-    color: ({ replyType }) => {
-      switch (replyType) {
-        case 'OPINIONATED':
-          return '#2079F0';
-        case 'NOT_RUMOR':
-          return '#00B172';
-        case 'RUMOR':
-          return '#FB5959';
-        default:
-          return theme.palette.common.black;
-      }
     },
   },
   status: {
@@ -78,8 +62,7 @@ const useStyles = makeStyles(theme => ({
 function ReplyItem({ articleReply, reply, query }) {
   const { text, type: replyType } = reply;
 
-  const classes = useStyles({ replyType });
-  const userName = articleReply.user?.name ?? t`Anonymous`;
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -94,9 +77,7 @@ function ReplyItem({ articleReply, reply, query }) {
         />
       </Box>
       <Box py={{ xs: '16px', md: '22px' }} flexGrow={1}>
-        <div className={classes.replyType}>
-          {t`${userName} mark this message ${TYPE_NAME[replyType]}`}
-        </div>
+        <ArticleReplySummary articleReply={articleReply} />
         <ExpandableText className={classes.content} lineClamp={3}>
           {highlight(text, { query, highlightClassName: classes.highlight })}
         </ExpandableText>
@@ -134,9 +115,11 @@ ReplyItem.fragments = {
       }
       createdAt
       ...ArticleReplyFeedbackControlData
+      ...ArticleReplySummaryData
     }
     ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
     ${Avatar.fragments.AvatarData}
+    ${ArticleReplySummary.fragments.ArticleReplySummaryData}
   `,
 };
 

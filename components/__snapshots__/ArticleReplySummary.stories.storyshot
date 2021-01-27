@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ArticleReplySummary Different Reply Types 1`] = `
+<ArticleReplySummary
+  articleReply={
+    Object {
+      "replyType": "NOT_ARTICLE",
+      "user": Object {
+        "id": "test-user",
+        "level": 10,
+        "name": "The user",
+      },
+    }
+  }
+>
+  <div
+    className="makeStyles-replyType makeStyles-replyType"
+  >
+    <ProfileTooltip
+      key="editor"
+      user={
+        Object {
+          "id": "test-user",
+          "level": 10,
+          "name": "The user",
+        }
+      }
+    >
+      <Tooltip
+        placement="top"
+        title="Lv.10 闢謠天行者"
+      >
+        <span
+          aria-describedby={null}
+          className=""
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          title="Lv.10 闢謠天行者"
+        >
+          The user
+        </span>
+      </Tooltip>
+    </ProfileTooltip>
+     mark this message 
+    invalid request
+  </div>
+</ArticleReplySummary>
+`;
+
+exports[`Storyshots ArticleReplySummary No Valid User 1`] = `
+<ArticleReplySummary
+  articleReply={
+    Object {
+      "replyType": "NOT_RUMOR",
+      "user": null,
+    }
+  }
+>
+  <div
+    className="makeStyles-replyType makeStyles-replyType"
+  >
+    <ProfileTooltip
+      key="editor"
+      user={null}
+    >
+      <span>
+        Someone
+      </span>
+    </ProfileTooltip>
+     mark this message 
+    contains true information
+  </div>
+</ArticleReplySummary>
+`;
