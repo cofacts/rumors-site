@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Tutorial/Article Normal 1`] = `
+<div
+  style={
+    Object {
+      "padding": "20px",
+    }
+  }
+>
+  <Article
+    content="「Cofacts 真的假的」上的訊息查核，是由世界各地的網友編輯，無償自主查核貢獻的喔！但是編輯們的查核成果，不見得就是正確完整的呢！因此，需要網友編輯們來覆核評價，協助篩選出好的查核結果。新手編輯們，也可以從中學習別人是怎麼查核闢謠呢！"
+    label="1"
+    subContent={
+      Array [
+        Object {
+          "content": Array [
+            Object {
+              "data": "「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。
+              ",
+              "type": "text",
+            },
+            Object {
+              "data": "https://fakeimg.pl/400x300/",
+              "type": "image",
+            },
+            Object {
+              "data": "「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。",
+              "type": "text",
+            },
+            Object {
+              "data": "https://fakeimg.pl/400x300/",
+              "type": "image",
+            },
+          ],
+          "label": "第 1 步",
+          "title": "尋找需要被覆核的回應",
+        },
+        Object {
+          "content": Array [
+            Object {
+              "data": "「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。
+              ",
+              "type": "text",
+            },
+            Object {
+              "data": "https://fakeimg.pl/400x300/",
+              "type": "image",
+            },
+            Object {
+              "data": "「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。",
+              "type": "text",
+            },
+            Object {
+              "data": "https://fakeimg.pl/400x300/",
+              "type": "image",
+            },
+          ],
+          "label": "第 2 步",
+          "title": "尋找需要被覆核的回應",
+        },
+      ]
+    }
+    subTitle="想寫出好的查核訊息前，先看看別人是怎麼查核的吧！"
+    theme="yellow"
+    title="先看看別人是怎麼查核，從複核別人的查核回應開始吧！"
+  >
+    <div
+      className="makeStyles-root"
+    >
+      <div
+        className="makeStyles-label"
+      >
+        <img
+          src={Object {}}
+        />
+        1
+      </div>
+      <div
+        className="makeStyles-main"
+      >
+        <div
+          className="makeStyles-mainContentWrapper"
+        >
+          <div
+            className="makeStyles-mainTitle"
+          >
+            先看看別人是怎麼查核，從複核別人的查核回應開始吧！
+          </div>
+          <div
+            className="makeStyles-mainSubTitle"
+          >
+            想寫出好的查核訊息前，先看看別人是怎麼查核的吧！
+          </div>
+          <div
+            className="makeStyles-mainContent"
+          >
+            「Cofacts 真的假的」上的訊息查核，是由世界各地的網友編輯，無償自主查核貢獻的喔！但是編輯們的查核成果，不見得就是正確完整的呢！因此，需要網友編輯們來覆核評價，協助篩選出好的查核結果。新手編輯們，也可以從中學習別人是怎麼查核闢謠呢！
+          </div>
+        </div>
+        <div
+          className="makeStyles-foldBtn"
+          onClick={[Function]}
+        >
+          <img
+            className="makeStyles-arrow makeStyles-arrow"
+            src={Object {}}
+          />
+          展開內容
+        </div>
+      </div>
+      <div
+        className="makeStyles-mask"
+        style={
+          Object {
+            "height": 0,
+          }
+        }
+      >
+        <div
+          className="makeStyles-subContentWrapper"
+        >
+          <div
+            className="makeStyles-decoLine"
+          />
+          <div
+            className="makeStyles-subContent"
+            key="0"
+          >
+            <div
+              className="makeStyles-subContentTitleWrapper"
+            >
+              <div
+                className="makeStyles-subContentLabel makeStyles-subContentLabel"
+              >
+                第 1 步
+              </div>
+              <div
+                className="makeStyles-subContentTitle"
+              >
+                尋找需要被覆核的回應
+              </div>
+            </div>
+            <div
+              className="makeStyles-subContentData"
+              key="0"
+            >
+              「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。
+              
+            </div>
+            <img
+              className="makeStyles-subContentData"
+              key="1"
+              src="https://fakeimg.pl/400x300/"
+            />
+            <div
+              className="makeStyles-subContentData"
+              key="2"
+            >
+              「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。
+            </div>
+            <img
+              className="makeStyles-subContentData"
+              key="3"
+              src="https://fakeimg.pl/400x300/"
+            />
+          </div>
+          <div
+            className="makeStyles-subContent"
+            key="1"
+          >
+            <div
+              className="makeStyles-subContentTitleWrapper"
+            >
+              <div
+                className="makeStyles-subContentLabel makeStyles-subContentLabel"
+              >
+                第 2 步
+              </div>
+              <div
+                className="makeStyles-subContentTitle"
+              >
+                尋找需要被覆核的回應
+              </div>
+            </div>
+            <div
+              className="makeStyles-subContentData"
+              key="0"
+            >
+              「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。
+              
+            </div>
+            <img
+              className="makeStyles-subContentData"
+              key="1"
+              src="https://fakeimg.pl/400x300/"
+            />
+            <div
+              className="makeStyles-subContentData"
+              key="2"
+            >
+              「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
+              「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
+              「熱門回報」：目前很多使用者想問真假的可疑訊息。
+              「熱門討論」：目前很多編輯查核回應的可疑訊息。
+            </div>
+            <img
+              className="makeStyles-subContentData"
+              key="3"
+              src="https://fakeimg.pl/400x300/"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Article>
+</div>
+`;
