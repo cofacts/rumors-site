@@ -394,7 +394,10 @@ function ArticlePage() {
             </div>
           )}
 
-          <Card ref={replySectionRef} onCopy={handleCopy}>
+          <Card
+            ref={replySectionRef}
+            onCopy={currentUser ? undefined : handleCopy}
+          >
             <CardHeader>
               {ngettext(
                 msgid`There is ${replyCount} fact-checking reply to the message`,
