@@ -3,6 +3,7 @@ import cx from 'clsx';
 import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import InputBox from 'components/LandingPage/InputBox';
 
@@ -247,14 +248,9 @@ const SectionCanDo = ({ className }) => {
               legend sources to it, then our chatbot will help you check the
               credibility of the source!`}
           </div>
-          <a
-            className={cx(classes.button, classes.text)}
-            href="https://g0v.hackmd.io/s/rkVVQDmqQ"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t`Tutorial`}
-          </a>
+          <Link href="/how-to-use?tab=check-rumors">
+            <a className={cx(classes.button, classes.text)}>{t`Tutorial`}</a>
+          </Link>
         </div>
       </div>
     </section>
