@@ -110,9 +110,7 @@ function AppFooter() {
           </div>
           <div className={classes.column}>
             <h3>{t`About`}</h3>
-            <CustomLink external href="">
-              {t`About Cofacts`}
-            </CustomLink>
+            <CustomLink href="/what-is-cofacts">{t`About Cofacts`}</CustomLink>
             <CustomLink external href={PROJECT_HACKFOLDR}>
               {t`Introduction`}
             </CustomLink>
