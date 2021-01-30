@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'center',
       margin: 0,
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 18,
         letterSpacing: 0.15,
       },
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 870,
       margin: '0 auto',
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: 12,
         letterSpacing: 0.25,
       },
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
       '&:not(:last-child)': {
         marginBottom: 36,
 
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down('sm')]: {
           marginBottom: 24,
         },
       },
@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 1.45,
     marginBottom: 16,
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: 14,
       marginBottom: 10,
     },
@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: 0.5,
     whiteSpace: 'pre-line',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: 10,
       letterSpacing: 0.25,
     },
@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
     padding: '0 40px',
     margin: '56px auto 0',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '24px auto 0',
     },
   },
@@ -103,12 +103,12 @@ const useStyles = makeStyles(theme => ({
     '& > h3': {
       marginBottom: 32,
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         marginBottom: 24,
       },
     },
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingTop: 24,
     },
 
@@ -126,13 +126,13 @@ const useStyles = makeStyles(theme => ({
     '& > h3': {
       marginBottom: 54,
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         marginBottom: 24,
       },
     },
 
     '& > div': {
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         maxWidth: 600,
         margin: '0 auto',
       },
@@ -141,7 +141,7 @@ const useStyles = makeStyles(theme => ({
   whenItem: {
     padding: '0 45px',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '0',
     },
   },
@@ -162,7 +162,7 @@ const useStyles = makeStyles(theme => ({
       boxShadow: 'none',
     },
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: 18,
       padding: '10px 32px',
       margin: '18px auto 0',
@@ -172,7 +172,7 @@ const useStyles = makeStyles(theme => ({
     padding: '50px 20px 68px',
     background: theme.palette.secondary[800],
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '36px 9px 50px',
     },
 
@@ -180,7 +180,7 @@ const useStyles = makeStyles(theme => ({
       color: 'white',
       marginBottom: 20,
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         marginBottom: 14,
       },
     },
@@ -189,7 +189,7 @@ const useStyles = makeStyles(theme => ({
     padding: '0 36px',
     color: 'white',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '0 9px',
     },
   },
@@ -197,14 +197,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: 50,
     padding: '0 40px',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: 36,
     },
 
     '& > h3': {
       marginBottom: 36,
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         marginBottom: 24,
       },
     },
@@ -214,7 +214,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 70,
     padding: '0 40px',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: 36,
       marginBottom: 40,
     },
@@ -222,7 +222,7 @@ const useStyles = makeStyles(theme => ({
     '& > h3': {
       marginBottom: 36,
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         marginBottom: 24,
       },
     },
