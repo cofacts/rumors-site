@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
+import cx from 'clsx';
 
 import yellowLabel from './images/yellow-label.svg';
 import blueLabel from './images/blue-label.svg';
@@ -41,24 +42,44 @@ const useStyles = makeStyles(theme => ({
   mainContentWrapper: {
     padding: '20px 28px 28px',
     borderBottom: `1px solid ${theme.palette.secondary[100]}`,
+
+    [theme.breakpoints.down('xs')]: {
+      padding: '27px 14px 14px',
+    },
   },
   mainTitle: {
     fontSize: 24,
     fontWeight: 700,
     lineHeight: 1.45,
     marginBottom: 4,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 18,
+      marginBottom: 8,
+    },
   },
   mainSubTitle: {
     fontSize: 14,
     lineHeight: 1.45,
     letterSpacing: 0.25,
     color: theme.palette.secondary[300],
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
   mainContent: {
     fontSize: 14,
     lineHeight: 1.45,
     letterSpacing: 0.25,
     marginTop: 20,
+    whiteSpace: 'pre-line',
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+      lineHeight: 1.67,
+      marginTop: 10,
+    },
   },
   foldBtn: {
     display: 'flex',
@@ -70,11 +91,19 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: 0.25,
     color: theme.palette.secondary[300],
     cursor: 'pointer',
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
   arrow: {
     marginTop: 3,
     marginRight: 14,
     transform: ({ isOpen }) => `rotate(${isOpen ? 180 : 0}deg)`,
+
+    [theme.breakpoints.down('xs')]: {
+      marginRight: 8,
+    },
   },
   mask: {
     overflow: 'hidden',
@@ -82,6 +111,10 @@ const useStyles = makeStyles(theme => ({
   subContentWrapper: {
     position: 'relative',
     paddingTop: 24,
+
+    [theme.breakpoints.down('xs')]: {
+      paddingTop: 16,
+    },
   },
   decoLine: {
     position: 'absolute',
@@ -91,15 +124,29 @@ const useStyles = makeStyles(theme => ({
     left: 95,
     background: theme.palette.secondary[100],
     zIndex: -1,
+
+    [theme.breakpoints.down('xs')]: {
+      left: 24,
+    },
   },
   subContent: {
     background: 'white',
     padding: '20px 40px 28px',
     borderRadius: 4,
     marginLeft: 28,
+    whiteSpace: 'pre-line',
 
     '&:not(:last-child)': {
       marginBottom: 24,
+
+      [theme.breakpoints.down('xs')]: {
+        marginBottom: 16,
+      },
+    },
+
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 10,
+      padding: '15px 15px 23px',
     },
   },
   subContentTitleWrapper: {
@@ -108,25 +155,57 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 1.45,
     fontWeight: 500,
     marginBottom: 16,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 14,
+      fontWeight: 700,
+    },
   },
   subContentLabel: {
     color: ({ componentTheme }) =>
       componentTheme === 'yellow' ? theme.palette.primary.main : '#2DAEF7',
     marginRight: 20,
+
+    [theme.breakpoints.down('xs')]: {
+      marginRight: 30,
+    },
   },
   subContentTitle: {
     letterSpacing: 0.15,
   },
   subContentData: {
-    width: '100%',
+    display: 'block',
+    fontSize: 14,
+    letterSpacing: 0.25,
+    lineHeight: 1.45,
+    color: theme.palette.secondary.main,
 
-    '&:not(:last-child)': {
-      marginBottom: 24,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+      lineHeight: 1.67,
+    },
+
+    '&:not(:first-child)': {
+      marginTop: 24,
+    },
+  },
+  subContentImage: {
+    maxWidth: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  subContentLink: {
+    lineBreak: 'anywhere',
+
+    '&:not(:first-child)': {
+      display: 'block',
+      marginTop: 8,
     },
   },
 }));
 
 const Article = ({
+  className,
   label,
   theme,
   title,
@@ -138,15 +217,38 @@ const Article = ({
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const { subContentHeight } = useSpring({
+  const [{ subContentHeight }, updateSpringProps] = useSpring(() => ({
     subContentHeight:
       subContentRef.current && isOpen ? subContentRef.current.offsetHeight : 0,
-  });
+  }));
 
   const classes = useStyles({ componentTheme: theme, isOpen });
 
+  const updateSubContentHeight = useCallback(() => {
+    const nextHeight =
+      subContentRef.current && isOpen ? subContentRef.current.offsetHeight : 0;
+
+    updateSpringProps({
+      subContentHeight: nextHeight,
+    });
+  }, [subContentRef, isOpen, updateSpringProps]);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateSubContentHeight);
+
+    return () => window.removeEventListener('resize', updateSubContentHeight);
+  }, [updateSubContentHeight]);
+
+  useEffect(() => {
+    updateSubContentHeight();
+  }, [isOpen, updateSubContentHeight]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [theme, title, subTitle, content, subContent]);
+
   return (
-    <div className={classes.root}>
+    <div className={cx(classes.root, className)}>
       <div className={classes.label}>
         <img src={theme === 'yellow' ? yellowLabel : blueLabel} />
         {label}
@@ -155,7 +257,7 @@ const Article = ({
         <div className={classes.mainContentWrapper}>
           <div className={classes.mainTitle}>{title}</div>
           <div className={classes.mainSubTitle}>{subTitle}</div>
-          <div className={classes.mainContent}>{content}</div>
+          {content && <div className={classes.mainContent}>{content}</div>}
         </div>
         {subContent.length > 0 && (
           <div
@@ -176,10 +278,12 @@ const Article = ({
         >
           <div ref={subContentRef} className={classes.subContentWrapper}>
             <div className={classes.decoLine} />
-            {subContent.map(({ label, title, content = [] }, index) => (
+            {subContent.map(({ title, content = [] }, index) => (
               <div key={index} className={classes.subContent}>
                 <div className={classes.subContentTitleWrapper}>
-                  <div className={classes.subContentLabel}>{label}</div>
+                  <div className={classes.subContentLabel}>
+                    {/* TODO: translate */}第 {index + 1} 步
+                  </div>
                   <div className={classes.subContentTitle}>{title}</div>
                 </div>
                 {content.map(({ type, data }, contentIndex) => {
@@ -187,9 +291,29 @@ const Article = ({
                     return (
                       <img
                         key={contentIndex}
-                        className={classes.subContentData}
+                        className={cx(
+                          classes.subContentData,
+                          classes.subContentImage
+                        )}
                         src={data}
                       />
+                    );
+                  }
+
+                  if (type === 'link') {
+                    return (
+                      <a
+                        key={contentIndex}
+                        href={data}
+                        className={cx(
+                          classes.subContentData,
+                          classes.subContentLink
+                        )}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {data}
+                      </a>
                     );
                   }
 

@@ -27,7 +27,6 @@ export const normal = () => (
       )}
       subContent={[
         {
-          label: '第 1 步',
           title: '尋找需要被覆核的回應',
           content: [
             {
@@ -56,7 +55,6 @@ export const normal = () => (
           ],
         },
         {
-          label: '第 2 步',
           title: '尋找需要被覆核的回應',
           content: [
             {

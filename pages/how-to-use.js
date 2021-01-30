@@ -6,12 +6,20 @@ import cx from 'clsx';
 import Link from 'next/link';
 
 import AppLayout from 'components/AppLayout';
-import { TutorialHeader } from 'components/Tutorial';
+import { TutorialHeader, Article } from 'components/Tutorial';
 
 import withData from 'lib/apollo';
 
 import bustHoaxes from 'components/Tutorial/images/bust-hoaxes.png';
 import checkRumors from 'components/Tutorial/images/check-rumors.png';
+
+import bustHoaxesTutorial from 'components/Tutorial/content/bustHoaxes';
+import checkRumorsTutorial from 'components/Tutorial/content/checkRumors';
+
+const contentMap = {
+  'bust-hoaxes': bustHoaxesTutorial,
+  'check-rumors': checkRumorsTutorial,
+};
 
 const useStyles = makeStyles(theme => ({
   tabContainer: {
@@ -58,6 +66,25 @@ const useStyles = makeStyles(theme => ({
   tabCheckRumors: {
     color: '#5FD8FF',
   },
+  container: {
+    width: '100%',
+    maxWidth: 880,
+    padding: '64px 26px 56px 56px',
+    margin: '0 auto',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '27px 14px 36px',
+    },
+  },
+  article: {
+    '&:not(:last-child)': {
+      marginBottom: 48,
+
+      [theme.breakpoints.down('xs')]: {
+        marginBottom: 32,
+      },
+    },
+  },
 }));
 
 const TutorialPage = () => {
@@ -101,6 +128,20 @@ const TutorialPage = () => {
             </div>
           </div>
         </Link>
+      </div>
+      <div className={classes.container}>
+        {contentMap[tab].map((article, index) => (
+          <Article
+            key={index}
+            className={classes.article}
+            label={index}
+            theme={tab === 'bust-hoaxes' ? 'yellow' : 'blue'}
+            title={article.title}
+            subTitle={article.subTitle}
+            content={article.content}
+            subContent={article.subContent}
+          />
+        ))}
       </div>
     </AppLayout>
   );

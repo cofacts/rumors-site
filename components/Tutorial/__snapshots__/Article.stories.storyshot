@@ -39,7 +39,6 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               "type": "image",
             },
           ],
-          "label": "第 1 步",
           "title": "尋找需要被覆核的回應",
         },
         Object {
@@ -68,7 +67,6 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               "type": "image",
             },
           ],
-          "label": "第 2 步",
           "title": "尋找需要被覆核的回應",
         },
       ]
@@ -145,7 +143,9 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               <div
                 className="makeStyles-subContentLabel makeStyles-subContentLabel"
               >
-                第 1 步
+                第 
+                1
+                 步
               </div>
               <div
                 className="makeStyles-subContentTitle"
@@ -164,7 +164,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               
             </div>
             <img
-              className="makeStyles-subContentData"
+              className="makeStyles-subContentData makeStyles-subContentImage"
               key="1"
               src="https://fakeimg.pl/400x300/"
             />
@@ -178,7 +178,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               「熱門討論」：目前很多編輯查核回應的可疑訊息。
             </div>
             <img
-              className="makeStyles-subContentData"
+              className="makeStyles-subContentData makeStyles-subContentImage"
               key="3"
               src="https://fakeimg.pl/400x300/"
             />
@@ -193,7 +193,9 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               <div
                 className="makeStyles-subContentLabel makeStyles-subContentLabel"
               >
-                第 2 步
+                第 
+                2
+                 步
               </div>
               <div
                 className="makeStyles-subContentTitle"
@@ -212,7 +214,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               
             </div>
             <img
-              className="makeStyles-subContentData"
+              className="makeStyles-subContentData makeStyles-subContentImage"
               key="1"
               src="https://fakeimg.pl/400x300/"
             />
@@ -226,7 +228,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               「熱門討論」：目前很多編輯查核回應的可疑訊息。
             </div>
             <img
-              className="makeStyles-subContentData"
+              className="makeStyles-subContentData makeStyles-subContentImage"
               key="3"
               src="https://fakeimg.pl/400x300/"
             />
