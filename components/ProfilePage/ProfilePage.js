@@ -120,6 +120,7 @@ function ProfilePage({ id, slug }) {
       contentElem = <RepliedArticleTab userId={data?.GetUser?.id} />;
   }
 
+  
   return (
     <AppLayout container={false}>
       <Head>

@@ -7,6 +7,7 @@ import ProfileLink from 'components/ProfileLink';
 import { TYPE_ICON } from 'constants/replyType';
 import Peep from 'react-peeps';
 import { omit } from 'lodash';
+import { validateAvatarData } from './openPeepsUtils';
 
 const NULL_USER_IMG =
   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
@@ -162,7 +163,7 @@ function Avatar({
 
   if (user?.avatarType === 'OpenPeeps') {
     try {
-      avatarData = JSON.parse(user.avatarData);
+      avatarData = validateAvatarData(typeof user.avatarData === 'string' ? JSON.parse(user.avatarData) : user.avatarData);
       avatar = (
         <OpenPeepsAvatar
           className={className}
