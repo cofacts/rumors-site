@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { LINE_URL } from 'constants/urls';
 import { nl2br, linkify } from 'lib/text';
 import getTermsString from 'lib/terms';
 import { TYPE_NAME } from 'constants/replyType';
@@ -111,8 +110,7 @@ const ArticleReply = React.memo(
             `↓${t`Reference`}↓\n` +
             `${reply.reference}\n` +
             `--\n` +
-            `ℹ️ ${getTermsString('此資訊')}\n` +
-            `🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
+            `ℹ️ ${getTermsString('此資訊')}\n`
           : '';
 
       return (
