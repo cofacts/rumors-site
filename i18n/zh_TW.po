@@ -1077,9 +1077,8 @@ msgstr "登入本站即表示您同意${ termsLink }，以${ authorLink }之名�
 #, javascript-format
 msgid ""
 "${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
-"provide more info, please visit Cofacts LINE bot ${ LINE_URL }."
-msgstr ""
-"${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
+"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
+msgstr "${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
 "bot ${ LINE_URL } 。"
 
 #: pages/index.js:41
