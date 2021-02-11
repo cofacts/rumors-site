@@ -164,7 +164,7 @@ export default [
           {
             type: 'text',
             data:
-              '【社群內容打假術】Google教你深度事實查核，人人都是數位打假王',
+              '請參考公視新聞實驗室【社群內容打假術】Google教你深度事實查核，人人都是數位打假王',
           },
           {
             type: 'link',
