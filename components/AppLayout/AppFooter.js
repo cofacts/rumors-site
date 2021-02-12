@@ -8,6 +8,7 @@ import {
   PROJECT_HACKFOLDR,
   PROJECT_SOURCE_CODE,
   PROJECT_MEDIUM,
+  USER_AGREEMENT_URL,
   CONTACT_EMAIL,
   LINE_URL,
 } from 'constants/urls';
@@ -105,13 +106,14 @@ function AppFooter() {
             <CustomLink href="/hoax-for-you">
               {c('App layout').t`For You`}
             </CustomLink>
-            {/* TODO: add link */}
-            <CustomLink href="">{t`Following`}</CustomLink>
           </div>
           <div className={classes.column}>
             <h3>{t`About`}</h3>
             <CustomLink external href="">
               {t`About Cofacts`}
+            </CustomLink>
+            <CustomLink external href={USER_AGREEMENT_URL}>
+              {t`User Agreement`}
             </CustomLink>
             <CustomLink external href={PROJECT_HACKFOLDR}>
               {t`Introduction`}

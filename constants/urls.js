@@ -14,4 +14,6 @@ export const TUTORIAL =
   'https://hackmd.io/@B4gs1CECTRyI5Ny7vSy6dQ/SklM4dV9m/https%3A%2F%2Fg0v.hackmd.io%2FWaz-B9sORSOPLp6nAOS82w?type=book&fbclid=IwAR0pNUVLOllNTgoPE8dxbJSt8VCvIeCK_h0MszfAS2aiUFLj3XFfTfKXM4Q';
 export const EDITOR_ENTRANCE = 'https://hackmd.io/s/SyMRyrfEl';
 export const DEVELOPER_HOMEPAGE = 'https://hackmd.io/s/r1nfwTrgM';
-export const LICENSE_URL = 'https://github.com/cofacts/opendata#terms';
+export const LICENSE_URL = 'https://creativecommons.org/licenses/by-sa/4.0/';
+export const USER_AGREEMENT_URL =
+  'https://github.com/cofacts/rumors-site/blob/master/LEGAL.md';
