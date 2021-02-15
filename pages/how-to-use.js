@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
-import { c } from 'ttag';
+import { t } from 'ttag';
 import cx from 'clsx';
 import Link from 'next/link';
 
@@ -98,7 +98,7 @@ const TutorialPage = () => {
   return (
     <AppLayout container={false}>
       <Head>
-        <title>{c('tutorial').t`how to use`}</title>
+        <title>{t`How to use Cofacts`}</title>
       </Head>
       <TutorialHeader />
       <div className={classes.tabContainer}>

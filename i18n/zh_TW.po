@@ -1089,13 +1089,11 @@ msgid "${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }."
 msgstr "${ subject }由 ${ AUTHOR } 提供，以${ SHORT_LICENSE } 釋出。"
 
 #: pages\how-to-use.js:101
-msgctxt "tutorial"
-msgid "how to use"
+msgid "How to use Cofacts"
 msgstr ""
 
 #: pages\what-is-cofacts.js:238
-msgctxt "tutorial"
-msgid "what is cofacts"
+msgid "What is Cofacts"
 msgstr ""
 
 #: pages\index.js:41

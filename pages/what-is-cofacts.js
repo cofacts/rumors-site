@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
-import { c } from 'ttag';
+import { t } from 'ttag';
 import cx from 'clsx';
 import Button from '@material-ui/core/Button';
 
@@ -235,7 +235,7 @@ const TutorialPage = () => {
   return (
     <AppLayout container={false}>
       <Head>
-        <title>{c('tutorial').t`what is cofacts`}</title>
+        <title>{t`What is Cofacts`}</title>
       </Head>
       <div className={classes.root}>
         <TutorialHeader />
