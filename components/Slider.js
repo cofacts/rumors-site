@@ -45,8 +45,7 @@ const Slider = (
   const classes = useStyles();
 
   const [activeSlide, setActiveSlide] = useState(initIndex);
-  const [timeoutId, setTimeoutId] = useState(null);
-
+  const timeoutId = useRef(null);
   const sliderRef = useRef(null);
 
   const slides = React.Children.toArray(children);
@@ -67,9 +66,9 @@ const Slider = (
   );
 
   const autoplayNext = useCallback(() => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      setTimeoutId(null);
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
+      timeoutId.current = null;
     }
 
     const id = setTimeout(() => {
@@ -77,7 +76,7 @@ const Slider = (
       slideTo(nextSlide);
     }, interval);
 
-    setTimeoutId(id);
+    timeoutId.current = id;
   }, [slidesAmount, activeSlide, interval, timeoutId, slideTo]);
 
   useImperativeHandle(
@@ -130,12 +129,12 @@ const Slider = (
     if (autoplay) {
       autoplayNext();
     } else {
-      clearTimeout(timeoutId);
+      clearTimeout(timeoutId.current);
     }
 
     return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
       }
     };
 
