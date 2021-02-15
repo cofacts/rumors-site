@@ -248,7 +248,7 @@ const SectionCanDo = ({ className }) => {
               check the credibility of the text!`}
           </div>
 
-          <Link href="/how-to-use?tab=check-rumors">
+          <Link href="/how-to-use?tab=check-rumors" passHref>
             <Button className={cx(classes.button, classes.text)}>
               {t`Tutorial`}
             </Button>
