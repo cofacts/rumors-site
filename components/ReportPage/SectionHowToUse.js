@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     background: '#ff9900',
-    padding: '32px 0 54px',
+    padding: '43px 0 54px',
 
     '& h3': {
       color: 'white',
