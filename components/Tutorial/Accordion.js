@@ -37,12 +37,18 @@ const useStyles = makeStyles(theme => ({
     background: 'white',
     borderRadius: '0px 0px 8px 8px',
     overflowY: 'auto',
-    scrollbarWidth: 'none',
-    MsOverflowStyle: 'none',
     transition: 'height 0.3s ease-in-out',
 
     '&::-webkit-scrollbar': {
-      display: 'none',
+      width: 12,
+    },
+
+    '&::-webkit-scrollbar-track': {
+      background: 'transparent',
+    },
+
+    '&::-webkit-scrollbar-thumb': {
+      background: theme.palette.secondary[200],
     },
   },
   activeContentWrapper: {
