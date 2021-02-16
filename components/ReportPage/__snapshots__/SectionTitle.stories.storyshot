@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ReportPage/SectionTitle Normal 1`] = `
+<SectionTitle>
+  <div
+    className="makeStyles-root"
+  >
+    <div
+      className="makeStyles-leftStar"
+    >
+      <img
+        src={Object {}}
+      />
+    </div>
+    <h3>
+      section title
+    </h3>
+    <div
+      className="makeStyles-rightStar"
+    >
+      <img
+        src={Object {}}
+      />
+    </div>
+  </div>
+</SectionTitle>
+`;
