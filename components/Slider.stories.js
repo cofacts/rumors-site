@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Slider from './Slider';
-import { withKnobs, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Slider',
@@ -8,33 +9,27 @@ export default {
   decorators: [withKnobs],
 };
 
-const Example = () => {
+const ControlledExample = ({
+  autoplay,
+  interval,
+  activeIndex,
+  onSlideChange,
+}) => {
   const sliderRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(1);
-
-  const slideTo = index => {
-    if (sliderRef.current) {
-      sliderRef.current.slideTo(index);
-    }
-  };
 
   const reset = () => {
     if (sliderRef.current) {
-      sliderRef.current.reset();
+      sliderRef.current.reset(0);
     }
-  };
-
-  const onSlideChange = index => {
-    setActiveIndex(index);
   };
 
   return (
     <div style={{ width: '500px' }}>
       <Slider
         ref={sliderRef}
-        autoplay={boolean('autoplay', false)}
-        interval={number('interval', 3000)}
-        initIndex={1}
+        autoplay={autoplay}
+        interval={interval}
+        activeIndex={activeIndex}
         onSlideChange={onSlideChange}
       >
         <div
@@ -72,11 +67,82 @@ const Example = () => {
         </div>
       </Slider>
 
-      <div>active slide: {activeIndex}</div>
-      <button onClick={() => slideTo(2)}>slide to 2</button>
       <button onClick={reset}>reset</button>
     </div>
   );
 };
 
-export const normal = () => <Example />;
+export const ControlledSlider = () => (
+  <ControlledExample
+    autoplay={boolean('autoplay', false)}
+    interval={number('interval', 3000)}
+    activeIndex={select('activeIndex', [0, 1, 2], 0)}
+    onSlideChange={action('onSlideChange')}
+  />
+);
+
+const UncontrolledExample = ({ autoplay, interval, onSlideChange }) => {
+  const sliderRef = useRef(null);
+
+  const reset = () => {
+    if (sliderRef.current) {
+      sliderRef.current.reset(1);
+    }
+  };
+
+  return (
+    <div style={{ width: '500px' }}>
+      <Slider
+        ref={sliderRef}
+        initIndex={1}
+        autoplay={autoplay}
+        interval={interval}
+        onSlideChange={onSlideChange}
+      >
+        <div
+          style={{
+            display: 'flex',
+            height: '50vh',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'orange',
+          }}
+        >
+          slide 0
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            height: '50vh',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'red',
+          }}
+        >
+          slide 1
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            height: '50vh',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'gray',
+          }}
+        >
+          slide 2
+        </div>
+      </Slider>
+
+      <button onClick={reset}>reset</button>
+    </div>
+  );
+};
+
+export const UncontrolledSlider = () => (
+  <UncontrolledExample
+    autoplay={boolean('autoplay', false)}
+    interval={number('interval', 3000)}
+    onSlideChange={action('onSlideChange')}
+  />
+);

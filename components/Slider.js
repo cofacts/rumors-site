@@ -38,13 +38,15 @@ const Slider = (
     interval = 3000,
     slideWrapperClassName,
     initIndex = 0,
+    activeIndex,
     onSlideChange = () => {},
   },
   ref
 ) => {
   const classes = useStyles();
 
-  const [activeSlide, setActiveSlide] = useState(initIndex);
+  const [activeSlide, setActiveSlide] = useState(activeIndex || initIndex);
+
   const timeoutId = useRef(null);
   const sliderRef = useRef(null);
 
@@ -52,7 +54,7 @@ const Slider = (
   const slidesAmount = slides.length;
 
   const slideTo = useCallback(
-    (index, smooth = true) => {
+    (index, { smooth = true } = {}) => {
       const slider = sliderRef.current;
 
       if (slider) {
@@ -72,43 +74,66 @@ const Slider = (
     }
 
     const id = setTimeout(() => {
-      const nextSlide = activeSlide === slidesAmount - 1 ? 0 : activeSlide + 1;
-      slideTo(nextSlide);
+      const nowActiveIndex = activeIndex || activeSlide;
+      const nextIndex =
+        nowActiveIndex === slidesAmount - 1 ? 0 : nowActiveIndex + 1;
+
+      if (activeIndex || activeIndex === 0) {
+        onSlideChange(nextIndex);
+      } else {
+        slideTo(nextIndex);
+      }
+
+      if (autoplay) {
+        autoplayNext();
+      } else {
+        clearTimeout(timeoutId.current);
+      }
     }, interval);
 
     timeoutId.current = id;
-  }, [slidesAmount, activeSlide, interval, timeoutId, slideTo]);
+  }, [
+    slidesAmount,
+    activeIndex,
+    activeSlide,
+    interval,
+    timeoutId,
+    onSlideChange,
+    slideTo,
+    autoplay,
+  ]);
 
   useImperativeHandle(
     ref,
     () => ({
-      activeIndex: activeSlide,
-      slideTo,
-      reset: () => {
-        slideTo(initIndex);
+      activeIndex: activeIndex || activeSlide,
+      reset: (resetIndex = 0) => {
+        if (activeIndex || activeIndex === 0) {
+          onSlideChange(resetIndex);
+        } else {
+          slideTo(resetIndex, { smooth: false });
+        }
 
         if (autoplay) {
           autoplayNext();
         }
       },
     }),
-    [activeSlide, slideTo, initIndex, autoplay, autoplayNext]
+    [activeIndex, activeSlide, slideTo, onSlideChange, autoplay, autoplayNext]
   );
 
   useEffect(() => {
     const slider = sliderRef.current;
 
-    slideTo(initIndex, false);
-
     const onScroll = () => {
       const slider = sliderRef.current;
 
       if (slider) {
-        const index = Math.round(
+        const nextIndex = Math.round(
           (slider.scrollLeft / slider.scrollWidth) * slidesAmount
         );
 
-        setActiveSlide(index);
+        setActiveSlide(nextIndex);
       }
     };
 
@@ -121,9 +146,7 @@ const Slider = (
         slider.removeEventListener('scroll', onScroll);
       }
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sliderRef, slidesAmount]);
+  }, [sliderRef, slidesAmount, activeIndex, onSlideChange]);
 
   useEffect(() => {
     if (autoplay) {
@@ -137,13 +160,21 @@ const Slider = (
         clearTimeout(timeoutId.current);
       }
     };
+  }, [autoplay, autoplayNext, interval]);
+
+  useEffect(() => {
+    if ((activeIndex || activeIndex === 0) && activeIndex !== activeSlide) {
+      slideTo(activeIndex);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoplay, activeSlide, interval]);
+  }, [activeIndex, slideTo]);
 
   useEffect(() => {
     onSlideChange(activeSlide);
-  }, [activeSlide, onSlideChange]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSlide]);
 
   return (
     <div ref={sliderRef} className={cx(classes.slider, className)}>

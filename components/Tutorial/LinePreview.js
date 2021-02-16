@@ -71,14 +71,12 @@ const useStyles = makeStyles(theme => ({
 
 const LinePreview = ({ className, autoplay = false, images = [] }) => {
   const classes = useStyles();
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const sliderRef = useRef(null);
 
   const slideTo = index => {
-    if (sliderRef.current) {
-      sliderRef.current.slideTo(index);
-    }
+    setActiveIndex(index);
   };
 
   const onSlideChange = index => {
@@ -98,6 +96,7 @@ const LinePreview = ({ className, autoplay = false, images = [] }) => {
         ref={sliderRef}
         className={classes.slider}
         autoplay={autoplay}
+        activeIndex={activeIndex}
         onSlideChange={onSlideChange}
       >
         {images.map(url => (
