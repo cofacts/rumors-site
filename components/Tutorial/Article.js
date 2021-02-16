@@ -3,37 +3,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 import cx from 'clsx';
 
-import yellowLabel from './images/yellow-label.svg';
-import blueLabel from './images/blue-label.svg';
+import Ribbon from 'components/Ribbon';
+
 import arrow from './images/arrow.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
   },
-  label: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    left: -10,
-    top: -17,
-    width: 53,
-    height: 43,
-    zIndex: 2,
-    paddingRight: 11,
-    paddingBottom: 12,
+  ribbon: {
+    padding: '2px 14px 6px',
+    marginBottom: -17,
     fontSize: 18,
     lineHeight: 1.45,
     fontWeight: 900,
-
-    '& > img': {
-      position: 'absolute',
-      width: '100%',
-      left: 0,
-      top: 0,
-      zIndex: -1,
-    },
   },
   main: {
     background: 'white',
@@ -249,10 +232,9 @@ const Article = ({
 
   return (
     <div className={cx(classes.root, className)}>
-      <div className={classes.label}>
-        <img src={theme === 'yellow' ? yellowLabel : blueLabel} />
+      <Ribbon className={classes.ribbon} theme={theme}>
         {label}
-      </div>
+      </Ribbon>
       <div className={classes.main}>
         <div className={classes.mainContentWrapper}>
           <div className={classes.mainTitle}>{title}</div>

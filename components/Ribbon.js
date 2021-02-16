@@ -2,39 +2,53 @@ import { forwardRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    position: 'relative',
-    left: -8,
+const useStyles = makeStyles(theme => {
+  const RibbonColorMap = {
+    yellow: {
+      main: theme.palette.primary[500],
+      shadow: theme.palette.primary[700],
+    },
+    blue: {
+      main: theme.palette.common.blue3,
+      shadow: theme.palette.common.blue1,
+    },
+  };
 
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.secondary.main,
-    width: 'fit-content',
+  return {
+    root: {
+      position: 'relative',
+      left: -8,
 
-    '&:before': {
-      content: '""',
+      backgroundColor: ({ ribbonTheme }) => RibbonColorMap[ribbonTheme].main,
+      color: theme.palette.secondary.main,
+      width: 'fit-content',
+
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        bottom: -8,
+        left: 0,
+        borderTop: ({ ribbonTheme }) =>
+          `8px solid ${RibbonColorMap[ribbonTheme].shadow}`,
+        borderLeft: '8px solid transparent',
+      },
+    },
+
+    tail: {
       position: 'absolute',
-      bottom: -8,
-      left: 0,
-      borderTop: `8px solid ${theme.palette.primary[700]}`,
-      borderLeft: '8px solid transparent',
+      left: '100%',
+      top: 0,
+      height: '100%',
+
+      '& > path': {
+        fill: ({ ribbonTheme }) => RibbonColorMap[ribbonTheme].main,
+      },
     },
-  },
+  };
+});
 
-  tail: {
-    position: 'absolute',
-    left: '100%',
-    top: 0,
-    height: '100%',
-
-    '& > path': {
-      fill: theme.palette.primary[500],
-    },
-  },
-}));
-
-function Ribbon({ className, children, ...props }, ref) {
-  const classes = useStyles();
+function Ribbon({ className, theme = 'yellow', children, ...props }, ref) {
+  const classes = useStyles({ ribbonTheme: theme });
   return (
     <aside className={cx(classes.root, className)} ref={ref} {...props}>
       {children}

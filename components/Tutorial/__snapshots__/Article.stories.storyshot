@@ -78,14 +78,19 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
     <div
       className="makeStyles-root"
     >
-      <div
-        className="makeStyles-label"
+      <aside
+        className="makeStyles-root makeStyles-root makeStyles-ribbon"
       >
-        <img
-          src={Object {}}
-        />
         1
-      </div>
+        <svg
+          className="makeStyles-tail makeStyles-tail"
+          viewBox="0 0 1 2"
+        >
+          <path
+            d="M0 0 H1 L0 1 L1 2 H0 Z"
+          />
+        </svg>
+      </aside>
       <div
         className="makeStyles-main"
       >
