@@ -146,7 +146,9 @@ const useStyles = makeStyles(theme => ({
   },
   subContentLabel: {
     color: ({ componentTheme }) =>
-      componentTheme === 'yellow' ? theme.palette.primary.main : '#2DAEF7',
+      componentTheme === 'yellow'
+        ? theme.palette.primary.main
+        : theme.palette.common.blue2,
     marginRight: 20,
 
     [theme.breakpoints.down('xs')]: {
