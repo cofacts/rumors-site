@@ -295,7 +295,7 @@ const TutorialPage = () => {
             className={classes.howToUseButton}
             variant="contained"
             color="primary"
-            href="/how-to-use"
+            href="/tutorial"
           >
             快來了解 Cofacts 怎麼使用吧
           </Button>

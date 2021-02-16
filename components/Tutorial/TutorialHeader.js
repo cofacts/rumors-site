@@ -68,11 +68,11 @@ const TutorialHeader = () => {
         </div>
         <div
           className={cx(classes.tab, {
-            [classes.activeTab]: pathname === '/how-to-use',
+            [classes.activeTab]: pathname === '/tutorial',
           })}
           onClick={() => {
             router.push({
-              pathname: '/how-to-use',
+              pathname: '/tutorial',
             });
           }}
         >

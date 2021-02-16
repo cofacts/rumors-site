@@ -102,7 +102,7 @@ const TutorialPage = () => {
       </Head>
       <TutorialHeader />
       <div className={classes.tabContainer}>
-        <Link href="/how-to-use?tab=bust-hoaxes">
+        <Link href="/tutorial?tab=bust-hoaxes">
           <div
             className={cx(classes.tab, {
               [classes.activeTab]: tab === 'bust-hoaxes',
@@ -115,7 +115,7 @@ const TutorialPage = () => {
             </div>
           </div>
         </Link>
-        <Link href="/how-to-use?tab=check-rumors">
+        <Link href="/tutorial?tab=check-rumors">
           <div
             className={cx(classes.tab, {
               [classes.activeTab]: tab === 'check-rumors',
