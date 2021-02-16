@@ -78,10 +78,10 @@ const useStyles = makeStyles(theme => ({
   },
   article: {
     '&:not(:last-child)': {
-      marginBottom: 48,
+      marginBottom: 24,
 
       [theme.breakpoints.down('xs')]: {
-        marginBottom: 32,
+        marginBottom: 16,
       },
     },
   },

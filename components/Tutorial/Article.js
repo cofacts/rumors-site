@@ -12,28 +12,33 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
   },
   ribbon: {
-    padding: '2px 14px 6px',
-    marginBottom: -17,
-    fontSize: 18,
+    padding: '0 10px 4px 14px',
+    marginBottom: -19,
+    fontSize: 24,
     lineHeight: 1.45,
     fontWeight: 900,
+
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: -15,
+      fontSize: 18,
+    },
   },
   main: {
     background: 'white',
     borderRadius: 4,
   },
   mainContentWrapper: {
-    padding: '20px 28px 28px',
+    padding: '24px 28px 28px',
     borderBottom: `1px solid ${theme.palette.secondary[100]}`,
 
     [theme.breakpoints.down('xs')]: {
-      padding: '27px 14px 14px',
+      padding: '24px 14px 14px',
     },
   },
   mainTitle: {
     fontSize: 24,
     fontWeight: 700,
-    lineHeight: 1.45,
+    lineHeight: 1.5,
     marginBottom: 4,
 
     [theme.breakpoints.down('xs')]: {
