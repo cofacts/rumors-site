@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
-import cx from 'clsx';
+import NavLink from 'components/NavLink';
 
 import logo from 'components/Tutorial/images/logo.svg';
 
@@ -30,6 +29,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 500,
     lineHeight: 1.56,
     letterSpacing: 0.5,
+    textDecoration: 'none',
     color: 'white',
     padding: '16px 16px 12px',
     borderBottom: `4px solid ${theme.palette.secondary[500]}`,
@@ -42,10 +42,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TutorialHeader = () => {
-  const router = useRouter();
   const classes = useStyles();
-
-  const { pathname } = router;
 
   return (
     <div className={classes.root}>
@@ -53,32 +50,22 @@ const TutorialHeader = () => {
         <img className={classes.logo} src={logo} />
       </div>
       <div className={classes.tabWrapper}>
-        <div
-          className={cx(classes.tab, {
-            [classes.activeTab]: pathname === '/about',
-          })}
-          onClick={() => {
-            router.push({
-              pathname: '/about',
-            });
-          }}
+        <NavLink
+          href="/about"
+          className={classes.tab}
+          activeClassName={classes.activeTab}
         >
           {/* TODO: translate */}
           是什麼
-        </div>
-        <div
-          className={cx(classes.tab, {
-            [classes.activeTab]: pathname === '/tutorial',
-          })}
-          onClick={() => {
-            router.push({
-              pathname: '/tutorial',
-            });
-          }}
+        </NavLink>
+        <NavLink
+          href="/tutorial"
+          className={classes.tab}
+          activeClassName={classes.activeTab}
         >
           {/* TODO: translate */}
           怎麼用
-        </div>
+        </NavLink>
       </div>
     </div>
   );
