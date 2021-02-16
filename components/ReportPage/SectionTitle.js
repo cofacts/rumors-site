@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     position: 'relative',
+    justifyContent: 'center',
 
     '& > h3': {
       flexShrink: 0,
@@ -28,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
   rightStar: {
     alignSelf: 'flex-start',
-    marginTop: -6,
+    marginTop: -12,
 
     '& > img': {
       width: '100%',
