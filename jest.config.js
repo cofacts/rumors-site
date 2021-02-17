@@ -9,6 +9,7 @@ module.exports = {
   moduleNameMapper: {
     // Ignore CSS and image imports in jest
     // Ref: https://jestjs.io/docs/en/webpack#handling-static-assets
-    '\\.(css|png|svg)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(png|jpg|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
 };

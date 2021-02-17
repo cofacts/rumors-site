@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Slider Controlled Slider 1`] = `
+<ControlledExample
+  activeIndex={0}
+  autoplay={false}
+  interval={3000}
+  onSlideChange={[Function]}
+>
+  <div
+    style={
+      Object {
+        "width": "500px",
+      }
+    }
+  >
+    <div
+      className="makeStyles-slider"
+    >
+      <div
+        className="makeStyles-slideWrapper"
+        key="0"
+      >
+        <div
+          key=".0"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "orange",
+              "display": "flex",
+              "height": "50vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          slide 0
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper"
+        key="1"
+      >
+        <div
+          key=".1"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "red",
+              "display": "flex",
+              "height": "50vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          slide 1
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper"
+        key="2"
+      >
+        <div
+          key=".2"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "gray",
+              "display": "flex",
+              "height": "50vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          slide 2
+        </div>
+      </div>
+    </div>
+    <button
+      onClick={[Function]}
+    >
+      reset
+    </button>
+  </div>
+</ControlledExample>
+`;
+
+exports[`Storyshots Slider Uncontrolled Slider 1`] = `
+<UncontrolledExample
+  autoplay={false}
+  interval={3000}
+  onSlideChange={[Function]}
+>
+  <div
+    style={
+      Object {
+        "width": "500px",
+      }
+    }
+  >
+    <div
+      className="makeStyles-slider"
+    >
+      <div
+        className="makeStyles-slideWrapper"
+        key="0"
+      >
+        <div
+          key=".0"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "orange",
+              "display": "flex",
+              "height": "50vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          slide 0
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper"
+        key="1"
+      >
+        <div
+          key=".1"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "red",
+              "display": "flex",
+              "height": "50vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          slide 1
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper"
+        key="2"
+      >
+        <div
+          key=".2"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "gray",
+              "display": "flex",
+              "height": "50vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          slide 2
+        </div>
+      </div>
+    </div>
+    <button
+      onClick={[Function]}
+    >
+      reset
+    </button>
+  </div>
+</UncontrolledExample>
+`;

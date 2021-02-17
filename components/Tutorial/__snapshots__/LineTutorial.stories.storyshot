@@ -1,0 +1,637 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
+<LineTutorialDesktop>
+  <div
+    className="makeStyles-root"
+  >
+    <LinePreview
+      autoplay={true}
+      className="makeStyles-linePreview"
+      images={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <div
+        className="makeStyles-root makeStyles-linePreview"
+      >
+        <img
+          alt={Object {}}
+          className="makeStyles-device"
+          src={Object {}}
+        />
+        <div
+          className="makeStyles-slider makeStyles-slider"
+        >
+          <div
+            className="makeStyles-slideWrapper"
+            key="0"
+          >
+            <Screenshot
+              key=".$[object Object]"
+              screenshotUrl={Object {}}
+            >
+              <div
+                className="makeStyles-screenshot makeStyles-screenshot"
+              />
+            </Screenshot>
+          </div>
+        </div>
+      </div>
+    </LinePreview>
+    <Accordion
+      activeIndex={0}
+      className="makeStyles-accordion"
+      data={
+        Array [
+          Object {
+            "content": "熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？ ",
+            "id": 0,
+            "images": Array [
+              Object {},
+            ],
+            "title": "Line 上收到可疑訊息",
+          },
+          Object {
+            "content": "此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應",
+            "id": 1,
+            "images": Array [
+              Object {},
+              Object {},
+            ],
+            "title": "分享轉傳訊息到「真的假的」機器人",
+          },
+          Object {
+            "content": "被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息",
+            "id": 3,
+            "images": Array [
+              Object {},
+              Object {},
+            ],
+            "title": "收錄到「真的假的」共享平台",
+          },
+          Object {
+            "content": "每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。",
+            "id": 4,
+            "images": Array [
+              Object {},
+            ],
+            "title": "編輯志工在平台上查核提供意見",
+          },
+          Object {
+            "content": "被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。",
+            "id": 5,
+            "images": Array [
+              Object {},
+              Object {},
+            ],
+            "title": "機器人自動回應群眾的消息",
+          },
+        ]
+      }
+      onClick={[Function]}
+    >
+      <div
+        className="makeStyles-accordion"
+      >
+        <div
+          className="makeStyles-item"
+          key="0"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <div
+            className="makeStyles-title makeStyles-activeTitle"
+          >
+            Line 上收到可疑訊息
+          </div>
+          <div
+            className="makeStyles-contentWrapper makeStyles-activeContentWrapper"
+          >
+            <div
+              className="makeStyles-content"
+            >
+              熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？ 
+            </div>
+          </div>
+        </div>
+        <div
+          className="makeStyles-item"
+          key="1"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <div
+            className="makeStyles-title"
+          >
+            分享轉傳訊息到「真的假的」機器人
+          </div>
+          <div
+            className="makeStyles-contentWrapper"
+          >
+            <div
+              className="makeStyles-content"
+            >
+              此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應
+            </div>
+          </div>
+        </div>
+        <div
+          className="makeStyles-item"
+          key="2"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <div
+            className="makeStyles-title"
+          >
+            收錄到「真的假的」共享平台
+          </div>
+          <div
+            className="makeStyles-contentWrapper"
+          >
+            <div
+              className="makeStyles-content"
+            >
+              被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息
+            </div>
+          </div>
+        </div>
+        <div
+          className="makeStyles-item"
+          key="3"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <div
+            className="makeStyles-title"
+          >
+            編輯志工在平台上查核提供意見
+          </div>
+          <div
+            className="makeStyles-contentWrapper"
+          >
+            <div
+              className="makeStyles-content"
+            >
+              每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。
+            </div>
+          </div>
+        </div>
+        <div
+          className="makeStyles-item"
+          key="4"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <div
+            className="makeStyles-title"
+          >
+            機器人自動回應群眾的消息
+          </div>
+          <div
+            className="makeStyles-contentWrapper"
+          >
+            <div
+              className="makeStyles-content"
+            >
+              被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。
+            </div>
+          </div>
+        </div>
+      </div>
+    </Accordion>
+  </div>
+</LineTutorialDesktop>
+`;
+
+exports[`Storyshots Tutorial/LineTutorial Mobile 1`] = `
+<div
+  style={
+    Object {
+      "maxWidth": "500px",
+    }
+  }
+>
+  <LineTutorialMobile>
+    <div
+      className="makeStyles-slider makeStyles-root"
+    >
+      <div
+        className="makeStyles-slideWrapper makeStyles-slideWrapper"
+        key="0"
+      >
+        <div
+          className="makeStyles-slide"
+          key=".$0"
+        >
+          <LinePreview
+            autoplay={true}
+            className="makeStyles-linePreview"
+            images={
+              Array [
+                Object {},
+              ]
+            }
+          >
+            <div
+              className="makeStyles-root makeStyles-linePreview"
+            >
+              <img
+                alt={Object {}}
+                className="makeStyles-device"
+                src={Object {}}
+              />
+              <div
+                className="makeStyles-slider makeStyles-slider"
+              >
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="0"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+              </div>
+            </div>
+          </LinePreview>
+          <div
+            className="makeStyles-info"
+          >
+            <div
+              className="makeStyles-title makeStyles-activeTitle"
+            >
+              Line 上收到可疑訊息
+            </div>
+            <div
+              className="makeStyles-content"
+            >
+              熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？ 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper makeStyles-slideWrapper"
+        key="1"
+      >
+        <div
+          className="makeStyles-slide"
+          key=".$1"
+        >
+          <LinePreview
+            autoplay={false}
+            className="makeStyles-linePreview"
+            images={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <div
+              className="makeStyles-root makeStyles-linePreview"
+            >
+              <img
+                alt={Object {}}
+                className="makeStyles-device"
+                src={Object {}}
+              />
+              <div
+                className="makeStyles-slider makeStyles-slider"
+              >
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="0"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="1"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+              </div>
+              <div
+                className="makeStyles-pagination"
+              >
+                <div
+                  className="makeStyles-page makeStyles-activePage"
+                  key="0"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                />
+                <div
+                  className="makeStyles-page"
+                  key="1"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                />
+              </div>
+            </div>
+          </LinePreview>
+          <div
+            className="makeStyles-info"
+          >
+            <div
+              className="makeStyles-title"
+            >
+              分享轉傳訊息到「真的假的」機器人
+            </div>
+            <div
+              className="makeStyles-content"
+            >
+              此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper makeStyles-slideWrapper"
+        key="2"
+      >
+        <div
+          className="makeStyles-slide"
+          key=".$3"
+        >
+          <LinePreview
+            autoplay={false}
+            className="makeStyles-linePreview"
+            images={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <div
+              className="makeStyles-root makeStyles-linePreview"
+            >
+              <img
+                alt={Object {}}
+                className="makeStyles-device"
+                src={Object {}}
+              />
+              <div
+                className="makeStyles-slider makeStyles-slider"
+              >
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="0"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="1"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+              </div>
+              <div
+                className="makeStyles-pagination"
+              >
+                <div
+                  className="makeStyles-page makeStyles-activePage"
+                  key="0"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                />
+                <div
+                  className="makeStyles-page"
+                  key="1"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                />
+              </div>
+            </div>
+          </LinePreview>
+          <div
+            className="makeStyles-info"
+          >
+            <div
+              className="makeStyles-title"
+            >
+              收錄到「真的假的」共享平台
+            </div>
+            <div
+              className="makeStyles-content"
+            >
+              被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper makeStyles-slideWrapper"
+        key="3"
+      >
+        <div
+          className="makeStyles-slide"
+          key=".$4"
+        >
+          <LinePreview
+            autoplay={false}
+            className="makeStyles-linePreview"
+            images={
+              Array [
+                Object {},
+              ]
+            }
+          >
+            <div
+              className="makeStyles-root makeStyles-linePreview"
+            >
+              <img
+                alt={Object {}}
+                className="makeStyles-device"
+                src={Object {}}
+              />
+              <div
+                className="makeStyles-slider makeStyles-slider"
+              >
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="0"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+              </div>
+            </div>
+          </LinePreview>
+          <div
+            className="makeStyles-info"
+          >
+            <div
+              className="makeStyles-title"
+            >
+              編輯志工在平台上查核提供意見
+            </div>
+            <div
+              className="makeStyles-content"
+            >
+              每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-slideWrapper makeStyles-slideWrapper"
+        key="4"
+      >
+        <div
+          className="makeStyles-slide"
+          key=".$5"
+        >
+          <LinePreview
+            autoplay={false}
+            className="makeStyles-linePreview"
+            images={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+          >
+            <div
+              className="makeStyles-root makeStyles-linePreview"
+            >
+              <img
+                alt={Object {}}
+                className="makeStyles-device"
+                src={Object {}}
+              />
+              <div
+                className="makeStyles-slider makeStyles-slider"
+              >
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="0"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+                <div
+                  className="makeStyles-slideWrapper"
+                  key="1"
+                >
+                  <Screenshot
+                    key=".$[object Object]"
+                    screenshotUrl={Object {}}
+                  >
+                    <div
+                      className="makeStyles-screenshot makeStyles-screenshot"
+                    />
+                  </Screenshot>
+                </div>
+              </div>
+              <div
+                className="makeStyles-pagination"
+              >
+                <div
+                  className="makeStyles-page makeStyles-activePage"
+                  key="0"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                />
+                <div
+                  className="makeStyles-page"
+                  key="1"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                />
+              </div>
+            </div>
+          </LinePreview>
+          <div
+            className="makeStyles-info"
+          >
+            <div
+              className="makeStyles-title"
+            >
+              機器人自動回應群眾的消息
+            </div>
+            <div
+              className="makeStyles-content"
+            >
+              被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </LineTutorialMobile>
+</div>
+`;
