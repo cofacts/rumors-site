@@ -6,12 +6,12 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components\AppLayout\AppFooter.js:112
+#: components\AppLayout\AppFooter.js:111
 #: components\AppLayout\AppSidebar.js:138
 msgid "About"
 msgstr "關於"
 
-#: pages\article\[id].js:306
+#: pages\article\[id].js:305
 #: pages\reply\[id].js:246
 msgid "Cofacts"
 msgstr "Cofacts"
@@ -78,16 +78,16 @@ msgstr "使用者回報訊息"
 msgid "${ timeAgoStr } ago"
 msgstr "${ timeAgoStr }前"
 
-#: components\ArticleReply\ArticleReply.js:108
+#: components\ArticleReply\ArticleReply.js:107
 msgid "Reason"
 msgstr "理由"
 
-#: components\ArticleReply\ArticleReply.js:109
+#: components\ArticleReply\ArticleReply.js:108
 msgid "Details"
 msgstr "詳細解釋"
 
-#: components\ArticleReply\ArticleReply.js:111
-#: components\ArticleReply\ArticleReply.js:138
+#: components\ArticleReply\ArticleReply.js:110
+#: components\ArticleReply\ArticleReply.js:136
 #: pages\api\articles\[feed].js:178
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Reference"
@@ -98,11 +98,11 @@ msgstr "出處"
 msgid "Someone"
 msgstr "有人"
 
-#: components\ArticleReply\ArticleReply.js:138
+#: components\ArticleReply\ArticleReply.js:136
 msgid "Different opinion"
 msgstr "不同意見"
 
-#: components\ArticleReply\ArticleReply.js:142
+#: components\ArticleReply\ArticleReply.js:140
 msgid "There is no reference for this reply. Its truthfulness may be doubtful."
 msgstr "這則回應沒有出處，請自行斟酌其真實性。"
 
@@ -170,7 +170,7 @@ msgstr "搜尋"
 msgid "Searching for messages and replies containing “${ variables.query }”..."
 msgstr "正在搜尋含有「${ variables.query }」的訊息與回應⋯⋯"
 
-#: components\AppLayout\LoginModal.js:108
+#: components\AppLayout\LoginModal.js:107
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
@@ -244,14 +244,14 @@ msgid ""
 msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
 
 #: components\ProfilePage\ProfilePage.js:91
-#: pages\article\[id].js:263
-#: pages\article\[id].js:267
+#: pages\article\[id].js:262
+#: pages\article\[id].js:266
 #: pages\reply\[id].js:200
 #: pages\reply\[id].js:204
 msgid "Loading"
 msgstr "載入中"
 
-#: pages\article\[id].js:278
+#: pages\article\[id].js:277
 #: pages\reply\[id].js:215
 msgid "Not found"
 msgstr "找不到此頁面"
@@ -260,7 +260,7 @@ msgstr "找不到此頁面"
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages\article\[id].js:282
+#: pages\article\[id].js:281
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
@@ -288,11 +288,11 @@ msgstr "透過 Feedrabbit"
 msgid "Latest reply"
 msgstr "最新回應"
 
-#: components\AppLayout\AppFooter.js:100
+#: components\AppLayout\AppFooter.js:101
 msgid "Fact Check"
 msgstr "闢謠"
 
-#: components\AppLayout\AppFooter.js:137
+#: components\AppLayout\AppFooter.js:139
 #: components\AppLayout\AppSidebar.js:143
 msgid "Contact Us"
 msgstr "聯絡我們"
@@ -306,7 +306,7 @@ msgstr "我的主頁"
 msgid "Forum"
 msgstr "討論區"
 
-#: components\AppLayout\AppFooter.js:150
+#: components\AppLayout\AppFooter.js:152
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
@@ -330,7 +330,7 @@ msgstr "含有錯誤訊息"
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
-#: components\AppLayout\AppFooter.js:101
+#: components\AppLayout\AppFooter.js:102
 #: components\LandingPage\Header.js:213
 #: components\SearchPageJumbotron.js:130
 msgid "Messages"
@@ -466,7 +466,7 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 msgid "Loading..."
 msgstr "載入中⋯"
 
-#: components\AppLayout\AppFooter.js:113
+#: components\AppLayout\AppFooter.js:112
 msgid "About Cofacts"
 msgstr "關於 Cofacts"
 
@@ -496,21 +496,21 @@ msgstr[0] "被回報 ${ replyRequestCount } 次"
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages\article\[id].js:314
+#: pages\article\[id].js:313
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages\article\[id].js:326
+#: pages\article\[id].js:325
 msgid "First reported ${ timeAgoStr } ago"
 msgstr "首次回報於 ${ timeAgoStr }前"
 
-#: pages\article\[id].js:433
+#: pages\article\[id].js:432
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages\article\[id].js:452
+#: pages\article\[id].js:451
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
@@ -786,15 +786,15 @@ msgstr "目標網站有 HTTPS 錯誤"
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: pages\article\[id].js:402
+#: pages\article\[id].js:401
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
 msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
 msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
-#: pages\article\[id].js:426
-#: pages\article\[id].js:462
+#: pages\article\[id].js:425
+#: pages\article\[id].js:461
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
@@ -891,44 +891,22 @@ msgstr "我可以闢謠"
 msgid "I can help with coding"
 msgstr "我會寫 Code"
 
-#: components\AppLayout\AppFooter.js:109
-msgid "Following"
-msgstr "我的關注"
-
-#: components\AppLayout\AppFooter.js:115
+#: components\AppLayout\AppFooter.js:117
 msgid "Introduction"
 msgstr "專案介紹"
 
-#: components\AppLayout\AppFooter.js:118
+#: components\AppLayout\AppFooter.js:120
 msgid "Source Code"
 msgstr "原始碼"
 
-#: components\AppLayout\AppFooter.js:125
+#: components\AppLayout\AppFooter.js:127
 msgid "Contact"
 msgstr "聯繫"
 
-#: pages\article\[id].js:417
+#: pages\article\[id].js:416
 #: pages\reply\[id].js:314
 msgid "The content above"
 msgstr "以上內容"
-
-#: components\AppLayout\LoginModal.js:92
-msgid "Terms of Use"
-msgstr "使用者條款"
-
-#: components\AppLayout\LoginModal.js:104
-msgid "open data"
-msgstr "開放資料"
-
-#: components\AppLayout\LoginModal.js:135
-#, javascript-format
-msgid ""
-"By logging in you agree to ${ termsLink }, and you agree to license your "
-"contribution under ${ licenseLink } as ${ authorLink } and release as ${ "
-"workLink }."
-msgstr ""
-"登入本站即表示您同意${ termsLink }，以${ authorLink }之名義，將您在本站的貢獻以${ licenseLink "
-"}釋出為${workLink}。"
 
 #: lib\terms.js:41
 msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
@@ -1085,15 +1063,31 @@ msgstr "CC授權 姓名標示-相同方式分享 4.0"
 
 #: lib\terms.js:47
 #, javascript-format
-msgid "${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }."
-msgstr "${ subject }由 ${ AUTHOR } 提供，以${ SHORT_LICENSE } 釋出。"
+msgid ""
+"${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
+"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
+msgstr ""
+"${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
+"bot ${ LINE_URL } 。"
 
-#: pages\how-to-use.js:101
+#: pages\tutorial.js:101
 msgid "How to use Cofacts"
 msgstr ""
 
-#: pages\what-is-cofacts.js:238
+#: pages\about.js:238
 msgid "What is Cofacts"
+msgstr ""
+
+#: components\AppLayout\AppFooter.js:114
+#: components\AppLayout\LoginModal.js:92
+msgid "User Agreement"
+msgstr ""
+
+#: components\AppLayout\LoginModal.js:134
+#, javascript-format
+msgid ""
+"By logging in you agree to ${ termsLink }, and your contribution will be "
+"published using ${ licenseLink } as ${ authorLink }."
 msgstr ""
 
 #: pages\index.js:41
@@ -1150,7 +1144,7 @@ msgctxt "App layout"
 msgid "Messages"
 msgstr "可疑訊息"
 
-#: components\AppLayout\AppFooter.js:103
+#: components\AppLayout\AppFooter.js:104
 #: components\AppLayout\AppHeader.js:158
 #: components\LandingPage\Header.js:216
 #: components\LandingPage\Header.js:272
@@ -1158,7 +1152,7 @@ msgctxt "App layout"
 msgid "Replies"
 msgstr "最新查核"
 
-#: components\AppLayout\AppFooter.js:106
+#: components\AppLayout\AppFooter.js:107
 #: components\AppLayout\AppHeader.js:170
 #: components\LandingPage\Header.js:220
 #: components\LandingPage\Header.js:277
