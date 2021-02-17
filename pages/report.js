@@ -2,7 +2,11 @@ import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import { t } from 'ttag';
 
-import { SectionHowToUse, SectionInfluence } from 'components/ReportPage';
+import {
+  SectionHowToUse,
+  SectionInfluence,
+  SectionFeatures,
+} from 'components/ReportPage';
 
 import bannerImage from 'components/ReportPage/images/banner.png';
 import introBg from 'components/ReportPage/images/intro-bg.png';
@@ -72,6 +76,7 @@ const Report = () => {
         </section>
         <SectionHowToUse />
         <SectionInfluence />
+        <SectionFeatures />
       </div>
     </>
   );
