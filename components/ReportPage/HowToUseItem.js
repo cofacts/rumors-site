@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     position: 'relative',
@@ -12,6 +12,12 @@ const useStyles = makeStyles(() => ({
     height: 280,
     background: '#ffcb00',
     borderRadius: 10,
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'row-reverse',
+      width: '100%',
+      height: 70,
+    },
   },
   text: {
     display: 'flex',
@@ -25,11 +31,26 @@ const useStyles = makeStyles(() => ({
     lineHeight: 1.45,
     fontWeight: 700,
     color: '#3d2e56',
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 20,
+      width: '100%',
+      marginTop: 0,
+      marginRight: 8,
+      marginLeft: -40,
+    },
   },
   image: {
     position: 'absolute',
     height: 200,
     bottom: 0,
+
+    [theme.breakpoints.down('sm')]: {
+      position: 'relative',
+      alignSelf: 'flex-end',
+      height: 117,
+      marginLeft: 4,
+    },
 
     '& > img': {
       height: '100%',

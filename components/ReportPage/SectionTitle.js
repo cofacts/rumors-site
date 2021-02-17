@@ -4,7 +4,7 @@ import cx from 'clsx';
 import star1 from './images/star1.png';
 import star2 from './images/star2.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     position: 'relative',
@@ -17,6 +17,11 @@ const useStyles = makeStyles(() => ({
       lineHeight: 1.45,
       letterSpacing: 5,
       margin: 0,
+
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+        letterSpacing: 0,
+      },
     },
   },
   leftStar: {

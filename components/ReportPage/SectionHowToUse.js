@@ -12,7 +12,7 @@ import plane1 from './images/plane-1.png';
 import plane2 from './images/plane-2.png';
 import arrow from './images/arrow.svg';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   howToUse: {
     display: 'flex',
     flexDirection: 'column',
@@ -20,6 +20,10 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     background: '#ff9900',
     padding: '43px 0 54px',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '20px 0 90px',
+    },
 
     '& h3': {
       color: 'white',
@@ -32,8 +36,23 @@ const useStyles = makeStyles(() => ({
     maxWidth: 1020,
     margin: '40px auto 56px',
 
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      flexDirection: 'column',
+      padding: '0 40px',
+      margin: '20px auto 35px',
+    },
+
     '& > div': {
       margin: '0 25px',
+
+      [theme.breakpoints.down('md')]: {
+        margin: '0 12px',
+      },
+
+      [theme.breakpoints.down('sm')]: {
+        margin: '40px 0 0',
+      },
     },
   },
   plane1: {
@@ -41,6 +60,10 @@ const useStyles = makeStyles(() => ({
     top: -80,
     left: -200,
     width: 240,
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
 
     '& > img': {
       width: '100%',
@@ -52,6 +75,10 @@ const useStyles = makeStyles(() => ({
     left: -40,
     width: 140,
 
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+
     '& > img': {
       width: '100%',
     },
@@ -60,6 +87,12 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     bottom: -220,
     left: -40,
+
+    [theme.breakpoints.down('sm')]: {
+      width: 88,
+      bottom: -220,
+      left: 20,
+    },
 
     '& > img': {
       width: '100%',
@@ -74,8 +107,18 @@ const useStyles = makeStyles(() => ({
     lineHeight: 1,
     color: 'white',
 
+    [theme.breakpoints.down('sm')]: {
+      padding: '8px 16px 8px 20px',
+      fontSize: 18,
+    },
+
     '& img': {
       marginLeft: 16,
+
+      [theme.breakpoints.down('sm')]: {
+        height: 17,
+        marginLeft: 8,
+      },
     },
   },
 }));

@@ -4,12 +4,16 @@ import SectionTitle from './SectionTitle';
 
 import bg from './images/influence-bg.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   influence: {
     padding: '112px 0 180px',
     background: `url(${bg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '32px 0 140px',
+    },
 
     '& > p': {
       fontSize: 18,
@@ -17,17 +21,31 @@ const useStyles = makeStyles(() => ({
       whiteSpace: 'pre-line',
       textAlign: 'center',
       color: '#3d2e56',
+
+      [theme.breakpoints.down('sm')]: {
+        fontSize: 12,
+        padding: '0 32px',
+      },
     },
   },
   title: {
     color: '#3d2e56',
     marginBottom: 77,
+
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 48,
+    },
   },
   video: {
     position: 'relative',
     maxWidth: 1020,
     width: '100%',
     margin: '0 auto 53px',
+
+    [theme.breakpoints.down('sm')]: {
+      width: 'calc(100% - 36px)',
+      margin: '0 auto 20px',
+    },
 
     '&:after': {
       display: 'block',
