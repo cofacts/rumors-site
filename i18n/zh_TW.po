@@ -197,7 +197,7 @@ msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: components\LandingPage\SectionCanDo.js:254
+#: components\LandingPage\SectionCanDo.js:253
 msgid "Tutorial"
 msgstr "使用教學"
 
@@ -292,7 +292,7 @@ msgstr "最新回應"
 msgid "Fact Check"
 msgstr "闢謠"
 
-#: components\AppLayout\AppFooter.js:141
+#: components\AppLayout\AppFooter.js:139
 #: components\AppLayout\AppSidebar.js:143
 msgid "Contact Us"
 msgstr "聯絡我們"
@@ -306,7 +306,7 @@ msgstr "我的主頁"
 msgid "Forum"
 msgstr "討論區"
 
-#: components\AppLayout\AppFooter.js:154
+#: components\AppLayout\AppFooter.js:152
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
@@ -466,7 +466,7 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 msgid "Loading..."
 msgstr "載入中⋯"
 
-#: components\AppLayout\AppFooter.js:113
+#: components\AppLayout\AppFooter.js:112
 msgid "About Cofacts"
 msgstr "關於 Cofacts"
 
@@ -891,15 +891,15 @@ msgstr "我可以闢謠"
 msgid "I can help with coding"
 msgstr "我會寫 Code"
 
-#: components\AppLayout\AppFooter.js:119
+#: components\AppLayout\AppFooter.js:117
 msgid "Introduction"
 msgstr "專案介紹"
 
-#: components\AppLayout\AppFooter.js:122
+#: components\AppLayout\AppFooter.js:120
 msgid "Source Code"
 msgstr "原始碼"
 
-#: components\AppLayout\AppFooter.js:129
+#: components\AppLayout\AppFooter.js:127
 msgid "Contact"
 msgstr "聯繫"
 
@@ -916,7 +916,7 @@ msgstr "「Cofacts 真的假的」訊息回報機器人與查證協作社群"
 msgid "Message reporting chatbot and crowd-sourced fact-checking community"
 msgstr "訊息回報機器人與查證協作社群"
 
-#: components\LandingPage\SectionCanDo.js:244
+#: components\LandingPage\SectionCanDo.js:246
 msgid ""
 "Search by ID “@cofacts” or scan the QR Code above to follow Cofacts\n"
 "LINE account. Forward suspicious text to it, the chatbot will help you\n"
@@ -1061,10 +1061,10 @@ msgstr "CC BY-SA 4.0"
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "CC授權 姓名標示-相同方式分享 4.0"
 
-#: components\AppLayout\AppFooter.js:116
+#: components\AppLayout\AppFooter.js:114
 #: components\AppLayout\LoginModal.js:92
 msgid "User Agreement"
-msgstr "使用者條款"
+msgstr ""
 
 #: components\AppLayout\LoginModal.js:134
 #, javascript-format
@@ -1082,9 +1082,17 @@ msgstr ""
 "${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
 "bot ${ LINE_URL } 。"
 
-#: components\ReportPage\index.js:10
+#: pages\report.js:64
 msgid "Cofacts annual report"
 msgstr "Cofacts 年度報告"
+
+#: pages\about.js:238
+msgid "What is Cofacts"
+msgstr ""
+
+#: pages\tutorial.js:101
+msgid "How to use Cofacts"
+msgstr ""
 
 #: pages\index.js:41
 msgctxt "site title"
@@ -1162,17 +1170,17 @@ msgctxt "App layout"
 msgid "Forum"
 msgstr "討論區"
 
-#: components\LandingPage\SectionCanDo.js:212
+#: components\LandingPage\SectionCanDo.js:214
 msgctxt "landing page"
 msgid "Give it a try:"
 msgstr "你可以這麼做："
 
-#: components\LandingPage\SectionCanDo.js:233
+#: components\LandingPage\SectionCanDo.js:235
 msgctxt "landing page"
 msgid "or"
 msgstr "或"
 
-#: components\LandingPage\SectionCanDo.js:239
+#: components\LandingPage\SectionCanDo.js:241
 msgctxt "landing page"
 msgid "Send hoax message to Cofacts via the LINE app"
 msgstr ""
@@ -1180,7 +1188,7 @@ msgstr ""
 " 加好友 \n"
 " 謠言隨手查！"
 
-#: components\LandingPage\SectionCanDo.js:229
+#: components\LandingPage\SectionCanDo.js:231
 msgctxt "landing page"
 msgid "Search"
 msgstr "快速查詢"
@@ -1205,7 +1213,7 @@ msgctxt "landing page"
 msgid "Everyone wants to know..."
 msgstr "大家都想知道⋯⋯"
 
-#: components\LandingPage\SectionCanDo.js:216
+#: components\LandingPage\SectionCanDo.js:218
 msgctxt "landing page"
 msgid "Paste a suspicious text message below"
 msgstr "在下方貼上可疑的文字內容"

@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
 import { withDarkTheme } from 'lib/theme';
 import Button from '@material-ui/core/Button';
+import Link from 'next/link';
+
 import InputBox from 'components/LandingPage/InputBox';
 
 import lineQrcode from './images/line-qrcode.png';
@@ -245,14 +247,12 @@ const SectionCanDo = ({ className }) => {
               LINE account. Forward suspicious text to it, the chatbot will help you
               check the credibility of the text!`}
           </div>
-          <Button
-            className={cx(classes.button, classes.text)}
-            href="https://g0v.hackmd.io/s/rkVVQDmqQ"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t`Tutorial`}
-          </Button>
+
+          <Link href="/tutorial?tab=check-rumors" passHref>
+            <Button className={cx(classes.button, classes.text)}>
+              {t`Tutorial`}
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
