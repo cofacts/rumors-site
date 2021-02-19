@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import ProgressionWrapper from './ProgressionWrapper';
 import cx from 'clsx';
 
 const useHeaderStyles = makeStyles({
-  section: {
+  root: {
     color: '#615870',
     display: 'flex',
     alignItems: 'center',
@@ -23,19 +24,25 @@ function Header({ className, ...props }) {
   return <h4 className={cx(classes.root, className)} {...props} />;
 }
 
-const useStyles = makeStyles({
-  root: {
+const useStyles = makeStyles(theme => ({
+  section: {
     maxWidth: 1168 + 32 * 2,
     padding: '0 32px',
     margin: '0 auto',
   },
-});
+
+  wrapper: {
+    zIndex: 1,
+    position: 'relative', // for stacking context
+    background: theme.palette.background.default,
+  },
+}));
 
 function SectionSponsor() {
   const classes = useStyles();
 
   return (
-    <>
+    <ProgressionWrapper className={classes.wrapper}>
       <section className={classes.section}>
         <Header>合作夥伴</Header>
         <Box display="flex">
@@ -47,7 +54,7 @@ function SectionSponsor() {
           </Box>
         </Box>
       </section>
-    </>
+    </ProgressionWrapper>
   );
 }
 
