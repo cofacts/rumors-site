@@ -69,7 +69,7 @@ const SectionInfluence = () => {
       <SectionTitle className={classes.title}>社群影響力</SectionTitle>
       <div className={classes.video}>
         <iframe
-          src="https://www.youtube.com/embed/_Va0IozR8hk"
+          src="https://www.youtube.com/embed/WfdfB7GyqMY"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
