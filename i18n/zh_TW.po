@@ -1061,23 +1061,6 @@ msgstr "CC BY-SA 4.0"
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "CC授權 姓名標示-相同方式分享 4.0"
 
-#: lib\terms.js:47
-#, javascript-format
-msgid ""
-"${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
-"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
-msgstr ""
-"${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
-"bot ${ LINE_URL } 。"
-
-#: pages\tutorial.js:101
-msgid "How to use Cofacts"
-msgstr ""
-
-#: pages\about.js:238
-msgid "What is Cofacts"
-msgstr ""
-
 #: components\AppLayout\AppFooter.js:114
 #: components\AppLayout\LoginModal.js:92
 msgid "User Agreement"
@@ -1088,6 +1071,27 @@ msgstr ""
 msgid ""
 "By logging in you agree to ${ termsLink }, and your contribution will be "
 "published using ${ licenseLink } as ${ authorLink }."
+msgstr "登入本站即表示您同意${ termsLink }，以${ authorLink }之名義，將您的貢獻以 ${ licenseLink } 發布。"
+
+#: lib\terms.js:47
+#, javascript-format
+msgid ""
+"${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
+"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
+msgstr ""
+"${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
+"bot ${ LINE_URL } 。"
+
+#: pages\report.js:64
+msgid "Cofacts annual report"
+msgstr "Cofacts 年度報告"
+
+#: pages\about.js:238
+msgid "What is Cofacts"
+msgstr ""
+
+#: pages\tutorial.js:101
+msgid "How to use Cofacts"
 msgstr ""
 
 #: pages\index.js:41
