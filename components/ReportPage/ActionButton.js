@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: 18,
     },
 
-    '& img': {
+    '& svg': {
       marginLeft: 16,
 
       [theme.breakpoints.down('sm')]: {
