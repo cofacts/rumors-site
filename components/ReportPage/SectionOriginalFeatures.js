@@ -186,10 +186,10 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     background:
       'linear-gradient(181.63deg, #8D1EAA 2.33%, #6D28AA 57.02%, #3D2E56 99.56%)',
-    padding: '120px 20px 400px',
+    padding: 'calc(12.5vw + 120px) 20px 400px',
 
     [theme.breakpoints.down('sm')]: {
-      padding: '20px 32px 400px',
+      padding: 'calc(12.5vw + 20px) 32px 400px',
     },
   },
   starBg: {
