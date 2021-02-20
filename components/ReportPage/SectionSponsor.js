@@ -9,6 +9,8 @@ import g0vLogo from './images/logos/g0v.svg';
 import whoscallLogo from './images/logos/whoscall.png';
 import trendmicroLogo from './images/logos/trendmicro.png';
 import dcardLogo from './images/logos/dcard.png';
+import donateImg from './images/donate.png';
+import ActionButton from './ActionButton';
 
 import cx from 'clsx';
 
@@ -75,27 +77,6 @@ function Partners({ title, partners }) {
   );
 }
 
-const useStyles = makeStyles(theme => ({
-  section: {
-    maxWidth: 1168 + 32 * 2,
-    padding: '0 32px',
-    margin: '0 auto',
-  },
-
-  wrapper: {
-    zIndex: 1,
-    position: 'relative', // for stacking context
-    background: theme.palette.background.default,
-  },
-
-  title: {
-    marginTop: 32,
-    [theme.breakpoints.up('md')]: {
-      marginTop: 64,
-    },
-  },
-}));
-
 const COOP = [
   {
     logo: ocfLogo,
@@ -130,6 +111,56 @@ const ANGEL = [
   },
 ];
 
+const useStyles = makeStyles(theme => ({
+  section: {
+    maxWidth: 1168 + 32 * 2,
+    padding: '0 32px',
+    margin: '0 auto',
+  },
+
+  wrapper: {
+    zIndex: 1,
+    position: 'relative', // for stacking context
+    background: theme.palette.background.default,
+  },
+
+  title: {
+    marginTop: 32,
+    [theme.breakpoints.up('md')]: {
+      marginTop: 64,
+    },
+  },
+
+  donate: {
+    margin: '0 auto 24px',
+    width: 214,
+    position: 'relative', // for donateButton
+
+    '& > img': {
+      width: '100%',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      width: 462,
+      marginBottom: 36,
+    },
+  },
+
+  donateButton: {
+    color: '#fff',
+    position: 'absolute',
+    bottom: 46,
+    left: '50%',
+    width: 164,
+    transform: 'translate(-50%, 50%)',
+
+    [theme.breakpoints.up('md')]: {
+      width: 286,
+      bottom: 80,
+    },
+  },
+}));
+
 function SectionSponsor() {
   const classes = useStyles();
 
@@ -163,6 +194,17 @@ function SectionSponsor() {
           <Box flex={1}>
             <Partners title="天使捐助" partners={ANGEL} />
           </Box>
+        </Box>
+        <div className={classes.donate}>
+          <img src={donateImg} alt="Donate" />
+          <ActionButton className={classes.donateButton} theme="dark">
+            {t`Donate to Cofacts`}
+          </ActionButton>
+        </div>
+        <Box textAlign="center" paddingBottom="12.5vw">
+          <ActionButton style={{ color: '#ff9900' }}>
+            {t`Share to Facebook`}
+          </ActionButton>
         </Box>
       </section>
     </ProgressionWrapper>
