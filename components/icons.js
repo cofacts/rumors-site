@@ -1,4 +1,4 @@
-import { SvgIcon } from '@material-ui/core';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 export const ThumbUpIcon = props => (
   <SvgIcon {...props} viewBox="0 0 17 15">
