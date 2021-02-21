@@ -10,6 +10,9 @@ import whoscallLogo from './images/logos/whoscall.png';
 import trendmicroLogo from './images/logos/trendmicro.png';
 import dcardLogo from './images/logos/dcard.png';
 import donateImg from './images/donate.png';
+import slidingGiraffeImg from './images/sliding-giraffe.png';
+import starImg from './images/sponsor-star.png';
+
 import ActionButton from './ActionButton';
 
 import cx from 'clsx';
@@ -120,8 +123,30 @@ const useStyles = makeStyles(theme => ({
 
   wrapper: {
     zIndex: 1,
-    position: 'relative', // for stacking context
+    position: 'relative', // for stacking context & giraffe
     background: theme.palette.background.default,
+
+    '&::before': {
+      content: "''",
+      position: 'absolute',
+      background: `url(${starImg}) no-repeat`,
+      backgroundSize: 'contain',
+      width: '5vw',
+      height: '6vw',
+      right: '29vw',
+      bottom: '28vw',
+    },
+
+    '&::after': {
+      content: "''",
+      position: 'absolute',
+      background: `url(${slidingGiraffeImg}) no-repeat`,
+      backgroundSize: 'contain',
+      width: '30vw',
+      height: '32vw',
+      right: 0,
+      bottom: '7vw',
+    },
   },
 
   title: {
