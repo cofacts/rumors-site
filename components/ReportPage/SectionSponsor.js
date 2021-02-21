@@ -1,19 +1,21 @@
+import { useEffect, useState } from 'react';
 import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import ProgressionWrapper from './ProgressionWrapper';
-import SectionTitle from './SectionTitle';
 
 import ocfLogo from './images/logos/ocf.svg';
 import g0vLogo from './images/logos/g0v.svg';
-import whoscallLogo from './images/logos/whoscall.png';
-import trendmicroLogo from './images/logos/trendmicro.png';
+// import whoscallLogo from './images/logos/whoscall.png';
+// import trendmicroLogo from './images/logos/trendmicro.png';
 import dcardLogo from './images/logos/dcard.png';
 import donateImg from './images/donate.png';
 import slidingGiraffeImg from './images/sliding-giraffe.png';
 import starImg from './images/sponsor-star.png';
 
+import ProgressionWrapper from './ProgressionWrapper';
+import SectionTitle from './SectionTitle';
 import ActionButton from './ActionButton';
+import { FACEBOOK_SHARE_URL_PREFIX } from 'constants/urls';
 
 import cx from 'clsx';
 
@@ -93,18 +95,18 @@ const COOP = [
   },
 ];
 
-const FUND = [
-  {
-    logo: whoscallLogo,
-    name: t`Whoscall`,
-    url: 'https://whoscall.com/zh-hant/about',
-  },
-  {
-    logo: trendmicroLogo,
-    name: t`Trend Micro`,
-    url: 'https://www.trendmicro.com/',
-  },
-];
+// const FUND = [
+//   {
+//     logo: whoscallLogo,
+//     name: t`Whoscall`,
+//     url: 'https://whoscall.com/zh-hant/about',
+//   },
+//   {
+//     logo: trendmicroLogo,
+//     name: t`Trend Micro`,
+//     url: 'https://www.trendmicro.com/',
+//   },
+// ];
 
 const ANGEL = [
   {
@@ -188,6 +190,18 @@ const useStyles = makeStyles(theme => ({
 
 function SectionSponsor() {
   const classes = useStyles();
+  const [urlToShare, setUrlToShare] = useState('');
+
+  useEffect(() => {
+    const url = `https://dev.cofacts.org${location.pathname}`;
+
+    // Set URL to share on client, when location is available.
+    // Will re-render this component to update the URL.
+    //
+    setUrlToShare(
+      `${FACEBOOK_SHARE_URL_PREFIX}&href=${encodeURIComponent(url)}`
+    );
+  }, []);
 
   return (
     <ProgressionWrapper className={classes.wrapper}>
@@ -227,7 +241,11 @@ function SectionSponsor() {
           </ActionButton>
         </div>
         <Box textAlign="center" paddingBottom="12.5vw">
-          <ActionButton style={{ color: '#ff9900' }}>
+          <ActionButton
+            style={{ color: '#ff9900' }}
+            href={urlToShare}
+            target="_blank"
+          >
             {t`Share to Facebook`}
           </ActionButton>
         </Box>
