@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import cx from 'clsx';
 import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { animated, useSpring } from 'react-spring';
 
-import { TUTORIAL, EDITOR_ENTRANCE, DEVELOPER_HOMEPAGE } from 'constants/urls';
+import { DEVELOPER_HOMEPAGE } from 'constants/urls';
 import { withDarkTheme } from 'lib/theme';
 
 import bg from './images/contribute-bg.png';
@@ -135,24 +136,16 @@ const SectionContribute = ({ className }) => {
                is the way to transcend this program into something great.`}
         </div>
         <div className={classes.actions}>
-          <Button
-            color="primary"
-            variant="contained"
-            href={TUTORIAL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t`I want to learn how to use Cofacts`}
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            href={EDITOR_ENTRANCE}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t`I can help bust hoaxes`}
-          </Button>
+          <Link href="/tutorial?tab=check-rumors" passHref>
+            <Button color="primary" variant="contained">
+              {t`I want to learn how to use Cofacts`}
+            </Button>
+          </Link>
+          <Link href="/tutorial?tab=bust-hoaxes" passHref>
+            <Button color="primary" variant="contained">
+              {t`I can help bust hoaxes`}
+            </Button>
+          </Link>
           <Button
             color="primary"
             variant="contained"
