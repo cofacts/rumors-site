@@ -167,7 +167,6 @@ function SectionSponsor() {
   return (
     <ProgressionWrapper className={classes.wrapper}>
       <section className={classes.section}>
-        <Partners title="合作夥伴" partners={COOP} />
         <SectionTitle className={classes.title}>永續經營</SectionTitle>
         <Box
           fontSize={[13, 13, 24]}
@@ -189,7 +188,8 @@ function SectionSponsor() {
         </Box>
         <Box display="flex">
           <Box flex={1} marginRight={['12px', '12px', '96px']}>
-            <Partners title="贊助夥伴" partners={FUND} />
+            <Partners title="合作夥伴" partners={COOP} />
+            {/* <Partners title="贊助夥伴" partners={FUND} /> */}
           </Box>
           <Box flex={1}>
             <Partners title="天使捐助" partners={ANGEL} />
