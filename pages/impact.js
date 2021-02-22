@@ -62,7 +62,7 @@ const Report = () => {
   return (
     <>
       <Head>
-        <title>{t`Cofacts annual report`}</title>
+        <title>{t`Cofacts social impact report`}</title>
       </Head>
       <div className={classes.root}>
         <section className={classes.banner} />
