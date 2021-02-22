@@ -6,6 +6,7 @@ import {
   Banner,
   SectionHowToUse,
   SectionInfluence,
+  SectionEcosystem,
   SectionFeatures,
   SectionOriginalFeatures,
   SectionSponsor,
@@ -84,6 +85,7 @@ const Report = () => {
         </section>
         <SectionHowToUse />
         <SectionInfluence />
+        <SectionEcosystem />
         <SectionFeatures />
         <SectionSponsor />
         <SectionOriginalFeatures />
