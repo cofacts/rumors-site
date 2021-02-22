@@ -15,8 +15,15 @@ const useStyles = makeStyles(theme => ({
     color: '#fff',
     background: 'linear-gradient(181.58deg, #8D1EAA 2.25%, #6D28AA 91.21%)',
     position: 'relative', // For pseudo-element background
-    paddingBottom: 'calc(12.5vw + 80px)',
+    padding: '24px 0 calc(12.5vw + 80px)',
     fontSize: 13,
+    lineHeight: 1.9,
+
+    [theme.breakpoints.up('md')]: {
+      padding: '48px 0 10vw',
+      fontSize: 18,
+      lineHeight: 1.667,
+    },
 
     '&::before': {
       content: "''",
@@ -29,12 +36,6 @@ const useStyles = makeStyles(theme => ({
       height: '96vw',
 
       zIndex: -1,
-    },
-
-    [theme.breakpoints.up('md')]: {
-      paddingBottom: '10vw',
-      fontSize: 18,
-      lineHeight: 1.667,
     },
   },
   shadow: {
@@ -59,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 1024,
     textAlign: 'center',
     fontSize: 13,
-    lineHeight: 2,
+    lineHeight: 1.9,
     color: '#615870',
 
     [theme.breakpoints.up('md')]: {
