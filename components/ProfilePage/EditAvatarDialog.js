@@ -99,7 +99,7 @@ function EditAvatarDialog({ user, onClose = () => {} }) {
     e.preventDefault();
 
     const newAvatarData =
-      avatarType === 'OpenPeeps' ? JSON.stringify(avatarData) : null;
+      avatarType === 'OpenPeeps' ? JSON.stringify(avatarData) : user.avatarData;
     const newAvatarUrl = getAvatarUrl(user, avatarType);
     user.avatarType = avatarType;
     user.avatarData = newAvatarData;
