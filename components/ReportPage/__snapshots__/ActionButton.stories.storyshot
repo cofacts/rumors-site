@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ReportPage/ActionButton Default 1`] = `
+<ActionButton
+  style={
+    Object {
+      "color": "#000",
+    }
+  }
+>
+  <button
+    className="MuiButtonBase-root-1082 MuiButton-root-1053 MuiButton-outlined-1058 makeStyles-button"
+    disabled={false}
+    onBlur={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "color": "#000",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiButton-label-1054"
+    >
+      Action button text
+      <Arrow>
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-1085"
+          focusable="false"
+          viewBox="0 0 14 27"
+        >
+          <path
+            d="M2 1L10.6746 10.8575C12.0041 12.3683 12.0041 14.6317 10.6746 16.1425L2 26"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+          />
+        </svg>
+      </Arrow>
+    </span>
+    <NoSsr>
+      <span
+        className="MuiTouchRipple-root-1094"
+      >
+        <TransitionGroup
+          childFactory={[Function]}
+          component={null}
+          exit={true}
+        />
+      </span>
+    </NoSsr>
+  </button>
+</ActionButton>
+`;

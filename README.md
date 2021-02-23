@@ -136,3 +136,10 @@ During development, changing `LOCALE` in `.env` allows you to spin up dev server
 Please set `LOCALE` to one of `en_US`, `zh_TW` or any other language code that exists under `i18n/` directory.
 
 When building using Docker, `LOCALE` can be provided via build args. See `hooks/build` for the command to use.
+
+## Legal
+
+`LICENSE` defines the license agreement for the source code in this repository.
+
+`LEGAL.md` is the user agreement for Cofacts website users.
+

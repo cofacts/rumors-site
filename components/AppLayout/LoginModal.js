@@ -5,7 +5,7 @@ import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import getConfig from 'next/config';
 import {
   LICENSE_URL,
-  EDITOR_REFERENCE,
+  USER_AGREEMENT_URL,
   EDITOR_FACEBOOK_GROUP,
 } from 'constants/urls';
 import { AUTHOR, LICENSE } from 'lib/terms';
@@ -89,7 +89,7 @@ function LoginModal({ onClose, redirectPath }) {
   const classes = useStyles();
 
   const termsLink = (
-    <a key="termsLink" href={EDITOR_REFERENCE}>{t`Terms of Use`}</a>
+    <a key="termsLink" href={USER_AGREEMENT_URL}>{t`User Agreement`}</a>
   );
   const licenseLink = (
     <a key="licenseLink" href={LICENSE_URL}>
@@ -101,7 +101,6 @@ function LoginModal({ onClose, redirectPath }) {
       {AUTHOR}
     </a>
   );
-  const workLink = <a key="workLink" href={LICENSE_URL}>{t`open data`}</a>;
 
   return (
     <Dialog open maxWidth="xs" onClose={onClose}>
@@ -132,7 +131,7 @@ function LoginModal({ onClose, redirectPath }) {
           Github
         </ProviderLink>
         <Typography variant="body2" className={classes.terms}>
-          {jt`By logging in you agree to ${termsLink}, and you agree to license your contribution under ${licenseLink} as ${authorLink} and release as ${workLink}.`}
+          {jt`By logging in you agree to ${termsLink}, and your contribution will be published using ${licenseLink} as ${authorLink}.`}
         </Typography>
       </DialogContent>
     </Dialog>

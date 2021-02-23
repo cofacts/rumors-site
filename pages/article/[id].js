@@ -244,8 +244,7 @@ function ArticlePage() {
       'text/plain',
       selection.toString() +
         `\n📋 節錄自 Cofacts 真的假的：${articleUrl}` +
-        `\nℹ️ ${getTermsString('此資訊')}` +
-        `\n🤔 在 LINE 看到可疑訊息？加「真的假的」好友，查謠言與詐騙 ➡️ ${LINE_URL}`
+        `\nℹ️ ${getTermsString('此資訊')}`
     );
     e.preventDefault();
   }, []);
@@ -394,7 +393,10 @@ function ArticlePage() {
             </div>
           )}
 
-          <Card ref={replySectionRef} onCopy={handleCopy}>
+          <Card
+            ref={replySectionRef}
+            onCopy={currentUser ? undefined : handleCopy}
+          >
             <CardHeader>
               {ngettext(
                 msgid`There is ${replyCount} fact-checking reply to the message`,

@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Tutorial/Accordion Normal 1`] = `
+<div
+  style={
+    Object {
+      "width": "400px",
+    }
+  }
+>
+  <Accordion
+    activeIndex={0}
+    data={
+      Array [
+        Object {
+          "content": "此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應",
+          "title": "title 1",
+        },
+        Object {
+          "content": "content 2",
+          "title": "title 2",
+        },
+        Object {
+          "content": "content 3",
+          "title": "title 3",
+        },
+        Object {
+          "content": "content 4",
+          "title": "title 4",
+        },
+        Object {
+          "content": "content 5",
+          "title": "title 5",
+        },
+      ]
+    }
+    onClick={[Function]}
+  >
+    <div>
+      <div
+        className="makeStyles-item"
+        key="0"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="makeStyles-title makeStyles-activeTitle"
+        >
+          title 1
+        </div>
+        <div
+          className="makeStyles-contentWrapper makeStyles-activeContentWrapper"
+        >
+          <div
+            className="makeStyles-content"
+          >
+            此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-item"
+        key="1"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="makeStyles-title"
+        >
+          title 2
+        </div>
+        <div
+          className="makeStyles-contentWrapper"
+        >
+          <div
+            className="makeStyles-content"
+          >
+            content 2
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-item"
+        key="2"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="makeStyles-title"
+        >
+          title 3
+        </div>
+        <div
+          className="makeStyles-contentWrapper"
+        >
+          <div
+            className="makeStyles-content"
+          >
+            content 3
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-item"
+        key="3"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="makeStyles-title"
+        >
+          title 4
+        </div>
+        <div
+          className="makeStyles-contentWrapper"
+        >
+          <div
+            className="makeStyles-content"
+          >
+            content 4
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-item"
+        key="4"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="makeStyles-title"
+        >
+          title 5
+        </div>
+        <div
+          className="makeStyles-contentWrapper"
+        >
+          <div
+            className="makeStyles-content"
+          >
+            content 5
+          </div>
+        </div>
+      </div>
+    </div>
+  </Accordion>
+</div>
+`;
