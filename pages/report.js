@@ -7,6 +7,7 @@ import {
   SectionInfluence,
   SectionFeatures,
   SectionOriginalFeatures,
+  SectionSponsor,
 } from 'components/ReportPage';
 
 import bannerImage from 'components/ReportPage/images/banner.png';
@@ -78,6 +79,7 @@ const Report = () => {
         <SectionHowToUse />
         <SectionInfluence />
         <SectionFeatures />
+        <SectionSponsor />
         <SectionOriginalFeatures />
       </div>
     </>

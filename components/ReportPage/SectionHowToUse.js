@@ -1,16 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
-import Button from '@material-ui/core/Button';
 
 import SectionTitle from './SectionTitle';
 import HowToUseItem from './HowToUseItem';
+import ActionButton from './ActionButton';
 
 import howToUse1 from './images/how-to-use-1.png';
 import howToUse2 from './images/how-to-use-2.png';
 import howToUse3 from './images/how-to-use-3.png';
 import plane1 from './images/plane-1.png';
 import plane2 from './images/plane-2.png';
-import arrow from './images/arrow.svg';
 
 const useStyles = makeStyles(theme => ({
   howToUse: {
@@ -98,29 +97,6 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
     },
   },
-  button: {
-    border: '3px solid white',
-    borderRadius: 41,
-    padding: '20px 20px 20px 25px',
-    fontSize: 24,
-    fontWeight: 700,
-    lineHeight: 1,
-    color: 'white',
-
-    [theme.breakpoints.down('sm')]: {
-      padding: '8px 16px 8px 20px',
-      fontSize: 18,
-    },
-
-    '& img': {
-      marginLeft: 16,
-
-      [theme.breakpoints.down('sm')]: {
-        height: 17,
-        marginLeft: 8,
-      },
-    },
-  },
 }));
 
 const SectionHowToUse = () => {
@@ -147,10 +123,9 @@ const SectionHowToUse = () => {
         </div>
       </div>
       <Link href="/about" passHref>
-        <Button variant="outlined" className={classes.button}>
+        <ActionButton style={{ color: '#fff' }} theme="dark">
           了解更多
-          <img src={arrow} />
-        </Button>
+        </ActionButton>
       </Link>
     </section>
   );

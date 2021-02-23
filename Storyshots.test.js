@@ -13,9 +13,11 @@ const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox|Component|WithStyles|ForwardRef
 
 function removeMaterialUIInternals(json) {
   // Remove props we don't want to snapshot
-  ['classes'].forEach(key => {
-    delete json.props[key];
-  });
+  if (json.props) {
+    ['classes'].forEach(key => {
+      delete json.props[key];
+    });
+  }
 
   // Remove makeStyle className serial numbers
   if (json.props?.className?.match(MAKE_STYLE_REGEXP)) {
@@ -49,7 +51,7 @@ function removeMaterialUIInternals(json) {
 
   // Skip HOC components (single children) or excessive wrapper
   if (
-    json.type.match(
+    json.type?.match(
       /^(ForwardRef|WithStyles|ThemeProvider|Styled|MockedProvider|ApolloProvider)/
     )
   ) {
