@@ -94,14 +94,14 @@ const useStyles = makeStyles(theme => ({
       [theme.breakpoints.down('sm')]: {
         width: 60,
         height: 60,
-      }
+      },
     },
     '&:hover .overlay': {
       background: 'rgba(0,0,0,0.2)',
     },
     [theme.breakpoints.down('sm')]: {
-      marginRight: 15
-    }
+      marginRight: 15,
+    },
   },
   editButton: { borderRadius: 15 },
   editAvatarButton: {
@@ -117,17 +117,17 @@ const useStyles = makeStyles(theme => ({
       left: 77,
       top: -30,
       width: 24,
-      height: 24
-    }
+      height: 24,
+    },
   },
   editIcon: {
     '& svg': {
       fontSize: 16,
       padding: 2,
-      [theme.breakpoints.up('md')]: {        
+      [theme.breakpoints.up('md')]: {
         fontSize: 20,
         padding: 2,
-      }
+      },
     },
     background: '#d3d3d3',
     borderRadius: '50%',
@@ -137,8 +137,8 @@ const useStyles = makeStyles(theme => ({
     color: '#222',
     [theme.breakpoints.up('md')]: {
       width: 20,
-      height: 20
-    }
+      height: 20,
+    },
   },
   progress: {
     marginTop: 8,
@@ -197,19 +197,24 @@ function UserPageHeader({ user, isSelf, stats }) {
     </Button>
   );
 
-  const avatarWrapper = <div className={classes.avatarWrapper}> 
-    {isSelf ?
-      <span onClick={() => setEditAvatarDialogOpen(true)}>
-        <Avatar user={user} size={60} mdSize={100} />    
-        <div className='overlay'></div>
-        <div className={classes.editAvatarButton}>
-          <div className={classes.editIcon}>
-            <EditIcon />
+  const avatarWrapper = (
+    <div className={classes.avatarWrapper}>
+      {isSelf ? (
+        <span onClick={() => setEditAvatarDialogOpen(true)}>
+          <Avatar user={user} size={60} mdSize={100} />
+          <div className="overlay"></div>
+          <div className={classes.editAvatarButton}>
+            <div className={classes.editIcon}>
+              <EditIcon />
+            </div>
           </div>
-        </div>
-      </span> : <Avatar user={user} size={60} mdSize={100} />}
-      </div>;
-  
+        </span>
+      ) : (
+        <Avatar user={user} size={60} mdSize={100} />
+      )}
+    </div>
+  );
+
   const isChatbotUser = user.appId === COFACTS_CHATBOT_ID;
   const cofactsChatbotLink = (
     <a
@@ -306,8 +311,8 @@ exported.fragments = {
       email
       facebookId
       githubId
-      availableAvatarTypes    
-      
+      availableAvatarTypes
+
       points {
         total
         nextLevel

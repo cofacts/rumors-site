@@ -2,11 +2,19 @@ import { useState } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Tabs, Tab } from '@material-ui/core';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  Tabs,
+  Tab,
+} from '@material-ui/core';
 import { Avatar, generateRandomOpenPeepsAvatar } from '../AppLayout/Widgets';
-import  AvatarSelector from './AvatarSelector'
+import AvatarSelector from './AvatarSelector';
 import crypto from 'crypto';
-import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   avatarEditor: {
@@ -14,16 +22,16 @@ const useStyles = makeStyles(theme => ({
     width: 400,
     [theme.breakpoints.up('md')]: {
       width: 500,
-    }
+    },
   },
   avatarPreview: {
     width: 150,
     margin: 'auto',
-    padding: 20
+    padding: 20,
   },
   tabRoot: {
     minWidth: 'unset',
-    width: '25%'
+    width: '25%',
   },
 }));
 
@@ -43,7 +51,7 @@ const UPDATE_USER = gql`
   ${EditAvatarDialogUserData}
 `;
 
-const getAvatarUrl = (user, avatarType, s=100) => {
+const getAvatarUrl = (user, avatarType, s = 100) => {
   switch (avatarType) {
     case 'OpenPeeps':
       return null;
@@ -65,17 +73,15 @@ const getAvatarUrl = (user, avatarType, s=100) => {
       return `${GRAVATAR_URL}?s=${s}&d=mp`;
     }
   }
-}
-  
+};
+
 const getInitialAvatarData = user => {
   if (user.avatarData) {
-    if (typeof user.avatarData === 'string')
-      return JSON.parse(user.avatarData);
-    if (typeof user.avatarData === 'object')
-      return user.avatarData;
+    if (typeof user.avatarData === 'string') return JSON.parse(user.avatarData);
+    if (typeof user.avatarData === 'object') return user.avatarData;
   }
-  return generateRandomOpenPeepsAvatar()
-}
+  return generateRandomOpenPeepsAvatar();
+};
 
 function EditAvatarDialog({ user, onClose = () => {} }) {
   const [updateUser, { loading }] = useMutation(UPDATE_USER, {
@@ -92,70 +98,91 @@ function EditAvatarDialog({ user, onClose = () => {} }) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const newAvatarData = avatarType === 'OpenPeeps' ? JSON.stringify(avatarData) : null;
+    const newAvatarData =
+      avatarType === 'OpenPeeps' ? JSON.stringify(avatarData) : null;
     const newAvatarUrl = getAvatarUrl(user, avatarType);
     user.avatarType = avatarType;
     user.avatarData = newAvatarData;
     user.avatarUrl = newAvatarUrl;
-    
+
     updateUser({
       variables: {
         avatarType: avatarType,
-        avatarData: newAvatarData
+        avatarData: newAvatarData,
       },
     });
   };
 
-
   // TODO: is this the best way to maintain state of object?
   const setAvatarField = (field, value) => {
     setAvatarData({ ...avatarData, [field]: value });
-  }
-  
+  };
+
   return (
-    
     <Dialog onClose={onClose} open>
       <DialogTitle>{t`Edit profile picture`}</DialogTitle>
       <form onSubmit={handleSubmit}>
         <DialogContent dividers>
           <Tabs
-              value={avatarType}
-              variant='fullWidth'
-              textColor='primary'
-              scrollButtons='off'
-              onChange={(e, tab) => setAvatarType(tab)}
-            >
+            value={avatarType}
+            variant="fullWidth"
+            textColor="primary"
+            scrollButtons="off"
+            onChange={(e, tab) => setAvatarType(tab)}
+          >
             <Tab
-                classes={{root: classes.tabRoot}}
-                value='OpenPeeps'
-                label='OpenPeeps' />
+              classes={{ root: classes.tabRoot }}
+              value="OpenPeeps"
+              label="OpenPeeps"
+            />
             <Tab
-                classes={{root: classes.tabRoot}}
-                value='Gravatar'
-                label='Gravatar'
-                disabled={!user.availableAvatarTypes || !user.availableAvatarTypes.some(val => val === 'Gravatar') || !user.email}/>
+              classes={{ root: classes.tabRoot }}
+              value="Gravatar"
+              label="Gravatar"
+              disabled={
+                !user.availableAvatarTypes ||
+                !user.availableAvatarTypes.some(val => val === 'Gravatar') ||
+                !user.email
+              }
+            />
             <Tab
-                classes={{root: classes.tabRoot}}
-                value='Facebook'
-                label='Facebook'
-                disabled={!user.availableAvatarTypes || !user.availableAvatarTypes.some(val => val === 'Facebook') || !user.facebookId} />
+              classes={{ root: classes.tabRoot }}
+              value="Facebook"
+              label="Facebook"
+              disabled={
+                !user.availableAvatarTypes ||
+                !user.availableAvatarTypes.some(val => val === 'Facebook') ||
+                !user.facebookId
+              }
+            />
             <Tab
-                classes={{root: classes.tabRoot}}
-                value='Github'
-                label='Github'
-                disabled={!user.availableAvatarTypes || !user.availableAvatarTypes.some(val => val === 'Github') || !user.githubId} />            
-            </Tabs>
+              classes={{ root: classes.tabRoot }}
+              value="Github"
+              label="Github"
+              disabled={
+                !user.availableAvatarTypes ||
+                !user.availableAvatarTypes.some(val => val === 'Github') ||
+                !user.githubId
+              }
+            />
+          </Tabs>
           <div className={classes.avatarEditor}>
             <div className={classes.avatarPreview}>
               <Avatar
                 size={100}
                 user={{
-                avatarType,
-                avatarData,
-                avatarUrl: getAvatarUrl(user, avatarType)
-                  }} />
+                  avatarType,
+                  avatarData,
+                  avatarUrl: getAvatarUrl(user, avatarType),
+                }}
+              />
             </div>
-            {avatarType === 'OpenPeeps' ? <AvatarSelector avatarData={avatarData} onChange={setAvatarField} /> : null}
+            {avatarType === 'OpenPeeps' ? (
+              <AvatarSelector
+                avatarData={avatarData}
+                onChange={setAvatarField}
+              />
+            ) : null}
           </div>
         </DialogContent>
         <DialogActions>

@@ -109,10 +109,12 @@ const OpenPeepsAvatar = withStyles(theme => ({
     '& svg': {
       width: ({ size }) => size,
       height: ({ size }) => size,
+      overflow: 'visible',
       [theme.breakpoints.up('md')]: {
         width: ({ size, mdSize }) => mdSize ?? size,
         height: ({ size, mdSize }) => mdSize ?? size,
       },
+
       transform: ({ avatarData, size }) =>
         `${
           avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'
@@ -151,7 +153,11 @@ function Avatar({
 
   if (user?.avatarType === 'OpenPeeps') {
     try {
-      avatarData = validateAvatarData(typeof user.avatarData === 'string' ? JSON.parse(user.avatarData) : user.avatarData);
+      avatarData = validateAvatarData(
+        typeof user.avatarData === 'string'
+          ? JSON.parse(user.avatarData)
+          : user.avatarData
+      );
       avatar = (
         <OpenPeepsAvatar
           className={className}
