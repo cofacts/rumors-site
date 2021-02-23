@@ -16,20 +16,12 @@ import Snackbar from '@material-ui/core/Snackbar';
 const USER_QUERY = gql`
   query AppLayoutQuery {
     GetUser {
-      id
-      name
-      avatarUrl
-      avatarType
-      avatarData
-
-      level
-      points {
-        total
-        currentLevel
-        nextLevel
-      }
+      ...AppSidebarUserData
+      ...AppHeaderUserData
     }
   }
+  ${AppSidebar.fragments.AppSidebarUserData}
+  ${AppHeader.fragments.AppHeaderUserData}
 `;
 
 const useStyles = makeStyles({
