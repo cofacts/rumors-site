@@ -67,13 +67,18 @@ const Report = () => {
       <div className={classes.root}>
         <section className={classes.banner} />
         <section className={classes.intro}>
-          <h4>集結眾人之力，就能創造最大的力量。</h4>
+          <h4>{t`Individual strengths converge to exert the greatest power`}</h4>
           <p>
-            Cofacts
-            是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會，持續積累能量。
+            {t`Cofacts is the earliest-developed fact-checking chatbot. The project was 
+            launched in 2016 by the engineers, proposed to the civic tech community, 
+            and accomplished by a group of volunteers. The team members meet up weekly 
+            to maintain the project's dynamic.`}
           </p>
           <p>
-            目前已經存有4萬筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。
+            {t`At present, there have been more than 40,000 verified pieces of content in 
+            our database. Before the open source community burns out, through investing 
+            human and other resources, the project is to reverse harms to democracy and 
+            society caused by misinformation.`}
           </p>
         </section>
         <SectionHowToUse />

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
+import { t } from 'ttag';
 
 import SectionTitle from './SectionTitle';
 import Card from './Card';
@@ -23,74 +24,62 @@ const featureData = [
   {
     id: 0,
     image: rss,
-    title: `RSS 訂閱功能
-            Reading ability`,
-    content:
-      '資料庫裡面有大量資訊，所以會透過訂閱功能連接IFTTT，找到熱門的主題，連結到LINE、Telegram、Slack、Mail 提醒查核進行。',
+    title: t`RSS Reading ability`,
+    content: t`Our database has a large quantity of material, so we use a subscription system to help link up to IFTTT, find popular topics, and to link to LINE, telegram, Slack and mail to send reminders that verification is underway.`,
   },
   {
     id: 1,
     image: line,
-    title: 'LINE 通知',
-    content:
-      '傳統的聊天機器人只能呼喚過去已經查核過的訊息，但現在當自己提交新提問的時候，資訊查核完畢能得到通知，查看最新的回應。如果有更好的回應，也能被通知到，確保資訊維持在最新的狀態。',
+    title: t`LINE notifications`,
+    content: t`Traditional chatbots can only report information that has already been verified,  but now when one tries to check a non-yet verified piece of information, the system can send a notification when the information has been verified.  If a better response has since been provided, the system can also send a notification to ensure that information provided is always the most up-to-date.`,
   },
   {
     id: 2,
     image: search,
-    title: `使用者輕鬆查詢
-            問過的訊息`,
-    content:
-      '查看已經查過的謠言列表，機器人能幫助你整理自己的訊息表，整理個人化的資訊。',
+    title: t`Users can easily check infromation that has already been asked about`,
+    content: t`You can access the list of rumours that have already been checked, and the chatbot can help you organise your own table of information and help produce personalised information`,
   },
   {
     id: 3,
     image: newUI,
-    title: '新網站 UI',
-    content:
-      '網站內有遊戲化機制，也能清楚看到協作者的產出與貢獻，資料視覺化，可以看到查核記者查過的所有資料，與審核文章的過程與次數。',
+    title: t`The UI of the new website`,
+    content: t`The site now has gamified features and it is nohow easier to see the contribution of each collaborator. We also now have data visualisation and the tools to see what material has been accessed by journalists and the process of verification for each article.`,
   },
   {
     id: 3,
     image: ai,
-    title: 'AI 自動分類標記',
-    content:
-      '透過機器學習幫助資料分類，能準確地把政治、詐騙、環境、能源等等訊息區分，讓有興趣的醫師、記者能立刻找到專業領域的訊息動手查證。',
+    title: t`AI automatic categorisation`,
+    content: t`We use machine learning technology to help categorise our data. The technology is capable of correctly labeling messages as being about politics, scams, the environment, energy, amongst others. This helps doctors or journalists quickly find messages relating to their areas of expertise to help with message verification.`,
   },
   {
     id: 4,
     image: community,
-    title: 'Community Builder',
-    content:
-      '幫助社群組織者有效率的追蹤目前的工作狀態，訊息量、複審機制下的正面評價、列出產出貢獻的協作者、特定時間內查核回應與使用者回饋。',
+    title: t`Community Builder`,
+    content: t`We help community organisers to efficiently check up on current work progress, the quantity of messages, the positive reviews under the review mechanism, the list of contributors who helped with the output, and the review of response and user feedback from a particular period.`,
   },
   {
     id: 5,
     image: factCheck,
-    title: '查核生態系',
-    content:
-      '容納各個查核組織，讓他們進入查核社群，彼此放下競爭關係，共同貢獻目前最多的資料。',
+    title: t`The ecology of fact checking`,
+    content: t`We collaborate with all fact checking organizations and help them enter the fact checking community by setting aside their competition and rivalry, and encourage them to work together to help create the largest datasets possible.`,
   },
   {
     id: 6,
     image: tutorial,
-    title: '教學工具',
-    content:
-      'Cofacts 提供教學，指導開發者自己開發具查核能力的聊天機器人。提供國際夥伴免費諮詢，協助讓開源的社群擴大，目前已經成功在泰國複製Cofacts 經驗，使用Cofacts產出協作查核機器人。',
+    title: t`Teaching tools`,
+    content: t`Cofacts helps educators the ability to create their own chatbots with search capabilities. We provide free consultancy and assistance to our international collaborators to help the open source community grow. Thailand has already successfully replicated Cofacts' experience to create their own search chatbot based on Cofacts.`,
   },
   {
     id: 7,
     image: feedback,
-    title: '使用者回饋',
-    content: `收集使用者回饋資料，並且鼓勵使用者協作，創造更好的開源環境，讓好的資料能被重複利用。
-              並且透過正向回饋鼓勵協作者產出，用建議引導協作者改善他們的查核回應。`,
+    title: t`User Feedback`,
+    content: t`We collected user feedback and encourage users to cooperate with us to create a better open source environment in which many can use our resources. In addition, by encouraging  user feedback and collaboration, our collaborators can use this feedback to help improve their user experience.`,
   },
   {
     id: 8,
     image: stats,
-    title: '數據資料',
-    content: `Cofacts 提供連接 chatbot 與網頁的指標圖表，幫助研究者與記者追蹤熱門的訊息，產出有力的報告。
-              目前有許多國內外的學者引用這些資料，也直接接取Cofacts 的開放資料庫。`,
+    title: t`Data`,
+    content: t`Cofacts provides a chart that explains how to link the chatbot to a website as a way to help researchers and journalists to follow important topics and write impactful reports. There have already been many academics from Taiwan and other  countries who have quoted this data, and many have directly accessed material Cofacts' open database.`,
   },
 ];
 

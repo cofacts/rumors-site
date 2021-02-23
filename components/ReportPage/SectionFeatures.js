@@ -1,5 +1,6 @@
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import { t } from 'ttag';
 
 import SectionTitle from './SectionTitle';
 
@@ -139,12 +140,14 @@ const SectionFeatures = () => {
 
   return (
     <section className={classes.features}>
-      <SectionTitle className={classes.title}>Cofacts 特色</SectionTitle>
+      <SectionTitle className={classes.title}>
+        {t`Features of Cofacts`}
+      </SectionTitle>
       <div className={classes.itemWrapper}>
         <Item
           image={feature1}
-          title="新回應通知"
-          content="Cofacts 會記得你問過Cofacts LINE bot 的訊息，記性不好沒關係。只要有新的回應，Cofacts 就會自動用 LINE 推播通知你。這個功能目前只有 Cofacts 才有唷！"
+          title={t`Notification`}
+          content={t`An exclusive service keeps users from repeating requests and provides immediate information about false messages in the previous queries.`}
         />
         <Item
           image={feature2}
@@ -154,7 +157,7 @@ const SectionFeatures = () => {
         />
         <Item
           image={feature3}
-          title="AI 標記"
+          title={t`AI tagging`}
           content="將假訊息依照「議題」自動分類，讓不同專長的闢謠編輯，可以聚焦在自己擅長的領域。新回報訊息究竟是有關交通法規、政治攻防、COVID-19 還是免費貼圖詐騙，就讓 AI 來分辨。"
         />
         <Item

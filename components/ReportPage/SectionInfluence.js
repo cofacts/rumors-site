@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { t } from 'ttag';
 
 import SectionTitle from './SectionTitle';
 
@@ -66,7 +67,9 @@ const SectionInfluence = () => {
 
   return (
     <section className={classes.influence}>
-      <SectionTitle className={classes.title}>社群影響力</SectionTitle>
+      <SectionTitle
+        className={classes.title}
+      >{t`Community Influence`}</SectionTitle>
       <div className={classes.video}>
         <iframe
           src="https://www.youtube.com/embed/WfdfB7GyqMY"
@@ -76,10 +79,10 @@ const SectionInfluence = () => {
         />
       </div>
       <p>
-        {`大外宣與大內宣使人民失去對媒體與資訊的信任，Cofacts 率先作出改變，
-        建立平台與創造具有事實查核能力的聊天機器人。
-        透過人工智慧與機器學習把打擊不實訊息的流程自動化，
-        避免消耗專業查核記者的人力與提供查核空間。`}
+        {t`External and internal propaganda have caused the people to lose their trust in media and information.
+        Cofacts took the lead in making a change, establishing a platform and creating a chatbot with fact-checking capabilities. 
+        We automated the process of combating false information through artificial intelligence and machine learning, 
+        in order to avoid exhausting professional reviewers and provide review resources.`}
       </p>
     </section>
   );
