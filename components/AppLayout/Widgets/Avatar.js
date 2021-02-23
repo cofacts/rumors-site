@@ -6,8 +6,8 @@ import { Badge } from '@material-ui/core';
 import ProfileLink from 'components/ProfileLink';
 import { TYPE_ICON } from 'constants/replyType';
 import Peep from 'react-peeps';
+import { validateAvatarData, getBackgroundColor } from './openPeepsUtils';
 import { omit } from 'lodash';
-import { validateAvatarData } from './openPeepsUtils';
 
 const NULL_USER_IMG =
   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
@@ -104,19 +104,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
         width: ({ size, mdSize }) => mdSize ?? size,
         height: ({ size, mdSize }) => mdSize ?? size,
       },
-      backgroundColor: ({ avatarData }) => {
-        const cofactsColors = Object.values(
-          omit(theme.palette.common, ['black', 'white'])
-        );
-        if (avatarData?.backgroundColor) return avatarData.backgroundColor;
-        if (avatarData?.backgroundColorIndex) {
-          const index = Math.floor(
-            cofactsColors.length * avatarData.backgroundColorIndex
-          );
-          return cofactsColors[index];
-        }
-        return theme.palette.common.yellow;
-      },
+      backgroundColor: getBackgroundColor,
     },
     '& svg': {
       width: ({ size }) => size,
@@ -137,7 +125,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
     <div className={className} {...rest}>
       <div className={classes.showcaseWrapper}>
         <Peep
-          {...avatarData}
+          {...omit(avatarData, ['backgroundColor'])}
           style={peepsStyles.peepStyle}
           circleStyle={peepsStyles.circleStyle}
           strokeColor="#000"

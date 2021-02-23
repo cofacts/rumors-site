@@ -90,6 +90,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: '50%',
       display: 'inline-block',
       left: 0,
+      top: 0,
       [theme.breakpoints.down('sm')]: {
         width: 60,
         height: 60,
@@ -305,7 +306,7 @@ exported.fragments = {
       email
       facebookId
       githubId
-      availableAvatarTypes
+      availableAvatarTypes    
       
       points {
         total
@@ -314,11 +315,13 @@ exported.fragments = {
       ...AvatarData
       ...LevelProgressBarData
       ...EditProfileDialogUserData
+      ...EditAvatarDialogUserData
     }
 
     ${Avatar.fragments.AvatarData}
     ${LevelProgressBar.fragments.LevelProgressBarData}
     ${EditProfileDialog.fragments.EditProfileDialogUserData}
+    ${EditAvatarDialog.fragments.EditAvatarDialogUserData}
   `,
 };
 

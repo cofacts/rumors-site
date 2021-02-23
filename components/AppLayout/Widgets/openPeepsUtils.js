@@ -4,203 +4,17 @@
  */
 
 import { random, sample } from 'lodash';
+import { omit } from 'lodash';
+import { cofactsColors } from '../../../lib/theme';
+import { Hair, Face, FacialHair, BustPose, Accessories, SittingPose, StandingPose } from 'react-peeps';
 
-export const accessories = [
-  'None',
-  'Eyepatch',
-  'GlassRoundThick',
-  'SunglassClubmaster',
-  'SunglassWayfarer',
-  'GlassAviator',
-  'GlassButterfly',
-  'GlassButterflyOutline',
-  'GlassClubmaster',
-  'GlassRound',
-];
-
-export const faces = [
-  'Angry',
-  'Blank',
-  'Calm',
-  'Cheeky',
-  'Concerned',
-  'Contempt',
-  'Cute',
-  'Driven',
-  'EatingHappy',
-  'EyesClosed',
-  'OldAged',
-  'Serious',
-  'Smile',
-  'Solemn',
-  'Suspicious',
-  'Tired',
-  'VeryAngry',
-  'Awe',
-  'ConcernedFear',
-  'Cyclops',
-  'Explaining',
-  'Fear',
-  'Hectic',
-  'LoveGrin',
-  'LoveGrinTeeth',
-  'Monster',
-  'Rage',
-  'SmileBig',
-  'SmileLol',
-  'SmileTeeth',
-  'CalmNM',
-  'SmileNM',
-  'CheersNM',
-];
-
-export const facialHairStyles = [
-  'None',
-  'Chin',
-  'Full',
-  'FullMajestic',
-  'FullMedium',
-  'Goatee',
-  'GoateeCircle',
-  'Dali',
-  'Handlebars',
-  'Imperial',
-  'Painters',
-  'PaintersFilled',
-  'Swashbuckler',
-  'MoustacheThin',
-  'Yosemite',
-  'GrayFull',
-  'MajesticHandlebars',
-];
-
-export const hairStyles = [
-  'Afro',
-  'Bald',
-  'BaldSides',
-  'BaldTop',
-  'Bangs',
-  'BangsFilled',
-  'Bear',
-  'Bun',
-  'BunCurly',
-  'Buns',
-  'FlatTop',
-  'FlatTopLong',
-  'HatHip',
-  'Long',
-  'LongAfro',
-  'LongBangs',
-  'LongCurly',
-  'Medium',
-  'MediumBangs',
-  'MediumBangsFilled',
-  'MediumLong',
-  'MediumShort',
-  'MediumStraight',
-  'Mohawk',
-  'MohawkDino',
-  'Pomp',
-  'ShavedRight',
-  'ShavedSides',
-  'ShavedWavy',
-  'Short',
-  'ShortCurly',
-  'ShortMessy',
-  'ShortScratch',
-  'ShortVolumed',
-  'ShortWavy',
-  'BantuKnots',
-  'Beanie',
-  'BunFancy',
-  'CornRows',
-  'CornRowsFilled',
-  'GrayBun',
-  'GrayMedium',
-  'GrayShort',
-  'Hijab',
-  'MediumShade',
-  'Turban',
-  'Twists',
-  'TwistsVolumed',
-  'DocBouffant',
-  'DocSurgery',
-  'DocShield',
-];
-
-export const bustPoses = [
-  'BlazerBlackTee',
-  'Shirt',
-  'ButtonShirt',
-  'Dress',
-  'Gaming',
-  'Geek',
-  'Hoodie',
-  'PointingUp',
-  'Selena',
-  'Thunder',
-  'Turtleneck',
-  'ArmsCrossed',
-  'Coffee',
-  'Device',
-  'DotJacket',
-  'Explaining',
-  'FurJacket',
-  'Killer',
-  'Paper',
-  'PocketShirt',
-  'PoloSweater',
-  'ShirtCoat',
-  'ShirtFilled',
-  'SportyShirt',
-  'StripedShirt',
-  'Sweater',
-  'SweaterDots',
-  'Whatever',
-];
-
-export const sittingPoses = [
-  'Bike',
-  'ClosedLegBW',
-  'ClosedLegWB',
-  'CrossedLegs',
-  'HandsBackBW',
-  'HandsBackWB',
-  'MediumBW',
-  'MediumWB',
-  'OneLegUpBW',
-  'OneLegUpWB',
-  'WheelChair',
-];
-
-export const standingPoses = [
-  'BlazerBW',
-  'BlazerPantsBW',
-  'BlazerPantsWB',
-  'BlazerWB',
-  'CrossedArmsBW',
-  'CrossedArmsWB',
-  'EasingBW',
-  'EasingWB',
-  'PointingFingerBW',
-  'PointingFingerWB',
-  'PolkaDots',
-  'RestingBW',
-  'RestingWB',
-  'RoboDanceBW',
-  'RoboDanceOutline',
-  'RoboDanceWB',
-  'ShirtBW',
-  'ShirtPantsBW',
-  'ShirtPantsWB',
-  'ShirtWB',
-  'WalkingBW',
-  'WalkingFilled',
-  'WalkingWB',
-  'Doc',
-  'DocProtectiveClothe',
-  'DocStethoscope',
-];
+const accessories = Object.keys(Accessories);
+const faces = Object.keys(Face);
+const facialHairStyles = Object.keys(FacialHair);
+const hairStyles = Object.keys(Hair);
+const bustPoses = Object.keys(BustPose);
+const sittingPoses = Object.keys(SittingPose);
+const standingPoses = Object.keys(StandingPose);
 
 export const generateRandomOpenPeepsAvatar = () => {
   const accessory = random() ? sample(accessories) : 'None';
@@ -225,9 +39,21 @@ export const generateRandomOpenPeepsAvatar = () => {
 
 export const validateAvatarData = (data) => ({
     ...data,
-    accessory: data.accessory && accessories.includes(data.accessory) || '',
-    body: data.body && bustPoses.includes(data.body) || '',
-    face: data.face && faces.includes(data.face) || '',
-    hair: data.hair && hairStyles.includes(data.hair) || '',
-    facialHair: data.facialHair && facialHairStyles.includes(data.facialHair) || '',
-  })
+    accessory: data.accessory && accessories.includes(data.accessory) ? data.accessory : '',
+    body: data.body && bustPoses.includes(data.body) ? data.body : '',
+    face: data.face && faces.includes(data.face) ? data.face : '',
+    hair: data.hair && hairStyles.includes(data.hair) ? data.hair : '',
+    facialHair: data.facialHair && facialHairStyles.includes(data.facialHair) ? data.facialHair : '',
+})
+  
+export const colorOptions = Object.values(omit(cofactsColors, ['black', 'white']));
+export const getBackgroundColor = ({ avatarData }) => {
+  if (avatarData?.backgroundColor) return avatarData.backgroundColor;
+  if (avatarData?.backgroundColorIndex) {
+    const index = Math.floor(
+      colorOptions.length * avatarData.backgroundColorIndex
+    );
+    return colorOptions[index];
+  }
+  return cofactsColors.yellow;
+}
