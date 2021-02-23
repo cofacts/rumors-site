@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import cx from 'clsx';
 import { c } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,13 +9,6 @@ import { animated, useSpring } from 'react-spring';
 import { withDarkTheme } from 'lib/theme';
 import leftImage from './images/join-left.png';
 import rightImage from './images/join-right.png';
-
-const buttonLink = {
-  en_US:
-    'https://hackmd.io/@mrorz/SklM4dV9m/https%3A%2F%2Fg0v.hackmd.io%2Fz7PY2mQeSMyWBoZpaVhAPg?type=book',
-  zh_TW:
-    'https://beta.hackfoldr.org/1yXwRJwFNFHNJibKENnLCAV5xB8jnUvEwY_oUq-KcETU/https%253A%252F%252Fhackmd.io%252Fs%252FSyMRyrfEl',
-}[process.env.LOCALE];
 
 const useStyles = makeStyles(theme => ({
   sectionJoin: {
@@ -217,15 +211,11 @@ const SectionJoin = ({ className }) => {
               or are just full of a sense of justice and a desire for truth,
               YOU could be the next misinformation-busting warrior!`}
         </p>
-        <Button
-          className={classes.button}
-          variant="outlined"
-          href={buttonLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {c('landing page').t`Count me in!`}
-        </Button>
+        <Link href="/tutorial?bust-hoaxes" passHref>
+          <Button className={classes.button} variant="outlined">
+            {c('landing page').t`Count me in!`}
+          </Button>
+        </Link>
       </div>
       <animated.div
         className={classes.image}
