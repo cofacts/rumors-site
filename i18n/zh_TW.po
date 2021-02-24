@@ -1094,6 +1094,97 @@ msgstr ""
 msgid "How to use Cofacts"
 msgstr ""
 
+
+#: components/ContributionChart.js:72
+msgid "Jan"
+msgstr "1月"
+
+#: components/ContributionChart.js:73
+msgid "Feb"
+msgstr "2月"
+
+#: components/ContributionChart.js:74
+msgid "Mar"
+msgstr "3月"
+
+#: components/ContributionChart.js:75
+msgid "Apr"
+msgstr "4月"
+
+#: components/ContributionChart.js:76
+msgid "May"
+msgstr "5月"
+
+#: components/ContributionChart.js:77
+msgid "Jun"
+msgstr "6月"
+
+#: components/ContributionChart.js:78
+msgid "Jul"
+msgstr "7月"
+
+#: components/ContributionChart.js:79
+msgid "Aug"
+msgstr "8月"
+
+#: components/ContributionChart.js:80
+msgid "Sep"
+msgstr "9月"
+
+#: components/ContributionChart.js:81
+msgid "Oct"
+msgstr "10月"
+
+#: components/ContributionChart.js:82
+msgid "Nov"
+msgstr "11月"
+
+#: components/ContributionChart.js:83
+msgid "Dec"
+msgstr "12月"
+
+#: components/ContributionChart.js:85
+msgid "Sun"
+msgstr "週日"
+
+#: components/ContributionChart.js:85
+msgid "Mon"
+msgstr "週一"
+
+#: components/ContributionChart.js:85
+msgid "Tue"
+msgstr "週二"
+
+#: components/ContributionChart.js:85
+msgid "Wed"
+msgstr "週三"
+
+#: components/ContributionChart.js:85
+msgid "Thu"
+msgstr "週四"
+
+#: components/ContributionChart.js:85
+msgid "Fri"
+msgstr "週五"
+
+#: components/ContributionChart.js:85
+msgid "Sat"
+msgstr "週六"
+
+#: components/ContributionChart.js:93
+msgid "Less"
+msgstr "少"
+
+#: components/ContributionChart.js:106
+msgid "More"
+msgstr "多"
+
+#: components/ContributionChart.js:139
+#, javascript-format
+msgid "${ count } contribution"
+msgid_plural "${ count } contributions"
+msgstr[0] "做出 ${ count } 次貢獻"
+
 #: pages\index.js:41
 msgctxt "site title"
 msgid "Cofacts"

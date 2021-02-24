@@ -31,21 +31,40 @@ const useStyles = makeStyles(theme => ({
   root: {
     '& svg': {
       background: '#fff',
-    },
-    '& text': {
-      fontSize: 10,
-      fill: '#aaa',
-    },
-    '& rect': {
-      width: '9px',
-      height: '9px',
-      rx: '1px',
 
-      '&:hover': {
-        stroke: 'rgba(100, 100, 100, 0.5)',
-        strokeWidth: 1,
+      '& text': {
+        fontSize: 10,
+        fill: theme.palette.secondary[300],
+      },
+      '& rect': {
+        width: '9px',
+        height: '9px',
+        rx: '1px',
+
+        '&:not(.legend):hover': {
+          stroke: 'rgba(100, 100, 100, 0.5)',
+          strokeWidth: 1,
+        },
+      },
+      '& .react-calendar-heatmap-all-weeks': {
+        transform: 'translate(28px, 20px)',
+      },
+      '& .react-calendar-heatmap-weekday-labels': {
+        transform: 'translate(5px, 20px)',
+      },
+      '& .react-calendar-heatmap-month-labels': {
+        transform: 'translate(30px, 5px)',
       },
     },
+  },
+  legendGroup: {
+    display: 'block',
+    position: 'relative',
+    top: '-40px',
+    textAlign: 'right',
+  },
+  legends: {
+    overflow: 'visible',
   },
 }));
 
@@ -65,6 +84,31 @@ const monthLabels = [
 ];
 const weekdayLabels = [t`Sun`, t`Mon`, t`Tue`, t`Wed`, t`Thu`, t`Fri`, t`Sat`];
 
+function Legend({ count }) {
+  const classes = useStyles();
+  return (
+    <svg className={classes.legends} viewBox={`0 0 612 10`}>
+      <g transform={`translate(${564 - 11 * count}, -20)`}>
+        <g transform="translate(0, 8)">
+          <text className="label">{t`Less`}</text>
+        </g>
+        {Array.from(Array(count)).map((_, idx) => (
+          <rect
+            key={idx}
+            width="10"
+            height="10"
+            y="0"
+            x={25 + 11 * idx}
+            className={`${classes[`colorCofacts${idx}`]} legend`}
+          ></rect>
+        ))}
+        <g transform={`translate(${25 + 11 * count}, 8)`}>
+          <text className="label">{t`More`}</text>
+        </g>
+      </g>
+    </svg>
+  );
+}
 export default function ContributionChart({ startDate, endDate, data }) {
   const classes = useStyles();
 
@@ -106,6 +150,7 @@ export default function ContributionChart({ startDate, endDate, data }) {
           );
         }}
       ></CalendarHeatmap>
+      <Legend count={5} />
     </div>
   );
 }
