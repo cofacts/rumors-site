@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { t } from 'ttag';
 
 import {
+  Banner,
   SectionHowToUse,
   SectionInfluence,
   SectionFeatures,
@@ -65,7 +66,7 @@ const Report = () => {
         <title>{t`Cofacts social impact report`}</title>
       </Head>
       <div className={classes.root}>
-        <section className={classes.banner} />
+        <Banner />
         <section className={classes.intro}>
           <h4>{t`Individual strengths converge to exert the greatest power`}</h4>
           <p>
