@@ -1090,7 +1090,7 @@ msgstr ""
 msgid "How to use Cofacts"
 msgstr ""
 
-#: pages\impact.js:70
+#: pages\impact.js:71
 msgid "Individual strengths converge to exert the greatest power"
 msgstr "集結眾人之力，就能創造最大的力量。"
 
@@ -1270,25 +1270,9 @@ msgstr ""
 "Cofacts 提供連接 chatbot 與網頁的指標圖表，幫助研究者與記者追蹤熱門的訊息，產出有力的報告。\n"
 " 目前有許多國內外的學者引用這些資料，也直接接取Cofacts 的開放資料庫。"
 
-#: pages\impact.js:65
+#: pages\impact.js:66
 msgid "Cofacts social impact report"
 msgstr ""
-
-#: pages\impact.js:72
-msgid ""
-"Cofacts is the earliest-developed fact-checking chatbot. The project was "
-"launched in 2016 by the engineers, proposed to the civic tech community, "
-"and accomplished by a group of volunteers. The team members meet up weekly "
-"to maintain the project's dynamic."
-msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
-
-#: pages\impact.js:75
-msgid ""
-"At present, there have been more than 40,000 verified pieces of content in "
-"our database. Before the open source community burns out, through investing "
-"human and other resources, the project is to reverse harms to democracy and "
-"society caused by misinformation."
-msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
 
 #: components\ReportPage\SectionSponsor.js:88
 msgid "Open Culture Foundation"
@@ -1332,6 +1316,29 @@ msgid ""
 "intelligence and machine learning, \n"
 "in order to avoid exhausting professional reviewers and provide review "
 "resources."
+msgstr ""
+
+#: components\ReportPage\Banner.js:161
+#: components\ReportPage\Banner.js:172
+msgid "Social Impact Report"
+msgstr "影響力報告"
+
+#: pages\impact.js:73
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was \n"
+"launched in 2016 by the engineers, proposed to the civic tech community, \n"
+"and accomplished by a group of volunteers. The team members meet up weekly \n"
+"to maintain the project's dynamic."
+msgstr ""
+
+#: pages\impact.js:79
+msgid ""
+"At present, there have been more than 40,000 verified pieces of content in \n"
+"our database. Before the open source community burns out, through investing "
+"\n"
+"human and other resources, the project is to reverse harms to democracy and "
+"\n"
+"society caused by misinformation."
 msgstr ""
 
 #: pages\index.js:41

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
+import { t } from 'ttag';
 
 import bg from './images/banner-bg.png';
 import logo from './images/logos/cofacts.png';
@@ -74,10 +75,10 @@ const useStyles = makeStyles(theme => ({
   title: {
     position: 'absolute',
     top: 390,
-    right: 650,
+    left: 1220,
     fontSize: 36,
     fontWeight: 700,
-    letterSpacing: 7,
+    letterSpacing: process.env.LOCALE === 'en_US' ? 2 : 7,
     lineHeight: 1.45,
     color: '#3d2e56',
   },
@@ -124,7 +125,7 @@ const useStyles = makeStyles(theme => ({
   },
   mobileTitle: {
     fontSize: 18,
-    letterSpacing: 4,
+    letterSpacing: process.env.LOCALE === 'en_US' ? 2 : 4,
     color: '#ffb700',
     marginLeft: 75,
   },
@@ -157,7 +158,7 @@ const Card = () => {
         <>
           <div className={classes.mobileTitleWrapper}>
             <img className={classes.mobileLogo} src={yellowLogo} />
-            <h1 className={classes.mobileTitle}>成果報告</h1>
+            <h1 className={classes.mobileTitle}>{t`Social Impact Report`}</h1>
           </div>
           <img className={classes.dotsGroup} src={dotsGroup} />
         </>
@@ -167,7 +168,9 @@ const Card = () => {
         <img className={classes.message1} src={message1} />
         <img className={classes.message2} src={message2} />
         {!isMobile && <img className={classes.logo} src={logo} />}
-        {!isMobile && <h1 className={classes.title}>成果報告</h1>}
+        {!isMobile && (
+          <h1 className={classes.title}>{t`Social Impact Report`}</h1>
+        )}
         <img className={classes.message3} src={message3} />
         <img className={classes.star3} src={star3} />
         <img className={classes.star4} src={star4} />
