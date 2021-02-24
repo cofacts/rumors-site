@@ -44,6 +44,7 @@
     "next-apollo": "^3.1.5",
     "pm2": "^4.2.3",
     "react": "^16.8.6",
+    "react-calendar-heatmap": "^1.8.1",
     "react-dom": "^16.8.6",
     "react-spring": "^8.0.27",
     "react-virtualized-auto-sizer": "^1.0.2",
