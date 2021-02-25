@@ -15,6 +15,7 @@ const useItemStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 25px',
+    width: '100%',
 
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'row',
@@ -147,23 +148,32 @@ const SectionFeatures = () => {
         <Item
           image={feature1}
           title={t`Notification`}
-          content={t`An exclusive service keeps users from repeating requests and provides immediate information about false messages in the previous queries.`}
+          content={t`An exclusive service keeps users from repeating requests and provides 
+          immediate information about false messages in the previous queries.`}
         />
         <Item
           image={feature2}
-          title="個人查核貢獻"
-          content="編輯志工在 Cofacts 網站上，針對不實訊息的努力闢謠與澄清，在這裡都看得到唷！編輯在這裡回了哪些訊息、給過哪些建議，在這裡都看得到，也可以分享的成果給他人。"
+          title={t`Personal fact-check contribution`}
+          content={t`Volunteers would login Cofacts and fact-check the suspicious messages. 
+          What fact-checkers have replied and commented would be transparent 
+          and reviewed, the achievement was opened and shareable.`}
           mobileReverse
         />
         <Item
           image={feature3}
           title={t`AI tagging`}
-          content="將假訊息依照「議題」自動分類，讓不同專長的闢謠編輯，可以聚焦在自己擅長的領域。新回報訊息究竟是有關交通法規、政治攻防、COVID-19 還是免費貼圖詐騙，就讓 AI 來分辨。"
+          content={t`Cofacts has catagorized misinformation via topics automartically, making 
+          different expertises focus on their professinal fields.Such and COVID-19, 
+          Vaccine related, propaganda, public policy, or fraud, these could be 
+          catagorized by Artificial Intelligence.`}
         />
         <Item
           image={feature4}
           title="工程典範"
-          content="2016 年起將 chatbot 導入事實查核領域、並提供 API 介接教學，在此領域激起了典範轉移，專業查核組織開始推出自己的chatbot，也有第三方查詢機器人前來介接 Cofacts 資料。"
+          content={t`Cofacts has provided API connecting instruction, fact-checking system 
+          since 2016.This achievement leads the combating misinformation ecosystem. 
+          There were third party chatbots connecting to Cofacts open API and IFCN 
+          member started to conduct own chatbots.`}
           mobileReverse
         />
       </div>

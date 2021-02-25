@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: 18,
       lineHeight: 1.67,
       margin: '0 auto 18px',
-      maxWidth: 786,
+      maxWidth: 820,
     },
   },
 }));
@@ -72,14 +72,14 @@ const Report = () => {
           <p>
             {t`Cofacts is the earliest-developed fact-checking chatbot. The project was 
             launched in 2016 by the engineers, proposed to the civic tech community, 
-            and accomplished by a group of volunteers. The team members meet up weekly 
-            to maintain the project's dynamic.`}
+            and accomplished by a group of volunteers. The team members meet up 
+            weekly to maintain the project's dynamic.`}
           </p>
           <p>
             {t`At present, there have been more than 40,000 verified pieces of content in 
-            our database. Before the open source community burns out, through investing 
-            human and other resources, the project is to reverse harms to democracy and 
-            society caused by misinformation.`}
+            our database. Before the open source community burns out, through 
+            investing human and other resources, the project is to reverse harms to 
+            democracy and society caused by misinformation.`}
           </p>
         </section>
         <SectionHowToUse />

@@ -101,7 +101,7 @@ const SectionInfluence = () => {
         />
       </div>
       <p>
-        {t`External and internal propaganda have caused the people to lose their trust in media and information.
+        {t`External and internal propaganda have caused the people to lose their trust in media and information. 
         Cofacts took the lead in making a change, establishing a platform and creating a chatbot with fact-checking capabilities. 
         We automated the process of combating false information through artificial intelligence and machine learning, 
         in order to avoid exhausting professional reviewers and provide review resources.`}

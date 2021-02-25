@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     position: 'absolute',
     top: 390,
-    left: 1220,
+    left: 1221,
     fontSize: 36,
     fontWeight: 700,
     letterSpacing: process.env.LOCALE === 'en_US' ? 2 : 7,

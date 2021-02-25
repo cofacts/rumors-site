@@ -108,7 +108,7 @@ const SectionHowToUse = () => {
 
   return (
     <section className={classes.howToUse}>
-      <SectionTitle>參與超簡單</SectionTitle>
+      <SectionTitle>{t`Super EASY`}</SectionTitle>
       <div className={classes.itemWrapper}>
         <div className={classes.plane1}>
           <img src={plane1} />

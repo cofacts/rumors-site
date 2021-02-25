@@ -223,7 +223,7 @@ const SectionOriginalFeatures = () => {
     <section className={classes.originalFeatures}>
       <div className={classes.starBg} />
       <SectionTitle className={classes.title}>
-        Cofacts 原創功能一覽
+        {t`Cofacts original features`}
       </SectionTitle>
       {isDesktop ? <DesktopFeatures /> : <MobileFeatures />}
       <div className={classes.footer} />

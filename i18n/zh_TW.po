@@ -1118,23 +1118,23 @@ msgstr "了解更多"
 msgid "Community Influence"
 msgstr "社群影響力"
 
-#: components\ReportPage\SectionFeatures.js:144
+#: components\ReportPage\SectionFeatures.js:145
 msgid "Features of Cofacts"
 msgstr "Cofacts 特色"
 
-#: components\ReportPage\SectionFeatures.js:149
+#: components\ReportPage\SectionFeatures.js:150
 msgid "Notification"
 msgstr "新回應通知"
 
-#: components\ReportPage\SectionFeatures.js:150
+#: components\ReportPage\SectionFeatures.js:151
 msgid ""
-"An exclusive service keeps users from repeating requests and provides "
+"An exclusive service keeps users from repeating requests and provides \n"
 "immediate information about false messages in the previous queries."
 msgstr ""
 "Cofacts 會記得你問過Cofacts LINE bot 的訊息，記性不好沒關係。只要有新的回應，Cofacts 就會自動用 LINE "
 "推播通知你。這個功能目前只有 Cofacts 才有唷！"
 
-#: components\ReportPage\SectionFeatures.js:160
+#: components\ReportPage\SectionFeatures.js:164
 msgid "AI tagging"
 msgstr "AI 標記"
 
@@ -1311,7 +1311,7 @@ msgstr ""
 #: components\ReportPage\SectionInfluence.js:104
 msgid ""
 "External and internal propaganda have caused the people to lose their trust "
-"in media and information.\n"
+"in media and information. \n"
 "Cofacts took the lead in making a change, establishing a platform and "
 "creating a chatbot with fact-checking capabilities. \n"
 "We automated the process of combating false information through artificial "
@@ -1319,29 +1319,72 @@ msgid ""
 "in order to avoid exhausting professional reviewers and provide review "
 "resources."
 msgstr ""
+"大外宣與大內宣使人民失去對媒體與資訊的信任，Cofacts 率先作出改變，\n"
+"建立平台與創造具有事實查核能力的聊天機器人。\n"
+"透過人工智慧與機器學習把打擊不實訊息的流程自動化，\n"
+"避免消耗專業查核記者的人力與提供查核空間。\n"
 
 #: components\ReportPage\Banner.js:212
 #: components\ReportPage\Banner.js:227
 msgid "Social Impact Report"
 msgstr "影響力報告"
 
+#: pages\impact.js:79
+msgid ""
+"At present, there have been more than 40,000 verified pieces of content in \n"
+"our database. Before the open source community burns out, through \n"
+"investing human and other resources, the project is to reverse harms to \n"
+"democracy and society caused by misinformation."
+msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
+
+#: components\ReportPage\SectionHowToUse.js:111
+msgid "Super EASY"
+msgstr "參與超簡單"
+
+#: components\ReportPage\SectionFeatures.js:156
+msgid "Personal fact-check contribution"
+msgstr "個人查核貢獻"
+
+#: components\ReportPage\SectionFeatures.js:157
+msgid ""
+"Volunteers would login Cofacts and fact-check the suspicious messages. \n"
+"What fact-checkers have replied and commented would be transparent \n"
+"and reviewed, the achievement was opened and shareable."
+msgstr ""
+"編輯志工在 Cofacts "
+"網站上，針對不實訊息的努力闢謠與澄清，在這裡都看得到唷！編輯在這裡回了哪些訊息、給過哪些建議，在這裡都看得到，也可以分享的成果給他人。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:226
+msgid "Cofacts original features"
+msgstr "Cofacts 原創功能一覽"
+
 #: pages\impact.js:73
 msgid ""
 "Cofacts is the earliest-developed fact-checking chatbot. The project was \n"
 "launched in 2016 by the engineers, proposed to the civic tech community, \n"
-"and accomplished by a group of volunteers. The team members meet up weekly \n"
-"to maintain the project's dynamic."
-msgstr ""
+"and accomplished by a group of volunteers. The team members meet up \n"
+"weekly to maintain the project's dynamic."
+msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
 
-#: pages\impact.js:79
+#: components\ReportPage\SectionFeatures.js:165
 msgid ""
-"At present, there have been more than 40,000 verified pieces of content in \n"
-"our database. Before the open source community burns out, through investing "
-"\n"
-"human and other resources, the project is to reverse harms to democracy and "
-"\n"
-"society caused by misinformation."
+"Cofacts has catagorized misinformation via topics automartically, making \n"
+"different expertises focus on their professinal fields.Such and COVID-19, \n"
+"Vaccine related, propaganda, public policy, or fraud, these could be \n"
+"catagorized by Artificial Intelligence."
 msgstr ""
+"將假訊息依照「議題」自動分類，讓不同專長的闢謠編輯，可以聚焦在自己擅長的領域。新回報訊息究竟是有關交通法規、政治攻防、COVID-19 "
+"還是免費貼圖詐騙，就讓 AI 來分辨。"
+
+#: components\ReportPage\SectionFeatures.js:173
+msgid ""
+"Cofacts has provided API connecting instruction, fact-checking system \n"
+"since 2016.This achievement leads the combating misinformation ecosystem. \n"
+"There were third party chatbots connecting to Cofacts open API and IFCN \n"
+"member started to conduct own chatbots."
+msgstr ""
+"2016 年起將 chatbot 導入事實查核領域、並提供 API "
+"介接教學，在此領域激起了典範轉移，專業查核組織開始推出自己的chatbot，也有第三方查詢機器人前來介接 Cofacts 資料。"
 
 #: pages\index.js:41
 msgctxt "site title"
