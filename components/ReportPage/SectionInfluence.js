@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     background: '#faf9f6',
 
     [theme.breakpoints.down('sm')]: {
-      padding: '32px 0 140px',
+      padding: '40px 0 0',
     },
 
     '& > p': {
@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover',
     backgroundPosition: 'bottom center',
     zIndex: -1,
+    marginTop: 30,
   },
   title: {
     color: '#3d2e56',
