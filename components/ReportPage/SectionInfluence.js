@@ -1,16 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { t } from 'ttag';
+import { useMediaQuery } from '@material-ui/core';
 
 import SectionTitle from './SectionTitle';
 
-import bg from './images/influence-bg.png';
+import bgTop from './images/influence-bg-top.png';
+import bgBottom from './images/influence-bg-bottom.png';
+import bgBottomMobile from './images/influence-bg-bottom-mobile.png';
 
 const useStyles = makeStyles(theme => ({
   influence: {
-    padding: '112px 0 180px',
-    background: `url(${bg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    position: 'relative',
+    padding: '112px 0 0',
+    background: '#faf9f6',
 
     [theme.breakpoints.down('sm')]: {
       padding: '32px 0 140px',
@@ -28,6 +30,23 @@ const useStyles = makeStyles(theme => ({
         padding: '0 32px',
       },
     },
+  },
+  bgTop: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+  },
+  bgBottom: {
+    width: '100%',
+    zIndex: -1,
+  },
+  bgBottomMobile: {
+    width: '100%',
+    height: 110,
+    background: `url(${bgBottomMobile})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'bottom center',
+    zIndex: -1,
   },
   title: {
     color: '#3d2e56',
@@ -65,11 +84,14 @@ const useStyles = makeStyles(theme => ({
 const SectionInfluence = () => {
   const classes = useStyles();
 
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('xs'));
+
   return (
     <section className={classes.influence}>
-      <SectionTitle
-        className={classes.title}
-      >{t`Community Influence`}</SectionTitle>
+      <img className={classes.bgTop} src={bgTop} />
+      <SectionTitle className={classes.title}>
+        {t`Community Influence`}
+      </SectionTitle>
       <div className={classes.video}>
         <iframe
           src="https://www.youtube.com/embed/WfdfB7GyqMY"
@@ -84,6 +106,11 @@ const SectionInfluence = () => {
         We automated the process of combating false information through artificial intelligence and machine learning, 
         in order to avoid exhausting professional reviewers and provide review resources.`}
       </p>
+      {isMobile ? (
+        <div className={classes.bgBottomMobile} />
+      ) : (
+        <img className={classes.bgBottom} src={bgBottom} />
+      )}
     </section>
   );
 };
