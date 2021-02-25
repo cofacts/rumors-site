@@ -21,6 +21,7 @@ const useItemStyles = makeStyles(theme => ({
       flexDirection: 'row',
       alignItems: 'flex-start',
       margin: '0 30px 20px',
+      width: 'unset',
     },
   },
   mobileReverse: {
