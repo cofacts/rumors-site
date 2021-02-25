@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
     top: -80,
     left: -200,
     width: 240,
+    zIndex: 2,
 
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -74,6 +75,7 @@ const useStyles = makeStyles(theme => ({
     top: -80,
     left: -40,
     width: 140,
+    zIndex: 2,
 
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -87,6 +89,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: -220,
     left: -40,
+    zIndex: 2,
 
     [theme.breakpoints.down('sm')]: {
       width: 88,
@@ -115,12 +118,12 @@ const SectionHowToUse = () => {
         </div>
         <HowToUseItem
           image={howToUse1}
-          text={t`When you receive a suspicious message`}
+          text={t`When you receive a suspicious message...`}
         />
-        <HowToUseItem image={howToUse2} text={t`send it to the chatbot`} />
+        <HowToUseItem image={howToUse2} text={t`Send it to the chatbot`} />
         <HowToUseItem
           image={howToUse3}
-          text={t`and it will automatically read it, helping you get the fact-checking report.`}
+          text={t`...And it will automatically read it, helping you get the fact-checking report.`}
         />
         <div className={classes.plane3}>
           <img src={plane2} />
@@ -128,7 +131,7 @@ const SectionHowToUse = () => {
       </div>
       <Link href="/about" passHref>
         <ActionButton style={{ color: '#fff' }} theme="dark">
-          {t`more`}
+          {t`More`}
         </ActionButton>
       </Link>
     </section>

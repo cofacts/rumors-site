@@ -1094,25 +1094,27 @@ msgstr ""
 msgid "Individual strengths converge to exert the greatest power"
 msgstr "集結眾人之力，就能創造最大的力量。"
 
-#: components\ReportPage\SectionHowToUse.js:118
-msgid "When you receive a suspicious message"
+#: components\ReportPage\SectionHowToUse.js:121
+msgid "When you receive a suspicious message..."
 msgstr "收到可疑訊息"
 
-#: components\ReportPage\SectionHowToUse.js:120
-msgid "send it to the chatbot"
+#: components\ReportPage\SectionHowToUse.js:123
+msgid "Send it to the chatbot"
 msgstr "發送給聊天機器人"
 
-#: components\ReportPage\SectionHowToUse.js:123
-msgid "and it will automatically read it, helping you get the fact-checking report."
+#: components\ReportPage\SectionHowToUse.js:126
+msgid ""
+"...And it will automatically read it, helping you get the fact-checking "
+"report."
 msgstr ""
 "他將自動判讀 \n"
 "協助你得到查核報告"
 
-#: components\ReportPage\SectionHowToUse.js:131
-msgid "more"
+#: components\ReportPage\SectionHowToUse.js:134
+msgid "More"
 msgstr "了解更多"
 
-#: components\ReportPage\SectionInfluence.js:72
+#: components\ReportPage\SectionInfluence.js:93
 msgid "Community Influence"
 msgstr "社群影響力"
 
@@ -1306,7 +1308,7 @@ msgstr ""
 msgid "Share to Facebook"
 msgstr ""
 
-#: components\ReportPage\SectionInfluence.js:82
+#: components\ReportPage\SectionInfluence.js:104
 msgid ""
 "External and internal propaganda have caused the people to lose their trust "
 "in media and information.\n"
@@ -1318,8 +1320,8 @@ msgid ""
 "resources."
 msgstr ""
 
-#: components\ReportPage\Banner.js:161
-#: components\ReportPage\Banner.js:172
+#: components\ReportPage\Banner.js:212
+#: components\ReportPage\Banner.js:227
 msgid "Social Impact Report"
 msgstr "影響力報告"
 
