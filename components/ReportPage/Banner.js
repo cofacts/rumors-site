@@ -9,10 +9,13 @@ import yellowLogo from './images/logos/cofacts-yellow.png';
 import message1 from './images/message-1.png';
 import message2 from './images/message-2.png';
 import message3 from './images/message-3.png';
+import message4 from './images/message-4.png';
 import star3 from './images/star3.png';
 import star4 from './images/star4.png';
 import characters from './images/banner-characters.png';
 import dotsGroup from './images/dots-group.png';
+import plane from './images/plane-1.png';
+import plane2 from './images/plane-3.png';
 
 const useStyles = makeStyles(theme => ({
   '@keyframes flashing': {
@@ -64,7 +67,8 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     width: 2042,
     height: ({ scale }) => 829 * scale,
-    transform: ({ scale }) => `scale(${scale})`,
+    transform: ({ scale, offsetX }) =>
+      `scale(${scale}) translateX(${offsetX}px)`,
     transformOrigin: 'top',
   },
   logo: {
@@ -86,6 +90,11 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: 112,
     right: 94,
+
+    [theme.breakpoints.down('sm')]: {
+      top: 200,
+      right: 310,
+    },
   },
   message2: {
     position: 'absolute',
@@ -99,19 +108,39 @@ const useStyles = makeStyles(theme => ({
     animation: '$floatingRight 1.5s infinite',
     animationTimingFunction: 'ease-in-out',
   },
+  message4: {
+    position: 'absolute',
+    top: 300,
+    right: 850,
+  },
+  plane: {
+    position: 'absolute',
+    top: 492,
+    right: 452,
+  },
   star3: {
     position: 'absolute',
     top: 130,
     right: 430,
     animation: '$flashing 1.5s infinite',
     animationTimingFunction: 'ease-in-out',
+
+    [theme.breakpoints.down('sm')]: {
+      top: 220,
+      right: 650,
+    },
   },
   star4: {
     position: 'absolute',
     top: 350,
-    right: 960,
+    right: 900,
     animation: '$flashing 1.5s infinite',
     animationTimingFunction: 'ease-in-out',
+
+    [theme.breakpoints.down('sm')]: {
+      top: 530,
+      right: 500,
+    },
   },
   characters: {
     position: 'absolute',
@@ -127,29 +156,51 @@ const useStyles = makeStyles(theme => ({
     fontSize: 18,
     letterSpacing: process.env.LOCALE === 'en_US' ? 2 : 4,
     color: '#ffb700',
-    marginLeft: 75,
+    margin: '0 0 0 76px',
   },
   dotsGroup: {
     width: '86%',
   },
+  leftPlane: {
+    position: 'absolute',
+    width: '30%',
+    top: 174,
+    left: '-13%',
+    animation: '$floatingLeft 1.5s infinite',
+    animationTimingFunction: 'ease-in-out',
+  },
+  rightPlane: {
+    position: 'absolute',
+    width: '23%',
+    top: 33,
+    right: 0,
+    animation: '$floatingLeft 1.5s infinite',
+    animationTimingFunction: 'ease-in-out',
+  },
 }));
 
-const Card = () => {
+const Banner = () => {
   const [scale, setScale] = useState(1);
+  const [offsetX, setOffsetX] = useState(0);
 
-  const classes = useStyles({ scale });
-
+  const classes = useStyles({ scale, offsetX });
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
 
   useEffect(() => {
-    const setBannerScale = () => {
-      setScale(window.innerWidth / 1440);
+    const setTransform = () => {
+      const scale =
+        window.innerWidth < 960
+          ? (window.innerWidth / 1440) * 1.1
+          : window.innerWidth / 1440;
+
+      setScale(scale);
+      setOffsetX(window.innerWidth < 960 ? scale * 100 : 0);
     };
 
-    setBannerScale();
-    window.addEventListener('resize', setBannerScale);
+    setTransform();
+    window.addEventListener('resize', setTransform);
 
-    return () => window.removeEventListener('resize', setBannerScale);
+    return () => window.removeEventListener('resize', setTransform);
   }, []);
 
   return (
@@ -161,17 +212,21 @@ const Card = () => {
             <h1 className={classes.mobileTitle}>{t`Social Impact Report`}</h1>
           </div>
           <img className={classes.dotsGroup} src={dotsGroup} />
+          <img className={classes.leftPlane} src={plane} />
+          <img className={classes.rightPlane} src={plane} />
         </>
       )}
       <div className={classes.container}>
         <img className={classes.bg} src={bg} />
         <img className={classes.message1} src={message1} />
-        <img className={classes.message2} src={message2} />
+        {!isMobile && <img className={classes.message2} src={message2} />}
+        {isMobile && <img className={classes.message4} src={message4} />}
+        {!isMobile && <img className={classes.plane} src={plane2} />}
         {!isMobile && <img className={classes.logo} src={logo} />}
         {!isMobile && (
           <h1 className={classes.title}>{t`Social Impact Report`}</h1>
         )}
-        <img className={classes.message3} src={message3} />
+        {!isMobile && <img className={classes.message3} src={message3} />}
         <img className={classes.star3} src={star3} />
         <img className={classes.star4} src={star4} />
         <img className={classes.characters} src={characters} />
@@ -180,4 +235,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default Banner;
