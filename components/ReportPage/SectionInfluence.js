@@ -1,18 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { t } from 'ttag';
+import { useMediaQuery } from '@material-ui/core';
 
 import SectionTitle from './SectionTitle';
 
-import bg from './images/influence-bg.png';
+import bgTop from './images/influence-bg-top.png';
+import bgBottom from './images/influence-bg-bottom.png';
+import bgBottomMobile from './images/influence-bg-bottom-mobile.png';
 
 const useStyles = makeStyles(theme => ({
   influence: {
-    padding: '112px 0 180px',
-    background: `url(${bg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    position: 'relative',
+    padding: '112px 0 0',
+    background: '#faf9f6',
 
     [theme.breakpoints.down('sm')]: {
-      padding: '32px 0 140px',
+      padding: '40px 0 0',
     },
 
     '& > p': {
@@ -27,6 +30,24 @@ const useStyles = makeStyles(theme => ({
         padding: '0 32px',
       },
     },
+  },
+  bgTop: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+  },
+  bgBottom: {
+    width: '100%',
+    zIndex: -1,
+  },
+  bgBottomMobile: {
+    width: '100%',
+    height: 110,
+    background: `url(${bgBottomMobile})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'bottom center',
+    zIndex: -1,
+    marginTop: 30,
   },
   title: {
     color: '#3d2e56',
@@ -64,9 +85,14 @@ const useStyles = makeStyles(theme => ({
 const SectionInfluence = () => {
   const classes = useStyles();
 
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('xs'));
+
   return (
     <section className={classes.influence}>
-      <SectionTitle className={classes.title}>社群影響力</SectionTitle>
+      <img className={classes.bgTop} src={bgTop} />
+      <SectionTitle className={classes.title}>
+        {t`Community Influence`}
+      </SectionTitle>
       <div className={classes.video}>
         <iframe
           src="https://www.youtube.com/embed/WfdfB7GyqMY"
@@ -76,11 +102,16 @@ const SectionInfluence = () => {
         />
       </div>
       <p>
-        {`大外宣與大內宣使人民失去對媒體與資訊的信任，Cofacts 率先作出改變，
-        建立平台與創造具有事實查核能力的聊天機器人。
-        透過人工智慧與機器學習把打擊不實訊息的流程自動化，
-        避免消耗專業查核記者的人力與提供查核空間。`}
+        {t`External and internal propaganda have caused the people to lose their trust in media and information. 
+        Cofacts took the lead in making a change, establishing a platform and creating a chatbot with fact-checking capabilities. 
+        We automated the process of combating false information through artificial intelligence and machine learning, 
+        in order to avoid exhausting professional reviewers and provide review resources.`}
       </p>
+      {isMobile ? (
+        <div className={classes.bgBottomMobile} />
+      ) : (
+        <img className={classes.bgBottom} src={bgBottom} />
+      )}
     </section>
   );
 };
