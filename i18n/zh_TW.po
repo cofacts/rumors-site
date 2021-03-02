@@ -866,7 +866,7 @@ msgid ""
 "environment, create different possibilities."
 msgstr "過往的程式碼、會議紀錄、數據資料都完全公開，鼓勵更多的開放資料，透明化地與每個人分享合作，創造不同的可能性。"
 
-#: components/LandingPage/SectionContribute.js:132
+#: components\LandingPage\SectionContribute.js:132
 msgid ""
 "Cofacts needs all of you to help our current program to be more\n"
 "efficient and complete. This collaborate program cannot be completed\n"
@@ -879,15 +879,15 @@ msgstr ""
 "我們需要每一個人都一起付出、寫程式、闢謠、仔細研究查資料，\n"
 "自發性的查證與寫回應才能成就背後龐大的資料庫。"
 
-#: components/LandingPage/SectionContribute.js:141
+#: components\LandingPage\SectionContribute.js:141
 msgid "I want to learn how to use Cofacts"
 msgstr "我想先學怎麼用"
 
-#: components/LandingPage/SectionContribute.js:146
+#: components\LandingPage\SectionContribute.js:146
 msgid "I can help bust hoaxes"
 msgstr "我可以闢謠"
 
-#: components/LandingPage/SectionContribute.js:156
+#: components\LandingPage\SectionContribute.js:156
 msgid "I can help with coding"
 msgstr "我會寫 Code"
 
@@ -1082,7 +1082,7 @@ msgstr ""
 "${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
 "bot ${ LINE_URL } 。"
 
-#: pages/about.js:238
+#: pages\about.js:238
 msgid "What is Cofacts"
 msgstr ""
 
@@ -1198,6 +1198,201 @@ msgid "g0v"
 msgstr ""
 
 #: components/ReportPage/SectionSponsor.js:114
+#: pages\impact.js:71
+msgid "Individual strengths converge to exert the greatest power"
+msgstr "集結眾人之力，就能創造最大的力量。"
+
+#: components\ReportPage\SectionHowToUse.js:121
+msgid "When you receive a suspicious message..."
+msgstr "收到可疑訊息"
+
+#: components\ReportPage\SectionHowToUse.js:123
+msgid "Send it to the chatbot"
+msgstr "發送給聊天機器人"
+
+#: components\ReportPage\SectionHowToUse.js:126
+msgid ""
+"...And it will automatically read it, helping you get the fact-checking "
+"report."
+msgstr ""
+"他將自動判讀 \n"
+"協助你得到查核報告"
+
+#: components\ReportPage\SectionHowToUse.js:134
+msgid "More"
+msgstr "了解更多"
+
+#: components\ReportPage\SectionInfluence.js:93
+msgid "Community Influence"
+msgstr "社群影響力"
+
+#: components\ReportPage\SectionFeatures.js:145
+msgid "Features of Cofacts"
+msgstr "Cofacts 特色"
+
+#: components\ReportPage\SectionFeatures.js:150
+msgid "Notification"
+msgstr "新回應通知"
+
+#: components\ReportPage\SectionFeatures.js:151
+msgid ""
+"An exclusive service keeps users from repeating requests and provides \n"
+"immediate information about false messages in the previous queries."
+msgstr ""
+"Cofacts 會記得你問過Cofacts LINE bot 的訊息，記性不好沒關係。只要有新的回應，Cofacts 就會自動用 LINE "
+"推播通知你。這個功能目前只有 Cofacts 才有唷！"
+
+#: components\ReportPage\SectionFeatures.js:164
+msgid "AI tagging"
+msgstr "AI 標記"
+
+#: components\ReportPage\SectionOriginalFeatures.js:27
+msgid "RSS Reading ability"
+msgstr "RSS 訂閱功能Reading ability"
+
+#: components\ReportPage\SectionOriginalFeatures.js:28
+msgid ""
+"Our database has a large quantity of material, so we use a subscription "
+"system to help link up to IFTTT, find popular topics, and to link to LINE, "
+"telegram, Slack and mail to send reminders that verification is underway."
+msgstr "資料庫裡面有大量資訊，所以會透過訂閱功能連接IFTTT，找到熱門的主題，連結到LINE、Telegram、Slack、Mail 提醒查核進行。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:33
+msgid "LINE notifications"
+msgstr "LINE 通知"
+
+#: components\ReportPage\SectionOriginalFeatures.js:34
+msgid ""
+"Traditional chatbots can only report information that has already been "
+"verified,  but now when one tries to check a non-yet verified piece of "
+"information, the system can send a notification when the information has "
+"been verified.  If a better response has since been provided, the system "
+"can also send a notification to ensure that information provided is always "
+"the most up-to-date."
+msgstr ""
+"傳統的聊天機器人只能呼喚過去已經查核過的訊息，但現在當自己提交新提問的時候，資訊查核完畢能得到通知，查看最新的回應。如果有更好的回應，也能被通知到，確保"
+"資訊維持在最新的狀態。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:39
+msgid "Users can easily check infromation that has already been asked about"
+msgstr ""
+"使用者輕鬆查詢 \n"
+" 問過的訊息"
+
+#: components\ReportPage\SectionOriginalFeatures.js:40
+msgid ""
+"You can access the list of rumours that have already been checked, and the "
+"chatbot can help you organise your own table of information and help "
+"produce personalised information"
+msgstr "查看已經查過的謠言列表，機器人能幫助你整理自己的訊息表，整理個人化的資訊。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:45
+msgid "The UI of the new website"
+msgstr "新網站 UI"
+
+#: components\ReportPage\SectionOriginalFeatures.js:46
+msgid ""
+"The site now has gamified features and it is nohow easier to see the "
+"contribution of each collaborator. We also now have data visualisation and "
+"the tools to see what material has been accessed by journalists and the "
+"process of verification for each article."
+msgstr "網站內有遊戲化機制，也能清楚看到協作者的產出與貢獻，資料視覺化，可以看到查核記者查過的所有資料，與審核文章的過程與次數。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:51
+msgid "AI automatic categorisation"
+msgstr "AI 自動分類標記"
+
+#: components\ReportPage\SectionOriginalFeatures.js:52
+msgid ""
+"We use machine learning technology to help categorise our data. The "
+"technology is capable of correctly labeling messages as being about "
+"politics, scams, the environment, energy, amongst others. This helps "
+"doctors or journalists quickly find messages relating to their areas of "
+"expertise to help with message verification."
+msgstr "透過機器學習幫助資料分類，能準確地把政治、詐騙、環境、能源等等訊息區分，讓有興趣的醫師、記者能立刻找到專業領域的訊息動手查證。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:57
+msgid "Community Builder"
+msgstr "Community Builder"
+
+#: components\ReportPage\SectionOriginalFeatures.js:58
+msgid ""
+"We help community organisers to efficiently check up on current work "
+"progress, the quantity of messages, the positive reviews under the review "
+"mechanism, the list of contributors who helped with the output, and the "
+"review of response and user feedback from a particular period."
+msgstr "幫助社群組織者有效率的追蹤目前的工作狀態，訊息量、複審機制下的正面評價、列出產出貢獻的協作者、特定時間內查核回應與使用者回饋。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:63
+msgid "The ecology of fact checking"
+msgstr "查核生態系"
+
+#: components\ReportPage\SectionOriginalFeatures.js:64
+msgid ""
+"We collaborate with all fact checking organizations and help them enter the "
+"fact checking community by setting aside their competition and rivalry, and "
+"encourage them to work together to help create the largest datasets "
+"possible."
+msgstr "容納各個查核組織，讓他們進入查核社群，彼此放下競爭關係，共同貢獻目前最多的資料。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:69
+msgid "Teaching tools"
+msgstr "教學工具"
+
+#: components\ReportPage\SectionOriginalFeatures.js:70
+msgid ""
+"Cofacts helps educators the ability to create their own chatbots with "
+"search capabilities. We provide free consultancy and assistance to our "
+"international collaborators to help the open source community grow. "
+"Thailand has already successfully replicated Cofacts' experience to create "
+"their own search chatbot based on Cofacts."
+msgstr ""
+"Cofacts 提供教學，指導開發者自己開發具查核能力的聊天機器人。提供國際夥伴免費諮詢，協助讓開源的社群擴大，目前已經成功在泰國複製Cofacts "
+"經驗，使用Cofacts產出協作查核機器人。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:75
+msgid "User Feedback"
+msgstr "使用者回饋"
+
+#: components\ReportPage\SectionOriginalFeatures.js:76
+msgid ""
+"We collected user feedback and encourage users to cooperate with us to "
+"create a better open source environment in which many can use our "
+"resources. In addition, by encouraging  user feedback and collaboration, "
+"our collaborators can use this feedback to help improve their user "
+"experience."
+msgstr ""
+"收集使用者回饋資料，並且鼓勵使用者協作，創造更好的開源環境，讓好的資料能被重複利用。\n"
+" 並且透過正向回饋鼓勵協作者產出，用建議引導協作者改善他們的查核回應。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:81
+msgid "Data"
+msgstr "數據資料"
+
+#: components\ReportPage\SectionOriginalFeatures.js:82
+msgid ""
+"Cofacts provides a chart that explains how to link the chatbot to a website "
+"as a way to help researchers and journalists to follow important topics and "
+"write impactful reports. There have already been many academics from Taiwan "
+"and other  countries who have quoted this data, and many have directly "
+"accessed material Cofacts' open database."
+msgstr ""
+"Cofacts 提供連接 chatbot 與網頁的指標圖表，幫助研究者與記者追蹤熱門的訊息，產出有力的報告。\n"
+" 目前有許多國內外的學者引用這些資料，也直接接取Cofacts 的開放資料庫。"
+
+#: pages\impact.js:66
+msgid "Cofacts social impact report"
+msgstr ""
+
+#: components\ReportPage\SectionSponsor.js:88
+msgid "Open Culture Foundation"
+msgstr ""
+
+#: components\ReportPage\SectionSponsor.js:93
+msgid "g0v"
+msgstr ""
+
+#: components\ReportPage\SectionSponsor.js:114
 #. const FUND = [
 #. {
 #. logo: whoscallLogo,
@@ -1213,15 +1408,93 @@ msgstr ""
 msgid "Dcard"
 msgstr ""
 
-#: components/ReportPage/SectionSponsor.js:240
+#: components\ReportPage\SectionSponsor.js:240
 msgid "Donate to Cofacts"
 msgstr ""
 
-#: components/ReportPage/SectionSponsor.js:249
+#: components\ReportPage\SectionSponsor.js:249
 msgid "Share to Facebook"
 msgstr ""
 
-#: pages/index.js:41
+#: components\ReportPage\SectionInfluence.js:104
+msgid ""
+"External and internal propaganda have caused the people to lose their trust "
+"in media and information. \n"
+"Cofacts took the lead in making a change, establishing a platform and "
+"creating a chatbot with fact-checking capabilities. \n"
+"We automated the process of combating false information through artificial "
+"intelligence and machine learning, \n"
+"in order to avoid exhausting professional reviewers and provide review "
+"resources."
+msgstr ""
+"大外宣與大內宣使人民失去對媒體與資訊的信任，Cofacts 率先作出改變，\n"
+"建立平台與創造具有事實查核能力的聊天機器人。\n"
+"透過人工智慧與機器學習把打擊不實訊息的流程自動化，\n"
+"避免消耗專業查核記者的人力與提供查核空間。\n"
+
+#: components\ReportPage\Banner.js:212
+#: components\ReportPage\Banner.js:227
+msgid "Social Impact Report"
+msgstr "影響力報告"
+
+#: pages\impact.js:79
+msgid ""
+"At present, there have been more than 40,000 verified pieces of content in \n"
+"our database. Before the open source community burns out, through \n"
+"investing human and other resources, the project is to reverse harms to \n"
+"democracy and society caused by misinformation."
+msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
+
+#: components\ReportPage\SectionHowToUse.js:111
+msgid "Super EASY"
+msgstr "參與超簡單"
+
+#: components\ReportPage\SectionFeatures.js:156
+msgid "Personal fact-check contribution"
+msgstr "個人查核貢獻"
+
+#: components\ReportPage\SectionFeatures.js:157
+msgid ""
+"Volunteers would login Cofacts and fact-check the suspicious messages. \n"
+"What fact-checkers have replied and commented would be transparent \n"
+"and reviewed, the achievement was opened and shareable."
+msgstr ""
+"編輯志工在 Cofacts "
+"網站上，針對不實訊息的努力闢謠與澄清，在這裡都看得到唷！編輯在這裡回了哪些訊息、給過哪些建議，在這裡都看得到，也可以分享的成果給他人。"
+
+#: components\ReportPage\SectionOriginalFeatures.js:226
+msgid "Cofacts original features"
+msgstr "Cofacts 原創功能一覽"
+
+#: pages\impact.js:73
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was \n"
+"launched in 2016 by the engineers, proposed to the civic tech community, \n"
+"and accomplished by a group of volunteers. The team members meet up \n"
+"weekly to maintain the project's dynamic."
+msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
+
+#: components\ReportPage\SectionFeatures.js:165
+msgid ""
+"Cofacts has catagorized misinformation via topics automartically, making \n"
+"different expertises focus on their professinal fields.Such and COVID-19, \n"
+"Vaccine related, propaganda, public policy, or fraud, these could be \n"
+"catagorized by Artificial Intelligence."
+msgstr ""
+"將假訊息依照「議題」自動分類，讓不同專長的闢謠編輯，可以聚焦在自己擅長的領域。新回報訊息究竟是有關交通法規、政治攻防、COVID-19 "
+"還是免費貼圖詐騙，就讓 AI 來分辨。"
+
+#: components\ReportPage\SectionFeatures.js:173
+msgid ""
+"Cofacts has provided API connecting instruction, fact-checking system \n"
+"since 2016.This achievement leads the combating misinformation ecosystem. \n"
+"There were third party chatbots connecting to Cofacts open API and IFCN \n"
+"member started to conduct own chatbots."
+msgstr ""
+"2016 年起將 chatbot 導入事實查核領域、並提供 API "
+"介接教學，在此領域激起了典範轉移，專業查核組織開始推出自己的chatbot，也有第三方查詢機器人前來介接 Cofacts 資料。"
+
+#: pages\index.js:41
 msgctxt "site title"
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
@@ -1330,7 +1603,7 @@ msgctxt "landing page"
 msgid "Everybody can fact-check the fact checkers"
 msgstr "人人都是判斷者"
 
-#: components/LandingPage/SectionJoin.js:216
+#: components\LandingPage\SectionJoin.js:216
 msgctxt "landing page"
 msgid "Count me in!"
 msgstr "算我一個！"
@@ -1388,19 +1661,19 @@ msgid ""
 "the fact-checking repository."
 msgstr "只要主動查證謠言訊息，把你查到的回應加入資料庫，就能幫助更多人。"
 
-#: components/LandingPage/SectionJoin.js:202
+#: components\LandingPage\SectionJoin.js:202
 msgctxt "landing page"
 msgid "Do you want to join us in fighting disinformation?"
 msgstr "想成為闢謠戰士嗎？"
 
-#: components/LandingPage/SectionJoin.js:205
+#: components\LandingPage\SectionJoin.js:205
 msgctxt "landing page"
 msgid ""
 "Join us today.\n"
 "The world needs YOUR help!"
 msgstr "現在就加入闢謠者聯盟，真真假假的世界需要你來拯救！"
 
-#: components/LandingPage/SectionJoin.js:208
+#: components\LandingPage\SectionJoin.js:208
 msgctxt "landing page"
 msgid ""
 "It doesn't matter whether you've been unhappy with how previous fact checks "
@@ -1425,7 +1698,7 @@ msgctxt "landing page"
 msgid "Check out what we've been able to accomplish together."
 msgstr "謠言與回應的追逐戰"
 
-#: components/LandingPage/SectionContribute.js:121
+#: components\LandingPage\SectionContribute.js:121
 msgctxt "landing page"
 msgid ""
 "We need your help!\n"
