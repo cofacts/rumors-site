@@ -2,6 +2,15 @@ import { t, ngettext, msgid } from 'ttag';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from './Tooltip';
+import { Card, CardHeader, CardContent } from 'components/Card';
+import { useState } from 'react';
+
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import { addDays, format } from 'date-fns';
+
+const SCALING_FACTOR = 5;
+const MAX_SCALE = 4;
 
 const useStyles = makeStyles(theme => ({
   colorCofacts0: {
@@ -66,6 +75,18 @@ const useStyles = makeStyles(theme => ({
   legends: {
     overflow: 'visible',
   },
+  headerWrapper: {
+    display: 'flex',
+    fontSize: 14,
+    borderBottom: ({ showPlot }) => (showPlot ? '1px solid #333333' : 'none'),
+    paddingBottom: ({ showPlot }) => (showPlot ? 0 : '14px'),
+  },
+  headerToggle: {
+    marginLeft: 'auto',
+  },
+  cardContent: {
+    padding: '10px 0 0 0 !important',
+  },
 }));
 
 const monthLabels = [
@@ -88,9 +109,12 @@ function Legend({ count }) {
   const classes = useStyles();
   return (
     <svg className={classes.legends} viewBox={`0 0 612 10`}>
-      <g transform={`translate(${564 - 11 * count}, -20)`}>
-        <g transform="translate(0, 8)">
-          <text className="label">{t`Less`}</text>
+      <g transform={`translate(${578 - 11 * count}, -20)`}>
+        <g transform="translate(-5, 8)">
+          <text className="label" textAnchor="end">
+            {' '}
+            {t`Less`}
+          </text>
         </g>
         {Array.from(Array(count)).map((_, idx) => (
           <rect
@@ -98,59 +122,92 @@ function Legend({ count }) {
             width="10"
             height="10"
             y="0"
-            x={25 + 11 * idx}
+            x={11 * idx}
             className={`${classes[`colorCofacts${idx}`]} legend`}
           ></rect>
         ))}
-        <g transform={`translate(${25 + 11 * count}, 8)`}>
-          <text className="label">{t`More`}</text>
+        <g transform={`translate(${5 + 11 * count}, 8)`}>
+          <text className="label" textAnchor="start">{t`More`}</text>
         </g>
       </g>
     </svg>
   );
 }
+
+function scaleColor(count) {
+  return Math.max(Math.min(Math.round(count / SCALING_FACTOR), MAX_SCALE), 0);
+}
+
 export default function ContributionChart({ startDate, endDate, data }) {
-  const classes = useStyles();
+  const [showPlot, setShowPlot] = useState(true);
+  const classes = useStyles({ showPlot });
+  const firstDay = new Date(startDate);
+  const total = data.reduce((sum, value) => sum + value.count, 0);
 
   return (
-    <div className={classes.root}>
-      <CalendarHeatmap
-        startDate={startDate}
-        endDate={endDate}
-        values={data}
-        showWeekdayLabels={true}
-        monthLabels={monthLabels}
-        weekdayLabels={weekdayLabels}
-        classForValue={value => {
-          if (!value) {
-            return classes.colorCofacts0;
-          }
-          const scale = Math.max(Math.min(Math.round(value.count / 2), 4), 0);
-          return classes[`colorCofacts${scale}`];
-        }}
-        transformDayElement={(element, value) => {
-          const count = value?.count || 0;
-          return (
-            <Tooltip
-              title={
-                <span className={classes.tooltipText}>
-                  <span className="date">{value?.date}</span>
-                  <span className="value">
-                    {ngettext(
-                      msgid`${count} contribution`,
-                      `${count} contributions`,
-                      count
-                    )}
-                  </span>
-                </span>
-              }
-            >
-              {element}
-            </Tooltip>
-          );
-        }}
-      ></CalendarHeatmap>
-      <Legend count={5} />
-    </div>
+    <Card>
+      <CardHeader className={classes.headerWrapper}>
+        <span className={classes.header}>
+          {ngettext(
+            msgid`${total} contribution in the last year`,
+            `${total} contributions in the last year`,
+            total
+          )}
+        </span>
+        <span className={classes.headerToggle}>
+          {showPlot ? (
+            <KeyboardArrowDownIcon onClick={() => setShowPlot(false)} />
+          ) : (
+            <KeyboardArrowUpIcon onClick={() => setShowPlot(true)} />
+          )}
+        </span>
+      </CardHeader>
+      {showPlot && (
+        <CardContent className={classes.cardContent}>
+          <div className={classes.root}>
+            <CalendarHeatmap
+              startDate={startDate}
+              endDate={endDate}
+              values={data}
+              showWeekdayLabels={true}
+              monthLabels={monthLabels}
+              weekdayLabels={weekdayLabels}
+              classForValue={value => {
+                if (!value) {
+                  return classes.colorCofacts0;
+                }
+                const scale = scaleColor(value.count);
+                return classes[`colorCofacts${scale}`];
+              }}
+              transformDayElement={(element, value, index) => {
+                const count = value?.count || 0;
+                const date =
+                  value?.date || format(addDays(firstDay, index), 'yyyy-MM-dd');
+                return (
+                  <Tooltip
+                    key={index}
+                    title={
+                      <span className={classes.tooltipText}>
+                        <span className="date">{date}</span>
+                        <span className="value">
+                          {ngettext(
+                            msgid`${count} contribution`,
+                            `${count} contributions`,
+                            count
+                          )}
+                        </span>
+                      </span>
+                    }
+                  >
+                    {element}
+                  </Tooltip>
+                );
+              }}
+            ></CalendarHeatmap>
+            <Legend count={MAX_SCALE + 1} />
+          </div>
+        </CardContent>
+      )}
+    </Card>
   );
 }
