@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       height: 70,
     },
+
+    [theme.breakpoints.down('xs')]: {
+      height: process.env.LOCALE === 'en_US' ? 140 : 70,
+    },
   },
   text: {
     display: 'flex',
@@ -27,17 +31,22 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     whiteSpace: 'pre-line',
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: process.env.LOCALE === 'en_US' ? 20 : 24,
     lineHeight: 1.45,
     fontWeight: 700,
     color: '#3d2e56',
+    padding: '0 12px',
 
     [theme.breakpoints.down('sm')]: {
-      fontSize: 20,
+      fontSize: process.env.LOCALE === 'en_US' ? 18 : 20,
       width: '100%',
       marginTop: 0,
       marginRight: 8,
-      marginLeft: -40,
+      marginLeft: -30,
+    },
+
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: -20,
     },
   },
   image: {

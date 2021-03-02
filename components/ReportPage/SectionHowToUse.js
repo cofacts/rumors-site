@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
+import { t } from 'ttag';
 
 import SectionTitle from './SectionTitle';
 import HowToUseItem from './HowToUseItem';
@@ -59,6 +60,7 @@ const useStyles = makeStyles(theme => ({
     top: -80,
     left: -200,
     width: 240,
+    zIndex: 2,
 
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -73,6 +75,7 @@ const useStyles = makeStyles(theme => ({
     top: -80,
     left: -40,
     width: 140,
+    zIndex: 2,
 
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -86,6 +89,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: -220,
     left: -40,
+    zIndex: 2,
 
     [theme.breakpoints.down('sm')]: {
       width: 88,
@@ -104,7 +108,7 @@ const SectionHowToUse = () => {
 
   return (
     <section className={classes.howToUse}>
-      <SectionTitle>參與超簡單</SectionTitle>
+      <SectionTitle>{t`Super EASY`}</SectionTitle>
       <div className={classes.itemWrapper}>
         <div className={classes.plane1}>
           <img src={plane1} />
@@ -112,11 +116,14 @@ const SectionHowToUse = () => {
         <div className={classes.plane2}>
           <img src={plane1} />
         </div>
-        <HowToUseItem image={howToUse1} text="收到可疑訊息" />
-        <HowToUseItem image={howToUse2} text="發送給聊天機器人" />
+        <HowToUseItem
+          image={howToUse1}
+          text={t`When you receive a suspicious message...`}
+        />
+        <HowToUseItem image={howToUse2} text={t`Send it to the chatbot`} />
         <HowToUseItem
           image={howToUse3}
-          text={`他將自動判讀 \n 協助你得到查核報告。`}
+          text={t`...And it will automatically read it, helping you get the fact-checking report.`}
         />
         <div className={classes.plane3}>
           <img src={plane2} />
@@ -124,7 +131,7 @@ const SectionHowToUse = () => {
       </div>
       <Link href="/about" passHref>
         <ActionButton style={{ color: '#fff' }} theme="dark">
-          了解更多
+          {t`More`}
         </ActionButton>
       </Link>
     </section>

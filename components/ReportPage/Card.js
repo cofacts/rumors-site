@@ -6,13 +6,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    height: 500,
+    minHeight: 500,
     borderRadius: 8,
-    padding: '30px 26px 0',
+    padding: '30px 26px',
     background: 'white',
 
     [theme.breakpoints.down('sm')]: {
-      height: 400,
+      minHeight: 400,
       padding: 20,
     },
   },
