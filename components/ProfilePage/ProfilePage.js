@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import gql from 'graphql-tag';
 import { t } from 'ttag';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import { Tabs, Tab } from '@material-ui/core';
@@ -71,16 +71,6 @@ function ProfilePage({ id, slug }) {
     skip: !data?.GetUser?.id,
   });
 
-  const [
-    loadSelfOnlyFieldsForUser,
-    {
-      refetch: refetchSelfOnlyFieldsForUser,
-      called: selfOnlyFieldsForUserCalled,
-    },
-  ] = useLazyQuery(LOAD_USER, {
-    variables: { id, slug },
-  });
-
   const isSelf = currentUser && data?.GetUser?.id === currentUser.id;
 
   // Automatic redirect to (new) slug
@@ -93,16 +83,6 @@ function ProfilePage({ id, slug }) {
       router.replace(targetPath);
     }
   }, [latestSlug, router]);
-
-  // Load current-user-only fields when currentUser changes
-  useEffect(() => {
-    if (!selfOnlyFieldsForUserCalled) {
-      loadSelfOnlyFieldsForUser();
-    } else {
-      refetchSelfOnlyFieldsForUser();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]);
 
   if (loading) {
     return (

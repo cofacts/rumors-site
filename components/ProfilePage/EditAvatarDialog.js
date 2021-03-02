@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import {
   Dialog,
   DialogTitle,
@@ -15,6 +15,7 @@ import { Avatar, generateRandomOpenPeepsAvatar } from '../AppLayout/Widgets';
 import AvatarSelector from './AvatarSelector';
 import crypto from 'crypto';
 import { makeStyles } from '@material-ui/core/styles';
+import { dataIdFromObject } from 'lib/apollo';
 
 const useStyles = makeStyles({
   avatarPreview: {
@@ -33,6 +34,20 @@ const EditAvatarDialogUserData = gql`
     avatarType
     avatarData
   }
+`;
+
+const LOAD_USER = gql`
+  query LoadUserAvatar($id: String, $slug: String) {
+    GetUser(id: $id, slug: $slug) {
+      id
+      email
+      facebookId
+      githubId
+      availableAvatarTypes
+      ...EditAvatarDialogUserData
+    }
+  }
+  ${EditAvatarDialogUserData}
 `;
 
 const UPDATE_USER = gql`
@@ -69,49 +84,83 @@ const getAvatarUrl = (user, avatarType, s = 100) => {
 };
 
 const getInitialAvatarData = user => {
-  if (user.avatarData) {
+  if (user?.avatarData) {
     if (typeof user.avatarData === 'string') return JSON.parse(user.avatarData);
     if (typeof user.avatarData === 'object') return user.avatarData;
   }
   return generateRandomOpenPeepsAvatar();
 };
 
-function EditAvatarDialog({ user, onClose = () => {} }) {
-  const [updateUser, { loading }] = useMutation(UPDATE_USER, {
-    onCompleted() {
-      onClose();
+function EditAvatarDialog({ userId, onClose = () => {} }) {
+  const { data } = useQuery(LOAD_USER, {
+    variables: { id: userId },
+    onCompleted: ({ GetUser: user }) => {
+      setAvatarType(user?.avatarType || 'OpenPeeps');
+      setAvatarData(getInitialAvatarData(user));
+    },
+  });
+
+  const user = data?.GetUser;
+
+  const [updateUser, { updating }] = useMutation(UPDATE_USER, {
+    onCompleted: onClose,
+    update: (
+      cache,
+      {
+        data: {
+          UpdateUser: { avatarType, avatarData },
+        },
+      }
+    ) => {
+      const newAvatarUrl = getAvatarUrl(user, avatarType);
+
+      // Read & update Article instance
+      const id = dataIdFromObject({ __typename: 'User', id: userId });
+      const userData = {
+        ...cache.readFragment({
+          id,
+          fragmentName: 'AvatarData',
+          fragment: Avatar.fragments.AvatarData,
+        }),
+        avatarType,
+      };
+
+      if (avatarType === 'OpenPeeps') userData.avatarData = avatarData;
+      else userData.avatarUrl = newAvatarUrl;
+
+      cache.writeFragment({
+        id,
+        fragmentName: 'AvatarData',
+        fragment: Avatar.fragments.AvatarData,
+        data: userData,
+      });
     },
   });
 
   const classes = useStyles();
 
-  const [avatarType, setAvatarType] = useState(user.avatarType || 'OpenPeeps');
-  const [avatarData, setAvatarData] = useState(() =>
-    getInitialAvatarData(user)
-  );
+  const [avatarType, setAvatarType] = useState(null);
+  const [avatarData, setAvatarData] = useState(null);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const newAvatarData =
-      avatarType === 'OpenPeeps' ? JSON.stringify(avatarData) : user.avatarData;
-    const newAvatarUrl = getAvatarUrl(user, avatarType);
-    user.avatarType = avatarType;
-    user.avatarData = newAvatarData;
-    user.avatarUrl = newAvatarUrl;
-
     updateUser({
       variables: {
         avatarType: avatarType,
-        avatarData: newAvatarData,
+        avatarData:
+          avatarType === 'OpenPeeps' ? JSON.stringify(avatarData) : null,
       },
     });
   };
 
-  // TODO: is this the best way to maintain state of object?
   const setAvatarField = (field, value) => {
     setAvatarData({ ...avatarData, [field]: value });
   };
+
+  if (!user) {
+    return <div></div>;
+  }
 
   return (
     <Dialog onClose={onClose} open>
@@ -181,7 +230,7 @@ function EditAvatarDialog({ user, onClose = () => {} }) {
           <Button
             color="primary"
             type="submit"
-            disabled={loading}
+            disabled={updating}
           >{t`Submit`}</Button>
         </DialogActions>
       </form>

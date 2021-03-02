@@ -288,7 +288,7 @@ function UserPageHeader({ user, isSelf, stats }) {
       {isEditAvatarDialogOpen && (
         <ThemeProvider theme={lightTheme}>
           <EditAvatarDialog
-            user={user}
+            userId={user.id}
             onClose={() => setEditAvatarDialogOpen(false)}
           />
         </ThemeProvider>
@@ -308,11 +308,6 @@ exported.fragments = {
       level
       appId
 
-      email
-      facebookId
-      githubId
-      availableAvatarTypes
-
       points {
         total
         nextLevel
@@ -320,13 +315,11 @@ exported.fragments = {
       ...AvatarData
       ...LevelProgressBarData
       ...EditProfileDialogUserData
-      ...EditAvatarDialogUserData
     }
 
     ${Avatar.fragments.AvatarData}
     ${LevelProgressBar.fragments.LevelProgressBarData}
     ${EditProfileDialog.fragments.EditProfileDialogUserData}
-    ${EditAvatarDialog.fragments.EditAvatarDialogUserData}
   `,
 };
 
