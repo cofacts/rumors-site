@@ -35,7 +35,7 @@ export const generateRandomOpenPeepsAvatar = () => {
   };
 };
 
-export const validateAvatarData = data => ({
+export const sanitizeAvatarData = data => ({
   ...data,
   accessory:
     data.accessory && accessories.includes(data.accessory)

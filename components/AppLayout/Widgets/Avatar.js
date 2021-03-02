@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import gql from 'graphql-tag';
 import cx from 'clsx';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -6,7 +6,7 @@ import { Badge } from '@material-ui/core';
 import ProfileLink from 'components/ProfileLink';
 import { TYPE_ICON } from 'constants/replyType';
 import Peep from 'react-peeps';
-import { validateAvatarData, getBackgroundColor } from './openPeepsUtils';
+import { sanitizeAvatarData, getBackgroundColor } from './openPeepsUtils';
 import { omit } from 'lodash';
 
 const NULL_USER_IMG =
@@ -29,11 +29,6 @@ const peepsStyles = {
   peepStyle: {
     justifyContent: 'center',
     alignSelf: 'center',
-  },
-  circleStyle: {
-    alignSelf: 'center',
-    borderRadius: '50%',
-    overflow: 'hidden',
   },
 };
 
@@ -95,17 +90,19 @@ const OpenPeepsAvatar = withStyles(theme => ({
   showcaseWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    height: '-webkit-fill-available',
     cursor: 'pointer',
-    '& div': {
-      width: ({ size }) => size,
-      height: ({ size }) => size,
-      [theme.breakpoints.up('md')]: {
-        width: ({ size, mdSize }) => mdSize ?? size,
-        height: ({ size, mdSize }) => mdSize ?? size,
-      },
-      backgroundColor: getBackgroundColor,
+    alignSelf: 'center',
+    borderRadius: '50%',
+    overflow: 'hidden',
+    backgroundColor: getBackgroundColor,
+
+    width: ({ size }) => size,
+    height: ({ size }) => size,
+    [theme.breakpoints.up('md')]: {
+      width: ({ size, mdSize }) => mdSize ?? size,
+      height: ({ size, mdSize }) => mdSize ?? size,
     },
+
     '& svg': {
       width: ({ size }) => size,
       height: ({ size }) => size,
@@ -124,15 +121,12 @@ const OpenPeepsAvatar = withStyles(theme => ({
   // eslint-disable-next-line no-unused-vars
 }))(({ className, classes, avatarData, size, mdSize, ...rest }) => {
   return (
-    <div className={className} {...rest}>
-      <div className={classes.showcaseWrapper}>
-        <Peep
-          {...omit(avatarData, ['backgroundColor'])}
-          style={peepsStyles.peepStyle}
-          circleStyle={peepsStyles.circleStyle}
-          strokeColor="#000"
-        />
-      </div>
+    <div className={`${className} ${classes.showcaseWrapper}`} {...rest}>
+      <Peep
+        {...omit(avatarData, ['backgroundColor'])}
+        style={peepsStyles.peepStyle}
+        strokeColor="#000"
+      />
     </div>
   );
 });
@@ -148,30 +142,28 @@ function Avatar({
   ...rest
 }) {
   const classes = useStyles({ size, mdSize, hasLink });
-  let avatarData;
-  let avatar;
-
-  if (user?.avatarType === 'OpenPeeps') {
+  const avatarData = useMemo(() => {
     try {
-      avatarData = validateAvatarData(
-        typeof user.avatarData === 'string'
-          ? JSON.parse(user.avatarData)
-          : user.avatarData
-      );
-      avatar = (
-        <OpenPeepsAvatar
-          className={className}
-          avatarData={avatarData}
-          size={size}
-          mdSize={mdSize}
-          {...rest}
-        />
-      );
+      return user?.avatarType === 'OpenPeeps'
+        ? sanitizeAvatarData(
+            typeof user.avatarData === 'string'
+              ? JSON.parse(user.avatarData)
+              : user.avatarData
+          )
+        : undefined;
     } catch {} // eslint-disable-line no-empty
-  }
+  }, [user?.avatarData, user?.avatarType]);
 
-  if (!avatar) {
-    avatar = (
+  let avatar =
+    user?.avatarType === 'OpenPeeps' ? (
+      <OpenPeepsAvatar
+        className={className}
+        avatarData={avatarData}
+        size={size}
+        mdSize={mdSize}
+        {...rest}
+      />
+    ) : (
       <img
         className={cx(classes.root, className)}
         src={user?.avatarUrl ? user.avatarUrl : NULL_USER_IMG}
@@ -179,7 +171,6 @@ function Avatar({
         {...rest}
       />
     );
-  }
 
   if (showLevel) {
     avatar = <LevelBadge level={user?.level}>{avatar}</LevelBadge>;

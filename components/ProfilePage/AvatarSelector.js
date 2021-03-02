@@ -228,7 +228,7 @@ function AvatarSelector({ avatarData, onChange }) {
         <ComponentInput
           key={type}
           pieceType={pieceType}
-          anchorEl={wrapperEl?.current}
+          anchorEl={() => wrapperEl.current}
           onChange={value => onChange(type, value)}
           selected={avatarData[type]}
           viewBox={viewBox}
@@ -244,7 +244,7 @@ function AvatarSelector({ avatarData, onChange }) {
       <ColorPicker
         selected={getBackgroundColor({ avatarData })}
         options={colorOptions}
-        anchorEl={wrapperEl?.current}
+        anchorEl={() => wrapperEl.current}
         onChange={value => onChange('backgroundColor', value)}
       />
     </div>

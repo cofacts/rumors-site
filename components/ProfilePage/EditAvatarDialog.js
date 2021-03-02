@@ -16,14 +16,7 @@ import AvatarSelector from './AvatarSelector';
 import crypto from 'crypto';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  avatarEditor: {
-    display: 'block',
-    width: 400,
-    [theme.breakpoints.up('md')]: {
-      width: 500,
-    },
-  },
+const useStyles = makeStyles({
   avatarPreview: {
     width: 150,
     margin: 'auto',
@@ -33,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 'unset',
     width: '25%',
   },
-}));
+});
 
 const EditAvatarDialogUserData = gql`
   fragment EditAvatarDialogUserData on User {
@@ -93,7 +86,9 @@ function EditAvatarDialog({ user, onClose = () => {} }) {
   const classes = useStyles();
 
   const [avatarType, setAvatarType] = useState(user.avatarType || 'OpenPeeps');
-  const [avatarData, setAvatarData] = useState(getInitialAvatarData(user));
+  const [avatarData, setAvatarData] = useState(() =>
+    getInitialAvatarData(user)
+  );
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -166,24 +161,20 @@ function EditAvatarDialog({ user, onClose = () => {} }) {
               }
             />
           </Tabs>
-          <div className={classes.avatarEditor}>
-            <div className={classes.avatarPreview}>
-              <Avatar
-                size={100}
-                user={{
-                  avatarType,
-                  avatarData,
-                  avatarUrl: getAvatarUrl(user, avatarType),
-                }}
-              />
-            </div>
-            {avatarType === 'OpenPeeps' ? (
-              <AvatarSelector
-                avatarData={avatarData}
-                onChange={setAvatarField}
-              />
-            ) : null}
+
+          <div className={classes.avatarPreview}>
+            <Avatar
+              size={100}
+              user={{
+                avatarType,
+                avatarData,
+                avatarUrl: getAvatarUrl(user, avatarType),
+              }}
+            />
           </div>
+          {avatarType === 'OpenPeeps' ? (
+            <AvatarSelector avatarData={avatarData} onChange={setAvatarField} />
+          ) : null}
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>{t`Cancel`}</Button>
