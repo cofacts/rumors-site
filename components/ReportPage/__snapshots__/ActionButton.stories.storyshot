@@ -9,7 +9,7 @@ exports[`Storyshots ReportPage/ActionButton Default 1`] = `
   }
 >
   <button
-    className="MuiButtonBase-root-1082 MuiButton-root-1053 MuiButton-outlined-1058 makeStyles-button"
+    className="MuiButtonBase-root-1155 MuiButton-root-1126 MuiButton-outlined-1131 makeStyles-button"
     disabled={false}
     onBlur={[Function]}
     onDragLeave={[Function]}
@@ -31,13 +31,13 @@ exports[`Storyshots ReportPage/ActionButton Default 1`] = `
     type="button"
   >
     <span
-      className="MuiButton-label-1054"
+      className="MuiButton-label-1127"
     >
       Action button text
       <Arrow>
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root-1085"
+          className="MuiSvgIcon-root-1158"
           focusable="false"
           viewBox="0 0 14 27"
         >
@@ -52,7 +52,7 @@ exports[`Storyshots ReportPage/ActionButton Default 1`] = `
     </span>
     <NoSsr>
       <span
-        className="MuiTouchRipple-root-1094"
+        className="MuiTouchRipple-root-1167"
       >
         <TransitionGroup
           childFactory={[Function]}
