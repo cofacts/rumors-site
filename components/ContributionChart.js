@@ -66,12 +66,6 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-  legendGroup: {
-    display: 'block',
-    position: 'relative',
-    top: '-40px',
-    textAlign: 'right',
-  },
   legends: {
     overflow: 'visible',
   },
