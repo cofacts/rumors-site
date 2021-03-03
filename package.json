@@ -46,6 +46,7 @@
     "react": "^16.8.6",
     "react-calendar-heatmap": "^1.8.1",
     "react-dom": "^16.8.6",
+    "react-peeps": "^0.1.10",
     "react-spring": "^8.0.27",
     "react-virtualized-auto-sizer": "^1.0.2",
     "rollbar": "^2.14.4",

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, SvgIcon, Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
+import Avatar from 'components/AppLayout/Widgets/Avatar';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -17,9 +18,6 @@ const useStyles = makeStyles(theme => ({
   },
   reason: {
     marginTop: 0,
-  },
-  userIcon: {
-    fontSize: 40,
   },
   vote: {
     borderRadius: 45,
@@ -57,8 +55,14 @@ const ReplyRequestInfo = gql`
     reason
     positiveFeedbackCount
     negativeFeedbackCount
+
+    user {
+      name
+      ...AvatarData
+    }
   }
   ${ReplyRequestInfoForUser}
+  ${Avatar.fragments.AvatarData}
 `;
 
 const UPDATE_VOTE = gql`
@@ -73,12 +77,6 @@ const UPDATE_VOTE = gql`
   ${ReplyRequestInfo}
 `;
 
-const UserIcon = props => (
-  <SvgIcon {...props} viewBox="0 0 41 42">
-    <path d="M20.4167 0.800049C9.34879 0.800049 0 10.1488 0 21.2167C0 32.2846 9.34879 41.6334 20.4167 41.6334C31.4845 41.6334 40.8333 32.2846 40.8333 21.2167C40.8333 10.1488 31.4845 0.800049 20.4167 0.800049ZM20.4167 11.0084C23.9426 11.0084 26.5417 13.6054 26.5417 17.1334C26.5417 20.6614 23.9426 23.2584 20.4167 23.2584C16.8927 23.2584 14.2917 20.6614 14.2917 17.1334C14.2917 13.6054 16.8927 11.0084 20.4167 11.0084ZM9.99192 30.9595C11.8233 28.2645 14.8776 26.4679 18.375 26.4679H22.4583C25.9577 26.4679 29.01 28.2645 30.8414 30.9595C28.2322 33.7525 24.5306 35.5084 20.4167 35.5084C16.3027 35.5084 12.6012 33.7525 9.99192 30.9595Z" />
-  </SvgIcon>
-);
-
 function ReplyRequestReason({ replyRequest }) {
   const {
     id: replyRequestId,
@@ -86,6 +84,7 @@ function ReplyRequestReason({ replyRequest }) {
     positiveFeedbackCount,
     negativeFeedbackCount,
     ownVote,
+    user,
   } = replyRequest;
 
   const [voteReason, { loading }] = useMutation(UPDATE_VOTE);
@@ -100,7 +99,7 @@ function ReplyRequestReason({ replyRequest }) {
   return (
     <div className={classes.root}>
       <Box color="primary.main" pr={2}>
-        <UserIcon className={classes.userIcon} />
+        <Avatar user={user} size={40} />
       </Box>
       <Box flex={1} className={classes.reasonBody}>
         <p className={classes.reason}>{replyRequestReason}</p>
