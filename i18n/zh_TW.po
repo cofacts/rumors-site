@@ -1082,7 +1082,7 @@ msgstr ""
 "${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
 "bot ${ LINE_URL } 。"
 
-#: pages\about.js:238
+#: pages\about.js:239
 msgid "What is Cofacts"
 msgstr ""
 
@@ -1114,19 +1114,19 @@ msgstr ""
 msgid "More"
 msgstr "了解更多"
 
-#: components\ReportPage\SectionInfluence.js:93
+#: components\ReportPage\SectionInfluence.js:94
 msgid "Community Influence"
 msgstr "社群影響力"
 
-#: components\ReportPage\SectionFeatures.js:145
+#: components\ReportPage\SectionFeatures.js:146
 msgid "Features of Cofacts"
 msgstr "Cofacts 特色"
 
-#: components\ReportPage\SectionFeatures.js:150
+#: components\ReportPage\SectionFeatures.js:151
 msgid "Notification"
 msgstr "新回應通知"
 
-#: components\ReportPage\SectionFeatures.js:151
+#: components\ReportPage\SectionFeatures.js:152
 msgid ""
 "An exclusive service keeps users from repeating requests and provides \n"
 "immediate information about false messages in the previous queries."
@@ -1134,7 +1134,7 @@ msgstr ""
 "Cofacts 會記得你問過Cofacts LINE bot 的訊息，記性不好沒關係。只要有新的回應，Cofacts 就會自動用 LINE "
 "推播通知你。這個功能目前只有 Cofacts 才有唷！"
 
-#: components\ReportPage\SectionFeatures.js:164
+#: components\ReportPage\SectionFeatures.js:165
 msgid "AI tagging"
 msgstr "AI 標記"
 
@@ -1308,7 +1308,7 @@ msgstr ""
 msgid "Share to Facebook"
 msgstr ""
 
-#: components\ReportPage\SectionInfluence.js:104
+#: components\ReportPage\SectionInfluence.js:105
 msgid ""
 "External and internal propaganda have caused the people to lose their trust "
 "in media and information. \n"
@@ -1341,11 +1341,11 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 msgid "Super EASY"
 msgstr "參與超簡單"
 
-#: components\ReportPage\SectionFeatures.js:156
+#: components\ReportPage\SectionFeatures.js:157
 msgid "Personal fact-check contribution"
 msgstr "個人查核貢獻"
 
-#: components\ReportPage\SectionFeatures.js:157
+#: components\ReportPage\SectionFeatures.js:158
 msgid ""
 "Volunteers would login Cofacts and fact-check the suspicious messages. \n"
 "What fact-checkers have replied and commented would be transparent \n"
@@ -1366,7 +1366,7 @@ msgid ""
 "weekly to maintain the project's dynamic."
 msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
 
-#: components\ReportPage\SectionFeatures.js:165
+#: components\ReportPage\SectionFeatures.js:166
 msgid ""
 "Cofacts has catagorized misinformation via topics automartically, making \n"
 "different expertises focus on their professinal fields.Such and COVID-19, \n"
@@ -1376,7 +1376,7 @@ msgstr ""
 "將假訊息依照「議題」自動分類，讓不同專長的闢謠編輯，可以聚焦在自己擅長的領域。新回報訊息究竟是有關交通法規、政治攻防、COVID-19 "
 "還是免費貼圖詐騙，就讓 AI 來分辨。"
 
-#: components\ReportPage\SectionFeatures.js:173
+#: components\ReportPage\SectionFeatures.js:174
 msgid ""
 "Cofacts has provided API connecting instruction, fact-checking system \n"
 "since 2016.This achievement leads the combating misinformation ecosystem. \n"
@@ -1385,6 +1385,141 @@ msgid ""
 msgstr ""
 "2016 年起將 chatbot 導入事實查核領域、並提供 API "
 "介接教學，在此領域激起了典範轉移，專業查核組織開始推出自己的chatbot，也有第三方查詢機器人前來介接 Cofacts 資料。"
+
+#: pages\about.js:246
+msgid ""
+"Cofacts is an information checking platform operated through \n"
+"crowd collaboration and chatbot to have discrete messages of \n"
+"unknown credibility carefully reviewed and discussed through \n"
+"the joint efforts of the public. Cofacts can respond to users' \n"
+"questions and requests 24/7 via chatbot. Our website displays \n"
+"all the information collected, and each selfless volunteer contributor \n"
+"can check out on their own results."
+msgstr ""
+"Cofacts 真的假的 "
+"是一個透過群眾協作以及聊天機器人來做事實查核的可疑訊息查證平台，讓每一個不確定真假的訊息，都能透過群眾的共同努力，被好好檢視跟查核討論。 "
+"Cofacts 真的假的 透過聊天機器人能 24 "
+"小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
+
+#: pages\about.js:255
+msgid ""
+"Cofacts is a citizen-initiated platform that is not affiliated \n"
+"to any political party or politicians. It opens the results to \n"
+"everyone and encourage crowd collaboration that people contribute \n"
+"their own skills to build a chatbot fact-checking for everyone."
+msgstr ""
+"Cofacts "
+"是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊息的方法。"
+
+#: pages\about.js:267
+msgid "In what scenarios can Cofacts help you?"
+msgstr "Cofacts 在什麼時候能幫上忙？"
+
+#: pages\about.js:278
+msgid "You want to do research on false information."
+msgstr "想做不實訊息的研究"
+
+#: pages\about.js:286
+msgid ""
+"You want to help elders or friends \n"
+"who can't fact-check information. \n"
+"Fact-checking one piece of \n"
+"information after another is too slow, \n"
+"so let the chatbot check them for you!"
+msgstr "想幫助不會查證訊息的長輩或朋友？"
+
+#: pages\about.js:271
+msgid ""
+"You think that the messages you \n"
+"received may be fake"
+msgstr ""
+"想知道看起來很可疑的 \n"
+" 訊息是真是假？"
+
+#: pages\about.js:296
+msgid ""
+"You would like to absorb novel knowledge\n"
+"and see what topics are popular recently"
+msgstr ""
+"想看看最近大家都在 \n"
+" 討論什麼話題？"
+
+#: pages\about.js:319
+msgid ""
+"Cofacts is committed to providing a simple solution \n"
+"to help frontline news media workers fact-check and \n"
+"journalists focus on their profession."
+msgstr "提供方便工具幫助第一線查核可疑訊息，幫助相關媒體、教育人士，專注發揮所長，識別假訊息讓謠言止於智者。"
+
+#: pages\about.js:328
+msgid ""
+"We promote the process of interacting with chatbot that \n"
+"protects your privacy, prevents leaks of your questions and \n"
+"requests, and ensures your confusion, concerns and insecurity \n"
+"about asking \"stupid\" questions to be treated well at any time."
+msgstr "從平台的每一行程式碼，到查核回復都是公開平等給大眾，每一個人都可以貢獻，每一個人的查核意見也不受它限制。"
+
+#: pages\about.js:338
+msgid ""
+"Cofacts leads in media literacy education and fact-checking \n"
+"skills training. We encourage every individual to do research \n"
+"on information and face misinformation with an active attitude."
+msgstr "帶動媒體識讀教育與事實查核的能力，鼓勵人人做研究，一同討論各方意見，正面面對不實訊息。"
+
+#: pages\about.js:346
+msgid "How Cofacts was born"
+msgstr "Cofacts 怎麼誕生的？"
+
+#: pages\about.js:348
+msgid ""
+"The core idea of this project is to make diverse voices easier \n"
+"to be listened to. We believe that fact-checking contents \n"
+"corresponding to rumors on the Internet, personal opinions and \n"
+"following reply articles are all \"diverse voices\". A person may \n"
+"believe online rumors because they have not been exposed to diverse \n"
+"voices, or are unwilling to reach to different voices. However, \n"
+"even if a person is willing to reach diverse voices, the threshold \n"
+"for actions remains very high."
+msgstr ""
+"這個專案最核心的想法，就是希望讓「不同的聲音」更容易被看見。網路謠言相對應的闢謠文章、以及個人意見與相對應得「回覆」文，都是一種「不同的聲音」。一個人會"
+"去相信網路謠言，或許是因為他沒有接觸過不同的聲音，或不願意去接觸不同的聲音。只是，即使一個人樂意接觸不同的聲音，其實門檻還是很高的。"
+
+#: pages\about.js:358
+msgid ""
+"On the other hand, for people who are used to fact-checking online \n"
+"news, checking all of suspicious LINE messages they receive is very \n"
+"time-consuming. Collaborative fact-checking database is like a jointly \n"
+"edited note. You can leave a response to whatever you fact-check \n"
+"and review in the note, so that when others receive the same message \n"
+"and want to check it, they do not have to start from scratch. Therefore, \n"
+"for people who are accustomed to and willing to do fact-checking \n"
+"and embrace diverse voices, a collaborative rumor-defying database \n"
+"can help them avoid repeated, consuming process."
+msgstr ""
+"對於已經習慣於查證網路消息的人們而言。若在收到每一種轉傳來的 LINE "
+"訊息之後，都要自己花時間一筆一筆查證，會非常地花時間。協作型闢謠資料庫就像是個共筆，大家查到什麼就寫成回應放進去，之後收到同一訊息的人如果也想要查證，就"
+"不用從零開始。因此，對於已經習慣也願意查證、擁抱「不同的聲音」的人，協作型闢謠資料庫能幫這些人少走很多冤枉路。"
+
+#: pages\about.js:370
+msgid "Who we are"
+msgstr "我們是誰？"
+
+#: pages\about.js:372
+msgid ""
+"Cofacts is one of the projects initiated in g0v, a Taiwanese \n"
+"civic technology community, which encourages open source code, \n"
+"collaboration and open data. In 2016, the initiator proposed to \n"
+"develop the main program of the chatbot. With each volunteer's \n"
+"active and enthusiastic contributions in copywriting, developing, \n"
+"fact-checking, and designing, the project has been gradually \n"
+"accumulating results. Further, the value of the project is to \n"
+"encourage citizens to actively contribute to public affairs, and \n"
+"keep the positive, great ideas and energy continuously influencing \n"
+"our society."
+msgstr ""
+"Cofacts 是台灣公民科技社群 g0v "
+"的其中一個專案，鼓勵開放原始碼、群眾協作。團隊成員，包含發起人在內，都是在正職工作之餘參加這個專案，憑藉著大家自主熱心的貢獻，有人寫文案、有人寫程式、有"
+"人查證謠言、有人製圖設計，慢慢開發出的成果。每個人都是自發性地盡一己之力，貢獻到公眾領域。"
 
 #: pages\index.js:41
 msgctxt "site title"

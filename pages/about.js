@@ -82,7 +82,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 18,
     lineHeight: 1.55,
     letterSpacing: 0.5,
-    whiteSpace: 'pre-line',
+    textAlign: 'justify',
 
     [theme.breakpoints.down('sm')]: {
       fontSize: 10,
@@ -147,6 +147,7 @@ const useStyles = makeStyles(theme => ({
   },
   whenItemTitle: {
     textAlign: 'center',
+    whiteSpace: 'pre-line',
   },
   howToUseButton: {
     fontSize: 24,
@@ -242,17 +243,19 @@ const TutorialPage = () => {
         <section className={classes.info}>
           {/* TODO: translate */}
           <p>
-            Cofacts 真的假的
-            是一個透過群眾協作以及聊天機器人來做事實查核的可疑訊息查證平台，
-            讓每一個不確定真假的訊息，都能透過群眾的共同努力，被好好檢視跟查核討論。
-            我們透過聊天機器人能 24 小時，不間斷地回應使用者疑惑的可疑訊息；
-            另一方面，我們的網站平台呈現所有被收錄的訊息，
-            每一位無私貢獻的志工都能查核表達自己的看法。
+            {t`Cofacts is an information checking platform operated through 
+            crowd collaboration and chatbot to have discrete messages of 
+            unknown credibility carefully reviewed and discussed through 
+            the joint efforts of the public. Cofacts can respond to users' 
+            questions and requests 24/7 via chatbot. Our website displays 
+            all the information collected, and each selfless volunteer contributor 
+            can check out on their own results.`}
           </p>
           <p>
-            Cofacts 是一個公民發起的平台，不隸屬於任何政黨或是政治人物，
-            成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，
-            讓機器人可以為您查證不實訊息的方法。
+            {t`Cofacts is a citizen-initiated platform that is not affiliated 
+            to any political party or politicians. It opens the results to 
+            everyone and encourage crowd collaboration that people contribute 
+            their own skills to build a chatbot fact-checking for everyone.`}
           </p>
         </section>
         <section className={classes.how}>
@@ -261,18 +264,18 @@ const TutorialPage = () => {
           <LineTutorial />
         </section>
         <section className={classes.when}>
-          {/* TODO: translate */}
-          <h3>Cofacts 在什麼時候能幫上忙？</h3>
+          <h3> {t`In what scenarios can Cofacts help you?`}</h3>
           <div className={classes.row}>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                {`想知道看起來很可疑的 \n 訊息是真是假？`}
+                {t`You think that the messages you 
+                received may be fake`}
               </div>
               <img className={classes.colImage} src={fakeMessageImg} />
             </div>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                想做不實訊息的研究？
+                {t`You want to do research on false information.`}
               </div>
               <img className={classes.colImage} src={researchImg} />
             </div>
@@ -280,13 +283,18 @@ const TutorialPage = () => {
           <div className={classes.row}>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                {`想幫助不會查證訊息的 \n 長輩或朋友？`}
+                {t`You want to help elders or friends 
+                who can't fact-check information. 
+                Fact-checking one piece of 
+                information after another is too slow, 
+                so let the chatbot check them for you!`}
               </div>
               <img className={classes.colImage} src={parentImg} />
             </div>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                {`想看看最近大家都在 \n 討論什麼話題？`}
+                {t`You would like to absorb novel knowledge
+                and see what topics are popular recently`}
               </div>
               <img className={classes.colImage} src={discussImg} />
             </div>
@@ -308,53 +316,69 @@ const TutorialPage = () => {
               <img className={classes.colImage} src={immediateImg} />
               <div className={classes.colTitle}>即時工具</div>
               <div className={classes.colContent}>
-                提供方便工具幫助第一線查核可疑訊息，幫助相關媒體、教育人士，專注發揮所長，識別假訊息讓謠言止於智者。
+                {t`Cofacts is committed to providing a simple solution 
+                to help frontline news media workers fact-check and 
+                journalists focus on their profession.`}
               </div>
             </div>
             <div className={cx(classes.col, classes.coreValueItem)}>
               <img className={classes.colImage} src={freedomImg} />
               <div className={classes.colTitle}>自由開放</div>
               <div className={classes.colContent}>
-                從平台的每一行程式碼，到查核回復都是公開平等給大眾，每一個人都可以貢獻，每一個人的查核意見也不受它限制。
+                {t`We promote the process of interacting with chatbot that 
+                protects your privacy, prevents leaks of your questions and 
+                requests, and ensures your confusion, concerns and insecurity 
+                about asking "stupid" questions to be treated well at any time.`}
               </div>
             </div>
             <div className={cx(classes.col, classes.coreValueItem)}>
               <img className={classes.colImage} src={mediaImg} />
               <div className={classes.colTitle}>媒體識讀</div>
               <div className={classes.colContent}>
-                帶動媒體識讀教育與事實查核的能力，鼓勵人人做研究，一同討論各方意見，正面面對不實訊息。
+                {t`Cofacts leads in media literacy education and fact-checking 
+                skills training. We encourage every individual to do research 
+                on information and face misinformation with an active attitude.`}
               </div>
             </div>
           </div>
         </section>
         <section className={classes.birth}>
-          {/* TODO: translate */}
-          <h3>Cofacts 怎麼誕生的？</h3>
+          <h3>{t`How Cofacts was born`}</h3>
           <p>
-            這個專案最核心的想法，就是希望讓「不同的聲音」更容易被看見。
-            網路謠言相對應的闢謠文章、以及個人意見與相對應得「回覆」文，都是一種「不同的聲音」。
-            一個人會去相信網路謠言，或許是因為他沒有接觸過不同的聲音，或不願意去接觸不同的聲音。
-            只是，即使一個人樂意接觸不同的聲音，其實門檻還是很高的。
+            {t`The core idea of this project is to make diverse voices easier 
+            to be listened to. We believe that fact-checking contents 
+            corresponding to rumors on the Internet, personal opinions and 
+            following reply articles are all "diverse voices". A person may 
+            believe online rumors because they have not been exposed to diverse 
+            voices, or are unwilling to reach to different voices. However, 
+            even if a person is willing to reach diverse voices, the threshold 
+            for actions remains very high.`}
           </p>
           <p>
-            對於已經習慣於查證網路消息的人們而言。若在收到每一種轉傳來的 LINE
-            訊息之後，都要自己花時間一筆一筆查證，會非常地花時間。
-            協作型闢謠資料庫就像是個共筆，大家查到什麼就寫成回應放進去，
-            之後收到同一訊息的人如果也想要查證，就不用從零開始。
-            因此，對於已經習慣也願意查證、擁抱「不同的聲音」的人，
-            協作型闢謠資料庫能幫這些人少走很多冤枉路。
+            {t`On the other hand, for people who are used to fact-checking online 
+            news, checking all of suspicious LINE messages they receive is very 
+            time-consuming. Collaborative fact-checking database is like a jointly 
+            edited note. You can leave a response to whatever you fact-check 
+            and review in the note, so that when others receive the same message 
+            and want to check it, they do not have to start from scratch. Therefore, 
+            for people who are accustomed to and willing to do fact-checking 
+            and embrace diverse voices, a collaborative rumor-defying database 
+            can help them avoid repeated, consuming process.`}
           </p>
         </section>
         <section className={classes.whoWeAre}>
-          {/* TODO: translate */}
-          <h3>我們是誰？</h3>
+          <h3>{t`Who we are`}</h3>
           <p>
-            Cofacts 是台灣公民科技社群 g0v
-            的其中一個專案，鼓勵開放原始碼、群眾協作。
-            團隊成員，包含發起人在內，都是在正職工作之餘參加這個專案，
-            憑藉著大家自主熱心的貢獻，有人寫文案、有人寫程式、
-            有人查證謠言、有人製圖設計，慢慢開發出的成果。
-            每個人都是自發性地盡一己之力，貢獻到公眾領域。
+            {t`Cofacts is one of the projects initiated in g0v, a Taiwanese 
+            civic technology community, which encourages open source code, 
+            collaboration and open data. In 2016, the initiator proposed to 
+            develop the main program of the chatbot. With each volunteer's 
+            active and enthusiastic contributions in copywriting, developing, 
+            fact-checking, and designing, the project has been gradually 
+            accumulating results. Further, the value of the project is to 
+            encourage citizens to actively contribute to public affairs, and 
+            keep the positive, great ideas and energy continuously influencing 
+            our society.`}
           </p>
         </section>
       </div>
