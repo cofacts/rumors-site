@@ -47,8 +47,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       height: 110,
       background: `url(${bgBottomMobile})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'bottom center',
       marginTop: 30,
     },
   },
