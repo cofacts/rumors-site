@@ -1219,6 +1219,7 @@ msgstr ""
 "協助你得到查核報告"
 
 #: components\ReportPage\SectionHowToUse.js:134
+msgctxt "impact"
 msgid "More"
 msgstr "了解更多"
 

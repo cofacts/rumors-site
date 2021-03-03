@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 
 import SectionTitle from './SectionTitle';
 import HowToUseItem from './HowToUseItem';
@@ -131,7 +131,7 @@ const SectionHowToUse = () => {
       </div>
       <Link href="/about" passHref>
         <ActionButton style={{ color: '#fff' }} theme="dark">
-          {t`More`}
+          {c('impact').t`More`}
         </ActionButton>
       </Link>
     </section>
