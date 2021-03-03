@@ -16,7 +16,9 @@ import LevelIcon from 'components/LevelIcon';
 import LevelProgressBar from 'components/AppLayout/Widgets/LevelProgressBar';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import Stats from './Stats';
+import EditIcon from '@material-ui/icons/Edit';
 import EditProfileDialog from './EditProfileDialog';
+import EditAvatarDialog from './EditAvatarDialog';
 
 import cx from 'clsx';
 
@@ -77,7 +79,67 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     lineClamp: 2,
   },
+  avatarWrapper: {
+    cursor: 'pointer',
+    position: 'relative',
+
+    '& .overlay': {
+      width: 100,
+      height: 100,
+      position: 'absolute',
+      borderRadius: '50%',
+      display: 'inline-block',
+      left: 0,
+      top: 0,
+      [theme.breakpoints.down('sm')]: {
+        width: 60,
+        height: 60,
+      },
+    },
+    '&:hover .overlay': {
+      background: 'rgba(0,0,0,0.2)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 15,
+    },
+  },
   editButton: { borderRadius: 15 },
+  editAvatarButton: {
+    display: 'flex',
+    position: 'relative',
+    left: 43,
+    top: -25,
+    background: 'white',
+    borderRadius: '50%',
+    width: 20,
+    height: 20,
+    [theme.breakpoints.up('md')]: {
+      left: 77,
+      top: -30,
+      width: 24,
+      height: 24,
+    },
+  },
+  editIcon: {
+    '& svg': {
+      fontSize: 16,
+      padding: 2,
+      [theme.breakpoints.up('md')]: {
+        fontSize: 20,
+        padding: 2,
+      },
+    },
+    background: '#d3d3d3',
+    borderRadius: '50%',
+    height: 16,
+    margin: 'auto',
+    width: 16,
+    color: '#222',
+    [theme.breakpoints.up('md')]: {
+      width: 20,
+      height: 20,
+    },
+  },
   progress: {
     marginTop: 8,
     display: 'flex',
@@ -122,6 +184,7 @@ const useStyles = makeStyles(theme => ({
 function UserPageHeader({ user, isSelf, stats }) {
   const classes = useStyles();
   const [isEditDialogOpen, setEditDialogOpen] = useState(false);
+  const [isEditAvatarDialogOpen, setEditAvatarDialogOpen] = useState(false);
 
   const editButtonElem = isSelf && (
     <Button
@@ -132,6 +195,24 @@ function UserPageHeader({ user, isSelf, stats }) {
     >
       {t`Edit`}
     </Button>
+  );
+
+  const avatarWrapper = (
+    <div className={classes.avatarWrapper}>
+      {isSelf ? (
+        <span onClick={() => setEditAvatarDialogOpen(true)}>
+          <Avatar user={user} size={60} mdSize={100} />
+          <div className="overlay"></div>
+          <div className={classes.editAvatarButton}>
+            <div className={classes.editIcon}>
+              <EditIcon />
+            </div>
+          </div>
+        </span>
+      ) : (
+        <Avatar user={user} size={60} mdSize={100} />
+      )}
+    </div>
   );
 
   const isChatbotUser = user.appId === COFACTS_CHATBOT_ID;
@@ -155,12 +236,12 @@ function UserPageHeader({ user, isSelf, stats }) {
 
       <div className={classes.content}>
         <Hidden implementation="css" smDown>
-          <Avatar user={user} size={100} />
+          {avatarWrapper}
         </Hidden>
         <div className={classes.info}>
           <div className={classes.nameSection}>
             <Hidden implementation="css" mdUp>
-              <Avatar user={user} size={60} style={{ marginRight: 12 }} />
+              {avatarWrapper}
             </Hidden>
             <Typography variant="h6" className={classes.name}>
               {user.name}
@@ -189,7 +270,7 @@ function UserPageHeader({ user, isSelf, stats }) {
 
         <aside className={classes.aside}>
           <Hidden implementation="css" smDown>
-            {isSelf && editButtonElem}
+            {editButtonElem}
           </Hidden>
           <Stats stats={stats} />
         </aside>
@@ -200,6 +281,15 @@ function UserPageHeader({ user, isSelf, stats }) {
           <EditProfileDialog
             user={user}
             onClose={() => setEditDialogOpen(false)}
+          />
+        </ThemeProvider>
+      )}
+
+      {isEditAvatarDialogOpen && (
+        <ThemeProvider theme={lightTheme}>
+          <EditAvatarDialog
+            userId={user.id}
+            onClose={() => setEditAvatarDialogOpen(false)}
           />
         </ThemeProvider>
       )}
@@ -217,6 +307,7 @@ exported.fragments = {
       bio
       level
       appId
+
       points {
         total
         nextLevel
