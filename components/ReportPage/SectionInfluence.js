@@ -40,13 +40,13 @@ const useStyles = makeStyles(theme => ({
     zIndex: -1,
     height: 0,
     paddingTop: '18%',
-    background: `url(${bgBottom})`,
+    backgroundImage: `url(${bgBottom})`,
     backgroundSize: 'cover',
     backgroundPosition: 'bottom center',
 
     [theme.breakpoints.down('xs')]: {
       height: 110,
-      background: `url(${bgBottomMobile})`,
+      backgroundImage: `url(${bgBottomMobile})`,
       marginTop: 30,
     },
   },
