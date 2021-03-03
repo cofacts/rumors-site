@@ -42,7 +42,7 @@ exports[`Storyshots Avatar Normal 1`] = `
         size={40}
       >
         <div
-          className="undefined Component-showcaseWrapper Component-showcaseWrapper"
+          className="Component-showcaseWrapper Component-showcaseWrapper"
         >
           <Peep
             accessory="None"
@@ -233,7 +233,7 @@ exports[`Storyshots Avatar Normal 1`] = `
             size={42}
           >
             <div
-              className="undefined Component-showcaseWrapper Component-showcaseWrapper"
+              className="Component-showcaseWrapper Component-showcaseWrapper"
             >
               <Peep
                 accessory="None"
@@ -449,7 +449,7 @@ exports[`Storyshots Avatar Normal 1`] = `
         size={60}
       >
         <div
-          className="undefined Component-showcaseWrapper Component-showcaseWrapper"
+          className="Component-showcaseWrapper Component-showcaseWrapper"
         >
           <Peep
             accessory="GlassButterfly"
@@ -650,7 +650,7 @@ exports[`Storyshots Avatar Normal 1`] = `
             size={60}
           >
             <div
-              className="undefined Component-showcaseWrapper Component-showcaseWrapper"
+              className="Component-showcaseWrapper Component-showcaseWrapper"
             >
               <Peep
                 accessory="GlassButterfly"
@@ -864,7 +864,7 @@ exports[`Storyshots Avatar Normal 1`] = `
         size={40}
       >
         <div
-          className="undefined Component-showcaseWrapper Component-showcaseWrapper"
+          className="Component-showcaseWrapper Component-showcaseWrapper"
         >
           <Peep
             accessory="GlassButterfly"

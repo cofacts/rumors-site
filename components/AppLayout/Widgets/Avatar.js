@@ -121,7 +121,7 @@ const OpenPeepsAvatar = withStyles(theme => ({
   // eslint-disable-next-line no-unused-vars
 }))(({ className, classes, avatarData, size, mdSize, ...rest }) => {
   return (
-    <div className={`${className} ${classes.showcaseWrapper}`} {...rest}>
+    <div className={cx(className, classes.showcaseWrapper)} {...rest}>
       <Peep
         {...omit(avatarData, ['backgroundColor'])}
         style={peepsStyles.peepStyle}
