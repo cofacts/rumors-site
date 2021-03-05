@@ -7,22 +7,15 @@ import {
   SectionHowToUse,
   SectionInfluence,
   SectionEcosystem,
+  SectionTower,
   SectionFeatures,
   SectionOriginalFeatures,
   SectionSponsor,
 } from 'components/ReportPage';
 
-import bannerImage from 'components/ReportPage/images/banner.png';
 import introBg from 'components/ReportPage/images/intro-bg.png';
 
 const useStyles = makeStyles(theme => ({
-  banner: {
-    width: '100%',
-    height: 830,
-    background: `url(${bannerImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
   intro: {
     background: `url(${introBg})`,
     backgroundSize: 'cover',
@@ -71,21 +64,22 @@ const Report = () => {
         <section className={classes.intro}>
           <h4>{t`Individual strengths converge to exert the greatest power`}</h4>
           <p>
-            {t`Cofacts is the earliest-developed fact-checking chatbot. The project was 
-            launched in 2016 by the engineers, proposed to the civic tech community, 
-            and accomplished by a group of volunteers. The team members meet up 
+            {t`Cofacts is the earliest-developed fact-checking chatbot. The project was
+            launched in 2016 by the engineers, proposed to the civic tech community,
+            and accomplished by a group of volunteers. The team members meet up
             weekly to maintain the project's dynamic.`}
           </p>
           <p>
-            {t`At present, there have been more than 40,000 verified pieces of content in 
-            our database. Before the open source community burns out, through 
-            investing human and other resources, the project is to reverse harms to 
+            {t`At present, there have been more than 40,000 verified pieces of content in
+            our database. Before the open source community burns out, through
+            investing human and other resources, the project is to reverse harms to
             democracy and society caused by misinformation.`}
           </p>
         </section>
         <SectionHowToUse />
         <SectionInfluence />
         <SectionEcosystem />
+        <SectionTower />
         <SectionFeatures />
         <SectionSponsor />
         <SectionOriginalFeatures />
