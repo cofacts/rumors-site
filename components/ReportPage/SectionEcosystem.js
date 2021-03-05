@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'next/link';
 import Box from '@material-ui/core/Box';
 
@@ -39,6 +39,24 @@ const useStyles = makeStyles(theme => ({
   shadow: {
     filter: 'drop-shadow(0px 0px 57px #67227E)',
   },
+  stats: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    listStyleType: 'none',
+    padding: '48px 32px',
+    margin: '0 auto',
+    width: '100%',
+    maxWidth: 1024,
+    gap: '24px',
+    '& > li': {
+      padding: 0,
+      margin: 0,
+    },
+    [theme.breakpoints.up('md')]: {
+      gap: '80px',
+      padding: '80px 0',
+    },
+  },
   empowerTitle: {
     margin: '80px 0 16px',
     [theme.breakpoints.up('md')]: {
@@ -51,6 +69,34 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 604,
     textAlign: 'justify',
     letterSpacing: 0.2,
+  },
+}));
+
+const StatName = styled('div')(({ theme }) => ({
+  fontWeight: 700,
+  fontSize: 13,
+  color: '#fffefa',
+  [theme.breakpoints.up('md')]: {
+    fontSize: 24,
+  },
+}));
+
+const StatValue = styled('span')(({ theme }) => ({
+  color: '#ffb500',
+  fontWeight: 300,
+  fontSize: 36,
+  lineHeight: 1,
+
+  [theme.breakpoints.up('md')]: {
+    fontSize: 96,
+  },
+}));
+
+const StatUnit = styled('span')(({ theme }) => ({
+  color: '#ffb500',
+  fontSize: 13,
+  [theme.breakpoints.up('md')]: {
+    fontSize: 35,
   },
 }));
 
@@ -71,6 +117,41 @@ function SectionEcosystem() {
             並且開源與其他開發者分享。`}
           </p>
         </Box>
+
+        <ul className={classes.stats}>
+          <li>
+            <StatName>資料收錄</StatName>
+            <StatValue>47,000</StatValue>
+          </li>
+          <li>
+            <StatName>完成查核數</StatName>
+            <StatValue>44,000</StatValue>
+          </li>
+          <li>
+            <StatName>上線編輯</StatName>
+            <StatValue>10</StatValue>
+            <StatUnit>名 / 週</StatUnit>
+          </li>
+          <li>
+            <StatName>新增回應</StatName>
+            <StatValue>17,000</StatValue>
+            <StatUnit>次 / 年</StatUnit>
+          </li>
+          <li>
+            <StatValue style={{ lineHeight: 1.3 }}>每 2 個月</StatValue>
+            <StatName>志工實體聚會</StatName>
+          </li>
+          <li>
+            <StatName>Pageviews</StatName>
+            <StatValue>10,000,000</StatValue>
+            <StatUnit>次 / 年</StatUnit>
+          </li>
+          <li>
+            <StatName>機器人自動回應</StatName>
+            <StatValue>100,000,000</StatValue>
+            <StatUnit>次 / 年</StatUnit>
+          </li>
+        </ul>
 
         <Box textAlign="center">
           <Link href="/" passHref>
