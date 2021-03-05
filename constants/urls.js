@@ -18,3 +18,8 @@ export const USER_AGREEMENT_URL =
 // https://developers.facebook.com/docs/sharing/reference/share-dialog#redirect
 export const FACEBOOK_SHARE_URL_PREFIX =
   'https://www.facebook.com/dialog/share?app_id=719656818195367&display=popup';
+
+export const DONATION_URL =
+  process.env.LOCALE === 'en_US'
+    ? 'https://ocf.tw/en/p/cofacts/'
+    : 'https://ocf.tw/p/cofacts/';
