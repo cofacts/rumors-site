@@ -121,35 +121,35 @@ function SectionEcosystem() {
         <ul className={classes.stats}>
           <li>
             <StatName>資料收錄</StatName>
-            <StatValue>47,000</StatValue>
+            <StatValue>45,600</StatValue>
           </li>
           <li>
             <StatName>完成查核數</StatName>
-            <StatValue>44,000</StatValue>
+            <StatValue>45,000</StatValue>
           </li>
           <li>
             <StatName>上線編輯</StatName>
             <StatValue>10</StatValue>
-            <StatUnit>名 / 週</StatUnit>
+            <StatUnit> 名 / 週</StatUnit>
           </li>
           <li>
             <StatName>新增回應</StatName>
-            <StatValue>17,000</StatValue>
-            <StatUnit>次 / 年</StatUnit>
+            <StatValue>15,000</StatValue>
+            <StatUnit> 篇 / 年</StatUnit>
           </li>
           <li>
             <StatValue style={{ lineHeight: 1.3 }}>每 2 個月</StatValue>
             <StatName>志工實體聚會</StatName>
           </li>
           <li>
-            <StatName>Pageviews</StatName>
+            <StatName>網站 PV</StatName>
             <StatValue>10,000,000</StatValue>
-            <StatUnit>次 / 年</StatUnit>
+            <StatUnit> 次 / 年</StatUnit>
           </li>
           <li>
             <StatName>機器人自動回應</StatName>
-            <StatValue>100,000,000</StatValue>
-            <StatUnit>次 / 年</StatUnit>
+            <StatValue>200,000</StatValue>
+            <StatUnit> 次 / 年</StatUnit>
           </li>
         </ul>
 
