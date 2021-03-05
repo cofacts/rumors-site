@@ -301,7 +301,6 @@ export const UpgradeDialogLayout = ({
             <div className={classes.bottomContent}>
               {stage <= 3 && (
                 <>
-                  {/* TODO: translate */}
                   <h3 className={classes.titleLg}>
                     {c('upgrade dialog').t`Congratulations!`}
                   </h3>
@@ -325,7 +324,6 @@ export const UpgradeDialogLayout = ({
                           }}
                         />
                       </div>
-                      {/* TODO: translate */}
                       <div className={classes.progressText}>
                         <span>{c('upgrade dialog').t`EXP`}</span>
                         <animated.span>
@@ -354,7 +352,6 @@ export const UpgradeDialogLayout = ({
 
               {stage >= 4 && (
                 <>
-                  {/* TODO: translate */}
                   <h3 className={classes.titleMd}>
                     {c('upgrade dialog').t`Cheers! ${LEVEL_NAMES[nextLevel]}`}
                   </h3>

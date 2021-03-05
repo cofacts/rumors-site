@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import NavLink from 'components/NavLink';
+import { c, t } from 'ttag';
 
 import logo from 'components/Tutorial/images/logo.svg';
 
@@ -55,16 +56,14 @@ const TutorialHeader = () => {
           className={classes.tab}
           activeClassName={classes.activeTab}
         >
-          {/* TODO: translate */}
-          是什麼
+          {c('Tutorial').t`What is Cofacts?`}
         </NavLink>
         <NavLink
           href="/tutorial"
           className={classes.tab}
           activeClassName={classes.activeTab}
         >
-          {/* TODO: translate */}
-          怎麼用
+          {c('Tutorial').t`How to use it?`}
         </NavLink>
       </div>
     </div>

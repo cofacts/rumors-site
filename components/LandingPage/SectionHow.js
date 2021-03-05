@@ -175,7 +175,6 @@ const SectionHow = () => {
           <img src={image1} />
         </div>
         <div className={cx(classes.block, 'text', 'rwd-order-2')}>
-          {/* TODO: translate */}
           <h3 className="smTitle">
             {c('landing page').t`Crowdsourced and Diverse`}
           </h3>

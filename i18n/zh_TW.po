@@ -1390,7 +1390,7 @@ msgstr ""
 "2016 年起將 chatbot 導入事實查核領域、並提供 API "
 "介接教學，在此領域激起了典範轉移，專業查核組織開始推出自己的chatbot，也有第三方查詢機器人前來介接 Cofacts 資料。"
 
-#: pages\about.js:246
+#: pages\about.js:245
 msgid ""
 "Cofacts is an information checking platform operated through \n"
 "crowd collaboration and chatbot to have discrete messages of \n"
@@ -1405,7 +1405,7 @@ msgstr ""
 "Cofacts 真的假的 透過聊天機器人能 24 "
 "小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
 
-#: pages\about.js:255
+#: pages\about.js:254
 msgid ""
 "Cofacts is a citizen-initiated platform that is not affiliated \n"
 "to any political party or politicians. It opens the results to \n"
@@ -1415,24 +1415,22 @@ msgstr ""
 "Cofacts "
 "是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊息的方法。"
 
-#: pages\about.js:267
+#: pages\about.js:265
 msgid "In what scenarios can Cofacts help you?"
 msgstr "Cofacts 在什麼時候能幫上忙？"
 
-#: pages\about.js:278
+#: pages\about.js:276
 msgid "You want to do research on false information."
 msgstr "想做不實訊息的研究"
 
-#: pages\about.js:286
+#: pages\about.js:284
 msgid ""
-"You want to help elders or friends \n"
-"who can't fact-check information. \n"
-"Fact-checking one piece of \n"
-"information after another is too slow, \n"
-"so let the chatbot check them for you!"
+"Wanna help elders or friends who can’t \n"
+"fact-check information? Let the chatbot \n"
+"check them for you!"
 msgstr "想幫助不會查證訊息的長輩或朋友？"
 
-#: pages\about.js:271
+#: pages\about.js:269
 msgid ""
 "You think that the messages you \n"
 "received may be fake"
@@ -1440,7 +1438,7 @@ msgstr ""
 "想知道看起來很可疑的 \n"
 " 訊息是真是假？"
 
-#: pages\about.js:296
+#: pages\about.js:292
 msgid ""
 "You would like to absorb novel knowledge\n"
 "and see what topics are popular recently"
@@ -1448,33 +1446,35 @@ msgstr ""
 "想看看最近大家都在 \n"
 " 討論什麼話題？"
 
-#: pages\about.js:319
+#: pages\about.js:316
 msgid ""
-"Cofacts is committed to providing a simple solution \n"
-"to help frontline news media workers fact-check and \n"
-"journalists focus on their profession."
+"Cofacts is committed to providing a simple solution to \n"
+"help frontline who suffering from misinformation, and news \n"
+"media workers, media literacy educators and journalists \n"
+"focus on their profession."
 msgstr "提供方便工具幫助第一線查核可疑訊息，幫助相關媒體、教育人士，專注發揮所長，識別假訊息讓謠言止於智者。"
 
-#: pages\about.js:328
+#: pages\about.js:326
 msgid ""
-"We promote the process of interacting with chatbot that \n"
-"protects your privacy, prevents leaks of your questions and \n"
-"requests, and ensures your confusion, concerns and insecurity \n"
-"about asking \"stupid\" questions to be treated well at any time."
+"All of the source code and fact-checking replies are \n"
+"open and transparent to everyone. Cofacts encourage every \n"
+"citizen to contribute and collaborate; there would be \n"
+"no limit or qualification restriction in Cofacts \n"
+"fact-checking platform."
 msgstr "從平台的每一行程式碼，到查核回復都是公開平等給大眾，每一個人都可以貢獻，每一個人的查核意見也不受它限制。"
 
-#: pages\about.js:338
+#: pages\about.js:337
 msgid ""
 "Cofacts leads in media literacy education and fact-checking \n"
 "skills training. We encourage every individual to do research \n"
 "on information and face misinformation with an active attitude."
 msgstr "帶動媒體識讀教育與事實查核的能力，鼓勵人人做研究，一同討論各方意見，正面面對不實訊息。"
 
-#: pages\about.js:346
+#: pages\about.js:345
 msgid "How Cofacts was born"
 msgstr "Cofacts 怎麼誕生的？"
 
-#: pages\about.js:348
+#: pages\about.js:347
 msgid ""
 "The core idea of this project is to make diverse voices easier \n"
 "to be listened to. We believe that fact-checking contents \n"
@@ -1488,7 +1488,7 @@ msgstr ""
 "這個專案最核心的想法，就是希望讓「不同的聲音」更容易被看見。網路謠言相對應的闢謠文章、以及個人意見與相對應得「回覆」文，都是一種「不同的聲音」。一個人會"
 "去相信網路謠言，或許是因為他沒有接觸過不同的聲音，或不願意去接觸不同的聲音。只是，即使一個人樂意接觸不同的聲音，其實門檻還是很高的。"
 
-#: pages\about.js:358
+#: pages\about.js:357
 msgid ""
 "On the other hand, for people who are used to fact-checking online \n"
 "news, checking all of suspicious LINE messages they receive is very \n"
@@ -1504,11 +1504,11 @@ msgstr ""
 "訊息之後，都要自己花時間一筆一筆查證，會非常地花時間。協作型闢謠資料庫就像是個共筆，大家查到什麼就寫成回應放進去，之後收到同一訊息的人如果也想要查證，就"
 "不用從零開始。因此，對於已經習慣也願意查證、擁抱「不同的聲音」的人，協作型闢謠資料庫能幫這些人少走很多冤枉路。"
 
-#: pages\about.js:370
+#: pages\about.js:369
 msgid "Who we are"
 msgstr "我們是誰？"
 
-#: pages\about.js:372
+#: pages\about.js:371
 msgid ""
 "Cofacts is one of the projects initiated in g0v, a Taiwanese \n"
 "civic technology community, which encourages open source code, \n"
@@ -1848,7 +1848,7 @@ msgid ""
 "and contents."
 msgstr "《編輯的奇幻旅程》紀錄了過去編輯們分享的案例，大家可以參考看看這些編輯過去面對各種不同訊息時，是怎麼進行分析與撰寫回應的唷！"
 
-#: components\Tutorial\Article.js:278
+#: components\Tutorial\Article.js:279
 msgid "Step ${ stepNo }"
 msgstr "第 ${ stepNo } 步"
 
@@ -2013,10 +2013,107 @@ msgid ""
 "contributing a sky-high volume of up votes?"
 msgstr "可疑訊息下右邊可以選擇「SHARE」分享這則查核回應，幫助你更多好朋友。右上角選擇登入！你會是下一個等級突破天際的狂讚士嗎？"
 
+#: pages\about.js:261
+msgid "How does misinformation be fact-checked?"
+msgstr "可疑訊息怎麼被查核的？"
+
+#: components\Tutorial\LineTutorial.js:24
+msgid "Recieved doubtful messages from social platform"
+msgstr "Line 上收到可疑訊息"
+
+#: components\Tutorial\LineTutorial.js:25
+msgid ""
+"While a lot of instant messages are disseminated among our friends' "
+"chatroom, you might feel confused whether the information is fake or not."
+msgstr "熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？"
+
+#: components\Tutorial\LineTutorial.js:30
+msgid "Share this message to Cofacts"
+msgstr "分享轉傳訊息到「真的假的」機器人"
+
+#: components\Tutorial\LineTutorial.js:31
+msgid ""
+"You are encouraged to share to suspicious message to Cofacts chatbot, "
+"Cofacts chatbot would help you submit the misinformation to Cofacts "
+"fact-checking platform for receiveing similar fact-check reports."
+msgstr "此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應"
+
+#: components\Tutorial\LineTutorial.js:36
+msgid "Submit to Cofacts database & fact-checking platform"
+msgstr "收錄到「真的假的」共享平台"
+
+#: components\Tutorial\LineTutorial.js:37
+msgid ""
+"Everyone could review the suspicious messages on Cofacts platform, and "
+"discuss the fact-checking process and detail."
+msgstr "被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息"
+
+#: components\Tutorial\LineTutorial.js:42
+msgid "Fact checkers would comment fact-checking detail on the platform."
+msgstr "編輯志工在平台上查核提供意見"
+
+#: components\Tutorial\LineTutorial.js:43
+msgid ""
+"Every volunteers could login Cofacts platform, and submit their "
+"fact-checking reports. Volunteers are asked to provide reference and "
+"explanation for the fact-checking."
+msgstr "每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。"
+
+#: components\Tutorial\LineTutorial.js:48
+msgid "Cofacts chatnot would reply this automatically"
+msgstr "機器人自動回應群眾的消息"
+
+#: components\Tutorial\LineTutorial.js:49
+msgid ""
+"Fact-checking contribution would be seen via Cofacts chatbot for everyone; "
+"if you think you could improve the content, you are encouraged to submit a "
+"new fact-checking reply."
+msgstr "被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。"
+
+#: pages\about.js:304
+msgid "Cofacts instruction"
+msgstr "快來了解 Cofacts 怎麼使用吧"
+
+#: pages\about.js:308
+msgid "What is Cofacts core value?"
+msgstr "Cofacts 的核心價值是?"
+
+#: pages\about.js:314
+msgid "Instant fact-checking tool"
+msgstr "即時工具"
+
+#: pages\about.js:324
+msgid "Free and Open"
+msgstr "自由開放"
+
+#: pages\about.js:335
+msgid "Media Literacy"
+msgstr "媒體識讀"
+
 #: pages\index.js:41
 msgctxt "site title"
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
+
+#: components\Tutorial\TutorialHeader.js:59
+msgctxt "Tutorial"
+msgid "What is Cofacts?"
+msgstr "是什麼"
+
+#: components\Tutorial\TutorialHeader.js:66
+msgctxt "Tutorial"
+msgid "How to use it?"
+msgstr "怎麼用"
+
+#: pages\tutorial.js:113
+msgctxt "Tutorial"
+msgid "I'd Fact-check"
+msgstr "我想闢謠"
+
+#: pages\tutorial.js:125
+msgctxt "Tutorial"
+msgid "I'd Review"
+msgstr "我想確認謠言"
 
 #: components\LineChart.js:221
 #, javascript-format
@@ -2112,12 +2209,12 @@ msgctxt "landing page"
 msgid "Search"
 msgstr "快速查詢"
 
-#: components\LandingPage\SectionHow.js:180
+#: components\LandingPage\SectionHow.js:179
 msgctxt "landing page"
 msgid "Crowdsourced and Diverse"
 msgstr "共同協作，呈現多元觀點"
 
-#: components\LandingPage\SectionHow.js:188
+#: components\LandingPage\SectionHow.js:187
 msgctxt "landing page"
 msgid "Everybody can fact-check the fact checkers"
 msgstr "人人都是判斷者"
@@ -2142,14 +2239,14 @@ msgctxt "landing page"
 msgid "How do we determine truth?"
 msgstr "要怎麼判斷真假？"
 
-#: components\LandingPage\SectionHow.js:183
+#: components\LandingPage\SectionHow.js:182
 msgctxt "landing page"
 msgid ""
 "The fact checking replies are written from other contributors,\n"
 "Cofacts helps you see the diversity of the fact checking process."
 msgstr "你所看到的回應，是由其他同樣是使用者的人所寫出來的。Cofacts 竭盡所能地為你蒐集、呈現最多元的觀點，幫助你在真假當中做出最適當的判斷！"
 
-#: components\LandingPage\SectionHow.js:191
+#: components\LandingPage\SectionHow.js:190
 msgctxt "landing page"
 msgid ""
 "We believe there is no omniscient judge.\n"
@@ -2161,19 +2258,19 @@ msgstr ""
 "我們相信，世界上沒有全知全能的判斷者，只有互相貢獻的公民協作，才能更接近真相。在 Cofacts "
 "平台上，你可以看見其他人的觀點，除了透過平台資訊幫助自己作出獨立判斷外，更能在 Cofacts 平台與其他人分享你的想法。"
 
-#: components\LandingPage\SectionHow.js:198
+#: components\LandingPage\SectionHow.js:197
 msgctxt "landing page"
 msgid "A Community of Mutual Support"
 msgstr "你幫我，我幫你"
 
-#: components\LandingPage\SectionHow.js:201
+#: components\LandingPage\SectionHow.js:200
 msgctxt "landing page"
 msgid ""
 "Cofacts is building a community where everyone plays a part in "
 "fact-checking."
 msgstr "Cofacts 真的假的社群致力於鼓勵所有人都一起成為別人的聊天機器人。"
 
-#: components\LandingPage\SectionHow.js:205
+#: components\LandingPage\SectionHow.js:204
 msgctxt "landing page"
 msgid ""
 "You can make a difference in others' lives through your contributions to "
@@ -2226,32 +2323,32 @@ msgstr ""
 "看見了嗎？\n"
 "闢謠者聯盟正在對你招手"
 
-#: components\AppLayout\UpgradeDialog.js:306
+#: components\AppLayout\UpgradeDialog.js:305
 msgctxt "upgrade dialog"
 msgid "Congratulations!"
 msgstr "恭喜你！"
 
-#: components\AppLayout\UpgradeDialog.js:309
+#: components\AppLayout\UpgradeDialog.js:308
 msgctxt "upgrade dialog"
 msgid "You can keep leveling up after your level-up!"
 msgstr "公道值又破表了，只好讓你繼續升級啦！"
 
-#: components\AppLayout\UpgradeDialog.js:330
+#: components\AppLayout\UpgradeDialog.js:328
 msgctxt "upgrade dialog"
 msgid "EXP"
 msgstr "公道值"
 
-#: components\AppLayout\UpgradeDialog.js:362
+#: components\AppLayout\UpgradeDialog.js:359
 msgctxt "upgrade dialog"
 msgid "Keep up the good work and save the world!"
 msgstr "請繼續為真真假假的世界盡一份力！"
 
-#: components\AppLayout\UpgradeDialog.js:366
+#: components\AppLayout\UpgradeDialog.js:363
 msgctxt "upgrade dialog"
 msgid "I've got your back"
 msgstr "好的"
 
-#: components\AppLayout\UpgradeDialog.js:359
+#: components\AppLayout\UpgradeDialog.js:356
 #, javascript-format
 msgctxt "upgrade dialog"
 msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"

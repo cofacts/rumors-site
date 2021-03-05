@@ -156,6 +156,7 @@ const useStyles = makeStyles(theme => ({
         ? theme.palette.primary.main
         : theme.palette.common.blue2,
     marginRight: 20,
+    flexShrink: 0,
 
     [theme.breakpoints.down('xs')]: {
       marginRight: 30,

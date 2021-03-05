@@ -241,7 +241,6 @@ const TutorialPage = () => {
       <div className={classes.root}>
         <TutorialHeader />
         <section className={classes.info}>
-          {/* TODO: translate */}
           <p>
             {t`Cofacts is an information checking platform operated through 
             crowd collaboration and chatbot to have discrete messages of 
@@ -259,8 +258,7 @@ const TutorialPage = () => {
           </p>
         </section>
         <section className={classes.how}>
-          {/* TODO: translate */}
-          <h3>可疑訊息怎麼被查核的？</h3>
+          <h3>{t`How does misinformation be fact-checked?`}</h3>
           <LineTutorial />
         </section>
         <section className={classes.when}>
@@ -283,11 +281,9 @@ const TutorialPage = () => {
           <div className={classes.row}>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                {t`You want to help elders or friends 
-                who can't fact-check information. 
-                Fact-checking one piece of 
-                information after another is too slow, 
-                so let the chatbot check them for you!`}
+                {t`Wanna help elders or friends who can’t 
+                fact-check information? Let the chatbot 
+                check them for you!`}
               </div>
               <img className={classes.colImage} src={parentImg} />
             </div>
@@ -305,35 +301,38 @@ const TutorialPage = () => {
             color="primary"
             href="/tutorial"
           >
-            快來了解 Cofacts 怎麼使用吧
+            {t`Cofacts instruction`}
           </Button>
         </section>
         <section className={classes.coreValue}>
-          {/* TODO: translate */}
-          <h3>Cofacts 的核心價值是？</h3>
+          <h3>{t`What is Cofacts core value?`}</h3>
           <div className={classes.row}>
             <div className={cx(classes.col, classes.coreValueItem)}>
               <img className={classes.colImage} src={immediateImg} />
-              <div className={classes.colTitle}>即時工具</div>
+              <div
+                className={classes.colTitle}
+              >{t`Instant fact-checking tool`}</div>
               <div className={classes.colContent}>
-                {t`Cofacts is committed to providing a simple solution 
-                to help frontline news media workers fact-check and 
-                journalists focus on their profession.`}
+                {t`Cofacts is committed to providing a simple solution to 
+                help frontline who suffering from misinformation, and news 
+                media workers, media literacy educators and journalists 
+                focus on their profession.`}
               </div>
             </div>
             <div className={cx(classes.col, classes.coreValueItem)}>
               <img className={classes.colImage} src={freedomImg} />
-              <div className={classes.colTitle}>自由開放</div>
+              <div className={classes.colTitle}>{t`Free and Open`}</div>
               <div className={classes.colContent}>
-                {t`We promote the process of interacting with chatbot that 
-                protects your privacy, prevents leaks of your questions and 
-                requests, and ensures your confusion, concerns and insecurity 
-                about asking "stupid" questions to be treated well at any time.`}
+                {t`All of the source code and fact-checking replies are 
+                open and transparent to everyone. Cofacts encourage every 
+                citizen to contribute and collaborate; there would be 
+                no limit or qualification restriction in Cofacts 
+                fact-checking platform.`}
               </div>
             </div>
             <div className={cx(classes.col, classes.coreValueItem)}>
               <img className={classes.colImage} src={mediaImg} />
-              <div className={classes.colTitle}>媒體識讀</div>
+              <div className={classes.colTitle}>{t`Media Literacy`}</div>
               <div className={classes.colContent}>
                 {t`Cofacts leads in media literacy education and fact-checking 
                 skills training. We encourage every individual to do research 
