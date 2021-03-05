@@ -22,6 +22,7 @@ msgstr ""
 
 #: components\ArticleCategories\DownVoteDialog.js:98
 #: components\NewReplySection\Mobile.js:138
+#: components\ProfilePage\EditAvatarDialog.js:229
 #: components\ProfilePage\EditProfileDialog.js:88
 msgid "Cancel"
 msgstr "取消"
@@ -82,16 +83,16 @@ msgstr "使用者回報訊息"
 msgid "${ timeAgoStr } ago"
 msgstr "${ timeAgoStr }前"
 
-#: components\ArticleReply\ArticleReply.js:107
+#: components\ArticleReply\ArticleReply.js:103
 msgid "Reason"
 msgstr "理由"
 
-#: components\ArticleReply\ArticleReply.js:108
+#: components\ArticleReply\ArticleReply.js:104
 msgid "Details"
 msgstr "詳細解釋"
 
-#: components\ArticleReply\ArticleReply.js:110
-#: components\ArticleReply\ArticleReply.js:136
+#: components\ArticleReply\ArticleReply.js:106
+#: components\ArticleReply\ArticleReply.js:132
 #: pages\api\articles\[feed].js:178
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Reference"
@@ -102,11 +103,11 @@ msgstr "出處"
 msgid "Someone"
 msgstr "有人"
 
-#: components\ArticleReply\ArticleReply.js:136
+#: components\ArticleReply\ArticleReply.js:132
 msgid "Different opinion"
 msgstr "不同意見"
 
-#: components\ArticleReply\ArticleReply.js:140
+#: components\ArticleReply\ArticleReply.js:136
 msgid "There is no reference for this reply. Its truthfulness may be doubtful."
 msgstr "這則回應沒有出處，請自行斟酌其真實性。"
 
@@ -147,6 +148,7 @@ msgstr "刪除"
 #: components\ArticleCategories\DownVoteDialog.js:99
 #: components\CreateReplyRequestForm\CreateReplyRequestForm.js:132
 #: components\NewReplySection\ReplyForm\Submit.js:28
+#: components\ProfilePage\EditAvatarDialog.js:234
 #: components\ProfilePage\EditProfileDialog.js:93
 msgid "Submit"
 msgstr "送出"
@@ -247,7 +249,7 @@ msgid ""
 "fighting mis/disinformation in Taiwan."
 msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
 
-#: components\ProfilePage\ProfilePage.js:91
+#: components\ProfilePage\ProfilePage.js:97
 #: pages\article\[id].js:262
 #: pages\article\[id].js:266
 #: pages\reply\[id].js:200
@@ -956,15 +958,15 @@ msgstr ""
 msgid "Bio"
 msgstr ""
 
-#: components\ProfilePage\ProfilePage.js:104
+#: components\ProfilePage\ProfilePage.js:110
 msgid "User not found"
 msgstr ""
 
-#: components\ProfilePage\ProfilePage.js:107
+#: components\ProfilePage\ProfilePage.js:113
 msgid "The user does not exist"
 msgstr ""
 
-#: components\ProfilePage\ProfilePage.js:149
+#: components\ProfilePage\ProfilePage.js:166
 msgid "Replied messages"
 msgstr ""
 
@@ -980,19 +982,19 @@ msgstr ""
 msgid "voted replies"
 msgstr ""
 
-#: components\ProfilePage\UserPageHeader.js:133
+#: components\ProfilePage\UserPageHeader.js:196
 msgid "Edit"
 msgstr ""
 
-#: components\ProfilePage\UserPageHeader.js:143
+#: components\ProfilePage\UserPageHeader.js:224
 msgid "Cofacts chatbot"
 msgstr ""
 
-#: components\ProfilePage\UserPageHeader.js:175
+#: components\ProfilePage\UserPageHeader.js:256
 msgid "EXP"
 msgstr ""
 
-#: components\ProfilePage\UserPageHeader.js:185
+#: components\ProfilePage\UserPageHeader.js:266
 #, javascript-format
 msgid ""
 "This is a user of ${ cofactsChatbotLink }. The profile picture and the "
@@ -1094,6 +1096,114 @@ msgstr ""
 msgid "How to use Cofacts"
 msgstr ""
 
+#: components\ContributionChart.js:87
+msgid "Jan"
+msgstr "1月"
+
+#: components\ContributionChart.js:88
+msgid "Feb"
+msgstr "2月"
+
+#: components\ContributionChart.js:89
+msgid "Mar"
+msgstr "3月"
+
+#: components\ContributionChart.js:90
+msgid "Apr"
+msgstr "4月"
+
+#: components\ContributionChart.js:91
+msgid "May"
+msgstr "5月"
+
+#: components\ContributionChart.js:92
+msgid "Jun"
+msgstr "6月"
+
+#: components\ContributionChart.js:93
+msgid "Jul"
+msgstr "7月"
+
+#: components\ContributionChart.js:94
+msgid "Aug"
+msgstr "8月"
+
+#: components\ContributionChart.js:95
+msgid "Sep"
+msgstr "9月"
+
+#: components\ContributionChart.js:96
+msgid "Oct"
+msgstr "10月"
+
+#: components\ContributionChart.js:97
+msgid "Nov"
+msgstr "11月"
+
+#: components\ContributionChart.js:98
+msgid "Dec"
+msgstr "12月"
+
+#: components\ContributionChart.js:100
+msgid "Sun"
+msgstr "週日"
+
+#: components\ContributionChart.js:100
+msgid "Mon"
+msgstr "週一"
+
+#: components\ContributionChart.js:100
+msgid "Tue"
+msgstr "週二"
+
+#: components\ContributionChart.js:100
+msgid "Wed"
+msgstr "週三"
+
+#: components\ContributionChart.js:100
+msgid "Thu"
+msgstr "週四"
+
+#: components\ContributionChart.js:100
+msgid "Fri"
+msgstr "週五"
+
+#: components\ContributionChart.js:100
+msgid "Sat"
+msgstr "週六"
+
+#: components\ContributionChart.js:110
+msgid "Less"
+msgstr "少"
+
+#: components\ContributionChart.js:124
+#: components\ReportPage\SectionHowToUse.js:134
+msgid "More"
+msgstr "了解更多"
+
+#: components\ContributionChart.js:187
+msgid "${ count } contribution"
+msgid_plural "${ count } contributions"
+msgstr[0] "做出 ${ count } 次貢獻"
+
+#: components\ContributionChart.js:145
+#, javascript-format
+msgid "${ total } contribution in the last year"
+msgid_plural "${ total } contributions in the last year"
+msgstr[0] "最近一年共做出 ${ total } 次貢獻"
+
+#: pages\impact.js:66
+msgid "Cofacts social impact report"
+msgstr ""
+
+#: components\ReportPage\SectionSponsor.js:88
+msgid "Open Culture Foundation"
+msgstr ""
+
+#: components\ReportPage\SectionSponsor.js:93
+msgid "g0v"
+msgstr ""
+
 #: pages\impact.js:71
 msgid "Individual strengths converge to exert the greatest power"
 msgstr "集結眾人之力，就能創造最大的力量。"
@@ -1113,10 +1223,6 @@ msgid ""
 msgstr ""
 "他將自動判讀 \n"
 "協助你得到查核報告"
-
-#: components\ReportPage\SectionHowToUse.js:134
-msgid "More"
-msgstr "了解更多"
 
 #: components\ReportPage\SectionInfluence.js:94
 msgid "Community Influence"
@@ -1275,18 +1381,6 @@ msgid ""
 msgstr ""
 "Cofacts 提供連接 chatbot 與網頁的指標圖表，幫助研究者與記者追蹤熱門的訊息，產出有力的報告。\n"
 " 目前有許多國內外的學者引用這些資料，也直接接取Cofacts 的開放資料庫。"
-
-#: pages\impact.js:66
-msgid "Cofacts social impact report"
-msgstr ""
-
-#: components\ReportPage\SectionSponsor.js:88
-msgid "Open Culture Foundation"
-msgstr ""
-
-#: components\ReportPage\SectionSponsor.js:93
-msgid "g0v"
-msgstr ""
 
 #: components\ReportPage\SectionSponsor.js:114
 #. const FUND = [
@@ -2129,6 +2223,30 @@ msgstr ""
 #: components\Tutorial\content\checkRumors.js:12
 msgid "Scan QR code to add @cofacts to contact"
 msgstr "掃描QR Code、加入好友@cofacts"
+
+#: components\ProfilePage\AvatarSelector.js:193
+msgid "Accessory"
+msgstr ""
+
+#: components\ProfilePage\AvatarSelector.js:199
+msgid "Body"
+msgstr ""
+
+#: components\ProfilePage\AvatarSelector.js:205
+msgid "Face"
+msgstr ""
+
+#: components\ProfilePage\AvatarSelector.js:211
+msgid "Hair"
+msgstr ""
+
+#: components\ProfilePage\AvatarSelector.js:217
+msgid "Facial Hair"
+msgstr ""
+
+#: components\ProfilePage\EditAvatarDialog.js:167
+msgid "Edit profile picture"
+msgstr ""
 
 #: pages\index.js:41
 msgctxt "site title"

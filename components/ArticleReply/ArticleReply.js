@@ -22,12 +22,8 @@ const useStyles = makeStyles(theme => ({
     borderBottom: `1px dashed ${theme.palette.secondary[100]}`,
   },
   avatar: {
-    width: 30,
-    height: 30,
     marginRight: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
-      width: 42,
-      height: 42,
       marginRight: theme.spacing(2),
     },
   },
@@ -153,6 +149,8 @@ const ArticleReply = React.memo(
         <Box component="header" display="flex" alignItems="center">
           <Avatar
             user={articleReply.user}
+            size={30}
+            mdSize={42}
             className={classes.avatar} /*hasLink*/
           />
           <Box flexGrow={1}>

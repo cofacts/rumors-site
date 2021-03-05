@@ -14,6 +14,8 @@ import AppLayout from 'components/AppLayout';
 import { Card } from 'components/Card';
 import UserPageHeader from './UserPageHeader';
 import RepliedArticleTab from './RepliedArticleTab';
+import ContributionChart from 'components/ContributionChart';
+import { startOfWeek, subDays, format } from 'date-fns';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -42,6 +44,10 @@ const LOAD_USER = gql`
     GetUser(id: $id, slug: $slug) {
       id
       ...UserHeaderData
+      contributions {
+        date
+        count
+      }
     }
   }
   ${UserPageHeader.fragments.UserHeaderData}
@@ -119,6 +125,11 @@ function ProfilePage({ id, slug }) {
     default:
       contentElem = <RepliedArticleTab userId={data?.GetUser?.id} />;
   }
+  const today = format(new Date(), 'yyyy-MM-dd');
+  const aYearAgo = format(
+    startOfWeek(subDays(new Date(), 365), { weekStartsOn: 6 }),
+    'yyyy-MM-dd'
+  );
 
   return (
     <AppLayout container={false}>
@@ -134,6 +145,12 @@ function ProfilePage({ id, slug }) {
             commentedReplies: contributionData?.commentedReplies?.totalCount,
           }}
         />
+        <ContributionChart
+          startDate={aYearAgo}
+          endDate={today}
+          data={data.GetUser.contributions}
+        />
+
         <Card>
           <Tabs
             classes={{ root: classes.tabs }}
