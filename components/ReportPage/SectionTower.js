@@ -6,7 +6,6 @@ import { PROJECT_SOURCE_CODE } from 'constants/urls';
 
 import ActionButton from './ActionButton';
 
-import starBg from './images/star-bg.svg';
 import dropletImg from './images/ecosystem-droplet.svg';
 import towerImg from './images/ecosystem-tower.png';
 
