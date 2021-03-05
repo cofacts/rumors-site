@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import NavLink from 'components/NavLink';
-import { c, t } from 'ttag';
+import { c } from 'ttag';
 
 import logo from 'components/Tutorial/images/logo.svg';
 
