@@ -9,7 +9,7 @@ export default [
   {
     title: t`Have you add Cofacts as your friend on LINE? Feel free to ask if you have any questions!`,
     subTitle: t`Friend the chatbot and let it offer solutions to the suspicious messages, scams and fake news you received.`,
-    content: '掃描QR Code、加入好友@cofacts',
+    content: t`Scan QR code to add @cofacts to contact`,
     subContent: [
       {
         title: t`Friend the Cofacts chatbot and report as much as you want!`,

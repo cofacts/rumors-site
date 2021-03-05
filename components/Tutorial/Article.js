@@ -258,7 +258,7 @@ const Article = ({
             }}
           >
             <img className={classes.arrow} src={arrow} />
-            {isOpen ? '收起內容' : '展開內容'}
+            {isOpen ? t`Collapse` : t`Expand`}
           </div>
         )}
       </div>

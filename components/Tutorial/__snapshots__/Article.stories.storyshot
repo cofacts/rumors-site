@@ -121,7 +121,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
             className="makeStyles-arrow makeStyles-arrow"
             src={Object {}}
           />
-          展開內容
+          Expand
         </div>
       </div>
       <div

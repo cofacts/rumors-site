@@ -85,16 +85,15 @@ export default [
     content: t`Each message here was reported by chatbot users and may be in various odd forms, styles with doubtful content. You can try to follow the steps below to analyze your piece.`,
     subContent: [
       {
-        title: '這在查證範圍嗎？',
+        title: t`Is it a valid request?`,
         content: [
           {
             type: 'text',
-            data: '所謂「查證範圍」，就是「在 LINE 上轉傳的訊息」。',
+            data: t`In Cofacts, a message request is considered valid if the message is actually being forwarded among chatrooms in LINE.`,
           },
           {
             type: 'text',
-            data:
-              '可以參考看看這個訊息被詢問的次數；如果只有一人，可能是自己輸入的訊息或測試，永遠不會被查詢。此時，就可以把訊息標記為「不在查證範圍」。另外，如果訊息是「商業」廣告，也可以考慮標為「不在查證範圍」；我們不需要幫商家打廣告唷。',
+            data: t`Take a look at how many people reported the message. If there is only one person, it may be a test message the user typed in on their own, which will never be requested again by another user. If this is the case, mark this message a "invalid request". You can also mark commercial advertisements as "invalid requests" as we do not need to help in advertising businesses.`,
           },
         ],
       },
@@ -158,8 +157,7 @@ export default [
         content: [
           {
             type: 'text',
-            data:
-              '請參考公視新聞實驗室【社群內容打假術】Google教你深度事實查核，人人都是數位打假王',
+            data: t`Please refer to the Social Media Fact-checking tips & tricks provided by PTS News Lab Taiwan`,
           },
           {
             type: 'link',
