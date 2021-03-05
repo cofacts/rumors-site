@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
+import { t } from 'ttag';
 import Box from '@material-ui/core/Box';
+
+import { PROJECT_SOURCE_CODE } from 'constants/urls';
 
 import ProgressionWrapper from './ProgressionWrapper';
 import SectionTitle from './SectionTitle';
@@ -91,6 +94,9 @@ const useStyles = makeStyles(theme => ({
       width: 434,
     },
   },
+  towerButton: {
+    color: '#6d28aa',
+  },
 }));
 
 function SectionEcosystem() {
@@ -159,6 +165,37 @@ function SectionEcosystem() {
           是唯一一個同時結合聊天機器人、公開回報且開放回應之開放原始碼系統。任何有志之士均能使用
           Cofacts 的程式碼，架設自己的開放闢謠系統且自行經營社群。
         </p>
+
+        <Box
+          display="flex"
+          my={4}
+          justifyContent="center"
+          style={{ gap: 8 }}
+          flexWrap="wrap"
+        >
+          <ActionButton
+            className={classes.towerButton}
+            href="https://github.com/cofacts/opendata"
+            target="_blank"
+          >
+            {t`Open data`}
+          </ActionButton>
+          <ActionButton
+            className={classes.towerButton}
+            href="/analytics"
+            target="_blank"
+          >
+            {t`Analytics`}
+          </ActionButton>
+
+          <ActionButton
+            className={classes.towerButton}
+            href={PROJECT_SOURCE_CODE}
+            target="_blank"
+          >
+            {t`Source Code`}
+          </ActionButton>
+        </Box>
       </div>
     </>
   );
