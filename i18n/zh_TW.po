@@ -1177,7 +1177,6 @@ msgid "Less"
 msgstr "少"
 
 #: components\ContributionChart.js:124
-#: components\ReportPage\SectionHowToUse.js:134
 msgid "More"
 msgstr "了解更多"
 
@@ -1224,7 +1223,7 @@ msgstr ""
 "他將自動判讀 \n"
 "協助你得到查核報告"
 
-#: components\ReportPage\SectionInfluence.js:94
+#: components\ReportPage\SectionInfluence.js:93
 msgid "Community Influence"
 msgstr "社群影響力"
 
@@ -1406,7 +1405,7 @@ msgstr ""
 msgid "Share to Facebook"
 msgstr ""
 
-#: components\ReportPage\SectionInfluence.js:105
+#: components\ReportPage\SectionInfluence.js:104
 msgid ""
 "External and internal propaganda have caused the people to lose their trust "
 "in media and information. \n"
@@ -2280,6 +2279,11 @@ msgid "${ visitNum } time"
 msgid_plural "${ visitNum } times"
 msgstr[0] "${ visitNum } 次"
 msgstr[1] "${ visitNum } 次"
+
+#: components\ReportPage\SectionHowToUse.js:134
+msgctxt "impact"
+msgid "More"
+msgstr "了解更多"
 
 #: components\NewReplySection\Mobile.js:170
 msgctxt "Mobile editor tab"

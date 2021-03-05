@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { t } from 'ttag';
-import { useMediaQuery } from '@material-ui/core';
 
 import SectionTitle from './SectionTitle';
 
@@ -39,15 +38,17 @@ const useStyles = makeStyles(theme => ({
   bgBottom: {
     width: '100%',
     zIndex: -1,
-  },
-  bgBottomMobile: {
-    width: '100%',
-    height: 110,
-    background: `url(${bgBottomMobile})`,
+    height: 0,
+    paddingTop: '18%',
+    backgroundImage: `url(${bgBottom})`,
     backgroundSize: 'cover',
     backgroundPosition: 'bottom center',
-    zIndex: -1,
-    marginTop: 30,
+
+    [theme.breakpoints.down('xs')]: {
+      height: 110,
+      backgroundImage: `url(${bgBottomMobile})`,
+      marginTop: 30,
+    },
   },
   title: {
     color: '#3d2e56',
@@ -85,8 +86,6 @@ const useStyles = makeStyles(theme => ({
 const SectionInfluence = () => {
   const classes = useStyles();
 
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('xs'));
-
   return (
     <section className={classes.influence}>
       <img className={classes.bgTop} src={bgTop} />
@@ -107,11 +106,7 @@ const SectionInfluence = () => {
         We automated the process of combating false information through artificial intelligence and machine learning, 
         in order to avoid exhausting professional reviewers and provide review resources.`}
       </p>
-      {isMobile ? (
-        <div className={classes.bgBottomMobile} />
-      ) : (
-        <img className={classes.bgBottom} src={bgBottom} />
-      )}
+      <div className={classes.bgBottom} />
     </section>
   );
 };
