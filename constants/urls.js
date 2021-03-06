@@ -20,6 +20,4 @@ export const FACEBOOK_SHARE_URL_PREFIX =
   'https://www.facebook.com/dialog/share?app_id=719656818195367&display=popup';
 
 export const DONATION_URL =
-  process.env.LOCALE === 'en_US'
-    ? 'https://ocf.tw/en/p/cofacts/'
-    : 'https://ocf.tw/p/cofacts/';
+  'https://ocf.neticrm.tw/civicrm/contribute/transact?id=48';
