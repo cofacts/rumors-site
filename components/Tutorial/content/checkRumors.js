@@ -1,3 +1,5 @@
+import { t } from 'ttag';
+
 import lineQrcode from '../images/line-qrcode.png';
 import tutorial1 from '../images/check-rumors-tutorial-1.png';
 import tutorial2 from '../images/check-rumors-tutorial-2.png';
@@ -5,17 +7,16 @@ import tutorial3 from '../images/check-rumors-tutorial-3.gif';
 
 export default [
   {
-    title: '加入 真的假的 LINE 好友了嗎？ 有問題可以直接問喔！',
-    subTitle: '加入聊天機器人好友，讓他解決你收到的可疑訊息與詐騙假新聞',
-    content: '掃描QR Code、加入好友@cofacts',
+    title: t`Have you add Cofacts as your friend on LINE? Feel free to ask if you have any questions!`,
+    subTitle: t`Friend the chatbot and let it offer solutions to the suspicious messages, scams and fake news you received.`,
+    content: t`Scan QR code to add @cofacts to contact`,
     subContent: [
       {
-        title: '成為真的假的聊天機器人好友，盡量發！',
+        title: t`Friend the Cofacts chatbot and report as much as you want!`,
         content: [
           {
             type: 'text',
-            data:
-              '這是世界上第一個具備查證謠言能力又支持開放原始碼的聊天機器人，遇到任何可疑的訊息都可以直接發給他。把它當成你最好的朋友加入好友後會有歡迎通知，機器人想要跟你當超級好朋友！',
+            data: t`This is the world's first chatbot capable of fact-checking and supports open source code. Send it any questionable messages you found. Add the bot as your friend and receive its welcoming messages. Cofacts wants to be your good friend!`,
           },
           {
             type: 'image',
@@ -26,18 +27,16 @@ export default [
     ],
   },
   {
-    title: '電腦收到可疑訊息，請上網站搜尋',
-    subTitle: '在真的假的查核平台網站內搜尋框貼上，總會找到你的訊息。',
-    content:
-      '網站的右上角有一個放大鏡，在放大鏡的旁邊貼上你收到的訊息或是你想到的關鍵字，就可以找到你關心的可疑訊息資料喔！',
+    title: t`When receiving a suspicious message on your PC, search on the Cofacts website.`,
+    subTitle: t`You can paste it in the search box and always get relevant materials.`,
+    content: t`There is a magnifying glass in the upper right corner of the website. Paste the message you received or the keywords on your mind next to the magnifying glass to find information you care about!`,
     subContent: [
       {
-        title: '可疑訊息直接找，加上篩選更精確',
+        title: t`Enhance accuracy of your checking progress with the filter`,
         content: [
           {
             type: 'text',
-            data:
-              '右下角有篩選器、左邊也有小月曆可以設定時間，幫助你找到「最近」的、「指定時間範圍內」的、「最常被問」、「最新回應」，跟特定主題相關的可疑訊息，各種分類任你選擇。',
+            data: t`There is a filter in the lower right corner and a small monthly calendar on the left for time setting to help you target varied categories of contents, such as "recent", "within a specified time range", "most frequently asked", "latest response", and messages related to specific topics. You can choose whichever you want.`,
           },
           {
             type: 'image',
@@ -48,18 +47,16 @@ export default [
     ],
   },
   {
-    title: '按讚,提供補充理由,我也好奇想知道',
-    subTitle: '有其他為謠言困擾的人留下謠言破解的提示，按讚補充你就能幫助人。',
-    content:
-      '網站內有許多前人（或收到訊息提報出來的人）留下的線索，如果這則線索很有幫助（附上圖片來源、提供查證資訊、提供其他有用的情報），給他一個讚！或是你自己找到了可以幫助大家的情報，按下回報，提供更多有用的資料。',
+    title: t`Vote, supplement, and show your curiosity`,
+    subTitle: t`You can help others troubled by fake news by supplementing checking materials, voting good to evaluate responses and showing your support for efforts in tackling misinformation.`,
+    content: t`There are many clues left by previous fact-checkers, or reporters who requested fact-checking) on the website. Vote up the clues you find helpful, such as image source, relevant fact-checking information, other useful reference, to applaud for the efforts! If you find information that may be helpful for fact-checking, click the report button to submit your findings.`,
     subContent: [
       {
-        title: '加上分類，訓練AI',
+        title: t`Help train AI via classification`,
         content: [
           {
             type: 'text',
-            data:
-              '人工智慧的路上需要您的幫忙，按下「分類建議」，讓這則訊息可以立刻經過第一輪處理。並且看看謠言內文，這個資訊你是不可以幫忙查呢？',
+            data: t`We need your help on the way developing our artificial intelligence. Click "Add Category" to have messages going through the first-round of classification processing. Also, you can take a look at the contents to see if you can check on the pieces of information.`,
           },
           {
             type: 'image',
@@ -70,19 +67,18 @@ export default [
     ],
   },
   {
-    title: '登入網站 或在LINE 上瀏覽查核',
-    subTitle:
-      '登入真的假的網站，歡迎加入最大的事實查核社群！一起為公民科技協力貢獻。',
-    content:
-      '可疑訊息下右邊可以選擇「SHARE」分享這則查核回應，幫助你更多好朋友。右上角選擇登入！你會是下一個等級突破天際的狂讚士嗎？',
+    title: t`Log in to the website or browse and check on LINE`,
+    subTitle: t`Log in to the Cofacts website. Welcome to join the largest fact-checking community! Let's contribute to civic technology.`,
+    content: t`Under the suspicious messages, find and select "Share" on the right to share the response to help your friends.
+   
+    Choose login in the upper right corner! Will you be the next Wow-rrior contributing a sky-high volume of up votes?`,
     subContent: [
       {
-        title: '隨手按讚做功德，上面讚讚、下面讚讚',
+        title: t`Cast your up votes whenever you pass by. Keep up on voting up!`,
         content: [
           {
             type: 'text',
-            data:
-              '看完了查核回應之後，覺得訊息言之有物就幫回應在左下按個讚。在LINE中，機器人也會問你是不是有幫助到你喔，選擇「是」，讓好的回應可以繼續幫助更多人！如果他回得不好，請你幫忙修正他，自己回一個新的。',
+            data: t`After reading the response, if you regard it as a substantial content, please click like on the bottom left to vote up the response. In LINE, the bot will also inquire if a response is helpful. You can choose "Yes" to keep a good response helping more people! If you feel the response can be done better, please help fix it and respond with a new comment of yours.`,
           },
           {
             type: 'image',
@@ -93,18 +89,16 @@ export default [
     ],
   },
   {
-    title: '分享你查到的資訊吧！',
-    subTitle: '現在開始闢謠，網站內的訊息都在等你！',
-    content:
-      '選擇等你來答，施比受更有福，查核就是站在巨人的肩膀上看世界，有你的幫助，不實訊息都將會被一一擊破！！！',
+    title: t`Share the information you find!`,
+    subTitle: t`Now start to defeat rumors. The website of enriched information is waiting for you`,
+    content: t`Choose "Waiting for your response". It is more blessed to give than to receive, and fact-checking is like standing on the shoulders of giants to look at the world. With your help, false information will be defeated one after another!`,
     subContent: [
       {
-        title: '第一步就從選擇「含有不實訊息」開始',
+        title: t`The first step is to select "Contains false information"`,
         content: [
           {
             type: 'text',
-            data:
-              '在下面提供你查證到的論述，試著與民眾溝通，為什麼這在你的見解裡是含有不實訊息的，並在下方的資料來源提供出處與你查到的資料，讓大家知道你不是隨便說說，而是跟提問的人一樣「認真」、「誠懇」的面對可疑訊息。',
+            data: t`Provide the validated points you have checked on to communicate with the public on why the message contains false information, how readers can view and evaluate it from specific angles, and attach the source of information and reference you found to show your care and respect for fact-checking. Try to converse with sincerity and honesty when faced with questions from reporters and the public.`,
           },
         ],
       },

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { animated, useSpring } from 'react-spring';
 import cx from 'clsx';
+import { t } from 'ttag';
 
 import Ribbon from 'components/Ribbon';
 
@@ -155,6 +156,7 @@ const useStyles = makeStyles(theme => ({
         ? theme.palette.primary.main
         : theme.palette.common.blue2,
     marginRight: 20,
+    flexShrink: 0,
 
     [theme.breakpoints.down('xs')]: {
       marginRight: 30,
@@ -256,7 +258,7 @@ const Article = ({
             }}
           >
             <img className={classes.arrow} src={arrow} />
-            {isOpen ? '收起內容' : '展開內容'}
+            {isOpen ? t`Collapse` : t`Expand`}
           </div>
         )}
       </div>
@@ -267,53 +269,60 @@ const Article = ({
         >
           <div ref={subContentRef} className={classes.subContentWrapper}>
             <div className={classes.decoLine} />
-            {subContent.map(({ title, content = [] }, index) => (
-              <div key={index} className={classes.subContent}>
-                <div className={classes.subContentTitleWrapper}>
-                  <div className={classes.subContentLabel}>
-                    {/* TODO: translate */}第 {index + 1} 步
-                  </div>
-                  <div className={classes.subContentTitle}>{title}</div>
-                </div>
-                {content.map(({ type, data }, contentIndex) => {
-                  if (type === 'image') {
-                    return (
-                      <img
-                        key={contentIndex}
-                        className={cx(
-                          classes.subContentData,
-                          classes.subContentImage
-                        )}
-                        src={data}
-                      />
-                    );
-                  }
+            {subContent.map(({ title, content = [] }, index) => {
+              const stepNo = index + 1;
 
-                  if (type === 'link') {
+              return (
+                <div key={index} className={classes.subContent}>
+                  <div className={classes.subContentTitleWrapper}>
+                    <div className={classes.subContentLabel}>
+                      {t`Step ${stepNo}`}
+                    </div>
+                    <div className={classes.subContentTitle}>{title}</div>
+                  </div>
+                  {content.map(({ type, data }, contentIndex) => {
+                    if (type === 'image') {
+                      return (
+                        <img
+                          key={contentIndex}
+                          className={cx(
+                            classes.subContentData,
+                            classes.subContentImage
+                          )}
+                          src={data}
+                        />
+                      );
+                    }
+
+                    if (type === 'link') {
+                      return (
+                        <a
+                          key={contentIndex}
+                          href={data}
+                          className={cx(
+                            classes.subContentData,
+                            classes.subContentLink
+                          )}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          {data}
+                        </a>
+                      );
+                    }
+
                     return (
-                      <a
+                      <div
                         key={contentIndex}
-                        href={data}
-                        className={cx(
-                          classes.subContentData,
-                          classes.subContentLink
-                        )}
-                        rel="noopener noreferrer"
-                        target="_blank"
+                        className={classes.subContentData}
                       >
                         {data}
-                      </a>
+                      </div>
                     );
-                  }
-
-                  return (
-                    <div key={contentIndex} className={classes.subContentData}>
-                      {data}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+                  })}
+                </div>
+              );
+            })}
           </div>
         </animated.div>
       )}

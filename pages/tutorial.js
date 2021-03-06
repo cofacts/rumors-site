@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import cx from 'clsx';
 import Link from 'next/link';
 
@@ -109,9 +109,8 @@ const TutorialPage = () => {
             })}
           >
             <img src={bustHoaxes} alt="bust-hoaxes" />
-            {/* TODO: translate */}
             <div className={cx(classes.tabName, classes.tabBustHoaxes)}>
-              我想闢謠
+              {c('Tutorial').t`I'd Fact-check`}
             </div>
           </div>
         </Link>
@@ -122,9 +121,8 @@ const TutorialPage = () => {
             })}
           >
             <img src={checkRumors} alt="check-rumors" />
-            {/* TODO: translate */}
             <div className={cx(classes.tabName, classes.tabCheckRumors)}>
-              我想確認謠言
+              {c('Tutorial').t`I'd Review`}
             </div>
           </div>
         </Link>

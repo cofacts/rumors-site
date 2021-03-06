@@ -1,3 +1,5 @@
+import { t } from 'ttag';
+
 import tutorial1 from '../images/bust-hoaxes-tutorial-1.png';
 import tutorial2 from '../images/bust-hoaxes-tutorial-2.png';
 import tutorial3 from '../images/bust-hoaxes-tutorial-3.png';
@@ -7,53 +9,53 @@ import tutorial6 from '../images/bust-hoaxes-tutorial-6.png';
 
 export default [
   {
-    title: '覺得查核太難了嗎？從覆核別人的查核回應開始吧！',
-    subTitle: '想寫出好的查核訊息前，先看看別人是怎麼查核的吧！',
-    content:
-      '「Cofacts 真的假的」上的訊息查核，是由世界各地的網友編輯，無償自主查核貢獻的喔！但是編輯們的查核成果，不見得就是正確完整的呢！因此，需要網友編輯們來覆核評價，協助篩選出好的查核結果。新手編輯們，也可以從中學習別人是怎麼查核闢謠呢！',
+    title: t`Do you feel fact-checking is too difficult? You can start by reviewing the responses of others.`,
+    subTitle: t`Take a look at how others do fact-checking may help you write good quality responses.`,
+    content: t`Reviews of information on Cofacts are collaborated by contributors from all over the world and free of charge. However, the fact-checking results may not necessarily be correct or complete all the time. That is why the project requires the role of editor to review the checking results to select responses of high quality. To novice editors, they may learn how others fact-check on rumors through the review process.`,
     subContent: [
       {
-        title: '尋找需要被覆核的回應',
+        title: t`Searching responses waiting to be reviewed`,
         content: [
           {
             type: 'text',
-            data: `「最新查核」會列出其他志工編輯查核回應，以下不同篩選能幫你篩選出——
-            「還未有效查核」：目前還沒有使用者覺得好的可疑訊息，推薦使用。
-            「熱門回報」：目前很多使用者想問真假的可疑訊息。
-            「熱門討論」：目前很多編輯查核回應的可疑訊息。`,
+            data: t`"Latest Checked" section lists all volunteer editors' reviews to fact-checking responses, you can filter information pieces with the tags as follows:
+            
+            "No validated responses yet": This labels the pieces of information that may lack validated high-quality responses. We recommend this tag as a start of searching.
+            
+            "Popularly Reported": This labels the suspicious messages that are trending among requests for fact-checking.
+            
+            "Hot Topics": This labels the suspicious messages that have been responded to and reviewed a lot.
+            `,
           },
         ],
       },
       {
-        title: '評價別人的查核回應',
+        title: t`Evaluating the responses`,
         content: [
           {
             type: 'text',
-            data:
-              '你可以對其他人的查核回應按讚或是按踩。透過來自眾人的評價，好的查核回應會慢慢浮出水面，被更多使用者看到。在評價的過程中，請留下你為什麼覺得這篇查核是好是壞的理由，同時你也可以點擊「看理由」來觀看別人留下來的評價。',
+            data: t`You can react to others' checking responses with "Vote Up" and "Vote Down". Through the collaborative evaluation, good quality responses will gradually surface and be exposed to more users. Please leave your reasons of determining a response as of good or poor quality in the evaluation process. You can click "Read More Reasons" to read the comments left by others.`,
           },
           {
             type: 'text',
-            data:
-              '按「查核闢謠」按鈕，可以進到訊息頁面，看看編輯所附的出處。一則查核回應要有用，出處也是很重要的唷！',
+            data: t`Hit the "Fact-Check" button to enter the page and see the sources and references attached by the editors, as information source is critical to determining the validity of fact-checking response.`,
           },
         ],
       },
     ],
   },
   {
-    title: '尋找需要協助闢謠的可疑文章',
-    subTitle: '準備好來自己查核訊息囉',
-    content: `嘗試過評價其他編輯的謠言給予建議後，是不是也想自己親自來查證看看了呢？
-      首先我們要先去找到需要被查核的可疑訊息，也就是那些還沒被查過、或是過往查證不完整、不正確的訊息，都是社群上急於等待志工查證的訊息。`,
+    title: t`Look for suspicious articles that may require further fact-checking`,
+    subTitle: t`Get ready to check information yourself!`,
+    content: t`Feeling like fact-checking after learning through evaluating others' responses?
+    First of all, you can look for suspicious contents waiting to be checked from the website; that is, messages that have not been fact-checked, or that have incomplete or inaccurate checking results. These are what the volunteer community needs you to help with!`,
     subContent: [
       {
-        title: '到「等你來答」尋找待查的訊息',
+        title: t`Go to "Waiting for Your Response" to find information to be checked.`,
         content: [
           {
             type: 'text',
-            data:
-              '「等你來答」頁面彙整了被回報兩次以上、而且尚無有效查核的訊息。每則訊息左邊有目前的查核回應數、以及被回報了幾次（亦即有幾個人想知道這則訊息的真實性）。',
+            data: t`"Waiting for Your Response" section compiles contents that have been reported over twice but yet to have validated checking responses. On the left side of each piece of content is the current count of responses and number of times it has been reported that shows how many people want to authenticate this content.`,
           },
           {
             type: 'image',
@@ -62,12 +64,12 @@ export default [
         ],
       },
       {
-        title: '篩選有興趣的主題',
+        title: t`Select topics of interest`,
         content: [
           {
             type: 'text',
-            data: `如果一眼找不到有興趣回答的訊息，那麼試試主題篩選器吧！點一下主題篩選器，就會列出內容含有該主題的訊息。
-            有些主題與專業比較無關，如「連署、集氣、協尋、捐贈」、「商業廣告」、「免費訊息詐騙」等等；有與公共議題相關的主題，如「優惠措施、新法規、政策宣導」、「性別議題」、「中國影響力」、「農林漁牧政策」；另外，也有留給專業人士的主題，如「跨國互動」、「COVID-19 疫情」等等。`,
+            data: t`If you can't find contents you are interested in responding, try the topic filter! Click the topic filter, and the contents tagged by the topic keywords will be listed.
+            Some tags have little relevance to professional realms, such as petition, crowd support, BOLO (be on the lookout), donation, commercial advertising, message scam, etc. There are tags related to public affairs, such as preferential measures, new regulations, publicity of policies, gender issues, China's influence, policy of agriculture, forestry, fishery and animal husbandry. In addition, there are topics like transnational interaction, COVID-19 pandemic and so forth that are waiting for professionals in specific areas to review.`,
           },
           {
             type: 'image',
@@ -78,32 +80,29 @@ export default [
     ],
   },
   {
-    title: '分析轉傳進來的訊息',
-    subTitle: '挑選要查證的謠言後，先分析哪裡是需要被查證的部分',
-    content:
-      '這裡的每一則訊息，都是 chatbot 使用者手動回報的，形狀千奇百怪；試試看下面這些步驟，來拆解這個訊息吧。',
+    title: t`Analyze the content`,
+    subTitle: t`After selecting the content you are checking, you can look for questionable points to be checked.`,
+    content: t`Each message here was reported by chatbot users and may be in various odd forms, styles with doubtful content. You can try to follow the steps below to analyze your piece.`,
     subContent: [
       {
-        title: '這在查證範圍嗎？',
+        title: t`Is it a valid request?`,
         content: [
           {
             type: 'text',
-            data: '所謂「查證範圍」，就是「在 LINE 上轉傳的訊息」。',
+            data: t`In Cofacts, a message request is considered valid if the message is actually being forwarded among chatrooms in LINE.`,
           },
           {
             type: 'text',
-            data:
-              '可以參考看看這個訊息被詢問的次數；如果只有一人，可能是自己輸入的訊息或測試，永遠不會被查詢。此時，就可以把訊息標記為「不在查證範圍」。另外，如果訊息是「商業」廣告，也可以考慮標為「不在查證範圍」；我們不需要幫商家打廣告唷。',
+            data: t`Take a look at how many people reported the message. If there is only one person, it may be a test message the user typed in on their own, which will never be requested again by another user. If this is the case, mark this message a "invalid request". You can also mark commercial advertisements as "invalid requests" as we do not need to help in advertising businesses.`,
           },
         ],
       },
       {
-        title: '沒頭沒尾？先找回脈絡！',
+        title: t`Pointless contents found? Get to the context first!`,
         content: [
           {
             type: 'text',
-            data:
-              '有些訊息特別短、沒頭沒尾的，卻有很多人回報，代表這不是單一使用者亂輸入的。',
+            data: t`Some messages are very short and clueless yet reported by many users, indicating that the contents may not be spams out of several single users.`,
           },
           {
             type: 'image',
@@ -111,8 +110,7 @@ export default [
           },
           {
             type: 'text',
-            data:
-              '這類訊息在通訊軟體裡，很可能是跟著影片、圖片一起分享的，只是 Cofacts 目前還不支援回報圖片與影片。此時，我們可以把文字貼去 Facebook 的搜尋，看看是不是有人公開分享相關圖文，試著把脈絡找回來。',
+            data: t`This type of information is probably shared with videos or images in communication apps but left without other original content elements, because currently Cofacts does not support reporting images and videos. Still, you can copy and paste the text part to the Facebook or other search tools to see if any users had publicly shared relevant graphics and texts, trying to get close to the context of the reported materials.`,
           },
           {
             type: 'image',
@@ -120,8 +118,7 @@ export default [
           },
           {
             type: 'text',
-            data:
-              '另外，有一些訊息可能被截斷或不完整。這些可能是從其他 chatbot 轉介過來的文字，因為技術上的字數限制而造成的。',
+            data: t`In addition, some messages may be truncated or incomplete. These may be texts referred from other chatbots that are cut due to technical limitations on word counts.`,
           },
           {
             type: 'image',
@@ -129,28 +126,25 @@ export default [
           },
           {
             type: 'text',
-            data:
-              '遇到這個狀況，我們同樣可以利用 Facebook 或 Google 來尋找訊息的全文唷。',
+            data: t`In this situation, you can utilize Facebook or Google as well to find the full texts.`,
           },
         ],
       },
       {
-        title: '框出煽情的爭議點',
+        title: t`Try to raise a few points in the content that may arouse your emotions if you were to receive the message.`,
         content: [
           {
             type: 'text',
-            data:
-              '想想看，如果你在 LINE 收到這則訊息，它最能「影響你情緒」的點有哪些呢？這通常就是 LINE 使用者最想知道的部分。以此作為開始點，想想要提供哪些資訊，才能安撫這種情緒吧。如果訊息很長、或者充滿慷慨激昂的個人意見，這樣的分析能幫助你快速抓到重點，寫出 LINE 使用者覺得有幫助的回應唷！',
+            data: t`These parts are usually what users of Cofacts would like to check on, or triggers for them to share online contents. Take these as a starting point to plan on what types of information you are providing to appease and assist the recipients. This approach may be helpful for you to grasp the critical points and respond to users effectively, especially when encountering long contents, or strong personal opinions.`,
           },
         ],
       },
       {
-        title: '看看其他人怎麼想',
+        title: t`Refer to the existing resources`,
         content: [
           {
             type: 'text',
-            data:
-              '如果沒有頭緒，可以參考一下「回報者的補充說明」的區塊，看看回報者是否有分享自己對這則訊息的看法、或甚至是查到一半的資料唷。',
+            data: t`If you don't have a clue, you can refer to the section of "Supplementary Notes from Reporters" to see if the reporters have shared their views on the contents, or even extra information.`,
           },
           {
             type: 'image',
@@ -159,12 +153,11 @@ export default [
         ],
       },
       {
-        title: '關鍵字、以圖搜圖找相關內容，準備回應材料',
+        title: t`Search keywords and graphics to prepare for responding`,
         content: [
           {
             type: 'text',
-            data:
-              '請參考公視新聞實驗室【社群內容打假術】Google教你深度事實查核，人人都是數位打假王',
+            data: t`Please refer to the Social Media Fact-checking tips & tricks provided by PTS News Lab Taiwan`,
           },
           {
             type: 'link',
@@ -175,50 +168,50 @@ export default [
     ],
   },
   {
-    title: '依照格式撰寫好讀回應',
-    subTitle: '查核完畢後，請依照建議格式寫下方便閱讀的查核結果',
-    content: `辛苦準備好回應材料之後，接下來就是寫下你查核闢謠的結果了！
-      為了讓你辛苦能被更多人看見，請依照建議格式寫下清晰好讀的查核結果，讓聊天機器人或是網站的使用者，能一眼看懂你的查核結果。`,
+    title: t`Write a reader-friendly response with our template`,
+    subTitle: t`After the checking process, please write down the result, presenting reader-friendly response following the suggested format.`,
+    content: t`The step is to compile and present the materials and findings that you have been put efforts in.
+    We advise writing clear responses in the suggested format to help the chatbot and Cofacts users easily read and understand your fact-checking results.`,
     subContent: [
       {
-        title: '選擇回應分類',
+        title: t`Select response category`,
         content: [
           {
             type: 'text',
-            data: `請根據你找到的資料，選擇「含有真實訊息」、「含有不實訊息」與「含有個人意見」。
-              若你找到的資料能說明訊息所說的部分不正確，可以將訊息標成「含有不實訊息」。
-              若你找到的資料大多也都是其他人的個人意見，只是看法與原訊息不同，那可以將訊息標成「含有個人意見」。
-              最後，如果你找到的資料說明訊息裡的資訊是正確的，那可以標成「含有正確訊息」。`,
+            data: t`Please assign tags of categories, "contains true information", "contains misinformation", or "contains personal perspective" to the content based on your findings.
+            
+            If your research result proves that the content includes false information, you can mark it as "contains misinformation".
+            
+            While your findings show personal perspectives divergent from the original, you can tag the content as "contains personal perspective".
+            
+            Finally, if the fact-checking result demonstrates that the content presents valid information, you can mark it as "contains true information".`,
           },
         ],
       },
       {
-        title: '填寫理由',
+        title: t`Fill in the reasons`,
         content: [
           {
             type: 'text',
-            data:
-              '選好了之後，簡短寫一下整段訊息裡，含有不實訊息/個人意見/真實訊息的部分在哪裡。這個部分的文字會顯示在 chatbot，建議使用「開門見山法」在第一段指出訊息哪裡錯誤、含有意見、或哪裡正確，若仍需更多說明，可以另行分段闡述。',
+            data: t`After tagging, write a brief note on which part in the content "contains true information", "contains misinformation", or "contains personal perspective". The note will be shown to users via our chatbot. We suggest clarifying false and true parts, or perspectives of the content in the first paragraph and elaborating in following paragraphs if more explanations are required.`,
           },
         ],
       },
       {
-        title: '放上找到的資料',
+        title: t`Provide sources and reference`,
         content: [
           {
             type: 'text',
-            data:
-              '在「參考資料」或「不同意見」欄位，貼上你找到的資料的連結們，就完成撰寫，可以送出囉！。',
+            data: t`Paste the links of information and list your reference in the "Reference" or "Other Opinions" column, then your response is good to go!`,
           },
         ],
       },
       {
-        title: '有什麼範例可以參考嗎？',
+        title: t`Are there any examples for reference?`,
         content: [
           {
             type: 'text',
-            data:
-              '《編輯的奇幻旅程》紀錄了過去編輯們分享的案例，大家可以參考看看這些編輯過去面對各種不同訊息時，是怎麼進行分析與撰寫回應的唷！',
+            data: t`We have a collaborative note "Editor's Fantastic Journey" that records the cases shared by editors in the past. You can refer to how these editors analyzed and wrote responses when faced with varied types of information and contents.`,
           },
           {
             type: 'link',
@@ -230,16 +223,16 @@ export default [
     ],
   },
   {
-    title: '我真的查不到啦～怎麼辦？',
-    subTitle: '別氣餒，把你的進度留在「我想補充」裡，讓大家接力查核！',
+    title: t`I really can't find any sources! What should I do?`,
+    subTitle: t`Don't worry. Leave your progress in "My Supplement" and let the community continue your work.`,
     subContent: [
       {
-        title: '使用「我要補充」功能',
+        title: t`Use "My Supplement" function`,
         content: [
           {
             type: 'text',
-            data: `請點開「我要補充」，把目前找到的資料貼進去，也簡短分享一下自己查不到的部分。
-            在你送出補充之後，「回報數」會增加，吸引其他編輯點入訊息查看，從你分享的補充資料開始，接手你的查證喲！`,
+            data: t`Please click "My Supplement", put the information and materials you have found so far there, and briefly share the parts you could not find.
+            The "Response Count" will increase after you send the supplement then attract other editors to view, so the community members can start from the supplementary materials you shared to finish remaining fact-checking process!`,
           },
         ],
       },

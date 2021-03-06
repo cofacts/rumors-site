@@ -121,7 +121,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
             className="makeStyles-arrow makeStyles-arrow"
             src={Object {}}
           />
-          展開內容
+          Expand
         </div>
       </div>
       <div
@@ -148,9 +148,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               <div
                 className="makeStyles-subContentLabel makeStyles-subContentLabel"
               >
-                第 
-                1
-                 步
+                Step 1
               </div>
               <div
                 className="makeStyles-subContentTitle"
@@ -198,9 +196,7 @@ exports[`Storyshots Tutorial/Article Normal 1`] = `
               <div
                 className="makeStyles-subContentLabel makeStyles-subContentLabel"
               >
-                第 
-                2
-                 步
+                Step 2
               </div>
               <div
                 className="makeStyles-subContentTitle"
