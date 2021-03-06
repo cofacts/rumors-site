@@ -15,7 +15,7 @@ import starImg from './images/sponsor-star.png';
 import ProgressionWrapper from './ProgressionWrapper';
 import SectionTitle from './SectionTitle';
 import ActionButton from './ActionButton';
-import { FACEBOOK_SHARE_URL_PREFIX } from 'constants/urls';
+import { FACEBOOK_SHARE_URL_PREFIX, DONATION_URL } from 'constants/urls';
 
 import cx from 'clsx';
 
@@ -180,6 +180,7 @@ const useStyles = makeStyles(theme => ({
     left: '50%',
     width: 164,
     transform: 'translate(-50%, 50%)',
+    textAlign: 'center',
 
     [theme.breakpoints.up('md')]: {
       width: 286,
@@ -236,7 +237,12 @@ function SectionSponsor() {
         </Box>
         <div className={classes.donate}>
           <img src={donateImg} alt="Donate" />
-          <ActionButton className={classes.donateButton} theme="dark">
+          <ActionButton
+            className={classes.donateButton}
+            theme="dark"
+            href={DONATION_URL}
+            target="_blank"
+          >
             {t`Donate to Cofacts`}
           </ActionButton>
         </div>
