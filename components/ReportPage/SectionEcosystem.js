@@ -7,6 +7,99 @@ import SectionTitle from './SectionTitle';
 import ActionButton from './ActionButton';
 
 import starBg from './images/star-bg.svg';
+import trinityLinkBg from './images/ecosystem-trinity-link.png';
+import devBtn from './images/ecosystem-devs.png';
+import intlBtn from './images/ecosystem-intl.png';
+import communityBtn from './images/ecosystem-community.png';
+import researchBtn from './images/ecosystem-research.png';
+
+const useModalButtonStyle = makeStyles(theme => ({
+  button: {
+    position: 'absolute',
+    width: '30%',
+    margin: 0,
+    cursor: 'pointer',
+    '& > img': {
+      // Use button width to control img size
+      width: '100%',
+      transition: 'transform .15s ease-out',
+    },
+    '&:hover > img': {
+      transform: 'scale(1.1)',
+    },
+    '& > figcaption': {
+      position: 'absolute',
+      bottom: 0,
+      left: '50%',
+      minWidth: 'fit-content', // Avoid left: 50% wrapping figcaption too early
+      textAlign: 'center', // Will be visible if there are multiple lines
+      transform: 'translate(-50%, 0)',
+      borderRadius: 23,
+      background: '#3D2E56',
+      padding: '0 16px',
+      color: '#fffefa',
+      fontSize: 18,
+      fontWeight: 700,
+      transition: 'transform .15s ease-out',
+      [theme.breakpoints.up('md')]: {
+        fontSize: 24,
+      },
+    },
+    '&:hover > figcaption': {
+      transform: 'translate(-50%, -1em)',
+    },
+  },
+}));
+
+/**
+ * Ecosystem component buttons that will open modal when clicked.
+ *
+ * @param {string} props.src - img to show
+ * @param {number?} props.imgNudge - % to nudge the image to the right. Used to fix images that is not cropped at center.
+ * @param {string} props.title - caption to show at the bottom of button
+ * @param {object} props.style - style to apply to the entire button
+ */
+function ModalButton({ src, title, style, imgNudge }) {
+  const classes = useModalButtonStyle();
+  return (
+    <figure className={classes.button} style={style}>
+      <img
+        src={src}
+        alt={title}
+        style={imgNudge ? { marginLeft: `${imgNudge}%` } : {}}
+      />
+      <figcaption>{title}</figcaption>
+    </figure>
+  );
+}
+
+const StatUnit = styled('span')(({ theme }) => ({
+  color: '#ffb500',
+  fontSize: 13,
+  [theme.breakpoints.up('md')]: {
+    fontSize: 35,
+  },
+}));
+
+const StatName = styled('div')(({ theme }) => ({
+  fontWeight: 700,
+  fontSize: 13,
+  color: '#fffefa',
+  [theme.breakpoints.up('md')]: {
+    fontSize: 24,
+  },
+}));
+
+const StatValue = styled('span')(({ theme }) => ({
+  color: '#ffb500',
+  fontWeight: 300,
+  fontSize: 36,
+  lineHeight: 1,
+
+  [theme.breakpoints.up('md')]: {
+    fontSize: 96,
+  },
+}));
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -38,6 +131,21 @@ const useStyles = makeStyles(theme => ({
   },
   shadow: {
     filter: 'drop-shadow(0px 0px 57px #67227E)',
+  },
+  modalButtons: {
+    // Wrapper of modal dialog buttons
+    position: 'relative',
+    padding: '0 12px',
+    maxWidth: 1024,
+    margin: '0 auto',
+  },
+  modalButtonsBg: {
+    width: '100%',
+    animation: '1.7s alternate ease-in-out infinite $breath',
+  },
+  '@keyframes breath': {
+    from: { opacity: 0.6 },
+    to: { opacity: 1 },
   },
   stats: {
     display: 'flex',
@@ -72,34 +180,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StatName = styled('div')(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: 13,
-  color: '#fffefa',
-  [theme.breakpoints.up('md')]: {
-    fontSize: 24,
-  },
-}));
-
-const StatValue = styled('span')(({ theme }) => ({
-  color: '#ffb500',
-  fontWeight: 300,
-  fontSize: 36,
-  lineHeight: 1,
-
-  [theme.breakpoints.up('md')]: {
-    fontSize: 96,
-  },
-}));
-
-const StatUnit = styled('span')(({ theme }) => ({
-  color: '#ffb500',
-  fontSize: 13,
-  [theme.breakpoints.up('md')]: {
-    fontSize: 35,
-  },
-}));
-
 function SectionEcosystem() {
   const classes = useStyles();
 
@@ -107,6 +187,35 @@ function SectionEcosystem() {
     <div className={classes.shadow}>
       <ProgressionWrapper className={classes.wrapper}>
         <SectionTitle className={classes.title}>事實查核生態系</SectionTitle>
+
+        <div className={classes.modalButtons}>
+          <img className={classes.modalButtonsBg} src={trinityLinkBg} />
+          <ModalButton
+            src={communityBtn}
+            title="查核社群"
+            style={{
+              top: 0,
+              left: '35%',
+            }}
+            imgNudge={4}
+          />
+          <ModalButton
+            src={devBtn}
+            title="開發者"
+            style={{ left: '29%', top: '33%', width: '42%' }}
+          />
+          <ModalButton
+            src={intlBtn}
+            title="國際交流"
+            imgNudge={-2}
+            style={{ left: '4%', bottom: '6%' }}
+          />
+          <ModalButton
+            src={researchBtn}
+            title="研究"
+            style={{ right: '4%', bottom: '6%' }}
+          />
+        </div>
 
         <Box textAlign="center" maxWidth={1024} px={4} mx="auto">
           <h3>Cofacts 真的假的</h3>
