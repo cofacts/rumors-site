@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'next/link';
 import Box from '@material-ui/core/Box';
@@ -5,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import ProgressionWrapper from './ProgressionWrapper';
 import SectionTitle from './SectionTitle';
 import ActionButton from './ActionButton';
-import { ModalButton } from './EcosystemModal';
+import EcosystemModal, { ModalButton } from './EcosystemModal';
 
 import starBg from './images/star-bg.svg';
 import trinityLinkBg from './images/ecosystem-trinity-link.png';
@@ -119,6 +120,7 @@ const useStyles = makeStyles(theme => ({
 
 function SectionEcosystem() {
   const classes = useStyles();
+  const [shownModalIndex, showModalWithIndex] = useState(null);
 
   return (
     <div className={classes.shadow}>
@@ -134,18 +136,32 @@ function SectionEcosystem() {
               left: '35%',
             }}
             imgNudge={4}
+            onClick={() => showModalWithIndex(0)}
           />
           <ModalButton
             contentIdx={1}
             style={{ left: '29%', top: '33%', width: '42%' }}
+            onClick={() => showModalWithIndex(1)}
           />
           <ModalButton
             contentIdx={2}
             imgNudge={-2}
             style={{ left: '4%', bottom: '6%' }}
+            onClick={() => showModalWithIndex(2)}
           />
-          <ModalButton contentIdx={3} style={{ right: '4%', bottom: '6%' }} />
+          <ModalButton
+            contentIdx={3}
+            style={{ right: '4%', bottom: '6%' }}
+            onClick={() => showModalWithIndex(3)}
+          />
         </div>
+
+        {shownModalIndex !== null && (
+          <EcosystemModal
+            defaultIdx={shownModalIndex}
+            onClose={() => showModalWithIndex(null)}
+          />
+        )}
 
         <Box textAlign="center" maxWidth={1024} px={4} mx="auto">
           <h3>Cofacts 真的假的</h3>

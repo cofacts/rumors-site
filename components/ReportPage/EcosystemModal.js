@@ -1,4 +1,8 @@
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import { withDarkTheme } from 'lib/theme';
+
 import devBtn from './images/ecosystem-devs.png';
 import intlBtn from './images/ecosystem-intl.png';
 import communityBtn from './images/ecosystem-community.png';
@@ -104,22 +108,40 @@ const useModalButtonStyle = makeStyles(theme => ({
  *
  * @param {number} props.contentIdx - index to ECOSYSTEM_CONTENTS
  * @param {number?} props.imgNudge - % to nudge the image to the right. Used to fix images that is not cropped at center.
- * @param {object} props.style - style to apply to the entire button
  */
-export function ModalButton({ contentIdx, style, imgNudge }) {
+export function ModalButton({ contentIdx, imgNudge, ...otherProps }) {
   const classes = useModalButtonStyle();
+  const { title, img } = ECOSYSTEM_CONTENTS[contentIdx];
+
   return (
-    <figure className={classes.button} style={style}>
+    <figure className={classes.button} {...otherProps}>
       <img
-        src={ECOSYSTEM_CONTENTS[contentIdx].img}
-        alt={ECOSYSTEM_CONTENTS[contentIdx].title}
+        src={img}
+        alt={title}
         style={imgNudge ? { marginLeft: `${imgNudge}%` } : {}}
       />
-      <figcaption>{ECOSYSTEM_CONTENTS[contentIdx].title}</figcaption>
+      <figcaption>{title}</figcaption>
     </figure>
   );
 }
 
-export default function EcosystemModal() {
-  return <div></div>;
+function EcosystemModal({ defaultIdx = 0, onClose }) {
+  const [contentIdx, setContentIdx] = useState(defaultIdx);
+  const { title, img, body, links } = ECOSYSTEM_CONTENTS[contentIdx];
+  return (
+    <Dialog fullScreen open onClose={onClose}>
+      <img src={img} alt={title} />
+      <h4>{title}</h4>
+      <p>{body}</p>
+      <ul>
+        {links.map(({ href, label }, idx) => (
+          <li key={idx}>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </Dialog>
+  );
 }
+
+export default withDarkTheme(EcosystemModal);
