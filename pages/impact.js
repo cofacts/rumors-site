@@ -88,4 +88,9 @@ const Report = () => {
   );
 };
 
+// Make it server-rendered for PUBLIC_GA_TRACKING_ID
+export async function getServerSideProps() {
+  return { props: {} };
+}
+
 export default Report;
