@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 import { withDarkTheme } from 'lib/theme';
 
 import devBtn from './images/ecosystem-devs.png';
@@ -125,11 +128,31 @@ export function ModalButton({ contentIdx, imgNudge, ...otherProps }) {
   );
 }
 
+const useStyle = makeStyles(theme => ({
+  close: {
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+  },
+}));
+
 function EcosystemModal({ defaultIdx = 0, onClose }) {
+  const classes = useStyle();
   const [contentIdx, setContentIdx] = useState(defaultIdx);
+  const [isClosing, setClosing] = useState(false);
   const { title, img, body, links } = ECOSYSTEM_CONTENTS[contentIdx];
+
+  const handleClose = () => {
+    // Invoke onClose after animation ended
+    setClosing(true);
+    setTimeout(onClose, 200);
+  };
+
   return (
-    <Dialog fullScreen open onClose={onClose}>
+    <Dialog open={!isClosing} onClose={handleClose}>
+      <IconButton className={classes.close} onClick={handleClose}>
+        <CloseIcon />
+      </IconButton>
       <img src={img} alt={title} />
       <h4>{title}</h4>
       <p>{body}</p>
