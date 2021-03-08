@@ -51,11 +51,11 @@ export default [
     First of all, you can look for suspicious contents waiting to be checked from the website; that is, messages that have not been fact-checked, or that have incomplete or inaccurate checking results. These are what the volunteer community needs you to help with!`,
     subContent: [
       {
-        title: t`Go to "Waiting for Your Response" to find information to be checked.`,
+        title: t`Go to "(Hoax) for you" to find information to be checked.`,
         content: [
           {
             type: 'text',
-            data: t`"Waiting for Your Response" section compiles contents that have been reported over twice but yet to have validated checking responses. On the left side of each piece of content is the current count of responses and number of times it has been reported that shows how many people want to authenticate this content.`,
+            data: t`"(Hoax) for you" section compiles contents that have been reported over twice but yet to have validated checking responses. On the left side of each piece of content is the current count of responses and number of times it has been reported that shows how many people want to authenticate this content.`,
           },
           {
             type: 'image',
@@ -202,7 +202,7 @@ export default [
         content: [
           {
             type: 'text',
-            data: t`Paste the links of information and list your reference in the "Reference" or "Other Opinions" column, then your response is good to go!`,
+            data: t`Paste the links of information and list your reference in the "Reference" or "Opinion Sources" column, then your response is good to go!`,
           },
         ],
       },
@@ -224,14 +224,14 @@ export default [
   },
   {
     title: t`I really can't find any sources! What should I do?`,
-    subTitle: t`Don't worry. Leave your progress in "My Supplement" and let the community continue your work.`,
+    subTitle: t`Don't worry. Leave your progress in "Comment" and let the community continue your work.`,
     subContent: [
       {
-        title: t`Use "My Supplement" function`,
+        title: t`Use "Comment" function`,
         content: [
           {
             type: 'text',
-            data: t`Please click "My Supplement", put the information and materials you have found so far there, and briefly share the parts you could not find.
+            data: t`Please click "Comment", put the information and materials you have found so far there, and briefly share the parts you could not find.
             The "Response Count" will increase after you send the supplement then attract other editors to view, so the community members can start from the supplementary materials you shared to finish remaining fact-checking process!`,
           },
         ],

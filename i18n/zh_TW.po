@@ -902,6 +902,7 @@ msgid "Introduction"
 msgstr "專案介紹"
 
 #: components\AppLayout\AppFooter.js:120
+#: components\ReportPage\SectionTower.js:107
 msgid "Source Code"
 msgstr "原始碼"
 
@@ -1191,7 +1192,7 @@ msgid "${ total } contribution in the last year"
 msgid_plural "${ total } contributions in the last year"
 msgstr[0] "最近一年共做出 ${ total } 次貢獻"
 
-#: pages\impact.js:66
+#: pages\impact.js:60
 msgid "Cofacts social impact report"
 msgstr ""
 
@@ -1203,7 +1204,7 @@ msgstr ""
 msgid "g0v"
 msgstr ""
 
-#: pages\impact.js:71
+#: pages\impact.js:65
 msgid "Individual strengths converge to exert the greatest power"
 msgstr "集結眾人之力，就能創造最大的力量。"
 
@@ -1397,11 +1398,11 @@ msgstr ""
 msgid "Dcard"
 msgstr ""
 
-#: components\ReportPage\SectionSponsor.js:240
+#: components\ReportPage\SectionSponsor.js:246
 msgid "Donate to Cofacts"
 msgstr ""
 
-#: components\ReportPage\SectionSponsor.js:249
+#: components\ReportPage\SectionSponsor.js:255
 msgid "Share to Facebook"
 msgstr ""
 
@@ -1426,14 +1427,6 @@ msgstr ""
 msgid "Social Impact Report"
 msgstr "影響力報告"
 
-#: pages\impact.js:79
-msgid ""
-"At present, there have been more than 40,000 verified pieces of content in \n"
-"our database. Before the open source community burns out, through \n"
-"investing human and other resources, the project is to reverse harms to \n"
-"democracy and society caused by misinformation."
-msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
-
 #: components\ReportPage\SectionHowToUse.js:111
 msgid "Super EASY"
 msgstr "參與超簡單"
@@ -1454,14 +1447,6 @@ msgstr ""
 #: components\ReportPage\SectionOriginalFeatures.js:226
 msgid "Cofacts original features"
 msgstr "Cofacts 原創功能一覽"
-
-#: pages\impact.js:73
-msgid ""
-"Cofacts is the earliest-developed fact-checking chatbot. The project was \n"
-"launched in 2016 by the engineers, proposed to the civic tech community, \n"
-"and accomplished by a group of volunteers. The team members meet up \n"
-"weekly to maintain the project's dynamic."
-msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
 
 #: components\ReportPage\SectionFeatures.js:166
 msgid ""
@@ -1700,7 +1685,7 @@ msgid "Get ready to check information yourself!"
 msgstr "準備好來自己查核訊息囉"
 
 #: components\Tutorial\content\bustHoaxes.js:54
-msgid "Go to \"Waiting for Your Response\" to find information to be checked."
+msgid "Go to \"(Hoax) for you\" to find information to be checked."
 msgstr "到「等你來答」尋找待查的訊息"
 
 #: components\Tutorial\content\bustHoaxes.js:50
@@ -1717,11 +1702,11 @@ msgstr ""
 
 #: components\Tutorial\content\bustHoaxes.js:58
 msgid ""
-"\"Waiting for Your Response\" section compiles contents that have been "
-"reported over twice but yet to have validated checking responses. On the "
-"left side of each piece of content is the current count of responses and "
-"number of times it has been reported that shows how many people want to "
-"authenticate this content."
+"\"(Hoax) for you\" section compiles contents that have been reported over "
+"twice but yet to have validated checking responses. On the left side of "
+"each piece of content is the current count of responses and number of times "
+"it has been reported that shows how many people want to authenticate this "
+"content."
 msgstr "「等你來答」頁面彙整了被回報兩次以上、而且尚無有效查核的訊息。每則訊息左邊有目前的查核回應數、以及被回報了幾次（亦即有幾個人想知道這則訊息的真實性）。"
 
 #: components\Tutorial\content\bustHoaxes.js:67
@@ -1900,7 +1885,7 @@ msgstr "放上找到的資料"
 #: components\Tutorial\content\bustHoaxes.js:205
 msgid ""
 "Paste the links of information and list your reference in the \"Reference\" "
-"or \"Other Opinions\" column, then your response is good to go!"
+"or \"Opinion Sources\" column, then your response is good to go!"
 msgstr "在「參考資料」或「不同意見」欄位，貼上你找到的資料的連結們，就完成撰寫，可以送出囉！。"
 
 #: components\Tutorial\content\bustHoaxes.js:210
@@ -1913,18 +1898,18 @@ msgstr "我真的查不到啦～怎麼辦？"
 
 #: components\Tutorial\content\bustHoaxes.js:227
 msgid ""
-"Don't worry. Leave your progress in \"My Supplement\" and let the community "
+"Don't worry. Leave your progress in \"Comment\" and let the community "
 "continue your work."
 msgstr "別氣餒，把你的進度留在「我想補充」裡，讓大家接力查核！"
 
 #: components\Tutorial\content\bustHoaxes.js:230
-msgid "Use \"My Supplement\" function"
+msgid "Use \"Comment\" function"
 msgstr "使用「我要補充」功能"
 
 #: components\Tutorial\content\bustHoaxes.js:234
 msgid ""
-"Please click \"My Supplement\", put the information and materials you have "
-"found so far there, and briefly share the parts you could not find.\n"
+"Please click \"Comment\", put the information and materials you have found "
+"so far there, and briefly share the parts you could not find.\n"
 "The \"Response Count\" will increase after you send the supplement then "
 "attract other editors to view, so the community members can start from the "
 "supplementary materials you shared to finish remaining fact-checking "
@@ -2076,10 +2061,9 @@ msgstr "現在開始闢謠，網站內的訊息都在等你！"
 
 #: components\Tutorial\content\checkRumors.js:94
 msgid ""
-"Choose \"Waiting for your response\". It is more blessed to give than to "
-"receive, and fact-checking is like standing on the shoulders of giants to "
-"look at the world. With your help, false information will be defeated one "
-"after another!"
+"Choose \"(Hoax) for you\". It is more blessed to give than to receive, and "
+"fact-checking is like standing on the shoulders of giants to look at the "
+"world. With your help, false information will be defeated one after another!"
 msgstr "選擇等你來答，施比受更有福，查核就是站在巨人的肩膀上看世界，有你的幫助，不實訊息都將會被一一擊破！！！"
 
 #: components\Tutorial\content\checkRumors.js:97
@@ -2245,6 +2229,30 @@ msgstr ""
 
 #: components\ProfilePage\EditAvatarDialog.js:167
 msgid "Edit profile picture"
+msgstr ""
+
+#: pages\impact.js:67
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was\n"
+"launched in 2016 by the engineers, proposed to the civic tech community,\n"
+"and accomplished by a group of volunteers. The team members meet up\n"
+"weekly to maintain the project's dynamic."
+msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
+
+#: pages\impact.js:73
+msgid ""
+"At present, there have been more than 40,000 verified pieces of content in\n"
+"our database. Before the open source community burns out, through\n"
+"investing human and other resources, the project is to reverse harms to\n"
+"democracy and society caused by misinformation."
+msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
+
+#: components\ReportPage\SectionTower.js:92
+msgid "Open data"
+msgstr ""
+
+#: components\ReportPage\SectionTower.js:99
+msgid "Analytics"
 msgstr ""
 
 #: pages\index.js:41
