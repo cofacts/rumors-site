@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 import { withDarkTheme } from 'lib/theme';
+
+import SectionTitle from './SectionTitle';
 
 import devBtn from './images/ecosystem-devs.png';
 import intlBtn from './images/ecosystem-intl.png';
@@ -129,10 +134,64 @@ export function ModalButton({ contentIdx, imgNudge, ...otherProps }) {
 }
 
 const useStyle = makeStyles(theme => ({
+  dialog: {
+    background: 'rgba(61,46,86,0.85)',
+    backdropFilter: 'blur(6px)',
+  },
   close: {
     position: 'absolute',
-    top: theme.spacing(1),
-    right: theme.spacing(1),
+    top: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+  dialogContent: {
+    textAlign: 'center',
+    [theme.breakpoints.up('md')]: {
+      display: 'grid',
+      gap: '0 20px',
+      gridTemplate: `'img title'
+                     'img content'`,
+      padding: '20px',
+    },
+
+    '& > img': {
+      width: 178,
+      [theme.breakpoints.up('md')]: {
+        width: 347,
+      },
+      gridArea: 'img',
+    },
+    '& > h4': {
+      color: '#ffb500',
+      fontWeight: 700,
+      fontSize: 18,
+      margin: 0,
+
+      [theme.breakpoints.up('md')]: {
+        fontSize: 36,
+        gridArea: 'title',
+        alignSelf: 'end',
+        textAlign: 'left',
+      },
+    },
+    '& > article': {
+      width: 'max-content',
+      textAlign: 'justify',
+      margin: '20px auto',
+      [theme.breakpoints.up('md')]: {
+        gridArea: 'content',
+      },
+    },
+    '& ul': {
+      paddingLeft: '1.5em',
+    },
+    '& a': {
+      fontWeight: 700,
+      color: '#fff',
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+    },
   },
 }));
 
@@ -140,6 +199,7 @@ function EcosystemModal({ defaultIdx = 0, onClose }) {
   const classes = useStyle();
   const [contentIdx, setContentIdx] = useState(defaultIdx);
   const [isClosing, setClosing] = useState(false);
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
   const { title, img, body, links } = ECOSYSTEM_CONTENTS[contentIdx];
 
   const handleClose = () => {
@@ -149,20 +209,36 @@ function EcosystemModal({ defaultIdx = 0, onClose }) {
   };
 
   return (
-    <Dialog open={!isClosing} onClose={handleClose}>
+    <Dialog
+      maxWidth="lg"
+      fullScreen={isMobile}
+      classes={{ paper: classes.dialog }}
+      open={!isClosing}
+      onClose={handleClose}
+    >
+      {isMobile && (
+        <DialogTitle>
+          <SectionTitle>事實查核生態系</SectionTitle>
+        </DialogTitle>
+      )}
+
+      <DialogContent className={classes.dialogContent}>
+        <img src={img} alt={title} />
+        <h4>{title}</h4>
+        <article>
+          <p>{body}</p>
+          <ul>
+            {links.map(({ href, label }, idx) => (
+              <li key={idx}>
+                <a href={href}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </article>
+      </DialogContent>
       <IconButton className={classes.close} onClick={handleClose}>
         <CloseIcon />
       </IconButton>
-      <img src={img} alt={title} />
-      <h4>{title}</h4>
-      <p>{body}</p>
-      <ul>
-        {links.map(({ href, label }, idx) => (
-          <li key={idx}>
-            <a href={href}>{label}</a>
-          </li>
-        ))}
-      </ul>
     </Dialog>
   );
 }
