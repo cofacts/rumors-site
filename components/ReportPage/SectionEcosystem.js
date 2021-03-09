@@ -70,11 +70,16 @@ const useStyles = makeStyles(theme => ({
   shadow: {
     filter: 'drop-shadow(0px 0px 57px #67227E)',
   },
+  title: {
+    [theme.breakpoints.up('md')]: {
+      marginBottom: 48,
+    },
+  },
   modalButtons: {
     // Wrapper of modal dialog buttons
     position: 'relative',
     padding: '0 12px',
-    maxWidth: 1024,
+    maxWidth: '100vh',
     margin: '0 auto',
   },
   modalButtonsBg: {
