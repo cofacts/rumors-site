@@ -23,12 +23,19 @@ const ECOSYSTEM_CONTENTS = [
     body: '實體聚會、自主貢獻、日日產生查核報告，第一線的戰士組織社群。',
     links: [
       {
-        href: 'https://github.com/cofacts',
+        href: 'https://www.youtube.com/watch?v=LkwOLicel4A',
         label: '闢謠編輯現身：謠言不可能一下子就解決，要持續走下去',
       },
-      { href: 'https://github.com/cofacts', label: 'Cofacts 編輯交流天地 FB' },
-      { href: 'https://github.com/cofacts', label: '過往編輯小聚' },
-      { href: 'https://github.com/cofacts', label: '小聚開場投影片' },
+      {
+        href: 'https://www.facebook.com/groups/cofacts/',
+        label: 'Cofacts 編輯交流天地 FB',
+      },
+      { href: 'https://cofacts.kktix.cc/', label: '過往編輯小聚' },
+      {
+        href:
+          'https://docs.google.com/presentation/d/1QCAPtwkxreQ4EUtIWsOgR4c8h4tkRs22Qvv7jBFNrfI/',
+        label: '小聚開場投影片',
+      },
     ],
   },
   {
@@ -36,9 +43,12 @@ const ECOSYSTEM_CONTENTS = [
     img: devBtn,
     body: '建立事實查核平台、開發聊天機器人，創造科技工具解決問題。',
     links: [
-      { href: 'https://github.com/cofacts', label: 'Cofacts 系統架構' },
       {
-        href: 'https://github.com/cofacts',
+        href: 'https://hackmd.io/@mrorz/r1nfwTrgM',
+        label: 'Cofacts 開發者入口與系統架構',
+      },
+      {
+        href: 'https://g0v.hackmd.io/@mrorz/SJ1f6uU5X',
         label: '架設 Cofacts 英文工作坊＠ 2018 零時政府高峰會',
       },
     ],
@@ -46,21 +56,25 @@ const ECOSYSTEM_CONTENTS = [
   {
     title: '國際交流',
     img: intlBtn,
-    body: '建立事實查核平台、開發聊天機器人，創造科技工具解決問題。',
+    body: '提供開發教學資源，開源分享，協助開發機器人，國際交流與技術協助。',
     links: [
       {
-        href: 'https://github.com/cofacts',
-        label: 'Introduction to Cofacts @ Google  News Lab APAC summit 2017',
+        href: 'https://www.youtube.com/watch?v=569cj67xN7c',
+        label: 'Introduction to Cofacts @ Google News Lab APAC summit 2017',
       },
       {
-        href: 'https://github.com/cofacts',
-        label: 'Cofacts 設計分享＠ 2019 泰國朱拉隆功大學',
+        href: 'https://www.youtube.com/watch?v=9iS_Fy2iWb0',
+        label: 'Cofacts 設計分享 ＠ 泰國朱拉隆功大學, 2019',
       },
-      { href: 'https://github.com/cofacts', label: '泰國 Cofact By OpenDream' },
       {
-        href: 'https://github.com/cofacts',
+        href: 'https://www.youtube.com/watch?v=DgcI0N2HTMA',
+        label: 'Cofacts 設計 @ LINE 開發者大會 2020',
+      },
+      {
+        href: 'https://g0v.hackmd.io/@mrorz/SJ1f6uU5X',
         label: '架設 Cofacts 英文工作坊＠ 2018 零時政府高峰會',
       },
+      { href: 'https://cofact.org', label: '泰國 Cofact by OpenDream' },
     ],
   },
   {
@@ -69,6 +83,8 @@ const ECOSYSTEM_CONTENTS = [
     body: '開放資料提供調查記者與專業學者進行研究分析，數據分析資料公開。',
     links: [
       { href: 'https://github.com/cofacts', label: 'Cofacts 開放資料集' },
+      { href: 'https://cofacts.org/analytics', label: 'Cofacts 使用數據' },
+      { href: 'https://api.cofacts.org', label: 'Cofacts API' },
     ],
   },
 ];
@@ -197,10 +213,10 @@ const useStyle = makeStyles(theme => ({
 
 function EcosystemModal({ defaultIdx = 0, onClose }) {
   const classes = useStyle();
-  const [contentIdx, setContentIdx] = useState(defaultIdx);
+  // const [contentIdx, setContentIdx] = useState(defaultIdx);
   const [isClosing, setClosing] = useState(false);
   const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
-  const { title, img, body, links } = ECOSYSTEM_CONTENTS[contentIdx];
+  const { title, img, body, links } = ECOSYSTEM_CONTENTS[defaultIdx];
 
   const handleClose = () => {
     // Invoke onClose after animation ended
