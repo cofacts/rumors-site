@@ -228,7 +228,7 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
             <AvatarSelector
               avatarData={avatarData}
               onChange={setAvatarField}
-              shuffle={shuffle}
+              onShuffle={shuffle}
             />
           ) : null}
         </DialogContent>

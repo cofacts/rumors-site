@@ -203,7 +203,7 @@ const pieces = [
   },
 ];
 
-function AvatarSelector({ avatarData, onChange, shuffle }) {
+function AvatarSelector({ avatarData, onChange, onShuffle }) {
   const wrapperEl = useRef(null);
   const classes = useStyles();
 
@@ -232,7 +232,7 @@ function AvatarSelector({ avatarData, onChange, shuffle }) {
       >
         <Flip />
       </Button>
-      <Button className={classes.iconButton} onClick={shuffle}>
+      <Button className={classes.iconButton} onClick={onShuffle}>
         <CasinoOutlined />
       </Button>
     </div>
