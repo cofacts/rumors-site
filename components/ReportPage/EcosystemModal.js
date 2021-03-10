@@ -191,6 +191,7 @@ const useStyle = makeStyles(theme => ({
     },
     '& > article': {
       width: 'max-content',
+      maxWidth: '100%', // still need to wrap
       textAlign: 'justify',
       margin: '20px auto',
       [theme.breakpoints.up('md')]: {
