@@ -4,7 +4,7 @@ import { TextField, MenuItem, Button } from '@material-ui/core';
 import { t } from 'ttag';
 import { colorOptions, getBackgroundColor } from '../AppLayout/Widgets';
 import { Hair, Face, FacialHair, BustPose, Accessories } from 'react-peeps';
-import { Flip } from '@material-ui/icons';
+import { Flip, CasinoOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 580,
     width: 'calc(100% - 70px)',
     overflowX: 'scroll',
+    transform: 'translateX(-20px) !important',
   },
   colorGird: {
     width: 20,
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-flex',
     margin: '1px',
   },
-  flipButton: {
+  iconButton: {
     display: 'inline-flex',
     margin: '1px',
     border: `1px solid ${theme.palette.secondary[100]}`,
@@ -101,14 +102,6 @@ function ComponentInput({
             PopoverClasses: {
               paper: classes.popoverRoot,
             },
-            anchorOrigin: {
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-            transformOrigin: {
-              vertical: 'center',
-              horizontal: 'center',
-            },
             anchorEl,
           },
           SelectDisplayProps: {
@@ -154,14 +147,6 @@ function ColorPicker({ options, anchorEl, selected, onChange = () => {} }) {
           MenuProps: {
             PopoverClasses: {
               paper: classes.popoverRoot,
-            },
-            anchorOrigin: {
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-            transformOrigin: {
-              vertical: 'center',
-              horizontal: 'center',
             },
             anchorEl,
           },
@@ -218,7 +203,7 @@ const pieces = [
   },
 ];
 
-function AvatarSelector({ avatarData, onChange }) {
+function AvatarSelector({ avatarData, onChange, onShuffle }) {
   const wrapperEl = useRef(null);
   const classes = useStyles();
 
@@ -235,18 +220,21 @@ function AvatarSelector({ avatarData, onChange }) {
           title={title}
         />
       ))}
-      <Button
-        className={classes.flipButton}
-        onClick={() => onChange('flip', !avatarData?.flip)}
-      >
-        <Flip />
-      </Button>
       <ColorPicker
         selected={getBackgroundColor({ avatarData })}
         options={colorOptions}
         anchorEl={() => wrapperEl.current}
         onChange={value => onChange('backgroundColor', value)}
       />
+      <Button
+        className={classes.iconButton}
+        onClick={() => onChange('flip', !avatarData?.flip)}
+      >
+        <Flip />
+      </Button>
+      <Button className={classes.iconButton} onClick={onShuffle}>
+        <CasinoOutlined />
+      </Button>
     </div>
   );
 }

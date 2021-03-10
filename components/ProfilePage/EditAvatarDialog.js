@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     padding: 20,
   },
   tabRoot: {
-    minWidth: 'unset',
+    minWidth: '80px',
     width: '25%',
   },
 });
@@ -157,6 +157,9 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
   const setAvatarField = (field, value) => {
     setAvatarData({ ...avatarData, [field]: value });
   };
+  const shuffle = () => {
+    setAvatarData(generateRandomOpenPeepsAvatar());
+  };
 
   if (!user) {
     return <div></div>;
@@ -169,7 +172,7 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
         <DialogContent dividers>
           <Tabs
             value={avatarType}
-            variant="fullWidth"
+            variant="scrollable"
             textColor="primary"
             scrollButtons="off"
             onChange={(e, tab) => setAvatarType(tab)}
@@ -222,7 +225,11 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
             />
           </div>
           {avatarType === 'OpenPeeps' ? (
-            <AvatarSelector avatarData={avatarData} onChange={setAvatarField} />
+            <AvatarSelector
+              avatarData={avatarData}
+              onChange={setAvatarField}
+              onShuffle={shuffle}
+            />
           ) : null}
         </DialogContent>
         <DialogActions>
