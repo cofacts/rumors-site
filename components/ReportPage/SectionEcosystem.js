@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'next/link';
 import Box from '@material-ui/core/Box';
@@ -5,8 +6,38 @@ import Box from '@material-ui/core/Box';
 import ProgressionWrapper from './ProgressionWrapper';
 import SectionTitle from './SectionTitle';
 import ActionButton from './ActionButton';
+import EcosystemModal, { ModalButton } from './EcosystemModal';
 
 import starBg from './images/star-bg.svg';
+import trinityLinkBg from './images/ecosystem-trinity-link.png';
+
+const StatUnit = styled('span')(({ theme }) => ({
+  color: '#ffb500',
+  fontSize: 13,
+  [theme.breakpoints.up('md')]: {
+    fontSize: 35,
+  },
+}));
+
+const StatName = styled('div')(({ theme }) => ({
+  fontWeight: 700,
+  fontSize: 13,
+  color: '#fffefa',
+  [theme.breakpoints.up('md')]: {
+    fontSize: 24,
+  },
+}));
+
+const StatValue = styled('span')(({ theme }) => ({
+  color: '#ffb500',
+  fontWeight: 300,
+  fontSize: 36,
+  lineHeight: 1,
+
+  [theme.breakpoints.up('md')]: {
+    fontSize: 96,
+  },
+}));
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -38,6 +69,26 @@ const useStyles = makeStyles(theme => ({
   },
   shadow: {
     filter: 'drop-shadow(0px 0px 57px #67227E)',
+  },
+  title: {
+    [theme.breakpoints.up('md')]: {
+      marginBottom: 48,
+    },
+  },
+  modalButtons: {
+    // Wrapper of modal dialog buttons
+    position: 'relative',
+    padding: '0 12px',
+    maxWidth: '100vh',
+    margin: '0 auto',
+  },
+  modalButtonsBg: {
+    width: '100%',
+    animation: '1.7s alternate ease-in-out infinite $breath',
+  },
+  '@keyframes breath': {
+    from: { opacity: 0.6 },
+    to: { opacity: 1 },
   },
   stats: {
     display: 'flex',
@@ -72,41 +123,50 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StatName = styled('div')(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: 13,
-  color: '#fffefa',
-  [theme.breakpoints.up('md')]: {
-    fontSize: 24,
-  },
-}));
-
-const StatValue = styled('span')(({ theme }) => ({
-  color: '#ffb500',
-  fontWeight: 300,
-  fontSize: 36,
-  lineHeight: 1,
-
-  [theme.breakpoints.up('md')]: {
-    fontSize: 96,
-  },
-}));
-
-const StatUnit = styled('span')(({ theme }) => ({
-  color: '#ffb500',
-  fontSize: 13,
-  [theme.breakpoints.up('md')]: {
-    fontSize: 35,
-  },
-}));
-
 function SectionEcosystem() {
   const classes = useStyles();
+  const [shownModalIndex, showModalWithIndex] = useState(null);
 
   return (
     <div className={classes.shadow}>
       <ProgressionWrapper className={classes.wrapper}>
         <SectionTitle className={classes.title}>事實查核生態系</SectionTitle>
+
+        <div className={classes.modalButtons}>
+          <img className={classes.modalButtonsBg} src={trinityLinkBg} />
+          <ModalButton
+            contentIdx={0}
+            style={{
+              top: 0,
+              left: '35%',
+            }}
+            imgNudge={4}
+            onClick={() => showModalWithIndex(0)}
+          />
+          <ModalButton
+            contentIdx={1}
+            style={{ left: '29%', top: '33%', width: '42%' }}
+            onClick={() => showModalWithIndex(1)}
+          />
+          <ModalButton
+            contentIdx={2}
+            imgNudge={-2}
+            style={{ left: '4%', bottom: '6%' }}
+            onClick={() => showModalWithIndex(2)}
+          />
+          <ModalButton
+            contentIdx={3}
+            style={{ right: '4%', bottom: '6%' }}
+            onClick={() => showModalWithIndex(3)}
+          />
+        </div>
+
+        {shownModalIndex !== null && (
+          <EcosystemModal
+            defaultIdx={shownModalIndex}
+            onClose={() => showModalWithIndex(null)}
+          />
+        )}
 
         <Box textAlign="center" maxWidth={1024} px={4} mx="auto">
           <h3>Cofacts 真的假的</h3>
