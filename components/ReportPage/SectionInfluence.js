@@ -7,6 +7,12 @@ import bgTop from './images/influence-bg-top.png';
 import bgBottom from './images/influence-bg-bottom.png';
 import bgBottomMobile from './images/influence-bg-bottom-mobile.png';
 
+const VIDEO_ID = {
+  en_US: 'aghmzdmnU-w',
+  zh_TW: 'xzXx3Gm01Lg',
+  ja: 'JGqtCQveBYY',
+}[process.env.LOCALE || 'en_US'];
+
 const useStyles = makeStyles(theme => ({
   influence: {
     position: 'relative',
@@ -94,16 +100,16 @@ const SectionInfluence = () => {
       </SectionTitle>
       <div className={classes.video}>
         <iframe
-          src="https://www.youtube.com/embed/WfdfB7GyqMY"
+          src={`https://www.youtube.com/embed/${VIDEO_ID}`}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
       </div>
       <p>
-        {t`External and internal propaganda have caused the people to lose their trust in media and information. 
-        Cofacts took the lead in making a change, establishing a platform and creating a chatbot with fact-checking capabilities. 
-        We automated the process of combating false information through artificial intelligence and machine learning, 
+        {t`External and internal propaganda have caused the people to lose their trust in media and information.
+        Cofacts took the lead in making a change, establishing a platform and creating a chatbot with fact-checking capabilities.
+        We automated the process of combating false information through artificial intelligence and machine learning,
         in order to avoid exhausting professional reviewers and provide review resources.`}
       </p>
       <div className={classes.bgBottom} />
