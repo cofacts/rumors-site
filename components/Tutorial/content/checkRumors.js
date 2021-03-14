@@ -91,7 +91,7 @@ export default [
   {
     title: t`Share the information you find!`,
     subTitle: t`Now start to defeat rumors. The website of enriched information is waiting for you`,
-    content: t`Choose "Waiting for your response". It is more blessed to give than to receive, and fact-checking is like standing on the shoulders of giants to look at the world. With your help, false information will be defeated one after another!`,
+    content: t`Choose "(Hoax) for you". It is more blessed to give than to receive, and fact-checking is like standing on the shoulders of giants to look at the world. With your help, false information will be defeated one after another!`,
     subContent: [
       {
         title: t`The first step is to select "Contains false information"`,
