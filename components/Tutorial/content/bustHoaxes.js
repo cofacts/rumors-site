@@ -18,13 +18,13 @@ export default [
         content: [
           {
             type: 'text',
-            data: t`"Latest Checked" section lists all volunteer editors' reviews to fact-checking responses, you can filter information pieces with the tags as follows:
+            data: t`"Replies" section lists all volunteer editors' reviews to fact-checking responses, you can filter information pieces with the tags as follows:
             
-            "No validated responses yet": This labels the pieces of information that may lack validated high-quality responses. We recommend this tag as a start of searching.
+            "No useful reply yet": This labels the pieces of information that may lack validated high-quality responses. We recommend this tag as a start of searching.
             
-            "Popularly Reported": This labels the suspicious messages that are trending among requests for fact-checking.
+            "Asked many times": This labels the suspicious messages that are trending among requests for fact-checking.
             
-            "Hot Topics": This labels the suspicious messages that have been responded to and reviewed a lot.
+            "Replied many times": This labels the suspicious messages that have been responded to and reviewed a lot.
             `,
           },
         ],

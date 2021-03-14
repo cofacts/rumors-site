@@ -5,10 +5,7 @@ const useStyles = makeStyles(theme => ({
   item: {
     border: 'none',
     outline: 'none',
-
-    '&:not(:last-child)': {
-      marginBottom: 20,
-    },
+    marginBottom: 20,
   },
   title: {
     width: '100%',
