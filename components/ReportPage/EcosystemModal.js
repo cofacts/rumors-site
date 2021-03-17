@@ -119,11 +119,12 @@ const useModalButtonStyle = makeStyles(theme => ({
       transform: 'translate(-50%, 0)',
       borderRadius: 23,
       background: '#3D2E56',
-      padding: '0 16px',
+      padding: '4px 16px',
       color: '#fffefa',
       fontSize: 18,
       fontWeight: 700,
       transition: 'transform .15s ease-out',
+      lineHeight: 1.3,
       [theme.breakpoints.up('md')]: {
         fontSize: 24,
       },
