@@ -2211,22 +2211,6 @@ msgstr ""
 msgid "Edit profile picture"
 msgstr ""
 
-#: pages/impact.js:67
-msgid ""
-"Cofacts is the earliest-developed fact-checking chatbot. The project was\n"
-"launched in 2016 by the engineers, proposed to the civic tech community,\n"
-"and accomplished by a group of volunteers. The team members meet up\n"
-"weekly to maintain the project's dynamic."
-msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
-
-#: pages/impact.js:73
-msgid ""
-"At present, there have been more than 40,000 verified pieces of content in\n"
-"our database. Before the open source community burns out, through\n"
-"investing human and other resources, the project is to reverse harms to\n"
-"democracy and society caused by misinformation."
-msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
-
 #: components/ReportPage/SectionTower.js:92
 msgid "Open data"
 msgstr "開放資料"
@@ -2329,7 +2313,7 @@ msgstr "Cofacts 使用數據"
 msgid "Cofacts API"
 msgstr "Cofacts API"
 
-#: components/ReportPage/EcosystemModal.js:245
+#: components/ReportPage/EcosystemModal.js:246
 #: components/ReportPage/SectionEcosystem.js:135
 msgid "Fact-checking ecosystem"
 msgstr "事實查核生態系"
@@ -2361,6 +2345,21 @@ msgstr ""
 "建立平台與創造具有事實查核能力的聊天機器人。\n"
 "透過人工智慧與機器學習把打擊不實訊息的流程自動化，\n"
 "避免消耗專業查核記者的人力與提供查核空間。\n"
+
+#: pages/impact.js:67
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was "
+"launched in 2016 by the engineers, proposed to the civic tech community, "
+"and accomplished by a group of volunteers. The team members meet up weekly "
+"to maintain the project's dynamic."
+msgstr "Cofacts 是最早開發出的事實查核聊天機器人。2016年由工程師發起，在公民科技社群提案，全志工形式成就，每週週會持續積累能量。"
+
+#: pages/impact.js:70
+msgid ""
+"At present, there have been more than 45,000 verified pieces of content in "
+"our database. Through investing human and other resources, the project is "
+"to reverse harms to democracy and society caused by misinformation."
+msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
 
 #: pages/index.js:41
 msgctxt "site title"
