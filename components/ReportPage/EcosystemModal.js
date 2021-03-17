@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Dialog from '@material-ui/core/Dialog';
@@ -18,73 +19,79 @@ import researchBtn from './images/ecosystem-research.png';
 
 const ECOSYSTEM_CONTENTS = [
   {
-    title: '查核社群',
+    title: t`Fact-check community`,
     img: communityBtn,
-    body: '實體聚會、自主貢獻、日日產生查核報告，第一線的戰士組織社群。',
+    body: t`Involves in physical gatherings, independent contributions, daily audit reports as the frontline organizational community.`,
     links: [
       {
         href: 'https://www.youtube.com/watch?v=LkwOLicel4A',
-        label: '闢謠編輯現身：謠言不可能一下子就解決，要持續走下去',
+        label: t`Meet Cofacts editors: the need to keep fighting disinformation`,
       },
       {
         href: 'https://www.facebook.com/groups/cofacts/',
-        label: 'Cofacts 編輯交流天地 FB',
+        label: t`Facebook group for Cofacts editors`,
       },
-      { href: 'https://cofacts.kktix.cc/', label: '過往編輯小聚' },
+      { href: 'https://cofacts.kktix.cc/', label: t`Past editor's meetups` },
       {
         href:
           'https://docs.google.com/presentation/d/1QCAPtwkxreQ4EUtIWsOgR4c8h4tkRs22Qvv7jBFNrfI/',
-        label: '小聚開場投影片',
+        label: t`Editor meetups' opening slides`,
       },
     ],
   },
   {
-    title: '開發者',
+    title: t`Developers`,
     img: devBtn,
-    body: '建立事實查核平台、開發聊天機器人，創造科技工具解決問題。',
+    body: t`Establish the fact-checking platform, develop chatbots, and create technological tools to solve problems.`,
     links: [
       {
         href: 'https://hackmd.io/@mrorz/r1nfwTrgM',
-        label: 'Cofacts 開發者入口與系統架構',
+        label: t`Cofacts developer entry page and system diagram`,
       },
       {
         href: 'https://g0v.hackmd.io/@mrorz/SJ1f6uU5X',
-        label: '架設 Cofacts 英文工作坊＠ 2018 零時政府高峰會',
+        label: t`How to run Cofacts on your laptop workshop @ g0v summit 2018`,
       },
     ],
   },
   {
-    title: '國際交流',
+    title: t`International sharing`,
     img: intlBtn,
-    body: '提供開發教學資源，開源分享，協助開發機器人，國際交流與技術協助。',
+    body: t`Provides teaching resources of development, focuses on open source sharing, assists in the development of chatbots, interacts with international communities and helps with technical support.`,
     links: [
       {
         href: 'https://www.youtube.com/watch?v=569cj67xN7c',
-        label: 'Introduction to Cofacts @ Google News Lab APAC summit 2017',
+        label: t`Introduction to Cofacts @ Google News Lab APAC summit 2017`,
       },
       {
         href: 'https://www.youtube.com/watch?v=9iS_Fy2iWb0',
-        label: 'Cofacts 設計分享 ＠ 泰國朱拉隆功大學, 2019',
+        label: t`Cofacts Design @ Chulalongkorn University, 2019`,
       },
       {
         href: 'https://www.youtube.com/watch?v=DgcI0N2HTMA',
-        label: 'Cofacts 設計 @ LINE 開發者大會 2020',
+        label: t`Cofacts Design @ LINE DEVELOPER DAY 2020`,
       },
       {
         href: 'https://g0v.hackmd.io/@mrorz/SJ1f6uU5X',
-        label: '架設 Cofacts 英文工作坊＠ 2018 零時政府高峰會',
+        label: t`How to run Cofacts on your laptop workshop @ g0v summit 2018`,
       },
-      { href: 'https://cofact.org', label: '泰國 Cofact by OpenDream' },
+      {
+        href: 'https://cofact.org',
+        label: t`Cofacts clone - Cofact by OpenDream, Thailand`,
+      },
     ],
   },
   {
-    title: '研究',
+    title: t`Research`,
     img: researchBtn,
-    body: '開放資料提供調查記者與專業學者進行研究分析，數據分析資料公開。',
+    body: t`Provides open data for investigative journalists and scholars to conduct research and analysis, and keep data analysis materials public.`,
     links: [
-      { href: 'https://github.com/cofacts', label: 'Cofacts 開放資料集' },
-      { href: 'https://cofacts.org/analytics', label: 'Cofacts 使用數據' },
-      { href: 'https://api.cofacts.org', label: 'Cofacts API' },
+      { href: 'https://github.com/cofacts', label: t`Cofacts open dataset` },
+      {
+        href: 'https://cofacts.org/analytics',
+        label: t`Cofacts usage analytics`,
+      },
+      { href: 'https://api.cofacts.org', label: t`Cofacts API` },
     ],
   },
 ];
@@ -112,11 +119,12 @@ const useModalButtonStyle = makeStyles(theme => ({
       transform: 'translate(-50%, 0)',
       borderRadius: 23,
       background: '#3D2E56',
-      padding: '0 16px',
+      padding: '4px 16px',
       color: '#fffefa',
       fontSize: 18,
       fontWeight: 700,
       transition: 'transform .15s ease-out',
+      lineHeight: 1.3,
       [theme.breakpoints.up('md')]: {
         fontSize: 24,
       },
@@ -235,7 +243,7 @@ function EcosystemModal({ defaultIdx = 0, onClose }) {
     >
       {isMobile && (
         <DialogTitle>
-          <SectionTitle>事實查核生態系</SectionTitle>
+          <SectionTitle>{t`Fact-checking ecosystem`}</SectionTitle>
         </DialogTitle>
       )}
 

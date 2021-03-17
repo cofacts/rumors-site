@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { t } from 'ttag';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'next/link';
 import Box from '@material-ui/core/Box';
@@ -130,7 +131,9 @@ function SectionEcosystem() {
   return (
     <div className={classes.shadow}>
       <ProgressionWrapper className={classes.wrapper}>
-        <SectionTitle className={classes.title}>事實查核生態系</SectionTitle>
+        <SectionTitle className={classes.title}>
+          {t`Fact-checking ecosystem`}
+        </SectionTitle>
 
         <div className={classes.modalButtons}>
           <img className={classes.modalButtonsBg} src={trinityLinkBg} />
@@ -169,12 +172,11 @@ function SectionEcosystem() {
         )}
 
         <Box textAlign="center" maxWidth={1024} px={4} mx="auto">
-          <h3>Cofacts 真的假的</h3>
+          <h3>{t`Cofacts`}</h3>
           <p style={{ whiteSpace: 'pre-line' }}>
-            {`是原創的查核訊息聊天機器人，唯一開放原始碼、同時建立了目前最大的中文不實訊息查核平台，
-            透過群眾協作的方式鼓勵志工參與，並且給予不同類別的志工獎勵起發動機。
-            固定舉辦實體活動進行事實查核技巧訓練與社群活動，持續維護開發並且創造新功能，
-            並且開源與其他開發者分享。`}
+            {t`Cofacts is our original chatbot for checking messages.
+               It is the only open source code and the largest Chinese false information checking platform.
+               It encourages volunteers to participate through crowd collaboration and rewards different types of volunteers to motivate their participation.`}
           </p>
         </Box>
 
