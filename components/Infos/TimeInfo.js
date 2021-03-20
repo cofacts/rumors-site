@@ -1,6 +1,7 @@
 import Tooltip from 'components/Tooltip';
 import isValid from 'date-fns/isValid';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
+import { useEffect } from 'react';
 
 /**
  * Formats the date as a relative time if within 24 hours, otherwise formats as an absolute time.
@@ -41,6 +42,12 @@ function TimeInfo({ time, children = t => t }) {
     //
     return <>{children(String(time))}</>;
   }
+
+  console.log('here');
+
+  useEffect(() => {
+    console.log('there');
+  });
 
   const timeAgoStr = formatTimeInfoDate(date);
 
