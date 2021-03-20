@@ -5,10 +5,18 @@ import { useEffect, useState } from 'react';
 
 /**
  * Formats date as an absolute time, using local timezone.
+ * Year will be omitted unless different from current year or forceYear = true.
  */
-function formatDateAbsolute(date) {
+function formatDateAbsolute(date, {forceYear = false} = {}) {
   const locale = process.env.LOCALE.replace('_', '-');
-  const dtf = new Intl.DateTimeFormat(locale, { year: 'numeric', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric'});
+  const now = new Date();
+
+  let options = { day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric'};
+  if (now.getFullYear() != date.getFullYear() || forceYear) {
+    options.year = 'numeric';
+  }
+
+  const dtf = new Intl.DateTimeFormat(locale, options);
   return dtf.format(date);
 }
 
@@ -72,7 +80,7 @@ function TimeInfo({ time, children = t => t }) {
   });
 
   return (
-    <Tooltip title={formatDateAbsolute(date)}>
+    <Tooltip title={formatDateAbsolute(date, {forceYear: true})}>
       <time dateTime={date.toISOString()}>{children(timeAgoStr)}</time>
     </Tooltip>
   );
