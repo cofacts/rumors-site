@@ -44,6 +44,7 @@ export const CardHeader = withStyles(theme => ({
 
 export const CardContent = withStyles(theme => ({
   root: {
+    wordBreak: 'break-word',
     padding: '16px 0',
     margin: '0 var(--card-px)',
     [theme.breakpoints.up('md')]: {
