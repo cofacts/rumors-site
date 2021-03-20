@@ -101,7 +101,7 @@ function ArticleCard({ article, query = '' }) {
         <ListPageCard>
           <Infos>
             <TimeInfo time={createdAt}>
-              {timeAgo => t`First reported ${timeAgo} ago`}
+              {timeAgo => t`First reported ${timeAgo}`}
             </TimeInfo>
           </Infos>
           <div className={classes.flex}>

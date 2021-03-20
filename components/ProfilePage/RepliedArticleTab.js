@@ -252,7 +252,7 @@ function RepliedArticleTab({ userId }) {
                   )}
                 </>
                 <TimeInfo time={article.createdAt}>
-                  {timeAgo => t`First reported ${timeAgo} ago`}
+                  {timeAgo => t`First reported ${timeAgo}`}
                 </TimeInfo>
               </Infos>
               <ExpandableText lineClamp={3}>{article.text}</ExpandableText>

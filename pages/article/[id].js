@@ -322,7 +322,7 @@ function ArticlePage() {
                   className={classes.firstReported}
                   title={format(createdAt)}
                 >
-                  {t`First reported ${timeAgoStr} ago`}
+                  {t`First reported ${timeAgoStr}`}
                 </span>
               )}
             </header>

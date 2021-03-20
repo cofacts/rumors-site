@@ -77,7 +77,7 @@ export default function ArticleInfo({ article, className }) {
           </span>
         </Tooltip>
       )}
-      <TimeInfo time={createdAt}>{timeAgoStr => t`${timeAgoStr} ago`}</TimeInfo>
+      <TimeInfo time={createdAt}></TimeInfo>
     </Infos>
   );
 }

@@ -274,9 +274,7 @@ function ReplyPage() {
                   <Infos className={classes.infos}>
                     {isDeleted && <span>{t`Deleted by its author`}</span>}
                     {getReplyCountElem(originalArticleReply.article.replyCount)}
-                    <TimeInfo time={originalArticleReply.createdAt}>
-                      {timeAgoStr => t`${timeAgoStr} ago`}
-                    </TimeInfo>
+                    <TimeInfo time={originalArticleReply.createdAt}></TimeInfo>
                   </Infos>
                 </a>
               </Link>
@@ -296,9 +294,7 @@ function ReplyPage() {
                       <Infos className={classes.infos}>
                         <>{jt`Added by ${editorElem}`}</>
                         {getReplyCountElem(ar.article.replyCount)}
-                        <TimeInfo time={ar.createdAt}>
-                          {timeAgoStr => t`${timeAgoStr} ago`}
-                        </TimeInfo>
+                        <TimeInfo time={ar.createdAt}></TimeInfo>
                       </Infos>
                     </a>
                   </Link>
