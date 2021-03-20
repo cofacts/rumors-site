@@ -13,9 +13,10 @@ function formatDateAbsolute(date) {
 }
 
 /**
- * Formats the date as a relative time if within 24 hours, otherwise formats as an absolute time.
+ * Formats date as a relative time (e.g. X days ago).
+ * Works best if date is in the past.
  */
-function formatTimeInfoDate(date, {forceRelative = false}) {
+function formatDateRelative(date) {
   const locale = process.env.LOCALE.replace('_', '-');
   const rtf = new Intl.RelativeTimeFormat(locale, { style: 'narrow' });
   const now = new Date();
@@ -29,13 +30,23 @@ function formatTimeInfoDate(date, {forceRelative = false}) {
   if (minsAgo < 59.5) {
     return rtf.format(-Math.round(minsAgo), "minutes");
   }
-  if (hoursAgo < 24) {
+  // Similar to above, use a cutoff of 23.5 hours.
+  if (hoursAgo < 23.5) {
     return rtf.format(-Math.round(hoursAgo), "hours");
   }
-  if (forceRelative) {
-    return rtf.format(-Math.round(hoursAgo / 24), "days");
+  return rtf.format(-Math.round(hoursAgo / 24), "days");
+}
+
+/**
+ * Formats the date as a relative time if within 23.5 hours, otherwise formats as an absolute time.
+ */
+function formatDate(date) {
+  const hoursAgo = (new Date() - date) / 1000 / 60 / 60;
+  if (hoursAgo < 23.5) {
+    return formatDateRelative(date);
+  } else {
+    return formatDateAbsolute(date);
   }
-  return formatDateAbsolute(date);
 }
 
 /**
@@ -47,7 +58,7 @@ function formatTimeInfoDate(date, {forceRelative = false}) {
 function TimeInfo({ time, children = t => t }) {
   const date = time instanceof Date ? time : new Date(time);
 
-  const [timeAgoStr, setTimeAgoStr] = useState(formatTimeInfoDate(date, {forceRelative: true}));
+  const [timeAgoStr, setTimeAgoStr] = useState(formatDateRelative(date));
 
   if (!time || !isValid(date)) {
     // `time` may be falsy something not accepted by Date constructor.
@@ -57,7 +68,7 @@ function TimeInfo({ time, children = t => t }) {
   }
 
   useEffect(() => {
-    setTimeAgoStr(formatTimeInfoDate(date, {}));
+    setTimeAgoStr(formatDate(date));
   });
 
   return (
