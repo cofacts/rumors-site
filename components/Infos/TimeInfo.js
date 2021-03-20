@@ -1,12 +1,12 @@
 import Tooltip from 'components/Tooltip';
 import isValid from 'date-fns/isValid';
 import { format, formatDistanceToNow } from 'lib/dateWithLocale';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Formats the date as a relative time if within 24 hours, otherwise formats as an absolute time.
  */
-function formatTimeInfoDate(date) {
+function formatTimeInfoDate(date, {forceRelative = false}) {
   const locale = process.env.LOCALE.replace('_', '-');
   const rtf = new Intl.RelativeTimeFormat(locale, { style: 'narrow' });
   const dtf = new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' });
@@ -24,6 +24,9 @@ function formatTimeInfoDate(date) {
   if (hoursAgo < 24) {
     return rtf.format(-Math.round(hoursAgo), "hours");
   }
+  if (forceRelative) {
+    return rtf.format(-Math.round(hoursAgo / 24), "days");
+  }
   return dtf.format(date);
 }
 
@@ -35,6 +38,8 @@ function formatTimeInfoDate(date) {
  */
 function TimeInfo({ time, children = t => t }) {
   const date = time instanceof Date ? time : new Date(time);
+
+  const [timeAgoStr, setTimeAgoStr] = useState(formatTimeInfoDate(date, {forceRelative: true}));
 
   if (!time || !isValid(date)) {
     // `time` may be falsy something not accepted by Date constructor.
@@ -48,8 +53,6 @@ function TimeInfo({ time, children = t => t }) {
   useEffect(() => {
     console.log('there');
   });
-
-  const timeAgoStr = formatTimeInfoDate(date);
 
   return (
     <Tooltip title={format(date)}>
