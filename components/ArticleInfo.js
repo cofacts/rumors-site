@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { t, ngettext, msgid } from 'ttag';
+import { ngettext, msgid } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import { TYPE_ICON } from 'constants/replyType';
 import Infos, { TimeInfo } from './Infos';
@@ -77,7 +77,7 @@ export default function ArticleInfo({ article, className }) {
           </span>
         </Tooltip>
       )}
-      <TimeInfo time={createdAt}>{timeAgoStr => t`${timeAgoStr} ago`}</TimeInfo>
+      <TimeInfo time={createdAt}></TimeInfo>
     </Infos>
   );
 }

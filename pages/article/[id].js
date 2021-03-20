@@ -292,7 +292,7 @@ function ArticlePage() {
     ? new Date(article.createdAt)
     : new Date();
 
-  const timeAgoStr = formatDistanceToNow(createdAt);
+  const timeAgo = formatDistanceToNow(createdAt);
 
   const replyRequestsWithComments = (article.replyRequests || []).filter(
     ({ reason }) => reason
@@ -322,7 +322,7 @@ function ArticlePage() {
                   className={classes.firstReported}
                   title={format(createdAt)}
                 >
-                  {t`First reported ${timeAgoStr} ago`}
+                  {t`First reported ${timeAgo}`}
                 </span>
               )}
             </header>

@@ -167,21 +167,22 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time={1989-06-04T00:00:00.000Z}
     >
       <Tooltip
-        title="06/04/1989, 12:00 AM"
+        title="Jun 4, 1989, 12:00 AM"
       >
-        <span
+        <time
           aria-describedby={null}
           className=""
+          dateTime="1989-06-04T00:00:00.000Z"
           onBlur={[Function]}
           onFocus={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 12:00 AM"
+          title="Jun 4, 1989, 12:00 AM"
         >
-          over 30 years
-        </span>
+          Jun 4, 1989, 12:00 AM
+        </time>
       </Tooltip>
     </TimeInfo>
     ｜
@@ -190,21 +191,22 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time={612921600000}
     >
       <Tooltip
-        title="06/04/1989, 12:00 AM"
+        title="Jun 4, 1989, 12:00 AM"
       >
-        <span
+        <time
           aria-describedby={null}
           className=""
+          dateTime="1989-06-04T00:00:00.000Z"
           onBlur={[Function]}
           onFocus={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 12:00 AM"
+          title="Jun 4, 1989, 12:00 AM"
         >
-          over 30 years
-        </span>
+          Jun 4, 1989, 12:00 AM
+        </time>
       </Tooltip>
     </TimeInfo>
     ｜
@@ -213,21 +215,22 @@ exports[`Storyshots Infos With Time Info 1`] = `
       time="1989-06-04T00:00:00Z"
     >
       <Tooltip
-        title="06/04/1989, 12:00 AM"
+        title="Jun 4, 1989, 12:00 AM"
       >
-        <span
+        <time
           aria-describedby={null}
           className=""
+          dateTime="1989-06-04T00:00:00.000Z"
           onBlur={[Function]}
           onFocus={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
-          title="06/04/1989, 12:00 AM"
+          title="Jun 4, 1989, 12:00 AM"
         >
-          Created over 30 years ago
-        </span>
+          Created Jun 4, 1989, 12:00 AM
+        </time>
       </Tooltip>
     </TimeInfo>
     ｜
@@ -242,7 +245,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
       key=".4"
       time="Unsupport time string"
     >
-      Created Unsupport time string ago
+      Created Unsupport time string
     </TimeInfo>
   </div>
 </Infos>
