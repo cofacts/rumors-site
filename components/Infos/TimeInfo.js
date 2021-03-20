@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
  */
 function formatDateAbsolute(date) {
   const locale = process.env.LOCALE.replace('_', '-');
-  const dtf = new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' });
+  const dtf = new Intl.DateTimeFormat(locale, { year: 'numeric', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric'});
   return dtf.format(date);
 }
 
