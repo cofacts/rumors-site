@@ -4,12 +4,20 @@ import { format, formatDistanceToNow } from 'lib/dateWithLocale';
 import { useEffect, useState } from 'react';
 
 /**
+ * Formats date as an absolute time, using local timezone.
+ */
+function formatDateAbsolute(date) {
+  const locale = process.env.LOCALE.replace('_', '-');
+  const dtf = new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' });
+  return dtf.format(date);
+}
+
+/**
  * Formats the date as a relative time if within 24 hours, otherwise formats as an absolute time.
  */
 function formatTimeInfoDate(date, {forceRelative = false}) {
   const locale = process.env.LOCALE.replace('_', '-');
   const rtf = new Intl.RelativeTimeFormat(locale, { style: 'narrow' });
-  const dtf = new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' });
   const now = new Date();
   const minsAgo = (now - date) / 1000 / 60;
   const hoursAgo = minsAgo / 60;
@@ -27,7 +35,7 @@ function formatTimeInfoDate(date, {forceRelative = false}) {
   if (forceRelative) {
     return rtf.format(-Math.round(hoursAgo / 24), "days");
   }
-  return dtf.format(date);
+  return formatDateAbsolute(date);
 }
 
 /**
@@ -53,7 +61,7 @@ function TimeInfo({ time, children = t => t }) {
   });
 
   return (
-    <Tooltip title={format(date)}>
+    <Tooltip title={formatDateAbsolute(date)}>
       <time dateTime={date.toISOString()}>{children(timeAgoStr)}</time>
     </Tooltip>
   );
