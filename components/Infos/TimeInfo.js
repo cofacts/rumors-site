@@ -46,7 +46,7 @@ function TimeInfo({ time, children = t => t }) {
 
   return (
     <Tooltip title={format(date)}>
-      <span>{children(timeAgoStr)}</span>
+      <time dateTime={date.toISOString()}>{children(timeAgoStr)}</time>
     </Tooltip>
   );
 }
