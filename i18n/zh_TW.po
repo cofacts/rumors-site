@@ -73,13 +73,6 @@ msgstr "最多人詢問"
 msgid "Reported Message"
 msgstr "使用者回報訊息"
 
-#: components/ArticleInfo.js:80
-#: pages/reply/[id].js:278
-#: pages/reply/[id].js:300
-#, javascript-format
-msgid "${ timeAgoStr } ago"
-msgstr "${ timeAgoStr }前"
-
 #: components/ArticleReply/ArticleReply.js:103
 msgid "Reason"
 msgstr "理由"
@@ -209,12 +202,12 @@ msgid "This reply"
 msgstr "本篇回應"
 
 #: pages/api/articles/[feed].js:174
-#: pages/reply/[id].js:287
+#: pages/reply/[id].js:285
 msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Stats.js:146
-#. we hold ~
+#. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -267,7 +260,7 @@ msgstr "此回應不存在"
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
-#: pages/reply/[id].js:297
+#: pages/reply/[id].js:295
 #, javascript-format
 msgid "Added by ${ editorElem }"
 msgstr "${editorElem} 加的"
@@ -505,10 +498,6 @@ msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:325
-msgid "First reported ${ timeAgoStr } ago"
-msgstr "首次回報於 ${ timeAgoStr }前"
-
 #: pages/article/[id].js:432
 msgid "Similar messages"
 msgstr "相似可疑訊息"
@@ -532,11 +521,6 @@ msgstr "相關訊息原文"
 #: components/RelatedReplies.js:123
 msgid "Related reply"
 msgstr "查核回應"
-
-#: components/ReplyInfo.js:18
-#, javascript-format
-msgid "replied ${ timeAgoStr } ago"
-msgstr "回應於 ${ timeAgoStr }前"
 
 #: components/ReplyInfo.js:23
 msgid "originally written by ${ user.name }"
@@ -733,13 +717,6 @@ msgid "${ article.replyRequestCount } occurrence"
 msgid_plural "${ article.replyRequestCount } occurrences"
 msgstr[0] "被回報 ${ article.replyRequestCount } 次"
 
-#: components/ListPageDisplays/ArticleCard.js:104
-#: components/ListPageDisplays/ReplySearchItem.js:110
-#: components/ProfilePage/RepliedArticleTab.js:255
-#: pages/replies.js:255
-msgid "First reported ${ timeAgo } ago"
-msgstr "首次回報於 ${ timeAgo }前"
-
 #: pages/reply/[id].js:140
 #, javascript-format
 msgid "${ otherCount } other reply"
@@ -755,17 +732,17 @@ msgstr "此查核回應尚被用於以下的可疑訊息"
 msgid "Deleted by its author"
 msgstr "此回應已被原作者刪除。"
 
-#: pages/reply/[id].js:318
+#: pages/reply/[id].js:314
 msgid "Similar replies"
 msgstr "相似可疑訊息"
 
-#: pages/reply/[id].js:331
+#: pages/reply/[id].js:327
 #, javascript-format
 msgid "Used in ${ node.articleReplies.length } message"
 msgid_plural "Used in ${ node.articleReplies.length } messages"
 msgstr[0] "此查核回應曾經被用於 ${ node.articleReplies.length } 個可疑訊息"
 
-#: pages/reply/[id].js:343
+#: pages/reply/[id].js:339
 msgid "No similar replies found"
 msgstr "沒有相似的可疑訊息"
 
@@ -908,7 +885,7 @@ msgid "Contact"
 msgstr "聯繫"
 
 #: pages/article/[id].js:416
-#: pages/reply/[id].js:314
+#: pages/reply/[id].js:310
 msgid "The content above"
 msgstr "以上內容"
 
@@ -2360,6 +2337,19 @@ msgid ""
 "our database. Through investing human and other resources, the project is "
 "to reverse harms to democracy and society caused by misinformation."
 msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
+
+#: components/ListPageDisplays/ArticleCard.js:104
+#: components/ListPageDisplays/ReplySearchItem.js:110
+#: components/ProfilePage/RepliedArticleTab.js:255
+#: pages/article/[id].js:325
+#: pages/replies.js:255
+msgid "First reported ${ timeAgo }"
+msgstr "首次回報於 ${ timeAgo }"
+
+#: components/ReplyInfo.js:18
+#, javascript-format
+msgid "replied ${ timeAgoStr }"
+msgstr "回應於 ${ timeAgoStr }"
 
 #: pages/index.js:41
 msgctxt "site title"
