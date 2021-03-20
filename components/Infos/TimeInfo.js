@@ -7,8 +7,8 @@ import { format, formatDistanceToNow } from 'lib/dateWithLocale';
  */
 function formatTimeInfoDate(date) {
   const now = new Date();
-  const rtf = new Intl.RelativeTimeFormat(process.env.LOCALE, { style: 'narrow' });
-  const dtf = new Intl.DateTimeFormat(process.env.LOCALE, { dateStyle: 'full', timeStyle: 'long' });
+  const rtf = new Intl.RelativeTimeFormat('en-US', { style: 'narrow' });
+  const dtf = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'long' });
   const minsAgo = (now - date) / 1000 / 60;
   const hoursAgo = minsAgo / 60;
 
