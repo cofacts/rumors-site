@@ -6,9 +6,10 @@ import { format, formatDistanceToNow } from 'lib/dateWithLocale';
  * Formats the date as a relative time if within 24 hours, otherwise formats as an absolute time.
  */
 function formatTimeInfoDate(date) {
+  const locale = process.env.LOCALE.replace('_', '-');
+  const rtf = new Intl.RelativeTimeFormat(locale, { style: 'narrow' });
+  const dtf = new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' });
   const now = new Date();
-  const rtf = new Intl.RelativeTimeFormat('en-US', { style: 'narrow' });
-  const dtf = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'short' });
   const minsAgo = (now - date) / 1000 / 60;
   const hoursAgo = minsAgo / 60;
 
