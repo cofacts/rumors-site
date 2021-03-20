@@ -22,7 +22,7 @@ function TimeInfo({ time, children = t => t }) {
 
   return (
     <Tooltip title={format(date)}>
-      <span>{children(timeAgoStr)}</span>
+      <span>{children(format(date))}</span>
     </Tooltip>
   );
 }
