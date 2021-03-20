@@ -2,12 +2,13 @@ import Tooltip from 'components/Tooltip';
 import isValid from 'date-fns/isValid';
 import { useEffect, useState } from 'react';
 
+const locale = (process.env.LOCALE || 'en_US').replace('_', '-');
+
 /**
  * Formats date as an absolute time, using local timezone.
  * Year will be omitted unless different from current year or forceYear = true.
  */
 function formatDateAbsolute(date, { forceYear = false } = {}) {
-  const locale = process.env.LOCALE.replace('_', '-');
   const now = new Date();
 
   let options = {
@@ -29,7 +30,6 @@ function formatDateAbsolute(date, { forceYear = false } = {}) {
  * Works best if date is in the past.
  */
 function formatDateRelative(date) {
-  const locale = process.env.LOCALE.replace('_', '-');
   const rtf = new Intl.RelativeTimeFormat(locale, { style: 'narrow' });
   const now = new Date();
   const minsAgo = (now - date) / 1000 / 60;
