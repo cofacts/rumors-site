@@ -48,10 +48,8 @@ function TimeInfo({ time, children = t => t }) {
     return <>{children(String(time))}</>;
   }
 
-  console.log('here');
-
   useEffect(() => {
-    console.log('there');
+    setTimeAgoStr(formatTimeInfoDate(date, {}));
   });
 
   return (
