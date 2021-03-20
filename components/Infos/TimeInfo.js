@@ -69,17 +69,22 @@ function formatDate(date) {
  */
 function TimeInfo({ time, children = t => t }) {
   const date = time instanceof Date ? time : new Date(time);
+  const dateIsValid = time && isValid(date);
 
-  const [timeAgoStr, setTimeAgoStr] = useState(formatDateRelative(date));
+  const [timeAgoStr, setTimeAgoStr] = useState(
+    dateIsValid ? formatDateRelative(date) : String(time)
+  );
 
   // The client and the server may have different timezones, so when we render on the server, we always use relative
   // time (because it does not depend on timezone). When we re-render on the client, we replace this with an absolute
   // time where appropriate. We do this replacement in useEffect() because it runs on the client but not on the server.
   useEffect(() => {
-    setTimeAgoStr(formatDate(date));
-  }, [date]);
+    if (dateIsValid) {
+      setTimeAgoStr(formatDate(date));
+    }
+  }, [date, dateIsValid]);
 
-  if (!time || !isValid(date)) {
+  if (!dateIsValid) {
     // `time` may be falsy something not accepted by Date constructor.
     // Try rendering it anyway.
     //
