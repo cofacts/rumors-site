@@ -9,7 +9,10 @@ const locale = (process.env.LOCALE || 'en_US').replace('_', '-');
  * Formats date as an absolute time, using local timezone.
  * Year will be omitted unless different from current year or forceYear = true.
  */
-function formatDateAbsolute(date, { forceYear = false } = {}) {
+function formatDateAbsolute(
+  date,
+  { forceYear = false, forceTime = false } = {}
+) {
   const now = new Date();
 
   let options = {
@@ -18,6 +21,10 @@ function formatDateAbsolute(date, { forceYear = false } = {}) {
   };
   if (now.getFullYear() !== date.getFullYear() || forceYear) {
     options.year = 'numeric';
+  }
+  if (forceTime) {
+    options.hour = 'numeric';
+    options.minute = 'numeric';
   }
 
   const dtf = new Intl.DateTimeFormat(locale, options);
@@ -96,7 +103,9 @@ function TimeInfo({ time, children = t => t }) {
   }
 
   return (
-    <Tooltip title={formatDateAbsolute(date, { forceYear: true })}>
+    <Tooltip
+      title={formatDateAbsolute(date, { forceYear: true, forceTime: true })}
+    >
       <time dateTime={date.toISOString()}>{children(timeAgoStr)}</time>
     </Tooltip>
   );
