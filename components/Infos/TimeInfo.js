@@ -61,7 +61,7 @@ function formatDateRelative(date) {
 }
 
 /**
- * Formats the date as a relative time if within 23.5 hours, otherwise formats as an absolute time.
+ * Formats the date as a relative time if it's near, otherwise formats as an absolute time.
  */
 export function formatDate(date) {
   const hoursAgo = (new Date() - date) / 1000 / 60 / 60;
