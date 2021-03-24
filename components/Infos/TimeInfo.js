@@ -1,3 +1,4 @@
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import Tooltip from 'components/Tooltip';
 import isValid from 'date-fns/isValid';
 import { useEffect, useState } from 'react';
@@ -8,35 +9,45 @@ const locale = (process.env.LOCALE || 'en_US').replace('_', '-');
  * Formats date as an absolute time, using local timezone.
  * Year will be omitted unless different from current year or forceYear = true.
  */
-function formatDateAbsolute(date, { forceYear = false } = {}) {
+function formatDateAbsolute(
+  date,
+  { forceYear = false, forceTime = false } = {}
+) {
   const now = new Date();
 
   let options = {
     day: 'numeric',
     month: 'short',
-    hour: 'numeric',
-    minute: 'numeric',
   };
-  if (now.getFullYear() != date.getFullYear() || forceYear) {
+  if (now.getFullYear() !== date.getFullYear() || forceYear) {
     options.year = 'numeric';
+  }
+  if (forceTime) {
+    options.hour = 'numeric';
+    options.minute = 'numeric';
   }
 
   const dtf = new Intl.DateTimeFormat(locale, options);
   return dtf.format(date);
 }
 
+const rtf = new Intl.RelativeTimeFormat(locale, {
+  style: 'narrow',
+  numeric: 'auto',
+});
+
 /**
  * Formats date as a relative time (e.g. X days ago).
  * Works best if date is in the past.
  */
 function formatDateRelative(date) {
-  const rtf = new Intl.RelativeTimeFormat(locale, { style: 'narrow' });
   const now = new Date();
-  const minsAgo = (now - date) / 1000 / 60;
+  const secsAgo = (now - date) / 1000;
+  const minsAgo = secsAgo / 60;
   const hoursAgo = minsAgo / 60;
 
   if (minsAgo < 1) {
-    return 'less than a minute ago';
+    return rtf.format(-Math.round(secsAgo), 'seconds');
   }
   // "60 min. ago" and "1 hr. ago" mean the same thing, so if 59.5 <= minsAgo < 90 we display "1 hr. ago".
   if (minsAgo < 59.5) {
@@ -46,15 +57,15 @@ function formatDateRelative(date) {
   if (hoursAgo < 23.5) {
     return rtf.format(-Math.round(hoursAgo), 'hours');
   }
-  return rtf.format(-Math.round(hoursAgo / 24), 'days');
+  return rtf.format(differenceInCalendarDays(date, now), 'days');
 }
 
 /**
- * Formats the date as a relative time if within 23.5 hours, otherwise formats as an absolute time.
+ * Formats the date as a relative time if it's near, otherwise formats as an absolute time.
  */
-function formatDate(date) {
+export function formatDate(date) {
   const hoursAgo = (new Date() - date) / 1000 / 60 / 60;
-  if (hoursAgo < 23.5) {
+  if (hoursAgo < 48) {
     return formatDateRelative(date);
   } else {
     return formatDateAbsolute(date);
@@ -92,7 +103,9 @@ function TimeInfo({ time, children = t => t }) {
   }
 
   return (
-    <Tooltip title={formatDateAbsolute(date, { forceYear: true })}>
+    <Tooltip
+      title={formatDateAbsolute(date, { forceYear: true, forceTime: true })}
+    >
       <time dateTime={date.toISOString()}>{children(timeAgoStr)}</time>
     </Tooltip>
   );

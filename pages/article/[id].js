@@ -16,8 +16,6 @@ import { nl2br, linkify, ellipsis } from 'lib/text';
 import { usePushToDataLayer } from 'lib/gtm';
 import getTermsString from 'lib/terms';
 
-import { format, formatDistanceToNow } from 'lib/dateWithLocale';
-import isValid from 'date-fns/isValid';
 import { LINE_URL } from 'constants/urls';
 
 import AddIcon from '@material-ui/icons/AddCircleOutline';
@@ -40,6 +38,7 @@ import NewReplySection from 'components/NewReplySection';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
+import Infos, { TimeInfo } from 'components/Infos';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,14 +65,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       fontSize: 14,
       padding: '10px 28px',
-    },
-  },
-  firstReported: {
-    fontSize: 12,
-    lineHeight: '20px',
-    color: theme.palette.secondary[200],
-    [theme.breakpoints.up('md')]: {
-      fontSize: 14,
     },
   },
   main: {
@@ -288,12 +279,6 @@ function ArticlePage() {
   const { replyRequestCount, text, hyperlinks, replyCount } = article;
   const similarArticles = article?.similarArticles?.edges || [];
 
-  const createdAt = article.createdAt
-    ? new Date(article.createdAt)
-    : new Date();
-
-  const timeAgo = formatDistanceToNow(createdAt);
-
   const replyRequestsWithComments = (article.replyRequests || []).filter(
     ({ reason }) => reason
   );
@@ -316,15 +301,11 @@ function ArticlePage() {
                   replyRequestCount
                 )}
               </Ribbon>
-
-              {isValid(createdAt) && (
-                <span
-                  className={classes.firstReported}
-                  title={format(createdAt)}
-                >
-                  {t`First reported ${timeAgo}`}
-                </span>
-              )}
+              <Infos>
+                <TimeInfo time={article.createdAt}>
+                  {timeAgo => t`First reported ${timeAgo}`}
+                </TimeInfo>
+              </Infos>
             </header>
             <CardContent>
               {nl2br(
