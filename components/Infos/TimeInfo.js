@@ -1,4 +1,4 @@
-import { t } from 'ttag';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import Tooltip from 'components/Tooltip';
 import isValid from 'date-fns/isValid';
 import { useEffect, useState } from 'react';
@@ -50,7 +50,7 @@ function formatDateRelative(date) {
   if (hoursAgo < 23.5) {
     return rtf.format(-Math.round(hoursAgo), 'hours');
   }
-  return rtf.format(-Math.round(hoursAgo / 24), 'days');
+  return rtf.format(differenceInCalendarDays(date, now), 'days');
 }
 
 /**
