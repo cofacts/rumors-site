@@ -53,7 +53,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         onTouchStart={[Function]}
                         title="Jan 1, 2020, 12:00 AM"
                       >
-                        First reported less than a minute ago
+                        First reported now
                       </time>
                     </Tooltip>
                   </TimeInfo>
@@ -156,7 +156,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         onTouchStart={[Function]}
                         title="Jan 1, 2019, 12:00 AM"
                       >
-                        First reported Jan 1, 2019, 12:00 AM
+                        First reported Jan 1, 2019
                       </time>
                     </Tooltip>
                   </TimeInfo>

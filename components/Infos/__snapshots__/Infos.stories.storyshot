@@ -181,7 +181,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onTouchStart={[Function]}
           title="Jun 4, 1989, 12:00 AM"
         >
-          Jun 4, 1989, 12:00 AM
+          Jun 4, 1989
         </time>
       </Tooltip>
     </TimeInfo>
@@ -205,7 +205,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onTouchStart={[Function]}
           title="Jun 4, 1989, 12:00 AM"
         >
-          Jun 4, 1989, 12:00 AM
+          Jun 4, 1989
         </time>
       </Tooltip>
     </TimeInfo>
@@ -229,7 +229,7 @@ exports[`Storyshots Infos With Time Info 1`] = `
           onTouchStart={[Function]}
           title="Jun 4, 1989, 12:00 AM"
         >
-          Created Jun 4, 1989, 12:00 AM
+          Created Jun 4, 1989
         </time>
       </Tooltip>
     </TimeInfo>
