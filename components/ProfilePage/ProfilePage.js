@@ -84,8 +84,9 @@ function ProfilePage({ id, slug }) {
   const router = useRouter();
   const latestSlug = data?.GetUser?.slug; // slug may update after user edits
   useEffect(() => {
-    const targetPath = `/user/${latestSlug}`;
-    if (latestSlug && window.location.pathname !== targetPath) {
+    if (!latestSlug) return;
+    const targetPath = `/user/${encodeURI(latestSlug)}`;
+    if (window.location.pathname !== targetPath) {
       router.replace(targetPath);
     }
   }, [latestSlug, router]);
