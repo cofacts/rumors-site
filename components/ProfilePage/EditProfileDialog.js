@@ -49,7 +49,7 @@ function EditProfileDialog({ user, onClose = () => {} }) {
   };
 
   const profileURL = `${location.origin}/user/${
-    slug ? encodeURIComponent(slug) : `[${t`Username`}]`
+    slug ? encodeURI(slug) : `[${t`Username`}]`
   }`;
 
   return (
