@@ -12,6 +12,8 @@ import { AUTHOR, LICENSE } from 'lib/terms';
 import Facebook from './images/facebook.svg';
 import Twitter from './images/twitter.svg';
 import Github from './images/github.svg';
+import Google from './images/google.svg';
+import Instagram from './images/instagram.svg';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -129,6 +131,22 @@ function LoginModal({ onClose, redirectPath }) {
           redirectPath={redirectPath}
         >
           Github
+        </ProviderLink>
+        <ProviderLink
+          provider="google"
+          logo={Google}
+          color="#2B414D"
+          redirectPath={redirectPath}
+        >
+          Google
+        </ProviderLink>
+        <ProviderLink
+          provider="instagram"
+          logo={Instagram}
+          color="#2B414D"
+          redirectPath={redirectPath}
+        >
+          Instagram
         </ProviderLink>
         <Typography variant="body2" className={classes.terms}>
           {jt`By logging in you agree to ${termsLink}, and your contribution will be published using ${licenseLink} as ${authorLink}.`}
