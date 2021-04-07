@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const EditProfileDialogUserData = gql`
   fragment EditProfileDialogUserData on User {
@@ -33,8 +34,12 @@ function EditProfileDialog({ user, onClose = () => {} }) {
     onCompleted() {
       onClose();
     },
+    onError(error) {
+      setSnackMsg(t`Changes cannot be saved: ${error}`);
+    },
   });
   const [slug, setSlug] = useState(user.slug);
+  const [snackMsg, setSnackMsg] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -93,6 +98,11 @@ function EditProfileDialog({ user, onClose = () => {} }) {
           >{t`Submit`}</Button>
         </DialogActions>
       </form>
+      <Snackbar
+        open={!!snackMsg}
+        onClose={() => setSnackMsg('')}
+        message={snackMsg}
+      />
     </Dialog>
   );
 }
