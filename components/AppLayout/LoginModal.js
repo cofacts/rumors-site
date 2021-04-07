@@ -13,7 +13,7 @@ import Facebook from './images/facebook.svg';
 import Twitter from './images/twitter.svg';
 import Github from './images/github.svg';
 import Google from './images/google.svg';
-import Instagram from './images/instagram.svg';
+// import Instagram from './images/instagram.svg';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -140,14 +140,14 @@ function LoginModal({ onClose, redirectPath }) {
         >
           Google
         </ProviderLink>
-        <ProviderLink
+        {/* <ProviderLink
           provider="instagram"
           logo={Instagram}
           color="#2B414D"
           redirectPath={redirectPath}
         >
           Instagram
-        </ProviderLink>
+        </ProviderLink> */}
         <Typography variant="body2" className={classes.terms}>
           {jt`By logging in you agree to ${termsLink}, and your contribution will be published using ${licenseLink} as ${authorLink}.`}
         </Typography>
