@@ -12,7 +12,7 @@ msgid "About"
 msgstr "關於"
 
 #: components/ReportPage/SectionEcosystem.js:175
-#: pages/article/[id].js:305
+#: pages/article/[id].js:290
 #: pages/reply/[id].js:246
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
@@ -20,7 +20,7 @@ msgstr "Cofacts 真的假的"
 #: components/ArticleCategories/DownVoteDialog.js:98
 #: components/NewReplySection/Mobile.js:138
 #: components/ProfilePage/EditAvatarDialog.js:236
-#: components/ProfilePage/EditProfileDialog.js:88
+#: components/ProfilePage/EditProfileDialog.js:93
 msgid "Cancel"
 msgstr "取消"
 
@@ -139,7 +139,7 @@ msgstr "刪除"
 #: components/CreateReplyRequestForm/CreateReplyRequestForm.js:132
 #: components/NewReplySection/ReplyForm/Submit.js:28
 #: components/ProfilePage/EditAvatarDialog.js:241
-#: components/ProfilePage/EditProfileDialog.js:93
+#: components/ProfilePage/EditProfileDialog.js:98
 msgid "Submit"
 msgstr "送出"
 
@@ -148,7 +148,7 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/article/[id].js:225
+#: pages/article/[id].js:216
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
@@ -166,7 +166,7 @@ msgstr "搜尋"
 msgid "Searching for messages and replies containing “${ variables.query }”..."
 msgstr "正在搜尋含有「${ variables.query }」的訊息與回應⋯⋯"
 
-#: components/AppLayout/LoginModal.js:107
+#: components/AppLayout/LoginModal.js:109
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
@@ -207,7 +207,7 @@ msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Stats.js:146
-#. we hold ~ 
+#. we hold ~
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -239,15 +239,15 @@ msgid ""
 "fighting mis/disinformation in Taiwan."
 msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
 
-#: components/ProfilePage/ProfilePage.js:97
-#: pages/article/[id].js:262
-#: pages/article/[id].js:266
+#: components/ProfilePage/ProfilePage.js:98
+#: pages/article/[id].js:253
+#: pages/article/[id].js:257
 #: pages/reply/[id].js:200
 #: pages/reply/[id].js:204
 msgid "Loading"
 msgstr "載入中"
 
-#: pages/article/[id].js:277
+#: pages/article/[id].js:268
 #: pages/reply/[id].js:215
 msgid "Not found"
 msgstr "找不到此頁面"
@@ -256,7 +256,7 @@ msgstr "找不到此頁面"
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages/article/[id].js:281
+#: pages/article/[id].js:272
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
@@ -492,17 +492,17 @@ msgstr[0] "被回報 ${ replyRequestCount } 次"
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages/article/[id].js:313
+#: pages/article/[id].js:298
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:432
+#: pages/article/[id].js:413
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages/article/[id].js:451
+#: pages/article/[id].js:432
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
@@ -766,15 +766,15 @@ msgstr "目標網站有 HTTPS 錯誤"
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: pages/article/[id].js:401
+#: pages/article/[id].js:382
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
 msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
 msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
-#: pages/article/[id].js:425
-#: pages/article/[id].js:461
+#: pages/article/[id].js:406
+#: pages/article/[id].js:442
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
@@ -884,7 +884,7 @@ msgstr "原始碼"
 msgid "Contact"
 msgstr "聯繫"
 
-#: pages/article/[id].js:416
+#: pages/article/[id].js:397
 #: pages/reply/[id].js:310
 msgid "The content above"
 msgstr "以上內容"
@@ -911,37 +911,37 @@ msgstr ""
 msgid "Lv.${ user.level } ${ levelName }"
 msgstr ""
 
-#: components/ProfilePage/EditProfileDialog.js:52
-#: components/ProfilePage/EditProfileDialog.js:69
+#: components/ProfilePage/EditProfileDialog.js:57
+#: components/ProfilePage/EditProfileDialog.js:74
 msgid "Username"
 msgstr ""
 
-#: components/ProfilePage/EditProfileDialog.js:57
+#: components/ProfilePage/EditProfileDialog.js:62
 msgid "Edit profile"
 msgstr ""
 
-#: components/ProfilePage/EditProfileDialog.js:61
+#: components/ProfilePage/EditProfileDialog.js:66
 msgid "Display name"
 msgstr ""
 
-#: components/ProfilePage/EditProfileDialog.js:73
+#: components/ProfilePage/EditProfileDialog.js:78
 #, javascript-format
 msgid "Your profile URL will become ${ profileURL }"
 msgstr ""
 
-#: components/ProfilePage/EditProfileDialog.js:78
+#: components/ProfilePage/EditProfileDialog.js:83
 msgid "Bio"
 msgstr ""
 
-#: components/ProfilePage/ProfilePage.js:110
+#: components/ProfilePage/ProfilePage.js:111
 msgid "User not found"
 msgstr ""
 
-#: components/ProfilePage/ProfilePage.js:113
+#: components/ProfilePage/ProfilePage.js:114
 msgid "The user does not exist"
 msgstr ""
 
-#: components/ProfilePage/ProfilePage.js:166
+#: components/ProfilePage/ProfilePage.js:167
 msgid "Replied messages"
 msgstr ""
 
@@ -1043,11 +1043,11 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "CC授權 姓名標示-相同方式分享 4.0"
 
 #: components/AppLayout/AppFooter.js:114
-#: components/AppLayout/LoginModal.js:92
+#: components/AppLayout/LoginModal.js:94
 msgid "User Agreement"
 msgstr ""
 
-#: components/AppLayout/LoginModal.js:134
+#: components/AppLayout/LoginModal.js:152
 #, javascript-format
 msgid ""
 "By logging in you agree to ${ termsLink }, and your contribution will be "
@@ -2341,7 +2341,7 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 #: components/ListPageDisplays/ArticleCard.js:104
 #: components/ListPageDisplays/ReplySearchItem.js:110
 #: components/ProfilePage/RepliedArticleTab.js:255
-#: pages/article/[id].js:325
+#: pages/article/[id].js:306
 #: pages/replies.js:255
 msgid "First reported ${ timeAgo }"
 msgstr "首次回報於 ${ timeAgo }"
@@ -2350,6 +2350,15 @@ msgstr "首次回報於 ${ timeAgo }"
 #, javascript-format
 msgid "replied ${ timeAgoStr }"
 msgstr "回應於 ${ timeAgoStr }"
+
+#: components/ProfilePage/EditProfileDialog.js:38
+#, javascript-format
+msgid "Changes cannot be saved: ${ error }"
+msgstr ""
+
+#: components/Infos/TimeInfo.js:52
+msgid "${ formatted } ago"
+msgstr "${ formatted }前"
 
 #: pages/index.js:41
 msgctxt "site title"
