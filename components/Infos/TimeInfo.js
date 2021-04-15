@@ -1,7 +1,10 @@
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
-import Tooltip from 'components/Tooltip';
-import isValid from 'date-fns/isValid';
 import { useEffect, useState } from 'react';
+import { t } from 'ttag';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
+import isValid from 'date-fns/isValid';
+
+import { formatDistanceToNow } from 'lib/dateWithLocale';
+import Tooltip from 'components/Tooltip';
 
 const locale = (process.env.LOCALE || 'en_US').replace('_', '-');
 
@@ -31,16 +34,24 @@ function formatDateAbsolute(
   return dtf.format(date);
 }
 
-const rtf = new Intl.RelativeTimeFormat(locale, {
-  style: 'narrow',
-  numeric: 'auto',
-});
+const rtf = Intl.RelativeTimeFormat
+  ? new Intl.RelativeTimeFormat(locale, {
+      style: 'narrow',
+      numeric: 'auto',
+    })
+  : undefined;
 
 /**
  * Formats date as a relative time (e.g. X days ago).
  * Works best if date is in the past.
  */
 function formatDateRelative(date) {
+  /* istanbul ignore if */
+  if (!rtf) {
+    const formatted = formatDistanceToNow(date);
+    return t`${formatted} ago`;
+  }
+
   const now = new Date();
   const secsAgo = (now - date) / 1000;
   const minsAgo = secsAgo / 60;
