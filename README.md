@@ -117,6 +117,7 @@ The translation files are located under `i18n/`, in [Gettext PO format](https://
 
 - `en_US.po`: Since the language used in code is already English, this empty translation file exists to simplify settings.
 - `zh_TW.po`: Traditional Chinese translation.
+- `ja.po`: Japanese translation.
 
 ### Supporting other languages
 

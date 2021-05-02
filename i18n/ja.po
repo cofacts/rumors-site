@@ -1,0 +1,1221 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals = 1; plural = 0;\n"
+"Language: ja\n"
+"mime-version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: components/AppLayout/AppFooter.js:112
+#: components/AppLayout/AppSidebar.js:142
+msgid "About"
+msgstr "団体概要"
+
+#: pages/article/[id].js:306
+#: pages/index.js:42
+#: pages/reply/[id].js:246
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/ArticleCategories/DownVoteDialog.js:98
+#: components/NewReplySection/Mobile.js:138
+msgid "Cancel"
+msgstr "取り消し"
+
+#: components/AppLayout/AppHeader.js:314
+#: components/AppLayout/AppSidebar.js:130
+#: components/LandingPage/Header.js:248
+#: components/LandingPage/Header.js:297
+msgid "Login"
+msgstr "ログイン"
+
+#: components/AppLayout/AppHeader.js:255
+#: components/AppLayout/AppSidebar.js:169
+msgid "Logout"
+msgstr "ログアウト"
+
+#: components/SearchPageJumbotron.js:131
+msgid "Replies"
+msgstr "最新のリプライ"
+
+#: components/ArticleInfo.js:72
+#: components/Infos/ReplyCountInfo.js:58
+msgid "${ replyCount } response"
+msgid_plural "${ replyCount } responses"
+msgstr[0] "${ replyCount } 件のリプライ"
+
+#: components/ListPageControls/BaseSortInput.js:60
+msgid "Sort by"
+msgstr "並び替え"
+
+#: pages/articles.js:162
+#: pages/replies.js:227
+msgid "Most recently asked"
+msgstr "最新の検索"
+
+#: pages/articles.js:164
+#: pages/replies.js:226
+msgid "Most recently replied"
+msgstr "最新のリプライ"
+
+#: pages/articles.js:163
+#: pages/replies.js:228
+msgid "Most asked"
+msgstr "最も多い質問"
+
+#: pages/api/articles/[feed].js:165
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reported Message"
+msgstr "ユーザーさんのリプライ"
+
+#: components/ArticleInfo.js:80
+#: pages/reply/[id].js:278
+#: pages/reply/[id].js:300
+#, javascript-format
+msgid "${ timeAgoStr } ago"
+msgstr "${ timeAgoStr }前"
+
+#: components/ArticleReply/index.js:133
+msgid "Reason"
+msgstr "原因"
+
+#: components/ArticleReply/index.js:134
+msgid "Details"
+msgstr "詳しい内容について"
+
+#: components/ArticleReply/index.js:136
+#: components/ArticleReply/index.js:163
+#: pages/api/articles/[feed].js:178
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reference"
+msgstr "情報のソース"
+
+#: components/ArticleCategories/DownVoteDialog.js:70
+#: components/ArticleReply/index.js:180
+msgid "Someone"
+msgstr "立ち向かう人"
+
+#: components/ArticleReply/index.js:163
+msgid "Different opinion"
+msgstr "さまざまな見方"
+
+#: components/ArticleReply/index.js:167
+msgid "There is no reference for this reply. Its truthfulness may be doubtful."
+msgstr "このリプライには情報源がないため、その信頼性を見直してください。"
+
+#: components/ArticleReply/ReplyShare.js:85
+#: components/CopyButton.js:15
+#: components/Subscribe/IFTTTItem.js:207
+msgid "Copy"
+msgstr "コピー"
+
+#: components/CurrentReplies.js:72
+msgid "Deleted replies"
+msgstr "削除されたリプライ"
+
+#: components/CurrentReplies.js:81
+#: pages/reply/[id].js:256
+msgid "Restore"
+msgstr "復元する"
+
+#: components/CurrentReplies.js:97
+#, javascript-format
+msgid "${ items.length } reply"
+msgid_plural "${ items.length } replies"
+msgstr[0] " ${ items.length } 件のリプライ"
+
+#: components/CurrentReplies.js:107
+msgid "There are ${ replyLink } deleted by its author."
+msgstr "この${ replyLink }は投稿者により削除されました。"
+
+#: components/CurrentReplies.js:141
+msgid "There is no existing replies for now."
+msgstr "今のところリプライの投稿なし。"
+
+#: components/CurrentReplies.js:163
+#: pages/reply/[id].js:256
+msgid "Delete"
+msgstr "削除"
+
+#: components/ArticleCategories/DownVoteDialog.js:99
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:132
+#: components/NewReplySection/ReplyForm/Submit.js:28
+msgid "Submit"
+msgstr "送信"
+
+#: components/ArticleCategories/CategoryOption.js:364
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:238
+msgid "Thank you for the feedback."
+msgstr "フィードバックを頂き、ありがとうございました。"
+
+#: pages/article/[id].js:225
+msgid "Your reply has been submitted."
+msgstr "リプライが送信されました"
+
+#: components/NewReplySection/index.js:125
+#: lib/apollo.js:47
+msgid "Please login first."
+msgstr "ログインをお願いします。"
+
+#: pages/search.js:290
+msgid "Search"
+msgstr "検索"
+
+#: components/NewReplySection/ReplySearch/ReplySearch.js:104
+#, javascript-format
+msgid "Searching for messages and replies containing “${ variables.query }”..."
+msgstr "「${ variables.query }」に関する情報とリプライを検索中⋯⋯"
+
+#: components/AppLayout/LoginModal.js:108
+msgid "Login / Signup"
+msgstr "ログイン/新規登録"
+
+#: constants/replyType.js:79
+msgid "This message cannot or should not be processed by Cofacts editors."
+msgstr "この情報は Cofacts の対応対象外になります。"
+
+#: constants/replyType.js:80
+msgid "The message has some of its content proved to be true."
+msgstr "この情報またはネットの内容は、一部が信頼できます。"
+
+#: constants/replyType.js:81
+msgid ""
+"The message contains personal opinion, unproven hypotheses, conspiracy "
+"theories, studies that has not reached concensus, inferences of political "
+"policies, etc."
+msgstr "この情報またはネットの内容は、個人の感想、仮説による推測、陰謀論、未検証の研究、政策に対する推論などが含まれています"
+
+#: constants/replyType.js:82
+msgid "This message has some of its content proved to be false."
+msgstr "この情報またはネットの内容は、一部がデマ情報の疑いがあります"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:279
+msgid "Facebook"
+msgstr "Facebook"
+
+#: components/LandingPage/SectionCanDo.js:255
+msgid "Tutorial"
+msgstr "利用方法"
+
+#: pages/reply/[id].js:252
+msgid "This reply"
+msgstr "情報へのリプライ"
+
+#: pages/api/articles/[feed].js:174
+#: pages/reply/[id].js:287
+msgid "someone"
+msgstr "立ち向かう人"
+
+#: components/LandingPage/Stats.js:146
+#. we hold ~
+msgid "a gathering of editors."
+msgstr "編集者の交流会"
+
+#: components/LandingPage/Stats.js:201
+#, javascript-format
+msgid "About ${ newMessageCount } new messages entering our database each week."
+msgstr "毎週 ${ newMessageCount } 件の新規情報がデータベースに更新されます"
+
+#: components/LandingPage/Stats.js:204
+msgid ""
+"About ${ userForwardingCount } people forwarding new messages to our "
+"database each week."
+msgstr "每週 ${ userForwardingCount } 人による新規投稿がデータベースに更新されます"
+
+#: components/LandingPage/Stats.js:207
+#, javascript-format
+msgid "But less than ${ editorCount } active editors can help us respond each week."
+msgstr "每週 ${ editorCount } 名の編集者のみデマの検証をしています"
+
+#: components/LandingPage/Stats.js:210
+#, javascript-format
+msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
+msgstr "每 ${ meetupFrequency } ヶ月ごとに行います${ gathering }"
+
+#: pages/index.js:43
+msgid ""
+"Cofacts is a collaborative system connecting instant messages and "
+"fact-check reports or different opinions together. It's a grass-root effort "
+"fighting mis/disinformation in Taiwan."
+msgstr "「Cofacts デマ探偵隊」はインターネット情報及びデマ検証・報告に関する市民協働とリンクするシステムです。デマ情報に対して、一人一人が積極的に参加するような草の根の力で対応策を作り上げるのを目指しています。"
+
+#: components/ProfilePage/ProfilePage.js:49
+#: pages/article/[id].js:263
+#: pages/article/[id].js:267
+#: pages/reply/[id].js:200
+#: pages/reply/[id].js:204
+msgid "Loading"
+msgstr "読み込み中"
+
+#: pages/article/[id].js:278
+#: pages/reply/[id].js:215
+msgid "Not found"
+msgstr "お探しのページは見つかりませんでした"
+
+#: pages/reply/[id].js:219
+msgid "Reply does not exist"
+msgstr "リプライはありません"
+
+#: pages/article/[id].js:282
+msgid "Message does not exist"
+msgstr "情報はありません"
+
+#: pages/reply/[id].js:297
+#, javascript-format
+msgid "Added by ${ editorElem }"
+msgstr "${editorElem} さんによる編集"
+
+
+#: pages/api/articles/[feed].js:133
+#. Use &amp; for XML meta tags
+msgid "Cofacts reported messages"
+msgstr "Cofacts から情報を報告しました"
+
+#: pages/api/articles/[feed].js:135
+#. Use &amp; for XML meta tags
+msgid "List of messages reported by Cofacts users"
+msgstr "Cofacts のユーザーにより報告された情報です"
+
+#: components/Subscribe/FeedDisplay.js:114
+msgid "Via Feedrabbit"
+msgstr "Feedrabbitを通する"
+
+#: pages/api/articles/[feed].js:172
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Latest reply"
+msgstr "最新のリプライ"
+
+#: components/AppLayout/AppFooter.js:100
+msgid "Fact Check"
+msgstr "デマを検証する"
+
+#: components/AppLayout/AppFooter.js:139
+#: components/AppLayout/AppSidebar.js:147
+msgid "Contact Us"
+msgstr "お問合せ"
+
+#: components/AppLayout/AppHeader.js:241
+msgid "My Profile"
+msgstr "マイページ"
+
+#: components/AppLayout/AppSidebar.js:137
+msgid "Forum"
+msgstr "掲示板"
+
+#: components/AppLayout/AppFooter.js:152
+msgid "Facebook forum"
+msgstr "Facebook グループ"
+
+#: constants/replyType.js:72
+msgid "invalid request"
+msgstr "検証の範囲外"
+
+#: constants/replyType.js:73
+msgid "contains personal perspective"
+msgstr "個人の意見が含まれています"
+
+#: constants/replyType.js:74
+msgid "contains true information"
+msgstr "正しい情報が含まれています"
+
+#: constants/replyType.js:75
+msgid "contains misinformation"
+msgstr "間違いの情報が含まれています"
+
+#: pages/replies.js:267
+msgid "Bust Hoaxes"
+msgstr "デマを検証します"
+
+#: components/AppLayout/AppFooter.js:101
+#: components/LandingPage/Header.js:213
+#: components/SearchPageJumbotron.js:130
+msgid "Messages"
+msgstr "怪しい情報"
+
+#: components/ListPageControls/ArticleStatusFilter.js:16
+#: pages/search.js:304
+msgid "Replied by me"
+msgstr "リプライしました"
+
+#: components/ListPageControls/ArticleStatusFilter.js:17
+msgid "No useful reply yet"
+msgstr "まだ有効なリプライはありません"
+
+#: components/ListPageControls/ArticleStatusFilter.js:18
+msgid "Asked many times"
+msgstr "人気の報告"
+
+#: components/ListPageControls/ArticleStatusFilter.js:19
+msgid "Replied many times"
+msgstr "人気のリプライ"
+
+#: components/ListPageControls/ArticleStatusFilter.js:47
+#: components/ListPageControls/Filters.js:70
+#: pages/search.js:302
+msgid "Filter"
+msgstr "絞り込み"
+
+#: components/ListPageControls/CategoryFilter.js:54
+msgid "Topic"
+msgstr "トピック"
+
+#: components/ListPageControls/CategoryFilter.js:57
+msgid "All Topics"
+msgstr "全トピック"
+
+#: components/ListPageControls/LoadMore.js:62
+msgid "Load More"
+msgstr "もっと見る"
+
+#: pages/hoax-for-you.js:118
+#: pages/hoax-for-you.js:120
+msgid "Hoax for you"
+msgstr "リプライしてみましょう"
+
+#: pages/replies.js:214
+#: pages/replies.js:217
+msgid "Latest replies"
+msgstr "最新のリプライ"
+
+#: components/ExpandableText.js:53
+msgid "Show Less"
+msgstr "一部のみ開く"
+
+#: components/ExpandableText.js:53
+msgid "Show More"
+msgstr "全文を読む"
+
+#: components/Subscribe/FeedDisplay.js:87
+msgid "Subscribe"
+msgstr "このページを無料購読申し込みする"
+
+#: components/ArticleReplyFeedbackControl/ButtonGroupDisplay.js:108
+msgid "See Reasons"
+msgstr "看理由"
+msgstr "理由を見る"
+
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:231
+msgid "Send"
+msgstr "発信"
+
+#: components/ListPageDisplays/ReplyItem.js:82
+msgid "Anonymous"
+msgstr "立ち向かう人"
+
+#: components/ListPageControls/BaseTimeRange.js:68
+msgid "In 1 Day"
+msgstr "１日以内"
+
+#: components/ListPageControls/BaseTimeRange.js:69
+msgid "In 1 Week"
+msgstr "1週間以内"
+
+#: components/ListPageControls/BaseTimeRange.js:70
+msgid "In 1 Month"
+msgstr "1ヵ月以内"
+
+#: components/ListPageControls/BaseTimeRange.js:162
+msgid "to"
+msgstr "～"
+
+#: components/ArticleCategories/CategoryOption.js:357
+msgid "See examples"
+msgstr "見本を見る"
+
+#: components/ArticleCategories/AddCategoryDialog.js:62
+msgid "Categorize this message"
+msgstr "情報を分類する"
+
+#: components/ArticleCategories/DownVoteDialog.js:57
+msgid "Report wrong category"
+msgstr "間違った分類を報告する"
+
+#: components/ArticleCategories/DownVoteDialog.js:85
+msgid ""
+"Please share with us why you think this message does not belong to this "
+"category"
+msgstr "この分類は間違っていると思う理由を教えてください。"
+
+#: components/AppLayout/GlobalSearch.js:145
+msgid "in Messages"
+msgstr "怪しい情報にあります"
+
+#: components/AppLayout/GlobalSearch.js:150
+msgid "in Replies"
+msgstr "最新のリプライにあります"
+
+#: pages/articles.js:151
+#: pages/articles.js:153
+msgid "Dubious Messages"
+msgstr "怪しい情報"
+
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:204
+msgid "Do you have any thing to add?"
+msgstr "他に何かコメントがありますか？"
+
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:205
+msgid "Why do you think it is not useful?"
+msgstr "役に立たなかったと思う理由を教えてください。"
+
+#: components/LandingPage/SectionArticles.js:162
+#: pages/articles.js:176
+#: pages/hoax-for-you.js:133
+#: pages/replies.js:240
+#: pages/search.js:173
+#: pages/search.js:246
+msgid "Loading..."
+msgstr "読み込み中⋯"
+
+#: components/AppLayout/AppFooter.js:114
+#: components/AppLayout/AppHeader.js:248
+msgid "About Cofacts"
+msgstr "Cofacts について"
+
+#: components/Subscribe/FeedDisplay.js:113
+msgid "Email"
+msgstr "eマガを申し込む"
+
+#: components/Subscribe/FeedDisplay.js:128
+msgid "Feedly"
+msgstr "Feedly を申し込む"
+
+#: components/Subscribe/FeedDisplay.js:136
+msgid "Get RSS Feed Link"
+msgstr "RSS Feed のリンクを取得する"
+
+#: components/Subscribe/FeedDisplay.js:139
+msgid "Through IFTTT to"
+msgstr " IFTTT を通して申し込みました"
+
+#: components/ArticleInfo.js:47
+#, javascript-format
+msgid "${ replyRequestCount } occurrence"
+msgid_plural "${ replyRequestCount } occurrences"
+msgstr[0] "報告される回数は ${ replyRequestCount } 回"
+
+#: components/SearchPageJumbotron.js:110
+msgid "Searching"
+msgstr "検索中"
+
+#: pages/article/[id].js:314
+#, javascript-format
+msgid "${ replyRequestCount } person report this message"
+msgid_plural "${ replyRequestCount } people report this message"
+msgstr[0] "${ replyRequestCount } 人がこの情報の信頼性を気にしています"
+
+#: pages/article/[id].js:326
+msgid "First reported ${ timeAgoStr } ago"
+msgstr "${ timeAgoStr }前に最初のリプライが上げられました"
+
+#: pages/article/[id].js:430
+msgid "Similar messages"
+msgstr "類似の情報"
+
+#: pages/article/[id].js:449
+msgid "No similar messages found"
+msgstr "類似する情報はありません"
+
+#: components/RelatedReplies.js:98
+msgid "View in new tab"
+msgstr "新規ウインドウで開く"
+
+#: components/RelatedReplies.js:107
+msgid "Message below was considered"
+msgstr "以下の情報はこのように表示されます"
+
+#: components/RelatedReplies.js:111
+msgid "Related article"
+msgstr "関連情報に関する文章"
+
+#: components/RelatedReplies.js:123
+msgid "Related reply"
+msgstr "検証のリプライ"
+
+#: components/ReplyInfo.js:18
+#, javascript-format
+msgid "replied ${ timeAgoStr } ago"
+msgstr "${ timeAgoStr }前にリプライされました"
+
+#: components/ReplyInfo.js:23
+msgid "originally written by ${ user.name }"
+msgstr "${user.name} さんのリプライを引用しています"
+
+#: components/ReplyInfo.js:26
+#, javascript-format
+msgid "${ referenceCount } reference"
+msgid_plural "${ referenceCount } references"
+msgstr[0] "元のリプライは ${ referenceCount } 回、引用されています"
+
+#: components/ArticleReply/ReplyShare.js:83
+#: components/Subscribe/FeedDisplay.js:134
+#: components/Subscribe/IFTTTItem.js:206
+msgid "Copied to clipboard!"
+msgstr "クリップボードにコピーされました！"
+
+#: components/NewReplySection/Desktop.js:104
+msgid "You will gain 1 point by submitting the reply"
+msgstr "この投稿にリプライすると1ポイントがもらえます"
+
+#: components/NewReplySection/Desktop.js:113
+msgid "Related messages and replies"
+msgstr "関連する情報とリプライ"
+
+#: components/NewReplySection/Desktop.js:124
+#: components/NewReplySection/Mobile.js:233
+msgid "Use this reply"
+msgstr "このリプライを使います"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:107
+msgid "All messages"
+msgstr "全ての情報"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:108
+msgid "My messages"
+msgstr "マイメッセージ"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:109
+msgid "All replies"
+msgstr "全てのリプライ"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:110
+msgid "My replies"
+msgstr "マイリプライ"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:66
+msgid ""
+"Inserting blank lines between reference items can improve readability in "
+"LINE."
+msgstr "複数の情報に空行を挿入することで、Line の利用者にとって読みやすくなります "
+
+#: components/ListPageDisplays/ReplyItem.js:96
+#, javascript-format
+msgid "${ userName } mark this message ${ TYPE_NAME[replyType] }"
+msgstr "${ userName } さんは ${ TYPE_NAME[replyType] } と考えています"
+
+#: components/ListPageDisplays/ReplySearchItem.js:162
+#, javascript-format
+msgid "This reply is also used in ${ replyCount } other message"
+msgid_plural "This reply is also used in ${ replyCount } other messages"
+msgstr[0] "このリプライは ${ replyCount } 件の怪しい情報の検証に利用されています"
+
+#: components/ListPageDisplays/ReplySearchItem.js:168
+msgid "view"
+msgstr "チェックする"
+
+#: components/ListPageDisplays/ReplySearchItem.js:173
+msgid "This reply is used in following messages"
+msgstr "このリプライは以下の情報検証にも使われています"
+
+#: components/ListPageControls/ReplyTypeFilter.js:33
+msgid "Marked as"
+msgstr "このように認定されます"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:234
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:292
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:305
+msgid "Reply to this message"
+msgstr "この情報にリプライしする"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:245
+msgid "Update comment"
+msgstr "更新補充"
+msgstr "コメントを更新する"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:245
+msgid "Comment"
+msgstr "コメントする"
+
+#: components/ArticleReply/ReplyShare.js:74
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:253
+msgid "Share"
+msgstr "シェア"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:111
+#, javascript-format
+msgid "Helpful ${ articleReply.positiveFeedbackCount }"
+msgstr "役に立った ${ articleReply.positiveFeedbackCount }"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:115
+msgid "Not Helpful ${ articleReply.negativeFeedbackCount }"
+msgstr "役に立たなかった ${ articleReply.negativeFeedbackCount }"
+
+#: components/ArticleReply/ReplyShare.js:64
+msgid "Successfylly Shared!"
+msgstr "シェアできました！"
+
+#: components/ArticleReply/index.js:190
+#, javascript-format
+msgid "${ authorElem } mark this message ${ TYPE_NAME[replyType] }"
+msgstr "${ authorElem } が ${ TYPE_NAME[replyType] } と考えています"
+
+#: components/ArticleCategories/AddCategoryDialog.js:65
+msgid ""
+"Articles are mostly categorized by AI based on our current data, but you "
+"can provide your own opinion to improved the categorization."
+msgstr ""
+"情報の分類において、日々更新してきた人工知能によって行いますので、経験不足で判断が誤る場合もあります。"
+"そのため、皆さんのご協力が必要です。みんなの知恵で人工知能を育ててより正しい判断ができるようにしましょう。"
+
+#: components/ArticleCategories/CategoryOption.js:286
+msgid "Marked"
+msgstr "マークされました"
+
+#: components/ArticleCategories/CategoryOption.js:316
+msgid "Agree"
+msgstr "賛成"
+
+#: components/ArticleCategories/CategoryOption.js:337
+msgid "Disagree"
+msgstr "反対"
+
+#: components/ArticleCategories/ArticleCategories.js:81
+msgid "Suggest categories"
+msgstr "おススメの分類"
+
+#: components/ArticleCategories/CategoryOption.js:299
+msgid "Mark"
+msgstr "新規のマークを作る"
+
+#: components/NewReplySection/Desktop.js:69
+#: components/NewReplySection/Mobile.js:148
+msgid "Compose a new reply"
+msgstr "新規のリプライをする"
+
+#: components/NewReplySection/Desktop.js:73
+#: components/NewReplySection/Mobile.js:151
+msgid "Use existing replies"
+msgstr "既存のリプライを利用する"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:290
+msgid "Keep composing my reply with this"
+msgstr "このリプライで更に検証する"
+
+#: components/NewReplySection/ReplyForm/TypeSelect.js:32
+msgid "I think this message"
+msgstr "このように考えています"
+
+#: components/ArticleCategories/CategoryOption.js:309
+msgid "Unmark"
+msgstr "マークを取り消す"
+
+#: components/LineChart.js:338
+msgid "Web Visit"
+msgstr "ウェブサイトをレビューする"
+
+#: components/LineChart.js:340
+msgid "Line Inquiry"
+msgstr "Line で質問する"
+
+#: components/TrendPlot.js:131
+#, javascript-format
+msgid "Web Visit: ${ totalWebVisits }"
+msgstr "ウェブサイトのレビュー回数は ${ totalWebVisits } 回"
+
+#: components/TrendPlot.js:139
+#, javascript-format
+msgid "Web: ${ totalWebVisits }"
+msgstr "レビュー回数は ${ totalWebVisits } 回"
+
+#: components/TrendPlot.js:134
+msgid "Line Inquery: ${ totalLineVisits }"
+msgstr "Line での質問回数は ${ totalLineVisits } 回"
+
+#: components/TrendPlot.js:142
+msgid "Line: ${ totalLineVisits }"
+msgstr "質問回数は ${ totalLineVisits } 回"
+
+#: components/TrendPlot.js:146
+#, javascript-format
+msgid "Total Visit: ${ totalVisits }"
+msgstr "${ totalVisits } 回のレビューがあります"
+
+#: components/ListPageDisplays/ReplySearchItem.js:103
+#: pages/replies.js:250
+#, javascript-format
+msgid "${ article.replyRequestCount } occurrence"
+msgid_plural "${ article.replyRequestCount } occurrences"
+msgstr[0] "リプライ回数は ${ article.replyRequestCount } 回"
+
+#: components/ListPageDisplays/ArticleCard.js:104
+#: components/ListPageDisplays/ReplySearchItem.js:110
+#: pages/replies.js:257
+msgid "First reported ${ timeAgo } ago"
+msgstr "${ timeAgo }前に最初のリプライがありました"
+
+#: pages/reply/[id].js:140
+#, javascript-format
+msgid "${ otherCount } other reply"
+msgid_plural "${ otherCount } other replies"
+msgstr[0] ""
+
+#: pages/reply/[id].js:264
+msgid "The reply is used in the following messages"
+msgstr "このリプライは以下の情報検証にも使われています"
+
+#: pages/reply/[id].js:275
+msgid "Deleted by its author"
+msgstr "このリプライは投稿者によって削除されました。"
+
+#: pages/reply/[id].js:318
+msgid "Similar replies"
+msgstr "類似する情報"
+
+#: pages/reply/[id].js:331
+#, javascript-format
+msgid "Used in ${ node.articleReplies.length } message"
+msgid_plural "Used in ${ node.articleReplies.length } messages"
+msgstr[0] "このリプライは ${ node.articleReplies.length } 件のデマ疑いのある情報の検証に利用されています"
+
+#: pages/reply/[id].js:343
+msgid "No similar replies found"
+msgstr "関連するリプライはありません"
+
+#: components/Hyperlinks.js:115
+msgid "Domain name cannot be resolved"
+msgstr "找不到網域"
+msgstr "ドメインは見つかりませんでした"
+
+#: components/Hyperlinks.js:118
+msgid "URL is malformed or not supported"
+msgstr "エラーの URL"
+
+#: components/Hyperlinks.js:120
+msgid "Cannot get data from URL"
+msgstr "データは取得不可でした"
+
+#: components/Hyperlinks.js:122
+msgid "Target site contains HTTPS error"
+msgstr "特定したサイトは HTTPS エラーがあります"
+
+#: components/Hyperlinks.js:124
+msgid "Unknown error"
+msgstr "特定できないエラーがあります"
+
+#: pages/article/[id].js:399
+#, javascript-format
+msgid "There is ${ replyCount } fact-checking reply to the message"
+msgid_plural "There are ${ replyCount } fact-checking replies to the message"
+msgstr[0] "この情報に ${ replyCount } 件のリプライがあります"
+
+#: pages/article/[id].js:423
+#: pages/article/[id].js:459
+msgid "Add Cofacts as friend in LINE"
+msgstr "Cofacts の LINE 公式アカウントを追加する"
+
+#: components/TrendPlot.js:128
+msgid "Past 31 days"
+msgstr "過去 31 日間"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:132
+msgid "Please provide more info"
+msgstr "文字数が不十分になっています"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:198
+msgid ""
+"Did you find anything suspicious about the message after you search "
+"Facebook & Google?"
+msgstr "Facebook や Google で検索して何か怪しい発見があれば、他の編集者にシェアしませんか？"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:210
+msgid ""
+"Please provide paragraphs you find controversial, or related news, image & "
+"video material you have found."
+msgstr "情報に対する疑問点または関連する写真や動画や記事などをシェアしましょう"
+
+#: components/AppLayout/AppLayout.js:64
+msgid "Your display name has been updated."
+msgstr "ユーザー名が更新されました"
+
+#: components/AppLayout/AppLayout.js:76
+msgid "Please enter new display name"
+msgstr "新規のユーザー名を入力してください"
+
+#: components/AppLayout/AppLayout.js:81
+msgid "Display name cannot be empty."
+msgstr "ユーザー名を必ずご記入ください"
+
+#: components/LandingPage/SectionFeature.js:110
+msgid "Real-Time Response"
+msgstr "リアルタイムのリプライ"
+
+#: components/LandingPage/SectionFeature.js:111
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It's fast and immediate, you\n"
+"don't even have to wait. Better yet, you don't even need to\n"
+"say ‘thank you'. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr "データベースにリプライがあれば、チャットボットが質問に対する回答を見つけてくれます。待つ時間がかかりませんので便利です。またチャットボットにはご挨拶やお礼なども必須じゃないため、いつでも気軽にデマの検証ができます。"
+
+#: components/LandingPage/SectionFeature.js:120
+msgid "Crowdsourcing"
+msgstr "クラウドソーシング"
+
+#: components/LandingPage/SectionFeature.js:121
+msgid ""
+"Anyone can verify and respond to other's requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr "誰もがデマ情報の検証またはリプライすることができ、更にデータベースに保存できますので、多くの市民にどんどん参加してもらいたいです。お父さんとお母さんも呼んで、みんなで一緒にデマ情報を打ち消しましょう"
+
+#: components/LandingPage/SectionFeature.js:129
+msgid "Different Views"
+msgstr "さまざまな見方"
+
+#: components/LandingPage/SectionFeature.js:130
+msgid ""
+"Knowing what's fact and what's an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other's perspectives."
+msgstr "事実と評論の違いを理解し、それぞれの立場の考え方を知ることで、自分の盲点に気づくこともあります。そうすると、お互いにより尊重し合える世界が実現できます。"
+
+#: components/LandingPage/SectionFeature.js:137
+msgid "Open Source Authorization"
+msgstr "オープンソースの認証"
+
+#: components/LandingPage/SectionFeature.js:138
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr "全てのソースコードや議事録やデータなどは公開しています。多くのオープンデータを作ることで、透明性のある環境でみんなで協働して、共に新しい可能性を作り上げていくことを目指しています。"
+
+#: components/LandingPage/SectionContribute.js:141
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+"Cofacts はプログラムをより良いものにするためにみんなの力が要ります。\n"
+"プログラムの共作は少人数ではなかなか完成できません，\n"
+"コーディング、デマ検証、情報検索など皆さんの協力が必要です，\n"
+"自発的に検証またはリプライすることで大きいデータベースができます。"
+
+#: components/LandingPage/SectionContribute.js:149
+msgid "I want to learn how to use Cofacts"
+msgstr "Cofacts の使い方を知りたい"
+
+#: components/LandingPage/SectionContribute.js:152
+msgid "I can help bust hoaxes"
+msgstr "デマを打ち消すことができる"
+
+#: components/LandingPage/SectionContribute.js:159
+msgid "I can help with coding"
+msgstr "コーディングできる"
+
+#: components/AppLayout/AppFooter.js:109
+msgid "Following"
+msgstr "フォローする"
+
+#: components/AppLayout/AppFooter.js:117
+msgid "Introduction"
+msgstr "プログラムについて"
+
+#: components/AppLayout/AppFooter.js:120
+msgid "Source Code"
+msgstr "ソースコード"
+
+#: components/AppLayout/AppFooter.js:127
+msgid "Contact"
+msgstr "連絡する"
+
+#: pages/article/[id].js:414
+#: pages/reply/[id].js:314
+msgid "The content above"
+msgstr "内容は以上です"
+
+#: lib/terms.js:42
+msgid "CC BY-SA 4.0"
+msgstr " CC で名前を表示する-同じ方法で 4.0 をシェアする"
+
+#: lib/terms.js:65
+#, javascript-format
+msgid "${ subject } by ${ authorLink } is licensed under ${ licenseLink }"
+msgstr "${ subject }は ${ authorLink } より提供され、${ licenseLink } で検証されています。"
+
+#: lib/terms.js:46
+#, javascript-format
+msgid "${ subject } by ${ AUTHOR } is licensed under ${ LICENSE }."
+msgstr "${ subject }は ${ AUTHOR } より提供され、${ LICENSE } で検証されています。"
+
+#: components/AppLayout/LoginModal.js:92
+msgid "Terms of Use"
+msgstr "ユーザー規制"
+
+#: components/AppLayout/LoginModal.js:104
+msgid "open data"
+msgstr "オープンデータ"
+
+#: components/AppLayout/LoginModal.js:135
+#, javascript-format
+msgid ""
+"By logging in you agree to ${ termsLink }, and you agree to license your "
+"contribution under ${ licenseLink } as ${ authorLink } and release as ${ "
+"workLink }."
+msgstr ""
+"当サイトにログインすることに当たり、${ termsLink } に合意し、${ authorLink } という名義で、サイトに貢献した ${ licenseLink "
+"} を ${workLink} でリリースすることを許可することを意味します。"
+
+
+#: lib/terms.js:41
+msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "「Cofacts デマ探偵隊」情報に対してリプライするロボットと協働検証をするコミュニティです"
+
+
+#: pages/index.js:42
+msgid "Message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "情報に対してリプライするチャットボットと協働検証をするコミュニティです"
+
+#: components/LandingPage/SectionCanDo.js:245
+msgid ""
+"Search by ID “@cofacts” or scan the QR Code above to follow Cofacts\n"
+"LINE account. Forward suspicious text to it, the chatbot will help you\n"
+"check the credibility of the text!"
+msgstr ""
+"ID @cofacts で検索するか QR Code をスキャンして Cofacts の LINEアカウントを "
+"追加すると、怪しい情報を送信したらチャットボットが検証してくれます！"
+
+#: pages/index.js:41
+msgctxt "site title"
+msgid "Cofacts"
+msgstr "Cofacts デマ探偵隊"
+
+#: components/LineChart.js:221
+#, javascript-format
+msgctxt "LineChart"
+msgid "${ visitNum } time"
+msgid_plural "${ visitNum } times"
+msgstr[0] "${ visitNum } 回"
+
+#: components/NewReplySection/Mobile.js:170
+msgctxt "Mobile editor tab"
+msgid "Message"
+msgstr "元の投稿"
+
+#: components/NewReplySection/Mobile.js:171
+msgctxt "Mobile editor tab"
+msgid "Compose"
+msgstr "リプライする"
+
+#: components/NewReplySection/Mobile.js:173
+msgctxt "Mobile editor tab"
+msgid "References"
+msgstr "情報源"
+
+#: components/ListPageDisplays/ArticleCard.js:111
+msgctxt "Info box"
+msgid "replies"
+msgstr "リプライ"
+
+#: components/ListPageDisplays/ArticleCard.js:115
+msgctxt "Info box"
+msgid "reports"
+msgstr "報告"
+
+#: components/ListPageControls/BaseTimeRange.js:67
+msgctxt "Time range dropdown"
+msgid "All"
+msgstr "全て"
+
+#: components/ListPageControls/BaseTimeRange.js:71
+msgctxt "Time range dropdown"
+msgid "Custom"
+msgstr "絞り込み"
+
+#: components/AppLayout/AppHeader.js:156
+#: components/LandingPage/Header.js:266
+msgctxt "App layout"
+msgid "Messages"
+msgstr "検証したい情報"
+
+#: components/AppLayout/AppFooter.js:103
+#: components/AppLayout/AppHeader.js:163
+#: components/LandingPage/Header.js:216
+#: components/LandingPage/Header.js:271
+msgctxt "App layout"
+msgid "Replies"
+msgstr "最新のリプライ"
+
+#: components/AppLayout/AppFooter.js:106
+#: components/AppLayout/AppHeader.js:175
+#: components/LandingPage/Header.js:220
+#: components/LandingPage/Header.js:276
+msgctxt "App layout"
+msgid "For You"
+msgstr "回答しよう"
+
+#: components/AppLayout/AppHeader.js:185
+#: components/LandingPage/Header.js:229
+msgctxt "App layout"
+msgid "Forum"
+msgstr "掲示板"
+
+#: components/LandingPage/SectionCanDo.js:217
+msgctxt "landing page"
+msgid "Give it a try:"
+msgstr "このように試してみよう："
+
+#: components/LandingPage/SectionCanDo.js:234
+msgctxt "landing page"
+msgid "or"
+msgstr "か"
+
+#: components/LandingPage/SectionCanDo.js:240
+msgctxt "landing page"
+msgid "Send hoax message to Cofacts via the LINE app"
+msgstr ""
+"LINE を開く\n"
+" Cofactsを追加する \n"
+" いつでもデマ情報を検証できる！"
+
+#: components/LandingPage/SectionCanDo.js:230
+msgctxt "landing page"
+msgid "Search"
+msgstr "検索する"
+
+#: components/LandingPage/SectionHow.js:180
+msgctxt "landing page"
+msgid "Crowdsourced and Diverse"
+msgstr "共作と協働で多様な観点を知ることができます"
+
+#: components/LandingPage/SectionHow.js:188
+msgctxt "landing page"
+msgid "Everybody can fact-check the fact checkers"
+msgstr "みんな事実の検証者"
+
+#: components/LandingPage/SectionJoin.js:239
+msgctxt "landing page"
+msgid "Count me in!"
+msgstr "私も乗る！"
+
+#: components/LandingPage/SectionArticles.js:156
+msgctxt "landing page"
+msgid "Everyone wants to know..."
+msgstr "誰もが知りたい⋯⋯"
+
+#: components/LandingPage/SectionCanDo.js:221
+msgctxt "landing page"
+msgid "Paste a suspicious text message below"
+msgstr "以下に怪しい情報を貼り付けよう"
+
+#: components/LandingPage/SectionHow.js:171
+msgctxt "landing page"
+msgid "How do we determine truth?"
+msgstr "真実かどうかどうやって見分けるか？"
+
+#: components/LandingPage/SectionHow.js:183
+msgctxt "landing page"
+msgid ""
+"The fact checking replies are written from other contributors,\n"
+"Cofacts helps you see the diversity of the fact checking process."
+msgstr "それぞれのリプライは、各ユーザーによって書かれています。Cofacts はできるだけ多様な観点や情報を収集し、皆さんの事実判断をサポートします！"
+
+#: components/LandingPage/SectionHow.js:191
+msgctxt "landing page"
+msgid ""
+"We believe there is no omniscient judge.\n"
+"We feel that only through individuals working together can we determine "
+"truth.\n"
+"You can review the others' viewpoints and share your perspective on the "
+"Cofacts platform."
+msgstr ""
+"この世に全知全能の判断者が存在しません。だから公民が共作か協働してはじめて真実に近づけられると信じています。Cofacts では"
+"他人の観点が知ることができるため、事実の判断に参考できるほか、自分の考え方をシェアすることもできます。"
+
+#: components/LandingPage/SectionHow.js:198
+msgctxt "landing page"
+msgid "A Community of Mutual Support"
+msgstr "持ちつ持たれつ"
+
+#: components/LandingPage/SectionHow.js:201
+msgctxt "landing page"
+msgid ""
+"Cofacts is building a community where everyone plays a part in "
+"fact-checking."
+msgstr "Cofacts デマ探偵隊は、みんなでお互いのデマ検証チャットボットになることを願っています。"
+
+#: components/LandingPage/SectionHow.js:205
+msgctxt "landing page"
+msgid ""
+"You can make a difference in others' lives through your contributions to "
+"the fact-checking repository."
+msgstr "デマ情報を検証するとき、出てきたリプライをデータベースに入れると、より多くの人のためになれます。"
+
+#: components/LandingPage/SectionJoin.js:221
+msgctxt "landing page"
+msgid "Do you want to join us in fighting disinformation?"
+msgstr "デマを打ち消す戦士になりませんか？"
+
+#: components/LandingPage/SectionJoin.js:224
+msgctxt "landing page"
+msgid ""
+"Join us today.\n"
+"The world needs YOUR help!"
+msgstr "今から連盟しましょう。世界はあなたの力が要ります！"
+
+#: components/LandingPage/SectionJoin.js:227
+msgctxt "landing page"
+msgid ""
+"It doesn't matter whether you've been unhappy with how previous fact checks "
+"were written,\n"
+"found a hoax that hasn't been busted,\n"
+"or are just full of a sense of justice and a desire for truth,\n"
+"YOU could be the next misinformation-busting warrior!"
+msgstr "他の人のリプライに疑問を持ったり、検証したいことがあったりするという動機から、もしくは正義感や好奇心からでも優秀なデマ戦士になれます！"
+
+#: components/LandingPage/SectionNews.js:200
+msgctxt "landing page"
+msgid "Look mom, it's me!"
+msgstr "お母さん！私はここだよ！"
+
+#: components/LandingPage/Stats.js:183
+msgctxt "landing page"
+msgid "Fact Checker Daily Statistics"
+msgstr "デマ退治戦士の日常"
+
+#: components/LandingPage/Stats.js:185
+msgctxt "landing page"
+msgid "Check out what we've been able to accomplish together."
+msgstr "デマとリプライの取り合い戦"
+
+#: components/LandingPage/SectionContribute.js:130
+msgctxt "landing page"
+msgid ""
+"We need your help!\n"
+"Join us today!"
+msgstr "ほら、\nデマ打消し同盟があなたを待っています"
+
+#: components/AppLayout/UpgradeDialog.js:306
+msgctxt "upgrade dialog"
+msgid "Congratulations!"
+msgstr "おめでとうございます！"
+
+#: components/AppLayout/UpgradeDialog.js:309
+msgctxt "upgrade dialog"
+msgid "You can keep leveling up after your level-up!"
+msgstr "ポイントが溜まりましたので、レベルアップしましょう！"
+
+#: components/AppLayout/UpgradeDialog.js:330
+msgctxt "upgrade dialog"
+msgid "EXP"
+msgstr "ポイント"
+
+#: components/AppLayout/UpgradeDialog.js:362
+msgctxt "upgrade dialog"
+msgid "Keep up the good work and save the world!"
+msgstr "真実と嘘が混沌する世界の一力になり続けましょう！"
+
+#: components/AppLayout/UpgradeDialog.js:366
+msgctxt "upgrade dialog"
+msgid "I've got your back"
+msgstr "はい"
+
+#: components/AppLayout/UpgradeDialog.js:359
+#, javascript-format
+msgctxt "upgrade dialog"
+msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
+msgstr "こんにちは！${ LEVEL_NAMES[nextLevel] }"
