@@ -10,6 +10,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { lightTheme } from '../lib/theme';
+import WonderCallEmbed from '../components/WonderCallEmbed';
 
 // https://nextjs.org/docs/basic-features/built-in-css-support
 import '../components/app.css';
@@ -29,6 +30,7 @@ class MyApp extends App {
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         <Component {...pageProps} />
+        <WonderCallEmbed />
       </ThemeProvider>
     );
   }
