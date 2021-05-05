@@ -146,6 +146,18 @@ const NEWS = {
       'https://g0v.news/df9ca1460995',
     ],
   ],
+  ja: [
+    [
+      '2020-02-06 NHK',
+      '台湾 フェイクニュース最前線',
+      'https://www.nhk.or.jp/kokusaihoudou/archive/2020/02/0206.html',
+    ],
+    [
+      '2020-01-14 NHK',
+      '米中攻防 最前線で何が　～台湾総統選の裏で～',
+      'https://www.nhk.or.jp/gendai/articles/4371/',
+    ],
+  ],
 }[process.env.LOCALE];
 
 const useStyles = makeStyles(theme => ({
