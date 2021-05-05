@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     fontWeight: 500,
-    fontSize: LANG === 'en-US' ? 32 : 34,
+    fontSize: 32,
     lineHeight: 1.45,
     letterSpacing: '0.25px',
     color: 'white',
@@ -90,12 +90,12 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
     maxWidth: 1050,
     margin: '0 auto',
 
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
+      alignItems: 'center',
     },
   },
   card: {
@@ -105,7 +105,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     width: 'calc(50% - 30px)',
     maxWidth: 480,
-    height: LANG === 'en-US' ? 520 : 425,
     borderRadius: 8,
 
     [theme.breakpoints.down('md')]: {
@@ -131,6 +130,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   or: {
+    alignSelf: 'center',
     [theme.breakpoints.down('sm')]: {
       margin: '12px 0',
     },
@@ -184,11 +184,11 @@ const useStyles = makeStyles(theme => ({
     },
   },
   lineContent: {
-    marginTop: 32,
+    margin: '32px 0',
     padding: '0 14px',
 
     [theme.breakpoints.down('sm')]: {
-      marginTop: 17,
+      margin: '16px 0',
       padding: 0,
     },
   },
