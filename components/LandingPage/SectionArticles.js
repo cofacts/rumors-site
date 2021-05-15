@@ -11,12 +11,12 @@ import leftImage from './images/article-left.png';
 import rightImage from './images/article-right.png';
 
 const LIST_ARTICLES = gql`
-  query GetArticlesList(
-    $filter: ListArticleFilter
-    $orderBy: [ListArticleOrderBy]
-    $after: String
-  ) {
-    ListArticles(filter: $filter, orderBy: $orderBy, after: $after, first: 10) {
+  query GetArticlesInLandingPage {
+    ListArticles(
+      filter: { replyRequestCount: { GTE: 3 } }
+      orderBy: [{ createdAt: DESC }]
+      first: 10
+    ) {
       edges {
         node {
           id
@@ -131,20 +131,11 @@ const SectionArticles = () => {
   const classes = useStyles();
   const router = useRouter();
 
-  const listQueryVars = {
-    filter: {
-      replyRequestCount: { GTE: 2 },
-      hasArticleReplyWithMorePositiveFeedback: false,
-    },
-    orderBy: [{ lastRequestedAt: 'DESC' }],
-  };
-
   const {
     loading,
     data: listArticlesData,
     error: listArticlesError,
   } = useQuery(LIST_ARTICLES, {
-    variables: listQueryVars,
     ssr: false, // Fetch on browser is OK
   });
 
