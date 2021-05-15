@@ -13,8 +13,8 @@ import rightImage from './images/article-right.png';
 const LIST_ARTICLES = gql`
   query GetArticlesInLandingPage {
     ListArticles(
-      filter: { replyRequestCount: { GTE: 2 } }
-      orderBy: [{ lastRequestedAt: DESC }]
+      filter: { replyRequestCount: { GTE: 3 } }
+      orderBy: [{ createdAt: DESC }]
       first: 10
     ) {
       edges {
