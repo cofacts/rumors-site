@@ -206,28 +206,28 @@ msgstr "本篇回應"
 msgid "someone"
 msgstr "有人"
 
-#: components/LandingPage/Stats.js:146
-#. we hold ~
+#: components/LandingPage/Stats.js:145
+#. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
-#: components/LandingPage/Stats.js:201
+#: components/LandingPage/Stats.js:200
 #, javascript-format
 msgid "About ${ newMessageCount } new messages entering our database each week."
 msgstr "每週有 ${ newMessageCount } 則新訊息進入資料庫"
 
-#: components/LandingPage/Stats.js:204
+#: components/LandingPage/Stats.js:203
 msgid ""
 "About ${ userForwardingCount } people forwarding new messages to our "
 "database each week."
 msgstr "每週有 ${ userForwardingCount } 人發新訊息至資料庫"
 
-#: components/LandingPage/Stats.js:207
+#: components/LandingPage/Stats.js:206
 #, javascript-format
 msgid "But less than ${ editorCount } active editors can help us respond each week."
 msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 
-#: components/LandingPage/Stats.js:210
+#: components/LandingPage/Stats.js:209
 #, javascript-format
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
@@ -452,7 +452,7 @@ msgstr "您有沒有什麼想補充的呢？"
 msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
 
-#: components/LandingPage/SectionArticles.js:162
+#: components/LandingPage/SectionArticles.js:153
 #: components/ProfilePage/RepliedArticleTab.js:237
 #: pages/articles.js:176
 #: pages/hoax-for-you.js:133
@@ -734,7 +734,7 @@ msgstr "此回應已被原作者刪除。"
 
 #: pages/reply/[id].js:314
 msgid "Similar replies"
-msgstr "相似可疑訊息"
+msgstr "相似回應"
 
 #: pages/reply/[id].js:327
 #, javascript-format
@@ -744,7 +744,7 @@ msgstr[0] "此查核回應曾經被用於 ${ node.articleReplies.length } 個可
 
 #: pages/reply/[id].js:339
 msgid "No similar replies found"
-msgstr "沒有相似的可疑訊息"
+msgstr "沒有相似的回應"
 
 #: components/Hyperlinks.js:115
 msgid "Domain name cannot be resolved"
@@ -2360,6 +2360,10 @@ msgstr ""
 msgid "${ formatted } ago"
 msgstr "${ formatted }前"
 
+#: components/WonderCallEmbed.js:55
+msgid "Loading contact form"
+msgstr ""
+
 #: pages/index.js:41
 msgctxt "site title"
 msgid "Cofacts"
@@ -2499,7 +2503,7 @@ msgctxt "landing page"
 msgid "Count me in!"
 msgstr "算我一個！"
 
-#: components/LandingPage/SectionArticles.js:156
+#: components/LandingPage/SectionArticles.js:147
 msgctxt "landing page"
 msgid "Everyone wants to know..."
 msgstr "大家都想知道⋯⋯"
@@ -2574,17 +2578,17 @@ msgid ""
 "YOU could be the next misinformation-busting warrior!"
 msgstr "無論你覺得別人的回應回得不夠好、想知道的事情還沒有人查證過，或是純粹充滿正義感與好奇心，都非常有潛力成為一名傑出的闢謠戰士喔！"
 
-#: components/LandingPage/SectionNews.js:208
+#: components/LandingPage/SectionNews.js:220
 msgctxt "landing page"
 msgid "Look mom, it's me!"
 msgstr "媽！我在這裡！"
 
-#: components/LandingPage/Stats.js:183
+#: components/LandingPage/Stats.js:182
 msgctxt "landing page"
 msgid "Fact Checker Daily Statistics"
 msgstr "闢謠戰士的日常"
 
-#: components/LandingPage/Stats.js:185
+#: components/LandingPage/Stats.js:184
 msgctxt "landing page"
 msgid "Check out what we've been able to accomplish together."
 msgstr "謠言與回應的追逐戰"
