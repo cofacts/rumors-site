@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { c, t } from 'ttag';
 import cx from 'clsx';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Badge from '@material-ui/core/Badge';
 import { animated, useSpring } from 'react-spring';
 import Link from 'next/link';
+import Avatar from 'components/AppLayout/Widgets/Avatar';
 
 import NavLink from 'components/NavLink';
 import * as Widgets from 'components/AppLayout/Widgets';
@@ -31,6 +32,17 @@ const LIST_UNSOLVED_ARTICLES = gql`
       totalCount
     }
   }
+`;
+
+const USER_QUERY = gql`
+  query UserLevelQuery {
+    GetUser {
+      id
+      name
+      ...AvatarData
+    }
+  }
+  ${Avatar.fragments.AvatarData}
 `;
 
 const CustomBadge = withStyles(theme => ({
@@ -147,7 +159,7 @@ const useLandingPageHeaderStyles = makeStyles(theme => ({
   },
 }));
 
-const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
+const LandingPageHeader = React.memo(({ onLoginModalOpen }) => {
   const classes = useLandingPageHeaderStyles();
   const router = useRouter();
   const theme = useTheme();
@@ -155,6 +167,9 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [loadUser, { data: userData }] = useLazyQuery(USER_QUERY);
+  const user = userData?.GetUser;
 
   const { data } = useQuery(LIST_UNSOLVED_ARTICLES, {
     ssr: false, // no number needed for SSR
@@ -183,6 +198,9 @@ const LandingPageHeader = React.memo(({ user, onLoginModalOpen }) => {
       });
     }
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => loadUser(), []);
 
   useEffect(() => {
     handleScroll();
