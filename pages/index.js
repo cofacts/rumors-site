@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import Head from 'next/head';
 import getConfig from 'next/config';
 import { c, t } from 'ttag';
-import { useLazyQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 import { LoginModal, AppFooter } from 'components/AppLayout';
 
@@ -24,18 +22,6 @@ import ogImage from 'components/LandingPage/images/ogimage.png';
 
 import withData from 'lib/apollo';
 
-const USER_QUERY = gql`
-  query UserLevelQuery {
-    GetUser {
-      id
-      name
-      avatarUrl
-      avatarType
-      avatarData
-    }
-  }
-`;
-
 const {
   publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
@@ -47,11 +33,6 @@ const DESCRIPTION = t`Cofacts is a collaborative system connecting instant messa
 function Home() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
-
-  const [loadUser, { data }] = useLazyQuery(USER_QUERY);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => loadUser(), []);
 
   return (
     <>
@@ -68,7 +49,7 @@ function Home() {
         <meta property="og:image:width" content="702" />
         <meta property="og:image:height" content="484" />
       </Head>
-      <Header user={data?.GetUser} onLoginModalOpen={openLoginModal} />
+      <Header onLoginModalOpen={openLoginModal} />
       <SectionIndex />
       <SectionCanDo />
       <SectionArticles />
