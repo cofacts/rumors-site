@@ -9,6 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Badge from '@material-ui/core/Badge';
 import { animated, useSpring } from 'react-spring';
 import Link from 'next/link';
+import Avatar from 'components/AppLayout/Widgets/Avatar';
 
 import NavLink from 'components/NavLink';
 import * as Widgets from 'components/AppLayout/Widgets';
@@ -38,11 +39,10 @@ const USER_QUERY = gql`
     GetUser {
       id
       name
-      avatarUrl
-      avatarType
-      avatarData
+      ...AvatarData
     }
   }
+  ${Avatar.fragments.AvatarData}
 `;
 
 const CustomBadge = withStyles(theme => ({
