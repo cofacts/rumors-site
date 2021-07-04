@@ -30,6 +30,8 @@ const USER_QUERY = gql`
       id
       name
       avatarUrl
+      avatarType
+      avatarData
     }
   }
 `;
