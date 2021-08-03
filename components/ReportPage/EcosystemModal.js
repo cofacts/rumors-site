@@ -88,10 +88,10 @@ const ECOSYSTEM_CONTENTS = [
     links: [
       { href: 'https://github.com/cofacts', label: t`Cofacts open dataset` },
       {
-        href: 'https://cofacts.org/analytics',
+        href: 'https://cofacts.tw/analytics',
         label: t`Cofacts usage analytics`,
       },
-      { href: 'https://api.cofacts.org', label: t`Cofacts API` },
+      { href: 'https://api.cofacts.tw', label: t`Cofacts API` },
     ],
   },
 ];

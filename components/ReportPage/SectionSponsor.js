@@ -194,7 +194,7 @@ function SectionSponsor() {
   const [urlToShare, setUrlToShare] = useState('');
 
   useEffect(() => {
-    const url = `https://dev.cofacts.org${location.pathname}`;
+    const url = `https://cofacts.tw${location.pathname}`;
 
     // Set URL to share on client, when location is available.
     // Will re-render this component to update the URL.
