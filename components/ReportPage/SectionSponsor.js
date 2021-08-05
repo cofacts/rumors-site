@@ -194,11 +194,11 @@ function SectionSponsor() {
   const [urlToShare, setUrlToShare] = useState('');
 
   useEffect(() => {
-    const url = `https://dev.cofacts.org${location.pathname}`;
-
     // Set URL to share on client, when location is available.
     // Will re-render this component to update the URL.
     //
+    // Get rid of extra things like fbclid when sharing
+    const url = `${location.origin}${location.pathname}`;
     setUrlToShare(
       `${FACEBOOK_SHARE_URL_PREFIX}&href=${encodeURIComponent(url)}`
     );
