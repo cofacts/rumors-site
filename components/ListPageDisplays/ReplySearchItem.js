@@ -118,7 +118,7 @@ function RepliedArticleInfo({ article }) {
 
 export default function ReplySearchItem({
   articleReplies = [],
-  query = '',
+  highlight,
   ...reply
 }) {
   const classes = useStyles();
@@ -147,12 +147,10 @@ export default function ReplySearchItem({
           </ExpandableText>
         </div>
         <Divider classes={{ root: classes.divider }} />
-
         <ReplyItem
-          key={reply.id}
           articleReply={articleReply}
           reply={reply}
-          query={query}
+          highlight={highlight}
         />
       </Box>
       {!!replyCount && (
@@ -219,4 +217,5 @@ ReplySearchItem.fragments = {
     ${ReplyItem.fragments.ReplyItem}
     ${ReplyItem.fragments.ReplyItemArticleReplyData}
   `,
+  Highlight: ReplyItem.fragments.Highlight,
 };
