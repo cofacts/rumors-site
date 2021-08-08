@@ -104,7 +104,7 @@ function urlQuery2Filter(query = {}) {
   const filterObj = {
     moreLikeThis: {
       like: query.q.slice(0, MAX_KEYWORD_LENGTH),
-      minimumShouldMatch: '0',
+      minimumShouldMatch: '1',
     },
   };
 
@@ -303,7 +303,8 @@ function SearchPage() {
             options={[
               { value: 'self', label: t`Replied by me`, disabled: !user },
             ]}
-            onChange={values => setSelfOnly(values.include('self'))}
+            selected={selfOnly ? ['self'] : []}
+            onChange={values => setSelfOnly(values.includes('self'))}
           />
           <ReplyTypeFilter />
           {query.type === 'messages' && <CategoryFilter />}
