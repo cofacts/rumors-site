@@ -2370,7 +2370,7 @@ msgstr "出處內容"
 
 #: components/ListPageDisplays/utils.js:18
 msgid "In linked text"
-msgstr "所附連結的網頁內容"
+msgstr "所附網址的網頁內容"
 
 #: pages/index.js:29
 msgctxt "site title"
