@@ -31,7 +31,6 @@ const useStyles = makeStyles(theme => ({
       border: 0,
     },
     '& a': {
-      textDecoration: 'none',
       color: 'inherit',
     },
   },
@@ -107,7 +106,11 @@ function RepliedArticleInfo({ article }) {
         )}
       </>
       <TimeInfo time={article.createdAt}>
-        {timeAgo => t`First reported ${timeAgo}`}
+        {timeAgo => (
+          <Link href="/article/[id]" as={`/article/${article.id}`}>
+            {t`First reported ${timeAgo}`}
+          </Link>
+        )}
       </TimeInfo>
     </Infos>
   );
