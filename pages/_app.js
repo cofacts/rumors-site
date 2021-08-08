@@ -4,7 +4,6 @@
 // @see https://nextjs.org/docs/basic-features/supported-browsers-features#custom-polyfills
 //
 import 'core-js/features/object/from-entries';
-import 'core-js/features/array/flat-map';
 
 import App from 'next/app';
 import React from 'react';
