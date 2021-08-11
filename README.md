@@ -44,13 +44,13 @@ Run the docker image on local machine, then visit `http://localhost:3000`.
 
 ``` bash
 # English version:
-$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-en
+$ docker run --rm --env-file .env -e NODE_ENV=production -p 3000:3000 rumors-site-test-en
 
 # zh_TW version:
-$ docker run --rm --env-file .env -p 3000:3000 rumors-site-test-tw
+$ docker run --rm --env-file .env -e NODE_ENV=production -p 3000:3000 rumors-site-test-tw
 ```
 
-On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `dev` and `master` branch.
+On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `master` branch.
 
 ### Storybook
 We use storybook to demonstrate components.
