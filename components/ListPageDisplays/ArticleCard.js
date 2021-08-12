@@ -2,10 +2,11 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
-import { highlight } from 'lib/text';
 import Infos, { TimeInfo } from 'components/Infos';
 import ExpandableText from 'components/ExpandableText';
 import ListPageCard from './ListPageCard';
+import { highlightSections } from 'lib/text';
+import { useHighlightStyles } from './utils';
 import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -89,11 +90,12 @@ const useStyles = makeStyles(theme => ({
  * Card for an Article.
  *
  * @param {Article} props.article
- * @param {string?} props.query - the currently searched query string to highlight
+ * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  */
-function ArticleCard({ article, query = '' }) {
+function ArticleCard({ article, highlight = '' }) {
   const { id, text, replyCount, replyRequestCount, createdAt } = article;
   const classes = useStyles();
+  const highlightClasses = useHighlightStyles();
 
   return (
     <Link href="/article/[id]" as={`/article/${id}`}>
@@ -116,10 +118,9 @@ function ArticleCard({ article, query = '' }) {
               </div>
             </div>
             <ExpandableText className={classes.content} lineClamp={3}>
-              {highlight(text, {
-                query,
-                highlightClassName: classes.highlight,
-              })}
+              {highlight
+                ? highlightSections(highlight, highlightClasses)
+                : text}
             </ExpandableText>
           </div>
         </ListPageCard>
@@ -138,6 +139,7 @@ ArticleCard.fragments = {
       createdAt
     }
   `,
+  Highlight: highlightSections.fragments.HighlightFields,
 };
 
 export default ArticleCard;

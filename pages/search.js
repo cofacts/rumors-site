@@ -44,11 +44,15 @@ const LIST_ARTICLES = gql`
           text
           ...ArticleCard
         }
+        highlight {
+          ...HighlightFields
+        }
         cursor
       }
     }
   }
   ${ArticleCard.fragments.ArticleCard}
+  ${ArticleCard.fragments.Highlight}
 `;
 
 const LIST_REPLIES = gql`
@@ -63,11 +67,15 @@ const LIST_REPLIES = gql`
         node {
           ...ReplySearchItem
         }
+        highlight {
+          ...HighlightFields
+        }
         cursor
       }
     }
   }
   ${ReplySearchItem.fragments.ReplySearchItem}
+  ${ReplySearchItem.fragments.Highlight}
 `;
 
 const LIST_ARTICLE_STAT = gql`
@@ -104,7 +112,7 @@ function urlQuery2Filter(query = {}) {
   const filterObj = {
     moreLikeThis: {
       like: query.q.slice(0, MAX_KEYWORD_LENGTH),
-      minimumShouldMatch: '0',
+      minimumShouldMatch: '1',
     },
   };
 
@@ -176,8 +184,12 @@ function MessageSearchResult({ query, userId }) {
   return (
     <>
       <ListPageCards>
-        {articleEdges.map(({ node: article }) => (
-          <ArticleCard key={article.id} article={article} query={query.q} />
+        {articleEdges.map(({ node: article, highlight }) => (
+          <ArticleCard
+            key={article.id}
+            article={article}
+            highlight={highlight}
+          />
         ))}
       </ListPageCards>
 
@@ -249,8 +261,8 @@ function ReplySearchResult({ query, selfOnly }) {
   return (
     <>
       <Box component="ul" p={0}>
-        {replyEdges.map(({ node }) => (
-          <ReplySearchItem key={node.id} {...node} query={query.q} />
+        {replyEdges.map(({ node, highlight }) => (
+          <ReplySearchItem key={node.id} {...node} highlight={highlight} />
         ))}
       </Box>
 
@@ -303,7 +315,8 @@ function SearchPage() {
             options={[
               { value: 'self', label: t`Replied by me`, disabled: !user },
             ]}
-            onChange={values => setSelfOnly(values.include('self'))}
+            selected={selfOnly ? ['self'] : []}
+            onChange={values => setSelfOnly(values.includes('self'))}
           />
           <ReplyTypeFilter />
           {query.type === 'messages' && <CategoryFilter />}

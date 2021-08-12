@@ -180,7 +180,7 @@ function ArticleListPage() {
         <>
           <ListPageCards>
             {articleEdges.map(({ node: article }) => (
-              <ArticleCard key={article.id} article={article} query={query.q} />
+              <ArticleCard key={article.id} article={article} />
             ))}
           </ListPageCards>
 

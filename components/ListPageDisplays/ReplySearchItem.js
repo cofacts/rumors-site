@@ -31,7 +31,6 @@ const useStyles = makeStyles(theme => ({
       border: 0,
     },
     '& a': {
-      textDecoration: 'none',
       color: 'inherit',
     },
   },
@@ -107,7 +106,11 @@ function RepliedArticleInfo({ article }) {
         )}
       </>
       <TimeInfo time={article.createdAt}>
-        {timeAgo => t`First reported ${timeAgo}`}
+        {timeAgo => (
+          <Link href="/article/[id]" as={`/article/${article.id}`}>
+            {t`First reported ${timeAgo}`}
+          </Link>
+        )}
       </TimeInfo>
     </Infos>
   );
@@ -115,7 +118,7 @@ function RepliedArticleInfo({ article }) {
 
 export default function ReplySearchItem({
   articleReplies = [],
-  query = '',
+  highlight,
   ...reply
 }) {
   const classes = useStyles();
@@ -144,12 +147,10 @@ export default function ReplySearchItem({
           </ExpandableText>
         </div>
         <Divider classes={{ root: classes.divider }} />
-
         <ReplyItem
-          key={reply.id}
           articleReply={articleReply}
           reply={reply}
-          query={query}
+          highlight={highlight}
         />
       </Box>
       {!!replyCount && (
@@ -216,4 +217,5 @@ ReplySearchItem.fragments = {
     ${ReplyItem.fragments.ReplyItem}
     ${ReplyItem.fragments.ReplyItemArticleReplyData}
   `,
+  Highlight: ReplyItem.fragments.Highlight,
 };

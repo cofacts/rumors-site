@@ -26,8 +26,8 @@ msgstr "取消"
 
 #: components/AppLayout/AppHeader.js:334
 #: components/AppLayout/AppSidebar.js:97
-#: components/LandingPage/Header.js:249
-#: components/LandingPage/Header.js:299
+#: components/LandingPage/Header.js:267
+#: components/LandingPage/Header.js:317
 msgid "Login"
 msgstr "登入"
 
@@ -157,7 +157,7 @@ msgstr "已經送出回應。"
 msgid "Please login first."
 msgstr "請先登入。"
 
-#: pages/search.js:290
+#: pages/search.js:302
 msgid "Search"
 msgstr "搜尋"
 
@@ -207,7 +207,7 @@ msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Stats.js:145
-#. we hold ~ 
+#. we hold ~
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -232,7 +232,7 @@ msgstr "每週僅 ${ editorCount } 名編輯上線闢謠"
 msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
 msgstr "每 ${ meetupFrequency } 個月舉辦${ gathering }"
 
-#: pages/index.js:43
+#: pages/index.js:31
 msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It's a grass-root effort "
@@ -327,13 +327,13 @@ msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
 #: components/AppLayout/AppFooter.js:102
-#: components/LandingPage/Header.js:213
+#: components/LandingPage/Header.js:231
 #: components/SearchPageJumbotron.js:130
 msgid "Messages"
 msgstr "可疑訊息"
 
 #: components/ListPageControls/ArticleStatusFilter.js:16
-#: pages/search.js:304
+#: pages/search.js:316
 msgid "Replied by me"
 msgstr "我查核過"
 
@@ -351,7 +351,7 @@ msgstr "熱門討論"
 
 #: components/ListPageControls/ArticleStatusFilter.js:47
 #: components/ListPageControls/Filters.js:70
-#: pages/search.js:302
+#: pages/search.js:314
 msgid "Filter"
 msgstr "篩選"
 
@@ -457,8 +457,8 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 #: pages/articles.js:176
 #: pages/hoax-for-you.js:133
 #: pages/replies.js:238
-#: pages/search.js:173
-#: pages/search.js:246
+#: pages/search.js:181
+#: pages/search.js:258
 msgid "Loading..."
 msgstr "載入中⋯"
 
@@ -573,17 +573,17 @@ msgid ""
 "LINE."
 msgstr "多個來源用斷行分開，會幫助 Line 的使用者更好閱讀 "
 
-#: components/ListPageDisplays/ReplySearchItem.js:162
+#: components/ListPageDisplays/ReplySearchItem.js:163
 #, javascript-format
 msgid "This reply is also used in ${ replyCount } other message"
 msgid_plural "This reply is also used in ${ replyCount } other messages"
 msgstr[0] "此查核回應曾經被用於 ${ replyCount } 個可疑訊息"
 
-#: components/ListPageDisplays/ReplySearchItem.js:168
+#: components/ListPageDisplays/ReplySearchItem.js:169
 msgid "view"
 msgstr "查看"
 
-#: components/ListPageDisplays/ReplySearchItem.js:173
+#: components/ListPageDisplays/ReplySearchItem.js:174
 msgid "This reply is used in following messages"
 msgstr "此查核回應尚被用於以下的可疑訊息"
 
@@ -709,7 +709,7 @@ msgstr "詢問 ${ totalLineVisits } 次"
 msgid "Total Visit: ${ totalVisits }"
 msgstr "${ totalVisits } 次瀏覽"
 
-#: components/ListPageDisplays/ReplySearchItem.js:103
+#: components/ListPageDisplays/ReplySearchItem.js:102
 #: components/ProfilePage/RepliedArticleTab.js:248
 #: pages/replies.js:248
 #, javascript-format
@@ -893,7 +893,7 @@ msgstr "以上內容"
 msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
 msgstr "「Cofacts 真的假的」訊息回報機器人與查證協作社群"
 
-#: pages/index.js:42
+#: pages/index.js:30
 msgid "Message reporting chatbot and crowd-sourced fact-checking community"
 msgstr "訊息回報機器人與查證協作社群"
 
@@ -2338,8 +2338,8 @@ msgid ""
 "to reverse harms to democracy and society caused by misinformation."
 msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
 
-#: components/ListPageDisplays/ArticleCard.js:104
-#: components/ListPageDisplays/ReplySearchItem.js:110
+#: components/ListPageDisplays/ArticleCard.js:106
+#: components/ListPageDisplays/ReplySearchItem.js:111
 #: components/ProfilePage/RepliedArticleTab.js:255
 #: pages/article/[id].js:306
 #: pages/replies.js:255
@@ -2364,7 +2364,15 @@ msgstr "${ formatted }前"
 msgid "Loading contact form"
 msgstr ""
 
-#: pages/index.js:41
+#: components/ListPageDisplays/utils.js:11
+msgid "In reference text"
+msgstr "出處內容"
+
+#: components/ListPageDisplays/utils.js:18
+msgid "In linked text"
+msgstr "所附網址的網頁內容"
+
+#: pages/index.js:29
 msgctxt "site title"
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
@@ -2417,12 +2425,12 @@ msgctxt "Mobile editor tab"
 msgid "References"
 msgstr "資料來源"
 
-#: components/ListPageDisplays/ArticleCard.js:111
+#: components/ListPageDisplays/ArticleCard.js:113
 msgctxt "Info box"
 msgid "replies"
 msgstr "回應"
 
-#: components/ListPageDisplays/ArticleCard.js:115
+#: components/ListPageDisplays/ArticleCard.js:117
 msgctxt "Info box"
 msgid "reports"
 msgstr "回報"
@@ -2438,29 +2446,29 @@ msgid "Custom"
 msgstr "自訂範圍"
 
 #: components/AppLayout/AppHeader.js:151
-#: components/LandingPage/Header.js:267
+#: components/LandingPage/Header.js:285
 msgctxt "App layout"
 msgid "Messages"
 msgstr "可疑訊息"
 
 #: components/AppLayout/AppFooter.js:104
 #: components/AppLayout/AppHeader.js:158
-#: components/LandingPage/Header.js:216
-#: components/LandingPage/Header.js:272
+#: components/LandingPage/Header.js:234
+#: components/LandingPage/Header.js:290
 msgctxt "App layout"
 msgid "Replies"
 msgstr "最新查核"
 
 #: components/AppLayout/AppFooter.js:107
 #: components/AppLayout/AppHeader.js:170
-#: components/LandingPage/Header.js:220
-#: components/LandingPage/Header.js:277
+#: components/LandingPage/Header.js:238
+#: components/LandingPage/Header.js:295
 msgctxt "App layout"
 msgid "For You"
 msgstr "等你來答"
 
 #: components/AppLayout/AppHeader.js:180
-#: components/LandingPage/Header.js:229
+#: components/LandingPage/Header.js:247
 msgctxt "App layout"
 msgid "Forum"
 msgstr "討論區"

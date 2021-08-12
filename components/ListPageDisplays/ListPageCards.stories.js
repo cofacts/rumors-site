@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import ListPageCards from './ListPageCards';
 import ListPageCard from './ListPageCard';
 import ArticleCard from './ArticleCard';
@@ -44,7 +44,17 @@ export const ArticleCards = () => (
         replyRequestCount: 999,
         createdAt: '2019-01-01T00:00:00Z',
       }}
-      query={text('Text to highlight on second ArticleCard', 'dolor sit amet')}
+      highlight={{
+        text:
+          '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet, consectetur adipiscing elit. <HIGHLIGHT>Mauris eu ex augue</HIGHLIGHT>. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.',
+        hyperlinks: [
+          {
+            title: '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet',
+            summary:
+              '<HIGHLIGHT>Mauris eu ex augue</HIGHLIGHT>. Etiam posuere sagittis iaculis.',
+          },
+        ],
+      }}
     />
   </ListPageCards>
 );

@@ -6,7 +6,8 @@ import ExpandableText from 'components/ExpandableText';
 import ArticleReplySummary from 'components/ArticleReplySummary';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
 import ReplyInfo from 'components/ReplyInfo';
-import { highlight } from 'lib/text';
+import { highlightSections } from 'lib/text';
+import { useHighlightStyles } from './utils';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,19 +49,18 @@ const useStyles = makeStyles(theme => ({
     margin: '12px 0',
     flex: 1,
   },
-  highlight: {
-    color: theme.palette.primary[500],
-  },
 }));
 
 /**
  *
  * @param {ArticleReply} props.articleReply - see ReplyItemArticleReplyData in GraphQL fragment
  * @param {ReplyItem} props.reply - see ReplyItem in GraphQL fragment
+ * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  * @param {boolean} showUser
  */
-function ReplyItem({ articleReply, reply, query }) {
+function ReplyItem({ articleReply, reply, highlight }) {
   const { text, type: replyType } = reply;
+  const highlightClasses = useHighlightStyles();
 
   const classes = useStyles();
 
@@ -79,7 +79,7 @@ function ReplyItem({ articleReply, reply, query }) {
       <Box py={{ xs: '16px', md: '22px' }} flexGrow={1}>
         <ArticleReplySummary articleReply={articleReply} />
         <ExpandableText className={classes.content} lineClamp={3}>
-          {highlight(text, { query, highlightClassName: classes.highlight })}
+          {highlight ? highlightSections(highlight, highlightClasses) : text}
         </ExpandableText>
         <div className={classes.status}>
           <ArticleReplyFeedbackControl articleReply={articleReply} />
@@ -121,6 +121,7 @@ ReplyItem.fragments = {
     ${Avatar.fragments.AvatarData}
     ${ArticleReplySummary.fragments.ArticleReplySummaryData}
   `,
+  Highlight: highlightSections.fragments.HighlightFields,
 };
 
 export default ReplyItem;
