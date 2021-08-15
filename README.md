@@ -34,11 +34,13 @@ See: https://github.com/zeit/styled-jsx#syntax-highlighting
 Build docker image.
 
 ``` bash
-# build
-$ IMAGE_NAME=rumors-site-test hooks/build
+# build en version
+$ docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=en_US -t rumors-site-test-tw
+# build tw version
+$ docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=zh_TW -t rumors-site-test-tw
 ```
 
-This will build both `$IMAGE_NAME-en` and `$IMAGE_NAME-tw` image.
+This will build both `rumors-site-test` image.
 
 Run the docker image on local machine, then visit `http://localhost:3000`.
 
@@ -49,8 +51,6 @@ $ docker run --rm --env-file .env -e NODE_ENV=production -p 3000:3000 rumors-sit
 # zh_TW version:
 $ docker run --rm --env-file .env -e NODE_ENV=production -p 3000:3000 rumors-site-test-tw
 ```
-
-On [docker hub](https://hub.docker.com/r/cofacts/rumors-site), `hooks/build` is automatically executed on `master` branch.
 
 ### Storybook
 We use storybook to demonstrate components.
@@ -127,7 +127,6 @@ You will need to change the following to reflect the locale change:
 
 - `i18n:extract` script in `package.json`
 - `i18n:validate` script in `package.json`
-- `hooks/build` script & `hooks/push` script, with correct LOCALE setup and image tags
 
 ### Building in different languages
 
@@ -136,7 +135,7 @@ By default, the chatbot will be built under `en_US` locale.
 During development, changing `LOCALE` in `.env` allows you to spin up dev server under a specific locale.
 Please set `LOCALE` to one of `en_US`, `zh_TW` or any other language code that exists under `i18n/` directory.
 
-When building using Docker, `LOCALE` can be provided via build args. See `hooks/build` for the command to use.
+When building using Docker, `LOCALE` can be provided via build args.
 
 ## Legal
 
