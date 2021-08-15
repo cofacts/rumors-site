@@ -117,7 +117,17 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
           "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
         }
       }
-      query="dolor sit amet"
+      highlight={
+        Object {
+          "hyperlinks": Array [
+            Object {
+              "summary": "<HIGHLIGHT>Mauris eu ex augue</HIGHLIGHT>. Etiam posuere sagittis iaculis.",
+              "title": "<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet",
+            },
+          ],
+          "text": "<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet, consectetur adipiscing elit. <HIGHLIGHT>Mauris eu ex augue</HIGHLIGHT>. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
+        }
+      }
     >
       <Link
         as="/article/id2"
@@ -200,14 +210,39 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         }
                       }
                     >
-                      Lorem ipsum 
-                      <span
+                      <mark
+                        className="makeStyles-highlight"
+                        key="highlight-0"
+                      >
+                        Lorem ipsum
+                      </mark>
+                       dolor sit amet, consectetur adipiscing elit. 
+                      <mark
                         className="makeStyles-highlight"
                         key="highlight-1"
                       >
-                        dolor sit amet
-                      </span>
-                      , consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+                        Mauris eu ex augue
+                      </mark>
+                      . Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+                      <section
+                        className="makeStyles-hyperlinks"
+                        key="hyperlink-section-0"
+                      >
+                        <mark
+                          className="makeStyles-highlight"
+                          key="highlight-0"
+                        >
+                          Lorem ipsum
+                        </mark>
+                         dolor sit amet 
+                        <mark
+                          className="makeStyles-highlight"
+                          key="highlight-1"
+                        >
+                          Mauris eu ex augue
+                        </mark>
+                        . Etiam posuere sagittis iaculis.
+                      </section>
                     </div>
                   </div>
                 </ExpandableText>
