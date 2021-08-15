@@ -56,7 +56,9 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: cofacts/rumors-site:${{ env.RELEASE_TAG }}${{ matrix.locales.postfix }}
-          build-args: APP_ID=RUMORS_SITE,LOCALE=${{ matrix.locales.locale }}
+          build-args: |
+            APP_ID=RUMORS_SITE
+            LOCALE=${{ matrix.locales.locale }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
