@@ -112,3 +112,9 @@ export const TYPE_SUGGESTION_OPTIONS = {
     },
   ],
 };
+
+export const TYPE_REFERENCE_TITLE = {
+  OPINIONATED: t`Opinion Sources`,
+  RUMOR: t`References`,
+  NOT_RUMOR: t`References`,
+}
