@@ -59,9 +59,7 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
         justifyContent={{ xs: 'center', md: 'space-between' }}
       >
         <label className={classes.label} htmlFor="reference">
-          <strong>
-            {TYPE_REFERENCE_TITLE[replyType]}
-          </strong>
+          <strong>{TYPE_REFERENCE_TITLE[replyType]}</strong>
         </label>
         <Hint>{t`Inserting blank lines between reference items can improve readability in LINE.`}</Hint>
       </Box>
