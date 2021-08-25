@@ -8,6 +8,7 @@ import Avatar from 'components/AppLayout/Widgets/Avatar';
 import { TypeSelect, ReasonEditor, Submit } from './ReplyForm';
 import ReplyFormContext from './ReplyForm/context';
 import { nl2br, linkify } from 'lib/text';
+import { TYPE_REFERENCE_TITLE } from 'constants/replyType';
 
 import ReferenceInput from './ReplyForm/ReferenceInput';
 import ReplySearch from './ReplySearch';
@@ -170,7 +171,7 @@ export default function Mobile({
             <CustomTab label={c('Mobile editor tab').t`Message`} />
             <CustomTab label={c('Mobile editor tab').t`Compose`} />
             {replyType !== 'NOT_ARTICLE' && (
-              <CustomTab label={c('Mobile editor tab').t`References`} />
+              <CustomTab label={TYPE_REFERENCE_TITLE[replyType]} />
             )}
           </Tabs>
           <Box display="flex" flexDirection="column" flexGrow={1}>

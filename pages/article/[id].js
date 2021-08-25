@@ -235,7 +235,7 @@ function ArticlePage() {
       'text/plain',
       selection.toString() +
         `\n📋 節錄自 Cofacts 真的假的：${articleUrl}` +
-        `\nℹ️ ${getTermsString('此資訊')}`
+        `\nℹ️ ${getTermsString(/* t: terms subject */ t`This info`)}`
     );
     e.preventDefault();
   }, []);

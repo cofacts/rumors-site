@@ -2,6 +2,7 @@ import { t } from 'ttag';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { EDITOR_REFERENCE } from 'constants/urls';
+import { TYPE_REFERENCE_TITLE } from 'constants/replyType';
 import Hint from './Hint';
 
 const useStyles = makeStyles(theme => ({
@@ -58,15 +59,7 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
         justifyContent={{ xs: 'center', md: 'space-between' }}
       >
         <label className={classes.label} htmlFor="reference">
-          <strong>
-            {(() => {
-              if (replyType === 'OPINIONATED') {
-                return t`Opinion Sources`;
-              } else {
-                return t`References`;
-              }
-            })()}
-          </strong>
+          <strong>{TYPE_REFERENCE_TITLE[replyType]}</strong>
         </label>
         <Hint>{t`Inserting blank lines between reference items can improve readability in LINE.`}</Hint>
       </Box>

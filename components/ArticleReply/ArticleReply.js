@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { nl2br, linkify } from 'lib/text';
 import getTermsString from 'lib/terms';
-import { TYPE_NAME } from 'constants/replyType';
+import { TYPE_NAME, TYPE_REFERENCE_TITLE } from 'constants/replyType';
 import ExpandableText from 'components/ExpandableText';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
 import ArticleReplySummary from 'components/ArticleReplySummary';
@@ -103,10 +103,12 @@ const ArticleReply = React.memo(
             `【${t`Reason`}】${(reply.text || '').trim()}\n` +
             `↓${t`Details`}↓\n` +
             `${articleUrl}\n` +
-            `↓${t`Reference`}↓\n` +
-            `${reply.reference}\n` +
+            (TYPE_REFERENCE_TITLE[reply.type]
+              ? `↓${TYPE_REFERENCE_TITLE[reply.type]}↓\n` +
+                `${reply.reference}\n`
+              : '') +
             `--\n` +
-            `ℹ️ ${getTermsString('此資訊')}\n`
+            `ℹ️ ${getTermsString(/* t: terms subject */ t`This info`)}\n`
           : '';
 
       return (
@@ -128,9 +130,7 @@ const ArticleReply = React.memo(
       const reference = reply.reference;
       return (
         <section className={classes.root}>
-          <h3>
-            {replyType === 'OPINIONATED' ? t`Different opinion` : t`Reference`}
-          </h3>
+          <h3>{TYPE_REFERENCE_TITLE[replyType]}</h3>
           {reference
             ? nl2br(linkify(reference))
             : `⚠️️ ${t`There is no reference for this reply. Its truthfulness may be doubtful.`}`}
