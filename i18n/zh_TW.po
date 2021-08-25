@@ -18,7 +18,7 @@ msgid "Cofacts"
 msgstr "Cofacts 真的假的"
 
 #: components/ArticleCategories/DownVoteDialog.js:98
-#: components/NewReplySection/Mobile.js:138
+#: components/NewReplySection/Mobile.js:139
 #: components/ProfilePage/EditAvatarDialog.js:236
 #: components/ProfilePage/EditProfileDialog.js:93
 msgid "Cancel"
@@ -81,8 +81,6 @@ msgstr "理由"
 msgid "Details"
 msgstr "詳細解釋"
 
-#: components/ArticleReply/ArticleReply.js:106
-#: components/ArticleReply/ArticleReply.js:132
 #: pages/api/articles/[feed].js:178
 #. https://stackoverflow.com/a/54905457/1582110
 msgid "Reference"
@@ -92,10 +90,6 @@ msgstr "出處"
 #: components/ArticleReplySummary.js:37
 msgid "Someone"
 msgstr "有人"
-
-#: components/ArticleReply/ArticleReply.js:132
-msgid "Different opinion"
-msgstr "不同意見"
 
 #: components/ArticleReply/ArticleReply.js:136
 msgid "There is no reference for this reply. Its truthfulness may be doubtful."
@@ -547,7 +541,7 @@ msgid "Related messages and replies"
 msgstr "相關可疑訊息及回應"
 
 #: components/NewReplySection/Desktop.js:124
-#: components/NewReplySection/Mobile.js:233
+#: components/NewReplySection/Mobile.js:234
 msgid "Use this reply"
 msgstr "直接用此回應"
 
@@ -567,7 +561,7 @@ msgstr "全部回應"
 msgid "My replies"
 msgstr "我的回應"
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:71
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:64
 msgid ""
 "Inserting blank lines between reference items can improve readability in "
 "LINE."
@@ -657,12 +651,12 @@ msgid "Mark"
 msgstr "新增標註"
 
 #: components/NewReplySection/Desktop.js:69
-#: components/NewReplySection/Mobile.js:148
+#: components/NewReplySection/Mobile.js:149
 msgid "Compose a new reply"
 msgstr "撰寫新回應"
 
 #: components/NewReplySection/Desktop.js:73
-#: components/NewReplySection/Mobile.js:151
+#: components/NewReplySection/Mobile.js:152
 msgid "Use existing replies"
 msgstr "使用現有回應"
 
@@ -982,15 +976,16 @@ msgstr ""
 msgid "Earn ${ pointsLeft } EXP to next level"
 msgstr ""
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:64
+#: constants/replyType.js:117
 msgid "Opinion Sources"
 msgstr "不同意見出處"
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:66
+#: constants/replyType.js:118
+#: constants/replyType.js:119
 msgid "References"
 msgstr "資料佐證"
 
-#: components/NewReplySection/ReplyForm/ReferenceInput.js:50
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:51
 msgid ""
 "One line summary\n"
 "» Source URL"
@@ -1045,7 +1040,7 @@ msgstr "CC授權 姓名標示-相同方式分享 4.0"
 #: components/AppLayout/AppFooter.js:114
 #: components/AppLayout/LoginModal.js:94
 msgid "User Agreement"
-msgstr ""
+msgstr "使用者條款"
 
 #: components/AppLayout/LoginModal.js:152
 #, javascript-format
@@ -2372,6 +2367,12 @@ msgstr "出處內容"
 msgid "In linked text"
 msgstr "所附網址的網頁內容"
 
+#: components/ArticleReply/ArticleReply.js:111
+#: pages/article/[id].js:238
+#. t: terms subject
+msgid "This info"
+msgstr "此資訊"
+
 #: pages/index.js:29
 msgctxt "site title"
 msgid "Cofacts"
@@ -2410,20 +2411,15 @@ msgctxt "impact"
 msgid "More"
 msgstr "了解更多"
 
-#: components/NewReplySection/Mobile.js:170
+#: components/NewReplySection/Mobile.js:171
 msgctxt "Mobile editor tab"
 msgid "Message"
 msgstr "原始文章"
 
-#: components/NewReplySection/Mobile.js:171
+#: components/NewReplySection/Mobile.js:172
 msgctxt "Mobile editor tab"
 msgid "Compose"
 msgstr "撰寫回應"
-
-#: components/NewReplySection/Mobile.js:173
-msgctxt "Mobile editor tab"
-msgid "References"
-msgstr "資料來源"
 
 #: components/ListPageDisplays/ArticleCard.js:113
 msgctxt "Info box"

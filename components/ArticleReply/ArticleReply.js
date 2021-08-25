@@ -108,7 +108,7 @@ const ArticleReply = React.memo(
                 `${reply.reference}\n`
               : '') +
             `--\n` +
-            `ℹ️ ${getTermsString(t`This info`)}\n`
+            `ℹ️ ${getTermsString(/* t: terms subject */ t`This info`)}\n`
           : '';
 
       return (
