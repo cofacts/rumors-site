@@ -52,7 +52,7 @@
 
 3. Cofacts WG 會嚴格保護協作者之隱私及個人資料，除充分量化或去識別化後得不再視為個人資料者外，將不基於任何目的使其外流至與本服務無關之第三方。
 
-4. 網站協作者可寄信至 Cofacts WG 之連絡信箱，請求刪除或更換取自 Google、Facebook、Github 或 Google 等平台的公開顯示資訊或電子郵件地址。Cofacts WG 會在比對寄件者電子郵件地址後進行處理。
+4. 網站協作者可在個人頁面逕行變更自己在 Cofacts 真的假的網站的預設頭像與顯示名稱，使其不再與 Facebook、Twitter、Github 或 Google 上的公開資訊相同。另外，協作者亦可寄信至 Cofacts WG 之連絡信箱，請求刪除或更換取自 Google、Facebook、Github 或 Google 等平台的公開顯示資訊或電子郵件地址。Cofacts WG 會在比對寄件者電子郵件地址後進行處理。
 
 ## 五、免責聲明
 
