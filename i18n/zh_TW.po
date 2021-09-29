@@ -146,7 +146,7 @@ msgstr "感謝您的意見。"
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
-#: components/NewReplySection/index.js:125
+#: components/NewReplySection/index.js:137
 #: lib/apollo.js:47
 msgid "Please login first."
 msgstr "請先登入。"
@@ -2372,6 +2372,10 @@ msgid ""
 msgstr ""
 "2016 年起將 chatbot 導入事實查核領域、並提供 API "
 "介接教學，在此領域激起了典範轉移，專業查核組織開始推出自己的chatbot，也有第三方查詢機器人前來介接 Cofacts 資料。"
+
+#: components/NewReplySection/index.js:111
+msgid "Please provide reply text."
+msgstr "請提供回應文字。"
 
 #: pages/index.js:29
 msgctxt "site title"

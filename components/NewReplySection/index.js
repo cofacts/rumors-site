@@ -105,8 +105,20 @@ const NewReplySection = withContext(
         const { replyType: type, reference, text } = fields;
         e.preventDefault(); // prevent reload
         if (creatingReply) return;
+
+        const trimmedText = text.trim();
+        if (trimmedText.length === 0) {
+          alert(t`Please provide reply text.`);
+          return;
+        }
+
         createReply({
-          variables: { type, reference, text, articleId: article.id },
+          variables: {
+            type,
+            reference,
+            text: trimmedText,
+            articleId: article.id,
+          },
         });
       },
       [createReply, fields, article.id, creatingReply]
