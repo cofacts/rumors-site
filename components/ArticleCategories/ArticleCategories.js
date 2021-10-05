@@ -41,7 +41,11 @@ const CATEGORY_LIST_QUERY = gql`
   ${AddCategoryDialog.fragments.CategoryData}
 `;
 
-function ArticleCategories({ articleId, articleCategories }) {
+function ArticleCategories({
+  articleId,
+  articleCategories,
+  similarCategories,
+}) {
   const classes = useStyles();
   const [showAddDialog, setAddDialogShow] = useState(false);
   const { data, loading } = useQuery(CATEGORY_LIST_QUERY, {
@@ -56,9 +60,18 @@ function ArticleCategories({ articleId, articleCategories }) {
     {}
   );
 
-  const allCategories = (data.ListCategories?.edges || []).map(
-    ({ node }) => node
-  );
+  //sort by similar category on top
+  const allCategories = (data?.ListCategories?.edges || [])
+    .map(({ node }) => node)
+    .sort((x, y) => {
+      return similarCategories.includes(x.id) ===
+        similarCategories.includes(y.id)
+        ? 0
+        : similarCategories.includes(x.id)
+        ? -1
+        : 1;
+    });
+
   const hasOtherCategories = allCategories.some(({ id }) => !isInArticle[id]);
 
   return (

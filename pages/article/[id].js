@@ -133,6 +133,9 @@ const LOAD_ARTICLE = gql`
           node {
             id
             text
+            articleCategories {
+              categoryId
+            }
             ...ArticleInfo
           }
         }
@@ -278,6 +281,15 @@ function ArticlePage() {
 
   const { replyRequestCount, text, hyperlinks, replyCount } = article;
   const similarArticles = article?.similarArticles?.edges || [];
+  // get a set of similar category in array
+  const similarCategories = article?.similarArticles?.edges?.reduce(
+    (ary, sa) => {
+      const ac = sa.node?.articleCategories || [];
+      ary = [...new Set([...ary, ...ac?.map(cat => cat.categoryId)])];
+      return ary;
+    },
+    []
+  );
 
   const replyRequestsWithComments = (article.replyRequests || []).filter(
     ({ reason }) => reason
@@ -322,6 +334,7 @@ function ArticlePage() {
                   articleCategories={article.articleCategories.filter(
                     ({ status }) => status === 'NORMAL'
                   )}
+                  similarCategories={similarCategories}
                 />
               </Box>
               <TrendPlot data={article.stats} />
