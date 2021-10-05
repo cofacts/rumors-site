@@ -54,23 +54,23 @@ function AddCategoryDialog({
 
   // marked categories on top
   const sortedCategories = [
-    ...allCategories.filter((cat) => !!feedbackMap[cat.id]),
-    ...allCategories.filter((cat) => !feedbackMap[cat.id]),
+    ...allCategories.filter(cat => !!feedbackMap[cat.id]),
+    ...allCategories.filter(cat => !feedbackMap[cat.id]),
   ];
   return (
     <Dialog
       onClose={onClose}
-      aria-labelledby='add-category-dialog-title'
+      aria-labelledby="add-category-dialog-title"
       open
-      maxWidth='lg'
+      maxWidth="lg"
     >
-      <DialogTitle id='add-category-dialog-title'>{t`Categorize this message`}</DialogTitle>
+      <DialogTitle id="add-category-dialog-title">{t`Categorize this message`}</DialogTitle>
       <DialogContent>
         <Hint>
           {t`Articles are mostly categorized by AI based on our current data, but you can provide your own opinion to improved the categorization.`}
         </Hint>
         <div>
-          {sortedCategories.map((category) => (
+          {sortedCategories.map(category => (
             <CategoryOption
               key={category.id}
               articleId={articleId}
