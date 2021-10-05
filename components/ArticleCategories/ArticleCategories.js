@@ -47,7 +47,7 @@ function ArticleCategories({
   similarCategories,
 }) {
   const classes = useStyles();
-  const [showAddDialog, setAddDialogShow] = useState(true);
+  const [showAddDialog, setAddDialogShow] = useState(false);
   const { data, loading } = useQuery(CATEGORY_LIST_QUERY, {
     ssr: false,
   });
