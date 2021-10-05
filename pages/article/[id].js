@@ -40,7 +40,7 @@ import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     padding: '24px 0',
@@ -133,6 +133,9 @@ const LOAD_ARTICLE = gql`
           node {
             id
             text
+            articleCategories {
+              categoryId
+            }
             ...ArticleInfo
           }
         }
@@ -222,12 +225,12 @@ function ArticlePage() {
     }, 0);
   }, []);
 
-  const handleError = useCallback(error => {
+  const handleError = useCallback((error) => {
     console.error(error);
     setFlashMessage(error.toString());
   }, []);
 
-  const handleCopy = useCallback(e => {
+  const handleCopy = useCallback((e) => {
     const selection = document.getSelection();
     const articleUrl = window.location.origin + window.location.pathname;
 
@@ -278,6 +281,15 @@ function ArticlePage() {
 
   const { replyRequestCount, text, hyperlinks, replyCount } = article;
   const similarArticles = article?.similarArticles?.edges || [];
+  // get a set of similar category in array
+  const similarCategories = article?.similarArticles?.edges?.reduce(
+    (ary, sa) => {
+      const ac = sa.node?.articleCategories || [];
+      ary = [...new Set([...ary, ...ac?.map((cat) => cat.categoryId)])];
+      return ary;
+    },
+    []
+  );
 
   const replyRequestsWithComments = (article.replyRequests || []).filter(
     ({ reason }) => reason
@@ -303,7 +315,7 @@ function ArticlePage() {
               </Ribbon>
               <Infos>
                 <TimeInfo time={article.createdAt}>
-                  {timeAgo => t`First reported ${timeAgo}`}
+                  {(timeAgo) => t`First reported ${timeAgo}`}
                 </TimeInfo>
               </Infos>
             </header>
@@ -322,6 +334,7 @@ function ArticlePage() {
                   articleCategories={article.articleCategories.filter(
                     ({ status }) => status === 'NORMAL'
                   )}
+                  similarCategories={similarCategories}
                 />
               </Box>
               <TrendPlot data={article.stats} />
@@ -332,7 +345,7 @@ function ArticlePage() {
                   {`Comments from people reporting this message`}
                 </CardHeader>
                 <CardContent style={{ padding: 0 }}>
-                  {replyRequestsWithComments.map(replyRequest => (
+                  {replyRequestsWithComments.map((replyRequest) => (
                     <ReplyRequestReason
                       key={replyRequest.id}
                       articleId={article.id}
@@ -390,19 +403,19 @@ function ArticlePage() {
 
           {replyCount > 0 && (
             <Typography
-              variant="body2"
-              color="textSecondary"
+              variant='body2'
+              color='textSecondary'
               style={{ margin: '16px 0' }}
             >
               {getTermsString(t`The content above`, true)}
             </Typography>
           )}
 
-          <Hidden smDown implementation="css">
+          <Hidden smDown implementation='css'>
             <a href={LINE_URL}>
               <img
                 className={classes.bannerImage}
-                src="/line-banner-desktop@2x.png"
+                src='/line-banner-desktop@2x.png'
                 alt={t`Add Cofacts as friend in LINE`}
               />
             </a>
@@ -416,7 +429,7 @@ function ArticlePage() {
               {similarArticles.map(({ node }) => (
                 <Link
                   key={node.id}
-                  href="/article/[id]"
+                  href='/article/[id]'
                   as={`/article/${node.id}`}
                   passHref
                 >
@@ -428,17 +441,17 @@ function ArticlePage() {
               ))}
             </SideSectionLinks>
           ) : (
-            <Box textAlign="center" pt={4} pb={3}>
+            <Box textAlign='center' pt={4} pb={3}>
               {t`No similar messages found`}
             </Box>
           )}
         </SideSection>
       </div>
-      <Hidden mdUp implementation="css">
+      <Hidden mdUp implementation='css'>
         <a href={LINE_URL}>
           <img
             className={classes.bannerImage}
-            src="/line-banner-mobile@2x.png"
+            src='/line-banner-mobile@2x.png'
             alt={t`Add Cofacts as friend in LINE`}
             style={{ marginBottom: 24 }}
           />
@@ -451,13 +464,13 @@ function ArticlePage() {
       />
       {!currentUser && (
         <Fab
-          size="large"
-          variant="extended"
-          aria-label="Add friend"
-          data-ga="Add LINE friend FAB"
+          size='large'
+          variant='extended'
+          aria-label='Add friend'
+          data-ga='Add LINE friend FAB'
           className={classes.lineFab}
           href={LINE_URL}
-          target="_blank"
+          target='_blank'
         >
           <AddIcon />
           <span className={classes.lineFabText}>

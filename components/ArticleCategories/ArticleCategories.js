@@ -14,7 +14,7 @@ const {
   publicRuntimeConfig: { PUBLIC_SHOW_ADD_CATEGORY },
 } = getConfig();
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: -theme.spacing(1), // Counter margin-top for article category
   },
@@ -41,9 +41,13 @@ const CATEGORY_LIST_QUERY = gql`
   ${AddCategoryDialog.fragments.CategoryData}
 `;
 
-function ArticleCategories({ articleId, articleCategories }) {
+function ArticleCategories({
+  articleId,
+  articleCategories,
+  similarCategories,
+}) {
   const classes = useStyles();
-  const [showAddDialog, setAddDialogShow] = useState(false);
+  const [showAddDialog, setAddDialogShow] = useState(true);
   const { data, loading } = useQuery(CATEGORY_LIST_QUERY, {
     ssr: false,
   });
@@ -56,14 +60,23 @@ function ArticleCategories({ articleId, articleCategories }) {
     {}
   );
 
-  const allCategories = (data.ListCategories?.edges || []).map(
-    ({ node }) => node
-  );
+  //sort by similar category on top
+  const allCategories = (data?.ListCategories?.edges || [])
+    .map(({ node }) => node)
+    .sort((x, y) => {
+      return similarCategories.includes(x.id) ===
+        similarCategories.includes(y.id)
+        ? 0
+        : similarCategories.includes(x.id)
+        ? -1
+        : 1;
+    });
+
   const hasOtherCategories = allCategories.some(({ id }) => !isInArticle[id]);
 
   return (
     <aside className={classes.root}>
-      {(articleCategories || []).map(articleCategory => (
+      {(articleCategories || []).map((articleCategory) => (
         <ArticleCategory
           key={articleCategory.categoryId}
           {...articleCategory}
@@ -74,9 +87,9 @@ function ArticleCategories({ articleId, articleCategories }) {
         <Chip
           className={classes.button}
           onClick={() => setAddDialogShow(true)}
-          variant="outlined"
+          variant='outlined'
           label={
-            <Box display="flex" alignItems="center" pr={1}>
+            <Box display='flex' alignItems='center' pr={1}>
               <AddIcon className={classes.buttonIcon} />
               {t`Suggest categories`}
             </Box>
