@@ -38,6 +38,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   root: {
+    overflow: 'hidden',
+    'align-items': 'flex-end !important',
+    'flex-direction': 'column !important',
+    display: 'flex !important',
+    '& .react-calendar-heatmap': {
+      minHeight: 140,
+    },
     '& svg': {
       background: '#fff',
 
@@ -129,7 +136,7 @@ function Legend({ count }) {
 }
 
 function scaleColor(count) {
-  return Math.max(Math.min(Math.round(count / SCALING_FACTOR), MAX_SCALE), 0);
+  return Math.max(Math.min(Math.ceil(count / SCALING_FACTOR), MAX_SCALE), 0);
 }
 
 export default function ContributionChart({ startDate, endDate, data }) {
