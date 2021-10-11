@@ -2,7 +2,6 @@ import { t, jt } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
-import getConfig from 'next/config';
 import {
   LICENSE_URL,
   USER_AGREEMENT_URL,
@@ -58,10 +57,6 @@ const useProviderStyles = makeStyles(theme => ({
   },
 }));
 
-const {
-  publicRuntimeConfig: { PUBLIC_API_URL },
-} = getConfig();
-
 const ProviderLink = ({
   provider,
   logo,
@@ -73,8 +68,6 @@ const ProviderLink = ({
     redirectPath ||
     location.href.replace(new RegExp(`^${location.origin}`), '');
 
-  const urlFor = provider =>
-    `${PUBLIC_API_URL}/login/${provider}?redirect=${redirectUrl}`;
   const classes = useProviderStyles({ color });
 
   return (
@@ -82,7 +75,7 @@ const ProviderLink = ({
       <div className={classes.logoWrapper}>
         <img src={logo} alt={provider} />
       </div>
-      <a href={urlFor(provider)}>{children}</a>
+      <a href={`api/login/${provider}?redirect=${redirectUrl}`}>{children}</a>
     </div>
   );
 };
