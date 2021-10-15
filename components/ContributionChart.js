@@ -9,7 +9,6 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { addDays, format } from 'date-fns';
 
-const SCALING_FACTOR = 5;
 const MAX_SCALE = 4;
 
 const useStyles = makeStyles(theme => ({
@@ -136,7 +135,11 @@ function Legend({ count }) {
 }
 
 function scaleColor(count) {
-  return Math.max(Math.min(Math.ceil(count / SCALING_FACTOR), MAX_SCALE), 0);
+  const varingScalingFactor = count < 10 ? 10 / MAX_SCALE : count / MAX_SCALE;
+  return Math.max(
+    Math.min(Math.ceil(count / varingScalingFactor), MAX_SCALE),
+    0
+  );
 }
 
 export default function ContributionChart({ startDate, endDate, data }) {
