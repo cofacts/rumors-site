@@ -149,31 +149,31 @@ const SectionFeatures = () => {
         <Item
           image={feature1}
           title={t`Notification`}
-          content={t`An exclusive service keeps users from repeating requests and provides 
+          content={t`An exclusive service keeps users from repeating requests and provides
           immediate information about false messages in the previous queries.`}
         />
         <Item
           image={feature2}
           title={t`Personal fact-check contribution`}
-          content={t`Volunteers would login Cofacts and fact-check the suspicious messages. 
-          What fact-checkers have replied and commented would be transparent 
+          content={t`Volunteers would login Cofacts and fact-check the suspicious messages.
+          What fact-checkers have replied and commented would be transparent
           and reviewed, the achievement was opened and shareable.`}
           mobileReverse
         />
         <Item
           image={feature3}
           title={t`AI tagging`}
-          content={t`Cofacts has catagorized misinformation via topics automartically, making 
-          different expertises focus on their professinal fields.Such and COVID-19, 
-          Vaccine related, propaganda, public policy, or fraud, these could be 
-          catagorized by Artificial Intelligence.`}
+          content={t`Cofacts has categorized misinformation via topics automatically, making
+          different expertise focus on their professional fields. Such as COVID-19,
+          Vaccine related, propaganda, public policy, or fraud, these could be
+          categorized by Artificial Intelligence.`}
         />
         <Item
           image={feature4}
           title="工程典範"
-          content={t`Cofacts has provided API connecting instruction, fact-checking system 
-          since 2016.This achievement leads the combating misinformation ecosystem. 
-          There were third party chatbots connecting to Cofacts open API and IFCN 
+          content={t`Cofacts has provided API connecting instruction, fact-checking system
+          since 2016. This achievement leads the combating misinformation ecosystem.
+          There were third party chatbots connecting to Cofacts open API and IFCN
           member started to conduct own chatbots.`}
           mobileReverse
         />

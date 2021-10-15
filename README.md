@@ -135,6 +135,10 @@ By default, the chatbot will be built under `en_US` locale.
 During development, changing `LOCALE` in `.env` allows you to spin up dev server under a specific locale.
 Please set `LOCALE` to one of `en_US`, `zh_TW` or any other language code that exists under `i18n/` directory.
 
+When previewing translated site on local machine, sometimes the translated text does not appear.
+You may need to set `BABEL_DISABLE_CACHE` (example: `BABEL_DISABLE_CACHE=1 npm run dev`) to disable
+babel cache for the new translation to appear correctly.
+
 When building using Docker, `LOCALE` can be provided via build args.
 
 ## Legal
