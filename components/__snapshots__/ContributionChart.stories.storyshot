@@ -1365,7 +1365,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
           className="makeStyles-headerToggle"
         >
           <svg
-            aria-hidden={true}
+            aria-hidden="true"
             className="MuiSvgIcon-root"
             focusable="false"
             onClick={[Function]}
