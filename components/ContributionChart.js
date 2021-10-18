@@ -134,8 +134,9 @@ function Legend({ count }) {
   );
 }
 
-function scaleColor(count) {
-  const varingScalingFactor = count < 10 ? 10 / MAX_SCALE : count / MAX_SCALE;
+function scaleColor(count, maxContribution) {
+  const varingScalingFactor =
+    count < 10 ? 10 / MAX_SCALE : maxContribution.count / MAX_SCALE;
   return Math.max(
     Math.min(Math.ceil(count / varingScalingFactor), MAX_SCALE),
     0
@@ -147,6 +148,9 @@ export default function ContributionChart({ startDate, endDate, data }) {
   const classes = useStyles({ showPlot });
   const firstDay = new Date(startDate);
   const total = data.reduce((sum, value) => sum + value.count, 0);
+  const maxContribution = data.reduce((prev, current) => {
+    return prev.count > current.count ? prev : current;
+  });
 
   return (
     <Card>
@@ -180,7 +184,7 @@ export default function ContributionChart({ startDate, endDate, data }) {
                 if (!value) {
                   return classes.colorCofacts0;
                 }
-                const scale = scaleColor(value.count);
+                const scale = scaleColor(value.count, maxContribution);
                 return classes[`colorCofacts${scale}`];
               }}
               transformDayElement={(element, value, index) => {
