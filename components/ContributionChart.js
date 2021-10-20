@@ -9,7 +9,6 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { addDays, format } from 'date-fns';
 
-const SCALING_FACTOR = 5;
 const MAX_SCALE = 4;
 
 const useStyles = makeStyles(theme => ({
@@ -38,6 +37,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   root: {
+    overflow: 'hidden',
+    'align-items': 'flex-end !important',
+    'flex-direction': 'column !important',
+    display: 'flex !important',
+    '& .react-calendar-heatmap': {
+      minHeight: 140,
+    },
     '& svg': {
       background: '#fff',
 
@@ -128,8 +134,15 @@ function Legend({ count }) {
   );
 }
 
-function scaleColor(count) {
-  return Math.max(Math.min(Math.round(count / SCALING_FACTOR), MAX_SCALE), 0);
+function scaleColor(count, maxContribution) {
+  const varingScalingFactor =
+    maxContribution.count < 10
+      ? 10 / MAX_SCALE
+      : maxContribution.count / MAX_SCALE;
+  return Math.max(
+    Math.min(Math.ceil(count / varingScalingFactor), MAX_SCALE),
+    0
+  );
 }
 
 export default function ContributionChart({ startDate, endDate, data }) {
@@ -137,6 +150,9 @@ export default function ContributionChart({ startDate, endDate, data }) {
   const classes = useStyles({ showPlot });
   const firstDay = new Date(startDate);
   const total = data.reduce((sum, value) => sum + value.count, 0);
+  const maxContribution = data.reduce((prev, current) => {
+    return prev.count > current.count ? prev : current;
+  });
 
   return (
     <Card>
@@ -170,7 +186,7 @@ export default function ContributionChart({ startDate, endDate, data }) {
                 if (!value) {
                   return classes.colorCofacts0;
                 }
-                const scale = scaleColor(value.count);
+                const scale = scaleColor(value.count, maxContribution);
                 return classes[`colorCofacts${scale}`];
               }}
               transformDayElement={(element, value, index) => {
