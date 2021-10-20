@@ -136,7 +136,9 @@ function Legend({ count }) {
 
 function scaleColor(count, maxContribution) {
   const varingScalingFactor =
-    count < 10 ? 10 / MAX_SCALE : maxContribution.count / MAX_SCALE;
+    maxContribution.count < 10
+      ? 10 / MAX_SCALE
+      : maxContribution.count / MAX_SCALE;
   return Math.max(
     Math.min(Math.ceil(count / varingScalingFactor), MAX_SCALE),
     0
