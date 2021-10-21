@@ -156,14 +156,9 @@ function ContributionChart({ startDate, endDate, data }) {
   const total = data.reduce((sum, value) => sum + value.count, 0);
 
   // Max count in the data, clamped to [MIN_CONTRIB, MAX_CONTRIB]
-  const maxCount = Math.max(
-    MIN_CONTRIB,
-    Math.min(
-      data.reduce((max, { count }) => {
-        return count > max ? count : max;
-      }, 0),
-      MAX_CONTRIB
-    )
+  const maxCount = Math.min(
+    Math.max(MIN_CONTRIB, ...data.map(({ count }) => count)),
+    MAX_CONTRIB
   );
 
   return (
