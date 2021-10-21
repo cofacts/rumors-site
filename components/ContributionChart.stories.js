@@ -343,6 +343,23 @@ const data = [
   { date: '2021-02-23', count: 2 },
 ];
 
-export const Normal = () => (
+export const Many = () => (
   <ContributionChart startDate="2020-02-22" endDate="2021-02-23" data={data} />
+);
+
+export const Few = () => (
+  <ContributionChart
+    startDate="2020-02-22"
+    endDate="2021-02-23"
+    data={[
+      { date: '2020-11-25', count: 1 },
+      { date: '2020-11-26', count: 4 },
+      { date: '2020-11-27', count: 6 },
+      { date: '2021-02-19', count: 8 },
+    ]}
+  />
+);
+
+export const Empty = () => (
+  <ContributionChart startDate="2020-02-22" endDate="2021-02-23" data={[]} />
 );

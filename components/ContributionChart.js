@@ -1,15 +1,17 @@
+import { useState, memo } from 'react';
 import { t, ngettext, msgid } from 'ttag';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from './Tooltip';
 import { Card, CardHeader, CardContent } from 'components/Card';
-import { useState } from 'react';
 
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { addDays, format } from 'date-fns';
 
 const MAX_SCALE = 4;
+const MIN_CONTRIB = 8;
+const MAX_CONTRIB = 20;
 
 const useStyles = makeStyles(theme => ({
   colorCofacts0: {
@@ -134,25 +136,30 @@ function Legend({ count }) {
   );
 }
 
-function scaleColor(count, maxContribution) {
-  const varingScalingFactor =
-    maxContribution.count < 10
-      ? 10 / MAX_SCALE
-      : maxContribution.count / MAX_SCALE;
+/**
+ *
+ * @param {number} count
+ * @param {number} maxCount
+ * @returns {number} Color scale integer (0 ~ MAX_SCALE)
+ */
+function scaleColor(count, maxCount) {
   return Math.max(
-    Math.min(Math.ceil(count / varingScalingFactor), MAX_SCALE),
-    0
+    0,
+    Math.min(Math.ceil((count / maxCount) * MAX_SCALE), MAX_SCALE)
   );
 }
 
-export default function ContributionChart({ startDate, endDate, data }) {
+function ContributionChart({ startDate, endDate, data }) {
   const [showPlot, setShowPlot] = useState(true);
   const classes = useStyles({ showPlot });
   const firstDay = new Date(startDate);
   const total = data.reduce((sum, value) => sum + value.count, 0);
-  const maxContribution = data.reduce((prev, current) => {
-    return prev.count > current.count ? prev : current;
-  });
+
+  // Max count in the data, clamped to [MIN_CONTRIB, MAX_CONTRIB]
+  const maxCount = Math.min(
+    Math.max(MIN_CONTRIB, ...data.map(({ count }) => count)),
+    MAX_CONTRIB
+  );
 
   return (
     <Card>
@@ -186,7 +193,7 @@ export default function ContributionChart({ startDate, endDate, data }) {
                 if (!value) {
                   return classes.colorCofacts0;
                 }
-                const scale = scaleColor(value.count, maxContribution);
+                const scale = scaleColor(value.count, maxCount);
                 return classes[`colorCofacts${scale}`];
               }}
               transformDayElement={(element, value, index) => {
@@ -221,3 +228,5 @@ export default function ContributionChart({ startDate, endDate, data }) {
     </Card>
   );
 }
+
+export default memo(ContributionChart);
