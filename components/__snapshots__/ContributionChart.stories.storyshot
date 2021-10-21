@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots ContributionChart Normal 1`] = `
-<ContributionChart
+<Memo(ContributionChart)
   data={
     Array [
       Object {
@@ -3420,7 +3420,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="13"
                     onBlur={[Function]}
@@ -3582,7 +3582,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="17"
                     onBlur={[Function]}
@@ -3660,7 +3660,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="19"
                     onBlur={[Function]}
@@ -3861,7 +3861,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="24"
                     onBlur={[Function]}
@@ -3900,7 +3900,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="25"
                     onBlur={[Function]}
@@ -3939,7 +3939,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="26"
                     onBlur={[Function]}
@@ -4023,7 +4023,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="28"
                     onBlur={[Function]}
@@ -4179,7 +4179,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="32"
                     onBlur={[Function]}
@@ -4302,7 +4302,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="35"
                     onBlur={[Function]}
@@ -4536,7 +4536,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="41"
                     onBlur={[Function]}
@@ -4620,7 +4620,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="43"
                     onBlur={[Function]}
@@ -4737,7 +4737,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="46"
                     onBlur={[Function]}
@@ -4899,7 +4899,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts2"
+                    className="makeStyles-colorCofacts3"
                     height={10}
                     key="50"
                     onBlur={[Function]}
@@ -5295,7 +5295,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="60"
                     onBlur={[Function]}
@@ -5373,7 +5373,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="62"
                     onBlur={[Function]}
@@ -5652,7 +5652,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="69"
                     onBlur={[Function]}
@@ -5853,7 +5853,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="74"
                     onBlur={[Function]}
@@ -6411,7 +6411,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="88"
                     onBlur={[Function]}
@@ -6489,7 +6489,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="90"
                     onBlur={[Function]}
@@ -6612,7 +6612,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="93"
                     onBlur={[Function]}
@@ -6651,7 +6651,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="94"
                     onBlur={[Function]}
@@ -6690,7 +6690,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="95"
                     onBlur={[Function]}
@@ -6729,7 +6729,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="96"
                     onBlur={[Function]}
@@ -6852,7 +6852,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="99"
                     onBlur={[Function]}
@@ -6930,7 +6930,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="101"
                     onBlur={[Function]}
@@ -7326,7 +7326,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="111"
                     onBlur={[Function]}
@@ -7371,7 +7371,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="112"
                     onBlur={[Function]}
@@ -7488,7 +7488,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="115"
                     onBlur={[Function]}
@@ -7527,7 +7527,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="116"
                     onBlur={[Function]}
@@ -7605,7 +7605,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="118"
                     onBlur={[Function]}
@@ -7806,7 +7806,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="123"
                     onBlur={[Function]}
@@ -7968,7 +7968,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="127"
                     onBlur={[Function]}
@@ -8046,7 +8046,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="129"
                     onBlur={[Function]}
@@ -8124,7 +8124,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="131"
                     onBlur={[Function]}
@@ -8208,7 +8208,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts3"
+                    className="makeStyles-colorCofacts4"
                     height={10}
                     key="133"
                     onBlur={[Function]}
@@ -8247,7 +8247,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="134"
                     onBlur={[Function]}
@@ -8364,7 +8364,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="137"
                     onBlur={[Function]}
@@ -8604,7 +8604,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="143"
                     onBlur={[Function]}
@@ -8682,7 +8682,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="145"
                     onBlur={[Function]}
@@ -8766,7 +8766,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="147"
                     onBlur={[Function]}
@@ -8844,7 +8844,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="149"
                     onBlur={[Function]}
@@ -8883,7 +8883,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="150"
                     onBlur={[Function]}
@@ -9162,7 +9162,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="157"
                     onBlur={[Function]}
@@ -9201,7 +9201,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="158"
                     onBlur={[Function]}
@@ -9402,7 +9402,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="163"
                     onBlur={[Function]}
@@ -9441,7 +9441,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="164"
                     onBlur={[Function]}
@@ -9720,7 +9720,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="171"
                     onBlur={[Function]}
@@ -10278,7 +10278,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="185"
                     onBlur={[Function]}
@@ -10557,7 +10557,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="192"
                     onBlur={[Function]}
@@ -10635,7 +10635,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="194"
                     onBlur={[Function]}
@@ -10719,7 +10719,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="196"
                     onBlur={[Function]}
@@ -11316,7 +11316,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="211"
                     onBlur={[Function]}
@@ -11556,7 +11556,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts3"
+                    className="makeStyles-colorCofacts4"
                     height={10}
                     key="217"
                     onBlur={[Function]}
@@ -11712,7 +11712,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="221"
                     onBlur={[Function]}
@@ -11751,7 +11751,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="222"
                     onBlur={[Function]}
@@ -11874,7 +11874,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="225"
                     onBlur={[Function]}
@@ -11991,7 +11991,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="228"
                     onBlur={[Function]}
@@ -12231,7 +12231,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="234"
                     onBlur={[Function]}
@@ -12510,7 +12510,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="241"
                     onBlur={[Function]}
@@ -12711,7 +12711,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="246"
                     onBlur={[Function]}
@@ -12750,7 +12750,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="247"
                     onBlur={[Function]}
@@ -12828,7 +12828,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="249"
                     onBlur={[Function]}
@@ -12951,7 +12951,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="252"
                     onBlur={[Function]}
@@ -13185,7 +13185,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="258"
                     onBlur={[Function]}
@@ -13386,7 +13386,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="263"
                     onBlur={[Function]}
@@ -13743,7 +13743,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="272"
                     onBlur={[Function]}
@@ -13788,7 +13788,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="273"
                     onBlur={[Function]}
@@ -13866,7 +13866,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="275"
                     onBlur={[Function]}
@@ -13983,7 +13983,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="278"
                     onBlur={[Function]}
@@ -14022,7 +14022,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts2"
+                    className="makeStyles-colorCofacts3"
                     height={10}
                     key="279"
                     onBlur={[Function]}
@@ -14463,7 +14463,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="290"
                     onBlur={[Function]}
@@ -14625,7 +14625,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="294"
                     onBlur={[Function]}
@@ -15696,7 +15696,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="321"
                     onBlur={[Function]}
@@ -15819,7 +15819,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="324"
                     onBlur={[Function]}
@@ -16338,7 +16338,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="337"
                     onBlur={[Function]}
@@ -16377,7 +16377,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="338"
                     onBlur={[Function]}
@@ -16974,7 +16974,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="353"
                     onBlur={[Function]}
@@ -17013,7 +17013,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="354"
                     onBlur={[Function]}
@@ -17253,7 +17253,7 @@ exports[`Storyshots ContributionChart Normal 1`] = `
                 >
                   <rect
                     aria-describedby={null}
-                    className="makeStyles-colorCofacts1"
+                    className="makeStyles-colorCofacts2"
                     height={10}
                     key="360"
                     onBlur={[Function]}
@@ -17621,5 +17621,5 @@ exports[`Storyshots ContributionChart Normal 1`] = `
       </div>
     </div>
   </div>
-</ContributionChart>
+</Memo(ContributionChart)>
 `;
