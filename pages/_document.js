@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'cookie';
 import Document, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/core/styles';
@@ -123,7 +124,13 @@ MyDocument.getInitialProps = async ctx => {
 
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: App => props => sheets.collect(<App {...props} />),
+        enhanceApp: App => props =>
+          sheets.collect(
+            <App
+              {...props}
+              serverSideCookie={cookie.parse(ctx.req.headers.cookie)}
+            />
+          ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);

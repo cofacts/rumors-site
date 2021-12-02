@@ -11,6 +11,7 @@ import UpgradeDialog from './UpgradeDialog';
 import { useLazyQuery } from '@apollo/react-hooks';
 import LoginModal from './LoginModal';
 import fetchAPI from 'lib/fetchAPI';
+import { blockUserBrowserAndRefreshIfNeeded } from 'lib/isUserBlocked';
 import Snackbar from '@material-ui/core/Snackbar';
 
 const USER_QUERY = gql`
@@ -18,6 +19,7 @@ const USER_QUERY = gql`
     GetUser {
       ...AppSidebarUserData
       ...AppHeaderUserData
+      blockedReason
     }
   }
   ${AppSidebar.fragments.AppSidebarUserData}
@@ -72,6 +74,15 @@ function AppLayout({ children, container = true }) {
       Router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
   }, []);
+
+  // Mark blocked user's browser with cookie
+  //
+  const hasBlockedReason = !!data?.GetUser?.blockedReason;
+  useEffect(() => {
+    if (hasBlockedReason) {
+      blockUserBrowserAndRefreshIfNeeded();
+    }
+  }, [hasBlockedReason]);
 
   return (
     <Fragment>
