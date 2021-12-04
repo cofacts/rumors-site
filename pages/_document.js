@@ -122,14 +122,16 @@ MyDocument.getInitialProps = async ctx => {
     const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
+    // ctx.req will be undefined on static page build
+    const serverSideCookie = ctx.req?.headers?.cookie
+      ? cookie.parse(ctx.req.headers.cookie)
+      : {};
+
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: App => props =>
           sheets.collect(
-            <App
-              {...props}
-              serverSideCookie={cookie.parse(ctx.req.headers.cookie)}
-            />
+            <App {...props} serverSideCookie={serverSideCookie} />
           ),
       });
 
