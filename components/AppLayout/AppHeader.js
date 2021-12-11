@@ -30,7 +30,6 @@ import Avatar from './Widgets/Avatar';
 import LevelProgressBar from './Widgets/LevelProgressBar';
 
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
-import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
 

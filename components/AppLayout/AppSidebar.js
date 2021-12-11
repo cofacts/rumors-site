@@ -14,12 +14,7 @@ import {
 } from '@material-ui/core';
 import Avatar from './Widgets/Avatar';
 import LevelProgressBar from './Widgets/LevelProgressBar';
-import {
-  EDITOR_FACEBOOK_GROUP,
-  PROJECT_HACKFOLDR,
-  CONTACT_EMAIL,
-  LINE_URL,
-} from 'constants/urls';
+import { PROJECT_HACKFOLDR, CONTACT_EMAIL, LINE_URL } from 'constants/urls';
 import NavLink from 'components/NavLink';
 import Ribbon from 'components/Ribbon';
 import ProfileLink from 'components/ProfileLink';
