@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   label: {
     display: 'none',
     marginBottom: 12,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     border: 'none',
     outline: 'none',
     padding: '14px 17px',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       flex: 'none', // Disable flex so that user can enlarge textarea by themselves
       minHeight: 144,
       border: `1px solid ${theme.palette.secondary[100]}`,
@@ -56,7 +56,7 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
       />
       <Box
         display="flex"
-        justifyContent={{ xs: 'center', md: 'space-between' }}
+        justifyContent={{ xs: 'center', sm: 'space-between' }}
       >
         <label className={classes.label} htmlFor="reference">
           <strong>{TYPE_REFERENCE_TITLE[replyType]}</strong>
