@@ -237,12 +237,7 @@ const LandingPageHeader = React.memo(({ onLoginModalOpen }) => {
               {c('App layout').t`For You`}
             </CustomBadge>
           </NavLink>
-          <NavLink
-            className={classes.item}
-            href="/tutorial"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <NavLink className={classes.item} href="/tutorial?tab=check-rumors">
             {c('App layout').t`Tutorial`}
           </NavLink>
           {user?.name ? (
