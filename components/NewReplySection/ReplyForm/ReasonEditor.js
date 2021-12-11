@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       border: `1px solid ${theme.palette.secondary[100]}`,
       borderRadius: 8,
     },
@@ -75,14 +75,14 @@ const useStyles = makeStyles(theme => ({
     borderTop: `2px solid ${theme.palette.secondary[100]}`,
     padding: '0 9px',
     overflow: 'auto',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       top: 62,
       height: 'calc(100% - 62px)',
     },
   },
   searchContainer: {
     flex: 1,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       '&:focus-within ~ $tool': {
         display: 'none',
       },
