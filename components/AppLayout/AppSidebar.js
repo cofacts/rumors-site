@@ -129,9 +129,7 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen, onLogout }) {
       <Divider classes={{ root: classes.divider }} />
       <List className={classes.list}>
         <ListItem classes={{ root: classes.listItem }} button>
-          <NavLink external href={EDITOR_FACEBOOK_GROUP}>
-            {t`Forum`}
-          </NavLink>
+          <NavLink href="/tutorial">{t`Tutorial`}</NavLink>
         </ListItem>
         <ListItem classes={{ root: classes.listItem }} button>
           <NavLink external href={PROJECT_HACKFOLDR}>

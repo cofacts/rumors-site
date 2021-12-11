@@ -173,11 +173,10 @@ const Links = ({ classes, unsolvedCount }) => (
     <Box
       display={['none', 'none', 'inline']}
       component={NavLink}
-      external
-      href={EDITOR_FACEBOOK_GROUP}
+      href="/tutorial"
       className={classes.tab}
     >
-      {c('App layout').t`Forum`}
+      {c('App layout').t`Tutorial`}
     </Box>
   </>
 );
