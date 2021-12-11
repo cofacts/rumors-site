@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row-reverse',
     background: theme.palette.secondary[50],
     padding: 12,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       background: theme.palette.common.white,
       borderTopLeftRadius: 8,
       borderTopRightRadius: 8,
@@ -100,7 +100,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 30,
     border: 'none',
     background: theme.palette.common.white,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: 10,
     },
   },
@@ -110,7 +110,7 @@ const useStyles = makeStyles(theme => ({
     padding: 12,
     whiteSpace: 'nowrap',
     overflowX: 'auto',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       order: 2,
       background: theme.palette.secondary[50],
     },
@@ -135,7 +135,7 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       color: theme.palette.common.white,
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       order: 3,
     },
   },
@@ -145,7 +145,7 @@ const useStyles = makeStyles(theme => ({
     border: 'none',
     width: '100%',
     outline: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       height: 'auto',
       order: 4,
     },
