@@ -36,13 +36,11 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.secondary[50],
     padding: 12,
     [theme.breakpoints.up('sm')]: {
-      // issue Fix editor RWD breakpoints #363
       background: theme.palette.common.white,
       borderTopLeftRadius: 8,
       borderTopRightRadius: 8,
       padding: 14,
       order: 1,
-      // 把區塊調整到editor上面
     },
     '& > $tool:not(:first-child)': {
       borderRight: `1px solid ${theme.palette.secondary[100]}`,
