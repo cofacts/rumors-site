@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
       borderTopLeftRadius: 8,
       borderTopRightRadius: 8,
       padding: 14,
-      order: -1,
+      order: 1,
       // 把區塊調整到editor上面
     },
     '& > $tool:not(:first-child)': {
