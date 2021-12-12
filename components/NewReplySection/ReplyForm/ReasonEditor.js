@@ -168,18 +168,19 @@ const { BULLETED, NUMBERED } = LIST_STYLES;
  * @returns {string}
  */
 function getReasonHint(replyType) {
-  if (replyType === 'NOT_ARTICLE') {
-    return t`Please briefly explain why this message should not be processed in Cofacts.`;
-  } else if (replyType === 'NOT_RUMOR') {
-    return t`As a brief intro for the references, please point out which part of the message is correct.`;
-  } else if (replyType === 'OPINIONATED') {
-    return t`Please briefly
-1. explain which part of the message contains personal opinion
-2. remind the audience that this is not factual`;
-  } else if (replyType === 'RUMOR') {
-    return t`As a brief intro for the references, please point out which part of the message is incorrect.`;
-  } else {
-    return '';
+  switch (replyType) {
+    case 'NOT_ARTICLE':
+      return t`Please briefly explain why this message should not be processed in Cofacts.`;
+    case 'NOT_RUMOR':
+      return t`As a brief intro for the references, please point out which part of the message is correct.`;
+    case 'OPINIONATED':
+      return t`Please briefly
+        1. explain which part of the message contains personal opinion
+        2. remind the audience that this is not factual`;
+    case 'RUMOR':
+      return t`As a brief intro for the references, please point out which part of the message is incorrect.`;
+    default:
+      return '';
   }
 }
 
