@@ -905,73 +905,73 @@ msgstr ""
 #: components/ProfilePage/EditProfileDialog.js:57
 #: components/ProfilePage/EditProfileDialog.js:74
 msgid "Username"
-msgstr ""
+msgstr "使用者名稱"
 
 #: components/ProfilePage/EditProfileDialog.js:62
 msgid "Edit profile"
-msgstr ""
+msgstr "編輯個人資料"
 
 #: components/ProfilePage/EditProfileDialog.js:66
 msgid "Display name"
-msgstr ""
+msgstr "顯示名稱"
 
 #: components/ProfilePage/EditProfileDialog.js:78
 #, javascript-format
 msgid "Your profile URL will become ${ profileURL }"
-msgstr ""
+msgstr "你的個人頁面網址會變成 ${ profileURL }"
 
 #: components/ProfilePage/EditProfileDialog.js:83
 msgid "Bio"
-msgstr ""
+msgstr "自我介紹"
 
 #: components/ProfilePage/ProfilePage.js:111
 msgid "User not found"
-msgstr ""
+msgstr "找不到使用者"
 
 #: components/ProfilePage/ProfilePage.js:114
 msgid "The user does not exist"
-msgstr ""
+msgstr "此使用者不存在"
 
 #: components/ProfilePage/ProfilePage.js:167
 msgid "Replied messages"
-msgstr ""
+msgstr "查核回應"
 
 #: components/ProfilePage/RepliedArticleTab.js:241
 msgid "No replied messages."
-msgstr ""
+msgstr "無查核回應"
 
 #: components/ProfilePage/Stats.js:60
 msgid "replied messages"
-msgstr ""
+msgstr "查核回應"
 
 #: components/ProfilePage/Stats.js:61
 msgid "voted replies"
-msgstr ""
+msgstr "評價回應"
 
 #: components/ProfilePage/UserPageHeader.js:196
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 #: components/ProfilePage/UserPageHeader.js:224
 msgid "Cofacts chatbot"
-msgstr ""
+msgstr "Cofacts 真的假的聊天機器人"
 
 #: components/ProfilePage/UserPageHeader.js:256
 msgid "EXP"
-msgstr ""
+msgstr "公道值"
 
 #: components/ProfilePage/UserPageHeader.js:266
 #, javascript-format
 msgid ""
 "This is a user of ${ cofactsChatbotLink }. The profile picture and the "
 "pseudonym are randomly generated."
-msgstr ""
+msgstr "這是 ${ cofactsChatbotLink }的使用者。頭像與假名是隨機生成的。"
 
 #: components/AppLayout/AppHeader.js:253
 #: components/AppLayout/AppSidebar.js:112
 #, javascript-format
 msgid "Earn ${ pointsLeft } EXP to next level"
-msgstr ""
+msgstr "距離升級還需 ${ pointsLeft } 點公道值"
 
 #: constants/replyType.js:117
 msgid "Opinion Sources"
@@ -1057,11 +1057,11 @@ msgstr ""
 
 #: pages/about.js:239
 msgid "What is Cofacts"
-msgstr ""
+msgstr "什麼是 Cofacts 真的假的"
 
 #: pages/tutorial.js:101
 msgid "How to use Cofacts"
-msgstr ""
+msgstr "如何使用 Cofacts 真的假的"
 
 #: components/ContributionChart.js:95
 msgid "Jan"
@@ -1145,7 +1145,7 @@ msgstr "少"
 
 #: components/ContributionChart.js:132
 msgid "More"
-msgstr "了解更多"
+msgstr "多"
 
 #: components/ContributionChart.js:210
 msgid "${ count } contribution"
@@ -1160,15 +1160,15 @@ msgstr[0] "最近一年共做出 ${ total } 次貢獻"
 
 #: pages/impact.js:60
 msgid "Cofacts social impact report"
-msgstr ""
+msgstr "Cofacts 真的假的影響力報告"
 
 #: components/ReportPage/SectionSponsor.js:88
 msgid "Open Culture Foundation"
-msgstr ""
+msgstr "開放文化基金會"
 
 #: components/ReportPage/SectionSponsor.js:93
 msgid "g0v"
-msgstr ""
+msgstr "g0v 零時政府"
 
 #: pages/impact.js:65
 msgid "Individual strengths converge to exert the greatest power"
@@ -1358,11 +1358,11 @@ msgstr ""
 
 #: components/ReportPage/SectionSponsor.js:246
 msgid "Donate to Cofacts"
-msgstr ""
+msgstr "捐款給 Cofacts"
 
 #: components/ReportPage/SectionSponsor.js:255
 msgid "Share to Facebook"
-msgstr ""
+msgstr "分享到 Facebook"
 
 #: components/ReportPage/Banner.js:212
 #: components/ReportPage/Banner.js:227
@@ -2121,27 +2121,27 @@ msgstr "掃描QR Code、加入好友@cofacts"
 
 #: components/ProfilePage/AvatarSelector.js:178
 msgid "Accessory"
-msgstr ""
+msgstr "配件"
 
 #: components/ProfilePage/AvatarSelector.js:184
 msgid "Body"
-msgstr ""
+msgstr "上身"
 
 #: components/ProfilePage/AvatarSelector.js:190
 msgid "Face"
-msgstr ""
+msgstr "表情"
 
 #: components/ProfilePage/AvatarSelector.js:196
 msgid "Hair"
-msgstr ""
+msgstr "髮型"
 
 #: components/ProfilePage/AvatarSelector.js:202
 msgid "Facial Hair"
-msgstr ""
+msgstr "鬍子"
 
 #: components/ProfilePage/EditAvatarDialog.js:170
 msgid "Edit profile picture"
-msgstr ""
+msgstr "編輯個人頭像"
 
 #: components/ReportPage/SectionTower.js:92
 msgid "Open data"
@@ -2480,7 +2480,7 @@ msgstr "等你來答"
 #: components/LandingPage/Header.js:241
 msgctxt "App layout"
 msgid "Tutorial"
-msgstr "教學"
+msgstr "使用教學"
 
 #: components/LandingPage/SectionCanDo.js:214
 msgctxt "landing page"
