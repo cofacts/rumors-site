@@ -2480,7 +2480,7 @@ msgstr "等你來答"
 #: components/LandingPage/Header.js:241
 msgctxt "App layout"
 msgid "Tutorial"
-msgstr ""
+msgstr "教學"
 
 #: components/LandingPage/SectionCanDo.js:214
 msgctxt "landing page"
