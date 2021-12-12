@@ -106,6 +106,9 @@ function AppFooter() {
             <CustomLink href="/hoax-for-you">
               {c('App layout').t`For You`}
             </CustomLink>
+            <CustomLink href="/tutorial">
+              {c('App layout').t`Tutorial`}
+            </CustomLink>
           </div>
           <div className={classes.column}>
             <h3>{t`About`}</h3>

@@ -30,7 +30,6 @@ import Avatar from './Widgets/Avatar';
 import LevelProgressBar from './Widgets/LevelProgressBar';
 
 import { NAVBAR_HEIGHT, TABS_HEIGHT } from 'constants/size';
-import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import desktopLogo from './images/logo-desktop.svg';
 import mobileLogo from './images/logo-mobile.svg';
 
@@ -173,11 +172,10 @@ const Links = ({ classes, unsolvedCount }) => (
     <Box
       display={['none', 'none', 'inline']}
       component={NavLink}
-      external
-      href={EDITOR_FACEBOOK_GROUP}
+      href="/tutorial"
       className={classes.tab}
     >
-      {c('App layout').t`Forum`}
+      {c('App layout').t`Tutorial`}
     </Box>
   </>
 );

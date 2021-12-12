@@ -15,7 +15,6 @@ import NavLink from 'components/NavLink';
 import * as Widgets from 'components/AppLayout/Widgets';
 
 import { NAVBAR_HEIGHT } from 'constants/size';
-import { EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 
 import desktopBlackLogo from './images/logo-desktop-black.svg';
 import mobileBlackLogo from './images/logo-mobile-black.svg';
@@ -238,14 +237,9 @@ const LandingPageHeader = React.memo(({ onLoginModalOpen }) => {
               {c('App layout').t`For You`}
             </CustomBadge>
           </NavLink>
-          <a
-            className={classes.item}
-            href={EDITOR_FACEBOOK_GROUP}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {c('App layout').t`Forum`}
-          </a>
+          <NavLink className={classes.item} href="/tutorial?tab=check-rumors">
+            {c('App layout').t`Tutorial`}
+          </NavLink>
           {user?.name ? (
             <Widgets.Avatar
               user={user}
