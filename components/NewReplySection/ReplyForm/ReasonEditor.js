@@ -163,6 +163,26 @@ const StickerIcon = props => (
 
 const { BULLETED, NUMBERED } = LIST_STYLES;
 
+/**
+ * @param {'NOT_ARTICLE' | 'NOT_RUMOR' | 'OPINIONATED' | 'RUMOR'} replyType
+ * @returns {string}
+ */
+function getReasonHint(replyType) {
+  if (replyType === 'NOT_ARTICLE') {
+    return t`Please briefly explain why this message should not be processed in Cofacts.`;
+  } else if (replyType === 'NOT_RUMOR') {
+    return t`As a brief intro for the references, please point out which part of the message is correct.`;
+  } else if (replyType === 'OPINIONATED') {
+    return t`Please briefly
+1. explain which part of the message contains personal opinion
+2. remind the audience that this is not factual`;
+  } else if (replyType === 'RUMOR') {
+    return t`As a brief intro for the references, please point out which part of the message is incorrect.`;
+  } else {
+    return '';
+  }
+}
+
 const ReasonEditor = ({
   value,
   onSuggestionAdd,
@@ -220,6 +240,12 @@ const ReasonEditor = ({
     setSearch('');
   };
 
+  const multipleReplyHint =
+    existingReplyIds.length === 0
+      ? ''
+      : '\n\n' +
+        t`Note: This is not a comment section! Please write your reply in response to the reported message above, NOT to other editors' replies below. Please use the thumb-down button below each reply if you find it not good enough.`;
+
   return (
     <div className={classes.editor}>
       {showHelp && (
@@ -257,21 +283,7 @@ const ReasonEditor = ({
         required
         className={classes.inputArea}
         ref={editorRef}
-        placeholder={(() => {
-          if (replyType === 'NOT_ARTICLE') {
-            return t`Please briefly explain why this message should not be processed in Cofacts.`;
-          } else if (replyType === 'NOT_RUMOR') {
-            return t`As a brief intro for the references, please point out which part of the message is correct.`;
-          } else if (replyType === 'OPINIONATED') {
-            return t`Please briefly
-1. explain which part of the message contains personal opinion
-2. remind the audience that this is not factual`;
-          } else if (replyType === 'RUMOR') {
-            return t`As a brief intro for the references, please point out which part of the message is incorrect.`;
-          } else {
-            return '';
-          }
-        })()}
+        placeholder={getReasonHint(replyType) + multipleReplyHint}
         onChange={handleChange}
         onKeyDown={handleKeyPress}
         value={value}
