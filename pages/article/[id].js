@@ -342,7 +342,7 @@ function ArticlePage() {
             {replyRequestsWithComments.length > 0 ? (
               <>
                 <CardHeader style={{ paddingTop: 0 }}>
-                  {`Comments from people reporting this message`}
+                  {t`Comments from people reporting this message`}
                 </CardHeader>
                 <CardContent style={{ padding: 0 }}>
                   {replyRequestsWithComments.map(replyRequest => (
