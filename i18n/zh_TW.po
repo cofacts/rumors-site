@@ -232,7 +232,7 @@ msgid ""
 "Cofacts is a collaborative system connecting instant messages and "
 "fact-check reports or different opinions together. It's a grass-root effort "
 "fighting mis/disinformation in Taiwan."
-msgstr "「Cofacts 真的假的」是一套連結網路訊息與查證訊息的協作型系統，試圖對假訊息問題作出草根應對。"
+msgstr "一起來幫網路上的可疑訊息寫查核回應、共同教導聊天機器人回話，將多元的闢謠資訊傳遞給在 LINE 上收到謠言的人。"
 
 #: components/ProfilePage/ProfilePage.js:98
 #: pages/article/[id].js:256
