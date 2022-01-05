@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Tab, Tabs, CircularProgress } from '@material-ui/core';
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
+import { useIsUserBlocked } from 'lib/isUserBlocked';
 import Feedback from './Feedback';
 
 const useStyles = makeStyles(() => ({
@@ -38,9 +39,13 @@ const ReasonsDisplayData = gql`
 `;
 
 export const LOAD_FEEDBACKS = gql`
-  query LoadFeadbacksForArticleReply($articleId: String!, $replyId: String!) {
+  query LoadFeadbacksForArticleReply(
+    $articleId: String!
+    $replyId: String!
+    $statuses: [ArticleReplyFeedbackStatusEnum!]
+  ) {
     ListArticleReplyFeedbacks(
-      filter: { articleId: $articleId, replyId: $replyId }
+      filter: { articleId: $articleId, replyId: $replyId, statuses: $statuses }
       first: 100
     ) {
       edges {
@@ -64,11 +69,13 @@ export const LOAD_FEEDBACKS = gql`
 
 function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
   const classes = useStyles();
+  const isUserBlocked = useIsUserBlocked();
   const [tab, setTab] = useState(0);
   const { data, loading } = useQuery(LOAD_FEEDBACKS, {
     variables: {
       articleId: articleReply.articleId,
       replyId: articleReply.replyId,
+      statuses: isUserBlocked ? ['NORMAL', 'BLOCKED'] : ['NORMAL'],
     },
     ssr: false,
   });

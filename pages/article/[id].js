@@ -15,6 +15,7 @@ import useCurrentUser from 'lib/useCurrentUser';
 import { nl2br, linkify, ellipsis } from 'lib/text';
 import { usePushToDataLayer } from 'lib/gtm';
 import getTermsString from 'lib/terms';
+import { useIsUserBlocked } from 'lib/isUserBlocked';
 
 import { LINE_URL } from 'constants/urls';
 
@@ -106,7 +107,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LOAD_ARTICLE = gql`
-  query LoadArticlePage($id: String!) {
+  query LoadArticlePage(
+    $id: String!
+    $replyRequestStatuses: [ReplyRequestStatusEnum!]
+    $articleReplyStatuses: [ArticleReplyStatusEnum!]
+    $articleCategoryStatuses: [ArticleCategoryStatusEnum!]
+  ) {
     GetArticle(id: $id) {
       id
       text
@@ -120,11 +126,11 @@ const LOAD_ARTICLE = gql`
       hyperlinks {
         ...HyperlinkData
       }
-      replyRequests {
+      replyRequests(statuses: $replyRequestStatuses) {
         reason
         ...ReplyRequestInfo
       }
-      articleReplies {
+      articleReplies(statuses: $articleReplyStatuses) {
         ...CurrentRepliesData
       }
       ...RelatedArticleData
@@ -140,7 +146,7 @@ const LOAD_ARTICLE = gql`
           }
         }
       }
-      articleCategories {
+      articleCategories(statuses: $articleCategoryStatuses) {
         ...ArticleCategoryData
         ...AddCategoryDialogData
       }
@@ -161,16 +167,21 @@ const LOAD_ARTICLE = gql`
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
-  query LoadArticlePageForUser($id: String!) {
+  query LoadArticlePageForUser(
+    $id: String!
+    $replyRequestStatuses: [ReplyRequestStatusEnum!]
+    $articleReplyStatuses: [ArticleReplyStatusEnum!]
+    $articleCategoryStatuses: [ArticleCategoryStatusEnum!]
+  ) {
     GetArticle(id: $id) {
       id # Required, https://github.com/apollographql/apollo-client/issues/2510
-      replyRequests {
+      replyRequests(statuses: $replyRequestStatuses) {
         ...ReplyRequestInfoForUser
       }
-      articleReplies {
+      articleReplies(statuses: $articleReplyStatuses) {
         ...ArticleReplyForUser
       }
-      articleCategories {
+      articleCategories(statuses: $articleCategoryStatuses) {
         ...ArticleCategoryDataForUser
         ...AddCategoryDialogData
       }
@@ -182,11 +193,22 @@ const LOAD_ARTICLE_FOR_USER = gql`
   ${ArticleCategories.fragments.AddCategoryDialogData}
 `;
 
+const NORMAL_ONLY = ['NORMAL'];
+const NORMAL_AND_BLOCKED = ['NORMAL', 'BLOCKED'];
+
 function ArticlePage() {
   const { query } = useRouter();
   const [showForm, setShowForm] = useState(false);
   const [flashMessage, setFlashMessage] = useState(0);
-  const articleVars = { id: query.id };
+  const isUserBlocked = useIsUserBlocked();
+  const articleVars = {
+    id: query.id,
+    replyRequestStatuses: isUserBlocked ? NORMAL_AND_BLOCKED : NORMAL_ONLY,
+    articleCategoryStatuses: isUserBlocked ? NORMAL_AND_BLOCKED : NORMAL_ONLY,
+    articleReplyStatuses: isUserBlocked
+      ? ['NORMAL', 'BLOCKED', 'DELETED']
+      : ['NORMAL', 'DELETED'],
+  };
 
   const { data, loading } = useQuery(LOAD_ARTICLE, {
     variables: articleVars,
