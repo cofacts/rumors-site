@@ -66,7 +66,7 @@ const LOAD_REPLY = gql`
       id
       text
       createdAt
-      articleReplies {
+      articleReplies(statuses: [NORMAL, DELETED]) {
         article {
           id
           text
@@ -84,7 +84,7 @@ const LOAD_REPLY = gql`
           node {
             id
             text
-            articleReplies(status: NORMAL) {
+            articleReplies {
               articleId
             }
           }
@@ -100,7 +100,7 @@ const LOAD_REPLY_FOR_USER = gql`
   query LoadReplyPageForUser($id: String!) {
     GetReply(id: $id) {
       id
-      articleReplies {
+      articleReplies(statuses: [NORMAL, DELETED]) {
         ...ArticleReplyForUser
       }
     }
@@ -228,6 +228,29 @@ function ReplyPage() {
       articleReply.createdAt < earliest.createdAt ? articleReply : earliest,
     reply.articleReplies[0]
   );
+
+  // reply.articleReplies can be empty if all article replies are in BLOCKED state.
+  // Return a minimalist reply detail page that cannot be indexed by search engines.
+  //
+  if (!originalArticleReply) {
+    return (
+      <AppLayout>
+        <Head>
+          <title>
+            {ellipsis(reply.text, { wordCount: 100 })} | {t`Cofacts`}
+          </title>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <div className={classes.root}>
+          <Card>
+            <CardHeader>{t`This reply`}</CardHeader>
+            <CardContent>{reply.text}</CardContent>
+          </Card>
+        </div>
+      </AppLayout>
+    );
+  }
+
   const isDeleted = originalArticleReply.status === 'DELETED';
 
   const otherArticleReplies = reply.articleReplies
