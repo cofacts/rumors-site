@@ -1,4 +1,4 @@
-import React, { useCallback, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
 
