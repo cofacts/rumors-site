@@ -76,107 +76,89 @@ const ArticleReplyForUser = gql`
     .ArticleReplyFeedbackControlDataForUser}
 `;
 
-const ArticleReply = React.memo(
-  ({
-    articleReply = {},
-    disabled = false,
-    onAction = () => {},
-    actionText = '',
-    showActionOnlyWhenCanUpdate = true, // If false, show action button for everyone
-    showFeedback = true,
-  }) => {
-    const { createdAt, reply, replyId } = articleReply;
+const ArticleReply = React.memo(({ articleReply }) => {
+  const { createdAt, reply, replyId } = articleReply;
 
-    const { type: replyType } = reply;
+  const { type: replyType } = reply;
 
-    const classes = useStyles({ replyType });
+  const classes = useStyles({ replyType });
 
-    const renderFooter = () => {
-      const articleUrl =
-        typeof window !== 'undefined'
-          ? // Construct Article URL without search strings (usually gibberish 1st-party trackers)
-            window.location.origin + window.location.pathname
-          : '';
-      const copyText =
-        typeof window !== 'undefined'
-          ? `${TYPE_NAME[reply.type]}\n` +
-            `【${t`Reason`}】${(reply.text || '').trim()}\n` +
-            `↓${t`Details`}↓\n` +
-            `${articleUrl}\n` +
-            (TYPE_REFERENCE_TITLE[reply.type]
-              ? `↓${TYPE_REFERENCE_TITLE[reply.type]}↓\n` +
-                `${reply.reference}\n`
-              : '') +
-            `--\n` +
-            `ℹ️ ${getTermsString(/* t: terms subject */ t`This info`)}\n`
-          : '';
-
-      return (
-        <Box component="footer" display="flex" pt={2}>
-          {showFeedback && (
-            <ArticleReplyFeedbackControl
-              articleReply={articleReply}
-              className={classes.feedbacks}
-            />
-          )}
-          <ReplyShare copyText={copyText} />
-        </Box>
-      );
-    };
-
-    const renderReference = () => {
-      if (replyType === 'NOT_ARTICLE') return null;
-
-      const reference = reply.reference;
-      return (
-        <section className={classes.root}>
-          <h3>{TYPE_REFERENCE_TITLE[replyType]}</h3>
-          {reference
-            ? nl2br(linkify(reference))
-            : `⚠️️ ${t`There is no reference for this reply. Its truthfulness may be doubtful.`}`}
-
-          <Hyperlinks
-            hyperlinks={reply.hyperlinks}
-            pollingType="replies"
-            pollingId={replyId}
-          />
-        </section>
-      );
-    };
+  const renderFooter = () => {
+    const articleUrl =
+      typeof window !== 'undefined'
+        ? // Construct Article URL without search strings (usually gibberish 1st-party trackers)
+          window.location.origin + window.location.pathname
+        : '';
+    const copyText =
+      typeof window !== 'undefined'
+        ? `${TYPE_NAME[reply.type]}\n` +
+          `【${t`Reason`}】${(reply.text || '').trim()}\n` +
+          `↓${t`Details`}↓\n` +
+          `${articleUrl}\n` +
+          (TYPE_REFERENCE_TITLE[reply.type]
+            ? `↓${TYPE_REFERENCE_TITLE[reply.type]}↓\n` + `${reply.reference}\n`
+            : '') +
+          `--\n` +
+          `ℹ️ ${getTermsString(/* t: terms subject */ t`This info`)}\n`
+        : '';
 
     return (
-      <>
-        <Box component="header" display="flex" alignItems="center">
-          <Avatar
-            user={articleReply.user}
-            size={30}
-            mdSize={42}
-            className={classes.avatar} /*hasLink*/
-          />
-          <Box flexGrow={1}>
-            <ArticleReplySummary articleReply={articleReply} />
-            <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
-          </Box>
-          {(articleReply.canUpdateStatus || !showActionOnlyWhenCanUpdate) && (
-            <ReplyActions
-              disabled={disabled}
-              actionText={actionText}
-              handleAction={() => onAction(articleReply)}
-            />
-          )}
-        </Box>
-        <section className={classes.content}>
-          <ExpandableText lineClamp={10}>
-            {nl2br(linkify(reply.text))}
-          </ExpandableText>
-        </section>
-
-        {renderReference()}
-        {renderFooter()}
-      </>
+      <Box component="footer" display="flex" pt={2}>
+        <ArticleReplyFeedbackControl
+          articleReply={articleReply}
+          className={classes.feedbacks}
+        />
+        <ReplyShare copyText={copyText} />
+      </Box>
     );
-  }
-);
+  };
+
+  const renderReference = () => {
+    if (replyType === 'NOT_ARTICLE') return null;
+
+    const reference = reply.reference;
+    return (
+      <section className={classes.root}>
+        <h3>{TYPE_REFERENCE_TITLE[replyType]}</h3>
+        {reference
+          ? nl2br(linkify(reference))
+          : `⚠️️ ${t`There is no reference for this reply. Its truthfulness may be doubtful.`}`}
+
+        <Hyperlinks
+          hyperlinks={reply.hyperlinks}
+          pollingType="replies"
+          pollingId={replyId}
+        />
+      </section>
+    );
+  };
+
+  return (
+    <>
+      <Box component="header" display="flex" alignItems="center">
+        <Avatar
+          user={articleReply.user}
+          size={30}
+          mdSize={42}
+          className={classes.avatar} /*hasLink*/
+        />
+        <Box flexGrow={1}>
+          <ArticleReplySummary articleReply={articleReply} />
+          <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
+        </Box>
+        <ReplyActions articleReply={articleReply} />
+      </Box>
+      <section className={classes.content}>
+        <ExpandableText lineClamp={10}>
+          {nl2br(linkify(reply.text))}
+        </ExpandableText>
+      </section>
+
+      {renderReference()}
+      {renderFooter()}
+    </>
+  );
+});
 
 ArticleReply.fragments = {
   ArticleReplyData,

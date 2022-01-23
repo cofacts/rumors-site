@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { useEffect } from 'react';
 import { t, jt, ngettext, msgid } from 'ttag';
 import { useRouter } from 'next/router';
-import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
@@ -108,24 +108,6 @@ const LOAD_REPLY_FOR_USER = gql`
   ${ArticleReply.fragments.ArticleReplyForUser}
 `;
 
-const UPDATE_ARTICLE_REPLY_STATUS = gql`
-  mutation UpdateArticleReplyStatus(
-    $articleId: String!
-    $replyId: String!
-    $status: ArticleReplyStatusEnum!
-  ) {
-    UpdateArticleReplyStatus(
-      articleId: $articleId
-      replyId: $replyId
-      status: $status
-    ) {
-      articleId
-      replyId
-      status
-    }
-  }
-`;
-
 /**
  * String wrapper for better i18n.
  *
@@ -158,24 +140,6 @@ function ReplyPage() {
     variables: replyVars,
     fetchPolicy: 'network-only',
   });
-
-  const [
-    updateArticleReplyStatus,
-    { loading: updatingArticleReplyStatus },
-  ] = useMutation(UPDATE_ARTICLE_REPLY_STATUS);
-
-  const handleDelete = ({ articleId, replyId }) => {
-    updateArticleReplyStatus({
-      variables: { articleId, replyId, status: 'DELETED' },
-    });
-  };
-
-  const handleRestore = ({ articleId, replyId }) => {
-    updateArticleReplyStatus({
-      variables: { articleId, replyId, status: 'NORMAL' },
-      refetchQueries: ['LoadArticlePage'],
-    });
-  };
 
   const currentUser = useCurrentUser();
   const classes = useStyles();
@@ -274,13 +238,7 @@ function ReplyPage() {
           <Card>
             <CardHeader>{t`This reply`}</CardHeader>
             <CardContent>
-              <ArticleReply
-                articleReply={originalArticleReply}
-                actionText={isDeleted ? t`Restore` : t`Delete`}
-                onAction={isDeleted ? handleRestore : handleDelete}
-                disabled={updatingArticleReplyStatus}
-                linkToReply={false}
-              />
+              <ArticleReply articleReply={originalArticleReply} />
             </CardContent>
           </Card>
           <Card>
