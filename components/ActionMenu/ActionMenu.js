@@ -7,7 +7,8 @@ import cx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   button: {
-    minWidth: 0,
+    minWidth: 0, // Override material-ui style
+    flexShrink: 0,
     padding: '3px',
     color: ({ open }) =>
       open ? theme.palette.primary[500] : theme.palette.secondary[500],
