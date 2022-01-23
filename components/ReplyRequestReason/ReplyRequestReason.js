@@ -1,11 +1,16 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Button } from '@material-ui/core';
+
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
-import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
+import ActionMenu, {
+  ReportAbuseMenuItem,
+  useCanReportAbuse,
+} from 'components/ActionMenu';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,7 +82,7 @@ const UPDATE_VOTE = gql`
   ${ReplyRequestInfo}
 `;
 
-function ReplyRequestReason({ replyRequest }) {
+function ReplyRequestReason({ replyRequest, articleId }) {
   const {
     id: replyRequestId,
     reason: replyRequestReason,
@@ -87,6 +92,7 @@ function ReplyRequestReason({ replyRequest }) {
     user,
   } = replyRequest;
 
+  const canReportAbuse = useCanReportAbuse(user.id);
   const [voteReason, { loading }] = useMutation(UPDATE_VOTE);
   const handleVote = vote => {
     voteReason({ variables: { vote, replyRequestId } });
@@ -132,6 +138,17 @@ function ReplyRequestReason({ replyRequest }) {
           </Box>
         </Box>
       </Box>
+      {canReportAbuse && (
+        <Box pl={2} alignSelf="flex-start">
+          <ActionMenu>
+            <ReportAbuseMenuItem
+              itemId={articleId}
+              itemType="replyRequest"
+              userId={user.id}
+            />
+          </ActionMenu>
+        </Box>
+      )}
     </div>
   );
 }
