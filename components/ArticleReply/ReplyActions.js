@@ -3,8 +3,26 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { t } from 'ttag';
 
-import ActionMenu from 'components/ActionMenu';
+import ActionMenu, {
+  ReportAbuseMenuItem,
+  useCanReportAbuse,
+} from 'components/ActionMenu';
 import { MenuItem } from '@material-ui/core';
+
+const ReplyActionsData = gql`
+  fragment ReplyActionsData on ArticleReply {
+    articleId
+    replyId
+    userId
+    status
+  }
+`;
+
+const ReplyActionsDataForUser = gql`
+  fragment ReplyActionsDataForUser on ArticleReply {
+    canUpdateStatus
+  }
+`;
 
 const UPDATE_ARTICLE_REPLY_STATUS = gql`
   mutation UpdateArticleReplyStatus(
@@ -17,14 +35,17 @@ const UPDATE_ARTICLE_REPLY_STATUS = gql`
       replyId: $replyId
       status: $status
     ) {
-      articleId
-      replyId
-      status
+      ...ReplyActionsData
+      ...ReplyActionsDataForUser
     }
+    ${ReplyActionsData}
+    ${ReplyActionsDataForUser}
   }
 `;
 
 const ReplyActions = ({ articleReply }) => {
+  const canReportAbuse = useCanReportAbuse(articleReply.userId);
+
   const [
     updateArticleReplyStatus,
     { loading: updatingArticleReplyStatus },
@@ -50,20 +71,34 @@ const ReplyActions = ({ articleReply }) => {
     });
   }, [updateArticleReplyStatus]);
 
-  if (!articleReply.canUpdateStatus) return null;
+  if (!articleReply.canUpdateStatus && !canReportAbuse) return null;
 
   return (
     <ActionMenu>
-      <MenuItem
-        disabled={updatingArticleReplyStatus}
-        onClick={
-          articleReply.status === 'NORMAL' ? handleDelete : handleRestore
-        }
-      >
-        {articleReply.status === 'NORMAL' ? t`Delete` : t`Restore`}
-      </MenuItem>
+      {articleReply.canUpdateStatus && (
+        <MenuItem
+          disabled={updatingArticleReplyStatus}
+          onClick={
+            articleReply.status === 'NORMAL' ? handleDelete : handleRestore
+          }
+        >
+          {articleReply.status === 'NORMAL' ? t`Delete` : t`Restore`}
+        </MenuItem>
+      )}
+      {canReportAbuse && (
+        <ReportAbuseMenuItem
+          itemId={articleReply.replyId}
+          itemType="reply"
+          userId={articleReply.userId}
+        />
+      )}
     </ActionMenu>
   );
+};
+
+ReplyActions.fragments = {
+  ReplyActionsData,
+  ReplyActionsDataForUser,
 };
 
 export default ReplyActions;

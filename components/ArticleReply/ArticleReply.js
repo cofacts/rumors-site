@@ -56,12 +56,14 @@ const ArticleReplyData = gql`
     }
     ...ArticleReplySummaryData
     ...ArticleReplyFeedbackControlData
+    ...ReplyActionsData
   }
   ${Hyperlinks.fragments.HyperlinkData}
   ${ArticleReplyFeedbackControl.fragments.ArticleReplyFeedbackControlData}
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
   ${ArticleReplySummary.fragments.ArticleReplySummaryData}
+  ${ReplyActions.fragments.ReplyActionsData}
 `;
 
 const ArticleReplyForUser = gql`
@@ -71,9 +73,11 @@ const ArticleReplyForUser = gql`
     replyId
     canUpdateStatus
     ...ArticleReplyFeedbackControlDataForUser
+    ...ReplyActionsDataForUser
   }
   ${ArticleReplyFeedbackControl.fragments
     .ArticleReplyFeedbackControlDataForUser}
+  ${ReplyActions.fragments.ReplyActionsDataForUser}
 `;
 
 const ArticleReply = React.memo(({ articleReply }) => {
