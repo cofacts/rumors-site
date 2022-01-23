@@ -38,7 +38,7 @@ const ReferenceInput = ({ replyType, value, onChange }) => {
     <Box py={2}>
       查證範圍請參考{' '}
       <a href={EDITOR_REFERENCE} target="_blank" rel="noopener noreferrer">
-        《Cofacts 編輯規則》
+        《真的假的編輯規則》
       </a>
       。
     </Box>
