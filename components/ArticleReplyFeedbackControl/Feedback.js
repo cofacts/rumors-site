@@ -29,7 +29,7 @@ function Feedback({ feedback, articleId, replyId }) {
   return (
     <div className={classes.root}>
       <Avatar user={feedback.user} size={48} /*hasLink*/ />
-      <Box px={2}>
+      <Box px={2} flex={1}>
         <div className={classes.name}>{feedback.user?.name}</div>
         <div>{comment}</div>
       </Box>
