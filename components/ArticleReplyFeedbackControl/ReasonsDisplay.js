@@ -126,14 +126,24 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
         {feedbacks
           .filter(({ vote }) => vote === 'UPVOTE')
           .map(feedback => (
-            <Feedback key={feedback.id} feedback={feedback} />
+            <Feedback
+              key={feedback.id}
+              articleId={articleReply.articleId}
+              replyId={articleReply.replyId}
+              feedback={feedback}
+            />
           ))}
       </Box>
       <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
           .filter(({ vote }) => vote === 'DOWNVOTE')
           .map(feedback => (
-            <Feedback key={feedback.id} feedback={feedback} />
+            <Feedback
+              key={feedback.id}
+              articleId={articleReply.articleId}
+              replyId={articleReply.replyId}
+              feedback={feedback}
+            />
           ))}
       </Box>
     </>
