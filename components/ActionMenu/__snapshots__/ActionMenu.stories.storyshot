@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots ActionMenu Default 1`] = `
+<div
+  style={
+    Object {
+      "height": 400,
+      "padding": 100,
+    }
+  }
+>
+  <ActionMenu>
+    <button
+      aria-haspopup="true"
+      className="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button makeStyles-button"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+          />
+        </svg>
+      </span>
+      <NoSsr>
+        <span
+          className="MuiTouchRipple-root"
+        >
+          <TransitionGroup
+            childFactory={[Function]}
+            component={null}
+            exit={true}
+          />
+        </span>
+      </NoSsr>
+    </button>
+    <Portal>
+      <div
+        className="MuiPopover-root makeStyles-menu"
+        onKeyDown={[Function]}
+        role="presentation"
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "fixed",
+            "right": 0,
+            "top": 0,
+            "visibility": "hidden",
+            "zIndex": 1300,
+          }
+        }
+      >
+        <TrapFocus>
+          <div
+            data-test="sentinelStart"
+            tabIndex={0}
+          />
+          <Transition>
+            <div
+              className="MuiPaper-root MuiMenu-paper MuiPopover-paper MuiPaper-elevation8 MuiPaper-rounded"
+              style={
+                Object {
+                  "opacity": 0,
+                  "transform": "scale(0.75, 0.5625)",
+                  "visibility": "hidden",
+                }
+              }
+              tabIndex="-1"
+            >
+              <ul
+                className="MuiList-root MuiMenu-list MuiList-padding"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="menu"
+                tabIndex={-1}
+              >
+                <li
+                  aria-disabled={false}
+                  className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  onBlur={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="menuitem"
+                  tabIndex={0}
+                >
+                  Option 1
+                  <NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
+                  </NoSsr>
+                </li>
+                <li
+                  aria-disabled={false}
+                  className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  onBlur={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="menuitem"
+                  tabIndex={-1}
+                >
+                  Option 2
+                  <NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
+                  </NoSsr>
+                </li>
+              </ul>
+            </div>
+          </Transition>
+          <div
+            data-test="sentinelEnd"
+            tabIndex={0}
+          />
+        </TrapFocus>
+      </div>
+    </Portal>
+  </ActionMenu>
+</div>
+`;

@@ -1,7 +1,6 @@
-import React, { useCallback, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import gql from 'graphql-tag';
 import { t, jt, ngettext, msgid } from 'ttag';
-import { useMutation } from '@apollo/react-hooks';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -21,30 +20,8 @@ const CurrentRepliesData = gql`
   ${ArticleReply.fragments.ArticleReplyData}
 `;
 
-const UPDATE_ARTICLE_REPLY_STATUS = gql`
-  mutation UpdateArticleReplyStatus(
-    $articleId: String!
-    $replyId: String!
-    $status: ArticleReplyStatusEnum!
-  ) {
-    UpdateArticleReplyStatus(
-      articleId: $articleId
-      replyId: $replyId
-      status: $status
-    ) {
-      articleId
-      replyId
-      status
-    }
-  }
-`;
-
 class DeletedItems extends React.Component {
-  static defaultProps = {
-    items: [],
-    disabled: false,
-    onRestore() {},
-  };
+  static defaultProps = { items: [] };
 
   state = {
     showModal: false,
@@ -58,13 +35,8 @@ class DeletedItems extends React.Component {
     this.setState({ showModal: false });
   };
 
-  handleRestore = (...args) => {
-    this.handleClose();
-    this.props.onRestore(...args);
-  };
-
   renderModal = () => {
-    const { items, disabled } = this.props;
+    const { items } = this.props;
     const { showModal } = this.state;
 
     return (
@@ -74,12 +46,7 @@ class DeletedItems extends React.Component {
           {items.map((ar, i) => (
             <Fragment key={ar.replyId}>
               {i > 0 && <Divider style={{ marginBottom: 12, marginTop: 16 }} />}
-              <ArticleReply
-                articleReply={ar}
-                onAction={this.handleRestore}
-                disabled={disabled}
-                actionText={t`Restore`}
-              />
+              <ArticleReply articleReply={ar} />
             </Fragment>
           ))}
         </DialogContent>
@@ -112,30 +79,6 @@ class DeletedItems extends React.Component {
 }
 
 function CurrentReplies({ articleReplies = [] }) {
-  const [
-    updateArticleReplyStatus,
-    { loading: updatingArticleReplyStatus },
-  ] = useMutation(UPDATE_ARTICLE_REPLY_STATUS);
-
-  const handleDelete = useCallback(
-    ({ articleId, replyId }) => {
-      updateArticleReplyStatus({
-        variables: { articleId, replyId, status: 'DELETED' },
-      });
-    },
-    [updateArticleReplyStatus]
-  );
-
-  const handleRestore = useCallback(
-    ({ articleId, replyId }) => {
-      updateArticleReplyStatus({
-        variables: { articleId, replyId, status: 'NORMAL' },
-        refetchQueries: ['LoadArticlePage'],
-      });
-    },
-    [updateArticleReplyStatus]
-  );
-
   if (articleReplies.length === 0) {
     return (
       <CardContent>{t`There is no existing replies for now.`}</CardContent>
@@ -159,21 +102,12 @@ function CurrentReplies({ articleReplies = [] }) {
     <>
       {validArticleReplies.map(ar => (
         <CardContent key={`${ar.articleId}__${ar.replyId}`}>
-          <ArticleReply
-            actionText={t`Delete`}
-            articleReply={ar}
-            onAction={handleDelete}
-            disabled={updatingArticleReplyStatus}
-          />
+          <ArticleReply articleReply={ar} />
         </CardContent>
       ))}
       {deletedArticleReplies && deletedArticleReplies.length > 0 && (
         <CardContent>
-          <DeletedItems
-            items={deletedArticleReplies}
-            onRestore={handleRestore}
-            disabled={updatingArticleReplyStatus}
-          />
+          <DeletedItems items={deletedArticleReplies} />
         </CardContent>
       )}
     </>

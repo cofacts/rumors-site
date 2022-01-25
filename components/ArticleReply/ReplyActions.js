@@ -1,56 +1,68 @@
-import { useState } from 'react';
-import { Button, Menu, MenuItem } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { useCallback } from 'react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { t } from 'ttag';
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    minWidth: 0,
-    padding: '8px 14px',
-    color: ({ open }) =>
-      open ? theme.palette.primary[500] : theme.palette.secondary[500],
-  },
-  menu: {
-    marginTop: 40,
-  },
-}));
+import ActionMenu from 'components/ActionMenu';
+import { MenuItem } from '@material-ui/core';
 
-const ReplyActions = ({ disabled, handleAction, actionText }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
+const UPDATE_ARTICLE_REPLY_STATUS = gql`
+  mutation UpdateArticleReplyStatus(
+    $articleId: String!
+    $replyId: String!
+    $status: ArticleReplyStatusEnum!
+  ) {
+    UpdateArticleReplyStatus(
+      articleId: $articleId
+      replyId: $replyId
+      status: $status
+    ) {
+      articleId
+      replyId
+      status
+    }
+  }
+`;
 
-  const classes = useStyles({ open: !!anchorEl });
+const ReplyActions = ({ articleReply }) => {
+  const [
+    updateArticleReplyStatus,
+    { loading: updatingArticleReplyStatus },
+  ] = useMutation(UPDATE_ARTICLE_REPLY_STATUS, {
+    variables: {
+      articleId: articleReply.articleId,
+      replyId: articleReply.replyId,
+    },
+  });
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleDelete = useCallback(() => {
+    updateArticleReplyStatus({
+      variables: { status: 'DELETED' },
+    });
+  }, [updateArticleReplyStatus]);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleRestore = useCallback(() => {
+    updateArticleReplyStatus({
+      variables: { status: 'NORMAL' },
+
+      // Reload article page if previously cached, so that articleReplies array within article is updated.
+      refetchQueries: ['LoadArticlePage'],
+    });
+  }, [updateArticleReplyStatus]);
+
+  if (!articleReply.canUpdateStatus) return null;
 
   return (
-    <>
-      <Button
-        aria-controls="actions"
-        aria-haspopup="true"
-        className={classes.button}
-        onClick={handleClick}
+    <ActionMenu>
+      <MenuItem
+        disabled={updatingArticleReplyStatus}
+        onClick={
+          articleReply.status === 'NORMAL' ? handleDelete : handleRestore
+        }
       >
-        <MoreVertIcon />
-      </Button>
-      <Menu
-        id="actions"
-        anchorEl={anchorEl}
-        keepMounted
-        open={!!anchorEl}
-        onClose={handleClose}
-        className={classes.menu}
-      >
-        <MenuItem disabled={disabled} onClick={handleAction}>
-          {actionText}
-        </MenuItem>
-      </Menu>
-    </>
+        {articleReply.status === 'NORMAL' ? t`Delete` : t`Restore`}
+      </MenuItem>
+    </ActionMenu>
   );
 };
 
