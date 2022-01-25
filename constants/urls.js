@@ -21,3 +21,16 @@ export const FACEBOOK_SHARE_URL_PREFIX =
 
 export const DONATION_URL =
   'https://ocf.neticrm.tw/civicrm/contribute/transact?id=48';
+
+/**
+ * @param {object} params
+ * @param {string} params.userId - spammer's user ID
+ * @param {'replyRequest' | 'articleReplyFeedback' | 'reply'} params.itemType - reported spam item type
+ * @param {string} params.itemId - reply ID for reply; article ID for replyRequest; article ID,reply ID (separated in comma) for article reply feedback.
+ *
+ * @returns {string} Pre-filled URL to the google form that reports spam.
+ */
+export const getSpamReportUrl = ({ userId, itemType, itemId }) => {
+  // Prefilled URL as constant, manually edited to become template string
+  return `https://docs.google.com/forms/d/e/1FAIpQLSf7d8xCAz682vR3WLRVTxqqbWiFXLd6ShZpOnsXXTmAbPFcUA/viewform?usp=pp_url&entry.1302713624=${userId}&entry.192715150=${itemId}&entry.511781180=${itemType}&entry.1691230719=${location.href}`;
+};
