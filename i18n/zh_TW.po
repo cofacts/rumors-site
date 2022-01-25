@@ -263,12 +263,12 @@ msgstr "${editorElem} 加的"
 #: pages/api/articles/[feed].js:133
 #. Use &amp; for XML meta tags
 msgid "Cofacts reported messages"
-msgstr "Cofacts 回報訊息"
+msgstr "Cofacts 真的假的回報訊息"
 
 #: pages/api/articles/[feed].js:135
 #. Use &amp; for XML meta tags
 msgid "List of messages reported by Cofacts users"
-msgstr "Cofacts 使用者所回報的訊息"
+msgstr "真的假的使用者所回報的訊息"
 
 #: components/Subscribe/FeedDisplay.js:114
 msgid "Via Feedrabbit"
@@ -455,7 +455,7 @@ msgstr "載入中⋯"
 
 #: components/AppLayout/AppFooter.js:115
 msgid "About Cofacts"
-msgstr "關於 Cofacts"
+msgstr "關於真的假的"
 
 #: components/Subscribe/FeedDisplay.js:113
 msgid "Email"
@@ -992,7 +992,7 @@ msgstr ""
 
 #: components/NewReplySection/ReplyForm/ReasonEditor.js:172
 msgid "Please briefly explain why this message should not be processed in Cofacts."
-msgstr "請簡單說明為何 Cofacts 不該處理這則訊息"
+msgstr "請簡單說明為何 Cofacts 真的假的不該處理這則訊息"
 
 #: components/NewReplySection/ReplyForm/ReasonEditor.js:174
 msgid ""
@@ -2167,7 +2167,7 @@ msgstr "闢謠編輯現身：謠言不可能一下子就解決，要持續走下
 
 #: components/ReportPage/EcosystemModal.js:32
 msgid "Facebook group for Cofacts editors"
-msgstr "Cofacts 編輯交流天地 FB"
+msgstr "Cofacts 真的假的編輯交流天地 FB"
 
 #: components/ReportPage/EcosystemModal.js:34
 msgid "Past editor's meetups"

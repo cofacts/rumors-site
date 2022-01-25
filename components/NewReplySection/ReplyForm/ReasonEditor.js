@@ -260,7 +260,7 @@ const ReasonEditor = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Cofacts 編輯規則
+                真的假的編輯規則
               </a>
               、
               <a
