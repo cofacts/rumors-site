@@ -31,6 +31,10 @@ export const DONATION_URL =
  * @returns {string} Pre-filled URL to the google form that reports spam.
  */
 export const getSpamReportUrl = ({ userId, itemType, itemId }) => {
+  const payload = { userId, itemId, url: location.href };
+
   // Prefilled URL as constant, manually edited to become template string
-  return `https://docs.google.com/forms/d/e/1FAIpQLSf7d8xCAz682vR3WLRVTxqqbWiFXLd6ShZpOnsXXTmAbPFcUA/viewform?usp=pp_url&entry.1302713624=${userId}&entry.192715150=${itemId}&entry.511781180=${itemType}&entry.1691230719=${location.href}`;
+  return `https://docs.google.com/forms/d/e/1FAIpQLSf7d8xCAz682vR3WLRVTxqqbWiFXLd6ShZpOnsXXTmAbPFcUA/viewform?usp=pp_url&entry.1302713624=${encodeURIComponent(
+    JSON.stringify(payload)
+  )}&entry.511781180=${itemType}`;
 };
