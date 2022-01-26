@@ -38,9 +38,9 @@ const UPDATE_ARTICLE_REPLY_STATUS = gql`
       ...ReplyActionsData
       ...ReplyActionsDataForUser
     }
-    ${ReplyActionsData}
-    ${ReplyActionsDataForUser}
   }
+  ${ReplyActionsData}
+  ${ReplyActionsDataForUser}
 `;
 
 const ReplyActions = ({ articleReply }) => {
