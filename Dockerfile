@@ -1,4 +1,4 @@
-FROM node:12 AS builder
+FROM node:18 AS builder
 WORKDIR /srv/www
 
 # make node_modules cached.
@@ -26,7 +26,7 @@ RUN npm run build
 RUN npm prune --production
 
 #########################################
-FROM node:12-stretch-slim
+FROM node:18-stretch-slim
 
 WORKDIR /srv/www
 EXPOSE 3000
