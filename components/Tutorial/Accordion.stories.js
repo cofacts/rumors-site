@@ -20,7 +20,7 @@ const data = [
   { title: 'title 4', content: 'content 4' },
   { title: 'title 5', content: 'content 5' },
 ];
-export const normal = () => (
+export const Normal = () => (
   <div style={{ width: '400px' }}>
     <Accordion
       data={data}

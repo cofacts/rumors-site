@@ -8,9 +8,9 @@ export default {
   decorators: [withKnobs],
 };
 
-export const desktop = () => <LineTutorialDesktop />;
+export const Desktop = () => <LineTutorialDesktop />;
 
-export const mobile = () => (
+export const Mobile = () => (
   <div style={{ maxWidth: '500px' }}>
     <LineTutorialMobile />
   </div>

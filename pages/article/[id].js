@@ -307,7 +307,7 @@ function ArticlePage() {
   const similarCategories = article?.similarArticles?.edges?.reduce(
     (ary, sa) => {
       const ac = sa.node?.articleCategories || [];
-      ary = [...new Set([...ary, ...ac?.map(cat => cat.categoryId)])];
+      ary = [...new Set([...ary, ...ac.map(cat => cat.categoryId)])];
       return ary;
     },
     []

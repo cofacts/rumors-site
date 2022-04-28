@@ -11,7 +11,7 @@ export default {
 
 const tags = ['aaaaa', 'bbbbb', 'ccccc', 'ddddd'];
 
-export const normal = () => (
+export const Normal = () => (
   <div style={{ width: '400px' }}>
     <InputBox
       value={text('value', 'text')}

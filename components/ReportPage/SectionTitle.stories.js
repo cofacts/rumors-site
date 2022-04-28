@@ -6,4 +6,4 @@ export default {
   component: 'SectionTitle',
 };
 
-export const normal = () => <SectionTitle>section title</SectionTitle>;
+export const Normal = () => <SectionTitle>section title</SectionTitle>;

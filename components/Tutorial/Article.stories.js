@@ -8,7 +8,7 @@ export default {
   decorators: [withKnobs],
 };
 
-export const normal = () => (
+export const Normal = () => (
   <div style={{ padding: '20px' }}>
     <Article
       label={text('label', '1')}

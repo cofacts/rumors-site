@@ -1,8 +1,8 @@
 module.exports = {
   stories: ['../components/**/*.stories.js'],
   addons: [
-    '@storybook/addon-actions/register',
-    '@storybook/addon-knobs/register',
+    '@storybook/addon-actions',
+    '@storybook/addon-knobs',
     '@storybook/addon-storysource',
   ],
   env: config => ({
