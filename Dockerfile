@@ -26,7 +26,7 @@ RUN npm run build
 RUN npm prune --production
 
 #########################################
-FROM node:16-stretch-slim
+FROM node:16-alpine
 
 WORKDIR /srv/www
 EXPOSE 3000
