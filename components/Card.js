@@ -16,6 +16,7 @@ export const Card = withStyles(theme => ({
       '--card-px': '36px',
     },
   },
+  // eslint-disable-next-line react/display-name
 }))(forwardRef((props, ref) => <MuiCard ref={ref} elevation={0} {...props} />));
 
 export const CardHeader = withStyles(theme => ({
