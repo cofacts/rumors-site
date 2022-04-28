@@ -67,7 +67,7 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
               className="makeStyles-thumbIcon"
             >
               <svg
-                aria-hidden="true"
+                aria-hidden={true}
                 className="MuiSvgIcon-root makeStyles-thumbIcon"
                 focusable="false"
                 viewBox="0 0 17 15"
@@ -78,17 +78,15 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
               </svg>
             </ThumbUpIcon>
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
         <button
           className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-vote"
@@ -117,7 +115,7 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
               className="makeStyles-thumbIcon"
             >
               <svg
-                aria-hidden="true"
+                aria-hidden={true}
                 className="MuiSvgIcon-root makeStyles-thumbIcon"
                 focusable="false"
                 viewBox="0 0 17 15"
@@ -128,17 +126,15 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
               </svg>
             </ThumbDownIcon>
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
         <button
           className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-vote"
@@ -163,17 +159,15 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
           >
             See Reasons
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
       </div>
     </ButtonGroupDisplay>

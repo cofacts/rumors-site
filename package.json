@@ -37,7 +37,6 @@
     "emoji-mart": "^3.0.0",
     "feed": "^4.1.0",
     "graphql": "^14.4.2",
-    "immer": "^8.0.1",
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^3.0.1",
     "json-url": "^2.6.0",
@@ -83,7 +82,7 @@
     "eslint-plugin-react-hooks": "^4.0.4",
     "jest": "^25.1.0",
     "mockdate": "^3.0.2",
-    "prettier": "^1.18.2",
+    "prettier": "=1.18.2",
     "react-test-renderer": "^16.8.6",
     "ttag-cli": "^1.8.4",
     "url-loader": "^3.0.0"

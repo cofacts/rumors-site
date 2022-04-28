@@ -39,7 +39,14 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
           }
         />
       </Transition>
-      <TrapFocus>
+      <Unstable_TrapFocus
+        disableAutoFocus={false}
+        disableEnforceFocus={false}
+        disableRestoreFocus={false}
+        getDoc={[Function]}
+        isEnabled={[Function]}
+        open={false}
+      >
         <div
           data-test="sentinelStart"
           tabIndex={0}
@@ -47,8 +54,8 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
         <Transition>
           <div
             className="MuiDialog-container MuiDialog-scrollBody"
-            onClick={[Function]}
             onMouseDown={[Function]}
+            onMouseUp={[Function]}
             role="none presentation"
             style={
               Object {
@@ -76,7 +83,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                   >
                     <CloseIcon>
                       <svg
-                        aria-hidden="true"
+                        aria-hidden={true}
                         className="MuiSvgIcon-root"
                         focusable="false"
                         viewBox="0 0 14 14"
@@ -345,7 +352,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
           data-test="sentinelEnd"
           tabIndex={0}
         />
-      </TrapFocus>
+      </Unstable_TrapFocus>
     </div>
   </Portal>
 </UpgradeDialogLayout>

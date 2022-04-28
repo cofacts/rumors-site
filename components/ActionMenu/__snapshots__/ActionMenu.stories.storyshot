@@ -33,7 +33,7 @@ exports[`Storyshots ActionMenu Default 1`] = `
         className="MuiButton-label"
       >
         <svg
-          aria-hidden="true"
+          aria-hidden={true}
           className="MuiSvgIcon-root"
           focusable="false"
           viewBox="0 0 24 24"
@@ -43,17 +43,15 @@ exports[`Storyshots ActionMenu Default 1`] = `
           />
         </svg>
       </span>
-      <NoSsr>
-        <span
-          className="MuiTouchRipple-root"
-        >
-          <TransitionGroup
-            childFactory={[Function]}
-            component={null}
-            exit={true}
-          />
-        </span>
-      </NoSsr>
+      <span
+        className="MuiTouchRipple-root"
+      >
+        <TransitionGroup
+          childFactory={[Function]}
+          component={null}
+          exit={true}
+        />
+      </span>
     </button>
     <Portal>
       <div
@@ -72,7 +70,14 @@ exports[`Storyshots ActionMenu Default 1`] = `
           }
         }
       >
-        <TrapFocus>
+        <Unstable_TrapFocus
+          disableAutoFocus={false}
+          disableEnforceFocus={false}
+          disableRestoreFocus={false}
+          getDoc={[Function]}
+          isEnabled={[Function]}
+          open={false}
+        >
           <div
             data-test="sentinelStart"
             tabIndex={0}
@@ -114,17 +119,15 @@ exports[`Storyshots ActionMenu Default 1`] = `
                   tabIndex={0}
                 >
                   Option 1
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
                 <li
                   aria-disabled={false}
@@ -144,17 +147,15 @@ exports[`Storyshots ActionMenu Default 1`] = `
                   tabIndex={-1}
                 >
                   Option 2
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
               </ul>
             </div>
@@ -163,7 +164,7 @@ exports[`Storyshots ActionMenu Default 1`] = `
             data-test="sentinelEnd"
             tabIndex={0}
           />
-        </TrapFocus>
+        </Unstable_TrapFocus>
       </div>
     </Portal>
   </ActionMenu>
