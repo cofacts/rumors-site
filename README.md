@@ -12,7 +12,7 @@ For production via [rumors-deploy](http://github.com/cofacts/rumors-deploy), do 
 
 ## Development
 
-This project uses NodeJS 18+.
+This project uses NodeJS 16+.
 
 ``` bash
 $ npm install
