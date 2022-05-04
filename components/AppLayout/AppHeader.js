@@ -336,7 +336,7 @@ function AppHeader({
       <Box
         display={['flex', 'flex', 'none']}
         height={TABS_HEIGHT}
-        css={{ backgroundColor: theme.palette.secondary[50] }}
+        sx={{ backgroundColor: theme.palette.secondary[50] }}
       >
         <Links classes={classes} unsolvedCount={unsolvedCount} />
         <div className={classes.menuToggleButton} onClick={onMenuButtonClick}>

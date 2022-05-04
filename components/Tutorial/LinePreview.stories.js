@@ -11,7 +11,7 @@ export default {
   decorators: [withKnobs],
 };
 
-export const normal = () => (
+export const Normal = () => (
   <div style={{ width: '500px' }}>
     <LinePreview
       autoplay={boolean('autoplay', false)}

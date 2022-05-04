@@ -57,17 +57,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 1
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -98,17 +96,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 2
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
       </dd>
@@ -186,17 +182,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 1
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -228,17 +222,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 2
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -271,17 +263,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Disabled
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -313,17 +303,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Chip
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -356,17 +344,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Selected Chip
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
       </dd>
@@ -415,7 +401,7 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
       >
         Expandable
         <svg
-          aria-hidden="true"
+          aria-hidden={true}
           className="MuiSvgIcon-root makeStyles-icon"
           focusable="false"
           viewBox="0 0 24 24"
@@ -457,17 +443,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 1
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -498,17 +482,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 2
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -539,17 +521,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 3
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -580,17 +560,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 4
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -621,17 +599,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 5
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -664,17 +640,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Disabled
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
       </dd>
@@ -702,7 +676,7 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
       >
         Placehold
         <svg
-          aria-hidden="true"
+          aria-hidden={true}
           className="MuiSvgIcon-root makeStyles-icon"
           focusable="false"
           viewBox="0 0 24 24"
@@ -748,17 +722,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 1
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
         <BaseFilterOption
@@ -789,17 +761,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
             >
               Option 2
             </span>
-            <NoSsr>
-              <span
-                className="MuiTouchRipple-root"
-              >
-                <TransitionGroup
-                  childFactory={[Function]}
-                  component={null}
-                  exit={true}
-                />
-              </span>
-            </NoSsr>
+            <span
+              className="MuiTouchRipple-root"
+            >
+              <TransitionGroup
+                childFactory={[Function]}
+                component={null}
+                exit={true}
+              />
+            </span>
           </div>
         </BaseFilterOption>
       </dd>
@@ -807,7 +777,7 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
   </dl>
   <button
     aria-label="filters"
-    className="MuiButtonBase-root MuiFab-root makeStyles-fab MuiFab-extended MuiFab-sizeMedium"
+    className="MuiButtonBase-root MuiFab-root makeStyles-fab MuiFab-sizeMedium MuiFab-extended"
     data-ga="Mobile filter button"
     disabled={false}
     onBlur={[Function]}
@@ -829,7 +799,7 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
       className="MuiFab-label"
     >
       <svg
-        aria-hidden="true"
+        aria-hidden={true}
         className="MuiSvgIcon-root makeStyles-fabIcon"
         focusable="false"
         viewBox="0 0 24 24"
@@ -840,17 +810,15 @@ exports[`Storyshots ListPageControls/Filters Filters And Options 1`] = `
       </svg>
       Filter
     </span>
-    <NoSsr>
-      <span
-        className="MuiTouchRipple-root"
-      >
-        <TransitionGroup
-          childFactory={[Function]}
-          component={null}
-          exit={true}
-        />
-      </span>
-    </NoSsr>
+    <span
+      className="MuiTouchRipple-root"
+    >
+      <TransitionGroup
+        childFactory={[Function]}
+        component={null}
+        exit={true}
+      />
+    </span>
   </button>
 </Filters>
 `;

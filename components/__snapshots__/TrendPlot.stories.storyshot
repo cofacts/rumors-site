@@ -177,7 +177,7 @@ exports[`Storyshots TrendPlot Normal 1`] = `
       >
         Total Visit: 51156
         <svg
-          aria-hidden="true"
+          aria-hidden={true}
           className="MuiSvgIcon-root"
           focusable="false"
           onClick={[Function]}

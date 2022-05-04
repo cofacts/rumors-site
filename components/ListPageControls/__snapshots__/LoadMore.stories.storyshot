@@ -61,17 +61,15 @@ exports[`Storyshots ListPageControls/LoadMore Shows Up 1`] = `
       >
         Load More
       </span>
-      <NoSsr>
-        <span
-          className="MuiTouchRipple-root"
-        >
-          <TransitionGroup
-            childFactory={[Function]}
-            component={null}
-            exit={true}
-          />
-        </span>
-      </NoSsr>
+      <span
+        className="MuiTouchRipple-root"
+      >
+        <TransitionGroup
+          childFactory={[Function]}
+          component={null}
+          exit={true}
+        />
+      </span>
     </button>
   </div>
 </LoadMore>

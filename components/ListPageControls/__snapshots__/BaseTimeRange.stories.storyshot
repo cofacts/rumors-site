@@ -33,7 +33,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
           className="MuiButton-label"
         >
           <svg
-            aria-hidden="true"
+            aria-hidden={true}
             className="MuiSvgIcon-root makeStyles-calendarIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -43,17 +43,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
             />
           </svg>
         </span>
-        <NoSsr>
-          <span
-            className="MuiTouchRipple-root"
-          >
-            <TransitionGroup
-              childFactory={[Function]}
-              component={null}
-              exit={true}
-            />
-          </span>
-        </NoSsr>
+        <span
+          className="MuiTouchRipple-root"
+        >
+          <TransitionGroup
+            childFactory={[Function]}
+            component={null}
+            exit={true}
+          />
+        </span>
       </button>
       <button
         className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-selectButton"
@@ -78,17 +76,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
         >
           All
         </span>
-        <NoSsr>
-          <span
-            className="MuiTouchRipple-root"
-          >
-            <TransitionGroup
-              childFactory={[Function]}
-              component={null}
-              exit={true}
-            />
-          </span>
-        </NoSsr>
+        <span
+          className="MuiTouchRipple-root"
+        >
+          <TransitionGroup
+            childFactory={[Function]}
+            component={null}
+            exit={true}
+          />
+        </span>
       </button>
     </div>
     <Portal>
@@ -108,7 +104,14 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
           }
         }
       >
-        <TrapFocus>
+        <Unstable_TrapFocus
+          disableAutoFocus={false}
+          disableEnforceFocus={false}
+          disableRestoreFocus={false}
+          getDoc={[Function]}
+          isEnabled={[Function]}
+          open={false}
+        >
           <div
             data-test="sentinelStart"
             tabIndex={0}
@@ -151,17 +154,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   tabIndex={0}
                 >
                   All
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
                 <li
                   aria-disabled={false}
@@ -183,17 +184,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   tabIndex={-1}
                 >
                   In 1 Day
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
                 <li
                   aria-disabled={false}
@@ -215,17 +214,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   tabIndex={-1}
                 >
                   In 1 Week
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
                 <li
                   aria-disabled={false}
@@ -247,17 +244,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   tabIndex={-1}
                 >
                   In 1 Month
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
                 <li
                   aria-disabled={false}
@@ -279,17 +274,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   tabIndex={-1}
                 >
                   Custom
-                  <NoSsr>
-                    <span
-                      className="MuiTouchRipple-root"
-                    >
-                      <TransitionGroup
-                        childFactory={[Function]}
-                        component={null}
-                        exit={true}
-                      />
-                    </span>
-                  </NoSsr>
+                  <span
+                    className="MuiTouchRipple-root"
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      component={null}
+                      exit={true}
+                    />
+                  </span>
                 </li>
               </ul>
             </div>
@@ -298,7 +291,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
             data-test="sentinelEnd"
             tabIndex={0}
           />
-        </TrapFocus>
+        </Unstable_TrapFocus>
       </div>
     </Portal>
   </div>
@@ -354,7 +347,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
             className="MuiButton-label"
           >
             <svg
-              aria-hidden="true"
+              aria-hidden={true}
               className="MuiSvgIcon-root makeStyles-calendarIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -364,21 +357,20 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
               />
             </svg>
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
         <input
           className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate"
           color="default"
+          disableElevation={false}
           disableFocusRipple={false}
           disableRipple={false}
           disabled={false}
@@ -426,7 +418,14 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
             }
           }
         >
-          <TrapFocus>
+          <Unstable_TrapFocus
+            disableAutoFocus={false}
+            disableEnforceFocus={false}
+            disableRestoreFocus={false}
+            getDoc={[Function]}
+            isEnabled={[Function]}
+            open={false}
+          >
             <div
               data-test="sentinelStart"
               tabIndex={0}
@@ -469,17 +468,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={0}
                   >
                     All
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -501,17 +498,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Day
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -533,17 +528,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Week
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -565,17 +558,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Month
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -597,17 +588,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     Custom
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -616,7 +605,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
               data-test="sentinelEnd"
               tabIndex={0}
             />
-          </TrapFocus>
+          </Unstable_TrapFocus>
         </div>
       </Portal>
     </div>
@@ -660,7 +649,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
             className="MuiButton-label"
           >
             <svg
-              aria-hidden="true"
+              aria-hidden={true}
               className="MuiSvgIcon-root makeStyles-calendarIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -670,17 +659,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
               />
             </svg>
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
         <button
           className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-selectButton"
@@ -705,17 +692,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
           >
             In 1 Day
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
       </div>
       <Portal>
@@ -735,7 +720,14 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
             }
           }
         >
-          <TrapFocus>
+          <Unstable_TrapFocus
+            disableAutoFocus={false}
+            disableEnforceFocus={false}
+            disableRestoreFocus={false}
+            getDoc={[Function]}
+            isEnabled={[Function]}
+            open={false}
+          >
             <div
               data-test="sentinelStart"
               tabIndex={0}
@@ -778,17 +770,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={0}
                   >
                     All
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -810,17 +800,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Day
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -842,17 +830,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Week
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -874,17 +860,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Month
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -906,17 +890,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     Custom
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -925,7 +907,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
               data-test="sentinelEnd"
               tabIndex={0}
             />
-          </TrapFocus>
+          </Unstable_TrapFocus>
         </div>
       </Portal>
     </div>
@@ -975,7 +957,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
             className="MuiButton-label"
           >
             <svg
-              aria-hidden="true"
+              aria-hidden={true}
               className="MuiSvgIcon-root makeStyles-calendarIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -985,21 +967,20 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
               />
             </svg>
           </span>
-          <NoSsr>
-            <span
-              className="MuiTouchRipple-root"
-            >
-              <TransitionGroup
-                childFactory={[Function]}
-                component={null}
-                exit={true}
-              />
-            </span>
-          </NoSsr>
+          <span
+            className="MuiTouchRipple-root"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component={null}
+              exit={true}
+            />
+          </span>
         </button>
         <input
           className="MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlined makeStyles-startDate"
           color="default"
+          disableElevation={false}
           disableFocusRipple={false}
           disableRipple={false}
           disabled={false}
@@ -1047,7 +1028,14 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
             }
           }
         >
-          <TrapFocus>
+          <Unstable_TrapFocus
+            disableAutoFocus={false}
+            disableEnforceFocus={false}
+            disableRestoreFocus={false}
+            getDoc={[Function]}
+            isEnabled={[Function]}
+            open={false}
+          >
             <div
               data-test="sentinelStart"
               tabIndex={0}
@@ -1090,17 +1078,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={0}
                   >
                     All
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -1122,17 +1108,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Day
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -1154,17 +1138,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Week
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -1186,17 +1168,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     In 1 Month
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                   <li
                     aria-disabled={false}
@@ -1218,17 +1198,15 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     tabIndex={-1}
                   >
                     Custom
-                    <NoSsr>
-                      <span
-                        className="MuiTouchRipple-root"
-                      >
-                        <TransitionGroup
-                          childFactory={[Function]}
-                          component={null}
-                          exit={true}
-                        />
-                      </span>
-                    </NoSsr>
+                    <span
+                      className="MuiTouchRipple-root"
+                    >
+                      <TransitionGroup
+                        childFactory={[Function]}
+                        component={null}
+                        exit={true}
+                      />
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -1237,7 +1215,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
               data-test="sentinelEnd"
               tabIndex={0}
             />
-          </TrapFocus>
+          </Unstable_TrapFocus>
         </div>
       </Portal>
     </div>

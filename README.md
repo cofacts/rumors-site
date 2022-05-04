@@ -12,7 +12,7 @@ For production via [rumors-deploy](http://github.com/cofacts/rumors-deploy), do 
 
 ## Development
 
-This project uses NodeJS 12+.
+This project uses NodeJS 16+.
 
 ``` bash
 $ npm install
@@ -35,9 +35,9 @@ Build docker image.
 
 ``` bash
 # build en version
-$ docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=en_US -t rumors-site-test-tw
+$ docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=en_US -t rumors-site-test-en .
 # build tw version
-$ docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=zh_TW -t rumors-site-test-tw
+$ docker build --build-arg APP_ID=RUMORS_SITE --build-arg LOCALE=zh_TW -t rumors-site-test-tw .
 ```
 
 This will build both `rumors-site-test` image.

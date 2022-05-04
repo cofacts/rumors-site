@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { t } from 'ttag';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import isValid from 'date-fns/isValid';
@@ -90,7 +90,9 @@ export function formatDate(date) {
  * @param {(t: string) => React.ReactChild} props.children - Render of string
  */
 function TimeInfo({ time, children = t => t }) {
-  const date = time instanceof Date ? time : new Date(time);
+  const date = useMemo(() => (time instanceof Date ? time : new Date(time)), [
+    time,
+  ]);
   const dateIsValid = time && isValid(date);
 
   const [timeAgoStr, setTimeAgoStr] = useState(

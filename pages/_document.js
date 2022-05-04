@@ -1,6 +1,6 @@
 import React from 'react';
 import cookie from 'cookie';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { AUTH_ERROR_MSG, NO_USER_FOR_ARTICLE } from 'constants/errors';
@@ -24,15 +24,9 @@ const rollbarSnippet =
 class MyDocument extends Document {
   render() {
     return (
-      <html lang={LANG}>
+      <Html lang={LANG}>
         <Head>
           <meta charSet="utf-8" />
-          {/* Use minimum-scale=1 to enable GPU rasterization */}
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-          />
-
           <link rel="icon" href="/favicon.png" type="image/png" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
@@ -89,7 +83,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
