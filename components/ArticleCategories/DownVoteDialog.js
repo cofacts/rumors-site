@@ -48,7 +48,7 @@ function DownVoteDialog({
   });
 
   const downVoteFeedbacks = (
-    data.GetArticle?.articleCategories.find(ac => ac.categoryId === categoryId)
+    data?.GetArticle?.articleCategories.find(ac => ac.categoryId === categoryId)
       ?.feedbacks ?? []
   ).filter(({ vote, comment }) => vote === 'DOWNVOTE' && comment);
 
