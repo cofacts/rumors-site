@@ -271,7 +271,7 @@ function ArticlePage() {
 
   usePushToDataLayer(!!article, { event: 'dataLoaded' });
 
-  if (loading) {
+  if (loading && !article) {
     return (
       <AppLayout>
         <Head>
