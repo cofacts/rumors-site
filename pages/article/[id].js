@@ -349,21 +349,21 @@ function ArticlePage() {
               </Infos>
             </header>
             <CardContent>
-              {text ? (
+              {attachmentUrl && (
+                <img
+                  className={classes.bannerImage}
+                  src={attachmentUrl}
+                  alt="image"
+                />
+              )}
+              {text &&
                 nl2br(
                   linkify(text, {
                     props: {
                       target: '_blank',
                     },
                   })
-                )
-              ) : (
-                <img
-                  className={classes.bannerImage}
-                  src={attachmentUrl}
-                  alt="image"
-                ></img>
-              )}
+                )}
               <Hyperlinks hyperlinks={hyperlinks} />
               <Box my={[1.5, 2]}>
                 <ArticleCategories

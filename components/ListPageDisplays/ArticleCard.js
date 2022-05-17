@@ -128,18 +128,19 @@ function ArticleCard({ article, highlight = '' }) {
                 <span>{c('Info box').t`reports`}</span>
               </div>
             </div>
-            {text ? (
+            {attachmentUrl && (
+              <img
+                className={classes.attachmentImage}
+                src={attachmentUrl}
+                alt="image"
+              />
+            )}
+            {(text || highlight) && (
               <ExpandableText className={classes.content} lineClamp={3}>
                 {highlight
                   ? highlightSections(highlight, highlightClasses)
                   : text}
               </ExpandableText>
-            ) : (
-              <img
-                className={classes.attachmentImage}
-                src={attachmentUrl}
-                alt="image"
-              ></img>
             )}
           </div>
         </ListPageCard>

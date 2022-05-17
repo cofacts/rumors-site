@@ -146,16 +146,17 @@ export default function ReplySearchItem({
       <Box p={{ xs: 2, md: 4.5 }}>
         <RepliedArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
-          {articleReply.article.text ? (
-            <ExpandableText className={classes.content} lineClamp={3}>
-              {nl2br(articleReply.article.text)}
-            </ExpandableText>
-          ) : (
+          {articleReply.article.attachmentUrl && (
             <img
               className={classes.attachmentImage}
               src={articleReply.article.attachmentUrl}
               alt="image"
-            ></img>
+            />
+          )}
+          {articleReply.article.text && (
+            <ExpandableText className={classes.content} lineClamp={3}>
+              {nl2br(articleReply.article.text)}
+            </ExpandableText>
           )}
         </div>
         <Divider classes={{ root: classes.divider }} />

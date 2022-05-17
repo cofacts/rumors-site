@@ -260,14 +260,15 @@ function ReplyListPage() {
                     {timeAgo => t`First reported ${timeAgo}`}
                   </TimeInfo>
                 </Infos>
-                {article.text ? (
-                  <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
-                ) : (
+                {article.attachmentUrl && (
                   <img
                     className={classes.attachmentImage}
                     src={article.attachmentUrl}
                     alt="image"
-                  ></img>
+                  />
+                )}
+                {article.text && (
+                  <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
                 )}
                 <div
                   className={classes.bustHoaxDivider}
