@@ -104,6 +104,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     borderRadius: theme.shape.borderRadius,
   },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 800,
+    maxHeight: 800,
+  },
 }));
 
 const LOAD_ARTICLE = gql`
@@ -350,11 +355,13 @@ function ArticlePage() {
             </header>
             <CardContent>
               {attachmentUrl && (
-                <img
-                  className={classes.bannerImage}
-                  src={attachmentUrl}
-                  alt="image"
-                />
+                <a href={attachmentUrl}>
+                  <img
+                    className={classes.attachmentImage}
+                    src={attachmentUrl}
+                    alt="image"
+                  />
+                </a>
               )}
               {text &&
                 nl2br(
