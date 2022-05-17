@@ -56,5 +56,14 @@ export const ArticleCards = () => (
         ],
       }}
     />
+    <ArticleCard
+      article={{
+        id: 'id3',
+        attachmentUrl: 'https://mockurl.jpeg',
+        replyCount: 6,
+        replyRequestCount: 4,
+        createdAt: '2020-01-01T00:00:00Z',
+      }}
+    />
   </ListPageCards>
 );
