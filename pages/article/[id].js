@@ -116,6 +116,7 @@ const LOAD_ARTICLE = gql`
     GetArticle(id: $id) {
       id
       text
+      attachmentUrl
       requestedForReply
       replyRequestCount
       replyCount
@@ -301,7 +302,13 @@ function ArticlePage() {
     );
   }
 
-  const { replyRequestCount, text, hyperlinks, replyCount } = article;
+  const {
+    replyRequestCount,
+    text,
+    attachmentUrl,
+    hyperlinks,
+    replyCount,
+  } = article;
   const similarArticles = article?.similarArticles?.edges || [];
   // get a set of similar category in array
   const similarCategories = article?.similarArticles?.edges?.reduce(
@@ -342,12 +349,20 @@ function ArticlePage() {
               </Infos>
             </header>
             <CardContent>
-              {nl2br(
-                linkify(text, {
-                  props: {
-                    target: '_blank',
-                  },
-                })
+              {text ? (
+                nl2br(
+                  linkify(text, {
+                    props: {
+                      target: '_blank',
+                    },
+                  })
+                )
+              ) : (
+                <img
+                  className={classes.bannerImage}
+                  src={attachmentUrl}
+                  alt="image"
+                ></img>
               )}
               <Hyperlinks hyperlinks={hyperlinks} />
               <Box my={[1.5, 2]}>

@@ -84,6 +84,10 @@ const useStyles = makeStyles(theme => ({
   highlight: {
     color: theme.palette.primary[500],
   },
+  attachmentImage: {
+    maxWidth: 336,
+    maxHeight: 500,
+  },
 }));
 
 /**
@@ -93,7 +97,14 @@ const useStyles = makeStyles(theme => ({
  * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  */
 function ArticleCard({ article, highlight = '' }) {
-  const { id, text, replyCount, replyRequestCount, createdAt } = article;
+  const {
+    id,
+    text,
+    attachmentUrl,
+    replyCount,
+    replyRequestCount,
+    createdAt,
+  } = article;
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
 
@@ -117,11 +128,19 @@ function ArticleCard({ article, highlight = '' }) {
                 <span>{c('Info box').t`reports`}</span>
               </div>
             </div>
-            <ExpandableText className={classes.content} lineClamp={3}>
-              {highlight
-                ? highlightSections(highlight, highlightClasses)
-                : text}
-            </ExpandableText>
+            {text ? (
+              <ExpandableText className={classes.content} lineClamp={3}>
+                {highlight
+                  ? highlightSections(highlight, highlightClasses)
+                  : text}
+              </ExpandableText>
+            ) : (
+              <img
+                className={classes.attachmentImage}
+                src={attachmentUrl}
+                alt="image"
+              ></img>
+            )}
           </div>
         </ListPageCard>
       </a>
@@ -134,6 +153,7 @@ ArticleCard.fragments = {
     fragment ArticleCard on Article {
       id
       text
+      attachmentUrl
       replyCount
       replyRequestCount
       createdAt

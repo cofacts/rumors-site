@@ -92,6 +92,10 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 0,
     },
   },
+  attachmentImage: {
+    maxWidth: 336,
+    maxHeight: 500,
+  },
 }));
 
 function RepliedArticleInfo({ article }) {
@@ -142,9 +146,17 @@ export default function ReplySearchItem({
       <Box p={{ xs: 2, md: 4.5 }}>
         <RepliedArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
-          <ExpandableText className={classes.content} lineClamp={3}>
-            {nl2br(articleReply.article.text)}
-          </ExpandableText>
+          {articleReply.article.text ? (
+            <ExpandableText className={classes.content} lineClamp={3}>
+              {nl2br(articleReply.article.text)}
+            </ExpandableText>
+          ) : (
+            <img
+              className={classes.attachmentImage}
+              src={articleReply.article.attachmentUrl}
+              alt="image"
+            ></img>
+          )}
         </div>
         <Divider classes={{ root: classes.divider }} />
         <ReplyItem
@@ -207,6 +219,7 @@ ReplySearchItem.fragments = {
         article {
           id
           text
+          attachmentUrl
           replyRequestCount
           createdAt
         }

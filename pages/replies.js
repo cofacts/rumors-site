@@ -44,6 +44,7 @@ const LIST_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
+          attachmentUrl
           articleReplies(status: NORMAL) {
             reply {
               id
@@ -83,6 +84,7 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   const filterObj = {
     // Default filters
     replyCount: { GTE: 1 },
+    articleTypes: ['IMAGE', 'TEXT'],
   };
 
   const selectedCategoryIds = CategoryFilter.getValues(query);
@@ -177,6 +179,10 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 12,
     },
   },
+  attachmentImage: {
+    maxWidth: 336,
+    maxHeight: 500,
+  },
 }));
 
 function ReplyListPage() {
@@ -255,8 +261,15 @@ function ReplyListPage() {
                     {timeAgo => t`First reported ${timeAgo}`}
                   </TimeInfo>
                 </Infos>
-                <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
-
+                {article.text ? (
+                  <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
+                ) : (
+                  <img
+                    className={classes.attachmentImage}
+                    src={article.attachmentUrl}
+                    alt="image"
+                  ></img>
+                )}
                 <div
                   className={classes.bustHoaxDivider}
                   data-ga="Bust hoax button"
