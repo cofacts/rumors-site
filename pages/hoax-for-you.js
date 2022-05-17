@@ -61,7 +61,6 @@ function urlQuery2Filter(query = {}) {
     // Default filters
     replyRequestCount: { GTE: 2 },
     hasArticleReplyWithMorePositiveFeedback: false,
-    articleTypes: ['IMAGE', 'TEXT'],
   };
 
   const selectedCategoryIds = CategoryFilter.getValues(query);

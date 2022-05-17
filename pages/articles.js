@@ -62,10 +62,7 @@ const LIST_STAT = gql`
  * @returns {object} ListArticleFilter
  */
 function urlQuery2Filter({ userId, ...query } = {}) {
-  const filterObj = {
-    // Default filters
-    articleTypes: ['IMAGE', 'TEXT'],
-  };
+  const filterObj = {};
 
   const selectedCategoryIds = CategoryFilter.getValues(query);
   if (selectedCategoryIds.length) filterObj.categoryIds = selectedCategoryIds;

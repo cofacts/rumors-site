@@ -84,7 +84,6 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   const filterObj = {
     // Default filters
     replyCount: { GTE: 1 },
-    articleTypes: ['IMAGE', 'TEXT'],
   };
 
   const selectedCategoryIds = CategoryFilter.getValues(query);
