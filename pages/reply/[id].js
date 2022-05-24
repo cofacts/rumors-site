@@ -58,6 +58,10 @@ const useStyles = makeStyles(theme => ({
   infos: {
     marginTop: 12,
   },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 600,
+  },
 }));
 
 const LOAD_REPLY = gql`
@@ -70,6 +74,7 @@ const LOAD_REPLY = gql`
         article {
           id
           text
+          attachmentUrl
           replyCount
         }
         createdAt
@@ -249,9 +254,18 @@ function ReplyPage() {
                 as={`/article/${originalArticleReply.article.id}`}
               >
                 <a className={classes.articleLink}>
-                  <ExpandableText lineClamp={5}>
-                    {nl2br(originalArticleReply.article.text)}
-                  </ExpandableText>
+                  {originalArticleReply.article.attachmentUrl && (
+                    <img
+                      className={classes.attachmentImage}
+                      src={originalArticleReply.article.attachmentUrl}
+                      alt="image"
+                    />
+                  )}
+                  {originalArticleReply.article.text && (
+                    <ExpandableText lineClamp={5}>
+                      {nl2br(originalArticleReply.article.text)}
+                    </ExpandableText>
+                  )}
                   <Infos className={classes.infos}>
                     {isDeleted && <span>{t`Deleted by its author`}</span>}
                     {getReplyCountElem(originalArticleReply.article.replyCount)}
@@ -271,7 +285,19 @@ function ReplyPage() {
                 <CardContent key={ar.article.id}>
                   <Link href="/article/[id]" as={`/article/${ar.article.id}`}>
                     <a className={classes.articleLink}>
-                      <ExpandableText>{nl2br(ar.article.text)}</ExpandableText>
+                      {ar.article.attachmentUrl && (
+                        <img
+                          className={classes.attachmentImage}
+                          src={ar.article.attachmentUrl}
+                          alt="image"
+                        />
+                      )}
+                      {ar.article.text && (
+                        <ExpandableText>
+                          {nl2br(ar.article.text)}
+                        </ExpandableText>
+                      )}
+
                       <Infos className={classes.infos}>
                         <>{jt`Added by ${editorElem}`}</>
                         {getReplyCountElem(ar.article.replyCount)}

@@ -93,8 +93,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   attachmentImage: {
+    width: '100%',
     maxWidth: 336,
-    maxHeight: 500,
   },
 }));
 
@@ -194,12 +194,21 @@ export default function ReplySearchItem({
                     as={`/article/${article.id}`}
                     key={article.id}
                   >
-                    <a className={classes.otherArticleItem}>
+                    <div className={classes.otherArticleItem}>
                       <RepliedArticleInfo article={article} />
-                      <ExpandableText lineClamp={3}>
-                        {article.text}
-                      </ExpandableText>
-                    </a>
+                      {article.attachmentUrl && (
+                        <img
+                          className={classes.attachmentImage}
+                          src={article.attachmentUrl}
+                          alt="image"
+                        />
+                      )}
+                      {article.text && (
+                        <ExpandableText lineClamp={3}>
+                          {article.text}
+                        </ExpandableText>
+                      )}
+                    </div>
                   </Link>
                 ))}
             </DialogContent>

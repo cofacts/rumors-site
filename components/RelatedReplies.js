@@ -50,6 +50,10 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     padding: 12,
   },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 120,
+  },
 }));
 
 const OpenLinkIcon = props => (
@@ -76,6 +80,7 @@ const RelatedArticleReplyData = gql`
     article {
       id
       text
+      attachmentUrl
     }
   }
 `;
@@ -110,13 +115,22 @@ function RelatedReplyItem({ article, reply, onConnect, disabled, actionText }) {
         <section>
           <h3 className={classes.title}>{t`Related article`}</h3>
           <blockquote className={classes.blockquote}>
-            <ExpandableText wordCount={40}>
-              {/*
-                Don't need nl2br here, because the user just need a glimpse on the content.
-                Line breaks won't help the users.
-              */}
-              {linkify(article.text)}
-            </ExpandableText>
+            {article.attachmentUrl && (
+              <img
+                className={classes.attachmentImage}
+                src={article.attachmentUrl}
+                alt="image"
+              />
+            )}
+            {article.text && (
+              <ExpandableText wordCount={40}>
+                {/*
+                  Don't need nl2br here, because the user just need a glimpse on the content.
+                  Line breaks won't help the users.
+                */}
+                {linkify(article.text)}
+              </ExpandableText>
+            )}
           </blockquote>
         </section>
         <section>

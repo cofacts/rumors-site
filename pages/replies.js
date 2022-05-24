@@ -179,8 +179,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   attachmentImage: {
+    width: '100%',
     maxWidth: 336,
-    maxHeight: 500,
   },
 }));
 

@@ -44,6 +44,7 @@ const LOAD_REPLIED_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
+          attachmentUrl
           articleReplies(status: NORMAL) {
             replyId
             createdAt
@@ -110,6 +111,10 @@ const useStyles = makeStyles(theme => ({
   },
   reply: { marginLeft: 56 },
   replyControl: { marginTop: 16 },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 336,
+  },
 }));
 
 function ArticleReply({ articleReply }) {
@@ -255,7 +260,16 @@ function RepliedArticleTab({ userId }) {
                   {timeAgo => t`First reported ${timeAgo}`}
                 </TimeInfo>
               </Infos>
-              <ExpandableText lineClamp={3}>{article.text}</ExpandableText>
+              {article.attachmentUrl && (
+                <img
+                  className={classes.attachmentImage}
+                  src={article.attachmentUrl}
+                  alt="image"
+                />
+              )}
+              {article.text && (
+                <ExpandableText lineClamp={3}>{article.text}</ExpandableText>
+              )}
 
               <hr className={classes.bustHoaxDivider} />
 

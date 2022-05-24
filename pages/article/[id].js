@@ -106,8 +106,7 @@ const useStyles = makeStyles(theme => ({
   },
   attachmentImage: {
     width: '100%',
-    maxWidth: 800,
-    maxHeight: 800,
+    maxWidth: 600,
   },
 }));
 
@@ -355,7 +354,11 @@ function ArticlePage() {
             </header>
             <CardContent>
               {attachmentUrl && (
-                <a href={attachmentUrl}>
+                <a
+                  href={attachmentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className={classes.attachmentImage}
                     src={attachmentUrl}
