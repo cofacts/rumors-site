@@ -92,6 +92,10 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 0,
     },
   },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 336,
+  },
 }));
 
 function RepliedArticleInfo({ article }) {
@@ -142,9 +146,18 @@ export default function ReplySearchItem({
       <Box p={{ xs: 2, md: 4.5 }}>
         <RepliedArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
-          <ExpandableText className={classes.content} lineClamp={3}>
-            {nl2br(articleReply.article.text)}
-          </ExpandableText>
+          {articleReply.article.attachmentUrl && (
+            <img
+              className={classes.attachmentImage}
+              src={articleReply.article.attachmentUrl}
+              alt="image"
+            />
+          )}
+          {articleReply.article.text && (
+            <ExpandableText className={classes.content} lineClamp={3}>
+              {nl2br(articleReply.article.text)}
+            </ExpandableText>
+          )}
         </div>
         <Divider classes={{ root: classes.divider }} />
         <ReplyItem
@@ -181,12 +194,21 @@ export default function ReplySearchItem({
                     as={`/article/${article.id}`}
                     key={article.id}
                   >
-                    <a className={classes.otherArticleItem}>
+                    <div className={classes.otherArticleItem}>
                       <RepliedArticleInfo article={article} />
-                      <ExpandableText lineClamp={3}>
-                        {article.text}
-                      </ExpandableText>
-                    </a>
+                      {article.attachmentUrl && (
+                        <img
+                          className={classes.attachmentImage}
+                          src={article.attachmentUrl}
+                          alt="image"
+                        />
+                      )}
+                      {article.text && (
+                        <ExpandableText lineClamp={3}>
+                          {article.text}
+                        </ExpandableText>
+                      )}
+                    </div>
                   </Link>
                 ))}
             </DialogContent>
@@ -207,6 +229,7 @@ ReplySearchItem.fragments = {
         article {
           id
           text
+          attachmentUrl
           replyRequestCount
           createdAt
         }

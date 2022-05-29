@@ -44,6 +44,7 @@ const LIST_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
+          attachmentUrl
           articleReplies(status: NORMAL) {
             reply {
               id
@@ -177,6 +178,10 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 12,
     },
   },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 336,
+  },
 }));
 
 function ReplyListPage() {
@@ -255,8 +260,16 @@ function ReplyListPage() {
                     {timeAgo => t`First reported ${timeAgo}`}
                   </TimeInfo>
                 </Infos>
-                <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
-
+                {article.attachmentUrl && (
+                  <img
+                    className={classes.attachmentImage}
+                    src={article.attachmentUrl}
+                    alt="image"
+                  />
+                )}
+                {article.text && (
+                  <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
+                )}
                 <div
                   className={classes.bustHoaxDivider}
                   data-ga="Bust hoax button"

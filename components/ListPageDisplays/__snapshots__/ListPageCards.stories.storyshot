@@ -60,47 +60,51 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                 </div>
               </Infos>
               <div
-                className="makeStyles-flex"
+                className="makeStyles-textImageWrapper"
               >
                 <div
-                  className="makeStyles-infoBox"
-                >
-                  <div>
-                    <h2>
-                      3
-                    </h2>
-                    <span>
-                      replies
-                    </span>
-                  </div>
-                  <div>
-                    <h2>
-                      4
-                    </h2>
-                    <span>
-                      reports
-                    </span>
-                  </div>
-                </div>
-                <ExpandableText
-                  className="makeStyles-content"
-                  lineClamp={3}
+                  className="makeStyles-flex"
                 >
                   <div
-                    className="makeStyles-content"
+                    className="makeStyles-infoBox"
                   >
-                    <div
-                      className="makeStyles-root"
-                      style={
-                        Object {
-                          "maxHeight": 42,
-                        }
-                      }
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <div>
+                      <h2>
+                        3
+                      </h2>
+                      <span>
+                        replies
+                      </span>
+                    </div>
+                    <div>
+                      <h2>
+                        4
+                      </h2>
+                      <span>
+                        reports
+                      </span>
                     </div>
                   </div>
-                </ExpandableText>
+                  <ExpandableText
+                    className="makeStyles-content"
+                    lineClamp={3}
+                  >
+                    <div
+                      className="makeStyles-content"
+                    >
+                      <div
+                        className="makeStyles-root"
+                        style={
+                          Object {
+                            "maxHeight": 42,
+                          }
+                        }
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </div>
+                    </div>
+                  </ExpandableText>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -173,60 +177,45 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                 </div>
               </Infos>
               <div
-                className="makeStyles-flex"
+                className="makeStyles-textImageWrapper"
               >
                 <div
-                  className="makeStyles-infoBox"
-                >
-                  <div>
-                    <h2>
-                      0
-                    </h2>
-                    <span>
-                      replies
-                    </span>
-                  </div>
-                  <div>
-                    <h2>
-                      999
-                    </h2>
-                    <span>
-                      reports
-                    </span>
-                  </div>
-                </div>
-                <ExpandableText
-                  className="makeStyles-content"
-                  lineClamp={3}
+                  className="makeStyles-flex"
                 >
                   <div
+                    className="makeStyles-infoBox"
+                  >
+                    <div>
+                      <h2>
+                        0
+                      </h2>
+                      <span>
+                        replies
+                      </span>
+                    </div>
+                    <div>
+                      <h2>
+                        999
+                      </h2>
+                      <span>
+                        reports
+                      </span>
+                    </div>
+                  </div>
+                  <ExpandableText
                     className="makeStyles-content"
+                    lineClamp={3}
                   >
                     <div
-                      className="makeStyles-root"
-                      style={
-                        Object {
-                          "maxHeight": 42,
-                        }
-                      }
+                      className="makeStyles-content"
                     >
-                      <mark
-                        className="makeStyles-highlight"
-                        key="highlight-0"
-                      >
-                        Lorem ipsum
-                      </mark>
-                       dolor sit amet, consectetur adipiscing elit. 
-                      <mark
-                        className="makeStyles-highlight"
-                        key="highlight-1"
-                      >
-                        Mauris eu ex augue
-                      </mark>
-                      . Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
-                      <section
-                        className="makeStyles-hyperlinks"
-                        key="hyperlink-section-0"
+                      <div
+                        className="makeStyles-root"
+                        style={
+                          Object {
+                            "maxHeight": 42,
+                          }
+                        }
                       >
                         <mark
                           className="makeStyles-highlight"
@@ -234,18 +223,129 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         >
                           Lorem ipsum
                         </mark>
-                         dolor sit amet 
+                         dolor sit amet, consectetur adipiscing elit. 
                         <mark
                           className="makeStyles-highlight"
                           key="highlight-1"
                         >
                           Mauris eu ex augue
                         </mark>
-                        . Etiam posuere sagittis iaculis.
-                      </section>
+                        . Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+                        <section
+                          className="makeStyles-hyperlinks"
+                          key="hyperlink-section-0"
+                        >
+                          <mark
+                            className="makeStyles-highlight"
+                            key="highlight-0"
+                          >
+                            Lorem ipsum
+                          </mark>
+                           dolor sit amet 
+                          <mark
+                            className="makeStyles-highlight"
+                            key="highlight-1"
+                          >
+                            Mauris eu ex augue
+                          </mark>
+                          . Etiam posuere sagittis iaculis.
+                        </section>
+                      </div>
+                    </div>
+                  </ExpandableText>
+                </div>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+    <ArticleCard
+      article={
+        Object {
+          "attachmentUrl": "https://placekitten.com/512/1000",
+          "createdAt": "2020-01-01T00:00:00Z",
+          "id": "id3",
+          "replyCount": 6,
+          "replyRequestCount": 4,
+        }
+      }
+    >
+      <Link
+        as="/article/id3"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id3"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    key=".0"
+                    time="2020-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="Jan 1, 2020, 12:00 AM"
+                    >
+                      <time
+                        aria-describedby={null}
+                        className=""
+                        dateTime="2020-01-01T00:00:00.000Z"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Jan 1, 2020, 12:00 AM"
+                      >
+                        First reported now
+                      </time>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-textImageWrapper"
+              >
+                <div
+                  className="makeStyles-flex"
+                >
+                  <div
+                    className="makeStyles-infoBox"
+                  >
+                    <div>
+                      <h2>
+                        6
+                      </h2>
+                      <span>
+                        replies
+                      </span>
+                    </div>
+                    <div>
+                      <h2>
+                        4
+                      </h2>
+                      <span>
+                        reports
+                      </span>
                     </div>
                   </div>
-                </ExpandableText>
+                </div>
+                <img
+                  alt="image"
+                  className="makeStyles-attachmentImage"
+                  src="https://placekitten.com/512/1000"
+                />
               </div>
             </article>
           </ListPageCard>

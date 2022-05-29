@@ -104,6 +104,10 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     borderRadius: theme.shape.borderRadius,
   },
+  attachmentImage: {
+    width: '100%',
+    maxWidth: 600,
+  },
 }));
 
 const LOAD_ARTICLE = gql`
@@ -116,6 +120,7 @@ const LOAD_ARTICLE = gql`
     GetArticle(id: $id) {
       id
       text
+      attachmentUrl
       requestedForReply
       replyRequestCount
       replyCount
@@ -301,7 +306,13 @@ function ArticlePage() {
     );
   }
 
-  const { replyRequestCount, text, hyperlinks, replyCount } = article;
+  const {
+    replyRequestCount,
+    text,
+    attachmentUrl,
+    hyperlinks,
+    replyCount,
+  } = article;
   const similarArticles = article?.similarArticles?.edges || [];
   // get a set of similar category in array
   const similarCategories = article?.similarArticles?.edges?.reduce(
@@ -342,13 +353,27 @@ function ArticlePage() {
               </Infos>
             </header>
             <CardContent>
-              {nl2br(
-                linkify(text, {
-                  props: {
-                    target: '_blank',
-                  },
-                })
+              {attachmentUrl && (
+                <a
+                  href={attachmentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className={classes.attachmentImage}
+                    src={attachmentUrl}
+                    alt="image"
+                  />
+                </a>
               )}
+              {text &&
+                nl2br(
+                  linkify(text, {
+                    props: {
+                      target: '_blank',
+                    },
+                  })
+                )}
               <Hyperlinks hyperlinks={hyperlinks} />
               <Box my={[1.5, 2]}>
                 <ArticleCategories

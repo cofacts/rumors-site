@@ -42,6 +42,7 @@ const LIST_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
+          attachmentUrl
           ...ArticleCard
         }
         highlight {

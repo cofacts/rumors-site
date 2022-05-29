@@ -85,7 +85,7 @@ function WonderCallEmbed() {
         >
           <Fab
             size="small"
-            variant="round"
+            variant="circular"
             aria-label="WonderCall"
             data-ga="WonderCall"
             className={classes.root}
