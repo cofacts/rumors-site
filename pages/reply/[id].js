@@ -74,7 +74,7 @@ const LOAD_REPLY = gql`
         article {
           id
           text
-          attachmentUrl
+          attachmentUrl(variant: PREVIEW)
           replyCount
         }
         createdAt

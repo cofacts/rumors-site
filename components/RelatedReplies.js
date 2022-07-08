@@ -51,8 +51,8 @@ const useStyles = makeStyles(theme => ({
     padding: 12,
   },
   attachmentImage: {
-    width: '100%',
-    maxWidth: 120,
+    maxWidth: '100%',
+    maxHeight: '10em', // 10 lines height
   },
 }));
 
@@ -80,7 +80,7 @@ const RelatedArticleReplyData = gql`
     article {
       id
       text
-      attachmentUrl
+      attachmentUrl(variant: THUMBNAIL)
     }
   }
 `;

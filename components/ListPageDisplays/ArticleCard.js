@@ -85,14 +85,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary[500],
   },
   attachmentImage: {
-    width: '100%',
-    maxWidth: 336,
-    marginTop: 16,
-  },
-  textImageWrapper: {
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+    minWidth: 0, // Don't use intrinsic image width as flex item min-size
+    maxHeight: '10em', // Don't let image rows take too much vertical space
   },
 }));
 
@@ -142,14 +136,14 @@ function ArticleCard({ article, highlight = '' }) {
                     : text}
                 </ExpandableText>
               )}
+              {attachmentUrl && (
+                <img
+                  className={classes.attachmentImage}
+                  src={attachmentUrl}
+                  alt="image"
+                />
+              )}
             </div>
-            {attachmentUrl && (
-              <img
-                className={classes.attachmentImage}
-                src={attachmentUrl}
-                alt="image"
-              />
-            )}
           </div>
         </ListPageCard>
       </a>
@@ -162,7 +156,7 @@ ArticleCard.fragments = {
     fragment ArticleCard on Article {
       id
       text
-      attachmentUrl
+      attachmentUrl(variant: THUMBNAIL)
       replyCount
       replyRequestCount
       createdAt
