@@ -65,5 +65,14 @@ export const ArticleCards = () => (
         createdAt: '2020-01-01T00:00:00Z',
       }}
     />
+    <ArticleCard
+      article={{
+        id: 'id3',
+        attachmentUrl: 'https://placekitten.com/2000/150',
+        replyCount: 4,
+        replyRequestCount: 6,
+        createdAt: '2020-01-01T00:00:00Z',
+      }}
+    />
   </ListPageCards>
 );
