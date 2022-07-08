@@ -117,33 +117,31 @@ function ArticleCard({ article, highlight = '' }) {
               {timeAgo => t`First reported ${timeAgo}`}
             </TimeInfo>
           </Infos>
-          <div className={classes.textImageWrapper}>
-            <div className={classes.flex}>
-              <div className={classes.infoBox}>
-                <div>
-                  <h2>{+replyCount}</h2>
-                  <span>{c('Info box').t`replies`}</span>
-                </div>
-                <div>
-                  <h2>{+replyRequestCount}</h2>
-                  <span>{c('Info box').t`reports`}</span>
-                </div>
+          <div className={classes.flex}>
+            <div className={classes.infoBox}>
+              <div>
+                <h2>{+replyCount}</h2>
+                <span>{c('Info box').t`replies`}</span>
               </div>
-              {(text || highlight) && (
-                <ExpandableText className={classes.content} lineClamp={3}>
-                  {highlight
-                    ? highlightSections(highlight, highlightClasses)
-                    : text}
-                </ExpandableText>
-              )}
-              {attachmentUrl && (
-                <img
-                  className={classes.attachmentImage}
-                  src={attachmentUrl}
-                  alt="image"
-                />
-              )}
+              <div>
+                <h2>{+replyRequestCount}</h2>
+                <span>{c('Info box').t`reports`}</span>
+              </div>
             </div>
+            {(text || highlight) && (
+              <ExpandableText className={classes.content} lineClamp={3}>
+                {highlight
+                  ? highlightSections(highlight, highlightClasses)
+                  : text}
+              </ExpandableText>
+            )}
+            {attachmentUrl && (
+              <img
+                className={classes.attachmentImage}
+                src={attachmentUrl}
+                alt="image"
+              />
+            )}
           </div>
         </ListPageCard>
       </a>
