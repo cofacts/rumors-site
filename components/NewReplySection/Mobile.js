@@ -69,6 +69,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  attachmentImage: { maxWidth: '100%' },
 }));
 
 const CustomSelectInput = withStyles(theme => ({
@@ -176,7 +177,7 @@ export default function Mobile({
           </Tabs>
           <Box display="flex" flexDirection="column" flexGrow={1}>
             {selectedTab === 0 && (
-              <Box p={3.5}>
+              <Box p={2}>
                 {nl2br(
                   linkify(article.text, {
                     props: {
@@ -185,6 +186,11 @@ export default function Mobile({
                   })
                 )}
                 <Hyperlinks hyperlinks={article.hyperlinks} />
+                <img
+                  className={classes.attachmentImage}
+                  src={article.attachmentUrl}
+                  alt="image"
+                />
               </Box>
             )}
             {selectedTab === 1 && (
