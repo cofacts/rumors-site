@@ -25,7 +25,11 @@ import ReplyInfo from 'components/ReplyInfo';
 import { nl2br, linkify } from 'lib/text';
 
 const REPLIES_ORDER = [
-  { value: 'lastRepliedAt', label: t`Most recently replied` },
+  {
+    value: 'lastMatchingArticleReplyCreatedAt',
+    label: t`Most recently replied`,
+  },
+  { value: 'lastRepliedAt', label: t`Most recently replied by any users` },
   { value: 'lastRequestedAt', label: t`Most recently asked` },
   { value: 'replyRequestCount', label: t`Most asked` },
 ];
@@ -159,12 +163,12 @@ function ArticleReply({ articleReply }) {
 
 /**
  * @param {object} urlQuery - URL query object and urserId
+ * @param {string} userId - The author ID of article reply to look for
  * @returns {object} ListArticleFilter
  */
-function urlQuery2Filter(query = {}) {
+function urlQuery2Filter(query = {}, userId) {
   const filterObj = {
-    // Default filters
-    replyCount: { GTE: 1 },
+    articleReply: { userId },
   };
 
   const selectedCategoryIds = CategoryFilter.getValues(query);
@@ -173,19 +177,21 @@ function urlQuery2Filter(query = {}) {
   const [start, end] = TimeRange.getValues(query);
 
   if (start) {
-    filterObj.repliedAt = { ...filterObj.repliedAt, GTE: start };
+    filterObj.articleReply.createdAt = {
+      ...filterObj.articleReply.createdAt,
+      GTE: start,
+    };
   }
   if (end) {
-    filterObj.repliedAt = { ...filterObj.repliedAt, LTE: end };
+    filterObj.articleReply.createdAt = {
+      ...filterObj.articleReply.createdAt,
+      LTE: end,
+    };
   }
 
   const selectedReplyTypes = ReplyTypeFilter.getValues(query);
-  if (selectedReplyTypes.length) filterObj.replyTypes = selectedReplyTypes;
-
-  // Return filterObj only when it is populated.
-  if (!Object.keys(filterObj).length) {
-    return undefined;
-  }
+  if (selectedReplyTypes.length)
+    filterObj.articleReply.replyTypes = selectedReplyTypes;
 
   return filterObj;
 }
@@ -195,10 +201,7 @@ function RepliedArticleTab({ userId }) {
   const { query } = useRouter();
 
   const listQueryVars = {
-    filter: {
-      ...urlQuery2Filter(query),
-      articleRepliesFrom: { userId, exists: true },
-    },
+    filter: urlQuery2Filter(query, userId),
     orderBy: [{ [SortInput.getValue(query) || DEFAULT_ORDER]: 'DESC' }],
   };
 
