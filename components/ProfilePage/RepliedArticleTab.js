@@ -13,7 +13,7 @@ import {
   SortInput,
   LoadMore,
 } from 'components/ListPageControls';
-import { CardContent } from 'components/Card';
+import { CardHeader, CardContent } from 'components/Card';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import ExpandableText from 'components/ExpandableText';
@@ -78,6 +78,7 @@ const LOAD_REPLIED_ARTICLES_STAT = gql`
     $orderBy: [ListArticleOrderBy]
   ) {
     ListArticles(filter: $filter, orderBy: $orderBy) {
+      totalCount
       ...LoadMoreConnectionForStats
     }
   }
@@ -223,6 +224,7 @@ function RepliedArticleTab({ userId }) {
   // List data
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
+  const totalCount = statsData?.totalCount;
 
   if (!userId) {
     return null;
@@ -238,14 +240,21 @@ function RepliedArticleTab({ userId }) {
         <ReplyTypeFilter />
         <CategoryFilter />
       </Filters>
-      {loading && !articleEdges.length ? (
+      {loading && !totalCount ? (
         <CardContent>{t`Loading...`}</CardContent>
       ) : listArticlesError ? (
         <CardContent>{listArticlesError.toString()}</CardContent>
-      ) : articleEdges.length === 0 ? (
+      ) : totalCount === 0 ? (
         <CardContent>{t`No replied messages.`}</CardContent>
       ) : (
         <>
+          <CardHeader>
+            {ngettext(
+              msgid`${totalCount} message matching criteria`,
+              `${totalCount} messages matching criteria`,
+              totalCount
+            )}
+          </CardHeader>
           {articleEdges.map(({ node: article }) => (
             <CardContent key={article.id}>
               <Infos className={classes.infos}>
