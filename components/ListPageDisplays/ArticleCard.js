@@ -85,14 +85,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary[500],
   },
   attachmentImage: {
-    width: '100%',
-    maxWidth: 336,
-    marginTop: 16,
-  },
-  textImageWrapper: {
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+    minWidth: 0, // Don't use intrinsic image width as flex item min-size
+    maxHeight: '10em', // Don't let image rows take too much vertical space
   },
 }));
 
@@ -123,26 +117,24 @@ function ArticleCard({ article, highlight = '' }) {
               {timeAgo => t`First reported ${timeAgo}`}
             </TimeInfo>
           </Infos>
-          <div className={classes.textImageWrapper}>
-            <div className={classes.flex}>
-              <div className={classes.infoBox}>
-                <div>
-                  <h2>{+replyCount}</h2>
-                  <span>{c('Info box').t`replies`}</span>
-                </div>
-                <div>
-                  <h2>{+replyRequestCount}</h2>
-                  <span>{c('Info box').t`reports`}</span>
-                </div>
+          <div className={classes.flex}>
+            <div className={classes.infoBox}>
+              <div>
+                <h2>{+replyCount}</h2>
+                <span>{c('Info box').t`replies`}</span>
               </div>
-              {(text || highlight) && (
-                <ExpandableText className={classes.content} lineClamp={3}>
-                  {highlight
-                    ? highlightSections(highlight, highlightClasses)
-                    : text}
-                </ExpandableText>
-              )}
+              <div>
+                <h2>{+replyRequestCount}</h2>
+                <span>{c('Info box').t`reports`}</span>
+              </div>
             </div>
+            {(text || highlight) && (
+              <ExpandableText className={classes.content} lineClamp={3}>
+                {highlight
+                  ? highlightSections(highlight, highlightClasses)
+                  : text}
+              </ExpandableText>
+            )}
             {attachmentUrl && (
               <img
                 className={classes.attachmentImage}
@@ -162,7 +154,7 @@ ArticleCard.fragments = {
     fragment ArticleCard on Article {
       id
       text
-      attachmentUrl
+      attachmentUrl(variant: THUMBNAIL)
       replyCount
       replyRequestCount
       createdAt

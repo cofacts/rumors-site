@@ -5,6 +5,10 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'grid',
     gridRowGap: 12,
+    // Unset min-sizing behavior of all gird items
+    // so that wide contents don't blow up the grid
+    // Ref: https://css-tricks.com/preventing-a-grid-blowout/
+    gridTemplateColumns: 'minmax(0, 1fr)',
   },
 }));
 

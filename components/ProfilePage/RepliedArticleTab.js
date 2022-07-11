@@ -44,7 +44,7 @@ const LOAD_REPLIED_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
-          attachmentUrl
+          attachmentUrl(variant: THUMBNAIL)
           articleReplies(status: NORMAL) {
             replyId
             createdAt
@@ -112,8 +112,8 @@ const useStyles = makeStyles(theme => ({
   reply: { marginLeft: 56 },
   replyControl: { marginTop: 16 },
   attachmentImage: {
-    width: '100%',
-    maxWidth: 336,
+    maxWidth: '100%',
+    maxHeight: '8em', // So that image don't take too much space (more than replies)
   },
 }));
 

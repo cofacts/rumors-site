@@ -120,7 +120,8 @@ const LOAD_ARTICLE = gql`
     GetArticle(id: $id) {
       id
       text
-      attachmentUrl
+      attachmentUrl(variant: PREVIEW)
+      originalAttachmentUrl: attachmentUrl(variant: ORIGINAL)
       requestedForReply
       replyRequestCount
       replyCount
@@ -180,6 +181,7 @@ const LOAD_ARTICLE_FOR_USER = gql`
   ) {
     GetArticle(id: $id) {
       id # Required, https://github.com/apollographql/apollo-client/issues/2510
+      originalAttachmentUrl: attachmentUrl(variant: ORIGINAL)
       replyRequests(statuses: $replyRequestStatuses) {
         ...ReplyRequestInfoForUser
       }
@@ -310,6 +312,7 @@ function ArticlePage() {
     replyRequestCount,
     text,
     attachmentUrl,
+    originalAttachmentUrl,
     hyperlinks,
     replyCount,
   } = article;
@@ -353,19 +356,26 @@ function ArticlePage() {
               </Infos>
             </header>
             <CardContent>
-              {attachmentUrl && (
-                <a
-                  href={attachmentUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              {attachmentUrl &&
+                (!originalAttachmentUrl ? (
                   <img
                     className={classes.attachmentImage}
                     src={attachmentUrl}
                     alt="image"
                   />
-                </a>
-              )}
+                ) : (
+                  <a
+                    href={originalAttachmentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      className={classes.attachmentImage}
+                      src={attachmentUrl}
+                      alt="image"
+                    />
+                  </a>
+                ))}
               {text &&
                 nl2br(
                   linkify(text, {
