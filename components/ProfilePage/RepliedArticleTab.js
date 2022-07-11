@@ -29,7 +29,7 @@ const REPLIES_ORDER = [
     value: 'lastMatchingArticleReplyCreatedAt',
     label: t`Most recently replied`,
   },
-  { value: 'lastRepliedAt', label: t`Most recently replied by any users` },
+  { value: 'lastRepliedAt', label: t`Most recently replied by any user` },
   { value: 'lastRequestedAt', label: t`Most recently asked` },
   { value: 'replyRequestCount', label: t`Most asked` },
 ];
