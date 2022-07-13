@@ -13,7 +13,7 @@ import {
   SortInput,
   LoadMore,
 } from 'components/ListPageControls';
-import { CardContent } from 'components/Card';
+import { CardHeader, CardContent } from 'components/Card';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import ExpandableText from 'components/ExpandableText';
@@ -25,7 +25,11 @@ import ReplyInfo from 'components/ReplyInfo';
 import { nl2br, linkify } from 'lib/text';
 
 const REPLIES_ORDER = [
-  { value: 'lastRepliedAt', label: t`Most recently replied` },
+  {
+    value: 'lastMatchingArticleReplyCreatedAt',
+    label: t`Most recently replied`,
+  },
+  { value: 'lastRepliedAt', label: t`Most recently replied by any user` },
   { value: 'lastRequestedAt', label: t`Most recently asked` },
   { value: 'replyRequestCount', label: t`Most asked` },
 ];
@@ -78,6 +82,7 @@ const LOAD_REPLIED_ARTICLES_STAT = gql`
     $orderBy: [ListArticleOrderBy]
   ) {
     ListArticles(filter: $filter, orderBy: $orderBy) {
+      totalCount
       ...LoadMoreConnectionForStats
     }
   }
@@ -158,12 +163,12 @@ function ArticleReply({ articleReply }) {
 
 /**
  * @param {object} urlQuery - URL query object and urserId
+ * @param {string} userId - The author ID of article reply to look for
  * @returns {object} ListArticleFilter
  */
-function urlQuery2Filter(query = {}) {
+function urlQuery2Filter(query = {}, userId) {
   const filterObj = {
-    // Default filters
-    replyCount: { GTE: 1 },
+    articleReply: { userId },
   };
 
   const selectedCategoryIds = CategoryFilter.getValues(query);
@@ -172,19 +177,21 @@ function urlQuery2Filter(query = {}) {
   const [start, end] = TimeRange.getValues(query);
 
   if (start) {
-    filterObj.repliedAt = { ...filterObj.repliedAt, GTE: start };
+    filterObj.articleReply.createdAt = {
+      ...filterObj.articleReply.createdAt,
+      GTE: start,
+    };
   }
   if (end) {
-    filterObj.repliedAt = { ...filterObj.repliedAt, LTE: end };
+    filterObj.articleReply.createdAt = {
+      ...filterObj.articleReply.createdAt,
+      LTE: end,
+    };
   }
 
   const selectedReplyTypes = ReplyTypeFilter.getValues(query);
-  if (selectedReplyTypes.length) filterObj.replyTypes = selectedReplyTypes;
-
-  // Return filterObj only when it is populated.
-  if (!Object.keys(filterObj).length) {
-    return undefined;
-  }
+  if (selectedReplyTypes.length)
+    filterObj.articleReply.replyTypes = selectedReplyTypes;
 
   return filterObj;
 }
@@ -194,10 +201,7 @@ function RepliedArticleTab({ userId }) {
   const { query } = useRouter();
 
   const listQueryVars = {
-    filter: {
-      ...urlQuery2Filter(query),
-      articleRepliesFrom: { userId, exists: true },
-    },
+    filter: urlQuery2Filter(query, userId),
     orderBy: [{ [SortInput.getValue(query) || DEFAULT_ORDER]: 'DESC' }],
   };
 
@@ -223,6 +227,7 @@ function RepliedArticleTab({ userId }) {
   // List data
   const articleEdges = listArticlesData?.ListArticles?.edges || [];
   const statsData = listStatData?.ListArticles || {};
+  const totalCount = statsData?.totalCount;
 
   if (!userId) {
     return null;
@@ -238,14 +243,21 @@ function RepliedArticleTab({ userId }) {
         <ReplyTypeFilter />
         <CategoryFilter />
       </Filters>
-      {loading && !articleEdges.length ? (
+      {loading && !totalCount ? (
         <CardContent>{t`Loading...`}</CardContent>
       ) : listArticlesError ? (
         <CardContent>{listArticlesError.toString()}</CardContent>
-      ) : articleEdges.length === 0 ? (
+      ) : totalCount === 0 ? (
         <CardContent>{t`No replied messages.`}</CardContent>
       ) : (
         <>
+          <CardHeader>
+            {ngettext(
+              msgid`${totalCount} message matching criteria`,
+              `${totalCount} messages matching criteria`,
+              totalCount
+            )}
+          </CardHeader>
           {articleEdges.map(({ node: article }) => (
             <CardContent key={article.id}>
               <Infos className={classes.infos}>

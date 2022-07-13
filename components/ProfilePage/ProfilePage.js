@@ -162,12 +162,7 @@ function ProfilePage({ id, slug }) {
               router.push({ query: { tab } });
             }}
           >
-            <Tab
-              value="replies"
-              label={`${t`Replied messages`} ${
-                contributionData?.repliedArticles?.totalCount
-              }`}
-            />
+            <Tab value="replies" label={t`Replied messages`} />
           </Tabs>
           {contentElem}
         </Card>
