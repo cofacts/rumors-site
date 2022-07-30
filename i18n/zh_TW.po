@@ -27,8 +27,8 @@ msgstr "取消"
 
 #: components/AppLayout/AppHeader.js:332
 #: components/AppLayout/AppSidebar.js:92
-#: components/LandingPage/Header.js:261
-#: components/LandingPage/Header.js:311
+#: components/LandingPage/Header.js:246
+#: components/LandingPage/Header.js:296
 msgid "Login"
 msgstr "登入"
 
@@ -318,7 +318,7 @@ msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
 #: components/AppLayout/AppFooter.js:102
-#: components/LandingPage/Header.js:230
+#: components/LandingPage/Header.js:215
 #: components/SearchPageJumbotron.js:130
 msgid "Messages"
 msgstr "可疑訊息"
@@ -669,33 +669,33 @@ msgstr "我認為"
 msgid "Unmark"
 msgstr "取消標注"
 
-#: components/LineChart.js:338
+#: components/LineChart.js:349
 msgid "Web Visit"
 msgstr "網頁瀏覽"
 
-#: components/LineChart.js:340
+#: components/LineChart.js:351
 msgid "Line Inquiry"
 msgstr "Line 詢問"
 
-#: components/TrendPlot.js:131
+#: components/TrendPlot.js:162
 #, javascript-format
 msgid "Web Visit: ${ totalWebVisits }"
 msgstr "網頁瀏覽 ${ totalWebVisits } 次"
 
-#: components/TrendPlot.js:139
+#: components/TrendPlot.js:170
 #, javascript-format
 msgid "Web: ${ totalWebVisits }"
 msgstr "瀏覽 ${ totalWebVisits } 次"
 
-#: components/TrendPlot.js:134
+#: components/TrendPlot.js:165
 msgid "Line Inquery: ${ totalLineVisits }"
 msgstr "Line 詢問 ${ totalLineVisits } 次"
 
-#: components/TrendPlot.js:142
+#: components/TrendPlot.js:173
 msgid "Line: ${ totalLineVisits }"
 msgstr "詢問 ${ totalLineVisits } 次"
 
-#: components/TrendPlot.js:146
+#: components/TrendPlot.js:177
 #, javascript-format
 msgid "Total Visit: ${ totalVisits }"
 msgstr "${ totalVisits } 次瀏覽"
@@ -769,7 +769,7 @@ msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
-#: components/TrendPlot.js:128
+#: components/TrendPlot.js:159
 msgid "Past 31 days"
 msgstr "近 31 日"
 
@@ -953,6 +953,7 @@ msgid "Edit"
 msgstr "編輯"
 
 #: components/ProfilePage/UserPageHeader.js:224
+#: components/TrendPlot.js:106
 msgid "Cofacts chatbot"
 msgstr "Cofacts 真的假的聊天機器人"
 
@@ -2399,6 +2400,18 @@ msgstr[0] "${ totalCount } 則符合篩選條件的訊息"
 msgid "Report abuse"
 msgstr "檢舉違規內容"
 
+#: components/TrendPlot.js:135
+msgid "Auntie Meiyu"
+msgstr "Gogolook 美玉姨"
+
+#: components/TrendPlot.js:137
+msgid "Dr.Message"
+msgstr "趨勢科技防詐達人"
+
+#: components/TrendPlot.js:139
+msgid "Unknown"
+msgstr "未知"
+
 #: pages/index.js:29
 msgctxt "site title"
 msgid "Cofacts"
@@ -2424,7 +2437,7 @@ msgctxt "Tutorial"
 msgid "I'd Review"
 msgstr "我想確認謠言"
 
-#: components/LineChart.js:221
+#: components/LineChart.js:233
 #, javascript-format
 msgctxt "LineChart"
 msgid "${ visit } time"
@@ -2468,30 +2481,30 @@ msgid "Custom"
 msgstr "自訂範圍"
 
 #: components/AppLayout/AppHeader.js:150
-#: components/LandingPage/Header.js:279
+#: components/LandingPage/Header.js:264
 msgctxt "App layout"
 msgid "Messages"
 msgstr "可疑訊息"
 
 #: components/AppLayout/AppFooter.js:104
 #: components/AppLayout/AppHeader.js:157
-#: components/LandingPage/Header.js:233
-#: components/LandingPage/Header.js:284
+#: components/LandingPage/Header.js:218
+#: components/LandingPage/Header.js:269
 msgctxt "App layout"
 msgid "Replies"
 msgstr "最新查核"
 
 #: components/AppLayout/AppFooter.js:107
 #: components/AppLayout/AppHeader.js:169
-#: components/LandingPage/Header.js:237
-#: components/LandingPage/Header.js:289
+#: components/LandingPage/Header.js:222
+#: components/LandingPage/Header.js:274
 msgctxt "App layout"
 msgid "For You"
 msgstr "等你來答"
 
 #: components/AppLayout/AppFooter.js:110
 #: components/AppLayout/AppHeader.js:178
-#: components/LandingPage/Header.js:241
+#: components/LandingPage/Header.js:226
 msgctxt "App layout"
 msgid "Tutorial"
 msgstr "使用教學"
