@@ -160,6 +160,11 @@ const LOAD_ARTICLE = gql`
         date
         webVisit
         lineVisit
+        liffVisit
+        liff {
+          source
+          visit
+        }
       }
     }
   }
