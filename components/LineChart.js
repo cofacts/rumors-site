@@ -2,6 +2,7 @@ import { c, t, msgid } from 'ttag';
 import { max, curveMonotoneX, scaleTime, scaleLinear, line } from 'd3';
 import { startOfDay } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
+import { formatNumber } from 'lib/text';
 
 const useStyles = makeStyles(theme => ({
   lineChartContainer: {
@@ -75,22 +76,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: '12px',
       lineHeight: '20px',
       padding: '5px 10px',
-      textAlign: 'center',
       whiteSpace: 'nowrap',
       position: 'absolute',
-
-      '& .tooltip-title': {
-        borderBottom: `1px solid ${theme.palette.secondary[400]}`,
-        color: 'white',
-      },
-      '& .tooltip-text': {
-        color: 'white',
-        margin: 0,
-      },
-      '& .tooltip-subtitle': {
-        color: theme.palette.secondary[300],
-        margin: 0,
-      },
 
       '&.left': {
         left: '40px',
@@ -98,6 +85,30 @@ const useStyles = makeStyles(theme => ({
       '&.right': {
         right: '40px',
       },
+    },
+  },
+
+  tooltipTitle: {
+    borderBottom: `1px solid ${theme.palette.secondary[400]}`,
+    color: 'white',
+    textAlign: 'center',
+  },
+  tooltipBody: {
+    display: 'grid',
+    gap: '0 8px',
+    gridTemplateColumns: 'auto auto',
+    margin: 0,
+
+    '& > dt': {
+      color: 'white',
+    },
+    '& > dt.breakdown': {
+      color: theme.palette.secondary[200],
+    },
+    '& > dd': {
+      color: theme.palette.secondary[300],
+      margin: 0,
+      textAlign: 'right',
     },
   },
 }));
@@ -217,12 +228,10 @@ function plotTicks({ scale, x, y, text, roundFn, tickNum, gridline }) {
   ));
 }
 
-const getVisitText = visitNum =>
-  c('LineChart').ngettext(
-    msgid`${visitNum} time`,
-    `${visitNum} times`,
-    visitNum
-  );
+const getVisitText = visitNum => {
+  const visit = formatNumber(visitNum);
+  return c('LineChart').ngettext(msgid`${visit} time`, `${visit} times`, visit);
+};
 
 export default function LineChart({ dataset, width, margin }) {
   const classes = useStyles();
@@ -333,13 +342,21 @@ export default function LineChart({ dataset, width, margin }) {
             <div
               className={`tooltip ${i < dataset.length / 2 ? 'left' : 'right'}`}
             >
-              <div className="tooltip-title">{formatDate(d.date, true)}</div>
-              <div className="tooltip-body">
-                <p className="tooltip-subtitle">{t`Web Visit`}</p>
-                <p className="tooltip-text">{getVisitText(d.webVisit)}</p>
-                <p className="tooltip-subtitle">{t`Line Inquiry`}</p>
-                <p className="tooltip-text">{getVisitText(d.lineVisit)}</p>
+              <div className={classes.tooltipTitle}>
+                {formatDate(d.date, true)}
               </div>
+              <dl className={classes.tooltipBody}>
+                <dt>{t`Web Visit`}</dt>
+                <dd>{getVisitText(d.webVisit)}</dd>
+                <dt>{t`Line Inquiry`}</dt>
+                <dd>{getVisitText(d.lineVisit)}</dd>
+                {(d.lineBreakdown ?? []).map(({ source, visit }) => (
+                  <>
+                    <dt className="breakdown">- {source}</dt>
+                    <dd>{getVisitText(visit)}</dd>
+                  </>
+                ))}
+              </dl>
             </div>
           </div>
         ))}

@@ -834,34 +834,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/7
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               277 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               5 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -906,34 +898,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/8
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
-              2969 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dt>
+            <dd>
+              2,969 times
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               29 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -978,34 +962,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/9
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
-              14865 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dt>
+            <dd>
+              14,865 times
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               84 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1050,34 +1026,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/10
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
-              18923 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dt>
+            <dd>
+              18,923 times
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               71 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1122,34 +1090,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/11
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
-              8213 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dt>
+            <dd>
+              8,213 times
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               44 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1194,34 +1154,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/12
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
-              2981 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dt>
+            <dd>
+              2,981 times
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               29 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1266,34 +1218,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/13
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               927 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               24 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1338,34 +1282,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/14
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               366 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               6 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1410,34 +1346,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/15
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               360 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               6 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1482,34 +1410,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/16
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               434 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               8 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1554,34 +1474,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/17
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               227 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               13 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1626,34 +1538,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/18
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               78 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               2 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1698,34 +1602,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/19
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               92 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               2 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1770,34 +1666,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/20
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               50 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               2 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1842,34 +1730,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/21
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               50 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1914,34 +1794,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip left"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/22
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               42 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -1986,34 +1858,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/23
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               55 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2058,34 +1922,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/24
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               45 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2130,34 +1986,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/25
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               36 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2202,34 +2050,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/26
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               36 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2274,34 +2114,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/27
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               18 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2346,34 +2178,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/28
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               18 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               2 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2418,34 +2242,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/29
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               19 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2490,34 +2306,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/30
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               19 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2562,34 +2370,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/7/31
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               1 time
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2634,34 +2434,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/8/1
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               6 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2706,34 +2498,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/8/2
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               3 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2778,34 +2562,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/8/3
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               6 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2850,34 +2626,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/8/4
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               4 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2922,34 +2690,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/8/5
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               6 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
       <div
@@ -2994,34 +2754,26 @@ exports[`Storyshots LineChart Normal 1`] = `
           className="tooltip right"
         >
           <div
-            className="tooltip-title"
+            className="makeStyles-tooltipTitle"
           >
             2020/8/6
           </div>
-          <div
-            className="tooltip-body"
+          <dl
+            className="makeStyles-tooltipBody"
           >
-            <p
-              className="tooltip-subtitle"
-            >
+            <dt>
               Web Visit
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-            <p
-              className="tooltip-subtitle"
-            >
+            </dd>
+            <dt>
               Line Inquiry
-            </p>
-            <p
-              className="tooltip-text"
-            >
+            </dt>
+            <dd>
               0 times
-            </p>
-          </div>
+            </dd>
+          </dl>
         </div>
       </div>
     </div>

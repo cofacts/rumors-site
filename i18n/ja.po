@@ -987,9 +987,9 @@ msgstr "Cofacts デマ探偵隊"
 #: components/LineChart.js:221
 #, javascript-format
 msgctxt "LineChart"
-msgid "${ visitNum } time"
-msgid_plural "${ visitNum } times"
-msgstr[0] "${ visitNum } 回"
+msgid "${ visit } time"
+msgid_plural "${ visit } times"
+msgstr[0] "${ visit } 回"
 
 #: components/NewReplySection/Mobile.js:170
 msgctxt "Mobile editor tab"

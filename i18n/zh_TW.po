@@ -2427,10 +2427,10 @@ msgstr "我想確認謠言"
 #: components/LineChart.js:221
 #, javascript-format
 msgctxt "LineChart"
-msgid "${ visitNum } time"
-msgid_plural "${ visitNum } times"
-msgstr[0] "${ visitNum } 次"
-msgstr[1] "${ visitNum } 次"
+msgid "${ visit } time"
+msgid_plural "${ visit } times"
+msgstr[0] "${ visit } 次"
+msgstr[1] "${ visit } 次"
 
 #: components/ReportPage/SectionHowToUse.js:134
 msgctxt "impact"
