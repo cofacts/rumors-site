@@ -15,7 +15,8 @@
     "i18n:extract": "ttag update i18n/zh_TW.po ./components ./pages ./constants ./lib",
     "i18n:validate": "ttag validate i18n/zh_TW.po",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
