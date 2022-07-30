@@ -10,6 +10,11 @@ const COOKIE_KEY = 'isUserBlocked';
 const COOKIE_TRUE_VALUE = '1';
 const isUserBlockedContext = React.createContext(false);
 
+type Props = {
+  serverSideCookie?: object;
+  children: React.ReactNode;
+}
+
 /**
  * The context provider for decendents to read if the current browser belongs to a blocked user.
  * It reads from an independent cookie so that it remains true even after the blocked user is logged
@@ -19,7 +24,7 @@ const isUserBlockedContext = React.createContext(false);
  * @param {Object?} props.serverSideCookie - the cookie from server side, set by _document.js
  * @returns {React.Provider<boolean>}
  */
-export function IsUserBlockedProvider({ serverSideCookie, children }) {
+export function IsUserBlockedProvider({ serverSideCookie, children }: Props): React.ReactElement {
   const { Provider } = isUserBlockedContext;
   const cookieValue = serverSideCookie
     ? serverSideCookie[COOKIE_KEY]

@@ -16,7 +16,11 @@ import WonderCallEmbed from '../components/WonderCallEmbed';
 // https://nextjs.org/docs/basic-features/built-in-css-support
 import '../components/app.css';
 
-class MyApp extends App {
+type CofactsServerSideProps = {
+  serverSideCookie?: object;
+};
+
+class MyApp extends App<CofactsServerSideProps> {
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
