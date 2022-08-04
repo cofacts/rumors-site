@@ -1,4 +1,4 @@
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { useState } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { makeStyles } from '@material-ui/core/styles';
@@ -103,7 +103,7 @@ const populateChartData = data => {
       const lineVisit = (d.lineVisit ?? 0) + (d.liffVisit ?? 0);
       const lineBreakdown = [
         {
-          source: t`Cofacts chatbot`,
+          source: c('TrendPlot').t`Cofacts`,
           visit: d.lineVisit ?? 0,
         },
         ...(d.liff ?? []).map(liff => ({
@@ -132,11 +132,11 @@ const populateChartData = data => {
 function translateSource(source) {
   switch (source) {
     case 'meiyu':
-      return t`Auntie Meiyu`;
+      return c('TrendPlot').t`Auntie Meiyu`;
     case 'tmcheck':
-      return t`Dr.Message`;
+      return c('TrendPlot').t`Dr.Message`;
     default:
-      return t`Unknown`;
+      return c('TrendPlot').t`Unknown`;
   }
 }
 

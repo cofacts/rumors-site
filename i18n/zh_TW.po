@@ -12,7 +12,7 @@ msgid "About"
 msgstr "關於"
 
 #: components/ReportPage/SectionEcosystem.js:175
-#: pages/article/[id].js:338
+#: pages/article/[id].js:343
 #: pages/reply/[id].js:209
 #: pages/reply/[id].js:238
 msgid "Cofacts"
@@ -141,7 +141,7 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/article/[id].js:248
+#: pages/article/[id].js:253
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
@@ -235,14 +235,14 @@ msgid ""
 msgstr "一起來幫網路上的可疑訊息寫查核回應、共同教導聊天機器人回話，將多元的闢謠資訊傳遞給在 LINE 上收到謠言的人。"
 
 #: components/ProfilePage/ProfilePage.js:98
-#: pages/article/[id].js:285
-#: pages/article/[id].js:289
+#: pages/article/[id].js:290
+#: pages/article/[id].js:294
 #: pages/reply/[id].js:169
 #: pages/reply/[id].js:173
 msgid "Loading"
 msgstr "載入中"
 
-#: pages/article/[id].js:300
+#: pages/article/[id].js:305
 #: pages/reply/[id].js:184
 msgid "Not found"
 msgstr "找不到此頁面"
@@ -251,7 +251,7 @@ msgstr "找不到此頁面"
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages/article/[id].js:304
+#: pages/article/[id].js:309
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
@@ -483,17 +483,17 @@ msgstr[0] "被回報 ${ replyRequestCount } 次"
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages/article/[id].js:346
+#: pages/article/[id].js:351
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:483
+#: pages/article/[id].js:488
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages/article/[id].js:502
+#: pages/article/[id].js:507
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
@@ -757,15 +757,15 @@ msgstr "目標網站有 HTTPS 錯誤"
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: pages/article/[id].js:452
+#: pages/article/[id].js:457
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
 msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
 msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
-#: pages/article/[id].js:476
-#: pages/article/[id].js:512
+#: pages/article/[id].js:481
+#: pages/article/[id].js:517
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
@@ -875,7 +875,7 @@ msgstr "原始碼"
 msgid "Contact"
 msgstr "聯繫"
 
-#: pages/article/[id].js:467
+#: pages/article/[id].js:472
 #: pages/reply/[id].js:317
 msgid "The content above"
 msgstr "以上內容"
@@ -953,7 +953,6 @@ msgid "Edit"
 msgstr "編輯"
 
 #: components/ProfilePage/UserPageHeader.js:224
-#: components/TrendPlot.js:106
 msgid "Cofacts chatbot"
 msgstr "Cofacts 真的假的聊天機器人"
 
@@ -2297,7 +2296,7 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 #: components/ListPageDisplays/ArticleCard.js:117
 #: components/ListPageDisplays/ReplySearchItem.js:115
 #: components/ProfilePage/RepliedArticleTab.js:272
-#: pages/article/[id].js:354
+#: pages/article/[id].js:359
 #: pages/replies.js:260
 msgid "First reported ${ timeAgo }"
 msgstr "首次回報於 ${ timeAgo }"
@@ -2329,7 +2328,7 @@ msgid "In linked text"
 msgstr "所附網址的網頁內容"
 
 #: components/ArticleReply/ArticleReply.js:106
-#: pages/article/[id].js:270
+#: pages/article/[id].js:275
 #. t: terms subject
 msgid "This info"
 msgstr "此資訊"
@@ -2382,7 +2381,7 @@ msgid ""
 "the thumb-down button below each reply if you find it not good enough."
 msgstr "注意：這裏不是討論區！請針對上面的「可疑訊息」撰寫回覆，不要去回覆下面的查核回應。若只是想表達現有的查核回應不夠好，請使用該篇回應下方的「倒讚」按鈕。"
 
-#: pages/article/[id].js:402
+#: pages/article/[id].js:407
 msgid "Comments from people reporting this message"
 msgstr "網友回報補充"
 
@@ -2399,18 +2398,6 @@ msgstr[0] "${ totalCount } 則符合篩選條件的訊息"
 #: components/ActionMenu/ReportAbuseMenuItem.js:45
 msgid "Report abuse"
 msgstr "檢舉違規內容"
-
-#: components/TrendPlot.js:135
-msgid "Auntie Meiyu"
-msgstr "Gogolook 美玉姨"
-
-#: components/TrendPlot.js:137
-msgid "Dr.Message"
-msgstr "趨勢科技防詐達人"
-
-#: components/TrendPlot.js:139
-msgid "Unknown"
-msgstr "未知"
 
 #: pages/index.js:29
 msgctxt "site title"
@@ -2444,6 +2431,26 @@ msgid "${ visit } time"
 msgid_plural "${ visit } times"
 msgstr[0] "${ visit } 次"
 msgstr[1] "${ visit } 次"
+
+#: components/TrendPlot.js:106
+msgctxt "TrendPlot"
+msgid "Cofacts"
+msgstr "真的假的"
+
+#: components/TrendPlot.js:135
+msgctxt "TrendPlot"
+msgid "Auntie Meiyu"
+msgstr "美玉姨"
+
+#: components/TrendPlot.js:137
+msgctxt "TrendPlot"
+msgid "Dr.Message"
+msgstr "防詐達人"
+
+#: components/TrendPlot.js:139
+msgctxt "TrendPlot"
+msgid "Unknown"
+msgstr "未知來源"
 
 #: components/ReportPage/SectionHowToUse.js:134
 msgctxt "impact"
