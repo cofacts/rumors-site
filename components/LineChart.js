@@ -80,10 +80,16 @@ const useStyles = makeStyles(theme => ({
       position: 'absolute',
 
       '&.left': {
-        left: '40px',
+        left: '20px',
+        [theme.breakpoints.up('md')]: {
+          left: '40px',
+        },
       },
       '&.right': {
-        right: '40px',
+        right: '20px',
+        [theme.breakpoints.up('md')]: {
+          right: '40px',
+        },
       },
     },
   },
