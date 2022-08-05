@@ -1,4 +1,4 @@
-import { t } from 'ttag';
+import { c, t } from 'ttag';
 import { useState } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +14,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
+import { formatNumber } from 'lib/text';
 
 const CHART_DURATION = 31;
 
@@ -98,9 +99,19 @@ const populateChartData = data => {
           dataset
         );
       }
-      const webVisit = +d.webVisit || 0;
-      const lineVisit = +d.lineVisit || 0;
-      dataset.push({ date, webVisit, lineVisit });
+      const webVisit = d.webVisit ?? 0;
+      const lineVisit = (d.lineVisit ?? 0) + (d.liffVisit ?? 0);
+      const lineBreakdown = [
+        {
+          source: c('TrendPlot').t`Cofacts`,
+          visit: d.lineVisit ?? 0,
+        },
+        ...(d.liff ?? []).map(liff => ({
+          ...liff,
+          source: translateSource(liff.source),
+        })),
+      ].filter(({ visit }) => (visit ?? 0) > 0);
+      dataset.push({ date, webVisit, lineVisit, lineBreakdown });
       totalWebVisits += webVisit;
       totalLineVisits += lineVisit;
       lastProcessedDate = date;
@@ -115,12 +126,32 @@ const populateChartData = data => {
   return { dataset, totalLineVisits, totalWebVisits };
 };
 
+/**
+ * @param {string} source - AnalyticsLiffEntry.source
+ */
+function translateSource(source) {
+  switch (source) {
+    case 'meiyu':
+      return c('TrendPlot').t`Auntie Meiyu`;
+    case 'tmcheck':
+      return c('TrendPlot').t`Dr.Message`;
+    default:
+      return c('TrendPlot').t`Unknown`;
+  }
+}
+
 export default function TrendPlot({ data }) {
   const classes = useStyles();
   const [showPlot, setPlotShow] = useState(true);
 
-  const { dataset, totalLineVisits, totalWebVisits } = populateChartData(data);
-  const totalVisits = totalWebVisits + totalLineVisits;
+  const {
+    dataset,
+    totalLineVisits: totalLineVisitsNum,
+    totalWebVisits: totalWebVisitsNum,
+  } = populateChartData(data);
+  const totalLineVisits = formatNumber(totalLineVisitsNum);
+  const totalWebVisits = formatNumber(totalWebVisitsNum);
+  const totalVisits = formatNumber(totalLineVisitsNum + totalWebVisitsNum);
 
   return (
     <>
