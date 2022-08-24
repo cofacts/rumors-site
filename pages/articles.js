@@ -102,6 +102,10 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   const selectedReplyTypes = ReplyTypeFilter.getValues(query);
   if (selectedReplyTypes.length) filterObj.replyTypes = selectedReplyTypes;
 
+  // No UI for article types yet, so we read from `query` directly
+  const articleTypes = query.articleTypes ? query.articleTypes.split(',') : [];
+  if (articleTypes.length) filterObj.articleTypes = articleTypes;
+
   // Return filterObj only when it is populated.
   if (!Object.keys(filterObj).length) {
     return undefined;
