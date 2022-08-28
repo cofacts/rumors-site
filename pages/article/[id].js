@@ -30,6 +30,7 @@ import {
   SideSectionLinks,
   SideSectionLink,
   SideSectionText,
+  SideSectionImage,
 } from 'components/SideSection';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
@@ -145,6 +146,8 @@ const LOAD_ARTICLE = gql`
           node {
             id
             text
+            articleType
+            attachmentUrl(variant: THUMBNAIL)
             articleCategories {
               categoryId
             }
@@ -496,7 +499,11 @@ function ArticlePage() {
                   passHref
                 >
                   <SideSectionLink>
-                    <SideSectionText>{node.text}</SideSectionText>
+                    {node.articleType === 'IMAGE' ? (
+                      <SideSectionImage src={node.attachmentUrl} />
+                    ) : (
+                      <SideSectionText>{node.text}</SideSectionText>
+                    )}
                     <ArticleInfo className={classes.asideInfo} article={node} />
                   </SideSectionLink>
                 </Link>
