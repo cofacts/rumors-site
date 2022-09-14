@@ -108,7 +108,7 @@ const NEWS = {
     [
       '2018-08-01 Matters 在線問答',
       '假訊息糾察隊！這則消息是【真的假的】？',
-      'https://matters.news/forum/?post=5a5ea74a-ee6a-443b-84af-6be9fd8b0ac7',
+      'https://matters.news/@yingshinlee/1891',
     ],
     [
       '2018-05-30 遠見雜誌',
