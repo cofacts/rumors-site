@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
   highlight: {
     color: theme.palette.primary[500],
   },
-  attachmentImage: {
+  attachment: {
     minWidth: 0, // Don't use intrinsic image width as flex item min-size
     maxHeight: '10em', // Don't let image rows take too much vertical space
   },
@@ -100,6 +100,7 @@ function ArticleCard({ article, highlight = '' }) {
   const {
     id,
     text,
+    articleType,
     attachmentUrl,
     replyCount,
     replyRequestCount,
@@ -135,13 +136,36 @@ function ArticleCard({ article, highlight = '' }) {
                   : text}
               </ExpandableText>
             )}
-            {attachmentUrl && (
-              <img
-                className={classes.attachmentImage}
-                src={attachmentUrl}
-                alt="image"
-              />
-            )}
+            {(() => {
+              switch (articleType) {
+                case 'TEXT':
+                  return null;
+                case 'IMAGE':
+                  return (
+                    <img
+                      className={classes.attachment}
+                      src={attachmentUrl}
+                      alt="image"
+                    />
+                  );
+                case 'VIDEO':
+                  return attachmentUrl ? (
+                    <video
+                      className={classes.attachment}
+                      src={attachmentUrl}
+                      controls
+                    />
+                  ) : (
+                    t`A video` + ` (${t`Preview not supported yet`})`
+                  );
+                case 'AUDIO':
+                  return attachmentUrl ? (
+                    <audio src={attachmentUrl} controls />
+                  ) : (
+                    t`An audio` + ` (${t`Preview not supported yet`})`
+                  );
+              }
+            })()}
           </div>
         </ListPageCard>
       </a>
@@ -154,6 +178,7 @@ ArticleCard.fragments = {
     fragment ArticleCard on Article {
       id
       text
+      articleType
       attachmentUrl(variant: THUMBNAIL)
       replyCount
       replyRequestCount

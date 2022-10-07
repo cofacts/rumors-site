@@ -33,6 +33,7 @@ export const ArticleCards = () => (
         replyCount: 3,
         replyRequestCount: 4,
         createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'TEXT',
       }}
     />
     <ArticleCard
@@ -43,6 +44,7 @@ export const ArticleCards = () => (
         replyCount: 0,
         replyRequestCount: 999,
         createdAt: '2019-01-01T00:00:00Z',
+        articleType: 'TEXT',
       }}
       highlight={{
         text:
@@ -63,6 +65,7 @@ export const ArticleCards = () => (
         replyCount: 6,
         replyRequestCount: 4,
         createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'IMAGE',
       }}
     />
     <ArticleCard
@@ -72,6 +75,50 @@ export const ArticleCards = () => (
         replyCount: 4,
         replyRequestCount: 6,
         createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'IMAGE',
+      }}
+    />
+    <ArticleCard
+      article={{
+        id: 'id4',
+        attachmentUrl: null,
+        replyCount: 0,
+        replyRequestCount: 0,
+        createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'VIDEO',
+      }}
+    />
+    <ArticleCard
+      article={{
+        id: 'id5',
+        attachmentUrl:
+          'https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t',
+        replyCount: 0,
+        replyRequestCount: 0,
+        createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'VIDEO',
+      }}
+    />
+    <ArticleCard
+      article={{
+        id: 'id6',
+        attachmentUrl:
+          'https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t',
+        replyCount: 0,
+        replyRequestCount: 0,
+        createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'VIDEO',
+      }}
+    />
+    <ArticleCard
+      article={{
+        id: 'id6',
+        attachmentUrl:
+          'https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t',
+        replyCount: 0,
+        replyRequestCount: 0,
+        createdAt: '2020-01-01T00:00:00Z',
+        articleType: 'AUDIO',
       }}
     />
   </ListPageCards>
