@@ -4,6 +4,7 @@ import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Infos, { TimeInfo } from 'components/Infos';
 import ExpandableText from 'components/ExpandableText';
+import Thumbnail from 'components/Thumbnail';
 import ListPageCard from './ListPageCard';
 import { highlightSections } from 'lib/text';
 import { useHighlightStyles } from './utils';
@@ -97,15 +98,7 @@ const useStyles = makeStyles(theme => ({
  * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  */
 function ArticleCard({ article, highlight = '' }) {
-  const {
-    id,
-    text,
-    articleType,
-    attachmentUrl,
-    replyCount,
-    replyRequestCount,
-    createdAt,
-  } = article;
+  const { id, text, replyCount, replyRequestCount, createdAt } = article;
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
 
@@ -136,36 +129,7 @@ function ArticleCard({ article, highlight = '' }) {
                   : text}
               </ExpandableText>
             )}
-            {(() => {
-              switch (articleType) {
-                case 'TEXT':
-                  return null;
-                case 'IMAGE':
-                  return (
-                    <img
-                      className={classes.attachment}
-                      src={attachmentUrl}
-                      alt="image"
-                    />
-                  );
-                case 'VIDEO':
-                  return attachmentUrl ? (
-                    <video
-                      className={classes.attachment}
-                      src={attachmentUrl}
-                      controls
-                    />
-                  ) : (
-                    t`A video` + ` (${t`Preview not supported yet`})`
-                  );
-                case 'AUDIO':
-                  return attachmentUrl ? (
-                    <audio src={attachmentUrl} controls />
-                  ) : (
-                    t`An audio` + ` (${t`Preview not supported yet`})`
-                  );
-              }
-            })()}
+            <Thumbnail article={article} />
           </div>
         </ListPageCard>
       </a>
@@ -178,12 +142,12 @@ ArticleCard.fragments = {
     fragment ArticleCard on Article {
       id
       text
-      articleType
-      attachmentUrl(variant: THUMBNAIL)
       replyCount
       replyRequestCount
       createdAt
+      ...ThumbnailArticleData
     }
+    ${Thumbnail.fragments.ThumbnailArticleData}
   `,
   Highlight: highlightSections.fragments.HighlightFields,
 };

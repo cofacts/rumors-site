@@ -29,6 +29,7 @@ import {
 } from 'components/ListPageControls';
 import FeedDisplay from 'components/Subscribe/FeedDisplay';
 import AppLayout from 'components/AppLayout';
+import Thumbnail from 'components/Thumbnail';
 import withData from 'lib/apollo';
 
 const LIST_ARTICLES = gql`
@@ -44,7 +45,7 @@ const LIST_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
-          attachmentUrl(variant: THUMBNAIL)
+          ...ThumbnailArticleData
           articleReplies(status: NORMAL) {
             reply {
               id
@@ -59,6 +60,7 @@ const LIST_ARTICLES = gql`
   }
   ${ReplyItem.fragments.ReplyItem}
   ${ReplyItem.fragments.ReplyItemArticleReplyData}
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 const LIST_STAT = gql`
@@ -178,10 +180,6 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 12,
     },
   },
-  attachmentImage: {
-    maxWidth: '100%',
-    maxHeight: '8em', // So that image don't take too much space (more than replies)
-  },
 }));
 
 function ReplyListPage() {
@@ -260,13 +258,7 @@ function ReplyListPage() {
                     {timeAgo => t`First reported ${timeAgo}`}
                   </TimeInfo>
                 </Infos>
-                {article.attachmentUrl && (
-                  <img
-                    className={classes.attachmentImage}
-                    src={article.attachmentUrl}
-                    alt="image"
-                  />
-                )}
+                <Thumbnail article={article} />
                 {article.text && (
                   <ExpandableText lineClamp={2}>{article.text}</ExpandableText>
                 )}

@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-  attachmentImage: { maxWidth: '100%' },
+  attachment: { maxWidth: '100%' },
 }));
 
 const CustomSelectInput = withStyles(theme => ({
@@ -178,6 +178,31 @@ export default function Mobile({
           <Box display="flex" flexDirection="column" flexGrow={1}>
             {selectedTab === 0 && (
               <Box p={2}>
+                {(() => {
+                  switch (article.articleType) {
+                    case 'IMAGE':
+                      return (
+                        <img
+                          className={classes.attachment}
+                          src={article.attachmentUrl}
+                          alt="image"
+                        />
+                      );
+                    case 'VIDEO':
+                      return (
+                        <video
+                          className={classes.attachment}
+                          src={article.originalAttachmentUrl}
+                          controls
+                        />
+                      );
+                    case 'AUDIO':
+                      return (
+                        <audio src={article.originalAttachmentUrl} controls />
+                      );
+                  }
+                })()}
+
                 {nl2br(
                   linkify(article.text, {
                     props: {
@@ -186,11 +211,6 @@ export default function Mobile({
                   })
                 )}
                 <Hyperlinks hyperlinks={article.hyperlinks} />
-                <img
-                  className={classes.attachmentImage}
-                  src={article.attachmentUrl}
-                  alt="image"
-                />
               </Box>
             )}
             {selectedTab === 1 && (

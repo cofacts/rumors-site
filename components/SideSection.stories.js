@@ -6,7 +6,6 @@ import {
   SideSectionLinks,
   SideSectionLink,
   SideSectionText,
-  SideSectionImage,
 } from './SideSection';
 
 export default {
@@ -36,12 +35,6 @@ export const SideSectionStructure = () => (
             3 Side section 3 Side section 3 Side section 3 Side section 3 Side
             section 3 Side section 3 Side section 3 Side section 3{' '}
           </SideSectionText>
-        </SideSectionLink>
-        <SideSectionLink>
-          <SideSectionImage src="https://placekitten.com/300/200" />
-        </SideSectionLink>
-        <SideSectionLink>
-          <SideSectionImage src="https://placekitten.com/200/500" />
         </SideSectionLink>
       </SideSectionLinks>
     </SideSection>

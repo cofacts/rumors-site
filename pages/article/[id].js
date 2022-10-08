@@ -30,7 +30,6 @@ import {
   SideSectionLinks,
   SideSectionLink,
   SideSectionText,
-  SideSectionImage,
 } from 'components/SideSection';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
@@ -41,6 +40,7 @@ import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
+import Thumbnail from 'components/Thumbnail';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -109,6 +109,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     maxWidth: 600,
   },
+  asideAttachment: {
+    maxWidth: '100%',
+    maxHeight: '100px',
+    verticalAlign: 'bottom',
+  },
 }));
 
 const LOAD_ARTICLE = gql`
@@ -148,11 +153,11 @@ const LOAD_ARTICLE = gql`
             id
             text
             articleType
-            attachmentUrl(variant: THUMBNAIL)
             articleCategories {
               categoryId
             }
             ...ArticleInfo
+            ...ThumbnailArticleData
           }
         }
       }
@@ -179,6 +184,7 @@ const LOAD_ARTICLE = gql`
   ${ArticleCategories.fragments.ArticleCategoryData}
   ${ArticleCategories.fragments.AddCategoryDialogData}
   ${ArticleInfo.fragments.articleInfo}
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -521,8 +527,11 @@ function ArticlePage() {
                   passHref
                 >
                   <SideSectionLink>
-                    {node.articleType === 'IMAGE' ? (
-                      <SideSectionImage src={node.attachmentUrl} />
+                    {node.articleType !== 'TEXT' ? (
+                      <Thumbnail
+                        article={node}
+                        className={classes.asideAttachment}
+                      />
                     ) : (
                       <SideSectionText>{node.text}</SideSectionText>
                     )}

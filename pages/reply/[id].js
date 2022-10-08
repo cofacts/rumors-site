@@ -17,6 +17,7 @@ import getTermsString from 'lib/terms';
 import ExpandableText from 'components/ExpandableText';
 import AppLayout from 'components/AppLayout';
 import ArticleReply from 'components/ArticleReply';
+import Thumbnail from 'components/Thumbnail';
 import { Card, CardHeader, CardContent } from 'components/Card';
 import { ProfileTooltip } from 'components/ProfileLink';
 import Infos, { TimeInfo } from 'components/Infos';
@@ -58,10 +59,6 @@ const useStyles = makeStyles(theme => ({
   infos: {
     marginTop: 12,
   },
-  attachmentImage: {
-    width: '100%',
-    maxWidth: 600,
-  },
 }));
 
 const LOAD_REPLY = gql`
@@ -74,8 +71,8 @@ const LOAD_REPLY = gql`
         article {
           id
           text
-          attachmentUrl(variant: PREVIEW)
           replyCount
+          ...ThumbnailArticleData
         }
         createdAt
         status
@@ -99,6 +96,7 @@ const LOAD_REPLY = gql`
   }
   ${ArticleReply.fragments.ArticleReplyData}
   ${ProfileTooltip.fragments.ProfileTooltipUserData}
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 const LOAD_REPLY_FOR_USER = gql`
@@ -254,13 +252,7 @@ function ReplyPage() {
                 as={`/article/${originalArticleReply.article.id}`}
               >
                 <a className={classes.articleLink}>
-                  {originalArticleReply.article.attachmentUrl && (
-                    <img
-                      className={classes.attachmentImage}
-                      src={originalArticleReply.article.attachmentUrl}
-                      alt="image"
-                    />
-                  )}
+                  <Thumbnail article={originalArticleReply.article} />
                   {originalArticleReply.article.text && (
                     <ExpandableText lineClamp={5}>
                       {nl2br(originalArticleReply.article.text)}
@@ -285,13 +277,7 @@ function ReplyPage() {
                 <CardContent key={ar.article.id}>
                   <Link href="/article/[id]" as={`/article/${ar.article.id}`}>
                     <a className={classes.articleLink}>
-                      {ar.article.attachmentUrl && (
-                        <img
-                          className={classes.attachmentImage}
-                          src={ar.article.attachmentUrl}
-                          alt="image"
-                        />
-                      )}
+                      <Thumbnail article={ar.article} />
                       {ar.article.text && (
                         <ExpandableText>
                           {nl2br(ar.article.text)}
