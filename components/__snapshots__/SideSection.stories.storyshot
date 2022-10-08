@@ -60,34 +60,6 @@ exports[`Storyshots SideSection Side Section Structure 1`] = `
               </Component>
             </a>
           </Component>
-          <Component>
-            <a
-              className="Component-asideItem"
-            >
-              <Component
-                src="https://placekitten.com/300/200"
-              >
-                <img
-                  className="Component-asideImage"
-                  src="https://placekitten.com/300/200"
-                />
-              </Component>
-            </a>
-          </Component>
-          <Component>
-            <a
-              className="Component-asideItem"
-            >
-              <Component
-                src="https://placekitten.com/200/500"
-              >
-                <img
-                  className="Component-asideImage"
-                  src="https://placekitten.com/200/500"
-                />
-              </Component>
-            </a>
-          </Component>
         </div>
       </Component>
     </aside>

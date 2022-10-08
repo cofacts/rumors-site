@@ -21,9 +21,9 @@ function Thumbnail({ article, className }) {
   const classes = useStyles();
   const thumbnailCls = cx(classes.thumbnail, className);
 
-  switch (article.articleTypei) {
+  switch (article.articleType) {
     case 'IMAGE': {
-      const altText = ellipsis(article.text, { wordCount: 40 });
+      const altText = ellipsis(article.text ?? '', { wordCount: 40 });
       return (
         <img
           className={thumbnailCls}
@@ -36,7 +36,13 @@ function Thumbnail({ article, className }) {
       return !article.thumbnailUrl ? (
         t`A video` + ` (${t`Preview not supported yet`})`
       ) : (
-        <video className={thumbnailCls} src={article.thumbnailUrl} controls />
+        <video
+          className={thumbnailCls}
+          src={article.thumbnailUrl}
+          autoPlay
+          loop
+          muted
+        />
       );
     case 'AUDIO':
       return !article.thumbnailUrl ? (

@@ -102,6 +102,18 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </div>
                   </div>
                 </ExpandableText>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "TEXT",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id1",
+                      "replyCount": 3,
+                      "replyRequestCount": 4,
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    }
+                  }
+                />
               </div>
             </article>
           </ListPageCard>
@@ -248,6 +260,18 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </div>
                   </div>
                 </ExpandableText>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "TEXT",
+                      "createdAt": "2019-01-01T00:00:00Z",
+                      "id": "id2",
+                      "replyCount": 0,
+                      "replyRequestCount": 999,
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
+                    }
+                  }
+                />
               </div>
             </article>
           </ListPageCard>
@@ -258,11 +282,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
       article={
         Object {
           "articleType": "IMAGE",
-          "attachmentUrl": "https://placekitten.com/512/1000",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id3",
           "replyCount": 6,
           "replyRequestCount": 4,
+          "thumbnailUrl": "https://placekitten.com/512/1000",
         }
       }
     >
@@ -332,11 +356,24 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <img
-                  alt="image"
-                  className="makeStyles-attachment"
-                  src="https://placekitten.com/512/1000"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "IMAGE",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id3",
+                      "replyCount": 6,
+                      "replyRequestCount": 4,
+                      "thumbnailUrl": "https://placekitten.com/512/1000",
+                    }
+                  }
+                >
+                  <img
+                    alt=""
+                    className="makeStyles-thumbnail"
+                    src="https://placekitten.com/512/1000"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>
@@ -347,11 +384,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
       article={
         Object {
           "articleType": "IMAGE",
-          "attachmentUrl": "https://placekitten.com/2000/150",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id3",
           "replyCount": 4,
           "replyRequestCount": 6,
+          "thumbnailUrl": "https://placekitten.com/2000/150",
         }
       }
     >
@@ -421,11 +458,24 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <img
-                  alt="image"
-                  className="makeStyles-attachment"
-                  src="https://placekitten.com/2000/150"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "IMAGE",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id3",
+                      "replyCount": 4,
+                      "replyRequestCount": 6,
+                      "thumbnailUrl": "https://placekitten.com/2000/150",
+                    }
+                  }
+                >
+                  <img
+                    alt=""
+                    className="makeStyles-thumbnail"
+                    src="https://placekitten.com/2000/150"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>
@@ -436,11 +486,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
       article={
         Object {
           "articleType": "VIDEO",
-          "attachmentUrl": null,
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id4",
           "replyCount": 0,
           "replyRequestCount": 0,
+          "thumbnailUrl": null,
         }
       }
     >
@@ -510,7 +560,20 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                A video (Preview not supported yet)
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "VIDEO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id4",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": null,
+                    }
+                  }
+                >
+                  A video (Preview not supported yet)
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>
@@ -521,11 +584,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
       article={
         Object {
           "articleType": "VIDEO",
-          "attachmentUrl": "https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id5",
           "replyCount": 0,
           "replyRequestCount": 0,
+          "thumbnailUrl": "https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t",
         }
       }
     >
@@ -595,11 +658,26 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <video
-                  className="makeStyles-attachment"
-                  controls={true}
-                  src="https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "VIDEO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id5",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": "https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t",
+                    }
+                  }
+                >
+                  <video
+                    autoPlay={true}
+                    className="makeStyles-thumbnail"
+                    loop={true}
+                    muted={true}
+                    src="https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>
@@ -610,11 +688,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
       article={
         Object {
           "articleType": "VIDEO",
-          "attachmentUrl": "https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id6",
           "replyCount": 0,
           "replyRequestCount": 0,
+          "thumbnailUrl": "https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t",
         }
       }
     >
@@ -684,11 +762,26 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <video
-                  className="makeStyles-attachment"
-                  controls={true}
-                  src="https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "VIDEO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id6",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": "https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t",
+                    }
+                  }
+                >
+                  <video
+                    autoPlay={true}
+                    className="makeStyles-thumbnail"
+                    loop={true}
+                    muted={true}
+                    src="https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>
@@ -699,11 +792,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
       article={
         Object {
           "articleType": "AUDIO",
-          "attachmentUrl": "https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id6",
           "replyCount": 0,
           "replyRequestCount": 0,
+          "thumbnailUrl": "https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t",
         }
       }
     >
@@ -773,10 +866,23 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <audio
-                  controls={true}
-                  src="https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "AUDIO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id6",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": "https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t",
+                    }
+                  }
+                >
+                  <audio
+                    controls={true}
+                    src="https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>

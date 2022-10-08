@@ -61,7 +61,7 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id3',
-        attachmentUrl: 'https://placekitten.com/512/1000',
+        thumbnailUrl: 'https://placekitten.com/512/1000',
         replyCount: 6,
         replyRequestCount: 4,
         createdAt: '2020-01-01T00:00:00Z',
@@ -71,7 +71,7 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id3',
-        attachmentUrl: 'https://placekitten.com/2000/150',
+        thumbnailUrl: 'https://placekitten.com/2000/150',
         replyCount: 4,
         replyRequestCount: 6,
         createdAt: '2020-01-01T00:00:00Z',
@@ -81,7 +81,7 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id4',
-        attachmentUrl: null,
+        thumbnailUrl: null,
         replyCount: 0,
         replyRequestCount: 0,
         createdAt: '2020-01-01T00:00:00Z',
@@ -91,7 +91,7 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id5',
-        attachmentUrl:
+        thumbnailUrl:
           'https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t',
         replyCount: 0,
         replyRequestCount: 0,
@@ -102,7 +102,7 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id6',
-        attachmentUrl:
+        thumbnailUrl:
           'https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t',
         replyCount: 0,
         replyRequestCount: 0,
@@ -113,7 +113,7 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id6',
-        attachmentUrl:
+        thumbnailUrl:
           'https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t',
         replyCount: 0,
         replyRequestCount: 0,
