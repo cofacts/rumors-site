@@ -113,6 +113,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     }
                   }
+                  className="makeStyles-attachment"
                 />
               </div>
             </article>
@@ -271,6 +272,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
                     }
                   }
+                  className="makeStyles-attachment"
                 />
               </div>
             </article>
@@ -367,10 +369,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "thumbnailUrl": "https://placekitten.com/512/1000",
                     }
                   }
+                  className="makeStyles-attachment"
                 >
                   <img
                     alt=""
-                    className="makeStyles-thumbnail"
+                    className="makeStyles-thumbnail makeStyles-attachment"
                     src="https://placekitten.com/512/1000"
                   />
                 </Thumbnail>
@@ -469,10 +472,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "thumbnailUrl": "https://placekitten.com/2000/150",
                     }
                   }
+                  className="makeStyles-attachment"
                 >
                   <img
                     alt=""
-                    className="makeStyles-thumbnail"
+                    className="makeStyles-thumbnail makeStyles-attachment"
                     src="https://placekitten.com/2000/150"
                   />
                 </Thumbnail>
@@ -571,6 +575,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "thumbnailUrl": null,
                     }
                   }
+                  className="makeStyles-attachment"
                 >
                   A video (Preview not supported yet)
                 </Thumbnail>
@@ -669,10 +674,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "thumbnailUrl": "https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t",
                     }
                   }
+                  className="makeStyles-attachment"
                 >
                   <video
                     autoPlay={true}
-                    className="makeStyles-thumbnail"
+                    className="makeStyles-thumbnail makeStyles-attachment"
                     loop={true}
                     muted={true}
                     src="https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t"
@@ -773,10 +779,11 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "thumbnailUrl": "https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t",
                     }
                   }
+                  className="makeStyles-attachment"
                 >
                   <video
                     autoPlay={true}
-                    className="makeStyles-thumbnail"
+                    className="makeStyles-thumbnail makeStyles-attachment"
                     loop={true}
                     muted={true}
                     src="https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t"
@@ -877,6 +884,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                       "thumbnailUrl": "https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t",
                     }
                   }
+                  className="makeStyles-attachment"
                 >
                   <audio
                     controls={true}

@@ -129,7 +129,7 @@ function ArticleCard({ article, highlight = '' }) {
                   : text}
               </ExpandableText>
             )}
-            <Thumbnail article={article} />
+            <Thumbnail article={article} className={classes.attachment} />
           </div>
         </ListPageCard>
       </a>
