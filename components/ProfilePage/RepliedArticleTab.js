@@ -49,7 +49,7 @@ const LOAD_REPLIED_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
-          attachmentUrl(variant: THUMBNAIL)
+          ...ThumbnailArticleData
           articleReplies(status: NORMAL) {
             replyId
             createdAt
@@ -75,6 +75,7 @@ const LOAD_REPLIED_ARTICLES = gql`
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
   ${ArticleReplySummary.fragments.ArticleReplySummaryData}
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 const LOAD_REPLIED_ARTICLES_STAT = gql`
