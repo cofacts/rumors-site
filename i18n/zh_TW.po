@@ -12,9 +12,9 @@ msgid "About"
 msgstr "關於"
 
 #: components/ReportPage/SectionEcosystem.js:175
-#: pages/article/[id].js:343
-#: pages/reply/[id].js:209
-#: pages/reply/[id].js:238
+#: pages/article/[id].js:354
+#: pages/reply/[id].js:207
+#: pages/reply/[id].js:236
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
 
@@ -51,21 +51,21 @@ msgstr[0] "${ replyCount } 份回應"
 msgid "Sort by"
 msgstr "排序方式"
 
-#: components/ProfilePage/RepliedArticleTab.js:33
-#: pages/articles.js:162
-#: pages/replies.js:137
+#: components/ProfilePage/RepliedArticleTab.js:35
+#: pages/articles.js:166
+#: pages/replies.js:143
 msgid "Most recently asked"
 msgstr "最近被查詢"
 
-#: components/ProfilePage/RepliedArticleTab.js:30
-#: pages/articles.js:164
-#: pages/replies.js:136
+#: components/ProfilePage/RepliedArticleTab.js:32
+#: pages/articles.js:168
+#: pages/replies.js:142
 msgid "Most recently replied"
 msgstr "最近被回應"
 
-#: components/ProfilePage/RepliedArticleTab.js:34
-#: pages/articles.js:163
-#: pages/replies.js:138
+#: components/ProfilePage/RepliedArticleTab.js:36
+#: pages/articles.js:167
+#: pages/replies.js:144
 msgid "Most asked"
 msgstr "最多人詢問"
 
@@ -141,7 +141,7 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/article/[id].js:253
+#: pages/article/[id].js:263
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
@@ -191,13 +191,13 @@ msgstr "Facebook"
 msgid "Tutorial"
 msgstr "使用教學"
 
-#: pages/reply/[id].js:215
-#: pages/reply/[id].js:244
+#: pages/reply/[id].js:213
+#: pages/reply/[id].js:242
 msgid "This reply"
 msgstr "本篇回應"
 
 #: pages/api/articles/[feed].js:174
-#: pages/reply/[id].js:280
+#: pages/reply/[id].js:272
 msgid "someone"
 msgstr "有人"
 
@@ -235,27 +235,27 @@ msgid ""
 msgstr "一起來幫網路上的可疑訊息寫查核回應、共同教導聊天機器人回話，將多元的闢謠資訊傳遞給在 LINE 上收到謠言的人。"
 
 #: components/ProfilePage/ProfilePage.js:98
-#: pages/article/[id].js:290
-#: pages/article/[id].js:294
-#: pages/reply/[id].js:169
-#: pages/reply/[id].js:173
+#: pages/article/[id].js:300
+#: pages/article/[id].js:304
+#: pages/reply/[id].js:167
+#: pages/reply/[id].js:171
 msgid "Loading"
 msgstr "載入中"
 
-#: pages/article/[id].js:305
-#: pages/reply/[id].js:184
+#: pages/article/[id].js:315
+#: pages/reply/[id].js:182
 msgid "Not found"
 msgstr "找不到此頁面"
 
-#: pages/reply/[id].js:188
+#: pages/reply/[id].js:186
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages/article/[id].js:309
+#: pages/article/[id].js:319
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
-#: pages/reply/[id].js:302
+#: pages/reply/[id].js:288
 #, javascript-format
 msgid "Added by ${ editorElem }"
 msgstr "${editorElem} 加的"
@@ -313,7 +313,7 @@ msgstr "含有正確訊息"
 msgid "contains misinformation"
 msgstr "含有錯誤訊息"
 
-#: pages/replies.js:278
+#: pages/replies.js:275
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
@@ -363,8 +363,8 @@ msgstr "查看更多"
 msgid "Hoax for you"
 msgstr "等你來答"
 
-#: pages/replies.js:224
-#: pages/replies.js:227
+#: pages/replies.js:226
+#: pages/replies.js:229
 msgid "Latest replies"
 msgstr "最新查核"
 
@@ -430,8 +430,8 @@ msgstr "在 可疑訊息"
 msgid "in Replies"
 msgstr "在 最新查核"
 
-#: pages/articles.js:151
-#: pages/articles.js:153
+#: pages/articles.js:155
+#: pages/articles.js:157
 msgid "Dubious Messages"
 msgstr "可疑訊息"
 
@@ -444,10 +444,10 @@ msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
 
 #: components/LandingPage/SectionArticles.js:153
-#: components/ProfilePage/RepliedArticleTab.js:247
-#: pages/articles.js:176
+#: components/ProfilePage/RepliedArticleTab.js:250
+#: pages/articles.js:181
 #: pages/hoax-for-you.js:133
-#: pages/replies.js:243
+#: pages/replies.js:246
 #: pages/search.js:181
 #: pages/search.js:258
 msgid "Loading..."
@@ -483,33 +483,33 @@ msgstr[0] "被回報 ${ replyRequestCount } 次"
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages/article/[id].js:351
+#: pages/article/[id].js:362
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:488
+#: pages/article/[id].js:519
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages/article/[id].js:507
+#: pages/article/[id].js:545
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
-#: components/RelatedReplies.js:103
+#: components/RelatedReplies.js:105
 msgid "View in new tab"
 msgstr "新分頁查看原文"
 
-#: components/RelatedReplies.js:112
+#: components/RelatedReplies.js:114
 msgid "Message below was considered"
 msgstr "以下訊息被標示為"
 
-#: components/RelatedReplies.js:116
+#: components/RelatedReplies.js:118
 msgid "Related article"
 msgstr "相關訊息原文"
 
-#: components/RelatedReplies.js:137
+#: components/RelatedReplies.js:133
 msgid "Related reply"
 msgstr "查核回應"
 
@@ -538,7 +538,7 @@ msgid "Related messages and replies"
 msgstr "相關可疑訊息及回應"
 
 #: components/NewReplySection/Desktop.js:124
-#: components/NewReplySection/Mobile.js:240
+#: components/NewReplySection/Mobile.js:260
 msgid "Use this reply"
 msgstr "直接用此回應"
 
@@ -564,17 +564,17 @@ msgid ""
 "LINE."
 msgstr "多個來源用斷行分開，會幫助 Line 的使用者更好閱讀 "
 
-#: components/ListPageDisplays/ReplySearchItem.js:176
+#: components/ListPageDisplays/ReplySearchItem.js:167
 #, javascript-format
 msgid "This reply is also used in ${ replyCount } other message"
 msgid_plural "This reply is also used in ${ replyCount } other messages"
 msgstr[0] "此查核回應曾經被用於 ${ replyCount } 個可疑訊息"
 
-#: components/ListPageDisplays/ReplySearchItem.js:182
+#: components/ListPageDisplays/ReplySearchItem.js:173
 msgid "view"
 msgstr "查看"
 
-#: components/ListPageDisplays/ReplySearchItem.js:187
+#: components/ListPageDisplays/ReplySearchItem.js:178
 msgid "This reply is used in following messages"
 msgstr "此查核回應尚被用於以下的可疑訊息"
 
@@ -669,11 +669,11 @@ msgstr "我認為"
 msgid "Unmark"
 msgstr "取消標注"
 
-#: components/LineChart.js:349
+#: components/LineChart.js:355
 msgid "Web Visit"
 msgstr "網頁瀏覽"
 
-#: components/LineChart.js:351
+#: components/LineChart.js:357
 msgid "Line Inquiry"
 msgstr "Line 詢問"
 
@@ -700,40 +700,40 @@ msgstr "詢問 ${ totalLineVisits } 次"
 msgid "Total Visit: ${ totalVisits }"
 msgstr "${ totalVisits } 次瀏覽"
 
-#: components/ListPageDisplays/ReplySearchItem.js:106
-#: components/ProfilePage/RepliedArticleTab.js:265
-#: pages/replies.js:253
+#: components/ListPageDisplays/ReplySearchItem.js:103
+#: components/ProfilePage/RepliedArticleTab.js:268
+#: pages/replies.js:256
 #, javascript-format
 msgid "${ article.replyRequestCount } occurrence"
 msgid_plural "${ article.replyRequestCount } occurrences"
 msgstr[0] "被回報 ${ article.replyRequestCount } 次"
 
-#: pages/reply/[id].js:127
+#: pages/reply/[id].js:125
 #, javascript-format
 msgid "${ otherCount } other reply"
 msgid_plural "${ otherCount } other replies"
 msgstr[0] ""
 msgstr[1] ""
 
-#: pages/reply/[id].js:250
+#: pages/reply/[id].js:248
 msgid "The reply is used in the following messages"
 msgstr "此查核回應尚被用於以下的可疑訊息"
 
-#: pages/reply/[id].js:270
+#: pages/reply/[id].js:262
 msgid "Deleted by its author"
 msgstr "此回應已被原作者刪除。"
 
-#: pages/reply/[id].js:321
+#: pages/reply/[id].js:307
 msgid "Similar replies"
 msgstr "相似回應"
 
-#: pages/reply/[id].js:334
+#: pages/reply/[id].js:320
 #, javascript-format
 msgid "Used in ${ node.articleReplies.length } message"
 msgid_plural "Used in ${ node.articleReplies.length } messages"
 msgstr[0] "此查核回應曾經被用於 ${ node.articleReplies.length } 個可疑訊息"
 
-#: pages/reply/[id].js:346
+#: pages/reply/[id].js:332
 msgid "No similar replies found"
 msgstr "沒有相似的回應"
 
@@ -757,15 +757,15 @@ msgstr "目標網站有 HTTPS 錯誤"
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: pages/article/[id].js:457
+#: pages/article/[id].js:488
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
 msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
 msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
-#: pages/article/[id].js:481
-#: pages/article/[id].js:517
+#: pages/article/[id].js:512
+#: pages/article/[id].js:555
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
@@ -875,8 +875,8 @@ msgstr "原始碼"
 msgid "Contact"
 msgstr "聯繫"
 
-#: pages/article/[id].js:472
-#: pages/reply/[id].js:317
+#: pages/article/[id].js:503
+#: pages/reply/[id].js:303
 msgid "The content above"
 msgstr "以上內容"
 
@@ -936,7 +936,7 @@ msgstr "此使用者不存在"
 msgid "Replied messages"
 msgstr "查核回應"
 
-#: components/ProfilePage/RepliedArticleTab.js:251
+#: components/ProfilePage/RepliedArticleTab.js:254
 msgid "No replied messages."
 msgstr "無查核回應"
 
@@ -2293,11 +2293,11 @@ msgid ""
 "to reverse harms to democracy and society caused by misinformation."
 msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
 
-#: components/ListPageDisplays/ArticleCard.js:117
-#: components/ListPageDisplays/ReplySearchItem.js:115
-#: components/ProfilePage/RepliedArticleTab.js:272
-#: pages/article/[id].js:359
-#: pages/replies.js:260
+#: components/ListPageDisplays/ArticleCard.js:111
+#: components/ListPageDisplays/ReplySearchItem.js:112
+#: components/ProfilePage/RepliedArticleTab.js:275
+#: pages/article/[id].js:370
+#: pages/replies.js:263
 msgid "First reported ${ timeAgo }"
 msgstr "首次回報於 ${ timeAgo }"
 
@@ -2328,7 +2328,7 @@ msgid "In linked text"
 msgstr "所附網址的網頁內容"
 
 #: components/ArticleReply/ArticleReply.js:106
-#: pages/article/[id].js:275
+#: pages/article/[id].js:285
 #. t: terms subject
 msgid "This info"
 msgstr "此資訊"
@@ -2381,15 +2381,15 @@ msgid ""
 "the thumb-down button below each reply if you find it not good enough."
 msgstr "注意：這裏不是討論區！請針對上面的「可疑訊息」撰寫回覆，不要去回覆下面的查核回應。若只是想表達現有的查核回應不夠好，請使用該篇回應下方的「倒讚」按鈕。"
 
-#: pages/article/[id].js:407
+#: pages/article/[id].js:438
 msgid "Comments from people reporting this message"
 msgstr "網友回報補充"
 
-#: components/ProfilePage/RepliedArticleTab.js:32
+#: components/ProfilePage/RepliedArticleTab.js:34
 msgid "Most recently replied by any user"
 msgstr "最近有人回應"
 
-#: components/ProfilePage/RepliedArticleTab.js:255
+#: components/ProfilePage/RepliedArticleTab.js:258
 #, javascript-format
 msgid "${ totalCount } message matching criteria"
 msgid_plural "${ totalCount } messages matching criteria"
@@ -2398,6 +2398,47 @@ msgstr[0] "${ totalCount } 則符合篩選條件的訊息"
 #: components/ActionMenu/ReportAbuseMenuItem.js:45
 msgid "Report abuse"
 msgstr "檢舉違規內容"
+
+#: pages/article/[id].js:399
+msgid "Log in to view video content"
+msgstr "登入以檢視影片內容"
+
+#: pages/article/[id].js:409
+msgid "Log in to view audio content"
+msgstr "登入以檢視錄音內容"
+
+#: components/Thumbnail.js:37
+msgid "A video"
+msgstr "影片一則"
+
+#: components/Thumbnail.js:37
+#: components/Thumbnail.js:49
+msgid "Preview not supported yet"
+msgstr "尚未支援預覽"
+
+#: components/Thumbnail.js:49
+msgid "An audio"
+msgstr "語音訊息一則"
+
+#: components/ListPageControls/ArticleTypeFilter.js:13
+msgid "Text"
+msgstr "文字"
+
+#: components/ListPageControls/ArticleTypeFilter.js:14
+msgid "Image"
+msgstr "圖片"
+
+#: components/ListPageControls/ArticleTypeFilter.js:15
+msgid "Video"
+msgstr "影片"
+
+#: components/ListPageControls/ArticleTypeFilter.js:16
+msgid "Audio"
+msgstr "語音訊息"
+
+#: components/ListPageControls/ArticleTypeFilter.js:33
+msgid "Format"
+msgstr "格式"
 
 #: pages/index.js:29
 msgctxt "site title"
@@ -2424,7 +2465,7 @@ msgctxt "Tutorial"
 msgid "I'd Review"
 msgstr "我想確認謠言"
 
-#: components/LineChart.js:233
+#: components/LineChart.js:239
 #, javascript-format
 msgctxt "LineChart"
 msgid "${ visit } time"
@@ -2467,12 +2508,12 @@ msgctxt "Mobile editor tab"
 msgid "Compose"
 msgstr "撰寫回應"
 
-#: components/ListPageDisplays/ArticleCard.js:124
+#: components/ListPageDisplays/ArticleCard.js:118
 msgctxt "Info box"
 msgid "replies"
 msgstr "回應"
 
-#: components/ListPageDisplays/ArticleCard.js:128
+#: components/ListPageDisplays/ArticleCard.js:122
 msgctxt "Info box"
 msgid "reports"
 msgstr "回報"
