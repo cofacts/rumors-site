@@ -44,6 +44,7 @@ const LOAD_USER_COMMENTS = gql`
           article {
             id
             replyRequestCount
+            replyCount
             createdAt
             text
             ...ThumbnailArticleData
@@ -192,6 +193,15 @@ function CommentTab({ userId }) {
                     </Link>
                   )}
                 </TimeInfo>
+                {article.replyCount > 0 && (
+                  <>
+                    {ngettext(
+                      msgid`${article.replyCount} reply`,
+                      `${article.replyCount} replies`,
+                      article.replyCount
+                    )}
+                  </>
+                )}
               </Infos>
               <Thumbnail article={article} />
               {article.text && (

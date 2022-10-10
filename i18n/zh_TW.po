@@ -444,7 +444,7 @@ msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
 
 #: components/LandingPage/SectionArticles.js:153
-#: components/ProfilePage/CommentTab.js:164
+#: components/ProfilePage/CommentTab.js:165
 #: components/ProfilePage/RepliedArticleTab.js:251
 #: pages/articles.js:181
 #: pages/hoax-for-you.js:133
@@ -702,7 +702,7 @@ msgid "Total Visit: ${ totalVisits }"
 msgstr "${ totalVisits } 次瀏覽"
 
 #: components/ListPageDisplays/ReplySearchItem.js:103
-#: components/ProfilePage/CommentTab.js:182
+#: components/ProfilePage/CommentTab.js:183
 #: components/ProfilePage/RepliedArticleTab.js:269
 #: pages/replies.js:256
 #, javascript-format
@@ -2297,7 +2297,7 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 
 #: components/ListPageDisplays/ArticleCard.js:111
 #: components/ListPageDisplays/ReplySearchItem.js:112
-#: components/ProfilePage/CommentTab.js:191
+#: components/ProfilePage/CommentTab.js:192
 #: components/ProfilePage/RepliedArticleTab.js:278
 #: pages/article/[id].js:370
 #: pages/replies.js:263
@@ -2447,13 +2447,13 @@ msgstr "格式"
 msgid "Commented at"
 msgstr "補充於"
 
-#: components/ProfilePage/CommentTab.js:168
+#: components/ProfilePage/CommentTab.js:169
 msgid ""
 "This user does not provide comments to any message in the specified date "
 "range."
 msgstr "這名使用者在指定日期範圍內沒有提供任何回報補充"
 
-#: components/ProfilePage/CommentTab.js:172
+#: components/ProfilePage/CommentTab.js:173
 #, javascript-format
 msgid "${ totalCount } comment matching criteria"
 msgid_plural "${ totalCount } comments matching criteria"
@@ -2466,6 +2466,11 @@ msgstr "回報補充"
 #: components/ProfilePage/Stats.js:61
 msgid "comments"
 msgstr "回報補充"
+
+#: components/ProfilePage/CommentTab.js:198
+msgid "${ article.replyCount } reply"
+msgid_plural "${ article.replyCount } replies"
+msgstr[0] "${ article.replyCount } 則回應"
 
 #: pages/index.js:29
 msgctxt "site title"
