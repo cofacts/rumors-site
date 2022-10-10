@@ -4,26 +4,13 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { t, ngettext, msgid } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Tools,
-  TimeRange,
-  SortInput,
-  LoadMore,
-} from 'components/ListPageControls';
+import { Tools, TimeRange, LoadMore } from 'components/ListPageControls';
 import { CardHeader, CardContent } from 'components/Card';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
 import ExpandableText from 'components/ExpandableText';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import Thumbnail from 'components/Thumbnail';
-
-const COMMENTS_ORDER = [
-  {
-    value: 'createdAt',
-    label: t`Commented at`,
-  },
-];
-const DEFAULT_ORDER = COMMENTS_ORDER[0].value;
 
 const LOAD_USER_COMMENTS = gql`
   query LoadUserComments(
@@ -124,7 +111,7 @@ function CommentTab({ userId }) {
 
   const listQueryVars = {
     filter: urlQuery2Filter(query, userId),
-    orderBy: [{ [SortInput.getValue(query) || DEFAULT_ORDER]: 'DESC' }],
+    orderBy: [{ createdAt: 'DESC' }],
   };
 
   const {
@@ -159,7 +146,6 @@ function CommentTab({ userId }) {
     <>
       <Tools className={classes.tools}>
         <TimeRange />
-        <SortInput defaultOrderBy={DEFAULT_ORDER} options={COMMENTS_ORDER} />
       </Tools>
       {loading && !totalCount ? (
         <CardContent>{t`Loading...`}</CardContent>
