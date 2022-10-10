@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     border: 0,
-    margin: '16px 0',
+    margin: '16px 0 0',
     borderBottom: `1px dashed ${theme.palette.secondary[100]}`,
   },
   infos: {
@@ -145,8 +145,8 @@ function CommentTab({ userId }) {
   });
 
   // List data
-  const commentEdges = listCommentsData?.ListReplyReqeusts?.edges || [];
-  const statsData = listStatData?.ListReplyReqeusts || {};
+  const commentEdges = listCommentsData?.ListReplyRequests?.edges || [];
+  const statsData = listStatData?.ListReplyRequests || {};
   const totalCount = statsData?.totalCount;
 
   if (!userId) {
@@ -164,7 +164,7 @@ function CommentTab({ userId }) {
       ) : listCommentsError ? (
         <CardContent>{listCommentsError.toString()}</CardContent>
       ) : totalCount === 0 ? (
-        <CardContent>{t`This user does not provide comments to any message.`}</CardContent>
+        <CardContent>{t`This user does not provide comments to any message in the specified date range.`}</CardContent>
       ) : (
         <>
           <CardHeader>
@@ -175,7 +175,7 @@ function CommentTab({ userId }) {
             )}
           </CardHeader>
           {commentEdges.map(({ node: { article, ...comment } }) => (
-            <CardContent key={comment.id}>
+            <CardContent key={comment.id} style={{ paddingBottom: 0 }}>
               <Infos className={classes.infos}>
                 <>
                   {ngettext(
