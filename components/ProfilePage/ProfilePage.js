@@ -64,6 +64,9 @@ const LOAD_CONTRIBUTION = gql`
     commentedReplies: ListArticleReplyFeedbacks(filter: { userId: $id }) {
       totalCount
     }
+    comments: ListReplyRequests(filter: { userId: $id }) {
+      totalCount
+    }
   }
 `;
 
@@ -76,6 +79,7 @@ function ProfilePage({ id, slug }) {
   const { data: contributionData } = useQuery(LOAD_CONTRIBUTION, {
     variables: { id: data?.GetUser?.id },
     skip: !data?.GetUser?.id,
+    ssr: false, // Speed up SSR
   });
 
   const isSelf = currentUser && data?.GetUser?.id === currentUser.id;
@@ -148,6 +152,7 @@ function ProfilePage({ id, slug }) {
           stats={{
             repliedArticles: contributionData?.repliedArticles?.totalCount,
             commentedReplies: contributionData?.commentedReplies?.totalCount,
+            comments: contributionData?.comments?.totalCount,
           }}
         />
         <ContributionChart

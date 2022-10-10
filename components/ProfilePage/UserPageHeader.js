@@ -179,7 +179,7 @@ const useStyles = makeStyles(theme => ({
  *
  * @param {object} props.user
  * @param {boolean} props.isSelf - If the current user is the one in `user` prop
- * @param {{repliedArticles: number, commentedReplies: number}} props.stats
+ * @param {{repliedArticles: number, commentedReplies: number, comments: number}} props.stats
  */
 function UserPageHeader({ user, isSelf, stats }) {
   const classes = useStyles();
