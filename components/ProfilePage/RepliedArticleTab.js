@@ -21,6 +21,7 @@ import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl'
 import ArticleReplySummary from 'components/ArticleReplySummary';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import ReplyInfo from 'components/ReplyInfo';
+import Thumbnail from 'components/Thumbnail';
 
 import { nl2br, linkify } from 'lib/text';
 
@@ -48,7 +49,7 @@ const LOAD_REPLIED_ARTICLES = gql`
           replyRequestCount
           createdAt
           text
-          attachmentUrl(variant: THUMBNAIL)
+          ...ThumbnailArticleData
           articleReplies(status: NORMAL) {
             replyId
             createdAt
@@ -74,6 +75,7 @@ const LOAD_REPLIED_ARTICLES = gql`
   ${ReplyInfo.fragments.replyInfo}
   ${Avatar.fragments.AvatarData}
   ${ArticleReplySummary.fragments.ArticleReplySummaryData}
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 const LOAD_REPLIED_ARTICLES_STAT = gql`
@@ -116,10 +118,6 @@ const useStyles = makeStyles(theme => ({
   },
   reply: { marginLeft: 56 },
   replyControl: { marginTop: 16 },
-  attachmentImage: {
-    maxWidth: '100%',
-    maxHeight: '8em', // So that image don't take too much space (more than replies)
-  },
 }));
 
 function ArticleReply({ articleReply }) {
@@ -272,13 +270,7 @@ function RepliedArticleTab({ userId }) {
                   {timeAgo => t`First reported ${timeAgo}`}
                 </TimeInfo>
               </Infos>
-              {article.attachmentUrl && (
-                <img
-                  className={classes.attachmentImage}
-                  src={article.attachmentUrl}
-                  alt="image"
-                />
-              )}
+              <Thumbnail article={article} />
               {article.text && (
                 <ExpandableText lineClamp={3}>{article.text}</ExpandableText>
               )}

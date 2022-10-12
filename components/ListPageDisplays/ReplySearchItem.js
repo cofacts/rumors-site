@@ -13,6 +13,7 @@ import {
 import ExpandableText from 'components/ExpandableText';
 import Infos from 'components/Infos';
 import TimeInfo from 'components/Infos/TimeInfo';
+import Thumbnail from 'components/Thumbnail';
 import ReplyItem from './ReplyItem';
 import { nl2br } from 'lib/text';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -92,10 +93,6 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 0,
     },
   },
-  attachmentImage: {
-    maxWidth: '100%',
-    maxHeight: '8em', // So that image don't take too much space (more than replies)
-  },
 }));
 
 function RepliedArticleInfo({ article }) {
@@ -146,13 +143,7 @@ export default function ReplySearchItem({
       <Box p={{ xs: 2, md: 4.5 }}>
         <RepliedArticleInfo article={articleReply.article} />
         <div className={classes.flex}>
-          {articleReply.article.attachmentUrl && (
-            <img
-              className={classes.attachmentImage}
-              src={articleReply.article.attachmentUrl}
-              alt="image"
-            />
-          )}
+          <Thumbnail article={articleReply.article} />
           {articleReply.article.text && (
             <ExpandableText className={classes.content} lineClamp={3}>
               {nl2br(articleReply.article.text)}
@@ -196,13 +187,7 @@ export default function ReplySearchItem({
                   >
                     <div className={classes.otherArticleItem}>
                       <RepliedArticleInfo article={article} />
-                      {article.attachmentUrl && (
-                        <img
-                          className={classes.attachmentImage}
-                          src={article.attachmentUrl}
-                          alt="image"
-                        />
-                      )}
+                      <Thumbnail article={article} />
                       {article.text && (
                         <ExpandableText lineClamp={3}>
                           {article.text}
@@ -229,9 +214,9 @@ ReplySearchItem.fragments = {
         article {
           id
           text
-          attachmentUrl(variant: THUMBNAIL)
           replyRequestCount
           createdAt
+          ...ThumbnailArticleData
         }
         ...ReplyItemArticleReplyData
       }
@@ -239,6 +224,7 @@ ReplySearchItem.fragments = {
     }
     ${ReplyItem.fragments.ReplyItem}
     ${ReplyItem.fragments.ReplyItemArticleReplyData}
+    ${Thumbnail.fragments.ThumbnailArticleData}
   `,
   Highlight: ReplyItem.fragments.Highlight,
 };

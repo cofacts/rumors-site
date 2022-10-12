@@ -30,7 +30,6 @@ import {
   SideSectionLinks,
   SideSectionLink,
   SideSectionText,
-  SideSectionImage,
 } from 'components/SideSection';
 import Hyperlinks from 'components/Hyperlinks';
 import CurrentReplies from 'components/CurrentReplies';
@@ -41,6 +40,7 @@ import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
+import Thumbnail from 'components/Thumbnail';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -105,9 +105,14 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     borderRadius: theme.shape.borderRadius,
   },
-  attachmentImage: {
+  attachment: {
     width: '100%',
     maxWidth: 600,
+  },
+  asideAttachment: {
+    maxWidth: '100%',
+    maxHeight: '100px',
+    verticalAlign: 'bottom',
   },
 }));
 
@@ -121,6 +126,7 @@ const LOAD_ARTICLE = gql`
     GetArticle(id: $id) {
       id
       text
+      articleType
       attachmentUrl(variant: PREVIEW)
       originalAttachmentUrl: attachmentUrl(variant: ORIGINAL)
       requestedForReply
@@ -147,11 +153,11 @@ const LOAD_ARTICLE = gql`
             id
             text
             articleType
-            attachmentUrl(variant: THUMBNAIL)
             articleCategories {
               categoryId
             }
             ...ArticleInfo
+            ...ThumbnailArticleData
           }
         }
       }
@@ -178,6 +184,7 @@ const LOAD_ARTICLE = gql`
   ${ArticleCategories.fragments.ArticleCategoryData}
   ${ArticleCategories.fragments.AddCategoryDialogData}
   ${ArticleInfo.fragments.articleInfo}
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -319,6 +326,7 @@ function ArticlePage() {
   const {
     replyRequestCount,
     text,
+    articleType,
     attachmentUrl,
     originalAttachmentUrl,
     hyperlinks,
@@ -364,26 +372,46 @@ function ArticlePage() {
               </Infos>
             </header>
             <CardContent>
-              {attachmentUrl &&
-                (!originalAttachmentUrl ? (
-                  <img
-                    className={classes.attachmentImage}
-                    src={attachmentUrl}
-                    alt="image"
-                  />
-                ) : (
-                  <a
-                    href={originalAttachmentUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      className={classes.attachmentImage}
-                      src={attachmentUrl}
-                      alt="image"
-                    />
-                  </a>
-                ))}
+              {(() => {
+                switch (articleType) {
+                  case 'IMAGE':
+                    return !originalAttachmentUrl ? (
+                      <img
+                        className={classes.attachment}
+                        src={attachmentUrl}
+                        alt="image"
+                      />
+                    ) : (
+                      <a
+                        href={originalAttachmentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className={classes.attachment}
+                          src={attachmentUrl}
+                          alt="image"
+                        />
+                      </a>
+                    );
+                  case 'VIDEO':
+                    return !originalAttachmentUrl ? (
+                      t`Log in to view video content`
+                    ) : (
+                      <video
+                        className={classes.attachment}
+                        src={originalAttachmentUrl}
+                        controls
+                      />
+                    );
+                  case 'AUDIO':
+                    return !originalAttachmentUrl ? (
+                      t`Log in to view audio content`
+                    ) : (
+                      <audio src={originalAttachmentUrl} controls />
+                    );
+                }
+              })()}
               {text &&
                 nl2br(
                   linkify(text, {
@@ -499,8 +527,11 @@ function ArticlePage() {
                   passHref
                 >
                   <SideSectionLink>
-                    {node.articleType === 'IMAGE' ? (
-                      <SideSectionImage src={node.attachmentUrl} />
+                    {node.articleType !== 'TEXT' ? (
+                      <Thumbnail
+                        article={node}
+                        className={classes.asideAttachment}
+                      />
                     ) : (
                       <SideSectionText>{node.text}</SideSectionText>
                     )}

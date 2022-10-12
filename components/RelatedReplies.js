@@ -9,6 +9,7 @@ import ExpandableText from './ExpandableText';
 import { linkify, nl2br } from 'lib/text';
 import Link from 'next/link';
 import PlainList from 'components/PlainList';
+import Thumbnail from 'components/Thumbnail';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     padding: 12,
   },
-  attachmentImage: {
+  attachment: {
     maxWidth: '100%',
     maxHeight: '10em', // 10 lines height
   },
@@ -80,9 +81,10 @@ const RelatedArticleReplyData = gql`
     article {
       id
       text
-      attachmentUrl(variant: THUMBNAIL)
+      ...ThumbnailArticleData
     }
   }
+  ${Thumbnail.fragments.ThumbnailArticleData}
 `;
 
 /**
@@ -115,13 +117,7 @@ function RelatedReplyItem({ article, reply, onConnect, disabled, actionText }) {
         <section>
           <h3 className={classes.title}>{t`Related article`}</h3>
           <blockquote className={classes.blockquote}>
-            {article.attachmentUrl && (
-              <img
-                className={classes.attachmentImage}
-                src={article.attachmentUrl}
-                alt="image"
-              />
-            )}
+            <Thumbnail article={article} className={classes.attachment} />
             {article.text && (
               <ExpandableText wordCount={40}>
                 {/*

@@ -8,6 +8,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
     <ArticleCard
       article={
         Object {
+          "articleType": "TEXT",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id1",
           "replyCount": 3,
@@ -101,6 +102,19 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </div>
                   </div>
                 </ExpandableText>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "TEXT",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id1",
+                      "replyCount": 3,
+                      "replyRequestCount": 4,
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                />
               </div>
             </article>
           </ListPageCard>
@@ -110,6 +124,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
     <ArticleCard
       article={
         Object {
+          "articleType": "TEXT",
           "createdAt": "2019-01-01T00:00:00Z",
           "id": "id2",
           "replyCount": 0,
@@ -246,6 +261,19 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </div>
                   </div>
                 </ExpandableText>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "TEXT",
+                      "createdAt": "2019-01-01T00:00:00Z",
+                      "id": "id2",
+                      "replyCount": 0,
+                      "replyRequestCount": 999,
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                />
               </div>
             </article>
           </ListPageCard>
@@ -255,11 +283,12 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
     <ArticleCard
       article={
         Object {
-          "attachmentUrl": "https://placekitten.com/512/1000",
+          "articleType": "IMAGE",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id3",
           "replyCount": 6,
           "replyRequestCount": 4,
+          "thumbnailUrl": "https://placekitten.com/512/1000",
         }
       }
     >
@@ -329,11 +358,25 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <img
-                  alt="image"
-                  className="makeStyles-attachmentImage"
-                  src="https://placekitten.com/512/1000"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "IMAGE",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id3",
+                      "replyCount": 6,
+                      "replyRequestCount": 4,
+                      "thumbnailUrl": "https://placekitten.com/512/1000",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                >
+                  <img
+                    alt=""
+                    className="makeStyles-thumbnail makeStyles-attachment"
+                    src="https://placekitten.com/512/1000"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>
@@ -343,11 +386,12 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
     <ArticleCard
       article={
         Object {
-          "attachmentUrl": "https://placekitten.com/2000/150",
+          "articleType": "IMAGE",
           "createdAt": "2020-01-01T00:00:00Z",
           "id": "id3",
           "replyCount": 4,
           "replyRequestCount": 6,
+          "thumbnailUrl": "https://placekitten.com/2000/150",
         }
       }
     >
@@ -417,11 +461,436 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
-                <img
-                  alt="image"
-                  className="makeStyles-attachmentImage"
-                  src="https://placekitten.com/2000/150"
-                />
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "IMAGE",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id3",
+                      "replyCount": 4,
+                      "replyRequestCount": 6,
+                      "thumbnailUrl": "https://placekitten.com/2000/150",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                >
+                  <img
+                    alt=""
+                    className="makeStyles-thumbnail makeStyles-attachment"
+                    src="https://placekitten.com/2000/150"
+                  />
+                </Thumbnail>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+    <ArticleCard
+      article={
+        Object {
+          "articleType": "VIDEO",
+          "createdAt": "2020-01-01T00:00:00Z",
+          "id": "id4",
+          "replyCount": 0,
+          "replyRequestCount": 0,
+          "thumbnailUrl": null,
+        }
+      }
+    >
+      <Link
+        as="/article/id4"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id4"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    key=".0"
+                    time="2020-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="Jan 1, 2020, 12:00 AM"
+                    >
+                      <time
+                        aria-describedby={null}
+                        className=""
+                        dateTime="2020-01-01T00:00:00.000Z"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Jan 1, 2020, 12:00 AM"
+                      >
+                        First reported now
+                      </time>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-flex"
+              >
+                <div
+                  className="makeStyles-infoBox"
+                >
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      replies
+                    </span>
+                  </div>
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      reports
+                    </span>
+                  </div>
+                </div>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "VIDEO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id4",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": null,
+                    }
+                  }
+                  className="makeStyles-attachment"
+                >
+                  A video (Preview not supported yet)
+                </Thumbnail>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+    <ArticleCard
+      article={
+        Object {
+          "articleType": "VIDEO",
+          "createdAt": "2020-01-01T00:00:00Z",
+          "id": "id5",
+          "replyCount": 0,
+          "replyRequestCount": 0,
+          "thumbnailUrl": "https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t",
+        }
+      }
+    >
+      <Link
+        as="/article/id5"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id5"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    key=".0"
+                    time="2020-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="Jan 1, 2020, 12:00 AM"
+                    >
+                      <time
+                        aria-describedby={null}
+                        className=""
+                        dateTime="2020-01-01T00:00:00.000Z"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Jan 1, 2020, 12:00 AM"
+                      >
+                        First reported now
+                      </time>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-flex"
+              >
+                <div
+                  className="makeStyles-infoBox"
+                >
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      replies
+                    </span>
+                  </div>
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      reports
+                    </span>
+                  </div>
+                </div>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "VIDEO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id5",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": "https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                >
+                  <video
+                    autoPlay={true}
+                    className="makeStyles-thumbnail makeStyles-attachment"
+                    loop={true}
+                    muted={true}
+                    src="https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t"
+                  />
+                </Thumbnail>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+    <ArticleCard
+      article={
+        Object {
+          "articleType": "VIDEO",
+          "createdAt": "2020-01-01T00:00:00Z",
+          "id": "id6",
+          "replyCount": 0,
+          "replyRequestCount": 0,
+          "thumbnailUrl": "https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t",
+        }
+      }
+    >
+      <Link
+        as="/article/id6"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id6"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    key=".0"
+                    time="2020-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="Jan 1, 2020, 12:00 AM"
+                    >
+                      <time
+                        aria-describedby={null}
+                        className=""
+                        dateTime="2020-01-01T00:00:00.000Z"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Jan 1, 2020, 12:00 AM"
+                      >
+                        First reported now
+                      </time>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-flex"
+              >
+                <div
+                  className="makeStyles-infoBox"
+                >
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      replies
+                    </span>
+                  </div>
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      reports
+                    </span>
+                  </div>
+                </div>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "VIDEO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id6",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": "https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                >
+                  <video
+                    autoPlay={true}
+                    className="makeStyles-thumbnail makeStyles-attachment"
+                    loop={true}
+                    muted={true}
+                    src="https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t"
+                  />
+                </Thumbnail>
+              </div>
+            </article>
+          </ListPageCard>
+        </a>
+      </Link>
+    </ArticleCard>
+    <ArticleCard
+      article={
+        Object {
+          "articleType": "AUDIO",
+          "createdAt": "2020-01-01T00:00:00Z",
+          "id": "id6",
+          "replyCount": 0,
+          "replyRequestCount": 0,
+          "thumbnailUrl": "https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t",
+        }
+      }
+    >
+      <Link
+        as="/article/id6"
+        href="/article/[id]"
+      >
+        <a
+          className="makeStyles-root"
+          href="/article/id6"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          <ListPageCard>
+            <article
+              className="makeStyles-root"
+            >
+              <Infos>
+                <div
+                  className="makeStyles-root"
+                >
+                  <TimeInfo
+                    key=".0"
+                    time="2020-01-01T00:00:00Z"
+                  >
+                    <Tooltip
+                      title="Jan 1, 2020, 12:00 AM"
+                    >
+                      <time
+                        aria-describedby={null}
+                        className=""
+                        dateTime="2020-01-01T00:00:00.000Z"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Jan 1, 2020, 12:00 AM"
+                      >
+                        First reported now
+                      </time>
+                    </Tooltip>
+                  </TimeInfo>
+                </div>
+              </Infos>
+              <div
+                className="makeStyles-flex"
+              >
+                <div
+                  className="makeStyles-infoBox"
+                >
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      replies
+                    </span>
+                  </div>
+                  <div>
+                    <h2>
+                      0
+                    </h2>
+                    <span>
+                      reports
+                    </span>
+                  </div>
+                </div>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "AUDIO",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id6",
+                      "replyCount": 0,
+                      "replyRequestCount": 0,
+                      "thumbnailUrl": "https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                >
+                  <audio
+                    controls={true}
+                    src="https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t"
+                  />
+                </Thumbnail>
               </div>
             </article>
           </ListPageCard>

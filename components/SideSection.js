@@ -122,13 +122,3 @@ export const SideSectionText = withStyles(() => ({
     </article>
   );
 });
-
-export const SideSectionImage = withStyles(() => ({
-  asideImage: {
-    maxWidth: '100%',
-    maxHeight: '100px',
-    verticalAlign: 'bottom',
-  },
-}))(({ classes, className, ...props }) => {
-  return <img className={cx(classes.asideImage, className)} {...props} />;
-});

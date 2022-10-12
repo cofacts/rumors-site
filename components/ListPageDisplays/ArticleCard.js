@@ -4,6 +4,7 @@ import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Infos, { TimeInfo } from 'components/Infos';
 import ExpandableText from 'components/ExpandableText';
+import Thumbnail from 'components/Thumbnail';
 import ListPageCard from './ListPageCard';
 import { highlightSections } from 'lib/text';
 import { useHighlightStyles } from './utils';
@@ -84,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   highlight: {
     color: theme.palette.primary[500],
   },
-  attachmentImage: {
+  attachment: {
     minWidth: 0, // Don't use intrinsic image width as flex item min-size
     maxHeight: '10em', // Don't let image rows take too much vertical space
   },
@@ -97,14 +98,7 @@ const useStyles = makeStyles(theme => ({
  * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  */
 function ArticleCard({ article, highlight = '' }) {
-  const {
-    id,
-    text,
-    attachmentUrl,
-    replyCount,
-    replyRequestCount,
-    createdAt,
-  } = article;
+  const { id, text, replyCount, replyRequestCount, createdAt } = article;
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
 
@@ -135,13 +129,7 @@ function ArticleCard({ article, highlight = '' }) {
                   : text}
               </ExpandableText>
             )}
-            {attachmentUrl && (
-              <img
-                className={classes.attachmentImage}
-                src={attachmentUrl}
-                alt="image"
-              />
-            )}
+            <Thumbnail article={article} className={classes.attachment} />
           </div>
         </ListPageCard>
       </a>
@@ -154,11 +142,12 @@ ArticleCard.fragments = {
     fragment ArticleCard on Article {
       id
       text
-      attachmentUrl(variant: THUMBNAIL)
       replyCount
       replyRequestCount
       createdAt
+      ...ThumbnailArticleData
     }
+    ${Thumbnail.fragments.ThumbnailArticleData}
   `,
   Highlight: highlightSections.fragments.HighlightFields,
 };
