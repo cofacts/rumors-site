@@ -8,6 +8,7 @@ import {
   Tools,
   Filters,
   CategoryFilter,
+  ArticleTypeFilter,
   ReplyTypeFilter,
   TimeRange,
   SortInput,
@@ -187,6 +188,9 @@ function urlQuery2Filter(query = {}, userId) {
     };
   }
 
+  const articleTypes = ArticleTypeFilter.getValues(query);
+  if (articleTypes.length) filterObj.articleTypes = articleTypes;
+
   const selectedReplyTypes = ReplyTypeFilter.getValues(query);
   if (selectedReplyTypes.length)
     filterObj.articleReply.replyTypes = selectedReplyTypes;
@@ -238,6 +242,7 @@ function RepliedArticleTab({ userId }) {
         <SortInput defaultOrderBy={DEFAULT_ORDER} options={REPLIES_ORDER} />
       </Tools>
       <Filters className={classes.filters}>
+        <ArticleTypeFilter />
         <ReplyTypeFilter />
         <CategoryFilter />
       </Filters>

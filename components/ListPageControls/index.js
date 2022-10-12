@@ -3,6 +3,7 @@ import Filters from './Filters';
 import BaseFilter from './BaseFilter';
 import ArticleStatusFilter from './ArticleStatusFilter';
 import CategoryFilter from './CategoryFilter';
+import ArticleTypeFilter from './ArticleTypeFilter';
 import ReplyTypeFilter from './ReplyTypeFilter';
 import TimeRange from './TimeRange';
 import SortInput from './SortInput';
@@ -14,6 +15,7 @@ export {
   BaseFilter,
   ArticleStatusFilter,
   CategoryFilter,
+  ArticleTypeFilter,
   ReplyTypeFilter,
   TimeRange,
   SortInput,

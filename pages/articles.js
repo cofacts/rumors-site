@@ -16,6 +16,7 @@ import {
   Filters,
   ArticleStatusFilter,
   CategoryFilter,
+  ArticleTypeFilter,
   ReplyTypeFilter,
   TimeRange,
   SortInput,
@@ -102,8 +103,7 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   const selectedReplyTypes = ReplyTypeFilter.getValues(query);
   if (selectedReplyTypes.length) filterObj.replyTypes = selectedReplyTypes;
 
-  // No UI for article types yet, so we read from `query` directly
-  const articleTypes = query.articleTypes ? query.articleTypes.split(',') : [];
+  const articleTypes = ArticleTypeFilter.getValues(query);
   if (articleTypes.length) filterObj.articleTypes = articleTypes;
 
   // Return filterObj only when it is populated.
@@ -172,6 +172,7 @@ function ArticleListPage() {
 
       <Filters>
         <ArticleStatusFilter />
+        <ArticleTypeFilter />
         <ReplyTypeFilter />
         <CategoryFilter />
       </Filters>
