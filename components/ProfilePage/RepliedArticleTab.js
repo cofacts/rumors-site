@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { t, ngettext, msgid } from 'ttag';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -272,7 +273,11 @@ function RepliedArticleTab({ userId }) {
                   )}
                 </>
                 <TimeInfo time={article.createdAt}>
-                  {timeAgo => t`First reported ${timeAgo}`}
+                  {timeAgo => (
+                    <Link href="/article/[id]" as={`/article/${article.id}`}>
+                      {t`First reported ${timeAgo}`}
+                    </Link>
+                  )}
                 </TimeInfo>
               </Infos>
               <Thumbnail article={article} />

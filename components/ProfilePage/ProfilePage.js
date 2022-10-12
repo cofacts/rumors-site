@@ -14,6 +14,7 @@ import AppLayout from 'components/AppLayout';
 import { Card } from 'components/Card';
 import UserPageHeader from './UserPageHeader';
 import RepliedArticleTab from './RepliedArticleTab';
+import CommentTab from './CommentTab';
 import ContributionChart from 'components/ContributionChart';
 import { startOfWeek, subDays, format } from 'date-fns';
 
@@ -63,6 +64,9 @@ const LOAD_CONTRIBUTION = gql`
     commentedReplies: ListArticleReplyFeedbacks(filter: { userId: $id }) {
       totalCount
     }
+    comments: ListReplyRequests(filter: { userId: $id }) {
+      totalCount
+    }
   }
 `;
 
@@ -75,6 +79,7 @@ function ProfilePage({ id, slug }) {
   const { data: contributionData } = useQuery(LOAD_CONTRIBUTION, {
     variables: { id: data?.GetUser?.id },
     skip: !data?.GetUser?.id,
+    ssr: false, // Speed up SSR
   });
 
   const isSelf = currentUser && data?.GetUser?.id === currentUser.id;
@@ -123,8 +128,11 @@ function ProfilePage({ id, slug }) {
   let contentElem = null;
   switch (tab) {
     case 'replies':
-    default:
       contentElem = <RepliedArticleTab userId={data?.GetUser?.id} />;
+      break;
+    case 'comments':
+      contentElem = <CommentTab userId={data?.GetUser?.id} />;
+      break;
   }
   const today = format(new Date(), 'yyyy-MM-dd');
   const aYearAgo = format(
@@ -144,6 +152,7 @@ function ProfilePage({ id, slug }) {
           stats={{
             repliedArticles: contributionData?.repliedArticles?.totalCount,
             commentedReplies: contributionData?.commentedReplies?.totalCount,
+            comments: contributionData?.comments?.totalCount,
           }}
         />
         <ContributionChart
@@ -159,10 +168,11 @@ function ProfilePage({ id, slug }) {
             indicatorColor="primary"
             textColor="primary"
             onChange={(e, tab) => {
-              router.push({ query: { tab } });
+              router.push({ query: { tab, id, slug } });
             }}
           >
             <Tab value="replies" label={t`Replied messages`} />
+            <Tab value="comments" label={t`Comments`} />
           </Tabs>
           {contentElem}
         </Card>

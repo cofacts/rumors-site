@@ -51,19 +51,19 @@ msgstr[0] "${ replyCount } 份回應"
 msgid "Sort by"
 msgstr "排序方式"
 
-#: components/ProfilePage/RepliedArticleTab.js:35
+#: components/ProfilePage/RepliedArticleTab.js:36
 #: pages/articles.js:166
 #: pages/replies.js:143
 msgid "Most recently asked"
 msgstr "最近被查詢"
 
-#: components/ProfilePage/RepliedArticleTab.js:32
+#: components/ProfilePage/RepliedArticleTab.js:33
 #: pages/articles.js:168
 #: pages/replies.js:142
 msgid "Most recently replied"
 msgstr "最近被回應"
 
-#: components/ProfilePage/RepliedArticleTab.js:36
+#: components/ProfilePage/RepliedArticleTab.js:37
 #: pages/articles.js:167
 #: pages/replies.js:144
 msgid "Most asked"
@@ -234,7 +234,7 @@ msgid ""
 "fighting mis/disinformation in Taiwan."
 msgstr "一起來幫網路上的可疑訊息寫查核回應、共同教導聊天機器人回話，將多元的闢謠資訊傳遞給在 LINE 上收到謠言的人。"
 
-#: components/ProfilePage/ProfilePage.js:98
+#: components/ProfilePage/ProfilePage.js:103
 #: pages/article/[id].js:300
 #: pages/article/[id].js:304
 #: pages/reply/[id].js:167
@@ -444,7 +444,8 @@ msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
 
 #: components/LandingPage/SectionArticles.js:153
-#: components/ProfilePage/RepliedArticleTab.js:250
+#: components/ProfilePage/CommentTab.js:151
+#: components/ProfilePage/RepliedArticleTab.js:251
 #: pages/articles.js:181
 #: pages/hoax-for-you.js:133
 #: pages/replies.js:246
@@ -701,7 +702,8 @@ msgid "Total Visit: ${ totalVisits }"
 msgstr "${ totalVisits } 次瀏覽"
 
 #: components/ListPageDisplays/ReplySearchItem.js:103
-#: components/ProfilePage/RepliedArticleTab.js:268
+#: components/ProfilePage/CommentTab.js:169
+#: components/ProfilePage/RepliedArticleTab.js:269
 #: pages/replies.js:256
 #, javascript-format
 msgid "${ article.replyRequestCount } occurrence"
@@ -924,19 +926,19 @@ msgstr "你的個人頁面網址會變成 ${ profileURL }"
 msgid "Bio"
 msgstr "自我介紹"
 
-#: components/ProfilePage/ProfilePage.js:111
+#: components/ProfilePage/ProfilePage.js:116
 msgid "User not found"
 msgstr "找不到使用者"
 
-#: components/ProfilePage/ProfilePage.js:114
+#: components/ProfilePage/ProfilePage.js:119
 msgid "The user does not exist"
 msgstr "此使用者不存在"
 
-#: components/ProfilePage/ProfilePage.js:165
+#: components/ProfilePage/ProfilePage.js:174
 msgid "Replied messages"
 msgstr "查核回應"
 
-#: components/ProfilePage/RepliedArticleTab.js:254
+#: components/ProfilePage/RepliedArticleTab.js:255
 msgid "No replied messages."
 msgstr "無查核回應"
 
@@ -944,7 +946,7 @@ msgstr "無查核回應"
 msgid "replied messages"
 msgstr "查核回應"
 
-#: components/ProfilePage/Stats.js:61
+#: components/ProfilePage/Stats.js:62
 msgid "voted replies"
 msgstr "評價回應"
 
@@ -2295,7 +2297,8 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 
 #: components/ListPageDisplays/ArticleCard.js:111
 #: components/ListPageDisplays/ReplySearchItem.js:112
-#: components/ProfilePage/RepliedArticleTab.js:275
+#: components/ProfilePage/CommentTab.js:178
+#: components/ProfilePage/RepliedArticleTab.js:278
 #: pages/article/[id].js:370
 #: pages/replies.js:263
 msgid "First reported ${ timeAgo }"
@@ -2385,11 +2388,11 @@ msgstr "注意：這裏不是討論區！請針對上面的「可疑訊息」撰
 msgid "Comments from people reporting this message"
 msgstr "網友回報補充"
 
-#: components/ProfilePage/RepliedArticleTab.js:34
+#: components/ProfilePage/RepliedArticleTab.js:35
 msgid "Most recently replied by any user"
 msgstr "最近有人回應"
 
-#: components/ProfilePage/RepliedArticleTab.js:258
+#: components/ProfilePage/RepliedArticleTab.js:259
 #, javascript-format
 msgid "${ totalCount } message matching criteria"
 msgid_plural "${ totalCount } messages matching criteria"
@@ -2439,6 +2442,31 @@ msgstr "語音訊息"
 #: components/ListPageControls/ArticleTypeFilter.js:33
 msgid "Format"
 msgstr "格式"
+
+#: components/ProfilePage/CommentTab.js:155
+msgid ""
+"This user does not provide comments to any message in the specified date "
+"range."
+msgstr "這名使用者在指定日期範圍內沒有提供任何回報補充"
+
+#: components/ProfilePage/CommentTab.js:159
+#, javascript-format
+msgid "${ totalCount } comment matching criteria"
+msgid_plural "${ totalCount } comments matching criteria"
+msgstr[0] "${ totalCount } 份符合篩選條件的回報補充"
+
+#: components/ProfilePage/ProfilePage.js:175
+msgid "Comments"
+msgstr "回報補充"
+
+#: components/ProfilePage/Stats.js:61
+msgid "comments"
+msgstr "回報補充"
+
+#: components/ProfilePage/CommentTab.js:184
+msgid "${ article.replyCount } reply"
+msgid_plural "${ article.replyCount } replies"
+msgstr[0] "${ article.replyCount } 則回應"
 
 #: pages/index.js:29
 msgctxt "site title"

@@ -58,6 +58,7 @@ function Stats({ stats }) {
   return (
     <ul className={classes.root}>
       <Stat label={t`replied messages`} value={stats?.repliedArticles} />
+      <Stat label={t`comments`} value={stats?.comments} />
       <Stat label={t`voted replies`} value={stats?.commentedReplies} />
     </ul>
   );
