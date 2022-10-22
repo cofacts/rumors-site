@@ -228,6 +228,10 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  video: {
+    width: '100%',
+    'aspect-ratio': '16 / 9',
+  },
 }));
 
 const TutorialPage = () => {
@@ -241,6 +245,16 @@ const TutorialPage = () => {
       <div className={classes.root}>
         <TutorialHeader />
         <section className={classes.info}>
+          <p>
+            <iframe
+              className={classes.video}
+              src="https://www.youtube.com/embed/WfdfB7GyqMY"
+              title={t`Cofacts fact-checking chatbot, combating misinformation by yourself!`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </p>
           <p>
             {t`Cofacts is an information checking platform operated through 
             crowd collaboration and chatbot to have discrete messages of 
