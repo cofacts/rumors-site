@@ -1057,7 +1057,7 @@ msgstr ""
 "${ subject }取自${ AUTHOR }，採 ${SHORT_LICENSE} 授權提供。若欲補充資訊請訪問 Cofacts LINE "
 "bot ${ LINE_URL } 。"
 
-#: pages/about.js:239
+#: pages/about.js:243
 msgid "What is Cofacts"
 msgstr "什麼是 Cofacts 真的假的"
 
@@ -1383,7 +1383,11 @@ msgstr "個人查核貢獻"
 msgid "Cofacts original features"
 msgstr "Cofacts 原創功能一覽"
 
-#: pages/about.js:245
+#: pages/about.js:252
+msgid "Cofacts fact-checking chatbot, combating misinformation by yourself!"
+msgstr "Cofacts 真的假的聊天機器人・讓你闢謠靠自己！"
+
+#: pages/about.js:259
 msgid ""
 "Cofacts is an information checking platform operated through \n"
 "crowd collaboration and chatbot to have discrete messages of \n"
@@ -1398,7 +1402,7 @@ msgstr ""
 "Cofacts 真的假的 透過聊天機器人能 24 "
 "小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
 
-#: pages/about.js:254
+#: pages/about.js:268
 msgid ""
 "Cofacts is a citizen-initiated platform that is not affiliated \n"
 "to any political party or politicians. It opens the results to \n"
@@ -1408,22 +1412,22 @@ msgstr ""
 "Cofacts "
 "是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊息的方法。"
 
-#: pages/about.js:265
+#: pages/about.js:279
 msgid "In what scenarios can Cofacts help you?"
 msgstr "Cofacts 在什麼時候能幫上忙？"
 
-#: pages/about.js:276
+#: pages/about.js:290
 msgid "You want to do research on false information."
 msgstr "想做不實訊息的研究"
 
-#: pages/about.js:284
+#: pages/about.js:298
 msgid ""
 "Wanna help elders or friends who can’t \n"
 "fact-check information? Let the chatbot \n"
 "check them for you!"
 msgstr "想幫助不會查證訊息的長輩或朋友？"
 
-#: pages/about.js:269
+#: pages/about.js:283
 msgid ""
 "You think that the messages you \n"
 "received may be fake"
@@ -1431,7 +1435,7 @@ msgstr ""
 "想知道看起來很可疑的 \n"
 " 訊息是真是假？"
 
-#: pages/about.js:292
+#: pages/about.js:306
 msgid ""
 "You would like to absorb novel knowledge\n"
 "and see what topics are popular recently"
@@ -1439,7 +1443,7 @@ msgstr ""
 "想看看最近大家都在 \n"
 " 討論什麼話題？"
 
-#: pages/about.js:316
+#: pages/about.js:330
 msgid ""
 "Cofacts is committed to providing a simple solution to \n"
 "help frontline who suffering from misinformation, and news \n"
@@ -1447,7 +1451,7 @@ msgid ""
 "focus on their profession."
 msgstr "提供方便工具幫助第一線查核可疑訊息，幫助相關媒體、教育人士，專注發揮所長，識別假訊息讓謠言止於智者。"
 
-#: pages/about.js:326
+#: pages/about.js:340
 msgid ""
 "All of the source code and fact-checking replies are \n"
 "open and transparent to everyone. Cofacts encourage every \n"
@@ -1456,18 +1460,18 @@ msgid ""
 "fact-checking platform."
 msgstr "從平台的每一行程式碼，到查核回復都是公開平等給大眾，每一個人都可以貢獻，每一個人的查核意見也不受它限制。"
 
-#: pages/about.js:337
+#: pages/about.js:351
 msgid ""
 "Cofacts leads in media literacy education and fact-checking \n"
 "skills training. We encourage every individual to do research \n"
 "on information and face misinformation with an active attitude."
 msgstr "帶動媒體識讀教育與事實查核的能力，鼓勵人人做研究，一同討論各方意見，正面面對不實訊息。"
 
-#: pages/about.js:345
+#: pages/about.js:359
 msgid "How Cofacts was born"
 msgstr "Cofacts 怎麼誕生的？"
 
-#: pages/about.js:347
+#: pages/about.js:361
 msgid ""
 "The core idea of this project is to make diverse voices easier \n"
 "to be listened to. We believe that fact-checking contents \n"
@@ -1481,7 +1485,7 @@ msgstr ""
 "這個專案最核心的想法，就是希望讓「不同的聲音」更容易被看見。網路謠言相對應的闢謠文章、以及個人意見與相對應得「回覆」文，都是一種「不同的聲音」。一個人會"
 "去相信網路謠言，或許是因為他沒有接觸過不同的聲音，或不願意去接觸不同的聲音。只是，即使一個人樂意接觸不同的聲音，其實門檻還是很高的。"
 
-#: pages/about.js:357
+#: pages/about.js:371
 msgid ""
 "On the other hand, for people who are used to fact-checking online \n"
 "news, checking all of suspicious LINE messages they receive is very \n"
@@ -1497,11 +1501,11 @@ msgstr ""
 "訊息之後，都要自己花時間一筆一筆查證，會非常地花時間。協作型闢謠資料庫就像是個共筆，大家查到什麼就寫成回應放進去，之後收到同一訊息的人如果也想要查證，就"
 "不用從零開始。因此，對於已經習慣也願意查證、擁抱「不同的聲音」的人，協作型闢謠資料庫能幫這些人少走很多冤枉路。"
 
-#: pages/about.js:369
+#: pages/about.js:383
 msgid "Who we are"
 msgstr "我們是誰？"
 
-#: pages/about.js:371
+#: pages/about.js:385
 msgid ""
 "Cofacts is one of the projects initiated in g0v, a Taiwanese \n"
 "civic technology community, which encourages open source code, \n"
@@ -2005,7 +2009,7 @@ msgid ""
 "contributing a sky-high volume of up votes?"
 msgstr "可疑訊息下右邊可以選擇「SHARE」分享這則查核回應，幫助你更多好朋友。右上角選擇登入！你會是下一個等級突破天際的狂讚士嗎？"
 
-#: pages/about.js:261
+#: pages/about.js:275
 msgid "How does misinformation be fact-checked?"
 msgstr "可疑訊息怎麼被查核的？"
 
@@ -2068,23 +2072,23 @@ msgid ""
 "new fact-checking reply."
 msgstr "被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。"
 
-#: pages/about.js:304
+#: pages/about.js:318
 msgid "Cofacts instruction"
 msgstr "快來了解 Cofacts 怎麼使用吧"
 
-#: pages/about.js:308
+#: pages/about.js:322
 msgid "What is Cofacts core value?"
 msgstr "Cofacts 的核心價值是?"
 
-#: pages/about.js:314
+#: pages/about.js:328
 msgid "Instant fact-checking tool"
 msgstr "即時工具"
 
-#: pages/about.js:324
+#: pages/about.js:338
 msgid "Free and Open"
 msgstr "自由開放"
 
-#: pages/about.js:335
+#: pages/about.js:349
 msgid "Media Literacy"
 msgstr "媒體識讀"
 
