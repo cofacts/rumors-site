@@ -12,8 +12,6 @@ export const PROJECT_SOURCE_CODE =
 export const PROJECT_MEDIUM = 'https://medium.com/cofacts';
 export const DEVELOPER_HOMEPAGE = 'https://hackmd.io/s/r1nfwTrgM';
 export const LICENSE_URL = 'https://creativecommons.org/licenses/by-sa/4.0/';
-export const USER_AGREEMENT_URL =
-  'https://github.com/cofacts/rumors-site/blob/master/LEGAL.md';
 
 // https://developers.facebook.com/docs/sharing/reference/share-dialog#redirect
 export const FACEBOOK_SHARE_URL_PREFIX =

@@ -3,11 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import getConfig from 'next/config';
-import {
-  LICENSE_URL,
-  USER_AGREEMENT_URL,
-  EDITOR_FACEBOOK_GROUP,
-} from 'constants/urls';
+import { LICENSE_URL, EDITOR_FACEBOOK_GROUP } from 'constants/urls';
+import Link from 'next/link';
 import { AUTHOR, LICENSE } from 'lib/terms';
 import Facebook from './images/facebook.svg';
 import Twitter from './images/twitter.svg';
@@ -91,7 +88,9 @@ function LoginModal({ onClose, redirectPath }) {
   const classes = useStyles();
 
   const termsLink = (
-    <a key="termsLink" href={USER_AGREEMENT_URL}>{t`User Agreement`}</a>
+    <Link href="/terms" key="termsLink">
+      <a>{t`User Agreement`}</a>
+    </Link>
   );
   const licenseLink = (
     <a key="licenseLink" href={LICENSE_URL}>
