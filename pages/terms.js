@@ -106,7 +106,7 @@ function Terms() {
   return (
     <AppLayout>
       <Head>
-        <title>{t`Terms`}</title>
+        <title>{t`User Agreement`}</title>
       </Head>
       <TermArticle>
         {termsHtml ? <div dangerouslySetInnerHTML={termsHtml} /> : t`Loading`}
