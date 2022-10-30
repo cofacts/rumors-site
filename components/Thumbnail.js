@@ -39,7 +39,7 @@ function Thumbnail({ article, className }) {
         <video
           className={thumbnailCls}
           src={article.thumbnailUrl}
-          autoPlay
+          // autoPlay
           loop
           muted
         />
