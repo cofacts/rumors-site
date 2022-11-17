@@ -40,6 +40,7 @@ function Thumbnail({ article, className }) {
           className={thumbnailCls}
           src={article.thumbnailUrl}
           autoPlay
+          playsInline
           loop
           muted
         />

@@ -681,6 +681,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     className="makeStyles-thumbnail makeStyles-attachment"
                     loop={true}
                     muted={true}
+                    playsInline={true}
                     src="https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t"
                   />
                 </Thumbnail>
@@ -786,6 +787,7 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     className="makeStyles-thumbnail makeStyles-attachment"
                     loop={true}
                     muted={true}
+                    playsInline={true}
                     src="https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t"
                   />
                 </Thumbnail>
