@@ -420,10 +420,11 @@ function ArticlePage() {
                   linkify(text, {
                     props: {
                       target: '_blank',
+                      rel: 'ugc nofollow',
                     },
                   })
                 )}
-              <Hyperlinks hyperlinks={hyperlinks} />
+              <Hyperlinks hyperlinks={hyperlinks} rel="ugc nofollow" />
               <Box my={[1.5, 2]}>
                 <ArticleCategories
                   articleId={article.id}
