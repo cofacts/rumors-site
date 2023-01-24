@@ -78,7 +78,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
             </HyperlinkIcon>
             <a
               href="https://cofacts.org"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer "
               target="_blank"
             >
               https://cofacts.org
@@ -135,7 +135,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
             </HyperlinkIcon>
             <a
               href="https://cofacts.org"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer "
               target="_blank"
             >
               https://cofacts.org
@@ -186,7 +186,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
             </HyperlinkIcon>
             <a
               href="https://not-found.org"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer "
               target="_blank"
             >
               https://not-found.org
