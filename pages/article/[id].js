@@ -133,6 +133,7 @@ const LOAD_ARTICLE = gql`
       replyRequestCount
       replyCount
       createdAt
+      status
       references {
         type
       }
@@ -353,6 +354,8 @@ function ArticlePage() {
         <title>
           {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
+        {/* Don't let search engines index blocked spam */ article.status ===
+          'BLOCKED' && <meta name="robots" content="noindex, nofollow" />}
       </Head>
       <div className={classes.root}>
         <div className={classes.main}>
