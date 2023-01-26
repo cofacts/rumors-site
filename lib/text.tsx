@@ -190,14 +190,22 @@ export function ellipsis(
 }
 
 /**
- * Truncates the given elem to the specified wordCount.
- * When truncated, appends moreElem to the end of the string.
+ * Truncates the given elem to the specified `wordCount`.
+ * When truncated, appends `moreElem` to the end of the string.
  *
- * @param {*} elem React element, string, array of string & react elements
- * @param {<wordCount: Number, moreElem: ReactElement>} options
- * @returns {JSXElement}
+ * @param elem - React element, string, array of string & react elements
+ * @param options
  */
-export function truncate(elem, { wordCount = Infinity, moreElem = null } = {}) {
+export function truncate(
+  elem: React.ReactNode,
+  {
+    wordCount = Infinity,
+    moreElem = null,
+  }: {
+    wordCount?: number;
+    moreElem?: React.ReactElement;
+  } = {}
+) {
   let currentWordCount = 0;
   const result = traverseForStrings(elem, str => {
     if (currentWordCount >= wordCount) return BREAK;
@@ -223,18 +231,17 @@ export function truncate(elem, { wordCount = Infinity, moreElem = null } = {}) {
 }
 
 /**
- * Converts Highlight string (with "<HIGHLIGHT></HIGHLIGHT>") to JSX array of strings and <mark> elems
- *
- * @param {string | null | undefined} highlightStr
- * @param {string} highlightClassName
- * @returns {JSXElement[]}
+ * Converts highlight string (with "<HIGHLIGHT></HIGHLIGHT>") to JSX array of strings and <mark> elems
  */
-function getMarkElems(highlightStr, highlightClassName) {
+function getMarkElems(
+  highlightStr: string | null | undefined,
+  highlightClassName: string
+) {
   if (typeof highlightStr !== 'string') return [];
 
   return highlightStr
     .split('</HIGHLIGHT>')
-    .reduce((tokens, token, idx) => {
+    .reduce<React.ReactChild[]>((tokens, token, idx) => {
       const [nonHighlight, highlighted] = token.split('<HIGHLIGHT>');
 
       return [
@@ -252,12 +259,26 @@ function getMarkElems(highlightStr, highlightClassName) {
 
 /**
  * Processes Highlights object from rumors-api
- *
- * @param {object} highlightObj React element, string, array of string & react elements
- * @param {{highlight: string; reference: string, hyperlinks: string}} classes
- * @returns {JSXElement}
  */
-export function highlightSections({ text, reference, hyperlinks }, classes) {
+export function highlightSections(
+  {
+    text,
+    reference,
+    hyperlinks,
+  }: /** highlightSections.fragments type */ {
+    text: string;
+    reference: string;
+    hyperlinks: ReadonlyArray<{
+      title?: string | null;
+      summary?: string | null;
+    }>;
+  },
+  classes: {
+    highlight?: string;
+    reference?: string;
+    hyperlinks?: string;
+  }
+) {
   const jsxElems = [];
 
   if (text) {
@@ -306,6 +327,6 @@ const formatter =
     ? new Intl.NumberFormat()
     : null;
 
-export function formatNumber(num) {
+export function formatNumber(num: number) {
   return formatter ? formatter.format(num) : num.toString();
 }
