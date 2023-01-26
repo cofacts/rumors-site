@@ -4,14 +4,17 @@ import gql from 'graphql-tag';
 
 const BREAK = { $$BREAK: true } as const;
 
+/**
+ * Called when `traverseForStrings()` reaches a string.
+ */
 type Callback = (s: string) => React.ReactNode | typeof BREAK;
 
 /**
  * Invokes traverseForStrings for each item in elems.
  * When `BREAK` is received, break traversal immediately.
  *
- * @param {*} elem Array of elements to traverse
- * @param {Function} callback passed to traverseForStrings()
+ * @param elems - Array of elements to traverse
+ * @param callback - passed to traverseForStrings()
  */
 function traverseElems(elems: React.ReactNode[], callback: Callback) {
   const result = [];
@@ -26,7 +29,7 @@ function traverseElems(elems: React.ReactNode[], callback: Callback) {
 
 /**
  * Traverses elem tree for strings, returns callback(string)
- * @param {*} elem
+ * @param elem
  * @param callback
  */
 function traverseForStrings(elem: React.ReactNode, callback: Callback) {
@@ -80,7 +83,7 @@ const Cropper = withStyles(cropperStyle)(
   }
 );
 
-function shortenUrl(s, maxLength) {
+function shortenUrl(s: string, maxLength: number) {
   try {
     s = decodeURIComponent(s);
   } catch (e) {
@@ -99,7 +102,7 @@ function shortenUrl(s, maxLength) {
   );
 }
 
-function flatternPureStrings(tokens) {
+function flatternPureStrings(tokens: React.ReactChild[]) {
   return tokens.every(token => typeof token === 'string')
     ? tokens.join()
     : tokens;
@@ -165,15 +168,19 @@ export function nl2br(elem: React.ReactNode) {
   });
 }
 
-/**
- *
- * @param {string} text
- * @param {number} option.wordCount
- * @param {string} option.morePostfix
- */
 export function ellipsis(
-  text,
-  { wordCount = Infinity, morePostfix = '⋯⋯' } = {}
+  /** Text to ellipsis */
+  text: string,
+  {
+    wordCount = Infinity,
+    morePostfix = '⋯⋯',
+  }: {
+    /** Max length of the text before it's being ellipsised */
+    wordCount?: number;
+
+    /** The ellipsis postfix. Default to '⋯⋯' */
+    morePostfix?: string;
+  } = {}
 ) {
   if (text.length <= wordCount) {
     return text;
