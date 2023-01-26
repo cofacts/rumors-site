@@ -1,5 +1,5 @@
 module.exports = {
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'plugin:import/errors',
@@ -8,8 +8,9 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
     'plugin:storybook/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', '@typescript-eslint'],
   rules: {
     'react/prop-types': 'off', // we don't use propTypes.
     'react/react-in-jsx-scope': 'off', // React import not needed in Next.js

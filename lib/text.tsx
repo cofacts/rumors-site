@@ -30,15 +30,15 @@ function traverseElems(elems: React.ReactNode[], callback: Callback) {
  * @param callback
  */
 function traverseForStrings(elem: React.ReactNode, callback: Callback) {
-  if(typeof elem === 'string'){
+  if (typeof elem === 'string') {
     return callback(elem);
   }
 
-  if(elem instanceof Array){
+  if (elem instanceof Array) {
     return traverseElems(elem, callback);
   }
 
-  if(React.isValidElement(elem)) {
+  if (React.isValidElement(elem)) {
     const children = React.Children.toArray(elem.props.children);
     const newChildren = traverseElems(children, callback);
 
@@ -72,11 +72,13 @@ const cropperStyle = createStyles({
     textDecoration: 'inherit',
     verticalAlign: 'bottom', // align with the rest of the URLs
   },
-})
-
-const Cropper = withStyles(cropperStyle)(({ children, classes }: CropperProps & WithStyles<typeof cropperStyle>) => {
-  return <span className={classes.cropper}>{children}</span>;
 });
+
+const Cropper = withStyles(cropperStyle)(
+  ({ children, classes }: CropperProps & WithStyles<typeof cropperStyle>) => {
+    return <span className={classes.cropper}>{children}</span>;
+  }
+);
 
 function shortenUrl(s, maxLength) {
   try {
@@ -111,7 +113,13 @@ const urlRegExp = /(https?:\/\/\S+)/;
  * @param elem React element, string, array of string & react elements
  * @param options
  */
-export function linkify(elem: React.ReactNode, { maxLength = 80, props = {} }: {maxLength?: number, props?: React.ComponentPropsWithoutRef<'a'>} = {}) {
+export function linkify(
+  elem: React.ReactNode,
+  {
+    maxLength = 80,
+    props = {},
+  }: { maxLength?: number; props?: React.ComponentPropsWithoutRef<'a'> } = {}
+) {
   return traverseForStrings(elem, str => {
     if (!str) return str;
 
