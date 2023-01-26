@@ -1,8 +1,10 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, { CSSProperties } from 'react';
+import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
 
-const BREAK = { $$BREAK: true };
+const BREAK = { $$BREAK: true } as const;
+
+type Callback = (s: string) => React.ReactNode | typeof BREAK;
 
 /**
  * Invokes traverseForStrings for each item in elems.
@@ -11,7 +13,7 @@ const BREAK = { $$BREAK: true };
  * @param {*} elem Array of elements to traverse
  * @param {Function} callback passed to traverseForStrings()
  */
-function traverseElems(elems, callback) {
+function traverseElems(elems: React.ReactNode[], callback: Callback) {
   const result = [];
   for (let i = 0; i < elems.length; i += 1) {
     const returnValue = traverseForStrings(elems[i], callback);
@@ -25,47 +27,54 @@ function traverseElems(elems, callback) {
 /**
  * Traverses elem tree for strings, returns callback(string)
  * @param {*} elem
- * @param {Function} callback
+ * @param callback
  */
-function traverseForStrings(elem, callback) {
-  switch (true) {
-    case typeof elem === 'string':
-      return callback(elem);
-
-    case elem instanceof Array:
-      return traverseElems(elem, callback);
-
-    case React.isValidElement(elem): {
-      const children = React.Children.toArray(elem.props.children);
-      const newChildren = traverseElems(children, callback);
-
-      // No need to clone element if new children is identical with the original
-      //
-      if (
-        children.length === newChildren.length &&
-        children.every((child, idx) => child === newChildren[idx])
-      ) {
-        return elem;
-      }
-
-      return React.cloneElement(elem, {}, newChildren);
-    }
-    default:
-      return null;
+function traverseForStrings(elem: React.ReactNode, callback: Callback) {
+  if(typeof elem === 'string'){
+    return callback(elem);
   }
+
+  if(elem instanceof Array){
+    return traverseElems(elem, callback);
+  }
+
+  if(React.isValidElement(elem)) {
+    const children = React.Children.toArray(elem.props.children);
+    const newChildren = traverseElems(children, callback);
+
+    // No need to clone element if new children is identical with the original
+    //
+    if (
+      children.length === newChildren.length &&
+      children.every((child, idx) => child === newChildren[idx])
+    ) {
+      return elem;
+    }
+
+    return React.cloneElement(elem, {}, newChildren);
+  }
+
+  return null;
 }
 
-const Cropper = withStyles({
+type CropperProps = {
+  maxWidth: CSSProperties['maxWidth'];
+  children: React.ReactNode;
+};
+
+const cropperStyle = createStyles({
   cropper: {
     display: 'inline-block',
-    maxWidth: ({ maxWidth }) => `min(100%, ${maxWidth})`, // 100% ensures this inline-block does not stick out its container
+    maxWidth: ({ maxWidth }: CropperProps) => `min(100%, ${maxWidth})`, // 100% ensures this inline-block does not stick out its container
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     textDecoration: 'inherit',
     verticalAlign: 'bottom', // align with the rest of the URLs
   },
-})(({ children, classes }) => {
+})
+
+const Cropper = withStyles(cropperStyle)(({ children, classes }: CropperProps & WithStyles<typeof cropperStyle>) => {
   return <span className={classes.cropper}>{children}</span>;
 });
 
@@ -99,10 +108,10 @@ const urlRegExp = /(https?:\/\/\S+)/;
 /**
  * Wrap <a> around hyperlinks inside a react element or string.
  *
- * @param {*} elem React element, string, array of string & react elements
- * @param {<maxLength: Number, blank: Boolean>} options
+ * @param elem React element, string, array of string & react elements
+ * @param options
  */
-export function linkify(elem, { maxLength = 80, props = {} } = {}) {
+export function linkify(elem: React.ReactNode, { maxLength = 80, props = {} }: {maxLength?: number, props?: React.ComponentPropsWithoutRef<'a'>} = {}) {
   return traverseForStrings(elem, str => {
     if (!str) return str;
 
@@ -129,9 +138,9 @@ const newLineRegExp = RegExp(` *${newLinePattern} *`, 'g');
  * Place <br> for each line break.
  * Automatically trims away leading & trailing line breaks.
  *
- * @param {*} elem React element, string, array of string & react elements
+ * @param elem React element, string, array of string & react elements
  */
-export function nl2br(elem) {
+export function nl2br(elem: React.ReactNode) {
   return traverseForStrings(elem, str => {
     if (!str) return str;
 
