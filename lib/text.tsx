@@ -201,19 +201,18 @@ export function truncate(elem, { wordCount = Infinity, moreElem = null } = {}) {
     return exceededCount <= 0 ? str : str.slice(0, -exceededCount);
   });
 
-  switch (true) {
-    // Not exceeding wordCount, just return the original element
-    case currentWordCount <= wordCount:
-      return elem;
-
-    // If the result is an array, append moreElem
-    case result instanceof Array:
-      return result.concat(moreElem);
-
-    // Others, including result being a string or React Element.
-    default:
-      return [result, moreElem];
+  // Not exceeding wordCount, just return the original element
+  if (currentWordCount <= wordCount) {
+    return elem;
   }
+
+  // If the result is an array, append moreElem
+  if (result instanceof Array) {
+    return result.concat(moreElem);
+  }
+
+  // Others, including result being a string or React Element.
+  return [result, moreElem];
 }
 
 /**
