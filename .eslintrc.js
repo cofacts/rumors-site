@@ -8,9 +8,8 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
     'plugin:storybook/recommended',
-    'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['react', 'prettier', '@typescript-eslint'],
+  plugins: ['react', 'prettier'],
   rules: {
     'react/prop-types': 'off', // we don't use propTypes.
     'react/react-in-jsx-scope': 'off', // React import not needed in Next.js
@@ -32,7 +31,19 @@ module.exports = {
     node: true,
   },
   settings: {
-    'import/resolver': { 'babel-module': {} },
+    'import/resolver': {
+      'babel-module': {
+        // For JS files to include TS files also
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
     react: { version: 'detect' },
   },
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      plugins: ['@typescript-eslint'],
+    },
+  ],
 };
