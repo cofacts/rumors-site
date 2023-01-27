@@ -93,10 +93,10 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
         arrow={true}
         title={
           <div
-            className="makeStyles-opinions-146"
+            className="makeStyles-opinions-157"
           >
             <span
-              className="makeStyles-opinion-147"
+              className="makeStyles-opinion-158"
             >
               <NOT_ARTICLE
                 fontSize="inherit"
@@ -106,7 +106,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
               </span>
             </span>
             <span
-              className="makeStyles-opinion-147"
+              className="makeStyles-opinion-158"
             >
               <OPINIONATED
                 fontSize="inherit"
@@ -116,7 +116,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
               </span>
             </span>
             <span
-              className="makeStyles-opinion-147"
+              className="makeStyles-opinion-158"
             >
               <NOT_RUMOR
                 fontSize="inherit"
@@ -126,7 +126,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
               </span>
             </span>
             <span
-              className="makeStyles-opinion-147"
+              className="makeStyles-opinion-158"
             >
               <RUMOR
                 fontSize="inherit"
