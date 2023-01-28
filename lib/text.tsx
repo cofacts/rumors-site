@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import gql from 'graphql-tag';
+import { graphql } from '../typegen';
 
 const BREAK = { $$BREAK: true } as const;
 
@@ -309,18 +310,16 @@ export function highlightSections(
   return jsxElems;
 }
 
-highlightSections.fragments = {
-  HighlightFields: gql`
-    fragment HighlightFields on Highlights {
-      text
-      reference
-      hyperlinks {
-        title
-        summary
-      }
+export const HighlightFields = graphql(/* GraphQL */ `
+  fragment HighlightFields on Highlights {
+    text
+    reference
+    hyperlinks {
+      title
+      summary
     }
-  `,
-};
+  }
+`);
 
 const formatter =
   Intl && typeof Intl.NumberFormat === 'function'

@@ -16,7 +16,9 @@
     "i18n:validate": "ttag validate i18n/zh_TW.po",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "typegen": "graphql-codegen",
+    "posttypegen": "eslint --fix typegen"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
@@ -60,6 +62,8 @@
     "@babel/core": "^7.9.0",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@graphql-codegen/cli": "^2.16.4",
+    "@graphql-codegen/client-preset": "^1.2.6",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-knobs": "^6.4.0",
     "@storybook/addon-storyshots": "^6.4.22",
