@@ -1,6 +1,9 @@
 import React, { CSSProperties } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
-import gql from 'graphql-tag';
+import {
+  FragmentType,
+  useFragment as getFragment,
+} from '../typegen/fragment-masking';
 import { graphql } from '../typegen';
 
 const BREAK = { $$BREAK: true } as const;
@@ -258,28 +261,33 @@ function getMarkElems(
     .filter(jsxElem => !!jsxElem);
 }
 
+export const HighlightFields = graphql(/* GraphQL */ `
+  fragment HighlightFields on Highlights {
+    text
+    reference
+    hyperlinks {
+      title
+      summary
+    }
+  }
+`);
+
 /**
  * Processes Highlights object from rumors-api
  */
 export function highlightSections(
-  {
-    text,
-    reference,
-    hyperlinks,
-  }: /** highlightSections.fragments type */ {
-    text: string;
-    reference: string;
-    hyperlinks: ReadonlyArray<{
-      title?: string | null;
-      summary?: string | null;
-    }>;
-  },
+  highlightFields: FragmentType<typeof HighlightFields>,
   classes: {
     highlight?: string;
     reference?: string;
     hyperlinks?: string;
   }
 ) {
+  const { text, reference, hyperlinks } = getFragment(
+    HighlightFields,
+    highlightFields
+  );
+
   const jsxElems = [];
 
   if (text) {
@@ -309,17 +317,6 @@ export function highlightSections(
 
   return jsxElems;
 }
-
-export const HighlightFields = graphql(/* GraphQL */ `
-  fragment HighlightFields on Highlights {
-    text
-    reference
-    hyperlinks {
-      title
-      summary
-    }
-  }
-`);
 
 const formatter =
   Intl && typeof Intl.NumberFormat === 'function'

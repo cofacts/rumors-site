@@ -6,7 +6,7 @@ import Infos, { TimeInfo } from 'components/Infos';
 import ExpandableText from 'components/ExpandableText';
 import Thumbnail from 'components/Thumbnail';
 import ListPageCard from './ListPageCard';
-import { highlightSections } from 'lib/text';
+import { highlightSections, HighlightFields } from 'lib/text';
 import { useHighlightStyles } from './utils';
 import cx from 'clsx';
 
@@ -149,7 +149,7 @@ ArticleCard.fragments = {
     }
     ${Thumbnail.fragments.ThumbnailArticleData}
   `,
-  Highlight: highlightSections.fragments.HighlightFields,
+  Highlight: HighlightFields,
 };
 
 export default ArticleCard;
