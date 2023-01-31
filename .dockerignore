@@ -12,3 +12,5 @@
 !ecosystem.config.js
 !.storybook/*
 !public/*
+!pages/*
+!typegen/*
