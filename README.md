@@ -141,6 +141,30 @@ babel cache for the new translation to appear correctly.
 
 When building using Docker, `LOCALE` can be provided via build args.
 
+### Typescript and API types
+
+This repository uses GraphQL Code Generator with [client preset](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client).
+
+When writing Typescript file with GraphQL, please run this command to generate or update the GraphQL codegen result (`TypedDocumentNode`):
+
+```bash
+$ npm run typegen
+```
+
+If encountering GraphQL operations or fragments wrapped with `gql`, please change to codegen result instead:
+```typescript
+// Old syntax
+import gql from 'graphql-tag';
+
+gql`...`;
+
+// New syntax
+import { graphql } from 'path-to-typegen';
+graphql(/* GraphQL */ `...`)
+```
+
+To consume the fragments from typed API, see [Fragment Masking documentation](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#fragment-masking) of the client preset.
+
 ## Legal
 
 `LICENSE` defines the license agreement for the source code in this repository.
