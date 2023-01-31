@@ -1,9 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
-import {
-  FragmentType,
-  useFragment as getFragment,
-} from '../typegen/fragment-masking';
+import { FragmentType, getFragmentData } from '../typegen/fragment-masking';
 import { graphql } from '../typegen';
 
 const BREAK = { $$BREAK: true } as const;
@@ -283,7 +280,7 @@ export function highlightSections(
     hyperlinks?: string;
   }
 ) {
-  const { text, reference, hyperlinks } = getFragment(
+  const { text, reference, hyperlinks } = getFragmentData(
     HighlightFields,
     highlightFields
   );
