@@ -6,7 +6,7 @@ import ExpandableText from 'components/ExpandableText';
 import ArticleReplySummary from 'components/ArticleReplySummary';
 import ArticleReplyFeedbackControl from 'components/ArticleReplyFeedbackControl';
 import ReplyInfo from 'components/ReplyInfo';
-import { highlightSections } from 'lib/text';
+import { highlightSections, HighlightFields } from 'lib/text';
 import { useHighlightStyles } from './utils';
 
 const useStyles = makeStyles(theme => ({
@@ -121,7 +121,7 @@ ReplyItem.fragments = {
     ${Avatar.fragments.AvatarData}
     ${ArticleReplySummary.fragments.ArticleReplySummaryData}
   `,
-  Highlight: highlightSections.fragments.HighlightFields,
+  Highlight: HighlightFields,
 };
 
 export default ReplyItem;

@@ -1,4 +1,6 @@
 import React, { CSSProperties } from 'react';
+import { gql } from 'graphql-tag';
+import { print } from 'graphql';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { FragmentType, getFragmentData } from '../typegen/fragment-masking';
 import { graphql } from '../typegen';
@@ -258,7 +260,7 @@ function getMarkElems(
     .filter(jsxElem => !!jsxElem);
 }
 
-export const HighlightFields = graphql(/* GraphQL */ `
+const TypedHighlightFields = graphql(/* GraphQL */ `
   fragment HighlightFields on Highlights {
     text
     reference
@@ -270,10 +272,18 @@ export const HighlightFields = graphql(/* GraphQL */ `
 `);
 
 /**
+ * @deprecated - Remove export after all dependent queries use codegen graphql() instead of graphql-tag gql.
+ * @see https://stackoverflow.com/a/72802504/1582110
+ */
+export const HighlightFields = gql`
+  ${print(TypedHighlightFields)}
+`;
+
+/**
  * Processes Highlights object from rumors-api
  */
 export function highlightSections(
-  highlightFields: FragmentType<typeof HighlightFields>,
+  highlightFields: FragmentType<typeof TypedHighlightFields>,
   classes: {
     highlight?: string;
     reference?: string;
@@ -281,7 +291,7 @@ export function highlightSections(
   }
 ) {
   const { text, reference, hyperlinks } = getFragmentData(
-    HighlightFields,
+    TypedHighlightFields,
     highlightFields
   );
 
