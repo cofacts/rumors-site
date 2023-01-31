@@ -145,7 +145,7 @@ When building using Docker, `LOCALE` can be provided via build args.
 
 This repository uses GraphQL Code Generator with [client preset](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client).
 
-When writing Typescript file with GraphQL, please run this command to generate or update the GraphQL codegen result (`TypedDocumentNode`):
+When writing Typescript file with GraphQL, please run this command to generate or update the GraphQL codegen result (`TypedDocumentNode` in `typegen/*`):
 
 ```bash
 $ npm run typegen
