@@ -133,6 +133,7 @@ const LOAD_ARTICLE = gql`
       replyRequestCount
       replyCount
       createdAt
+      status
       references {
         type
       }
@@ -353,6 +354,8 @@ function ArticlePage() {
         <title>
           {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
+        {/* Don't let search engines index blocked spam */ article.status ===
+          'BLOCKED' && <meta name="robots" content="noindex, nofollow" />}
       </Head>
       <div className={classes.root}>
         <div className={classes.main}>
@@ -372,55 +375,62 @@ function ArticlePage() {
               </Infos>
             </header>
             <CardContent>
-              {(() => {
-                switch (articleType) {
-                  case 'IMAGE':
-                    return !originalAttachmentUrl ? (
-                      <img
-                        className={classes.attachment}
-                        src={attachmentUrl}
-                        alt="image"
-                      />
-                    ) : (
-                      <a
-                        href={originalAttachmentUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className={classes.attachment}
-                          src={attachmentUrl}
-                          alt="image"
-                        />
-                      </a>
-                    );
-                  case 'VIDEO':
-                    return !originalAttachmentUrl ? (
-                      t`Log in to view video content`
-                    ) : (
-                      <video
-                        className={classes.attachment}
-                        src={originalAttachmentUrl}
-                        controls
-                      />
-                    );
-                  case 'AUDIO':
-                    return !originalAttachmentUrl ? (
-                      t`Log in to view audio content`
-                    ) : (
-                      <audio src={originalAttachmentUrl} controls />
-                    );
-                }
-              })()}
-              {text &&
-                nl2br(
-                  linkify(text, {
-                    props: {
-                      target: '_blank',
-                    },
-                  })
-                )}
-              <Hyperlinks hyperlinks={hyperlinks} />
+              {article.status === 'BLOCKED' && !currentUser ? (
+                t`Log in to view content`
+              ) : (
+                <>
+                  {(() => {
+                    switch (articleType) {
+                      case 'IMAGE':
+                        return !originalAttachmentUrl ? (
+                          <img
+                            className={classes.attachment}
+                            src={attachmentUrl}
+                            alt="image"
+                          />
+                        ) : (
+                          <a
+                            href={originalAttachmentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              className={classes.attachment}
+                              src={attachmentUrl}
+                              alt="image"
+                            />
+                          </a>
+                        );
+                      case 'VIDEO':
+                        return !originalAttachmentUrl ? (
+                          t`Log in to view video content`
+                        ) : (
+                          <video
+                            className={classes.attachment}
+                            src={originalAttachmentUrl}
+                            controls
+                          />
+                        );
+                      case 'AUDIO':
+                        return !originalAttachmentUrl ? (
+                          t`Log in to view audio content`
+                        ) : (
+                          <audio src={originalAttachmentUrl} controls />
+                        );
+                    }
+                  })()}
+                  {text &&
+                    nl2br(
+                      linkify(text, {
+                        props: {
+                          target: '_blank',
+                          rel: 'ugc nofollow',
+                        },
+                      })
+                    )}
+                  <Hyperlinks hyperlinks={hyperlinks} rel="ugc nofollow" />
+                </>
+              )}
               <Box my={[1.5, 2]}>
                 <ArticleCategories
                   articleId={article.id}

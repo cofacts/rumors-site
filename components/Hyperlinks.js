@@ -127,8 +127,9 @@ function getErrorText(error) {
 
 /**
  * @param {object} props.hyperlink
+ * @param {string} props.rel - rel prop for the hyperlink (other than noopener and noreferrer)
  */
-function Hyperlink({ hyperlink }) {
+function Hyperlink({ hyperlink, rel = '' }) {
   const { title, topImageUrl, error, url } = hyperlink;
   const summary = (hyperlink.summary || '').slice(0, 200);
 
@@ -146,7 +147,7 @@ function Hyperlink({ hyperlink }) {
       </div>
       <span className={classes.url}>
         <HyperlinkIcon />
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <a href={url} target="_blank" rel={`noopener noreferrer ${rel}`}>
           {url}
         </a>
       </span>
@@ -173,8 +174,9 @@ function PollingHyperlink({ pollingType, pollingId }) {
  * @param {object[] | null} props.hyperlinks
  * @param {'articles'|'replies'?} props.pollingType - poll article or reply for hyperlinks when it's not loaded (null)
  * @param {string?} props.pollingId - polling article or reply id for hyperlinks when it's not loaded (null)
+ * @param {string?} props.rel - rel prop for the hyperlink (other than noopener and noreferrer)
  */
-function Hyperlinks({ hyperlinks, pollingType, pollingId }) {
+function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
   if (!((pollingId && pollingType) || (!pollingId && !pollingType))) {
     throw new Error('pollingType and pollingId must be specified together');
   }
@@ -191,7 +193,7 @@ function Hyperlinks({ hyperlinks, pollingType, pollingId }) {
       mb={1}
     >
       {(hyperlinks || []).map((hyperlink, idx) => (
-        <Hyperlink key={idx} hyperlink={hyperlink} />
+        <Hyperlink key={idx} hyperlink={hyperlink} rel={rel} />
       ))}
       {!hyperlinks && pollingId && (
         <PollingHyperlink pollingId={pollingId} pollingType={pollingType} />
