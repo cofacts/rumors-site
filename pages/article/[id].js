@@ -199,6 +199,8 @@ const LOAD_ARTICLE_FOR_USER = gql`
       id # Required, https://github.com/apollographql/apollo-client/issues/2510
       originalAttachmentUrl: attachmentUrl(variant: ORIGINAL)
       replyRequests(statuses: $replyRequestStatuses) {
+        positiveFeedbackCount
+        negativeFeedbackCount
         ...ReplyRequestInfoForUser
       }
       articleReplies(statuses: $articleReplyStatuses) {
@@ -345,7 +347,11 @@ function ArticlePage() {
   );
 
   const replyRequestsWithComments = (article.replyRequests || []).filter(
-    ({ reason }) => reason
+    ({ reason, positiveFeedbackCount, negativeFeedbackCount }) =>
+      reason &&
+      reason.trim().length > 0 &&
+      // For users not logged in yet, only show reply requests with positive feedbacks
+      (currentUser ? true : positiveFeedbackCount - negativeFeedbackCount > 0)
   );
 
   return (

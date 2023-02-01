@@ -11,6 +11,7 @@ import ActionMenu, {
   ReportAbuseMenuItem,
   useCanReportAbuse,
 } from 'components/ActionMenu';
+import useCurrentUser from 'lib/useCurrentUser';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,6 +63,7 @@ const ReplyRequestInfo = gql`
     negativeFeedbackCount
 
     user {
+      id
       name
       ...AvatarData
     }
@@ -92,6 +94,7 @@ function ReplyRequestReason({ replyRequest, articleId }) {
     user,
   } = replyRequest;
 
+  const currentUser = useCurrentUser();
   const canReportAbuse = useCanReportAbuse(user.id);
   const [voteReason, { loading }] = useMutation(UPDATE_VOTE);
   const handleVote = vote => {
@@ -101,6 +104,8 @@ function ReplyRequestReason({ replyRequest, articleId }) {
   const classes = useStyles();
 
   if (!replyRequestReason) return null;
+
+  const isOwnReplyRequest = user && currentUser && user.id === currentUser.id;
 
   return (
     <div className={classes.root}>
@@ -118,7 +123,7 @@ function ReplyRequestReason({ replyRequest, articleId }) {
               className={classes.vote}
               type="button"
               onClick={() => handleVote(UPVOTE)}
-              disabled={loading}
+              disabled={loading || isOwnReplyRequest}
             >
               <ThumbUpIcon className={classes.thumbIcon} />
               {positiveFeedbackCount}
@@ -130,7 +135,7 @@ function ReplyRequestReason({ replyRequest, articleId }) {
               className={classes.vote}
               type="button"
               onClick={() => handleVote(DOWNVOTE)}
-              disabled={loading}
+              disabled={loading || isOwnReplyRequest}
             >
               <ThumbDownIcon className={classes.thumbIcon} />
               {negativeFeedbackCount}
