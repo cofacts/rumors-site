@@ -1,5 +1,5 @@
 module.exports = {
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'plugin:import/errors',
@@ -31,7 +31,19 @@ module.exports = {
     node: true,
   },
   settings: {
-    'import/resolver': { 'babel-module': {} },
+    'import/resolver': {
+      'babel-module': {
+        // For JS files to include TS files also
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
     react: { version: 'detect' },
   },
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      plugins: ['@typescript-eslint'],
+    },
+  ],
 };

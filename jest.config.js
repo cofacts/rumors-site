@@ -3,8 +3,8 @@ module.exports = {
     // Required by Storyshot multiSnapshotWithOptions()
     // Ref: https://github.com/storybookjs/storybook/tree/master/addons/storyshots/storyshots-core#multisnapshotwithoptionsoptions
     //
-    '^.+\\.stories\\.jsx?$': '@storybook/addon-storyshots/injectFileName',
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.stories\\.(j|t)sx?$': '@storybook/addon-storyshots/injectFileName',
+    '^.+\\.(j|t)sx?$': 'babel-jest',
   },
   moduleNameMapper: {
     // Ignore CSS and image imports in jest

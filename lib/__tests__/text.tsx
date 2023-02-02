@@ -1,5 +1,12 @@
 import React from 'react';
-import { linkify, nl2br, truncate, highlightSections } from '../text';
+import { makeFragmentData } from '../../typegen';
+import {
+  linkify,
+  nl2br,
+  truncate,
+  highlightSections,
+  HighlightFields,
+} from '../text';
 
 describe('text', () => {
   describe('linkify', () => {
@@ -178,22 +185,28 @@ describe('highlightSections', () => {
   it('return empty arrays for empty highlights', () => {
     expect(
       highlightSections(
-        {
-          text: null,
-          reference: null,
-          hyperlinks: null,
-        },
+        makeFragmentData(
+          {
+            text: null,
+            reference: null,
+            hyperlinks: null,
+          },
+          HighlightFields
+        ),
         classes
       )
     ).toMatchInlineSnapshot(`Array []`);
 
     expect(
       highlightSections(
-        {
-          text: null,
-          reference: null,
-          hyperlinks: [],
-        },
+        makeFragmentData(
+          {
+            text: null,
+            reference: null,
+            hyperlinks: [],
+          },
+          HighlightFields
+        ),
         classes
       )
     ).toMatchInlineSnapshot(`Array []`);
@@ -202,20 +215,23 @@ describe('highlightSections', () => {
   it('wraps <mark> to all highlightable fields', () => {
     expect(
       highlightSections(
-        {
-          text:
-            '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit <HIGHLIGHT>amet</HIGHLIGHT>, consectetur <HIGHLIGHT>adipiscing elit</HIGHLIGHT>',
-          reference:
-            '【誤導】<HIGHLIGHT>大陸東北男子穿短袖短褲晨跑</HIGHLIGHT>？<HIGHLIGHT>凍成人型冰棍影片</HIGHLIGHT>？2018酒醉凍傷致死事件\n\nMyGoPen查證參考：\nhttps://www.mygopen.com/2021/01/freeze-Morning-jogging.html',
-          hyperlinks: [
-            {
-              title:
-                '<HIGHLIGHT>MyGoPen</HIGHLIGHT>｜這是假消息:  【假LINE】大同寶寶貼圖詐騙新手法！連到外部網站再騙你加',
-              summary:
-                '今年為一九<HIGHLIGHT>六四</HIGHLIGHT>年以來首度無颱風侵台',
-            },
-          ],
-        },
+        makeFragmentData(
+          {
+            text:
+              '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit <HIGHLIGHT>amet</HIGHLIGHT>, consectetur <HIGHLIGHT>adipiscing elit</HIGHLIGHT>',
+            reference:
+              '【誤導】<HIGHLIGHT>大陸東北男子穿短袖短褲晨跑</HIGHLIGHT>？<HIGHLIGHT>凍成人型冰棍影片</HIGHLIGHT>？2018酒醉凍傷致死事件\n\nMyGoPen查證參考：\nhttps://www.mygopen.com/2021/01/freeze-Morning-jogging.html',
+            hyperlinks: [
+              {
+                title:
+                  '<HIGHLIGHT>MyGoPen</HIGHLIGHT>｜這是假消息:  【假LINE】大同寶寶貼圖詐騙新手法！連到外部網站再騙你加',
+                summary:
+                  '今年為一九<HIGHLIGHT>六四</HIGHLIGHT>年以來首度無颱風侵台',
+              },
+            ],
+          },
+          HighlightFields
+        ),
         classes
       )
     ).toMatchInlineSnapshot(`

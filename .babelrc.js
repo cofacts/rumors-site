@@ -13,6 +13,7 @@ module.exports = {
           "constants": "./constants",
           "pages": "./pages",
           "lib": "./lib",
+          "typegen": "./typegen",
         }
       }
     ],
