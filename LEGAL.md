@@ -18,7 +18,7 @@
 
 5. 網站協作者能於網站個人頁面編輯顯示名稱資料與查核資料，也能得隨時聯繫 Cofacts WG 修改網站與平台內的個人資訊。
 
-6. 如果網站協作者有廣告投放或是惡意的文章散布、違法情形，Cofacts WG 得直接終止與刪除網站使用者的帳號與其廣告內容、或是違法行為所留下之文字並將相關處理資訊紀錄於 https://github.com/cofacts/takedowns 。
+6. 如果網站協作者有廣告投放或是惡意的文章散布、違法、或致使 Cofacts WG 違反所使用的雲端儲存服務之條款（包含但不限於 Google 服務條款、Google cloud 服務條款、[條列於 Google 說明頁面之違規樣態](https://support.google.com/accounts/answer/40695)等）之情形，Cofacts WG 得直接終止與刪除網站使用者的帳號與其廣告內容、或是違法行為所留下之文字並將相關處理資訊紀錄於 https://github.com/cofacts/takedowns 。
 
 ## 二、著作權
 
