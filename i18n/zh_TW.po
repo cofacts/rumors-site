@@ -297,6 +297,14 @@ msgstr "我的主頁"
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
+#: components/AppLayout/AppFooter.js:168
+msgid "Donate to Cofacts"
+msgstr "捐款給 Cofacts"
+
+#: components/AppLayout/AppFooter.js:126
+msgid "Impact Report"
+msgstr "影響力報告"
+
 #: constants/replyType.js:72
 msgid "invalid request"
 msgstr "不在查證範圍"

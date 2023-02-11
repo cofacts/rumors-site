@@ -10,6 +10,7 @@ import {
   PROJECT_MEDIUM,
   CONTACT_EMAIL,
   LINE_URL,
+  DONATION_URL,
 } from 'constants/urls';
 import NavLink from 'components/NavLink';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
@@ -122,6 +123,7 @@ function AppFooter() {
             <CustomLink external href={PROJECT_MEDIUM}>
               Medium
             </CustomLink>
+            <CustomLink href="/impact">{t`Impact Report`}</CustomLink>
           </div>
           <div className={classes.column}>
             <h3>{t`Contact`}</h3>
@@ -165,6 +167,9 @@ function AppFooter() {
               Line: @cofacts
             </CustomLink>
             {matches && <GoogleWebsiteTranslator />}
+            <CustomLink external href={DONATION_URL}>
+              {t`Donate to Cofacts`}
+            </CustomLink>
           </div>
         </div>
       </div>
