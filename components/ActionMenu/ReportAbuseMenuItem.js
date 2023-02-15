@@ -24,7 +24,7 @@ export function useCanReportAbuse(itemUserId) {
 /**
  * @param {object} props
  * @param {string} props.userId - spammer's user ID
- * @param {'replyRequest' | 'articleReplyFeedback' | 'reply'} props.itemType - reported spam item type
+ * @param {'replyRequest' | 'articleReplyFeedback' | 'reply' | 'article'} props.itemType - reported spam item type
  * @param {string} props.itemId - reply ID for reply; article ID for replyRequest; article ID,reply ID (separated in comma) for article reply feedback.
  *
  * @returns {string} Pre-filled URL to the google form that reports spam.
