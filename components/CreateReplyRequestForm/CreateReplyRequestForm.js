@@ -12,10 +12,14 @@ import {
   Fab,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
 import { CardContent } from 'components/Card';
 import { PenIcon } from 'components/icons';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
+import ReportAbuseMenuItem, {
+  useCanReportAbuse,
+} from 'components/ActionMenu/ReportAbuseMenuItem';
 import useCurrentUser from 'lib/useCurrentUser';
 import cx from 'clsx';
 
@@ -135,7 +139,7 @@ const SubmitButton = ({
 };
 
 const CreateReplyRequestForm = React.memo(
-  ({ articleId, requestedForReply, onNewReplyButtonClick }) => {
+  ({ articleId, articleUserId, requestedForReply, onNewReplyButtonClick }) => {
     const buttonRef = useRef(null);
     const [disabled, setDisabled] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -143,6 +147,9 @@ const CreateReplyRequestForm = React.memo(
     const [text, setText] = useState('');
 
     const [shareAnchor, setShareAnchor] = useState(null);
+    const [moreAnchor, setMoreAnchor] = useState(null);
+
+    const canReportAbuse = useCanReportAbuse();
 
     useEffect(() => {
       // restore from localStorage if applicable.
@@ -252,6 +259,17 @@ const CreateReplyRequestForm = React.memo(
               >
                 {t`Share`}
               </Button>
+              {canReportAbuse && (
+                <Button
+                  type="button"
+                  className={cx({ [classes.isButtonActive]: !!moreAnchor })}
+                  onClick={e => setMoreAnchor(e.currentTarget)}
+                  disableElevation
+                  style={{ flex: 0 }}
+                >
+                  <MoreVertIcon />
+                </Button>
+              )}
             </ButtonGroup>
             <Menu
               id="share-article-menu"
@@ -278,6 +296,28 @@ const CreateReplyRequestForm = React.memo(
               >
                 {t`Facebook`}
               </MenuItem>
+            </Menu>
+            <Menu
+              id="more-article-menu"
+              anchorEl={moreAnchor}
+              keepMounted
+              getContentAnchorEl={null}
+              open={!!moreAnchor}
+              onClose={() => setMoreAnchor(null)}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              <ReportAbuseMenuItem
+                itemType="article"
+                itemId={articleId}
+                userId={articleUserId}
+              />
             </Menu>
           </Box>
         </CardContent>

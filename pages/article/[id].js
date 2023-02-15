@@ -176,6 +176,9 @@ const LOAD_ARTICLE = gql`
           visit
         }
       }
+      user {
+        id
+      }
     }
   }
   ${Hyperlinks.fragments.HyperlinkData}
@@ -467,6 +470,7 @@ function ArticlePage() {
             <CreateReplyRequestForm
               requestedForReply={article.requestedForReply}
               articleId={article.id}
+              articleUserId={article.user.id}
               onNewReplyButtonClick={() => {
                 setShowForm(true);
                 // use setTimeout to make sure the form has shown
