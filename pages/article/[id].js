@@ -470,7 +470,7 @@ function ArticlePage() {
             <CreateReplyRequestForm
               requestedForReply={article.requestedForReply}
               articleId={article.id}
-              articleUserId={article.user.id}
+              articleUserId={article.user?.id || 'N/A'}
               onNewReplyButtonClick={() => {
                 setShowForm(true);
                 // use setTimeout to make sure the form has shown
