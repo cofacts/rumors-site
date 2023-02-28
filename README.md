@@ -79,8 +79,7 @@ The application will fire the following custom events in GTM `dataLayer`:
 Also, it will push the following custom variable to `dataLayer`;
 
 - `CURRENT_USER` - Current user object, set by `useCurrentUser`.
-- `docType` - Set when `dataLoaded` event fires. Can be either `article` or `reply`.
-- `docId` - Set when `dataLoaded` event fires. The ID of loaded content.
+- `doc` - Set when `dataLoaded` event fires. The loaded content itself in object, including its `__typename`.
 
 Lastly, in Google Tag Manager we use `data-ga` property to track clicks.
 If user clicks a decendant of an React element with `data-ga` property,

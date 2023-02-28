@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 /**
  * Google tag manager related utility functions
@@ -16,12 +16,15 @@ export function pushToDataLayer(...args: unknown[]) {
 
 /**
  * @param trigger - trigger useEffect() after trigger turns truthy
- * @param args - data to send to pushDataLayer on trigger change
+ * @param args - data to send to pushDataLayer on trigger change. It's sent only once.
+ *               Changes to args afterwards does not trigger push anymore.
  */
-export function usePushToDataLayer(trigger: unknown, args: object) {
+export function usePushToDataLayerOnce(trigger: unknown, args: object) {
+  const triggeredRef = useRef(false);
   const dontTrigger = !trigger;
   useEffect(() => {
-    if (dontTrigger) return;
+    if (dontTrigger || triggeredRef.current) return;
+    triggeredRef.current = true;
     pushToDataLayer(args);
   }, [dontTrigger, args]);
 }

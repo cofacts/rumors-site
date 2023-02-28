@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
-import { usePushToDataLayer } from 'lib/gtm';
+import { usePushToDataLayerOnce } from 'lib/gtm';
 import getTermsString from 'lib/terms';
 
 import ExpandableText from 'components/ExpandableText';
@@ -158,10 +158,9 @@ function ReplyPage() {
   }, [currentUser]);
 
   const reply = data?.GetReply;
-  usePushToDataLayer(!!reply, {
+  usePushToDataLayerOnce(!!reply, {
     event: 'dataLoaded',
-    docType: 'article',
-    docId: query.id,
+    doc: reply,
   });
 
   if (loading) {
