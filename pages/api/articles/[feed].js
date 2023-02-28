@@ -10,12 +10,11 @@ import { config } from 'lib/apollo';
 import rollbar from 'lib/rollbar';
 import { TYPE_NAME } from 'constants/replyType';
 import JsonUrl from 'json-url';
-import ua from 'universal-analytics';
 
 const TITLE_LENGTH = 40;
 const AVAILABLE_FEEDS = ['rss2', 'atom1', 'json1'];
 const {
-  publicRuntimeConfig: { PUBLIC_URL, PUBLIC_GA_TRACKING_ID },
+  publicRuntimeConfig: { PUBLIC_URL },
 } = getConfig();
 
 // This should match article "time" fields in ListArticleOrderBy
@@ -184,16 +183,6 @@ async function articleFeedHandler(req, res) {
         date: new Date(getDateValue(node, dateField)),
       });
     });
-
-    const visitor = ua(PUBLIC_GA_TRACKING_ID);
-    const params = {
-      ec: 'RSS',
-      ea: 'Poll',
-      el: query.source,
-      dp: JSON.stringify(listQueryVars), // filter, document path: maxlength 2048 bytes
-      dt: JSON.stringify(req.headers), // some headers contain follower number, document title: maxlength 1500 bytes
-    };
-    visitor.event(params).send();
 
     // https://stackoverflow.com/questions/595616/what-is-the-correct-mime-type-to-use-for-an-rss-feed
     const type = accepts(req).type([
