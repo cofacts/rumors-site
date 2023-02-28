@@ -297,7 +297,11 @@ function ArticlePage() {
 
   const article = data?.GetArticle;
 
-  usePushToDataLayer(!!article, { event: 'dataLoaded' });
+  usePushToDataLayer(!!article, {
+    event: 'dataLoaded',
+    docType: 'article',
+    docId: query.id,
+  });
 
   if (loading && !article) {
     return (

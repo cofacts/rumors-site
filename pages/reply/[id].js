@@ -158,7 +158,11 @@ function ReplyPage() {
   }, [currentUser]);
 
   const reply = data?.GetReply;
-  usePushToDataLayer(!!reply, { event: 'dataLoaded' });
+  usePushToDataLayer(!!reply, {
+    event: 'dataLoaded',
+    docType: 'article',
+    docId: query.id,
+  });
 
   if (loading) {
     return (
