@@ -13,7 +13,7 @@ import Head from 'next/head';
 import withData from 'lib/apollo';
 import useCurrentUser from 'lib/useCurrentUser';
 import { nl2br, linkify, ellipsis } from 'lib/text';
-import { usePushToDataLayer } from 'lib/gtm';
+import { usePushToDataLayerOnce } from 'lib/gtm';
 import getTermsString from 'lib/terms';
 import { useIsUserBlocked } from 'lib/isUserBlocked';
 
@@ -297,7 +297,10 @@ function ArticlePage() {
 
   const article = data?.GetArticle;
 
-  usePushToDataLayer(!!article, { event: 'dataLoaded' });
+  usePushToDataLayerOnce(!!article, {
+    event: 'dataLoaded',
+    doc: article,
+  });
 
   if (loading && !article) {
     return (
