@@ -46,7 +46,7 @@
     "lodash": "^4.17.19",
     "next": "^9.3.2",
     "next-apollo": "^3.1.5",
-    "pm2": "^4.2.3",
+    "pm2": "^5.2.2",
     "react": "^16.8.6",
     "react-calendar-heatmap": "^1.8.1",
     "react-dom": "^16.8.6",
