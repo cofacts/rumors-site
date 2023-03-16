@@ -25,7 +25,7 @@ const LOGIN_ONLY_OPTIONS = [FILTERS.REPLIED_BY_ME];
  * @param {object} query - query from router
  * @returns {Arary<keyof FILTERS>} list of selected filter values; see constants/articleFilters for all possible values
  */
-function getValues(query) {
+export function getValues(query) {
   return query[PARAM_NAME] ? query[PARAM_NAME].split(',') : [];
 }
 
@@ -58,6 +58,4 @@ function ArticleStatusFilter() {
   );
 }
 
-const MemoizedArticleStatusFilter = memo(ArticleStatusFilter);
-MemoizedArticleStatusFilter.getValues = getValues;
-export default MemoizedArticleStatusFilter;
+export default memo(ArticleStatusFilter);

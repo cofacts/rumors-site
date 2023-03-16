@@ -15,6 +15,7 @@ import {
   Tools,
   Filters,
   ArticleStatusFilter,
+  getArticleStatusFilterValues,
   CategoryFilter,
   ArticleTypeFilter,
   ReplyTypeFilter,
@@ -68,7 +69,7 @@ function urlQuery2Filter({ userId, ...query } = {}) {
   const selectedCategoryIds = CategoryFilter.getValues(query);
   if (selectedCategoryIds.length) filterObj.categoryIds = selectedCategoryIds;
 
-  const selectedFilters = ArticleStatusFilter.getValues(query);
+  const selectedFilters = getArticleStatusFilterValues(query);
   selectedFilters.forEach(filter => {
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
