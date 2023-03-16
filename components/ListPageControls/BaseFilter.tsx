@@ -89,25 +89,25 @@ const useStyles = makeStyles(theme => ({
  * @param {(selected: string[]) => void} props.onChange
  */
 
-type Props = {
+type Props<V> = {
   title: string;
   expandable?: boolean;
   placeholder?: string;
-  selected: ReadonlyArray<string>;
+  selected: ReadonlyArray<V>;
   options: ReadonlyArray<
     React.ComponentPropsWithoutRef<typeof BaseFilterOption>
   >;
-  onChange: (selected: string[]) => void;
+  onChange: (selected: V[]) => void;
 };
 
-function BaseFilter({
+function BaseFilter<V extends string>({
   title,
   onChange = () => null,
   placeholder,
   expandable,
   selected = [],
   options = [],
-}: Props) {
+}: Props<V>) {
   const classes = useStyles();
   const [expandEl, setExpandEl] = useState(null);
 

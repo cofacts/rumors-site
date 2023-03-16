@@ -82,8 +82,14 @@ function urlQuery2Filter({ userId, ...query } = {}) {
       case FILTERS.NO_USEFUL_REPLY_YET:
         filterObj.hasArticleReplyWithMorePositiveFeedback = false;
         break;
+      case FILTERS.ASKED_ONCE:
+        filterObj.replyRequestCount = { EQ: 1 };
+        break;
       case FILTERS.ASKED_MANY_TIMES:
         filterObj.replyRequestCount = { GTE: 2 };
+        break;
+      case FILTERS.NO_REPLY:
+        filterObj.replyCount = { EQ: 0 };
         break;
       case FILTERS.REPLIED_MANY_TIMES:
         filterObj.replyCount = { GTE: 3 };

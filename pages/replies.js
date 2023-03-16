@@ -80,6 +80,11 @@ const LIST_STAT = gql`
   }
 `;
 
+/** Toggle options in ArticleStatusFilter */
+const ARTICLE_STATUS_FILTER_MAP = {
+  [FILTERS.NO_REPLY]: false,
+};
+
 /**
  * @param {object} urlQuery - URL query object and urserId
  * @returns {object} ListArticleFilter
@@ -106,8 +111,14 @@ function urlQuery2Filter({ userId, ...query } = {}) {
       case FILTERS.NO_USEFUL_REPLY_YET:
         filterObj.hasArticleReplyWithMorePositiveFeedback = false;
         break;
+      case FILTERS.ASKED_ONCE:
+        filterObj.replyRequestCount = { EQ: 1 };
+        break;
       case FILTERS.ASKED_MANY_TIMES:
         filterObj.replyRequestCount = { GTE: 2 };
+        break;
+      case FILTERS.NO_REPLY:
+        filterObj.replyCount = { EQ: 0 };
         break;
       case FILTERS.REPLIED_MANY_TIMES:
         filterObj.replyCount = { GTE: 3 };
@@ -237,7 +248,7 @@ function ReplyListPage() {
       </Tools>
 
       <Filters>
-        <ArticleStatusFilter />
+        <ArticleStatusFilter filterMap={ARTICLE_STATUS_FILTER_MAP} />
         <ArticleTypeFilter />
         <ReplyTypeFilter />
         <CategoryFilter />

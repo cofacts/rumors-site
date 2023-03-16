@@ -1,4 +1,6 @@
 export const REPLIED_BY_ME = 'REPLIED_BY_ME';
-export const NO_USEFUL_REPLY_YET = 'NO_USEFUL_REPLY_YET';
+export const ASKED_ONCE = 'ASKED_ONCE';
 export const ASKED_MANY_TIMES = 'ASKED_MANY_TIMES';
+export const NO_REPLY = 'NO_REPLY';
 export const REPLIED_MANY_TIMES = 'REPLIED_MANY_TIMES';
+export const NO_USEFUL_REPLY_YET = 'NO_USEFUL_REPLY_YET';
