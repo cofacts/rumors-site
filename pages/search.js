@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { t } from 'ttag';
@@ -7,6 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import Box from '@material-ui/core/Box';
 import { Container } from '@material-ui/core';
+
+import * as FILTERS from 'constants/articleFilters';
 import {
   ListPageCards,
   ArticleCard,
@@ -15,7 +16,9 @@ import {
 import {
   Tools,
   Filters,
-  BaseFilter,
+  getArticleStatusFilter,
+  getArticleStatusFilterValues,
+  ArticleStatusFilter,
   CategoryFilter,
   ReplyTypeFilter,
   TimeRange,
@@ -137,23 +140,16 @@ function urlQuery2Filter(query = {}) {
  * Search for matching articles and list the result
  *
  * @param {object} props.query - URL param object
- * @param {string?} props.userId - If given, list only articles replied by this user ID
+ * @param {string?} props.userId - Currently logged in userId
  */
 function MessageSearchResult({ query, userId }) {
   const replyTypes = ReplyTypeFilter.getValues(query);
   const listQueryVars = {
     filter: {
       ...urlQuery2Filter(query),
+      ...getArticleStatusFilter(query, userId),
       categoryIds: CategoryFilter.getValues(query),
       ...(replyTypes.length ? { replyTypes } : {}),
-      ...(userId
-        ? {
-            articleRepliesFrom: {
-              userId,
-              exists: true,
-            },
-          }
-        : {}),
     },
   };
 
@@ -222,15 +218,17 @@ function MessageSearchResult({ query, userId }) {
  * Search for matching replies and list the result
  *
  * @param {object} props.query - URL param object
- * @param {boolean} props.selfOnly - If true, list only replies written by current user
+ * @param {boolean} props.isLoggedIn
  */
-function ReplySearchResult({ query, selfOnly }) {
+function ReplySearchResult({ query, isLoggedIn }) {
   const types = ReplyTypeFilter.getValues(query);
+  const articleStatusValues = getArticleStatusFilterValues(query);
   const listQueryVars = {
     filter: {
       ...urlQuery2Filter(query),
       ...(types.length ? { types } : {}),
-      selfOnly,
+      selfOnly:
+        isLoggedIn && articleStatusValues.includes(FILTERS.REPLIED_BY_ME),
     },
   };
 
@@ -291,10 +289,15 @@ function ReplySearchResult({ query, selfOnly }) {
   );
 }
 
+// Only "reply by me" filter for filter search
+const ARTICLE_STATUS_FILTER_MAP_FOR_REPLIES = {
+  ...Object.fromEntries(Object.keys(FILTERS).map(key => [key, false])),
+  [FILTERS.REPLIED_BY_ME]: true,
+};
+
 function SearchPage() {
   const { query } = useRouter();
   const user = useCurrentUser();
-  const [selfOnly, setSelfOnly] = useState(false);
 
   return (
     <AppLayout container={false}>
@@ -310,26 +313,21 @@ function SearchPage() {
         </Tools>
 
         <Filters>
-          <BaseFilter
-            title={t`Filter`}
-            options={[
-              { value: 'self', label: t`Replied by me`, disabled: !user },
-            ]}
-            selected={selfOnly ? ['self'] : []}
-            onChange={values => setSelfOnly(values.includes('self'))}
+          <ArticleStatusFilter
+            filterMap={
+              query.type === 'replies'
+                ? ARTICLE_STATUS_FILTER_MAP_FOR_REPLIES
+                : undefined
+            }
           />
           <ReplyTypeFilter />
           {query.type === 'messages' && <CategoryFilter />}
         </Filters>
-
         {query.type === 'messages' && (
-          <MessageSearchResult
-            query={query}
-            userId={selfOnly ? user?.id : undefined}
-          />
+          <MessageSearchResult query={query} userId={user?.id} />
         )}
         {query.type === 'replies' && (
-          <ReplySearchResult query={query} selfOnly={selfOnly} />
+          <ReplySearchResult query={query} isLoggedIn={!!user} />
         )}
       </Container>
     </AppLayout>

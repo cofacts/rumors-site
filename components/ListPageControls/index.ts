@@ -3,6 +3,7 @@ import Filters from './Filters';
 import BaseFilter from './BaseFilter';
 import ArticleStatusFilter, {
   getFilter as getArticleStatusFilter,
+  getValues as getArticleStatusFilterValues,
 } from './ArticleStatusFilter';
 import CategoryFilter from './CategoryFilter';
 import ArticleTypeFilter from './ArticleTypeFilter';
@@ -17,6 +18,7 @@ export {
   BaseFilter,
   ArticleStatusFilter,
   getArticleStatusFilter,
+  getArticleStatusFilterValues,
   CategoryFilter,
   ArticleTypeFilter,
   ReplyTypeFilter,

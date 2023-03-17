@@ -35,10 +35,10 @@ const MUTUALLY_EXCLUSIVE_FILTERS: ReadonlyArray<
 ];
 
 /**
- * @param {object} query - query from router
- * @returns {Arary<keyof FILTERS>} list of selected filter values; see constants/articleFilters for all possible values
+ * @param query - query from router
+ * @returns list of selected filter values; see constants/articleFilters for all possible values
  */
-function getValues(query: ParsedUrlQuery): Array<keyof typeof FILTERS> {
+export function getValues(query: ParsedUrlQuery): Array<keyof typeof FILTERS> {
   return query[PARAM_NAME]
     ? query[PARAM_NAME].toString()
         .split(',')
@@ -46,6 +46,11 @@ function getValues(query: ParsedUrlQuery): Array<keyof typeof FILTERS> {
     : [];
 }
 
+/**
+ * @param query - query from router
+ * @param userId - currently logged in user ID. Can be undefined if not logged in.
+ * @returns a ListArticleFilter with filter fields from router query
+ */
 export function getFilter(
   query: ParsedUrlQuery,
   userId?: string
@@ -96,7 +101,7 @@ function ArticleStatusFilter({ filterMap = {} }: Props) {
   // Disable login-only options when not logged in
   let options = OPTIONS.filter(f => filterMap[f.value] !== false);
 
-  if (user) {
+  if (!user) {
     options = options.map(option => ({
       ...option,
       disabled: LOGIN_ONLY_OPTIONS.includes(option.value),
