@@ -293,6 +293,7 @@ function ReplySearchResult({ query, isLoggedIn }) {
 const ARTICLE_STATUS_FILTER_MAP_FOR_REPLIES = {
   ...Object.fromEntries(Object.keys(FILTERS).map(key => [key, false])),
   [FILTERS.REPLIED_BY_ME]: true,
+  [FILTERS.NOT_REPLIED_BY_ME]: true,
 };
 
 function SearchPage() {

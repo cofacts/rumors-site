@@ -150,7 +150,7 @@ msgstr "已經送出回應。"
 msgid "Please login first."
 msgstr "請先登入。"
 
-#: pages/search.js:305
+#: pages/search.js:306
 msgid "Search"
 msgstr "搜尋"
 
@@ -349,7 +349,7 @@ msgstr "熱門回報"
 msgid "Replied many times"
 msgstr "多份查核"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:118
+#: components/ListPageControls/ArticleStatusFilter.tsx:127
 #: components/ListPageControls/Filters.js:70
 msgid "Filter"
 msgstr "篩選"
@@ -2501,6 +2501,10 @@ msgstr "無人查核"
 #: components/ListPageControls/ArticleStatusFilter.tsx:24
 msgid "Has useful replies"
 msgstr "查核有效"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:26
+msgid "Not replied by me"
+msgstr "我沒查過"
 
 #: pages/index.js:29
 msgctxt "site title"

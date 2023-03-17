@@ -23,9 +23,10 @@ const OPTIONS = [
   { value: FILTERS.NO_USEFUL_REPLY_YET, label: t`No useful reply yet` },
   { value: FILTERS.HAS_USEFUL_REPLY, label: t`Has useful replies` },
   { value: FILTERS.REPLIED_BY_ME, label: t`Replied by me` },
+  { value: FILTERS.NOT_REPLIED_BY_ME, label: t`Not replied by me` },
 ];
 
-const LOGIN_ONLY_OPTIONS = [FILTERS.REPLIED_BY_ME];
+const LOGIN_ONLY_OPTIONS = [FILTERS.REPLIED_BY_ME, FILTERS.NOT_REPLIED_BY_ME];
 
 const MUTUALLY_EXCLUSIVE_FILTERS: ReadonlyArray<
   ReadonlyArray<keyof typeof FILTERS>
@@ -34,6 +35,7 @@ const MUTUALLY_EXCLUSIVE_FILTERS: ReadonlyArray<
   [FILTERS.ASKED_ONCE, FILTERS.ASKED_MANY_TIMES],
   [FILTERS.NO_REPLY, FILTERS.REPLIED_MANY_TIMES],
   [FILTERS.NO_USEFUL_REPLY_YET, FILTERS.HAS_USEFUL_REPLY],
+  [FILTERS.REPLIED_BY_ME, FILTERS.NOT_REPLIED_BY_ME],
 ];
 
 /**
@@ -60,12 +62,19 @@ export function getFilter(
   const filterObj: ListArticleFilter = {};
 
   for (const filter of getValues(query)) {
+    if (!userId && LOGIN_ONLY_OPTIONS.includes(filter)) break;
+
     switch (filter) {
       case FILTERS.REPLIED_BY_ME:
-        if (!userId) break;
         filterObj.articleRepliesFrom = {
           userId: userId,
           exists: true,
+        };
+        break;
+      case FILTERS.NOT_REPLIED_BY_ME:
+        filterObj.articleRepliesFrom = {
+          userId: userId,
+          exists: false,
         };
         break;
       case FILTERS.NO_USEFUL_REPLY_YET:
@@ -130,6 +139,9 @@ function ArticleStatusFilter({ filterMap = {} }: Props) {
               newValues = newValues.filter(v =>
                 mutuallyExclusiveFilters.includes(v) ? v === filter : true
               );
+
+              // Found the toggled filter, can skip the rest.
+              break;
             }
           }
         });

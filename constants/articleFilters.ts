@@ -1,4 +1,5 @@
 export const REPLIED_BY_ME = 'REPLIED_BY_ME';
+export const NOT_REPLIED_BY_ME = 'NOT_REPLIED_BY_ME';
 export const ASKED_ONCE = 'ASKED_ONCE';
 export const ASKED_MANY_TIMES = 'ASKED_MANY_TIMES';
 export const NO_REPLY = 'NO_REPLY';
