@@ -26,6 +26,7 @@ const OPTIONS = [
   { value: FILTERS.NOT_REPLIED_BY_ME, label: t`Not replied by me` },
 ];
 
+/** Filters that is only enabled when user is logged in */
 const LOGIN_ONLY_OPTIONS = [FILTERS.REPLIED_BY_ME, FILTERS.NOT_REPLIED_BY_ME];
 
 const MUTUALLY_EXCLUSIVE_FILTERS: ReadonlyArray<
