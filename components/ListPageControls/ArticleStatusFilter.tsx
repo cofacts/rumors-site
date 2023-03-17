@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { t } from 'ttag';
 import { ParsedUrlQuery } from 'querystring';
 
+import { ListArticleFilter } from 'typegen/graphql';
 import BaseFilter from './BaseFilter';
 import useCurrentUser from 'lib/useCurrentUser';
 import { goToUrlQueryAndResetPagination } from 'lib/listPage';
@@ -37,12 +38,49 @@ const MUTUALLY_EXCLUSIVE_FILTERS: ReadonlyArray<
  * @param {object} query - query from router
  * @returns {Arary<keyof FILTERS>} list of selected filter values; see constants/articleFilters for all possible values
  */
-export function getValues(query: ParsedUrlQuery): Array<keyof typeof FILTERS> {
+function getValues(query: ParsedUrlQuery): Array<keyof typeof FILTERS> {
   return query[PARAM_NAME]
     ? query[PARAM_NAME].toString()
         .split(',')
         .filter((param): param is keyof typeof FILTERS => param in FILTERS)
     : [];
+}
+
+export function getFilter(
+  query: ParsedUrlQuery,
+  userId?: string
+): ListArticleFilter {
+  const filterObj: ListArticleFilter = {};
+
+  for (const filter of getValues(query)) {
+    switch (filter) {
+      case FILTERS.REPLIED_BY_ME:
+        if (!userId) break;
+        filterObj.articleRepliesFrom = {
+          userId: userId,
+          exists: true,
+        };
+        break;
+      case FILTERS.NO_USEFUL_REPLY_YET:
+        filterObj.hasArticleReplyWithMorePositiveFeedback = false;
+        break;
+      case FILTERS.ASKED_ONCE:
+        filterObj.replyRequestCount = { EQ: 1 };
+        break;
+      case FILTERS.ASKED_MANY_TIMES:
+        filterObj.replyRequestCount = { GTE: 2 };
+        break;
+      case FILTERS.NO_REPLY:
+        filterObj.replyCount = { EQ: 0 };
+        break;
+      case FILTERS.REPLIED_MANY_TIMES:
+        filterObj.replyCount = { GTE: 3 };
+        break;
+      default:
+    }
+  }
+
+  return filterObj;
 }
 
 type Props = {
