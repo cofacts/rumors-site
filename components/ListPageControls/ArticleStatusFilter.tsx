@@ -96,7 +96,10 @@ export function getFilter(
       case FILTERS.REPLIED_MANY_TIMES:
         filterObj.replyCount = { GTE: 3 };
         break;
-      default:
+      default: {
+        const exhausiveCheck: never = filter;
+        return exhausiveCheck;
+      }
     }
   }
 
