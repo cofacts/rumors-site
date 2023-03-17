@@ -52,20 +52,20 @@ msgid "Sort by"
 msgstr "排序方式"
 
 #: components/ProfilePage/RepliedArticleTab.js:36
-#: pages/articles.js:173
-#: pages/replies.js:155
+#: pages/articles.js:143
+#: pages/replies.js:128
 msgid "Most recently asked"
 msgstr "最近被查詢"
 
 #: components/ProfilePage/RepliedArticleTab.js:33
-#: pages/articles.js:175
-#: pages/replies.js:154
+#: pages/articles.js:145
+#: pages/replies.js:127
 msgid "Most recently replied"
 msgstr "最近被回應"
 
 #: components/ProfilePage/RepliedArticleTab.js:37
-#: pages/articles.js:174
-#: pages/replies.js:156
+#: pages/articles.js:144
+#: pages/replies.js:129
 msgid "Most asked"
 msgstr "最多人詢問"
 
@@ -150,7 +150,7 @@ msgstr "已經送出回應。"
 msgid "Please login first."
 msgstr "請先登入。"
 
-#: pages/search.js:302
+#: pages/search.js:305
 msgid "Search"
 msgstr "搜尋"
 
@@ -323,7 +323,7 @@ msgstr "含有正確訊息"
 msgid "contains misinformation"
 msgstr "含有錯誤訊息"
 
-#: pages/replies.js:287
+#: pages/replies.js:260
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
@@ -333,26 +333,24 @@ msgstr "查核闢謠"
 msgid "Messages"
 msgstr "可疑訊息"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:23
-#: pages/search.js:316
+#: components/ListPageControls/ArticleStatusFilter.tsx:25
 msgid "Replied by me"
 msgstr "我查核過"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:22
+#: components/ListPageControls/ArticleStatusFilter.tsx:23
 msgid "No useful reply yet"
-msgstr "還未有有效查核"
+msgstr "尚無有效查核"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:19
+#: components/ListPageControls/ArticleStatusFilter.tsx:20
 msgid "Asked many times"
 msgstr "熱門回報"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:21
+#: components/ListPageControls/ArticleStatusFilter.tsx:22
 msgid "Replied many times"
 msgstr "多份查核"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:70
+#: components/ListPageControls/ArticleStatusFilter.tsx:118
 #: components/ListPageControls/Filters.js:70
-#: pages/search.js:314
 msgid "Filter"
 msgstr "篩選"
 
@@ -373,8 +371,8 @@ msgstr "查看更多"
 msgid "Hoax for you"
 msgstr "等你來答"
 
-#: pages/replies.js:238
-#: pages/replies.js:241
+#: pages/replies.js:211
+#: pages/replies.js:214
 msgid "Latest replies"
 msgstr "最新查核"
 
@@ -440,8 +438,8 @@ msgstr "在 可疑訊息"
 msgid "in Replies"
 msgstr "在 最新查核"
 
-#: pages/articles.js:162
-#: pages/articles.js:164
+#: pages/articles.js:132
+#: pages/articles.js:134
 msgid "Dubious Messages"
 msgstr "可疑訊息"
 
@@ -456,11 +454,11 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 #: components/LandingPage/SectionArticles.js:153
 #: components/ProfilePage/CommentTab.js:151
 #: components/ProfilePage/RepliedArticleTab.js:251
-#: pages/articles.js:188
+#: pages/articles.js:158
 #: pages/hoax-for-you.js:133
-#: pages/replies.js:258
-#: pages/search.js:181
-#: pages/search.js:258
+#: pages/replies.js:231
+#: pages/search.js:177
+#: pages/search.js:256
 msgid "Loading..."
 msgstr "載入中⋯"
 
@@ -714,7 +712,7 @@ msgstr "${ totalVisits } 次瀏覽"
 #: components/ListPageDisplays/ReplySearchItem.js:103
 #: components/ProfilePage/CommentTab.js:169
 #: components/ProfilePage/RepliedArticleTab.js:269
-#: pages/replies.js:268
+#: pages/replies.js:241
 #, javascript-format
 msgid "${ article.replyRequestCount } occurrence"
 msgid_plural "${ article.replyRequestCount } occurrences"
@@ -2311,7 +2309,7 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 #: components/ProfilePage/CommentTab.js:178
 #: components/ProfilePage/RepliedArticleTab.js:278
 #: pages/article/[id].js:385
-#: pages/replies.js:275
+#: pages/replies.js:248
 msgid "First reported ${ timeAgo }"
 msgstr "首次回報於 ${ timeAgo }"
 
@@ -2492,13 +2490,17 @@ msgstr ""
 msgid "Log in to view content"
 msgstr ""
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:18
+#: components/ListPageControls/ArticleStatusFilter.tsx:19
 msgid "Asked only once"
 msgstr "僅一人回報"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:20
+#: components/ListPageControls/ArticleStatusFilter.tsx:21
 msgid "Zero replies"
 msgstr "無人查核"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:24
+msgid "Has useful replies"
+msgstr "查核有效"
 
 #: pages/index.js:29
 msgctxt "site title"

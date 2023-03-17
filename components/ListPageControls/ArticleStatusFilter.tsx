@@ -21,6 +21,7 @@ const OPTIONS = [
   { value: FILTERS.NO_REPLY, label: t`Zero replies` },
   { value: FILTERS.REPLIED_MANY_TIMES, label: t`Replied many times` },
   { value: FILTERS.NO_USEFUL_REPLY_YET, label: t`No useful reply yet` },
+  { value: FILTERS.HAS_USEFUL_REPLY, label: t`Has useful replies` },
   { value: FILTERS.REPLIED_BY_ME, label: t`Replied by me` },
 ];
 
@@ -32,6 +33,7 @@ const MUTUALLY_EXCLUSIVE_FILTERS: ReadonlyArray<
   // Sets of filters that are mutually exclusive (cannot be selected together)
   [FILTERS.ASKED_ONCE, FILTERS.ASKED_MANY_TIMES],
   [FILTERS.NO_REPLY, FILTERS.REPLIED_MANY_TIMES],
+  [FILTERS.NO_USEFUL_REPLY_YET, FILTERS.HAS_USEFUL_REPLY],
 ];
 
 /**
@@ -68,6 +70,9 @@ export function getFilter(
         break;
       case FILTERS.NO_USEFUL_REPLY_YET:
         filterObj.hasArticleReplyWithMorePositiveFeedback = false;
+        break;
+      case FILTERS.HAS_USEFUL_REPLY:
+        filterObj.hasArticleReplyWithMorePositiveFeedback = true;
         break;
       case FILTERS.ASKED_ONCE:
         filterObj.replyRequestCount = { EQ: 1 };
