@@ -62,6 +62,7 @@ export function getFilter(
   const filterObj: ListArticleFilter = {};
 
   for (const filter of getValues(query)) {
+    // Skip login only filters when user is not logged in
     if (!userId && LOGIN_ONLY_OPTIONS.includes(filter)) break;
 
     switch (filter) {
