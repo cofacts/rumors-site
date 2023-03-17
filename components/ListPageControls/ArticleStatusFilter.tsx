@@ -97,8 +97,8 @@ export function getFilter(
         filterObj.replyCount = { GTE: 3 };
         break;
       default: {
-        const exhausiveCheck: never = filter;
-        return exhausiveCheck;
+        const exhaustiveCheck: never = filter;
+        throw new Error(`Unhandled case: ${exhaustiveCheck}`);
       }
     }
   }
