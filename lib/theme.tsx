@@ -14,7 +14,7 @@ export const cofactsColors = {
   blue2: '#2daef7',
   blue3: '#5fd8ff',
   purple: '#966dee',
-};
+} as const;
 
 const baseThemeOption = {
   palette: {
@@ -60,7 +60,25 @@ const baseThemeOption = {
   shape: {
     borderRadius: 8,
   },
-};
+} as const;
+
+// https://v4.mui.com/guides/typescript/#customization-of-theme
+declare module '@material-ui/core/styles/createPalette' {
+  interface CommonColors {
+    red1: string;
+    red2: string;
+    orange1: string;
+    orange2: string;
+    yellow: string;
+    green1: string;
+    green2: string;
+    green3: string;
+    blue1: string;
+    blue2: string;
+    blue3: string;
+    purple: string;
+  }
+}
 
 // Create a theme instance.
 export const lightTheme = createTheme(baseThemeOption);
@@ -76,6 +94,8 @@ export const darkTheme = createTheme({
     },
   },
 });
+
+export type Theme = typeof lightTheme;
 
 export function withDarkTheme(WrappedComponent) {
   function Component(props) {

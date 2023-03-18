@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import cx from 'clsx';
+
+import { Theme } from 'lib/theme';
 import BaseFilterOption from './BaseFilterOption';
 
 const useStyles = makeStyles(theme => ({
@@ -86,20 +88,32 @@ const useStyles = makeStyles(theme => ({
  * @param {Array<BaseFilterOptionProps>} props.options
  * @param {(selected: string[]) => void} props.onChange
  */
-function BaseFilter({
+
+type Props<V> = {
+  title: string;
+  expandable?: boolean;
+  placeholder?: string;
+  selected: ReadonlyArray<V>;
+  options: ReadonlyArray<
+    React.ComponentPropsWithoutRef<typeof BaseFilterOption>
+  >;
+  onChange: (selected: V[]) => void;
+};
+
+function BaseFilter<V extends string>({
   title,
   onChange = () => null,
   placeholder,
   expandable,
   selected = [],
   options = [],
-}) {
+}: Props<V>) {
   const classes = useStyles();
   const [expandEl, setExpandEl] = useState(null);
 
   // Note: this is implemented using JS, don't use it on places
   // that is going to cause flicker on page load!
-  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('md'));
+  const isDesktop = useMediaQuery<Theme>(theme => theme.breakpoints.up('md'));
 
   const isValueSelected = Object.fromEntries(
     selected.map(value => [value, true])

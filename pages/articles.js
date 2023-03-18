@@ -5,7 +5,6 @@ import { t } from 'ttag';
 import { useQuery } from '@apollo/react-hooks';
 
 import useCurrentUser from 'lib/useCurrentUser';
-import * as FILTERS from 'constants/articleFilters';
 import {
   ListPageCards,
   ArticleCard,
@@ -15,6 +14,7 @@ import {
   Tools,
   Filters,
   ArticleStatusFilter,
+  getArticleStatusFilter,
   CategoryFilter,
   ArticleTypeFilter,
   ReplyTypeFilter,
@@ -63,33 +63,10 @@ const LIST_STAT = gql`
  * @returns {object} ListArticleFilter
  */
 function urlQuery2Filter({ userId, ...query } = {}) {
-  const filterObj = {};
+  const filterObj = getArticleStatusFilter(query, userId);
 
   const selectedCategoryIds = CategoryFilter.getValues(query);
   if (selectedCategoryIds.length) filterObj.categoryIds = selectedCategoryIds;
-
-  const selectedFilters = ArticleStatusFilter.getValues(query);
-  selectedFilters.forEach(filter => {
-    switch (filter) {
-      case FILTERS.REPLIED_BY_ME:
-        if (!userId) break;
-        filterObj.articleRepliesFrom = {
-          userId: userId,
-          exists: true,
-        };
-        break;
-      case FILTERS.NO_USEFUL_REPLY_YET:
-        filterObj.hasArticleReplyWithMorePositiveFeedback = false;
-        break;
-      case FILTERS.ASKED_MANY_TIMES:
-        filterObj.replyRequestCount = { GTE: 2 };
-        break;
-      case FILTERS.REPLIED_MANY_TIMES:
-        filterObj.replyCount = { GTE: 3 };
-        break;
-      default:
-    }
-  });
 
   const [start, end] = TimeRange.getValues(query);
 
