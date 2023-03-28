@@ -36,12 +36,12 @@ import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import CreateReplyRequestForm from 'components/CreateReplyRequestForm';
 import NewReplySection from 'components/NewReplySection';
-import Hint from 'components/NewReplySection/ReplyForm/Hint';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
 import Thumbnail from 'components/Thumbnail';
+import AIReplySection from 'components/AIReplySection';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -532,17 +532,10 @@ function ArticlePage() {
           )}
 
           {article.aiReplies?.length > 0 && (
-            <Card>
-              <CardHeader>{t`Automated analysis from ChatGPT`}</CardHeader>
-              <CardContent>
-                <Hint>
-                  {t`The following is the AI's preliminary analysis of this message, which we hope will provide you with some ideas before it is fact-checked by a human.`}
-                </Hint>
-                <div style={{ whiteSpace: 'pre-line', marginTop: 16 }}>
-                  {article.aiReplies[0].text}
-                </div>
-              </CardContent>
-            </Card>
+            <AIReplySection
+              defaultExpand={replyCount === 0}
+              aiReplyText={article.aiReplies[0].text}
+            />
           )}
 
           <Hidden smDown implementation="css">
