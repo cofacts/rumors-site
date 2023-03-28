@@ -11,7 +11,7 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
   const [expand, setExpand] = useState(defaultExpand);
 
   return (
-    <Card>
+    <Card style={{ background: '#fafafa' }}>
       <CardHeader
         style={{
           display: 'flex',
