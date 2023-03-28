@@ -81,7 +81,7 @@ class DeletedItems extends React.Component {
 function CurrentReplies({ articleReplies = [] }) {
   if (articleReplies.length === 0) {
     return (
-      <CardContent>{t`There is no existing replies for now.`}</CardContent>
+      <CardContent>{t`No response has been written yet. It is recommended to maintain a healthy skepticism towards it.`}</CardContent>
     );
   }
 

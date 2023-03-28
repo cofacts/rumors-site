@@ -36,6 +36,7 @@ import CurrentReplies from 'components/CurrentReplies';
 import ReplyRequestReason from 'components/ReplyRequestReason';
 import CreateReplyRequestForm from 'components/CreateReplyRequestForm';
 import NewReplySection from 'components/NewReplySection';
+import Hint from 'components/NewReplySection/ReplyForm/Hint';
 import ArticleInfo from 'components/ArticleInfo';
 import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
@@ -146,6 +147,9 @@ const LOAD_ARTICLE = gql`
       }
       articleReplies(statuses: $articleReplyStatuses) {
         ...CurrentRepliesData
+      }
+      aiReplies {
+        text
       }
       ...RelatedArticleData
       similarArticles: relatedArticles {
@@ -525,6 +529,20 @@ function ArticlePage() {
             >
               {getTermsString(t`The content above`, true)}
             </Typography>
+          )}
+
+          {article.aiReplies?.length > 0 && (
+            <Card>
+              <CardHeader>{t`Automated analysis from ChatGPT`}</CardHeader>
+              <CardContent>
+                <Hint>
+                  {t`The following is the AI's preliminary analysis of this message, which we hope will provide you with some ideas before it is fact-checked by a human.`}
+                </Hint>
+                <div style={{ whiteSpace: 'pre-line', marginTop: 16 }}>
+                  {article.aiReplies[0].text}
+                </div>
+              </CardContent>
+            </Card>
           )}
 
           <Hidden smDown implementation="css">

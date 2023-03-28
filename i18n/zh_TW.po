@@ -12,7 +12,7 @@ msgid "About"
 msgstr "關於"
 
 #: components/ReportPage/SectionEcosystem.js:175
-#: pages/article/[id].js:367
+#: pages/article/[id].js:371
 #: pages/reply/[id].js:210
 #: pages/reply/[id].js:239
 msgid "Cofacts"
@@ -120,10 +120,6 @@ msgstr[0] " ${ items.length } 則回應"
 msgid "There are ${ replyLink } deleted by its author."
 msgstr "有${ replyLink }被作者自行刪除。"
 
-#: components/CurrentReplies.js:84
-msgid "There is no existing replies for now."
-msgstr "目前沒有已撰寫的回應。"
-
 #: components/ArticleReply/ReplyActions.js:85
 msgid "Delete"
 msgstr "刪除"
@@ -141,7 +137,7 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/article/[id].js:269
+#: pages/article/[id].js:273
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
@@ -235,15 +231,15 @@ msgid ""
 msgstr "一起來幫網路上的可疑訊息寫查核回應、共同教導聊天機器人回話，將多元的闢謠資訊傳遞給在 LINE 上收到謠言的人。"
 
 #: components/ProfilePage/ProfilePage.js:103
-#: pages/article/[id].js:309
 #: pages/article/[id].js:313
+#: pages/article/[id].js:317
 #: pages/reply/[id].js:170
 #: pages/reply/[id].js:174
 #: pages/terms.js:112
 msgid "Loading"
 msgstr "載入中"
 
-#: pages/article/[id].js:324
+#: pages/article/[id].js:328
 #: pages/reply/[id].js:185
 msgid "Not found"
 msgstr "找不到此頁面"
@@ -252,7 +248,7 @@ msgstr "找不到此頁面"
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages/article/[id].js:328
+#: pages/article/[id].js:332
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
@@ -349,7 +345,7 @@ msgstr "熱門回報"
 msgid "Replied many times"
 msgstr "多份查核"
 
-#: components/ListPageControls/ArticleStatusFilter.tsx:127
+#: components/ListPageControls/ArticleStatusFilter.tsx:132
 #: components/ListPageControls/Filters.js:70
 msgid "Filter"
 msgstr "篩選"
@@ -492,17 +488,17 @@ msgstr[0] "被回報 ${ replyRequestCount } 次"
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages/article/[id].js:377
+#: pages/article/[id].js:381
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:542
+#: pages/article/[id].js:560
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages/article/[id].js:568
+#: pages/article/[id].js:586
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
@@ -767,15 +763,15 @@ msgstr "目標網站有 HTTPS 錯誤"
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: pages/article/[id].js:511
+#: pages/article/[id].js:515
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
 msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
 msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
-#: pages/article/[id].js:535
-#: pages/article/[id].js:578
+#: pages/article/[id].js:553
+#: pages/article/[id].js:596
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
@@ -885,7 +881,7 @@ msgstr "原始碼"
 msgid "Contact"
 msgstr "聯繫"
 
-#: pages/article/[id].js:526
+#: pages/article/[id].js:530
 #: pages/reply/[id].js:306
 msgid "The content above"
 msgstr "以上內容"
@@ -2308,7 +2304,7 @@ msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資�
 #: components/ListPageDisplays/ReplySearchItem.js:112
 #: components/ProfilePage/CommentTab.js:178
 #: components/ProfilePage/RepliedArticleTab.js:278
-#: pages/article/[id].js:385
+#: pages/article/[id].js:389
 #: pages/replies.js:248
 msgid "First reported ${ timeAgo }"
 msgstr "首次回報於 ${ timeAgo }"
@@ -2340,7 +2336,7 @@ msgid "In linked text"
 msgstr "所附網址的網頁內容"
 
 #: components/ArticleReply/ArticleReply.js:106
-#: pages/article/[id].js:291
+#: pages/article/[id].js:295
 #. t: terms subject
 msgid "This info"
 msgstr "此資訊"
@@ -2393,7 +2389,7 @@ msgid ""
 "the thumb-down button below each reply if you find it not good enough."
 msgstr "注意：這裏不是討論區！請針對上面的「可疑訊息」撰寫回覆，不要去回覆下面的查核回應。若只是想表達現有的查核回應不夠好，請使用該篇回應下方的「倒讚」按鈕。"
 
-#: pages/article/[id].js:460
+#: pages/article/[id].js:464
 msgid "Comments from people reporting this message"
 msgstr "網友回報補充"
 
@@ -2411,11 +2407,11 @@ msgstr[0] "${ totalCount } 則符合篩選條件的訊息"
 msgid "Report abuse"
 msgstr "檢舉違規內容"
 
-#: pages/article/[id].js:418
+#: pages/article/[id].js:422
 msgid "Log in to view video content"
 msgstr "登入以檢視影片內容"
 
-#: pages/article/[id].js:428
+#: pages/article/[id].js:432
 msgid "Log in to view audio content"
 msgstr "登入以檢視錄音內容"
 
@@ -2486,7 +2482,7 @@ msgstr ""
 msgid "See ${ revisionLink } for other revisions of the user agreement."
 msgstr ""
 
-#: pages/article/[id].js:391
+#: pages/article/[id].js:395
 msgid "Log in to view content"
 msgstr ""
 
@@ -2505,6 +2501,22 @@ msgstr "查核有效"
 #: components/ListPageControls/ArticleStatusFilter.tsx:26
 msgid "Not replied by me"
 msgstr "我沒查過"
+
+#: components/CurrentReplies.js:84
+msgid ""
+"No response has been written yet. It is recommended to maintain a healthy "
+"skepticism towards it."
+msgstr "目前沒有已撰寫的回應，建議對其抱持健康的懷疑。"
+
+#: pages/article/[id].js:536
+msgid "Automated analysis from ChatGPT"
+msgstr "ChatGPT 自動分析"
+
+#: pages/article/[id].js:539
+msgid ""
+"The following is the AI's preliminary analysis of this message, which we "
+"hope will provide you with some ideas before it is fact-checked by a human."
+msgstr "以下是 AI 初步分析此訊息的結果，希望能在有人查核之前，先帶給您一些想法。"
 
 #: pages/index.js:29
 msgctxt "site title"
