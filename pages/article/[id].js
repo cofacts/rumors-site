@@ -41,6 +41,7 @@ import ArticleCategories from 'components/ArticleCategories';
 import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
 import Thumbnail from 'components/Thumbnail';
+import AIReplySection from 'components/AIReplySection';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -146,6 +147,9 @@ const LOAD_ARTICLE = gql`
       }
       articleReplies(statuses: $articleReplyStatuses) {
         ...CurrentRepliesData
+      }
+      aiReplies {
+        text
       }
       ...RelatedArticleData
       similarArticles: relatedArticles {
@@ -525,6 +529,13 @@ function ArticlePage() {
             >
               {getTermsString(t`The content above`, true)}
             </Typography>
+          )}
+
+          {article.aiReplies?.length > 0 && (
+            <AIReplySection
+              defaultExpand={replyCount === 0}
+              aiReplyText={article.aiReplies[0].text}
+            />
           )}
 
           <Hidden smDown implementation="css">
