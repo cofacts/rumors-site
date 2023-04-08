@@ -168,8 +168,8 @@ const CreateReplyRequestForm = React.memo(
     }, []);
 
     useEffect(() => {
-      setText(
-        replyRequest && replyRequest.length > 0 ? replyRequest[0].reason : text
+      setText(t =>
+        replyRequest && replyRequest.length > 0 ? replyRequest[0].reason : t
       );
       setIsRequestedForReply(replyRequest && replyRequest.length > 0);
     }, [replyRequest]);
