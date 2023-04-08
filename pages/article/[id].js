@@ -355,7 +355,7 @@ function ArticlePage() {
     },
     []
   );
-  
+
   const replyRequestsWithComments = (article.replyRequests || []).filter(
     ({ reason, positiveFeedbackCount, negativeFeedbackCount }) =>
       reason &&
@@ -365,7 +365,10 @@ function ArticlePage() {
   );
 
   const replyRequestsWithCommentById = replyRequestsWithComments.filter(
-    replyRequestsWithComment => replyRequestsWithComment.user && currentUser && replyRequestsWithComment.user.id === currentUser.id
+    replyRequestsWithComment =>
+      replyRequestsWithComment.user &&
+      currentUser &&
+      replyRequestsWithComment.user.id === currentUser.id
   );
 
   return (

@@ -139,7 +139,13 @@ const SubmitButton = ({
 };
 
 const CreateReplyRequestForm = React.memo(
-  ({ articleId, articleUserId, requestedForReply, replyRequest, onNewReplyButtonClick }) => {
+  ({
+    articleId,
+    articleUserId,
+    requestedForReply,
+    replyRequest,
+    onNewReplyButtonClick,
+  }) => {
     const buttonRef = useRef(null);
     const [disabled, setDisabled] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -162,7 +168,9 @@ const CreateReplyRequestForm = React.memo(
     }, []);
 
     useEffect(() => {
-      setText( replyRequest && replyRequest.length > 0? replyRequest[0].reason : text);
+      setText(
+        replyRequest && replyRequest.length > 0 ? replyRequest[0].reason : text
+      );
       setIsRequestedForReply(replyRequest && replyRequest.length > 0);
     }, [replyRequest]);
 
