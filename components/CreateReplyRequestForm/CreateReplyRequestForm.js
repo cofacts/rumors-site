@@ -139,11 +139,12 @@ const SubmitButton = ({
 };
 
 const CreateReplyRequestForm = React.memo(
-  ({ articleId, articleUserId, requestedForReply, onNewReplyButtonClick }) => {
+  ({ articleId, articleUserId, requestedForReply, replyRequest, onNewReplyButtonClick }) => {
     const buttonRef = useRef(null);
     const [disabled, setDisabled] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [showFloatButton, setShowFloatButton] = useState(false);
+    const [isRequestedForReply, setIsRequestedForReply] = useState(false);
     const [text, setText] = useState('');
 
     const [shareAnchor, setShareAnchor] = useState(null);
@@ -159,6 +160,15 @@ const CreateReplyRequestForm = React.memo(
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+      setText( replyRequest && replyRequest.length > 0? replyRequest[0].reason : text);
+      setIsRequestedForReply(replyRequest && replyRequest.length > 0);
+    }, [replyRequest]);
+
+    useEffect(() => {
+      setIsRequestedForReply(requestedForReply);
+    }, [requestedForReply]);
 
     // event scroll listener
     useEffect(() => {
@@ -190,6 +200,7 @@ const CreateReplyRequestForm = React.memo(
     const handleReasonSubmitted = () => {
       setText('');
       setDisabled(false);
+      setShowForm(!showForm);
       requestAnimationFrame(() => (localStorage.text = ''));
     };
 
@@ -249,7 +260,7 @@ const CreateReplyRequestForm = React.memo(
                 onClick={() => setShowForm(!showForm)}
                 disableElevation
               >
-                {requestedForReply === true ? t`Update comment` : t`Comment`}
+                {isRequestedForReply === true ? t`Update comment` : t`Comment`}
               </Button>
               <Button
                 type="button"

@@ -355,13 +355,17 @@ function ArticlePage() {
     },
     []
   );
-
+  
   const replyRequestsWithComments = (article.replyRequests || []).filter(
     ({ reason, positiveFeedbackCount, negativeFeedbackCount }) =>
       reason &&
       reason.trim().length > 0 &&
       // For users not logged in yet, only show reply requests with positive feedbacks
       (currentUser ? true : positiveFeedbackCount - negativeFeedbackCount > 0)
+  );
+
+  const replyRequestsWithCommentById = replyRequestsWithComments.filter(
+    replyRequestsWithComment => replyRequestsWithComment.user && currentUser && replyRequestsWithComment.user.id === currentUser.id
   );
 
   return (
@@ -477,6 +481,7 @@ function ArticlePage() {
             <CreateReplyRequestForm
               requestedForReply={article.requestedForReply}
               articleId={article.id}
+              replyRequest={replyRequestsWithCommentById}
               articleUserId={article.user?.id || 'N/A'}
               onNewReplyButtonClick={() => {
                 setShowForm(true);
