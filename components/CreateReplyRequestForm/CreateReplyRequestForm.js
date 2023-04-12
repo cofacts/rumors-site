@@ -142,15 +142,13 @@ const CreateReplyRequestForm = React.memo(
   ({
     articleId,
     articleUserId,
-    requestedForReply,
-    replyRequest,
+    ownReplyRequest,
     onNewReplyButtonClick,
   }) => {
     const buttonRef = useRef(null);
     const [disabled, setDisabled] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [showFloatButton, setShowFloatButton] = useState(false);
-    const [isRequestedForReply, setIsRequestedForReply] = useState(false);
     const [text, setText] = useState('');
 
     const [shareAnchor, setShareAnchor] = useState(null);
@@ -169,14 +167,9 @@ const CreateReplyRequestForm = React.memo(
 
     useEffect(() => {
       setText(t =>
-        replyRequest && replyRequest.length > 0 ? replyRequest[0].reason : t
+        ownReplyRequest? ownReplyRequest.reason : t
       );
-      setIsRequestedForReply(replyRequest && replyRequest.length > 0);
-    }, [replyRequest]);
-
-    useEffect(() => {
-      setIsRequestedForReply(requestedForReply);
-    }, [requestedForReply]);
+    }, [ownReplyRequest]);
 
     // event scroll listener
     useEffect(() => {
@@ -268,7 +261,7 @@ const CreateReplyRequestForm = React.memo(
                 onClick={() => setShowForm(!showForm)}
                 disableElevation
               >
-                {isRequestedForReply === true ? t`Update comment` : t`Comment`}
+                {ownReplyRequest? t`Update comment` : t`Comment`}
               </Button>
               <Button
                 type="button"

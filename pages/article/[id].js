@@ -364,11 +364,11 @@ function ArticlePage() {
       (currentUser ? true : positiveFeedbackCount - negativeFeedbackCount > 0)
   );
 
-  const replyRequestsWithCommentById = replyRequestsWithComments.filter(
-    replyRequestsWithComment =>
-      replyRequestsWithComment.user &&
+  const ownReplyRequest = replyRequestsWithComments.find(
+    element => 
+      element.user &&
       currentUser &&
-      replyRequestsWithComment.user.id === currentUser.id
+      element.user.id === currentUser.id
   );
 
   return (
@@ -482,9 +482,8 @@ function ArticlePage() {
               </>
             ) : null}
             <CreateReplyRequestForm
-              requestedForReply={article.requestedForReply}
               articleId={article.id}
-              replyRequest={replyRequestsWithCommentById}
+              ownReplyRequest={ownReplyRequest}
               articleUserId={article.user?.id || 'N/A'}
               onNewReplyButtonClick={() => {
                 setShowForm(true);
