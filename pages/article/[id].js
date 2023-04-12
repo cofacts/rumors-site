@@ -365,10 +365,7 @@ function ArticlePage() {
   );
 
   const ownReplyRequest = replyRequestsWithComments.find(
-    element => 
-      element.user &&
-      currentUser &&
-      element.user.id === currentUser.id
+    element => element.user && currentUser && element.user.id === currentUser.id
   );
 
   return (

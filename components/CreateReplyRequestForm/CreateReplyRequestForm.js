@@ -139,12 +139,7 @@ const SubmitButton = ({
 };
 
 const CreateReplyRequestForm = React.memo(
-  ({
-    articleId,
-    articleUserId,
-    ownReplyRequest,
-    onNewReplyButtonClick,
-  }) => {
+  ({ articleId, articleUserId, ownReplyRequest, onNewReplyButtonClick }) => {
     const buttonRef = useRef(null);
     const [disabled, setDisabled] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -166,9 +161,7 @@ const CreateReplyRequestForm = React.memo(
     }, []);
 
     useEffect(() => {
-      setText(t =>
-        ownReplyRequest? ownReplyRequest.reason : t
-      );
+      setText(t => (ownReplyRequest ? ownReplyRequest.reason : t));
     }, [ownReplyRequest]);
 
     // event scroll listener
@@ -261,7 +254,7 @@ const CreateReplyRequestForm = React.memo(
                 onClick={() => setShowForm(!showForm)}
                 disableElevation
               >
-                {ownReplyRequest? t`Update comment` : t`Comment`}
+                {ownReplyRequest ? t`Update comment` : t`Comment`}
               </Button>
               <Button
                 type="button"
