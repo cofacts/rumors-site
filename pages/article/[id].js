@@ -364,6 +364,10 @@ function ArticlePage() {
       (currentUser ? true : positiveFeedbackCount - negativeFeedbackCount > 0)
   );
 
+  const ownReplyRequest = replyRequestsWithComments.find(
+    element => element.user && currentUser && element.user.id === currentUser.id
+  );
+
   return (
     <AppLayout>
       <Head>
@@ -475,8 +479,8 @@ function ArticlePage() {
               </>
             ) : null}
             <CreateReplyRequestForm
-              requestedForReply={article.requestedForReply}
               articleId={article.id}
+              ownReplyRequest={ownReplyRequest}
               articleUserId={article.user?.id || 'N/A'}
               onNewReplyButtonClick={() => {
                 setShowForm(true);
