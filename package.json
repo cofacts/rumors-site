@@ -23,6 +23,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
     "@apollo/react-ssr": "^3.0.1",
+    "@hocuspocus/provider": "^2.0.3",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
     "accepts": "^1.3.7",
@@ -47,6 +48,7 @@
     "next": "^9.3.2",
     "next-apollo": "^3.1.5",
     "pm2": "^4.2.3",
+    "prosemirror-view": "^1.30.2",
     "react": "^16.8.6",
     "react-calendar-heatmap": "^1.8.1",
     "react-dom": "^16.8.6",
@@ -54,7 +56,12 @@
     "react-spring": "^8.0.27",
     "react-virtualized-auto-sizer": "^1.0.2",
     "rollbar": "^2.14.4",
-    "ttag": "^1.7.22"
+    "ttag": "^1.7.22",
+    "prosemirror-example-setup": "^1.1.2",
+    "prosemirror-model": "^1.13.1",
+    "prosemirror-state": "^1.3.4",
+    "y-prosemirror": "^1.2.1",
+    "yjs": "^13.5.29"
   },
   "devDependencies": {
     "@apollo/react-testing": "^3.0.1",
