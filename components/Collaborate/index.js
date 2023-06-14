@@ -1,2 +1,2 @@
-import CollaborateEditor from './CollaborateEditor';
-export default CollaborateEditor;
+import CollabEditor from './CollabEditor';
+export default CollabEditor;

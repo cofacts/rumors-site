@@ -80,7 +80,7 @@ const colors = [
 
 const color = colors[Math.floor(Math.random() * colors.length)];
 
-const CollaborateEditor = ({ article }) => {
+const CollabEditor = ({ article }) => {
   const editor = useRef(null);
   const [editorView, setEditorView] = useState(null);
   const currentUser = useCurrentUser();
@@ -149,7 +149,7 @@ const CollaborateEditor = ({ article }) => {
 
   const classes = useStyles();
   return (
-    <div className="CollaborateEditor">
+    <div className="CollabEditor">
       <div className={classes.transcriptHeader}>
         {!article.text ? (
           <>
@@ -235,4 +235,4 @@ const CollaborateEditor = ({ article }) => {
   );
 };
 
-export default CollaborateEditor;
+export default CollabEditor;

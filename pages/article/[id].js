@@ -42,7 +42,7 @@ import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
 import Thumbnail from 'components/Thumbnail';
 import AIReplySection from 'components/AIReplySection';
-import CollaborateEditor from 'components/Collaborate';
+import CollabEditor from 'components/Collaborate';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -453,7 +453,7 @@ function ArticlePage() {
                 </>
               )}
               {articleType !== 'TEXT' ? (
-                <CollaborateEditor article={article} />
+                <CollabEditor article={article} />
               ) : null}
               <Box my={[1.5, 2]}>
                 <ArticleCategories
