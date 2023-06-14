@@ -42,6 +42,7 @@ import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
 import Thumbnail from 'components/Thumbnail';
 import AIReplySection from 'components/AIReplySection';
+import CollaborateEditor from 'components/Collaborate';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -451,6 +452,9 @@ function ArticlePage() {
                   <Hyperlinks hyperlinks={hyperlinks} rel="ugc nofollow" />
                 </>
               )}
+              {articleType !== 'TEXT' ? (
+                <CollaborateEditor article={article} />
+              ) : null}
               <Box my={[1.5, 2]}>
                 <ArticleCategories
                   articleId={article.id}
