@@ -75,7 +75,6 @@ const Desktop = ({
           }
         />
       </Tabs>
-      
       {selectedTab === 0 && (
         <>
           <Box display="flex" alignItems="center" mb={2}>
