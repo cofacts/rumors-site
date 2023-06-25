@@ -438,18 +438,26 @@ function ArticlePage() {
                         ) : (
                           <audio src={originalAttachmentUrl} controls />
                         );
+                      default:
+                        return (
+                          <>
+                            {text &&
+                              nl2br(
+                                linkify(text, {
+                                  props: {
+                                    target: '_blank',
+                                    rel: 'ugc nofollow',
+                                  },
+                                })
+                              )}
+                            <Hyperlinks
+                              hyperlinks={hyperlinks}
+                              rel="ugc nofollow"
+                            />
+                          </>
+                        );
                     }
                   })()}
-                  {text &&
-                    nl2br(
-                      linkify(text, {
-                        props: {
-                          target: '_blank',
-                          rel: 'ugc nofollow',
-                        },
-                      })
-                    )}
-                  <Hyperlinks hyperlinks={hyperlinks} rel="ugc nofollow" />
                 </>
               )}
               {articleType !== 'TEXT' ? (
