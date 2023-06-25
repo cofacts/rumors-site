@@ -24,6 +24,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import useCurrentUser from 'lib/useCurrentUser';
 import cx from 'clsx';
 import PlaceholderPlugin from './Placeholder';
+import getConfig from 'next/config';
+
+const {
+  publicRuntimeConfig: { PUBLIC_COLLAB_SERVER_URL },
+} = getConfig();
 
 const useStyles = makeStyles(theme => ({
   transcriptHeader: {
@@ -92,7 +97,7 @@ const CollabEditor = ({ article }) => {
     ydoc.gc = false;
 
     const provider = new HocuspocusProvider({
-      url: process.env.PUBLIC_HOCUSPOCUS_URL,
+      url: PUBLIC_COLLAB_SERVER_URL,
       name: article.id,
       broadcast: false,
       document: ydoc,
