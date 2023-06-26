@@ -15,7 +15,7 @@ import { Button, Typography } from '@material-ui/core';
 import { TranscribePenIcon } from 'components/icons';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { schema } from './Schema';
+import { schema } from 'prosemirror-schema-basic';
 import { DOMParser } from 'prosemirror-model';
 import { exampleSetup } from 'prosemirror-example-setup';
 import { keymap } from 'prosemirror-keymap';
