@@ -2518,6 +2518,26 @@ msgid ""
 "hope will provide you with some ideas before it is fact-checked by a human."
 msgstr "以下是 AI 初步分析此訊息的結果，希望能在有人查核之前，先帶給您一些想法。"
 
+#: components\Collaborate\CollabEditor.js:129
+msgid "Input transcript"
+msgstr "請輸入逐字稿"
+
+#: components\Collaborate\CollabEditor.js:167
+msgid "No transcripts yet"
+msgstr "尚無逐字稿"
+
+#: components\Collaborate\CollabEditor.js:178
+msgid "Transcribe"
+msgstr "提供逐字稿"
+
+#: components\Collaborate\CollabEditor.js:191
+msgid "Transcript"
+msgstr "逐字稿"
+
+#: components\Collaborate\CollabEditor.js:234
+msgid "Done"
+msgstr "完成"
+
 #: pages/index.js:29
 msgctxt "site title"
 msgid "Cofacts"
