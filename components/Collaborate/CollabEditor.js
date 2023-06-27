@@ -90,7 +90,9 @@ const CollabEditor = ({ article }) => {
   const [editorView, setEditorView] = useState(null);
   const currentUser = useCurrentUser();
   const onTranscribe = () => {
-    if (!currentUser) return;
+    if (!currentUser) {
+      return alert(t`Please login first.`);
+    }
     const ydoc = new Y.Doc();
     const permanentUserData = new Y.PermanentUserData(ydoc);
     permanentUserData.setUserMapping(ydoc, ydoc.clientID, currentUser.name);
