@@ -42,6 +42,7 @@ import TrendPlot from 'components/TrendPlot';
 import Infos, { TimeInfo } from 'components/Infos';
 import Thumbnail from 'components/Thumbnail';
 import AIReplySection from 'components/AIReplySection';
+import CollabEditor from 'components/Collaborate';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -437,20 +438,31 @@ function ArticlePage() {
                         ) : (
                           <audio src={originalAttachmentUrl} controls />
                         );
+                      default:
+                        return (
+                          <>
+                            {text &&
+                              nl2br(
+                                linkify(text, {
+                                  props: {
+                                    target: '_blank',
+                                    rel: 'ugc nofollow',
+                                  },
+                                })
+                              )}
+                            <Hyperlinks
+                              hyperlinks={hyperlinks}
+                              rel="ugc nofollow"
+                            />
+                          </>
+                        );
                     }
                   })()}
-                  {text &&
-                    nl2br(
-                      linkify(text, {
-                        props: {
-                          target: '_blank',
-                          rel: 'ugc nofollow',
-                        },
-                      })
-                    )}
-                  <Hyperlinks hyperlinks={hyperlinks} rel="ugc nofollow" />
                 </>
               )}
+              {articleType !== 'TEXT' ? (
+                <CollabEditor article={article} />
+              ) : null}
               <Box my={[1.5, 2]}>
                 <ArticleCategories
                   articleId={article.id}

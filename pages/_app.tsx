@@ -15,6 +15,7 @@ import WonderCallEmbed from '../components/WonderCallEmbed';
 
 // https://nextjs.org/docs/basic-features/built-in-css-support
 import '../components/app.css';
+import '../components/Collaborate/Prosemirror.css';
 
 type CofactsServerSideProps = {
   serverSideCookie?: object;

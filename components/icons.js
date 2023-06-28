@@ -24,6 +24,12 @@ export const PenIcon = props => (
   </SvgIcon>
 );
 
+export const TranscribePenIcon = props => (
+  <SvgIcon viewBox="0 0 15 15" {...props}>
+    <path d="M0.5 11.2339V14.1501H3.41626L12.0173 5.54912L9.10103 2.63286L0.5 11.2339ZM14.2725 3.29388C14.5758 2.99059 14.5758 2.50065 14.2725 2.19736L12.4528 0.377615C12.1495 0.0743237 11.6596 0.0743237 11.3563 0.377615L9.93313 1.80075L12.8494 4.71701L14.2725 3.29388Z" />
+  </SvgIcon>
+);
+
 export const CloseIcon = props => (
   <SvgIcon viewBox="0 0 14 14" {...props}>
     <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" />
