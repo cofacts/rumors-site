@@ -2,7 +2,7 @@ import { Children, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.secondary[200],
     fontSize: 12,
@@ -26,7 +26,7 @@ function Infos({ children, className, ...otherProps }) {
   return (
     <div className={cx(classes.root, className)} {...otherProps}>
       {Children.toArray(children)
-        .filter(child => !!child)
+        .filter((child) => !!child)
         .map((child, idx) => (
           <Fragment key={idx}>
             {idx > 0 ? '｜' : null}

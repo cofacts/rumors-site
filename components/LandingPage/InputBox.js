@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   inputBox: {
     position: 'relative',
     width: '100%',
@@ -122,7 +122,7 @@ const InputBox = ({
       <textarea
         rows={4}
         value={value}
-        onChange={e => {
+        onChange={(e) => {
           onChange(e.target.value);
         }}
       />
@@ -131,7 +131,7 @@ const InputBox = ({
         ref={tagWrapperRef}
         onScroll={onScrollTagWrapper}
       >
-        {tags.map(tag => (
+        {tags.map((tag) => (
           <div
             key={tag}
             className={classes.tag}

@@ -13,7 +13,7 @@ export default function ReplyInfo({ reply, articleReplyCreatedAt }) {
   return (
     <Infos>
       <TimeInfo time={createdAt}>
-        {timeAgoStr => (
+        {(timeAgoStr) => (
           <Link href="/reply/[id]" as={`/reply/${reply.id}`}>
             <a>{t`replied ${timeAgoStr}`}</a>
           </Link>

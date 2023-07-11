@@ -70,10 +70,8 @@ function ReplySearch({
 }) {
   const currentUser = useCurrentUser();
   const { search, filter } = useContext(ReplySearchContext);
-  const [
-    loadSearchResults,
-    { loading, data, variables, called },
-  ] = useLazyQuery(SEARCH);
+  const [loadSearchResults, { loading, data, variables, called }] =
+    useLazyQuery(SEARCH);
 
   useEffect(() => {
     loadSearchResults({ variables: { query: search } });

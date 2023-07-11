@@ -15,7 +15,7 @@ import {
 
 import introBg from 'components/ReportPage/images/intro-bg.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   intro: {
     background: `url(${introBg})`,
     backgroundSize: 'cover',

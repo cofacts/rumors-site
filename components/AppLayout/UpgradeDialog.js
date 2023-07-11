@@ -43,7 +43,7 @@ const getSpinKeyframes = (steps, startDeg, color1, color2) => {
   return keyframes;
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@keyframes spin': getSpinKeyframes(
     10,
     -15,
@@ -263,7 +263,7 @@ export const UpgradeDialogLayout = ({
   useEffect(() => {
     if (stage < 4 && stage !== 0) {
       timerRef.current = setTimeout(() => {
-        setStage(value => value + 1);
+        setStage((value) => value + 1);
       }, 800);
     }
 
@@ -320,7 +320,7 @@ export const UpgradeDialogLayout = ({
                         <animated.div
                           className={classes.progressBar}
                           style={{
-                            width: progress.interpolate(value => `${value}%`),
+                            width: progress.interpolate((value) => `${value}%`),
                           }}
                         />
                       </div>
@@ -328,7 +328,7 @@ export const UpgradeDialogLayout = ({
                         <span>{c('upgrade dialog').t`EXP`}</span>
                         <animated.span>
                           {progress.interpolate(
-                            value =>
+                            (value) =>
                               `${((value / 100) * nextLevelScore).toFixed(0)}`
                           )}
                         </animated.span>
@@ -378,10 +378,10 @@ export const UpgradeDialogLayout = ({
                   className={classes.levelIcon}
                   style={{
                     width: nextLevelProps.scale.interpolate(
-                      value => `${value * 23}px`
+                      (value) => `${value * 23}px`
                     ),
                     height: nextLevelProps.scale.interpolate(
-                      value => `${value * 23}px`
+                      (value) => `${value * 23}px`
                     ),
                   }}
                 >
@@ -390,7 +390,7 @@ export const UpgradeDialogLayout = ({
                 <animated.div
                   style={{
                     fontSize: nextLevelProps.scale.interpolate(
-                      value => value * 9
+                      (value) => value * 9
                     ),
                   }}
                 >

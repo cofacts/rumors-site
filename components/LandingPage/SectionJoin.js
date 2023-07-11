@@ -10,7 +10,7 @@ import { withDarkTheme } from 'lib/theme';
 import leftImage from './images/join-left.png';
 import rightImage from './images/join-right.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sectionJoin: {
     display: 'flex',
     alignItems: 'center',
@@ -192,7 +192,7 @@ const SectionJoin = ({ className }) => {
         className={classes.image}
         style={{
           opacity,
-          transform: offset.interpolate(value => `translateX(${-value}px)`),
+          transform: offset.interpolate((value) => `translateX(${-value}px)`),
         }}
       >
         <img src={leftImage} />
@@ -221,7 +221,7 @@ const SectionJoin = ({ className }) => {
         className={classes.image}
         style={{
           opacity,
-          transform: offset.interpolate(value => `translateX(${value}px)`),
+          transform: offset.interpolate((value) => `translateX(${value}px)`),
         }}
       >
         <img src={rightImage} />

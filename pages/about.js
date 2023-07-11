@@ -17,7 +17,7 @@ import fakeMessageImg from 'components/Tutorial/images/fakeMessage.png';
 import parentImg from 'components/Tutorial/images/parent.png';
 import researchImg from 'components/Tutorial/images/research.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& h3': {
       fontSize: 34,

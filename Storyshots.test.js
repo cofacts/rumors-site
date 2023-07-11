@@ -9,12 +9,13 @@ import MockDate from 'mockdate';
 Enzyme.configure({ adapter: new Adapter() });
 
 /* makeStyle + useStyle hook, <Box> and withStyle HOC */
-const MAKE_STYLE_REGEXP = /((?:makeStyles|MuiBox|Component|WithStyles|ForwardRef)\W.+?)-\d+/g;
+const MAKE_STYLE_REGEXP =
+  /((?:makeStyles|MuiBox|Component|WithStyles|ForwardRef)\W.+?)-\d+/g;
 
 function removeMaterialUIInternals(json) {
   // Remove props we don't want to snapshot
   if (json.props) {
-    ['classes'].forEach(key => {
+    ['classes'].forEach((key) => {
       delete json.props[key];
     });
   }
@@ -67,7 +68,7 @@ function removeMaterialUIInternals(json) {
 }
 
 initStoryshots({
-  test: arg => {
+  test: (arg) => {
     MockDate.set('2020-01-01');
     multiSnapshotWithOptions({
       renderer: mount,

@@ -2,7 +2,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import cx from 'clsx';
 
-export const SideSection = withStyles(theme => ({
+export const SideSection = withStyles((theme) => ({
   aside: {
     [theme.breakpoints.up('md')]: {
       minWidth: 0,
@@ -20,7 +20,7 @@ export const SideSection = withStyles(theme => ({
   );
 });
 
-export const SideSectionHeader = withStyles(theme => ({
+export const SideSectionHeader = withStyles((theme) => ({
   asideHeader: {
     lineHeight: '20px',
     padding: '12px 0',
@@ -38,7 +38,7 @@ export const SideSectionHeader = withStyles(theme => ({
   );
 });
 
-export const SideSectionLinks = withStyles(theme => ({
+export const SideSectionLinks = withStyles((theme) => ({
   asideItems: {
     display: 'flex',
     flexFlow: 'row',
@@ -74,7 +74,7 @@ export const SideSectionLinks = withStyles(theme => ({
   );
 });
 
-export const SideSectionLink = withStyles(theme => ({
+export const SideSectionLink = withStyles((theme) => ({
   asideItem: {
     // override <a> defaults
     textDecoration: 'none',

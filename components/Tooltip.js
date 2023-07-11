@@ -1,7 +1,7 @@
 import MaterialUITooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   arrow: {
     color: theme.palette.secondary[500],
   },

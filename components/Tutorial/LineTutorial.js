@@ -72,7 +72,7 @@ export const LineTutorialDesktop = () => {
   const classes = useDesktopStyles();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const onClickStep = index => {
+  const onClickStep = (index) => {
     setActiveIndex(index);
   };
 
@@ -93,7 +93,7 @@ export const LineTutorialDesktop = () => {
   );
 };
 
-const useMobileStyles = makeStyles(theme => ({
+const useMobileStyles = makeStyles((theme) => ({
   root: {
     scrollPadding: '12.5%',
   },
@@ -147,7 +147,7 @@ export const LineTutorialMobile = () => {
   const classes = useMobileStyles();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const onSlideChange = value => {
+  const onSlideChange = (value) => {
     setActiveIndex(value);
   };
 

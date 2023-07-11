@@ -11,7 +11,7 @@ import landingAnimated from './images/landing-animated.png';
 
 const landingImage = process.env.LOCALE === 'en_US' ? landingEn : landingZh;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@keyframes flashing': {
     '33%': {
       backgroundPosition: 'center top',
@@ -103,7 +103,7 @@ const SectionIndex = () => {
         className={classes.back}
         style={{
           backgroundPositionX: offset.interpolate(
-            value => `calc(50% - ${value * 0.05 * -1}px)`
+            (value) => `calc(50% - ${value * 0.05 * -1}px)`
           ),
         }}
       />

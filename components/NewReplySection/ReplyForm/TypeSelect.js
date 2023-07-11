@@ -4,7 +4,7 @@ import { Box, NativeSelect, InputBase } from '@material-ui/core';
 import { TYPE_NAME, TYPE_DESC } from 'constants/replyType';
 import Hint from './Hint';
 
-const CustomInput = withStyles(theme => ({
+const CustomInput = withStyles((theme) => ({
   root: {
     'label + &': {
       marginTop: theme.spacing(3),
@@ -36,7 +36,7 @@ export default function TypeSelect({ replyType, onChange }) {
         onChange={onChange}
         input={<CustomInput />}
       >
-        {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map(type => (
+        {['NOT_ARTICLE', 'OPINIONATED', 'NOT_RUMOR', 'RUMOR'].map((type) => (
           <option key={type} value={type}>
             {TYPE_NAME[type]}
           </option>

@@ -89,10 +89,11 @@ export function formatDate(date) {
  * @param {Date | string | number} props.time
  * @param {(t: string) => React.ReactChild} props.children - Render of string
  */
-function TimeInfo({ time, children = t => t }) {
-  const date = useMemo(() => (time instanceof Date ? time : new Date(time)), [
-    time,
-  ]);
+function TimeInfo({ time, children = (t) => t }) {
+  const date = useMemo(
+    () => (time instanceof Date ? time : new Date(time)),
+    [time]
+  );
   const dateIsValid = time && isValid(date);
 
   const [timeAgoStr, setTimeAgoStr] = useState(

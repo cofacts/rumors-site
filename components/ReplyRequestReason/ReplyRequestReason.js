@@ -13,7 +13,7 @@ import ActionMenu, {
 } from 'components/ActionMenu';
 import useCurrentUser from 'lib/useCurrentUser';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -97,7 +97,7 @@ function ReplyRequestReason({ replyRequest, articleId }) {
   const currentUser = useCurrentUser();
   const canReportAbuse = useCanReportAbuse(user.id);
   const [voteReason, { loading }] = useMutation(UPDATE_VOTE);
-  const handleVote = vote => {
+  const handleVote = (vote) => {
     voteReason({ variables: { vote, replyRequestId } });
   };
 

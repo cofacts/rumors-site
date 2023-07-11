@@ -17,7 +17,7 @@ import dotsGroup from './images/dots-group.png';
 import plane from './images/plane-1.png';
 import plane2 from './images/plane-3.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@keyframes flashing': {
     '0%': {
       opacity: 1,
@@ -184,7 +184,7 @@ const Banner = () => {
   const [offsetX, setOffsetX] = useState(0);
 
   const classes = useStyles({ scale, offsetX });
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const setTransform = () => {

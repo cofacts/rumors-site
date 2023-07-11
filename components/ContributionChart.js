@@ -13,7 +13,7 @@ const MAX_SCALE = 4;
 const MIN_CONTRIB = 8;
 const MAX_CONTRIB = 20;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   colorCofacts0: {
     fill: theme.palette.secondary[50],
   },
@@ -189,7 +189,7 @@ function ContributionChart({ startDate, endDate, data }) {
               showWeekdayLabels={true}
               monthLabels={monthLabels}
               weekdayLabels={weekdayLabels}
-              classForValue={value => {
+              classForValue={(value) => {
                 if (!value) {
                   return classes.colorCofacts0;
                 }

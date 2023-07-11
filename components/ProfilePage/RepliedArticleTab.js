@@ -93,7 +93,7 @@ const LOAD_REPLIED_ARTICLES_STAT = gql`
   ${LoadMore.fragments.LoadMoreConnectionForStats}
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   tools: {
     [theme.breakpoints.up('sm')]: {
       marginLeft: 'var(--card-px)',
@@ -273,7 +273,7 @@ function RepliedArticleTab({ userId }) {
                   )}
                 </>
                 <TimeInfo time={article.createdAt}>
-                  {timeAgo => (
+                  {(timeAgo) => (
                     <Link href="/article/[id]" as={`/article/${article.id}`}>
                       {t`First reported ${timeAgo}`}
                     </Link>
@@ -288,8 +288,8 @@ function RepliedArticleTab({ userId }) {
               <hr className={classes.bustHoaxDivider} />
 
               {article.articleReplies
-                .filter(articleReply => userId === articleReply.user.id)
-                .map(articleReply => (
+                .filter((articleReply) => userId === articleReply.user.id)
+                .map((articleReply) => (
                   <ArticleReply
                     key={articleReply.replyId}
                     articleReply={articleReply}
@@ -302,7 +302,7 @@ function RepliedArticleTab({ userId }) {
             edges={articleEdges}
             pageInfo={statsData?.pageInfo}
             loading={loading}
-            onMoreRequest={args =>
+            onMoreRequest={(args) =>
               fetchMore({
                 variables: args,
                 updateQuery(prev, { fetchMoreResult }) {

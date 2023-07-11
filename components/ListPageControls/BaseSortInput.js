@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { t } from 'ttag';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     // Override TextField's inline-flex to extend to whole container
     display: 'flex',
@@ -69,7 +69,7 @@ function BaseSortInput({ orderBy = '', onChange = () => {}, options = [] }) {
         onClose: () => setExpand(false),
       }}
       value={orderBy}
-      onChange={e => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
       disabled={options.length === 0}
     >
       {options.map(({ value, label }) => (

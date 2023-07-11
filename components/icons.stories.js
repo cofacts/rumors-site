@@ -10,7 +10,7 @@ export default {
 
 export const Default = () => (
   <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-    {Object.keys(icon).map(compName => {
+    {Object.keys(icon).map((compName) => {
       // eslint-disable-next-line import/namespace
       const Icon = icon[compName];
 

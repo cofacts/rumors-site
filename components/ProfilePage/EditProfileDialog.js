@@ -41,7 +41,7 @@ function EditProfileDialog({ user, onClose = () => {} }) {
   const [slug, setSlug] = useState(user.slug);
   const [snackMsg, setSnackMsg] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     updateUser({
@@ -74,7 +74,7 @@ function EditProfileDialog({ user, onClose = () => {} }) {
             label={t`Username`}
             name="slug"
             value={slug || ''}
-            onChange={e => setSlug(e.target.value)}
+            onChange={(e) => setSlug(e.target.value)}
             helperText={t`Your profile URL will become ${profileURL}`}
             fullWidth
             margin="dense"

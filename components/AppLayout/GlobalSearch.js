@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flex: 1,
     position: 'relative',
@@ -82,11 +82,11 @@ function GlobalSearch({ onExpand }) {
   const [value, setValue] = useState(router.query.q || '');
   const classes = useStyles({ focus, value });
 
-  const navigate = type => () =>
+  const navigate = (type) => () =>
     router.push({ pathname: '/search', query: { type, q: value } });
 
   useEffect(
-    () => void setValue(value => (query.q !== value ? query.q || '' : value)),
+    () => void setValue((value) => (query.q !== value ? query.q || '' : value)),
     [query.q]
   );
 
@@ -108,7 +108,7 @@ function GlobalSearch({ onExpand }) {
       }}
       classes={{ root: classes.searchWrapper }}
       value={value}
-      onChange={e => {
+      onChange={(e) => {
         setValue(e.target.value);
       }}
     />

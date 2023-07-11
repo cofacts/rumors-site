@@ -9,7 +9,7 @@ import feature2 from './images/feature-2.png';
 import feature3 from './images/feature-3.png';
 import feature4 from './images/feature-4.png';
 
-const useItemStyles = makeStyles(theme => ({
+const useItemStyles = makeStyles((theme) => ({
   item: {
     display: 'flex',
     flexDirection: 'column',
@@ -114,7 +114,7 @@ const Item = ({ image, title, content, mobileReverse }) => {
   );
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   features: {
     padding: '40px 0 72px',
   },

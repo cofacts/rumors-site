@@ -39,7 +39,7 @@ const {
   },
 } = getConfig();
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     background: theme.palette.secondary[100],
     color: theme.palette.secondary[500],
@@ -67,7 +67,7 @@ function FeedDisplay({ listQueryVars }) {
     generateUrl();
   }, [listQueryVars]);
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -75,7 +75,7 @@ function FeedDisplay({ listQueryVars }) {
     setAnchorEl(null);
   };
 
-  const copySuccess = text => {
+  const copySuccess = (text) => {
     setMessage(text);
     setStatus(SUCCESS);
     handleClose();

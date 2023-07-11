@@ -22,7 +22,7 @@ const Screenshot = ({ className, screenshotUrl }) => {
   return <div className={cx(classes.screenshot, className)} />;
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
   },
@@ -75,11 +75,11 @@ const LinePreview = ({ className, autoplay = false, images = [] }) => {
 
   const sliderRef = useRef(null);
 
-  const slideTo = index => {
+  const slideTo = (index) => {
     setActiveIndex(index);
   };
 
-  const onSlideChange = index => {
+  const onSlideChange = (index) => {
     setActiveIndex(index);
   };
 
@@ -99,7 +99,7 @@ const LinePreview = ({ className, autoplay = false, images = [] }) => {
         activeIndex={activeIndex}
         onSlideChange={onSlideChange}
       >
-        {images.map(url => (
+        {images.map((url) => (
           <Screenshot key={url} className={classes.slide} screenshotUrl={url} />
         ))}
       </Slider>

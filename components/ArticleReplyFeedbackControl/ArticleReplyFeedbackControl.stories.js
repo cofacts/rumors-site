@@ -89,7 +89,7 @@ const mocks = [
     result: {
       data: {
         ListArticleReplyFeedbacks: {
-          edges: mockArticleReplyFeedbacks.map(feedback => ({
+          edges: mockArticleReplyFeedbacks.map((feedback) => ({
             node: feedback,
           })),
         },

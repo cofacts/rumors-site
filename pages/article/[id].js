@@ -44,7 +44,7 @@ import Thumbnail from 'components/Thumbnail';
 import AIReplySection from 'components/AIReplySection';
 import CollabEditor from 'components/Collaborate';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     padding: '24px 0',
@@ -280,12 +280,12 @@ function ArticlePage() {
     }, 0);
   }, []);
 
-  const handleError = useCallback(error => {
+  const handleError = useCallback((error) => {
     console.error(error);
     setFlashMessage(error.toString());
   }, []);
 
-  const handleCopy = useCallback(e => {
+  const handleCopy = useCallback((e) => {
     const selection = document.getSelection();
     const articleUrl = window.location.origin + window.location.pathname;
 
@@ -351,7 +351,7 @@ function ArticlePage() {
   const similarCategories = article?.similarArticles?.edges?.reduce(
     (ary, sa) => {
       const ac = sa.node?.articleCategories || [];
-      ary = [...new Set([...ary, ...ac.map(cat => cat.categoryId)])];
+      ary = [...new Set([...ary, ...ac.map((cat) => cat.categoryId)])];
       return ary;
     },
     []
@@ -366,7 +366,8 @@ function ArticlePage() {
   );
 
   const ownReplyRequest = replyRequestsWithComments.find(
-    element => element.user && currentUser && element.user.id === currentUser.id
+    (element) =>
+      element.user && currentUser && element.user.id === currentUser.id
   );
 
   return (
@@ -375,8 +376,10 @@ function ArticlePage() {
         <title>
           {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
-        {/* Don't let search engines index blocked spam */ article.status ===
-          'BLOCKED' && <meta name="robots" content="noindex, nofollow" />}
+        {
+          /* Don't let search engines index blocked spam */ article.status ===
+            'BLOCKED' && <meta name="robots" content="noindex, nofollow" />
+        }
       </Head>
       <div className={classes.root}>
         <div className={classes.main}>
@@ -391,7 +394,7 @@ function ArticlePage() {
               </Ribbon>
               <Infos>
                 <TimeInfo time={article.createdAt}>
-                  {timeAgo => t`First reported ${timeAgo}`}
+                  {(timeAgo) => t`First reported ${timeAgo}`}
                 </TimeInfo>
               </Infos>
             </header>
@@ -480,7 +483,7 @@ function ArticlePage() {
                   {t`Comments from people reporting this message`}
                 </CardHeader>
                 <CardContent style={{ padding: 0 }}>
-                  {replyRequestsWithComments.map(replyRequest => (
+                  {replyRequestsWithComments.map((replyRequest) => (
                     <ReplyRequestReason
                       key={replyRequest.id}
                       articleId={article.id}

@@ -18,7 +18,7 @@ function Arrow() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     border: '3px solid currentColor',
     borderRadius: 41,

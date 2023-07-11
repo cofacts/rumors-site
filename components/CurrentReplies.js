@@ -100,7 +100,7 @@ function CurrentReplies({ articleReplies = [] }) {
 
   return (
     <>
-      {validArticleReplies.map(ar => (
+      {validArticleReplies.map((ar) => (
         <CardContent key={`${ar.articleId}__${ar.replyId}`}>
           <ArticleReply articleReply={ar} />
         </CardContent>

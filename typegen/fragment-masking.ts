@@ -3,15 +3,14 @@ import {
   ResultOf,
 } from '@graphql-typed-document-node/core';
 
-export type FragmentType<
-  TDocumentType extends DocumentNode<any, any>
-> = TDocumentType extends DocumentNode<infer TType, any>
-  ? TType extends { ' $fragmentName'?: infer TKey }
-    ? TKey extends string
-      ? { ' $fragmentRefs'?: { [key in TKey]: TType } }
+export type FragmentType<TDocumentType extends DocumentNode<any, any>> =
+  TDocumentType extends DocumentNode<infer TType, any>
+    ? TType extends { ' $fragmentName'?: infer TKey }
+      ? TKey extends string
+        ? { ' $fragmentRefs'?: { [key in TKey]: TType } }
+        : never
       : never
-    : never
-  : never;
+    : never;
 
 // return non-nullable if `fragmentType` is non-nullable
 export function getFragmentData<TType>(
@@ -49,7 +48,7 @@ export function getFragmentData<TType>(
 
 export function makeFragmentData<
   F extends DocumentNode,
-  FT extends ResultOf<F>
+  FT extends ResultOf<F>,
 >(data: FT, _fragment: F): FragmentType<F> {
   return data as FragmentType<F>;
 }

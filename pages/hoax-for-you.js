@@ -145,7 +145,7 @@ function HoaxForYouPage() {
             edges={articleEdges}
             pageInfo={statsData?.pageInfo}
             loading={loading}
-            onMoreRequest={args =>
+            onMoreRequest={(args) =>
               fetchMore({
                 variables: args,
                 updateQuery(prev, { fetchMoreResult }) {

@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { HyperlinkIcon } from 'components/icons';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: '12px 16px',
     margin: '0 8px 8px 0',

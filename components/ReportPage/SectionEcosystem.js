@@ -40,7 +40,7 @@ const StatValue = styled('span')(({ theme }) => ({
   },
 }));
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     color: '#fff',
     background: 'linear-gradient(181.58deg, #8D1EAA 2.25%, #6D28AA 91.21%)',

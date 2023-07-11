@@ -11,7 +11,7 @@ import Router from 'next/router';
 const mockedRouter = { push: () => {}, prefetch: () => Promise.resolve() };
 Router.router = mockedRouter;
 
-addDecorator(storyFn => (
+addDecorator((storyFn) => (
   <ThemeProvider theme={lightTheme}>
     <CssBaseline />
     {storyFn()}

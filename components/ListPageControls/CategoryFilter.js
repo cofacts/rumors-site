@@ -55,7 +55,7 @@ function CategoryFilter() {
       options={options}
       selected={selectedValues}
       placeholder={t`All Topics`}
-      onChange={values =>
+      onChange={(values) =>
         goToUrlQueryAndResetPagination({
           ...query,
           [PARAM_NAME]: values.join(','),

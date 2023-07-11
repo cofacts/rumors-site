@@ -9,7 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   desktop: {
     margin: '12px 0' /* Cancel default style for <dl> */,
     display: 'none',

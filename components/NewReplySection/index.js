@@ -57,7 +57,7 @@ const CONNECT_REPLY = gql`
   }
 `;
 
-const withContext = f => withReplyFormContext(withReplySearchContext(f));
+const withContext = (f) => withReplyFormContext(withReplySearchContext(f));
 
 const NewReplySection = withContext(
   ({
@@ -71,7 +71,7 @@ const NewReplySection = withContext(
     const { fields, handlers } = useContext(ReplyFormContext);
     const currentUser = useCurrentUser();
     // NewReplySection is not server-rendered, thus we can use useMediaQuery
-    const isDesktop = useMediaQuery(theme => theme.breakpoints.up('sm'));
+    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
     const [createReply, { loading: creatingReply }] = useMutation(
       CREATE_REPLY,
@@ -101,7 +101,7 @@ const NewReplySection = withContext(
     );
 
     const handleSubmit = useCallback(
-      e => {
+      (e) => {
         const { replyType: type, reference, text } = fields;
         e.preventDefault(); // prevent reload
         if (creatingReply) return;
@@ -129,7 +129,7 @@ const NewReplySection = withContext(
       existingReplyIds
     );
 
-    const handleConnect = reply => {
+    const handleConnect = (reply) => {
       connectReply({ variables: { articleId: article.id, replyId: reply.id } });
     };
 

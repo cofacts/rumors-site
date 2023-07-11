@@ -8,7 +8,7 @@ import cx from 'clsx';
 import { Theme } from 'lib/theme';
 import BaseFilterOption from './BaseFilterOption';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 12,
     lineHeight: '20px',
@@ -113,21 +113,21 @@ function BaseFilter<V extends string>({
 
   // Note: this is implemented using JS, don't use it on places
   // that is going to cause flicker on page load!
-  const isDesktop = useMediaQuery<Theme>(theme => theme.breakpoints.up('md'));
+  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'));
 
   const isValueSelected = Object.fromEntries(
-    selected.map(value => [value, true])
+    selected.map((value) => [value, true])
   );
 
-  const handleOptionClicked = value => {
+  const handleOptionClicked = (value) => {
     if (isValueSelected[value]) {
-      onChange(selected.filter(v => v !== value));
+      onChange(selected.filter((v) => v !== value));
     } else {
       onChange(selected.concat(value));
     }
   };
 
-  const handleExpand = e => {
+  const handleExpand = (e) => {
     setExpandEl(e.currentTarget);
   };
 
@@ -175,7 +175,7 @@ function BaseFilter<V extends string>({
         elevation={1}
       >
         <div className={classes.dropdown}>
-          {options.map(option => (
+          {options.map((option) => (
             <BaseFilterOption
               key={option.value}
               selected={isValueSelected[option.value]}
@@ -190,11 +190,11 @@ function BaseFilter<V extends string>({
           <div className={classes.placeholder}>{placeholder}</div>
         )}
         {options
-          .filter(option =>
+          .filter((option) =>
             // Only show selected items when BaseFilter is expandable
             expandable && isDesktop ? isValueSelected[option.value] : true
           )
-          .map(option => (
+          .map((option) => (
             <BaseFilterOption
               key={option.value}
               selected={isValueSelected[option.value]}

@@ -9,7 +9,7 @@ import ReplyInfo from 'components/ReplyInfo';
 import { highlightSections, HighlightFields } from 'lib/text';
 import { useHighlightStyles } from './utils';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flex: '1 0 auto',

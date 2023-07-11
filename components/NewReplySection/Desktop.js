@@ -15,7 +15,7 @@ import ReplyFormContext from './ReplyForm/context';
 import useCurrentUser from 'lib/useCurrentUser';
 import SearchBar from './ReplySearch/SearchBar';
 
-const CustomTab = withStyles(theme => ({
+const CustomTab = withStyles((theme) => ({
   root: {
     position: 'relative',
     color: theme.palette.secondary[300],
@@ -29,7 +29,7 @@ const CustomTab = withStyles(theme => ({
   },
 }))(Tab);
 
-const CustomBadge = withStyles(theme => ({
+const CustomBadge = withStyles((theme) => ({
   badge: {
     color: theme.palette.common.white,
     backgroundColor: theme.palette.secondary[300],
@@ -46,12 +46,8 @@ const Desktop = ({
 }) => {
   const { fields, handlers } = useContext(ReplyFormContext);
   const { replyType, text, reference } = fields;
-  const {
-    updateReplyType,
-    updateText,
-    updateReference,
-    addSuggestion,
-  } = handlers;
+  const { updateReplyType, updateText, updateReference, addSuggestion } =
+    handlers;
 
   const [selectedTab, setSelectedTab] = useState(0);
   const handleTabChange = useCallback((e, v) => setSelectedTab(v), []);

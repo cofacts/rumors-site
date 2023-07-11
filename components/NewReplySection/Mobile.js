@@ -14,7 +14,7 @@ import ReferenceInput from './ReplyForm/ReferenceInput';
 import ReplySearch from './ReplySearch';
 import SearchBar from './ReplySearch/SearchBar';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   attachment: { maxWidth: '100%' },
 }));
 
-const CustomSelectInput = withStyles(theme => ({
+const CustomSelectInput = withStyles((theme) => ({
   root: {
     'label + &': {
       marginTop: theme.spacing(3),
@@ -88,7 +88,7 @@ const CustomSelectInput = withStyles(theme => ({
   },
 }))(InputBase);
 
-const CustomTab = withStyles(theme => ({
+const CustomTab = withStyles((theme) => ({
   root: {
     position: 'relative',
     color: theme.palette.secondary[300],
@@ -119,17 +119,13 @@ export default function Mobile({
 
   const { fields, handlers } = useContext(ReplyFormContext);
   const { replyType, text, reference } = fields;
-  const {
-    updateReplyType,
-    updateText,
-    updateReference,
-    addSuggestion,
-  } = handlers;
+  const { updateReplyType, updateText, updateReference, addSuggestion } =
+    handlers;
 
   const user = useCurrentUser();
 
   const handleTabChange = useCallback((e, v) => setSelectedTab(v), []);
-  const changeView = e => setView(e.target.value);
+  const changeView = (e) => setView(e.target.value);
 
   const classes = useStyles();
 

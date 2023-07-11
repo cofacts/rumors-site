@@ -24,7 +24,7 @@ import cx from 'clsx';
 
 const COFACTS_CHATBOT_ID = 'RUMORS_LINE_BOT';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 12,
   },
@@ -230,7 +230,7 @@ function UserPageHeader({ user, isSelf, stats }) {
         <Ribbon className={classes.ribbon}>
           <LevelIcon level={user?.level} />
           <span className={classes.level}>Lv. {user?.level || 0}</span>
-          {LEVEL_NAMES[(user?.level)] || ''}
+          {LEVEL_NAMES[user?.level] || ''}
         </Ribbon>
       </div>
 

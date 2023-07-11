@@ -39,16 +39,14 @@ export const ArticleCards = () => (
     <ArticleCard
       article={{
         id: 'id2',
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.',
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.',
         replyCount: 0,
         replyRequestCount: 999,
         createdAt: '2019-01-01T00:00:00Z',
         articleType: 'TEXT',
       }}
       highlight={{
-        text:
-          '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet, consectetur adipiscing elit. <HIGHLIGHT>Mauris eu ex augue</HIGHLIGHT>. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.',
+        text: '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet, consectetur adipiscing elit. <HIGHLIGHT>Mauris eu ex augue</HIGHLIGHT>. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.',
         hyperlinks: [
           {
             title: '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit amet',

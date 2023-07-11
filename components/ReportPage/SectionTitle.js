@@ -4,7 +4,7 @@ import cx from 'clsx';
 import star1 from './images/star1.png';
 import star2 from './images/star2.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     position: 'relative',

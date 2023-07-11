@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { t } from 'ttag';
 
-export const useHighlightStyles = makeStyles(theme => ({
+export const useHighlightStyles = makeStyles((theme) => ({
   highlight: {
     color: theme.palette.primary[700],
     backgroundColor: 'transparent',

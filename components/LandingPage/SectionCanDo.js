@@ -18,7 +18,7 @@ import {
 
 const LANG = (process.env.LOCALE || 'en').replace('_', '-');
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sectionCanDo: {
     padding: '45px 0 68px',
     background: theme.palette.secondary[900],
@@ -200,7 +200,7 @@ const SectionCanDo = ({ className }) => {
 
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const onSearch = e => {
+  const onSearch = (e) => {
     e.preventDefault();
 
     router.push({

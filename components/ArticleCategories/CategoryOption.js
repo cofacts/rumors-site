@@ -20,7 +20,7 @@ import DownVoteDialog from './DownVoteDialog';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   badge: {
     transform: 'scale(1) translate(0, -50%)',
     color: theme.palette.common.white,
@@ -178,12 +178,7 @@ function CategoryOption({
   const [showVoteSnack, setVoteSnackShow] = useState(false);
   const [showDownVoteDialog, setDownVoteDialogShow] = useState(false);
   const [addCategory, { loading }] = useMutation(ADD_CATEGORY, {
-    update(
-      cache,
-      {
-        data: { CreateArticleCategory },
-      }
-    ) {
+    update(cache, { data: { CreateArticleCategory } }) {
       // Read & update Article instance
       const id = dataIdFromObject({ __typename: 'Article', id: articleId });
       const article = cache.readFragment({
@@ -208,12 +203,7 @@ function CategoryOption({
     DELETE_CATEGORY,
     {
       variables: { articleId, categoryId: category.id },
-      update(
-        cache,
-        {
-          data: { UpdateArticleCategoryStatus },
-        }
-      ) {
+      update(cache, { data: { UpdateArticleCategoryStatus } }) {
         // Process data returned from mutation into a categoryId -> is-normal map
         const categoryIsNormal = UpdateArticleCategoryStatus.reduce(
           (map, { categoryId, status }) => {
@@ -264,7 +254,7 @@ function CategoryOption({
       variables: { articleId, categoryId: category.id, vote: 'UPVOTE' },
     });
   };
-  const handleVoteDown = comment => {
+  const handleVoteDown = (comment) => {
     voteCategory({
       variables: {
         articleId,

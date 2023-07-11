@@ -6,7 +6,7 @@ import image1 from './images/section-how-1.png';
 import image1Flash from './images/section-how-1-flash.png';
 import image2 from './images/section-how-2.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@keyframes flashing': {
     '0%': {
       opacity: 1,

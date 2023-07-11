@@ -10,7 +10,7 @@ export const FILTERS = {
 };
 
 // eslint-disable-next-line react/display-name
-export const withReplySearchContext = Component => props => {
+export const withReplySearchContext = (Component) => (props) => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState(FILTERS.ALL_MESSAGES);
 

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ButtonGroup, Button, Menu, MenuItem } from '@material-ui/core';
 import { c, t } from 'ttag';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -80,7 +80,7 @@ function getSelectedValue(start, end) {
   if (start === undefined && end === undefined) return 'all';
   if (end !== undefined) return 'custom';
 
-  const option = options.find(o => o.value === start);
+  const option = options.find((o) => o.value === start);
   return option ? option.value : 'custom';
 }
 
@@ -114,7 +114,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
 
   const openMenu = () => setAnchor(anchorEl.current);
   const closeMenu = () => setAnchor(null);
-  const select = option => () => {
+  const select = (option) => () => {
     switch (option) {
       case 'all':
         onChange(undefined, undefined);
@@ -142,7 +142,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
             ref={anchorEl}
             value={start}
             className={classes.startDate}
-            onChange={e => {
+            onChange={(e) => {
               onChange(e.target.value, end);
             }}
             type="date"
@@ -153,7 +153,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
             ref={anchorEl}
             onClick={openMenu}
           >
-            {options.find(option => option.value === selectedValue).label}
+            {options.find((option) => option.value === selectedValue).label}
           </Button>
         )}
       </ButtonGroup>
@@ -163,7 +163,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
           <input
             value={end}
             className={classes.endDate}
-            onChange={e => {
+            onChange={(e) => {
               onChange(start, e.target.value);
             }}
             type="date"
@@ -176,7 +176,7 @@ function BaseTimeRange({ start, end, onChange = () => null }) {
         open={Boolean(anchor)}
         onClose={closeMenu}
       >
-        {options.map(option => (
+        {options.map((option) => (
           <MenuItem
             key={option.value}
             onClick={select(option.value)}

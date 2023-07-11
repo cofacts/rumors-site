@@ -10,7 +10,7 @@ import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import CopyButton from '../CopyButton';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: ({ open }) => ({
     fontSize: theme.typography.htmlFontSize,
     borderRadius: 45,
@@ -51,13 +51,13 @@ const ReplyShare = ({ copyText }) => {
     setAnchorEl(null);
   };
 
-  const onSuccess = text => {
+  const onSuccess = (text) => {
     setMessage(text);
     setStatus(SUCCESS);
     closeMenu();
   };
 
-  const handleShare = event => {
+  const handleShare = (event) => {
     if (window.navigator && window.navigator.share) {
       navigator
         .share({ text: copyText })

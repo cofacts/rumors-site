@@ -14,7 +14,7 @@ const {
   publicRuntimeConfig: { PUBLIC_SHOW_ADD_CATEGORY },
 } = getConfig();
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: -theme.spacing(1), // Counter margin-top for article category
   },
@@ -76,7 +76,7 @@ function ArticleCategories({
 
   return (
     <aside className={classes.root}>
-      {(articleCategories || []).map(articleCategory => (
+      {(articleCategories || []).map((articleCategory) => (
         <ArticleCategory
           key={articleCategory.categoryId}
           {...articleCategory}

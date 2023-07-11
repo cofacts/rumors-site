@@ -33,7 +33,7 @@ function ArticleTypeFilter() {
       title={t`Format`}
       selected={selectedValues}
       options={OPTIONS}
-      onChange={selected =>
+      onChange={(selected) =>
         goToUrlQueryAndResetPagination({
           ...query,
           [PARAM_NAME]: selected.join(','),

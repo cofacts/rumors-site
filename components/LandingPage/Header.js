@@ -33,7 +33,7 @@ const LIST_UNSOLVED_ARTICLES = gql`
   }
 `;
 
-const CustomBadge = withStyles(theme => ({
+const CustomBadge = withStyles((theme) => ({
   root: {
     verticalAlign: 'baseline' /* override badge default */,
   },
@@ -43,7 +43,7 @@ const CustomBadge = withStyles(theme => ({
   },
 }))(Badge);
 
-const useLandingPageHeaderStyles = makeStyles(theme => ({
+const useLandingPageHeaderStyles = makeStyles((theme) => ({
   nav: {
     display: 'flex',
     position: 'sticky',

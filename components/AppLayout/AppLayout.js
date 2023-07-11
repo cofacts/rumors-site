@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 });
 
 const apiLogout = () => {
-  return fetchAPI('/logout').then(resp => resp.json());
+  return fetchAPI('/logout').then((resp) => resp.json());
 };
 
 /**
@@ -46,7 +46,7 @@ function AppLayout({ children, container = true }) {
   const [snackMsg, setSnackMsg] = useState('');
 
   const [loadUser, { data, refetch }] = useLazyQuery(USER_QUERY);
-  const toggleSidebar = useCallback(() => setSidebarOpen(open => !open), []);
+  const toggleSidebar = useCallback(() => setSidebarOpen((open) => !open), []);
   const openLoginModal = useCallback(() => setLoginModalOpen(true), []);
   const logout = useCallback(() => apiLogout().then(refetch), [refetch]);
 

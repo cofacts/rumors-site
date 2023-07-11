@@ -10,7 +10,7 @@ const formInitialState = {
 };
 
 // eslint-disable-next-line react/display-name
-export const withReplyFormContext = Component => props => {
+export const withReplyFormContext = (Component) => (props) => {
   const [fields, setFields] = useState(formInitialState);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const withReplyFormContext = Component => props => {
   };
 
   const set = (key, value) => {
-    setFields(data => ({ ...data, [key]: value }));
+    setFields((data) => ({ ...data, [key]: value }));
 
     // Backup to localStorage
     requestAnimationFrame(() => (localStorage[key] = value));
@@ -52,7 +52,7 @@ export const withReplyFormContext = Component => props => {
     set('reference', value);
   };
 
-  const addSuggestion = e => {
+  const addSuggestion = (e) => {
     const result = [e.target.value];
     if (fields.text) result.push(fields.text);
 

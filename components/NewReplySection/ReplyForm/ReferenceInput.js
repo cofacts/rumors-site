@@ -5,7 +5,7 @@ import { EDITOR_REFERENCE } from 'constants/urls';
 import { TYPE_REFERENCE_TITLE } from 'constants/replyType';
 import Hint from './Hint';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   label: {
     display: 'none',
     marginBottom: 12,

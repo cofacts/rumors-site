@@ -35,13 +35,15 @@ export const WithTimeInfo = () => (
     <TimeInfo time={612921600000} />
 
     {/* String time and customized time rendering logic */}
-    <TimeInfo time="1989-06-04T00:00:00Z">{str => `Created ${str}`}</TimeInfo>
+    <TimeInfo time="1989-06-04T00:00:00Z">{(str) => `Created ${str}`}</TimeInfo>
 
     {/* Time given incorrectly */}
     <TimeInfo time={null} />
 
     {/* Customized time rendering with incorrect time */}
-    <TimeInfo time="Unsupport time string">{str => `Created ${str}`}</TimeInfo>
+    <TimeInfo time="Unsupport time string">
+      {(str) => `Created ${str}`}
+    </TimeInfo>
   </Infos>
 );
 

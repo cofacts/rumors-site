@@ -27,7 +27,7 @@ function SortInput({ options, defaultOrderBy }) {
     <BaseSortInput
       orderBy={query[PARAM_NAME] || defaultOrderBy}
       options={options}
-      onChange={orderBy => {
+      onChange={(orderBy) => {
         goToUrlQueryAndResetPagination({ ...query, [PARAM_NAME]: orderBy });
       }}
     />

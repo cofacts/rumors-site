@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   progressBar: {
     border: `1px solid ${theme.palette.secondary[300]}`,
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   progress: {
     display: 'block',
-    width: percent => `${percent}%`,
+    width: (percent) => `${percent}%`,
     backgroundColor: theme.palette.primary[500],
     borderRadius: 3,
     height: 6,

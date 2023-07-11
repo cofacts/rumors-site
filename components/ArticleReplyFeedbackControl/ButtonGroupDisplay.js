@@ -7,7 +7,7 @@ import useCurrentUser from 'lib/useCurrentUser';
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   vote: {
     display: 'flex',
     alignItems: 'center',

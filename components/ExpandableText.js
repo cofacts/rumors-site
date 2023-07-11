@@ -3,7 +3,7 @@ import { t } from 'ttag';
 import { truncate } from 'lib/text';
 import { withStyles, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     position: 'relative',

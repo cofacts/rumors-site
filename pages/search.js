@@ -193,7 +193,7 @@ function MessageSearchResult({ query, userId }) {
         edges={articleEdges}
         pageInfo={statsData?.pageInfo}
         loading={loading}
-        onMoreRequest={args =>
+        onMoreRequest={(args) =>
           fetchMore({
             variables: args,
             updateQuery(prev, { fetchMoreResult }) {
@@ -268,7 +268,7 @@ function ReplySearchResult({ query, isLoggedIn }) {
         edges={replyEdges}
         pageInfo={statsData?.pageInfo}
         loading={loading}
-        onMoreRequest={args =>
+        onMoreRequest={(args) =>
           fetchMore({
             variables: args,
             updateQuery(prev, { fetchMoreResult }) {
@@ -291,7 +291,7 @@ function ReplySearchResult({ query, isLoggedIn }) {
 
 // Only "reply by me" filter for filter search
 const ARTICLE_STATUS_FILTER_MAP_FOR_REPLIES = {
-  ...Object.fromEntries(Object.keys(FILTERS).map(key => [key, false])),
+  ...Object.fromEntries(Object.keys(FILTERS).map((key) => [key, false])),
   [FILTERS.REPLIED_BY_ME]: true,
   [FILTERS.NOT_REPLIED_BY_ME]: true,
 };

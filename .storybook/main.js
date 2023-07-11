@@ -5,7 +5,7 @@ module.exports = {
     '@storybook/addon-knobs',
     '@storybook/addon-storysource',
   ],
-  env: config => ({
+  env: (config) => ({
     ...config,
     LOCALE: config.LOCALE ?? 'en_US',
   }),

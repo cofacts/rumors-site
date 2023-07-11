@@ -7,7 +7,7 @@ import ActionMenu, {
   useCanReportAbuse,
 } from 'components/ActionMenu';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 16,
     display: 'flex',

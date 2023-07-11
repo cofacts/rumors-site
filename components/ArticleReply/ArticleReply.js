@@ -16,7 +16,7 @@ import ReplyInfo from 'components/ReplyInfo';
 import ReplyActions from './ReplyActions';
 import ReplyShare from './ReplyShare';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   content: {
     padding: '17px 0',
     borderBottom: `1px dashed ${theme.palette.secondary[100]}`,

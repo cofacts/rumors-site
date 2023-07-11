@@ -160,7 +160,7 @@ const NEWS = {
   ],
 }[process.env.LOCALE];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sectionNews: {
     margin: '0 auto',
     padding: '64px 30px',

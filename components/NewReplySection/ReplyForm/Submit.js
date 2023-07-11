@@ -1,7 +1,7 @@
 import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.palette.primary[500],
     color: theme.palette.common.white,

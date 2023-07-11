@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   const RibbonColorMap = {
     yellow: {
       main: theme.palette.primary[500],

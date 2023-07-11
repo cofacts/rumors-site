@@ -5,7 +5,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     minWidth: 0, // Override material-ui style
     flexShrink: 0,
@@ -25,7 +25,7 @@ function ActionMenu({ children, className, ...buttonProps }) {
 
   const classes = useStyles({ open: !!anchorEl });
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 

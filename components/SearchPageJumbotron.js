@@ -5,7 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Box, Container } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   jumbotron: {
     background: '#202020',
   },
@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CustomTab = withStyles(theme => ({
+const CustomTab = withStyles((theme) => ({
   root: {
     color: theme.palette.common.white,
     fontSize: theme.typography.htmlFontSize,
@@ -87,7 +87,7 @@ function SearchPageJumbotron() {
 
   const classes = useStyles();
 
-  const onSearch = e => {
+  const onSearch = (e) => {
     e.preventDefault();
     router.push({
       pathname: '/search',
@@ -100,7 +100,7 @@ function SearchPageJumbotron() {
     textareaRef.current.value = q;
   }, [q]);
 
-  const navigate = type =>
+  const navigate = (type) =>
     router.push({ pathname: '/search', query: { ...query, type } });
 
   return (

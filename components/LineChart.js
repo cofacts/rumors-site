@@ -4,7 +4,7 @@ import { startOfDay } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
 import { formatNumber } from 'lib/text';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   lineChartContainer: {
     position: 'relative',
   },
@@ -141,38 +141,34 @@ const getMax = (list, getter) =>
  }
  */
 const computeChartData = (dataset, width, height) => {
-  const maxWebVisit = getMax(dataset, d => d.webVisit);
-  const maxLineVisit = getMax(dataset, d => d.lineVisit);
+  const maxWebVisit = getMax(dataset, (d) => d.webVisit);
+  const maxLineVisit = getMax(dataset, (d) => d.lineVisit);
 
   const xScale = scaleTime()
     .domain([dataset[0].date, dataset[dataset.length - 1].date])
     .range([0, width]);
 
-  const yScaleWeb = scaleLinear()
-    .domain([0, maxWebVisit])
-    .range([height, 0]);
+  const yScaleWeb = scaleLinear().domain([0, maxWebVisit]).range([height, 0]);
 
-  const yScaleLine = scaleLinear()
-    .domain([0, maxLineVisit])
-    .range([height, 0]);
+  const yScaleLine = scaleLinear().domain([0, maxLineVisit]).range([height, 0]);
 
   const webLine = line()
-    .x(d => xScale(d.date))
-    .y(d => yScaleWeb(d.webVisit))
+    .x((d) => xScale(d.date))
+    .y((d) => yScaleWeb(d.webVisit))
     .curve(curveMonotoneX);
 
   const chatbotLine = line()
-    .x(d => xScale(d.date))
-    .y(d => yScaleLine(d.lineVisit))
+    .x((d) => xScale(d.date))
+    .y((d) => yScaleLine(d.lineVisit))
     .curve(curveMonotoneX);
 
-  const webDots = dataset.map(d => ({
+  const webDots = dataset.map((d) => ({
     value: d.webVisit,
     date: d.date,
     cx: xScale(d.date),
     cy: yScaleWeb(d.webVisit),
   }));
-  const chatbotDots = dataset.map(d => ({
+  const chatbotDots = dataset.map((d) => ({
     value: d.lineVisit,
     date: d.date,
     cx: xScale(d.date),
@@ -234,7 +230,7 @@ function plotTicks({ scale, x, y, text, roundFn, tickNum, gridline }) {
   ));
 }
 
-const getVisitText = visitNum => {
+const getVisitText = (visitNum) => {
   const visit = formatNumber(visitNum);
   return c('LineChart').ngettext(msgid`${visit} time`, `${visit} times`, visit);
 };
@@ -262,8 +258,8 @@ export default function LineChart({ dataset, width, margin }) {
               tickNum: 3,
               x: () => 0,
               y: (scale, tick) => scale(tick),
-              roundFn: value => Math.ceil(value),
-              text: tick => ({ x: -9, y: 5, text: tick }),
+              roundFn: (value) => Math.ceil(value),
+              text: (tick) => ({ x: -9, y: 5, text: tick }),
               gridline: { x2: innerWidth },
             })}
           </g>
@@ -279,8 +275,8 @@ export default function LineChart({ dataset, width, margin }) {
               tickNum: 3,
               x: () => 0,
               y: (scale, tick) => scale(tick),
-              roundFn: value => Math.ceil(value),
-              text: tick => ({ x: 8, y: 5, text: tick }),
+              roundFn: (value) => Math.ceil(value),
+              text: (tick) => ({ x: 8, y: 5, text: tick }),
               gridline: {},
             })}
           </g>
@@ -296,8 +292,8 @@ export default function LineChart({ dataset, width, margin }) {
               tickNum: 11,
               x: (scale, tick) => scale(tick),
               y: () => 0,
-              roundFn: d => startOfDay(d),
-              text: tick => ({ x: 0, y: 20, text: formatDate(tick) }),
+              roundFn: (d) => startOfDay(d),
+              text: (tick) => ({ x: 0, y: 20, text: formatDate(tick) }),
               gridline: { y2: -innerHeight },
             })}
           </g>

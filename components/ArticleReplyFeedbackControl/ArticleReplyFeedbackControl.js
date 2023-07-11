@@ -11,7 +11,7 @@ import ReasonsDisplay from './ReasonsDisplay';
 import ButtonGroupDisplay from './ButtonGroupDisplay';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
@@ -125,7 +125,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
     }
   );
 
-  const openReasonsPopover = event => {
+  const openReasonsPopover = (event) => {
     setReasonsPopoverAnchorEl(event.currentTarget);
   };
 
@@ -153,8 +153,8 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
     <div className={cx(classes.root, className)}>
       <ButtonGroupDisplay
         articleReply={articleReply}
-        onVoteUp={e => openVotePopover(e, 'UPVOTE')}
-        onVoteDown={e => openVotePopover(e, 'DOWNVOTE')}
+        onVoteUp={(e) => openVotePopover(e, 'UPVOTE')}
+        onVoteDown={(e) => openVotePopover(e, 'DOWNVOTE')}
         onReasonClick={openReasonsPopover}
       />
       <Popover
@@ -207,7 +207,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
         <textarea
           className={classes.textarea}
           value={reason}
-          onChange={e => setReason(e.target.value)}
+          onChange={(e) => setReason(e.target.value)}
           rows={10}
         />
         <div className={classes.textCenter}>

@@ -6,7 +6,7 @@ import cx from 'clsx';
 import { TYPE_NAME } from 'constants/replyType';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   replyType: {
     fontWeight: 700,
     color: ({ replyType }) => {

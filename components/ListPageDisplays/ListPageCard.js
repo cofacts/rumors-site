@@ -1,7 +1,7 @@
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     borderRadius: 8,
     background: theme.palette.common.white,

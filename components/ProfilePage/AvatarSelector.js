@@ -6,7 +6,7 @@ import { colorOptions, getBackgroundColor } from '../AppLayout/Widgets';
 import { Hair, Face, FacialHair, BustPose, Accessories } from 'react-peeps';
 import { Flip, CasinoOutlined } from '@material-ui/icons';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'inline-flex',
     margin: '1px',
@@ -108,10 +108,10 @@ function ComponentInput({
             test: 'test',
           },
         }}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         disabled={options.length === 0}
       >
-        {options.map(value => (
+        {options.map((value) => (
           <MenuItem key={value} value={value} className={classes.menuItem}>
             <svg className={classes.avatarPiece} viewBox={viewBox}>
               {value && pieceType && createElement(pieceType[value])}
@@ -154,10 +154,10 @@ function ColorPicker({ options, anchorEl, selected, onChange = () => {} }) {
             test: 'test',
           },
         }}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         disabled={options.length === 0}
       >
-        {options.map(value => (
+        {options.map((value) => (
           <MenuItem key={value} value={value} className={classes.menuItem}>
             <span
               className={classes.colorGird}
@@ -214,7 +214,7 @@ function AvatarSelector({ avatarData, onChange, onShuffle }) {
           key={type}
           pieceType={pieceType}
           anchorEl={() => wrapperEl.current}
-          onChange={value => onChange(type, value)}
+          onChange={(value) => onChange(type, value)}
           selected={avatarData[type]}
           viewBox={viewBox}
           title={title}
@@ -224,7 +224,7 @@ function AvatarSelector({ avatarData, onChange, onShuffle }) {
         selected={getBackgroundColor({ avatarData })}
         options={colorOptions}
         anchorEl={() => wrapperEl.current}
-        onChange={value => onChange('backgroundColor', value)}
+        onChange={(value) => onChange('backgroundColor', value)}
       />
       <Button
         className={classes.iconButton}

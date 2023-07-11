@@ -20,7 +20,7 @@ const CHART_DURATION = 31;
 
 const margin = { top: 10, left: 40, right: 20, bottom: 20 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   labels: {
     '--gap': '2px',
     display: 'flex',
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
  * Push zero entries to dataset for dates between `start` and `end`.
  */
 const fillEmptyDates = (start, end, dataset) => {
-  eachDayOfInterval({ start, end }).forEach(date =>
+  eachDayOfInterval({ start, end }).forEach((date) =>
     dataset.push({ date, webVisit: 0, lineVisit: 0 })
   );
 };
@@ -70,7 +70,7 @@ const fillEmptyDates = (start, end, dataset) => {
 /**
  * Given analytics stat, populate dataset for last 31 days.
  */
-const populateChartData = data => {
+const populateChartData = (data) => {
   let dataset = [];
   const endDate = startOfDay(new Date());
   const startDate = subDays(endDate, CHART_DURATION - 1);
@@ -89,7 +89,7 @@ const populateChartData = data => {
   }
 
   if (data) {
-    data.forEach(d => {
+    data.forEach((d) => {
       const date = startOfDay(new Date(d.date));
       // if there's a gap between dates, fill with zeros.
       if (differenceInDays(date, lastProcessedDate) > 1) {
@@ -106,7 +106,7 @@ const populateChartData = data => {
           source: c('TrendPlot').t`Cofacts`,
           visit: d.lineVisit ?? 0,
         },
-        ...(d.liff ?? []).map(liff => ({
+        ...(d.liff ?? []).map((liff) => ({
           ...liff,
           source: translateSource(liff.source),
         })),

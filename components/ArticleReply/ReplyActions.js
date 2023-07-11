@@ -46,15 +46,13 @@ const UPDATE_ARTICLE_REPLY_STATUS = gql`
 const ReplyActions = ({ articleReply }) => {
   const canReportAbuse = useCanReportAbuse(articleReply.userId);
 
-  const [
-    updateArticleReplyStatus,
-    { loading: updatingArticleReplyStatus },
-  ] = useMutation(UPDATE_ARTICLE_REPLY_STATUS, {
-    variables: {
-      articleId: articleReply.articleId,
-      replyId: articleReply.replyId,
-    },
-  });
+  const [updateArticleReplyStatus, { loading: updatingArticleReplyStatus }] =
+    useMutation(UPDATE_ARTICLE_REPLY_STATUS, {
+      variables: {
+        articleId: articleReply.articleId,
+        replyId: articleReply.replyId,
+      },
+    });
 
   const handleDelete = useCallback(() => {
     updateArticleReplyStatus({

@@ -48,8 +48,9 @@ function DownVoteDialog({
   });
 
   const downVoteFeedbacks = (
-    data?.GetArticle?.articleCategories.find(ac => ac.categoryId === categoryId)
-      ?.feedbacks ?? []
+    data?.GetArticle?.articleCategories.find(
+      (ac) => ac.categoryId === categoryId
+    )?.feedbacks ?? []
   ).filter(({ vote, comment }) => vote === 'DOWNVOTE' && comment);
 
   return (
@@ -75,7 +76,7 @@ function DownVoteDialog({
         </List>
       )}
       <form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           onVote(e.target.reason.value);
         }}

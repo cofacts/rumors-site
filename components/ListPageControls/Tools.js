@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     // Mobile: non-flex stack
     margin: `${theme.spacing(1.5)}px auto`,

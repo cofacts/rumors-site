@@ -37,7 +37,7 @@ import LEVEL_NAMES from 'constants/levelNames';
 
 const MENU_BUTTON_WIDTH = 48;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'sticky',
     height: NAVBAR_HEIGHT + TABS_HEIGHT,
@@ -130,7 +130,7 @@ const LIST_UNSOLVED_ARTICLES = gql`
   }
 `;
 
-const CustomBadge = withStyles(theme => ({
+const CustomBadge = withStyles((theme) => ({
   root: {
     verticalAlign: 'baseline' /* override badge default */,
   },
@@ -180,7 +180,7 @@ const Links = ({ classes, unsolvedCount }) => (
   </>
 );
 
-const useUserStyles = makeStyles(theme => ({
+const useUserStyles = makeStyles((theme) => ({
   level: {
     padding: '2px 8px 4px 20px',
     '& > strong': {
@@ -217,7 +217,7 @@ const User = ({ user, onLogout }) => {
 
   const [anchor, setAnchor] = useState(null);
 
-  const openProfileMenu = e => setAnchor(e.currentTarget);
+  const openProfileMenu = (e) => setAnchor(e.currentTarget);
   const closeProfileMenu = () => setAnchor(null);
 
   const pointsLeft = user?.points?.nextLevel - user?.points?.total;
@@ -235,7 +235,7 @@ const User = ({ user, onLogout }) => {
         >
           <Ribbon className={classes.level}>
             <strong>Lv. {user?.level}</strong>
-            {LEVEL_NAMES[(user?.level)]}
+            {LEVEL_NAMES[user?.level]}
           </Ribbon>
           <Box px={2} py={1} display="flex" alignItems="center">
             <Avatar user={user} size={40} style={{ marginRight: 12 }} />
@@ -321,7 +321,7 @@ function AppHeader({
             <Links classes={classes} unsolvedCount={unsolvedCount} />
           </Box>
         </div>
-        <GlobalSearch onExpand={expanded => setDisplayLogo(!expanded)} />
+        <GlobalSearch onExpand={(expanded) => setDisplayLogo(!expanded)} />
         <Box display={['none', 'none', 'block']}>
           {user ? (
             <User user={user} onLogout={onLogout} />

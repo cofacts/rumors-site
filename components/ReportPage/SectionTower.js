@@ -9,7 +9,7 @@ import ActionButton from './ActionButton';
 import dropletImg from './images/ecosystem-droplet.svg';
 import towerImg from './images/ecosystem-tower.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   towerSection: {
     margin: '12.5vw auto 48px',
     padding: '0 32px',

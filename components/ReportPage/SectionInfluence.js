@@ -13,7 +13,7 @@ const VIDEO_ID = {
   ja: 'JGqtCQveBYY',
 }[process.env.LOCALE || 'en_US'];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   influence: {
     position: 'relative',
     padding: '112px 0 0',

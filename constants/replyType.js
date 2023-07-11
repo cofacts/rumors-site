@@ -3,7 +3,7 @@ import { SvgIcon } from '@material-ui/core';
 
 export const TYPE_ICON = {
   // eslint-disable-next-line react/display-name
-  NOT_ARTICLE: props => (
+  NOT_ARTICLE: (props) => (
     <SvgIcon viewBox="0 0 16 15" {...props}>
       <path
         d="M6.61271 1.08974L0.217251 11.7226C-0.399855 12.7489 0.371127 14.0307 1.60534 14.0307H14.3947C15.6289 14.0307 16.3999 12.7489 15.7827 11.7226L9.38889 1.08974C8.77178 0.0633888 7.22982 0.0633888 6.61271 1.08974Z"
@@ -20,7 +20,7 @@ export const TYPE_ICON = {
     </SvgIcon>
   ),
   // eslint-disable-next-line react/display-name
-  OPINIONATED: props => (
+  OPINIONATED: (props) => (
     <SvgIcon viewBox="0 0 16 16" {...props}>
       <path
         d="M14.2022 0.359985H1.79775C0.805393 0.359985 0 1.13316 0 2.08583V13.9941C0 14.9468 0.805393 15.72 1.79775 15.72H14.2022C15.1946 15.72 16 14.9468 16 13.9941V2.08583C16 1.13316 15.1946 0.359985 14.2022 0.359985Z"
@@ -41,7 +41,7 @@ export const TYPE_ICON = {
     </SvgIcon>
   ),
   // eslint-disable-next-line react/display-name
-  NOT_RUMOR: props => (
+  NOT_RUMOR: (props) => (
     <SvgIcon viewBox="0 0 16 16" {...props}>
       <path
         d="M8 15.72C12.4183 15.72 16 12.2815 16 8.03999C16 3.79844 12.4183 0.359985 8 0.359985C3.58172 0.359985 0 3.79844 0 8.03999C0 12.2815 3.58172 15.72 8 15.72Z"
@@ -54,7 +54,7 @@ export const TYPE_ICON = {
     </SvgIcon>
   ),
   // eslint-disable-next-line react/display-name
-  RUMOR: props => (
+  RUMOR: (props) => (
     <SvgIcon viewBox="0 0 16 15" {...props}>
       <path
         d="M10.9541 0.359985H5.04416C4.81385 0.359985 4.59394 0.448089 4.43117 0.602687L0.252814 4.61557C0.0917749 4.77017 0 4.98128 0 5.20237V10.8759C0 11.097 0.0917749 11.3081 0.252814 11.4644L4.4329 15.474C4.59567 15.6302 4.81558 15.7167 5.04589 15.7167H10.9558C11.1861 15.7167 11.4061 15.6286 11.5688 15.474L15.7472 11.4627C15.91 11.3065 16 11.0954 16 10.8743V5.20237C16 4.98128 15.9082 4.77017 15.7472 4.61391L11.5654 0.602687C11.4026 0.448089 11.1827 0.359985 10.9541 0.359985Z"

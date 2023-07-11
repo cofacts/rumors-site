@@ -18,7 +18,7 @@ import CommentTab from './CommentTab';
 import ContributionChart from 'components/ContributionChart';
 import { startOfWeek, subDays, format } from 'date-fns';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     flex: 1,
     '& > *': {

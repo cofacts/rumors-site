@@ -69,7 +69,9 @@ function Terms() {
   const [termsHtml, setTermsHtml] = useState(null);
 
   useEffect(() => {
-    const markdownPromise = fetch(TERMS_MARKDOWN_URL).then(resp => resp.text());
+    const markdownPromise = fetch(TERMS_MARKDOWN_URL).then((resp) =>
+      resp.text()
+    );
 
     const scriptPromises = JS_LIBS.map(([src, integrity], idx) => {
       // Don't insert the same script when visit this page the second time
@@ -77,7 +79,7 @@ function Terms() {
       if (document.getElementById(getScriptId(idx)) !== null)
         return Promise.resolve();
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         /**
          * <script src="..." integrity="..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
          */

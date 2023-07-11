@@ -4,7 +4,7 @@ import { c } from 'ttag';
 
 import logo from 'components/Tutorial/images/logo.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',

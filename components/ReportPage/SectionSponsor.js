@@ -19,7 +19,7 @@ import { FACEBOOK_SHARE_URL_PREFIX, DONATION_URL } from 'constants/urls';
 
 import cx from 'clsx';
 
-const usePartnersStyles = makeStyles(theme => ({
+const usePartnersStyles = makeStyles((theme) => ({
   header: {
     color: '#615870',
     display: 'flex',
@@ -116,7 +116,7 @@ const ANGEL = [
   },
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   section: {
     maxWidth: 1168 + 32 * 2,
     padding: '0 32px',

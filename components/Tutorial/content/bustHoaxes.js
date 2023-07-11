@@ -215,8 +215,7 @@ export default [
           },
           {
             type: 'link',
-            data:
-              'https://hackmd.io/@mrorz/B1ul5U86-/%2Fs%2FSJyNsLIpb?type=book',
+            data: 'https://hackmd.io/@mrorz/B1ul5U86-/%2Fs%2FSJyNsLIpb?type=book',
           },
         ],
       },

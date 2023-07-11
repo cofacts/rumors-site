@@ -130,7 +130,7 @@ const REPLIES_ORDER = [
 ];
 const DEFAULT_ORDER = REPLIES_ORDER[0].value;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   bustHoaxDivider: {
     fontSize: theme.typography.htmlFontSize,
     textAlign: 'center',
@@ -245,7 +245,7 @@ function ReplyListPage() {
                     )}
                   </>
                   <TimeInfo time={article.createdAt}>
-                    {timeAgo => t`First reported ${timeAgo}`}
+                    {(timeAgo) => t`First reported ${timeAgo}`}
                   </TimeInfo>
                 </Infos>
                 <Thumbnail article={article} />
@@ -278,7 +278,7 @@ function ReplyListPage() {
             edges={articleEdges}
             pageInfo={statsData?.pageInfo}
             loading={loading}
-            onMoreRequest={args =>
+            onMoreRequest={(args) =>
               fetchMore({
                 variables: args,
                 updateQuery(prev, { fetchMoreResult }) {

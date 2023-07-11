@@ -118,10 +118,10 @@ function ArticleStatusFilter({ filterMap = {} }: Props) {
   const selectedValues = getValues(query);
 
   // Disable login-only options when not logged in
-  let options = OPTIONS.filter(f => filterMap[f.value] !== false);
+  let options = OPTIONS.filter((f) => filterMap[f.value] !== false);
 
   if (!user) {
-    options = options.map(option => ({
+    options = options.map((option) => ({
       ...option,
       disabled: LOGIN_ONLY_OPTIONS.includes(option.value),
     }));
@@ -132,8 +132,8 @@ function ArticleStatusFilter({ filterMap = {} }: Props) {
       title={t`Filter`}
       options={options}
       selected={selectedValues}
-      onChange={newValues => {
-        MUTUALLY_EXCLUSIVE_FILTERS.forEach(mutuallyExclusiveFilters => {
+      onChange={(newValues) => {
+        MUTUALLY_EXCLUSIVE_FILTERS.forEach((mutuallyExclusiveFilters) => {
           for (const filter of mutuallyExclusiveFilters) {
             if (
               !selectedValues.includes(filter) &&
@@ -141,7 +141,7 @@ function ArticleStatusFilter({ filterMap = {} }: Props) {
             ) {
               // This filter is being toggled on;
               // remove others in the same mutually exclusive filters set
-              newValues = newValues.filter(v =>
+              newValues = newValues.filter((v) =>
                 mutuallyExclusiveFilters.includes(v) ? v === filter : true
               );
 

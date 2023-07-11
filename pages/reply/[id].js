@@ -31,7 +31,7 @@ import {
 
 import { nl2br, ellipsis } from 'lib/text';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     padding: '24px 0',
@@ -269,7 +269,7 @@ function ReplyPage() {
                 </a>
               </Link>
             </CardContent>
-            {otherArticleReplies.map(ar => {
+            {otherArticleReplies.map((ar) => {
               const editorElem = (
                 <ProfileTooltip key="editor" user={ar.user}>
                   <span>{ar?.user?.name || t`someone`}</span>

@@ -12,7 +12,7 @@ import howToUse3 from './images/how-to-use-3.png';
 import plane1 from './images/plane-1.png';
 import plane2 from './images/plane-2.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   howToUse: {
     display: 'flex',
     flexDirection: 'column',

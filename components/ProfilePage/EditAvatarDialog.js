@@ -83,7 +83,7 @@ const getAvatarUrl = (user, avatarType, s = 100) => {
   }
 };
 
-const getInitialAvatarData = user => {
+const getInitialAvatarData = (user) => {
   if (user?.avatarData) {
     if (typeof user.avatarData === 'string') return JSON.parse(user.avatarData);
     if (typeof user.avatarData === 'object') return user.avatarData;
@@ -142,7 +142,7 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
   const [avatarType, setAvatarType] = useState(null);
   const [avatarData, setAvatarData] = useState(null);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     updateUser({
@@ -188,7 +188,7 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
               label="Gravatar"
               disabled={
                 !user.availableAvatarTypes ||
-                !user.availableAvatarTypes.some(val => val === 'Gravatar') ||
+                !user.availableAvatarTypes.some((val) => val === 'Gravatar') ||
                 !user.email
               }
             />
@@ -198,7 +198,7 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
               label="Facebook"
               disabled={
                 !user.availableAvatarTypes ||
-                !user.availableAvatarTypes.some(val => val === 'Facebook') ||
+                !user.availableAvatarTypes.some((val) => val === 'Facebook') ||
                 !user.facebookId
               }
             />
@@ -208,7 +208,7 @@ function EditAvatarDialog({ userId, onClose = () => {} }) {
               label="Github"
               disabled={
                 !user.availableAvatarTypes ||
-                !user.availableAvatarTypes.some(val => val === 'Github') ||
+                !user.availableAvatarTypes.some((val) => val === 'Github') ||
                 !user.githubId
               }
             />

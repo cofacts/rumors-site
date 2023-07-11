@@ -33,8 +33,7 @@ const ECOSYSTEM_CONTENTS = [
       },
       { href: 'https://cofacts.kktix.cc/', label: t`Past editor's meetups` },
       {
-        href:
-          'https://docs.google.com/presentation/d/1QCAPtwkxreQ4EUtIWsOgR4c8h4tkRs22Qvv7jBFNrfI/',
+        href: 'https://docs.google.com/presentation/d/1QCAPtwkxreQ4EUtIWsOgR4c8h4tkRs22Qvv7jBFNrfI/',
         label: t`Editor meetups' opening slides`,
       },
     ],
@@ -96,7 +95,7 @@ const ECOSYSTEM_CONTENTS = [
   },
 ];
 
-const useModalButtonStyle = makeStyles(theme => ({
+const useModalButtonStyle = makeStyles((theme) => ({
   button: {
     position: 'absolute',
     width: '30%',
@@ -157,7 +156,7 @@ export function ModalButton({ contentIdx, imgNudge, ...otherProps }) {
   );
 }
 
-const useStyle = makeStyles(theme => ({
+const useStyle = makeStyles((theme) => ({
   dialog: {
     background: 'rgba(61,46,86,0.85)',
     backdropFilter: 'blur(6px)',
@@ -224,7 +223,7 @@ function EcosystemModal({ defaultIdx = 0, onClose }) {
   const classes = useStyle();
   // const [contentIdx, setContentIdx] = useState(defaultIdx);
   const [isClosing, setClosing] = useState(false);
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const { title, img, body, links } = ECOSYSTEM_CONTENTS[defaultIdx];
 
   const handleClose = () => {

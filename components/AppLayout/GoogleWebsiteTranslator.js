@@ -44,7 +44,7 @@ class GoogleWebsiteTranslator extends PureComponent {
     }
 
     return (
-      <div ref={container => (this.refContainer = container)}>
+      <div ref={(container) => (this.refContainer = container)}>
         <div id="google_translate_element" />
       </div>
     );

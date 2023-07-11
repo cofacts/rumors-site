@@ -17,7 +17,7 @@ srv.on('listening', () => {
   });
 });
 
-srv.on('error', err => {
+srv.on('error', (err) => {
   console.error('Startup error', err);
   process.exit(1);
 });

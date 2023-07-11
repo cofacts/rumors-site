@@ -30,7 +30,7 @@ const LIST_ARTICLES = gql`
   ${LoadMore.fragments.LoadMoreEdge}
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.palette.primary[200],
     padding: '60px 30px',

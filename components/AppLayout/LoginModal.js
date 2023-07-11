@@ -12,7 +12,7 @@ import Github from './images/github.svg';
 import Google from './images/google.svg';
 // import Instagram from './images/instagram.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const useProviderStyles = makeStyles(theme => ({
+const useProviderStyles = makeStyles((theme) => ({
   root: {
     borderRadius: 30,
     display: 'flex',
@@ -70,7 +70,7 @@ const ProviderLink = ({
     redirectPath ||
     location.href.replace(new RegExp(`^${location.origin}`), '');
 
-  const urlFor = provider =>
+  const urlFor = (provider) =>
     `${PUBLIC_API_URL}/login/${provider}?redirect=${redirectUrl}`;
   const classes = useProviderStyles({ color });
 

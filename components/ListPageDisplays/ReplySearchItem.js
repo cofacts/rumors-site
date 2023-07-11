@@ -18,7 +18,7 @@ import ReplyItem from './ReplyItem';
 import { nl2br } from 'lib/text';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
     position: 'relative',
@@ -107,7 +107,7 @@ function RepliedArticleInfo({ article }) {
         )}
       </>
       <TimeInfo time={article.createdAt}>
-        {timeAgo => (
+        {(timeAgo) => (
           <Link href="/article/[id]" as={`/article/${article.id}`}>
             {t`First reported ${timeAgo}`}
           </Link>
@@ -178,7 +178,7 @@ export default function ReplySearchItem({
             <DialogTitle>{t`This reply is used in following messages`}</DialogTitle>
             <DialogContent>
               {articleReplies
-                .filter(ar => ar !== articleReply)
+                .filter((ar) => ar !== articleReply)
                 .map(({ article }) => (
                   <Link
                     href="/article/[id]"

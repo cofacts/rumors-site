@@ -80,11 +80,12 @@ const cropperStyle = createStyles({
   },
 });
 
-const Cropper = withStyles(cropperStyle)(
-  ({ children, classes }: CropperProps & WithStyles<typeof cropperStyle>) => {
-    return <span className={classes.cropper}>{children}</span>;
-  }
-);
+const Cropper = withStyles(cropperStyle)(({
+  children,
+  classes,
+}: CropperProps & WithStyles<typeof cropperStyle>) => {
+  return <span className={classes.cropper}>{children}</span>;
+});
 
 function shortenUrl(s: string, maxLength: number) {
   try {
@@ -106,7 +107,7 @@ function shortenUrl(s: string, maxLength: number) {
 }
 
 function flatternPureStrings(tokens: React.ReactChild[]) {
-  return tokens.every(token => typeof token === 'string')
+  return tokens.every((token) => typeof token === 'string')
     ? tokens.join()
     : tokens;
 }
@@ -126,7 +127,7 @@ export function linkify(
     props = {},
   }: { maxLength?: number; props?: React.ComponentPropsWithoutRef<'a'> } = {}
 ) {
-  return traverseForStrings(elem, str => {
+  return traverseForStrings(elem, (str) => {
     if (!str) return str;
 
     const tokenized = str.split(urlRegExp).map((s, i) =>
@@ -155,12 +156,12 @@ const newLineRegExp = RegExp(` *${newLinePattern} *`, 'g');
  * @param elem React element, string, array of string & react elements
  */
 export function nl2br(elem: React.ReactNode) {
-  return traverseForStrings(elem, str => {
+  return traverseForStrings(elem, (str) => {
     if (!str) return str;
 
     const tokenized = str
       .split(newLineRegExp)
-      .filter(token => token !== '') // Filter out empty strings
+      .filter((token) => token !== '') // Filter out empty strings
       .map((line, idx) =>
         line.match(newLineRegExp) ? <br key={`br${idx}`} /> : line
       );
@@ -210,7 +211,7 @@ export function truncate(
   } = {}
 ) {
   let currentWordCount = 0;
-  const result = traverseForStrings(elem, str => {
+  const result = traverseForStrings(elem, (str) => {
     if (currentWordCount >= wordCount) return BREAK;
 
     currentWordCount += str.length;
@@ -257,7 +258,7 @@ function getMarkElems(
         ),
       ];
     }, [])
-    .filter(jsxElem => !!jsxElem);
+    .filter((jsxElem) => !!jsxElem);
 }
 
 const TypedHighlightFields = graphql(/* GraphQL */ `

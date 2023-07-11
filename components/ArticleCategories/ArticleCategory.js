@@ -3,7 +3,7 @@ import Chip from '@material-ui/core/Chip';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   category: { marginRight: theme.spacing(1), marginTop: theme.spacing(1) },
   deletedLabel: { textDecoration: 'line-through', opacity: 0.5 },
 }));

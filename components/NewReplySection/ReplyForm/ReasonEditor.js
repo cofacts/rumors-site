@@ -18,7 +18,7 @@ import ReplySearchContext from '../ReplySearch/context';
 import ReplyFormContext from './context';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   editor: {
     position: 'relative',
     flex: 1,
@@ -155,7 +155,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StickerIcon = props => (
+const StickerIcon = (props) => (
   <SvgIcon viewBox="0 0 20 20" {...props}>
     <path d="M3.5 0C1.56 0 0 1.56 0 3.5V16.5C0 18.44 1.56 20 3.5 20H14L20 14V3.5C20 1.56 18.44 0 16.5 0H3.5ZM3.75 2H16.25C16.7141 2 17.1592 2.18437 17.4874 2.51256C17.8156 2.84075 18 3.28587 18 3.75V13H16.5C14.56 13 13 14.56 13 16.5V18H3.75C3.28587 18 2.84075 17.8156 2.51256 17.4874C2.18437 17.1592 2 16.7141 2 16.25V3.75C2 3.28587 2.18437 2.84075 2.51256 2.51256C2.84075 2.18437 3.28587 2 3.75 2ZM12.44 4.77C12.28 4.77 12.12 4.79 11.97 4.83C11.03 5.09 10.5 6.05 10.74 7C10.79 7.15 10.86 7.3 10.95 7.44L14.18 6.56C14.18 6.39 14.16 6.22 14.12 6.05C13.91 5.3 13.22 4.77 12.44 4.77ZM6.17 6.5C6 6.5 5.85 6.5 5.7 6.55C4.77 6.81 4.22 7.77 4.47 8.7C4.5 8.86 4.59 9 4.68 9.16L7.91 8.28C7.91 8.11 7.89 7.94 7.85 7.78C7.75217 7.41021 7.53386 7.08359 7.2296 6.85177C6.92534 6.61995 6.55249 6.49617 6.17 6.5ZM14.72 9.26L5.59 11.77C6.23838 12.5203 7.08543 13.0723 8.03367 13.3624C8.98191 13.6525 9.9928 13.669 10.95 13.41C11.9051 13.1428 12.7654 12.6117 13.4323 11.8776C14.0991 11.1435 14.5455 10.2363 14.72 9.26Z" />
   </SvgIcon>
@@ -201,12 +201,12 @@ const ReasonEditor = ({
   const { search, setSearch } = useContext(ReplySearchContext);
   const { fields, handlers } = useContext(ReplyFormContext);
 
-  const toggleListStyle = type => () =>
-    setListStyle(v => (v === type ? null : type));
+  const toggleListStyle = (type) => () =>
+    setListStyle((v) => (v === type ? null : type));
 
-  const handleKeyPress = e => void (lastKey.current = e.key);
+  const handleKeyPress = (e) => void (lastKey.current = e.key);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     if (lastKey.current === 'Enter') {
       const element = e.target;
       const { value, selectionStart, selectionEnd } = addListStyle(
@@ -220,7 +220,7 @@ const ReasonEditor = ({
     onChange(e);
   };
 
-  const addEmoji = emoji => {
+  const addEmoji = (emoji) => {
     const element = editorRef.current;
     const index = element.selectionStart;
     const raw = element.value;
@@ -230,7 +230,7 @@ const ReasonEditor = ({
     setShowEmojiPicker(false);
   };
 
-  const handleConnect = reply => {
+  const handleConnect = (reply) => {
     const element = editorRef.current;
     const text = `${reply.text}\n${reply.reference}\n${element.value}`;
     handlers.set('text', text);
@@ -327,7 +327,7 @@ const ReasonEditor = ({
         <div className={classes.tool}>
           <button
             type="button"
-            onClick={() => setShowEmojiPicker(show => !show)}
+            onClick={() => setShowEmojiPicker((show) => !show)}
           >
             <StickerIcon />
           </button>

@@ -25,7 +25,7 @@ import cx from 'clsx';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   replyButton: {
     [theme.breakpoints.down('xs')]: { display: 'none' },
     marginRight: theme.spacing(1),
@@ -117,7 +117,7 @@ const SubmitButton = ({
     refetchQueries: ['LoadArticlePage'],
   });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault(); // prevent reload
     if (disabled) return;
     createReplyRequest({ variables: { articleId, reason: text } });
@@ -161,14 +161,14 @@ const CreateReplyRequestForm = React.memo(
     }, []);
 
     useEffect(() => {
-      setText(t => (ownReplyRequest ? ownReplyRequest.reason : t));
+      setText((t) => (ownReplyRequest ? ownReplyRequest.reason : t));
     }, [ownReplyRequest]);
 
     // event scroll listener
     useEffect(() => {
       const observer = new IntersectionObserver(
-        entries =>
-          entries.forEach(entry => {
+        (entries) =>
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               setShowFloatButton(false);
             } else {
@@ -259,7 +259,7 @@ const CreateReplyRequestForm = React.memo(
               <Button
                 type="button"
                 className={cx({ [classes.isButtonActive]: !!shareAnchor })}
-                onClick={e => setShareAnchor(e.currentTarget)}
+                onClick={(e) => setShareAnchor(e.currentTarget)}
                 disableElevation
               >
                 {t`Share`}
@@ -268,7 +268,7 @@ const CreateReplyRequestForm = React.memo(
                 <Button
                   type="button"
                   className={cx({ [classes.isButtonActive]: !!moreAnchor })}
-                  onClick={e => setMoreAnchor(e.currentTarget)}
+                  onClick={(e) => setMoreAnchor(e.currentTarget)}
                   disableElevation
                   style={{ flex: 0 }}
                 >

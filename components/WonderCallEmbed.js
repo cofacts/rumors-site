@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Tooltip = withStyles(theme => ({
+const Tooltip = withStyles((theme) => ({
   tooltip: {
     backgroundColor: theme.palette.common.white,
     color: theme.palette.secondary.main,
@@ -90,7 +90,7 @@ function WonderCallEmbed() {
             data-ga="WonderCall"
             className={classes.root}
             target="_blank"
-            onClick={() => setShow(show => !show)}
+            onClick={() => setShow((show) => !show)}
           >
             <ChatIcon />
           </Fab>

@@ -7,7 +7,7 @@ import image2 from './images/feature-2.png';
 import image3 from './images/feature-3.png';
 import image4 from './images/feature-4.png';
 
-const useBlockStyles = makeStyles(theme => ({
+const useBlockStyles = makeStyles((theme) => ({
   block: {
     display: 'flex',
     flexDirection: 'column',
@@ -68,7 +68,7 @@ const Block = ({ className, image, title, content }) => {
   );
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sectionFeature: {
     background: theme.palette.secondary[900],
     padding: '87px 55px 65px',

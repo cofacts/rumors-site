@@ -102,7 +102,7 @@ const DesktopFeatures = () => {
 
   return (
     <div className={classes.featuresWrapper}>
-      {featureData.map(data => (
+      {featureData.map((data) => (
         <Card
           key={data.id}
           className={classes.card}
@@ -170,7 +170,7 @@ const MobileFeatures = () => {
   );
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   originalFeatures: {
     position: 'relative',
     background:
@@ -217,7 +217,7 @@ const useStyles = makeStyles(theme => ({
 
 const SectionOriginalFeatures = () => {
   const classes = useStyles();
-  const isDesktop = useMediaQuery(theme => theme.breakpoints.up('md'));
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   return (
     <section className={classes.originalFeatures}>

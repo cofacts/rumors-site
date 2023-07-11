@@ -30,7 +30,7 @@ const {
   publicRuntimeConfig: { PUBLIC_COLLAB_SERVER_URL },
 } = getConfig();
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   transcriptHeader: {
     display: 'flex',
     flexDirection: 'row',
@@ -138,7 +138,7 @@ const CollabEditor = ({ article }) => {
   const onDone = () => {
     if (editorView) {
       let text = '';
-      editorView.state.doc.content.forEach(node => {
+      editorView.state.doc.content.forEach((node) => {
         // console.log(node.textContent);
         // console.log(node.type.name);
         if (node.textContent) {

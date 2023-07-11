@@ -13,7 +13,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ReplySearchContext, { FILTERS } from './context';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     height: 36,
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CustomSelectInput = withStyles(theme => ({
+const CustomSelectInput = withStyles((theme) => ({
   root: {
     'label + &': {
       marginTop: theme.spacing(3),
@@ -80,9 +80,8 @@ const getWidth = (ref, value) => {
 
 export default function SearchBar({ className }) {
   const inputRef = useRef(null);
-  const { search, setSearch, filter, setFilter } = useContext(
-    ReplySearchContext
-  );
+  const { search, setSearch, filter, setFilter } =
+    useContext(ReplySearchContext);
   const [buffer, setBuffer] = useState(search);
 
   const classes = useStyles();
@@ -100,7 +99,7 @@ export default function SearchBar({ className }) {
         labelId="select-filter"
         id="select-filter"
         value={filter}
-        onChange={e => setFilter(e.target.value)}
+        onChange={(e) => setFilter(e.target.value)}
         classes={{ root: classes.select, icon: classes.selectIcon }}
         input={<CustomSelectInput />}
       >
@@ -115,9 +114,9 @@ export default function SearchBar({ className }) {
           placeholder="參考過往回應"
           type="text"
           value={buffer}
-          onChange={e => setBuffer(e.target.value)}
+          onChange={(e) => setBuffer(e.target.value)}
           ref={inputRef}
-          onKeyDown={e => {
+          onKeyDown={(e) => {
             e.stopPropagation();
             e.nativeEvent.stopImmediatePropagation();
             if (e.key === 'Enter') {

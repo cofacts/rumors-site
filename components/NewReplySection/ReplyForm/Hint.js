@@ -1,7 +1,7 @@
 import { withStyles } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
 
-const Hint = withStyles(theme => ({
+const Hint = withStyles((theme) => ({
   root: {
     fontSize: 12,
     color: theme.palette.secondary[200],

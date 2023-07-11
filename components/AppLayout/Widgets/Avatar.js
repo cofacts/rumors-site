@@ -12,7 +12,7 @@ import { omit } from 'lodash';
 const NULL_USER_IMG =
   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: ({ size }) => size,
     height: ({ size }) => size,
@@ -32,7 +32,7 @@ const peepsStyles = {
   },
 };
 
-const LevelBadge = withStyles(theme => ({
+const LevelBadge = withStyles((theme) => ({
   container: {
     position: 'relative',
   },
@@ -62,7 +62,7 @@ const LevelBadge = withStyles(theme => ({
   </div>
 ));
 
-const StatusBadge = withStyles(theme => ({
+const StatusBadge = withStyles((theme) => ({
   badge: {
     transform: 'translate(30%, -20%)',
     [theme.breakpoints.up('md')]: {
@@ -86,7 +86,7 @@ const StatusBadge = withStyles(theme => ({
   );
 });
 
-const OpenPeepsAvatar = withStyles(theme => ({
+const OpenPeepsAvatar = withStyles((theme) => ({
   showcaseWrapper: {
     display: 'flex',
     justifyContent: 'center',
@@ -113,9 +113,9 @@ const OpenPeepsAvatar = withStyles(theme => ({
       },
 
       transform: ({ avatarData, size }) =>
-        `${
-          avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'
-        } translateY(${size / 15}px)`,
+        `${avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'} translateY(${
+          size / 15
+        }px)`,
     },
   },
   // eslint-disable-next-line no-unused-vars

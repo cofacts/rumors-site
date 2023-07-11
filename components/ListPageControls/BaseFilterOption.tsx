@@ -13,7 +13,7 @@ type Props<V extends string> = {
 
 type StyleProps = Pick<Props<string>, 'selected' | 'chip'>;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: 'auto' /* Override material-ui */,
     padding: '3px 9px' /* consider 1px border */,

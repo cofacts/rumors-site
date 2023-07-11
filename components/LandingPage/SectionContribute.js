@@ -11,7 +11,7 @@ import { withDarkTheme } from 'lib/theme';
 
 import bg from './images/contribute-bg.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   top: {
     background: theme.palette.common.red1,
     overflow: 'hidden',
@@ -123,7 +123,7 @@ const SectionContribute = ({ className }) => {
         <animated.img
           src={bg}
           style={{
-            transform: offset.interpolate(value => `translateY(${value}px)`),
+            transform: offset.interpolate((value) => `translateY(${value}px)`),
           }}
         />
       </div>

@@ -19,7 +19,7 @@ import facebookIcon from './images/facebook.svg';
 import mailIcon from './images/mail.svg';
 import lineIcon from './images/line.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   first: {
     display: 'flex',
     justifyContent: 'center',
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CustomLink = withStyles(theme => ({
+const CustomLink = withStyles((theme) => ({
   linkWrapper: {
     margin: '20px 0',
     display: 'flex',

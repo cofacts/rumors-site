@@ -18,7 +18,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   dialog: {
     padding: theme.spacing(3, 3),
   },
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CustomTab = withStyles(theme => ({
+const CustomTab = withStyles((theme) => ({
   root: {
     fontSize: theme.typography.h6.fontSize,
     fontWeight: theme.typography.h6.fontWeight,
@@ -64,7 +64,7 @@ const CustomTab = withStyles(theme => ({
   },
 }))(Tab);
 
-const CustomCopyButton = withStyles(theme => ({
+const CustomCopyButton = withStyles((theme) => ({
   root: {
     fontSize: theme.typography.caption.fontSize,
   },
@@ -108,7 +108,7 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
   const [status, setStatus] = useState(null);
   const [value, setValue] = useState(0);
 
-  const copySuccess = text => {
+  const copySuccess = (text) => {
     setMessage(text);
     setStatus(SUCCESS);
   };
@@ -196,7 +196,7 @@ const DialogBody = forwardRef(function DialogBody(props, ref) {
                     readOnly: true,
                     disableUnderline: true,
                   }}
-                  onFocus={e => e.target.select()}
+                  onFocus={(e) => e.target.select()}
                   fullWidth
                 />
               </Box>

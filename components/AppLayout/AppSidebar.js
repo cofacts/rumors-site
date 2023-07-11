@@ -23,7 +23,7 @@ import { withDarkTheme } from 'lib/theme';
 import GoogleWebsiteTranslator from './GoogleWebsiteTranslator';
 import LEVEL_NAMES from 'constants/levelNames';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     top: `${NAVBAR_HEIGHT + TABS_HEIGHT}px !important`,
     background: theme.palette.background.default,
@@ -94,7 +94,7 @@ function AppSidebar({ open, toggle, user, onLoginModalOpen, onLogout }) {
       ) : (
         <div>
           <Ribbon className={classes.level}>
-            <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[(user?.level)]}
+            <strong>Lv. {user?.level}</strong> {LEVEL_NAMES[user?.level]}
           </Ribbon>
           <Box px={1.5} pb={2} display="flex" alignItems="center">
             <Avatar user={user} size={60} />

@@ -21,7 +21,7 @@ const contentMap = {
   'check-rumors': checkRumorsTutorial,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   tabContainer: {
     display: 'flex',
     width: '100%',

@@ -54,8 +54,8 @@ function AddCategoryDialog({
 
   // marked categories on top
   const sortedCategories = [
-    ...allCategories.filter(cat => !!feedbackMap[cat.id]),
-    ...allCategories.filter(cat => !feedbackMap[cat.id]),
+    ...allCategories.filter((cat) => !!feedbackMap[cat.id]),
+    ...allCategories.filter((cat) => !feedbackMap[cat.id]),
   ];
   return (
     <Dialog
@@ -70,7 +70,7 @@ function AddCategoryDialog({
           {t`Articles are mostly categorized by AI based on our current data, but you can provide your own opinion to improved the categorization.`}
         </Hint>
         <div>
-          {sortedCategories.map(category => (
+          {sortedCategories.map((category) => (
             <CategoryOption
               key={category.id}
               articleId={articleId}

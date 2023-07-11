@@ -217,8 +217,7 @@ describe('highlightSections', () => {
       highlightSections(
         makeFragmentData(
           {
-            text:
-              '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit <HIGHLIGHT>amet</HIGHLIGHT>, consectetur <HIGHLIGHT>adipiscing elit</HIGHLIGHT>',
+            text: '<HIGHLIGHT>Lorem ipsum</HIGHLIGHT> dolor sit <HIGHLIGHT>amet</HIGHLIGHT>, consectetur <HIGHLIGHT>adipiscing elit</HIGHLIGHT>',
             reference:
               '【誤導】<HIGHLIGHT>大陸東北男子穿短袖短褲晨跑</HIGHLIGHT>？<HIGHLIGHT>凍成人型冰棍影片</HIGHLIGHT>？2018酒醉凍傷致死事件\n\nMyGoPen查證參考：\nhttps://www.mygopen.com/2021/01/freeze-Morning-jogging.html',
             hyperlinks: [

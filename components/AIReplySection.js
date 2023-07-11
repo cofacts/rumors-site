@@ -21,7 +21,7 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
           paddingBottom: expand ? undefined : 12,
           cursor: 'pointer',
         }}
-        onClick={() => setExpand(v => !v)}
+        onClick={() => setExpand((v) => !v)}
       >
         {t`Automated analysis from ChatGPT`}
         {expand ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}

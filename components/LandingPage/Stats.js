@@ -5,7 +5,7 @@ import { animated, useSpring } from 'react-spring';
 
 import image from './images/stats.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sectionStats: {
     background: 'white',
     padding: '70px 0 90px',
@@ -190,7 +190,9 @@ function Stats() {
             src={image}
             style={{
               opacity,
-              transform: offset.interpolate(value => `translateX(${-value}px)`),
+              transform: offset.interpolate(
+                (value) => `translateX(${-value}px)`
+              ),
             }}
           />
         </div>

@@ -8,7 +8,7 @@ import Ribbon from 'components/Ribbon';
 
 import arrow from './images/arrow.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
   },

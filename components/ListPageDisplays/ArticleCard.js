@@ -10,7 +10,7 @@ import { highlightSections, HighlightFields } from 'lib/text';
 import { useHighlightStyles } from './utils';
 import cx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     // Canceling link styles
     color: 'inherit',
@@ -109,7 +109,7 @@ function ArticleCard({ article, highlight = '' }) {
         <ListPageCard>
           <Infos>
             <TimeInfo time={createdAt}>
-              {timeAgo => t`First reported ${timeAgo}`}
+              {(timeAgo) => t`First reported ${timeAgo}`}
             </TimeInfo>
           </Infos>
           <div className={classes.flex}>
