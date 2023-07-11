@@ -83,6 +83,19 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "TEXT",
+                      "createdAt": "2020-01-01T00:00:00Z",
+                      "id": "id1",
+                      "replyCount": 3,
+                      "replyRequestCount": 4,
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                />
                 <ExpandableText
                   className="makeStyles-content"
                   lineClamp={3}
@@ -102,19 +115,6 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </div>
                   </div>
                 </ExpandableText>
-                <Thumbnail
-                  article={
-                    Object {
-                      "articleType": "TEXT",
-                      "createdAt": "2020-01-01T00:00:00Z",
-                      "id": "id1",
-                      "replyCount": 3,
-                      "replyRequestCount": 4,
-                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    }
-                  }
-                  className="makeStyles-attachment"
-                />
               </div>
             </article>
           </ListPageCard>
@@ -210,6 +210,19 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </span>
                   </div>
                 </div>
+                <Thumbnail
+                  article={
+                    Object {
+                      "articleType": "TEXT",
+                      "createdAt": "2019-01-01T00:00:00Z",
+                      "id": "id2",
+                      "replyCount": 0,
+                      "replyRequestCount": 999,
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
+                    }
+                  }
+                  className="makeStyles-attachment"
+                />
                 <ExpandableText
                   className="makeStyles-content"
                   lineClamp={3}
@@ -261,19 +274,6 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     </div>
                   </div>
                 </ExpandableText>
-                <Thumbnail
-                  article={
-                    Object {
-                      "articleType": "TEXT",
-                      "createdAt": "2019-01-01T00:00:00Z",
-                      "id": "id2",
-                      "replyCount": 0,
-                      "replyRequestCount": 999,
-                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu ex augue. Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.",
-                    }
-                  }
-                  className="makeStyles-attachment"
-                />
               </div>
             </article>
           </ListPageCard>

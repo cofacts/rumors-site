@@ -88,6 +88,7 @@ const useStyles = makeStyles(theme => ({
   attachment: {
     minWidth: 0, // Don't use intrinsic image width as flex item min-size
     maxHeight: '10em', // Don't let image rows take too much vertical space
+    margin: '0 1em 0 0', // Add right margin that separate attachment and text with a space
   },
 }));
 
@@ -122,6 +123,7 @@ function ArticleCard({ article, highlight = '' }) {
                 <span>{c('Info box').t`reports`}</span>
               </div>
             </div>
+            <Thumbnail article={article} className={classes.attachment} />
             {(text || highlight) && (
               <ExpandableText className={classes.content} lineClamp={3}>
                 {highlight
@@ -129,7 +131,6 @@ function ArticleCard({ article, highlight = '' }) {
                   : text}
               </ExpandableText>
             )}
-            <Thumbnail article={article} className={classes.attachment} />
           </div>
         </ListPageCard>
       </a>
