@@ -4,3 +4,4 @@ node_modules/*
 coverage
 !.storybook
 public/*
+typegen/fragment-masking.ts

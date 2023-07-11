@@ -26,6 +26,7 @@ export type Query = {
    *
    */
   GetUser?: Maybe<User>;
+  ListAIResponses: AiResponseConnection;
   ListAnalytics: AnalyticsConnection;
   ListArticleReplyFeedbacks?: Maybe<ListArticleReplyFeedbackConnection>;
   ListArticles?: Maybe<ArticleConnection>;
@@ -55,6 +56,15 @@ export type QueryGetReplyArgs = {
 export type QueryGetUserArgs = {
   id?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryListAiResponsesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ListAiResponsesFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<InputMaybe<ListAiResponsesOrderBy>>>;
 };
 
 
@@ -126,6 +136,8 @@ export type QueryValidateSlugArgs = {
 
 export type Article = Node & {
   __typename?: 'Article';
+  /** Automated reply from AI before human fact checkers compose an fact check */
+  aiReplies: Array<AiReply>;
   articleCategories?: Maybe<Array<Maybe<ArticleCategory>>>;
   /** Connections between this article and replies. Sorted by the logic described in https://github.com/cofacts/rumors-line-bot/issues/78. */
   articleReplies?: Maybe<Array<Maybe<ArticleReply>>>;
@@ -172,6 +184,7 @@ export type ArticleArticleRepliesArgs = {
   status?: InputMaybe<ArticleReplyStatusEnum>;
   statuses?: InputMaybe<Array<ArticleReplyStatusEnum>>;
   userId?: InputMaybe<Scalars['String']>;
+  userIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 
@@ -201,6 +214,138 @@ export type ArticleStatsArgs = {
 /** Basic entity. Modeled after Relay's GraphQL Server Specification. */
 export type Node = {
   id: Scalars['ID'];
+};
+
+/** A ChatGPT reply for an article with no human fact-checks yet */
+export type AiReply = AiResponse & Node & {
+  __typename?: 'AIReply';
+  createdAt: Scalars['String'];
+  /** The id for the document that this AI response is for. */
+  docId?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
+  /** Processing status of AI */
+  status: AiResponseStatusEnum;
+  /** AI response text. Populated after status becomes SUCCESS. */
+  text?: Maybe<Scalars['String']>;
+  /** AI response type */
+  type: AiResponseTypeEnum;
+  updatedAt?: Maybe<Scalars['String']>;
+  /** The usage returned from OpenAI. Populated after status becomes SUCCESS. */
+  usage?: Maybe<OpenAiCompletionUsage>;
+  /** The user triggered this AI response */
+  user?: Maybe<User>;
+};
+
+/** Denotes an AI processed response and its processing status. */
+export type AiResponse = {
+  createdAt: Scalars['String'];
+  /** The id for the document that this AI response is for. */
+  docId?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
+  /** Processing status of AI */
+  status: AiResponseStatusEnum;
+  /** AI response text. Populated after status becomes SUCCESS. */
+  text?: Maybe<Scalars['String']>;
+  /** AI response type */
+  type: AiResponseTypeEnum;
+  updatedAt?: Maybe<Scalars['String']>;
+  /** The user triggered this AI response */
+  user?: Maybe<User>;
+};
+
+export enum AiResponseStatusEnum {
+  Error = 'ERROR',
+  Loading = 'LOADING',
+  Success = 'SUCCESS'
+}
+
+export enum AiResponseTypeEnum {
+  /** The AI Response is an automated analysis / reply of an article. */
+  AiReply = 'AI_REPLY'
+}
+
+export type User = Node & {
+  __typename?: 'User';
+  appId?: Maybe<Scalars['String']>;
+  /** Returns only for current user. Returns `null` otherwise. */
+  appUserId?: Maybe<Scalars['String']>;
+  /** Returns only for current user. Returns `null` otherwise. */
+  availableAvatarTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** return avatar data as JSON string, currently only used when avatarType is OpenPeeps */
+  avatarData?: Maybe<Scalars['String']>;
+  avatarType?: Maybe<AvatarTypeEnum>;
+  /** returns avatar url from facebook, github or gravatar */
+  avatarUrl?: Maybe<Scalars['String']>;
+  bio?: Maybe<Scalars['String']>;
+  /** If not null, the user is blocked with the announcement in this string. */
+  blockedReason?: Maybe<Scalars['String']>;
+  /** List of contributions made by the user */
+  contributions?: Maybe<Array<Maybe<Contribution>>>;
+  createdAt?: Maybe<Scalars['String']>;
+  /** Returns only for current user. Returns `null` otherwise. */
+  email?: Maybe<Scalars['String']>;
+  /** Returns only for current user. Returns `null` otherwise. */
+  facebookId?: Maybe<Scalars['String']>;
+  /** Returns only for current user. Returns `null` otherwise. */
+  githubId?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  lastActiveAt?: Maybe<Scalars['String']>;
+  level: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  points: PointInfo;
+  /** Number of articles this user has replied to */
+  repliedArticleCount: Scalars['Int'];
+  slug?: Maybe<Scalars['String']>;
+  /** Returns only for current user. Returns `null` otherwise. */
+  twitterId?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['String']>;
+  /** Number of article replies this user has given feedbacks */
+  votedArticleReplyCount: Scalars['Int'];
+};
+
+
+export type UserContributionsArgs = {
+  dateRange?: InputMaybe<TimeRangeInput>;
+};
+
+export enum AvatarTypeEnum {
+  Facebook = 'Facebook',
+  Github = 'Github',
+  Gravatar = 'Gravatar',
+  OpenPeeps = 'OpenPeeps'
+}
+
+/** List only the entries that were created between the specific time range. The time range value is in elasticsearch date format (https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html) */
+export type TimeRangeInput = {
+  EQ?: InputMaybe<Scalars['String']>;
+  GT?: InputMaybe<Scalars['String']>;
+  GTE?: InputMaybe<Scalars['String']>;
+  LT?: InputMaybe<Scalars['String']>;
+  LTE?: InputMaybe<Scalars['String']>;
+};
+
+export type Contribution = {
+  __typename?: 'Contribution';
+  count?: Maybe<Scalars['Int']>;
+  date?: Maybe<Scalars['String']>;
+};
+
+/** Information of a user's point. Only available for current user. */
+export type PointInfo = {
+  __typename?: 'PointInfo';
+  /** Points required for current level */
+  currentLevel: Scalars['Int'];
+  /** Points required for next level. null when there is no next level. */
+  nextLevel: Scalars['Int'];
+  /** Points earned by the current user */
+  total: Scalars['Int'];
+};
+
+export type OpenAiCompletionUsage = {
+  __typename?: 'OpenAICompletionUsage';
+  completionTokens: Scalars['Int'];
+  promptTokens: Scalars['Int'];
+  totalTokens: Scalars['Int'];
 };
 
 export enum ArticleCategoryStatusEnum {
@@ -345,83 +490,6 @@ export type ArticleCategoryFeedback = {
   user?: Maybe<User>;
   /** User's vote on the articleCategory */
   vote?: Maybe<FeedbackVote>;
-};
-
-export type User = Node & {
-  __typename?: 'User';
-  appId?: Maybe<Scalars['String']>;
-  /** Returns only for current user. Returns `null` otherwise. */
-  appUserId?: Maybe<Scalars['String']>;
-  /** Returns only for current user. Returns `null` otherwise. */
-  availableAvatarTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
-  /** return avatar data as JSON string, currently only used when avatarType is OpenPeeps */
-  avatarData?: Maybe<Scalars['String']>;
-  avatarType?: Maybe<AvatarTypeEnum>;
-  /** returns avatar url from facebook, github or gravatar */
-  avatarUrl?: Maybe<Scalars['String']>;
-  bio?: Maybe<Scalars['String']>;
-  /** If not null, the user is blocked with the announcement in this string. */
-  blockedReason?: Maybe<Scalars['String']>;
-  /** List of contributions made by the user */
-  contributions?: Maybe<Array<Maybe<Contribution>>>;
-  createdAt?: Maybe<Scalars['String']>;
-  /** Returns only for current user. Returns `null` otherwise. */
-  email?: Maybe<Scalars['String']>;
-  /** Returns only for current user. Returns `null` otherwise. */
-  facebookId?: Maybe<Scalars['String']>;
-  /** Returns only for current user. Returns `null` otherwise. */
-  githubId?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  lastActiveAt?: Maybe<Scalars['String']>;
-  level: Scalars['Int'];
-  name?: Maybe<Scalars['String']>;
-  points: PointInfo;
-  /** Number of articles this user has replied to */
-  repliedArticleCount: Scalars['Int'];
-  slug?: Maybe<Scalars['String']>;
-  /** Returns only for current user. Returns `null` otherwise. */
-  twitterId?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['String']>;
-  /** Number of article replies this user has given feedbacks */
-  votedArticleReplyCount: Scalars['Int'];
-};
-
-
-export type UserContributionsArgs = {
-  dateRange?: InputMaybe<TimeRangeInput>;
-};
-
-export enum AvatarTypeEnum {
-  Facebook = 'Facebook',
-  Github = 'Github',
-  Gravatar = 'Gravatar',
-  OpenPeeps = 'OpenPeeps'
-}
-
-/** List only the entries that were created between the specific time range. The time range value is in elasticsearch date format (https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html) */
-export type TimeRangeInput = {
-  EQ?: InputMaybe<Scalars['String']>;
-  GT?: InputMaybe<Scalars['String']>;
-  GTE?: InputMaybe<Scalars['String']>;
-  LT?: InputMaybe<Scalars['String']>;
-  LTE?: InputMaybe<Scalars['String']>;
-};
-
-export type Contribution = {
-  __typename?: 'Contribution';
-  count?: Maybe<Scalars['Int']>;
-  date?: Maybe<Scalars['String']>;
-};
-
-/** Information of a user's point. Only available for current user. */
-export type PointInfo = {
-  __typename?: 'PointInfo';
-  /** Points required for current level */
-  currentLevel: Scalars['Int'];
-  /** Points required for next level. null when there is no next level. */
-  nextLevel: Scalars['Int'];
-  /** Points earned by the current user */
-  total: Scalars['Int'];
 };
 
 export enum FeedbackVote {
@@ -709,6 +777,57 @@ export enum AnalyticsDocTypeEnum {
   Reply = 'REPLY'
 }
 
+export type ListAiResponsesFilter = {
+  /** Show only AI responses created by a specific app. */
+  appId?: InputMaybe<Scalars['String']>;
+  /** List only the AI responses that were created between the specific time range. */
+  createdAt?: InputMaybe<TimeRangeInput>;
+  /** If specified, only return AI repsonses under the specified doc IDs. */
+  docIds?: InputMaybe<Array<Scalars['ID']>>;
+  /** If given, only list out AI responses with specific IDs */
+  ids?: InputMaybe<Array<Scalars['ID']>>;
+  /** Only list the AI responses created by the currently logged in user */
+  selfOnly?: InputMaybe<Scalars['Boolean']>;
+  /** If specified, only return AI repsonses under the specified statuses. */
+  statuses?: InputMaybe<Array<AiResponseStatusEnum>>;
+  /** If specified, only return AI repsonses with the specified types. */
+  types?: InputMaybe<Array<AiResponseTypeEnum>>;
+  /** List only the AI responses updated within the specific time range. */
+  updatedAt?: InputMaybe<TimeRangeInput>;
+  /** Show only AI responses created by the specific user. */
+  userId?: InputMaybe<Scalars['String']>;
+  /** Show only AI responses created by the specified users. */
+  userIds?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** An entry of orderBy argument. Specifies field name and the sort order. Only one field name is allowd per entry. */
+export type ListAiResponsesOrderBy = {
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+};
+
+export type AiResponseConnection = Connection & {
+  __typename?: 'AIResponseConnection';
+  edges: Array<AiResponseConnectionEdge>;
+  pageInfo: AiResponseConnectionPageInfo;
+  /** The total count of the entire collection, regardless of "before", "after". */
+  totalCount: Scalars['Int'];
+};
+
+export type AiResponseConnectionEdge = Edge & {
+  __typename?: 'AIResponseConnectionEdge';
+  cursor: Scalars['String'];
+  highlight?: Maybe<Highlights>;
+  node: AiResponse;
+  score?: Maybe<Scalars['Float']>;
+};
+
+export type AiResponseConnectionPageInfo = PageInfo & {
+  __typename?: 'AIResponseConnectionPageInfo';
+  firstCursor?: Maybe<Scalars['String']>;
+  lastCursor?: Maybe<Scalars['String']>;
+};
+
 export type ListAnalyticsFilter = {
   /** List only the activities between the specific time range. */
   date?: InputMaybe<TimeRangeInput>;
@@ -770,6 +889,8 @@ export type ListArticleReplyFeedbackFilter = {
   updatedAt?: InputMaybe<TimeRangeInput>;
   /** Show only article reply feedbacks created by the specific user. */
   userId?: InputMaybe<Scalars['String']>;
+  /** Show only article reply feedbacks created by the specified users. */
+  userIds?: InputMaybe<Array<Scalars['String']>>;
   /** When specified, list only article reply feedbacks with specified vote */
   vote?: InputMaybe<Array<InputMaybe<FeedbackVote>>>;
 };
@@ -864,6 +985,8 @@ export type ListArticleFilter = {
   statuses?: InputMaybe<Array<ArticleStatusEnum>>;
   /** Show only articles created by the specific user. */
   userId?: InputMaybe<Scalars['String']>;
+  /** Show only articles created by the specified users. */
+  userIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type UserAndExistInput = {
@@ -888,6 +1011,8 @@ export type ArticleReplyFilterInput = {
   statuses?: InputMaybe<Array<ArticleReplyStatusEnum>>;
   /** Show only articleReplies created by the specific user. */
   userId?: InputMaybe<Scalars['String']>;
+  /** Show only articleReplies created by the specified users. */
+  userIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export enum ArticleStatusEnum {
@@ -983,6 +1108,8 @@ export type ListReplyFilter = {
   types?: InputMaybe<Array<InputMaybe<ReplyTypeEnum>>>;
   /** Show only replies created by the specific user. */
   userId?: InputMaybe<Scalars['String']>;
+  /** Show only replies created by the specified users. */
+  userIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 /** An entry of orderBy argument. Specifies field name and the sort order. Only one field name is allowd per entry. */
@@ -1005,6 +1132,8 @@ export type ListReplyRequestFilter = {
   statuses?: InputMaybe<Array<ReplyRequestStatusEnum>>;
   /** Show only reply requests created by the specific user. */
   userId?: InputMaybe<Scalars['String']>;
+  /** Show only reply requests created by the specified users. */
+  userIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 /** An entry of orderBy argument. Specifies field name and the sort order. Only one field name is allowd per entry. */
@@ -1055,6 +1184,8 @@ export enum SlugErrorEnum {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Create an AI reply for a specific article. If existed, returns an existing one. If information in the article is not sufficient for AI, return null. */
+  CreateAIReply?: Maybe<AiReply>;
   /** Create an article and/or a replyRequest */
   CreateArticle?: Maybe<MutationResult>;
   /** Adds specified category to specified article. */
@@ -1086,6 +1217,11 @@ export type Mutation = {
   UpdateArticleReplyStatus?: Maybe<Array<Maybe<ArticleReply>>>;
   /** Change attribute of a user */
   UpdateUser?: Maybe<User>;
+};
+
+
+export type MutationCreateAiReplyArgs = {
+  articleId: Scalars['String'];
 };
 
 
