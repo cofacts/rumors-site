@@ -134,7 +134,6 @@ li.ProseMirror-selectednode:after {
   display: none;
 }
 
-.ProseMirror p:first-child,
 .ProseMirror h1:first-child,
 .ProseMirror h2:first-child,
 .ProseMirror h3:first-child,
@@ -145,12 +144,12 @@ li.ProseMirror-selectednode:after {
 }
 
 .ProseMirror {
-  padding: 4px 8px 4px 14px;
+  padding: 14px;
   line-height: 1.2;
   outline: none;
 }
 
-.ProseMirror p { margin-bottom: 1em }
+.ProseMirror p { margin: 0 }
 
 .placeholder::before {
   content: var(--placeholder-text);
@@ -164,7 +163,7 @@ this is a rough fix for the first cursor position when the first paragraph is em
 .ProseMirror > .ProseMirror-yjs-cursor:first-child {
   margin-top: 16px;
 }
-.ProseMirror p:first-child, .ProseMirror h1:first-child, .ProseMirror h2:first-child, .ProseMirror h3:first-child, .ProseMirror h4:first-child, .ProseMirror h5:first-child, .ProseMirror h6:first-child {
+.ProseMirror .ProseMirror h1:first-child, .ProseMirror h2:first-child, .ProseMirror h3:first-child, .ProseMirror h4:first-child, .ProseMirror h5:first-child, .ProseMirror h6:first-child {
   margin-top: 16px
 }
 /* This gives the remote user caret. The colors are automatically overwritten*/
