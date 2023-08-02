@@ -26,6 +26,7 @@
     "@hocuspocus/provider": "^2.0.3",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "accepts": "^1.3.7",
     "apollo-boost": "^0.4.4",
     "apollo-link": "^1.2.13",
