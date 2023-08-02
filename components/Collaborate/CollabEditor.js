@@ -15,8 +15,7 @@ import { Button, Typography } from '@material-ui/core';
 import { TranscribePenIcon } from 'components/icons';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { schema } from 'prosemirror-schema-basic';
-import { DOMParser } from 'prosemirror-model';
+import { schema } from './Schema';
 import { exampleSetup } from 'prosemirror-example-setup';
 import { keymap } from 'prosemirror-keymap';
 import { useState, useRef } from 'react';
@@ -96,6 +95,7 @@ const CollabEditor = ({ article }) => {
     const ydoc = new Y.Doc();
     const permanentUserData = new Y.PermanentUserData(ydoc);
     permanentUserData.setUserMapping(ydoc, ydoc.clientID, currentUser.name);
+    // set gc to false to keep doc (delete)history
     ydoc.gc = false;
 
     const provider = new HocuspocusProvider({
@@ -118,7 +118,6 @@ const CollabEditor = ({ article }) => {
       new EditorView(editor.current, {
         state: EditorState.create({
           schema,
-          doc: DOMParser.fromSchema(schema).parse(editor.current),
           plugins: [
             ySyncPlugin(yXmlFragment, { permanentUserData }),
             yCursorPlugin(provider.awareness),
