@@ -62,6 +62,7 @@
     "react-virtualized-auto-sizer": "^1.0.2",
     "rollbar": "^2.14.4",
     "ttag": "^1.7.22",
+    "use-prosemirror": "^1.3.0",
     "y-prosemirror": "^1.2.1",
     "yjs": "^13.5.29"
   },
