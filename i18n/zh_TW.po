@@ -2544,7 +2544,7 @@ msgstr "版本"
 
 #: components\Collaborate\CollabHistory.js:178
 #, javascript-format
-msgid "Difference between version ${ versionTitle } and it's previous version"
+msgid "Difference between version ${ versionTitle } and its previous version"
 msgstr "版本 ${ versionTitle } 與上一個版本的差異"
 
 #: components\Collaborate\CollabHistory.js:207

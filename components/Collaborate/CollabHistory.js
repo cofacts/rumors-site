@@ -173,7 +173,7 @@ const CustomModalContent = forwardRef(function CustomModalContent(
           )}
         </Box>
         <Box className={classes.modalMain}>
-          <Typography variant="h6">{t`Difference between version ${versionTitle} and it's previous version`}</Typography>
+          <Typography variant="h6">{t`Difference between version ${versionTitle} and its previous version`}</Typography>
           <ProseMirror
             ref={editor}
             state={state}
