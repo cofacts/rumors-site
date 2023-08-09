@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     border: `1px solid ${theme.palette.secondary[200]}`,
     marginBottom: 16,
     flexGrow: 1,
+    overflow: 'auto',
   },
   modal: {
     display: 'flex',
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
     padding: 20,
   },
   modalSideBar: {
+    flex: 'none',
     display: 'flex',
     flexDirection: 'column',
     width: 200,
