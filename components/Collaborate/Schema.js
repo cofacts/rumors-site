@@ -30,20 +30,33 @@ const calcYchangeDomAttrs = (attrs, domAttrs = {}) => {
  * @param {any} ychange
  * @param {Array<any>}
  */
-const hoverWrapper = (ychange, els) =>
-  ychange === null
-    ? els
-    : [
-        [
-          'span',
-          {
-            class: 'ychange-hover',
-            style: `background-color:${ychange.color.dark}`,
-          },
-          ychange.user || 'Unknown',
-        ],
-        ['span', ...els],
-      ];
+const hoverWrapper = (ychange, els) => {
+  if (ychange === null) {
+    return els;
+  } else {
+    let name = '';
+    try {
+      name = ychange.user ? JSON.parse(ychange.user).name : 'Unknown';
+    } catch (e) {
+      // JSON.parse error
+      // console.error(e);
+    } finally {
+      name = name || ychange.user;
+    }
+
+    return [
+      [
+        'span',
+        {
+          class: 'ychange-hover',
+          style: `background-color:${ychange.color.dark}`,
+        },
+        name,
+      ],
+      ['span', ...els],
+    ];
+  }
+};
 
 // :: Object
 // [Specs](#model.NodeSpec) for the nodes defined in this schema.
