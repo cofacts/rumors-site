@@ -2538,7 +2538,20 @@ msgstr "逐字稿"
 msgid "Done"
 msgstr "完成"
 
-#: pages/index.js:29
+#: components\Collaborate\CollabHistory.js:109
+msgid "Versions"
+msgstr "版本"
+
+#: components\Collaborate\CollabHistory.js:178
+#, javascript-format
+msgid "Difference between version ${ versionTitle } and it's previous version"
+msgstr "版本 ${ versionTitle } 與上一個版本的差異"
+
+#: components\Collaborate\CollabHistory.js:207
+msgid "History"
+msgstr "歷史紀錄"
+
+#: pages\index.js:29
 msgctxt "site title"
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
