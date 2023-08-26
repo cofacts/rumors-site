@@ -28,33 +28,60 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const useProviderStyles = makeStyles(theme => ({
-  root: {
-    borderRadius: 30,
-    borderBottom: ({borderBottom}) => borderBottom ?? "none",
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: 8,
-    background: ({ color }) => color,
-    '& > div': {
-      position: 'absolute',
-      height: 32,
-      width: 32,
+  root: props => {
+    const { color, provider } = props;
+    const providerStyles = createProviderStyles(provider);
+
+    return {
+      borderRadius: 30,
       display: 'flex',
-      justifyContent: 'center',
-      marginLeft: 10,
-    },
-    '& a': {
-      flex: '1 1 auto',
-      padding: '1rem 5rem',
-      color: ({ hrefColor }) => hrefColor ?? theme.palette.common.white,
-      textTransform: 'uppercase',
-      textAlign: 'center',
-      textDecoration: 'none',
-      letterSpacing: 0.75,
-      fontWeight: 500,
-    },
+      alignItems: 'center',
+      marginBottom: 8,
+      background: color,
+      '& > div': {
+        position: 'absolute',
+        height: 32,
+        width: 32,
+        display: 'flex',
+        justifyContent: 'center',
+        marginLeft: 10,
+      },
+      '& a': {
+        flex: '1 1 auto',
+        padding: '1rem 5rem',
+        color: theme.palette.common.white,  // 預設的顏色
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        textDecoration: 'none',
+        letterSpacing: 0.75,
+        fontWeight: 500,
+        ...providerStyles.linkStyles,
+      },
+      ...providerStyles.rootStyles,
+    };
   },
 }));
+
+const createProviderStyles = (provider) => {
+  switch (provider) {
+    case 'google':
+      return {
+        rootStyles: {
+          boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+          border: '1px solid #ccc',
+          borderBottom: '0.2em solid #E0E0E0',
+        },
+        linkStyles: {
+          color: 'gray',
+        }
+      };
+    default:
+      return {
+        rootStyles: {},
+        linkStyles: {}
+      };
+  }
+};
 
 const {
   publicRuntimeConfig: { PUBLIC_API_URL },
@@ -63,8 +90,6 @@ const {
 const ProviderLink = ({
   provider,
   logo,
-  borderBottom,
-  hrefColor,
   color,
   children,
   redirectPath = '',
@@ -75,7 +100,7 @@ const ProviderLink = ({
 
   const urlFor = provider =>
     `${PUBLIC_API_URL}/login/${provider}?redirect=${redirectUrl}`;
-  const classes = useProviderStyles({ color, hrefColor, borderBottom });
+  const classes = useProviderStyles({ color, provider });
 
   return (
     <div className={classes.root}>
@@ -138,8 +163,6 @@ function LoginModal({ onClose, redirectPath }) {
           provider="google"
           logo={Google}
           color="#FFFFFF"
-          borderBottom="0.2em solid #E0E0E0"
-          hrefColor="gray"
           redirectPath={redirectPath}
         >
           Google
