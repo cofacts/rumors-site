@@ -45,7 +45,7 @@ const useProviderStyles = makeStyles(theme => ({
     '& a': {
       flex: '1 1 auto',
       padding: '1rem 5rem',
-      color: theme.palette.common.white,
+      color: ({ hrefColor }) => hrefColor ?? theme.palette.common.white,
       textTransform: 'uppercase',
       textAlign: 'center',
       textDecoration: 'none',
@@ -62,6 +62,7 @@ const {
 const ProviderLink = ({
   provider,
   logo,
+  hrefColor,
   color,
   children,
   redirectPath = '',
@@ -72,7 +73,7 @@ const ProviderLink = ({
 
   const urlFor = provider =>
     `${PUBLIC_API_URL}/login/${provider}?redirect=${redirectUrl}`;
-  const classes = useProviderStyles({ color });
+  const classes = useProviderStyles({ color, linkColor: hrefColor });
 
   return (
     <div className={classes.root}>
@@ -134,7 +135,8 @@ function LoginModal({ onClose, redirectPath }) {
         <ProviderLink
           provider="google"
           logo={Google}
-          color="#2B414D"
+          color="#FFFFFF"
+          hrefColor="gray"
           redirectPath={redirectPath}
         >
           Google
