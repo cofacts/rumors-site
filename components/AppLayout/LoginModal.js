@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 const useProviderStyles = makeStyles(theme => ({
   root: {
     borderRadius: 30,
+    borderBottom: ({borderBottom}) => borderBottom ?? "none",
     display: 'flex',
     alignItems: 'center',
     marginBottom: 8,
@@ -62,6 +63,7 @@ const {
 const ProviderLink = ({
   provider,
   logo,
+  borderBottom,
   hrefColor,
   color,
   children,
@@ -73,7 +75,7 @@ const ProviderLink = ({
 
   const urlFor = provider =>
     `${PUBLIC_API_URL}/login/${provider}?redirect=${redirectUrl}`;
-  const classes = useProviderStyles({ color, linkColor: hrefColor });
+  const classes = useProviderStyles({ color, hrefColor, borderBottom });
 
   return (
     <div className={classes.root}>
@@ -136,6 +138,7 @@ function LoginModal({ onClose, redirectPath }) {
           provider="google"
           logo={Google}
           color="#FFFFFF"
+          borderBottom="0.2em solid #E0E0E0"
           hrefColor="gray"
           redirectPath={redirectPath}
         >
