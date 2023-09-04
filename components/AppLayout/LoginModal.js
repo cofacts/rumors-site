@@ -49,7 +49,7 @@ const useProviderStyles = makeStyles(theme => ({
       '& a': {
         flex: '1 1 auto',
         padding: '1rem 5rem',
-        color: theme.palette.common.white,  // 預設的顏色
+        color: theme.palette.common.white,
         textTransform: 'uppercase',
         textAlign: 'center',
         textDecoration: 'none',
@@ -67,9 +67,7 @@ const createProviderStyles = (provider) => {
     case 'google':
       return {
         rootStyles: {
-          boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
           border: '1px solid #ccc',
-          borderBottom: '0.2em solid #E0E0E0',
         },
         linkStyles: {
           color: 'gray',
