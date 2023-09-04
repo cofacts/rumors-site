@@ -62,7 +62,7 @@ const useProviderStyles = makeStyles(theme => ({
   },
 }));
 
-const createProviderStyles = (provider) => {
+const createProviderStyles = provider => {
   switch (provider) {
     case 'google':
       return {
@@ -71,12 +71,12 @@ const createProviderStyles = (provider) => {
         },
         linkStyles: {
           color: 'gray',
-        }
+        },
       };
     default:
       return {
         rootStyles: {},
-        linkStyles: {}
+        linkStyles: {},
       };
   }
 };
