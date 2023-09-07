@@ -54,11 +54,11 @@ const useStyles = makeStyles(theme => ({
 
 const renderVersion = (editorview, version, prevVersion) => {
   const transaction = editorview.state.tr.setMeta(ySyncPluginKey, {
-    snapshot: Y.decodeSnapshot(version.snapshot),
+    snapshot: Y.decodeSnapshot(Buffer.from(version.snapshot, 'base64')),
     prevSnapshot:
       prevVersion == null
         ? Y.emptySnapshot
-        : Y.decodeSnapshot(prevVersion.snapshot),
+        : Y.decodeSnapshot(Buffer.from(prevVersion.snapshot, 'base64')),
   });
   editorview.dispatch(transaction);
 };
@@ -74,15 +74,15 @@ const renderVersion = (editorview, version, prevVersion) => {
  * Should render `Versions` after `editorLoaded`,
  * `Versions` will default render latest version
  * @param {EditorView} editorView
- * @param {Y.Doc} ydoc
- * @param {(version: Y.Snapshot, index: number) => void} onSelect - called when version selected
+ * @param {Array<{snapshot: string, createdAt: string}>} versionList
+ * @param {(version: {snapshot: string, createdAt: string}, index: number) => void} onSelect - called when version selected
  */
-const Versions = ({ editorView, ydoc, onSelect }) => {
-  const versions = ydoc.getArray('versions');
-  const defaultVIdx = versions.length - 1;
+const Versions = ({ editorView, versionList, onSelect }) => {
+  const defaultVIdx = versionList.length - 1;
   const [selectedVersion, setSelectedVersion] = useState(null);
 
   useEffect(() => {
+    if (defaultVIdx === -1) return;
     // default select latest version
     selectAndRender(defaultVIdx);
   }, [defaultVIdx, selectAndRender]);
@@ -90,12 +90,12 @@ const Versions = ({ editorView, ydoc, onSelect }) => {
   const selectAndRender = useCallback(
     reverseIdx => {
       setSelectedVersion(reverseIdx);
-      const version = versions.get(reverseIdx);
-      const prevVersion = reverseIdx > 0 ? versions.get(reverseIdx - 1) : null;
+      const version = versionList[reverseIdx];
+      const prevVersion = reverseIdx > 0 ? versionList[reverseIdx - 1] : null;
       onSelect(version, reverseIdx);
       renderVersion(editorView, version, prevVersion);
     },
-    [versions, onSelect, editorView]
+    [editorView, versionList, onSelect]
   );
 
   const toggleChanged = (event, reverseIdx) => {
@@ -107,7 +107,7 @@ const Versions = ({ editorView, ydoc, onSelect }) => {
   return (
     <>
       <Typography variant="h6">{t`Versions`}</Typography>
-      {versions.length > 0 ? (
+      {versionList.length > 0 ? (
         <ToggleButtonGroup
           orientation="vertical"
           value={selectedVersion}
@@ -115,14 +115,14 @@ const Versions = ({ editorView, ydoc, onSelect }) => {
           onChange={toggleChanged}
           style={{ overflow: 'auto' }}
         >
-          {versions.map((v, i) => {
+          {versionList.map((v, i) => {
             // list version in reverse order
-            const reverseIdx = versions.length - 1 - i;
-            const version = versions.get(reverseIdx);
+            const reverseIdx = versionList.length - 1 - i;
+            const version = versionList[reverseIdx];
 
             return (
               <ToggleButton key={reverseIdx} value={reverseIdx}>
-                {new Date(version.date).toLocaleString()}
+                {new Date(version.createdAt).toLocaleString()}
               </ToggleButton>
             );
           })}
@@ -135,7 +135,7 @@ const Versions = ({ editorView, ydoc, onSelect }) => {
 };
 
 const CustomModalContent = forwardRef(function CustomModalContent(
-  { ydoc, onClose },
+  { ydoc, onClose, versionList },
   ref
 ) {
   const editor = useRef(ref);
@@ -169,8 +169,9 @@ const CustomModalContent = forwardRef(function CustomModalContent(
               editorView={editor.current.view}
               ydoc={ydoc}
               onSelect={version =>
-                setVersionTitle(new Date(version.date).toLocaleString())
+                setVersionTitle(new Date(version.createdAt).toLocaleString())
               }
+              versionList={versionList}
             />
           )}
         </Box>
@@ -189,7 +190,11 @@ const CustomModalContent = forwardRef(function CustomModalContent(
   );
 });
 
-const CollabHistory = ({ ydoc }) => {
+/**
+ * @param {Y.Doc} ydoc
+ * @param {Array<{snapshot: string, createdAt: string}>} versionList
+ */
+const CollabHistory = ({ ydoc, versionList }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -207,7 +212,11 @@ const CollabHistory = ({ ydoc }) => {
           {t`History`}
         </Button>
         <Modal open={open} onClose={handleClose}>
-          <CustomModalContent ydoc={ydoc} onClose={handleClose} />
+          <CustomModalContent
+            ydoc={ydoc}
+            versionList={versionList}
+            onClose={handleClose}
+          />
         </Modal>
       </div>
     </>

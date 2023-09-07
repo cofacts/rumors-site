@@ -21,6 +21,8 @@ import useCurrentUser from 'lib/useCurrentUser';
 import PlaceholderPlugin from './Placeholder';
 import getConfig from 'next/config';
 import CollabHistory from './CollabHistory';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 const {
   publicRuntimeConfig: { PUBLIC_COLLAB_SERVER_URL },
@@ -81,6 +83,17 @@ const colors = [
 
 const color = colors[Math.floor(Math.random() * colors.length)];
 
+const YDOC_VERSIONS_QUERY = gql`
+  query GetYdocVersions($id: String!) {
+    GetYdoc(id: $id) {
+      versions {
+        createdAt
+        snapshot
+      }
+    }
+  }
+`;
+
 const Editor = ({ provider, currentUser, className, innerRef, onUnmount }) => {
   useEffect(() => {
     // console.log('editor mount');
@@ -139,6 +152,14 @@ const CollabEditor = ({ article }) => {
   // onTranscribe setup provider for both Editor and CollabHistory to use.
   // And, to avoid duplicated connection, provider will be destroyed(close connection) when Editor unmounted.
   const [provider, setProvider] = useState(null);
+  const { loading, data: getYdocData, refetch } = useQuery(
+    YDOC_VERSIONS_QUERY,
+    {
+      variables: { id: article.id },
+      ssr: false, // No need to fetch on server
+    }
+  );
+  const versionList = getYdocData?.GetYdoc?.versions || [];
 
   const onTranscribe = () => {
     if (!currentUser) {
@@ -187,6 +208,10 @@ const CollabEditor = ({ article }) => {
       // TODO: listen textChanged event?
       article.text = text;
     }
+
+    // refetch to get latest versionList
+    refetch({ id: article.id });
+
     setShowEditor(false);
   };
 
@@ -238,7 +263,13 @@ const CollabEditor = ({ article }) => {
                 {t`Edit`}
               </Button>
             ) : (
-              isSynced && <CollabHistory ydoc={provider.document} />
+              isSynced &&
+              !loading && (
+                <CollabHistory
+                  ydoc={provider.document}
+                  versionList={versionList}
+                />
+              )
             )}
           </>
         )}
