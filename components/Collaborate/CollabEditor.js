@@ -1,5 +1,3 @@
-/* eslint-env browser */
-
 import * as Y from 'yjs';
 import { HocuspocusProvider } from '@hocuspocus/provider';
 import {
@@ -13,18 +11,16 @@ import { t } from 'ttag';
 import { nl2br, linkify } from 'lib/text';
 import { Button, Typography } from '@material-ui/core';
 import { TranscribePenIcon } from 'components/icons';
-import { EditorState } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-import { schema } from 'prosemirror-schema-basic';
-import { DOMParser } from 'prosemirror-model';
+import { useProseMirror, ProseMirror } from 'use-prosemirror';
+import { schema } from './Schema';
 import { exampleSetup } from 'prosemirror-example-setup';
 import { keymap } from 'prosemirror-keymap';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useCurrentUser from 'lib/useCurrentUser';
-import cx from 'clsx';
 import PlaceholderPlugin from './Placeholder';
 import getConfig from 'next/config';
+import CollabHistory from './CollabHistory';
 
 const {
   publicRuntimeConfig: { PUBLIC_COLLAB_SERVER_URL },
@@ -85,24 +81,84 @@ const colors = [
 
 const color = colors[Math.floor(Math.random() * colors.length)];
 
+const Editor = ({ provider, currentUser, className, innerRef, onUnmount }) => {
+  useEffect(() => {
+    // console.log('editor mount');
+    return () => {
+      onUnmount();
+    };
+  }, [onUnmount]);
+
+  const ydoc = provider.document;
+  const permanentUserData = new Y.PermanentUserData(ydoc);
+  permanentUserData.setUserMapping(
+    ydoc,
+    ydoc.clientID,
+    JSON.stringify({
+      id: currentUser.id,
+      name: currentUser.name,
+    })
+  );
+
+  const yXmlFragment = ydoc.get('prosemirror', Y.XmlFragment);
+
+  const [state, setState] = useProseMirror({
+    schema,
+    plugins: [
+      ySyncPlugin(yXmlFragment, { permanentUserData }),
+      yCursorPlugin(provider.awareness),
+      yUndoPlugin(),
+      keymap({
+        'Mod-z': undo,
+        'Mod-y': redo,
+        'Mod-Shift-z': redo,
+      }),
+      PlaceholderPlugin(t`Input transcript`),
+    ].concat(exampleSetup({ schema, menuBar: false })),
+  });
+
+  return (
+    <ProseMirror
+      ref={innerRef}
+      state={state}
+      onChange={setState}
+      className={className}
+    />
+  );
+};
+
+/**
+ * @param {Article} props.article
+ */
 const CollabEditor = ({ article }) => {
   const editor = useRef(null);
-  const [editorView, setEditorView] = useState(null);
+  const [showEditor, setShowEditor] = useState(null);
+  const [isSynced, setIsSynced] = useState(false);
   const currentUser = useCurrentUser();
+
+  // onTranscribe setup provider for both Editor and CollabHistory to use.
+  // And, to avoid duplicated connection, provider will be destroyed(close connection) when Editor unmounted.
+  const [provider, setProvider] = useState(null);
+
   const onTranscribe = () => {
     if (!currentUser) {
       return alert(t`Please login first.`);
     }
-    const ydoc = new Y.Doc();
-    const permanentUserData = new Y.PermanentUserData(ydoc);
-    permanentUserData.setUserMapping(ydoc, ydoc.clientID, currentUser.name);
-    ydoc.gc = false;
 
+    setShowEditor(true);
+
+    if (provider) return;
+    setIsSynced(false);
     const provider = new HocuspocusProvider({
       url: PUBLIC_COLLAB_SERVER_URL,
       name: article.id,
       broadcast: false,
-      document: ydoc,
+      document: new Y.Doc({ gc: false }), // set gc to false to keep doc (delete)history
+      onSynced: () => {
+        // https://github.com/ueberdosis/hocuspocus/blob/main/docs/provider/events.md
+        // console.log('onSynced');
+        setIsSynced(true);
+      },
       // onAwarenessChange: ({ states }) => {
       //   console.log('provider', states);
       // },
@@ -111,34 +167,15 @@ const CollabEditor = ({ article }) => {
       name: currentUser.name,
       color,
     });
-    const yXmlFragment = ydoc.get('prosemirror', Y.XmlFragment);
-
-    if (editorView) editorView.destroy();
-    setEditorView(
-      new EditorView(editor.current, {
-        state: EditorState.create({
-          schema,
-          doc: DOMParser.fromSchema(schema).parse(editor.current),
-          plugins: [
-            ySyncPlugin(yXmlFragment, { permanentUserData }),
-            yCursorPlugin(provider.awareness),
-            yUndoPlugin(),
-            keymap({
-              'Mod-z': undo,
-              'Mod-y': redo,
-              'Mod-Shift-z': redo,
-            }),
-            PlaceholderPlugin(t`Input transcript`),
-          ].concat(exampleSetup({ schema, menuBar: false })),
-        }),
-      })
-    );
+    setProvider(provider);
   };
 
   const onDone = () => {
-    if (editorView) {
+    // get EditorView: https://github.com/ponymessenger/use-prosemirror#prosemirror-
+    const prosemirrorEditorView = editor.current?.view;
+    if (prosemirrorEditorView) {
       let text = '';
-      editorView.state.doc.content.forEach(node => {
+      prosemirrorEditorView.state.doc.content.forEach(node => {
         // console.log(node.textContent);
         // console.log(node.type.name);
         if (node.textContent) {
@@ -149,9 +186,8 @@ const CollabEditor = ({ article }) => {
 
       // TODO: listen textChanged event?
       article.text = text;
-      editorView.destroy();
     }
-    setEditorView(null);
+    setShowEditor(false);
   };
 
   const classes = useStyles();
@@ -168,7 +204,7 @@ const CollabEditor = ({ article }) => {
             >
               {t`No transcripts yet`}
             </Typography>
-            {!editorView ? (
+            {!showEditor ? (
               <>
                 <Button
                   color="primary"
@@ -192,22 +228,24 @@ const CollabEditor = ({ article }) => {
             >
               {t`Transcript`}
             </Typography>
-            {!editorView ? (
-              <>
-                <Button
-                  variant="outlined"
-                  className={classes.editButton}
-                  onClick={onTranscribe}
-                >
-                  <TranscribePenIcon className={classes.newReplyFabIcon} />
-                  {t`Edit`}
-                </Button>
-              </>
-            ) : null}
+            {!showEditor ? (
+              <Button
+                variant="outlined"
+                className={classes.editButton}
+                onClick={onTranscribe}
+              >
+                <TranscribePenIcon className={classes.newReplyFabIcon} />
+                {t`Edit`}
+              </Button>
+            ) : (
+              isSynced && (
+                <CollabHistory ydoc={provider.document} docName={article.id} />
+              )
+            )}
           </>
         )}
       </div>
-      {!editorView ? (
+      {!showEditor ? (
         <>
           {article.text &&
             nl2br(
@@ -220,11 +258,19 @@ const CollabEditor = ({ article }) => {
             )}
         </>
       ) : null}
-      <div
-        ref={editor}
-        className={cx(classes.prosemirrorEditor, !editorView && 'hide')}
-      />
-      {!editorView ? null : (
+      {showEditor && isSynced && (
+        <Editor
+          provider={provider}
+          innerRef={editor}
+          className={classes.prosemirrorEditor}
+          currentUser={currentUser}
+          onUnmount={() => {
+            // console.log('destroy provider');
+            provider.destroy();
+          }}
+        />
+      )}
+      {!showEditor ? null : (
         <>
           <div className={classes.transcriptFooter}>
             <Button

@@ -26,6 +26,7 @@
     "@hocuspocus/provider": "^2.0.3",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "accepts": "^1.3.7",
     "apollo-boost": "^0.4.4",
     "apollo-link": "^1.2.13",
@@ -61,6 +62,7 @@
     "react-virtualized-auto-sizer": "^1.0.2",
     "rollbar": "^2.14.4",
     "ttag": "^1.7.22",
+    "use-prosemirror": "^1.3.0",
     "y-prosemirror": "^1.2.1",
     "yjs": "^13.5.29"
   },
