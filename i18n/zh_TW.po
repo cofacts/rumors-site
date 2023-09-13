@@ -2551,6 +2551,10 @@ msgstr "版本 ${ versionTitle } 與上一個版本的差異"
 msgid "History"
 msgstr "歷史紀錄"
 
+#: components\Collaborate\CollabHistory.js:211
+msgid "No histories..."
+msgstr "尚無歷史紀錄"
+
 #: pages\index.js:29
 msgctxt "site title"
 msgid "Cofacts"

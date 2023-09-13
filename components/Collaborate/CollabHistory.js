@@ -9,6 +9,19 @@ import { Button, Modal, Box, Typography } from '@material-ui/core';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+
+const YDOC_VERSIONS_QUERY = gql`
+  query GetYdocVersions($id: String!) {
+    GetYdoc(id: $id) {
+      versions {
+        createdAt
+        snapshot
+      }
+    }
+  }
+`;
 
 const useStyles = makeStyles(theme => ({
   prosemirrorEditor: {
@@ -107,35 +120,31 @@ const Versions = ({ editorView, versionList, onSelect }) => {
   return (
     <>
       <Typography variant="h6">{t`Versions`}</Typography>
-      {versionList.length > 0 ? (
-        <ToggleButtonGroup
-          orientation="vertical"
-          value={selectedVersion}
-          exclusive
-          onChange={toggleChanged}
-          style={{ overflow: 'auto' }}
-        >
-          {versionList.map((v, i) => {
-            // list version in reverse order
-            const reverseIdx = versionList.length - 1 - i;
-            const version = versionList[reverseIdx];
+      <ToggleButtonGroup
+        orientation="vertical"
+        value={selectedVersion}
+        exclusive
+        onChange={toggleChanged}
+        style={{ overflow: 'auto' }}
+      >
+        {versionList.map((v, i) => {
+          // list version in reverse order
+          const reverseIdx = versionList.length - 1 - i;
+          const version = versionList[reverseIdx];
 
-            return (
-              <ToggleButton key={reverseIdx} value={reverseIdx}>
-                {new Date(version.createdAt).toLocaleString()}
-              </ToggleButton>
-            );
-          })}
-        </ToggleButtonGroup>
-      ) : (
-        <div>No snapshots..</div>
-      )}
+          return (
+            <ToggleButton key={reverseIdx} value={reverseIdx}>
+              {new Date(version.createdAt).toLocaleString()}
+            </ToggleButton>
+          );
+        })}
+      </ToggleButtonGroup>
     </>
   );
 };
 
 const CustomModalContent = forwardRef(function CustomModalContent(
-  { ydoc, onClose, versionList },
+  { ydoc, docName, onClose },
   ref
 ) {
   const editor = useRef(ref);
@@ -148,6 +157,13 @@ const CustomModalContent = forwardRef(function CustomModalContent(
   const onFirstRender = () => {
     setEditorLoaded(true);
   };
+
+  const { loading, data: getYdocData } = useQuery(YDOC_VERSIONS_QUERY, {
+    variables: { id: docName },
+    fetchPolicy: 'network-only',
+    ssr: false, // No need to fetch on server
+  });
+  const versionList = getYdocData?.GetYdoc?.versions || [];
 
   const [state, setState] = useProseMirror({
     schema,
@@ -162,28 +178,38 @@ const CustomModalContent = forwardRef(function CustomModalContent(
   return (
     <>
       <Box className={classes.modal}>
-        <Box className={classes.modalSideBar}>
-          {/* show Versions after editorLoaded to ensure default snapshot rendered correctly */}
-          {editorLoaded && (
-            <Versions
-              editorView={editor.current.view}
-              ydoc={ydoc}
-              onSelect={version =>
-                setVersionTitle(new Date(version.createdAt).toLocaleString())
-              }
-              versionList={versionList}
-            />
-          )}
-        </Box>
-        <Box className={classes.modalMain}>
-          <Typography variant="h6">{t`Difference between version ${versionTitle} and its previous version`}</Typography>
-          <ProseMirror
-            ref={editor}
-            state={state}
-            onChange={setState}
-            className={classes.prosemirrorEditor}
-          />
-        </Box>
+        {loading ? (
+          <div>{t`Loading...`}</div>
+        ) : versionList.length > 0 ? (
+          <>
+            <Box className={classes.modalSideBar}>
+              {/* show Versions after editorLoaded to ensure default snapshot rendered correctly */}
+              {editorLoaded && (
+                <Versions
+                  editorView={editor.current.view}
+                  ydoc={ydoc}
+                  versionList={versionList}
+                  onSelect={version =>
+                    setVersionTitle(
+                      new Date(version.createdAt).toLocaleString()
+                    )
+                  }
+                />
+              )}
+            </Box>
+            <Box className={classes.modalMain}>
+              <Typography variant="h6">{t`Difference between version ${versionTitle} and its previous version`}</Typography>
+              <ProseMirror
+                ref={editor}
+                state={state}
+                onChange={setState}
+                className={classes.prosemirrorEditor}
+              />
+            </Box>
+          </>
+        ) : (
+          <div>{t`No histories...`}</div>
+        )}
         <CloseIcon className={classes.modalClose} onClick={onClose} />
       </Box>
     </>
@@ -192,9 +218,9 @@ const CustomModalContent = forwardRef(function CustomModalContent(
 
 /**
  * @param {Y.Doc} ydoc
- * @param {Array<{snapshot: string, createdAt: string}>} versionList
+ * @param {String} docName - Used to query versionList
  */
-const CollabHistory = ({ ydoc, versionList }) => {
+const CollabHistory = ({ ydoc, docName }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -214,8 +240,8 @@ const CollabHistory = ({ ydoc, versionList }) => {
         <Modal open={open} onClose={handleClose}>
           <CustomModalContent
             ydoc={ydoc}
-            versionList={versionList}
             onClose={handleClose}
+            docName={docName}
           />
         </Modal>
       </div>
