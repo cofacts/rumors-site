@@ -25,6 +25,15 @@ Object.keys(process.env || {}).forEach(key => {
   }
 });
 
+// Format of HTTP_HEADERS: see https://github.com/vercel/next.js/blob/v9.5.3/docs/api-reference/next.config.js/headers.md
+
+let headers = [];
+try {
+  headers = JSON.parse(process.env.HTTP_HEADERS || '[]');
+} catch (err) {
+  console.error('[next.config] Invalid HTTP_HEADERS', err);
+}
+
 module.exports = {
   env,
   publicRuntimeConfig,
@@ -58,4 +67,5 @@ module.exports = {
 
     return config;
   },
+  headers: () => headers,
 };
