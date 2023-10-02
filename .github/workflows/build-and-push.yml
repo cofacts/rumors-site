@@ -64,3 +64,22 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+  
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        locale: ['en', 'tw', 'ja']
+    env:
+      RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/release') && 'latest' || 'dev' }}
+      CLOUDRUN_SERVICE_NAME: ${{ startsWith(github.ref, 'refs/tags/release') && 'site' || 'site-staging' }}
+    steps:
+    - uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: ${{ secrets.GC_WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.GC_SERVICE_ACCOUNT }}
+    - uses: 'google-github-actions/deploy-cloudrun@v1'
+      with:
+        service: ${{ env.CLOUDRUN_SERVICE_NAME }}-${{matrix.locale}}
+        image: cofacts/rumors-site:${{ env.RELEASE_TAG }}-${{ matrix.locale }}
