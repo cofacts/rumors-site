@@ -66,7 +66,7 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-  
+
   deploy:
     permissions: # Required by google-github-actions/auth
       contents: 'read'
@@ -75,7 +75,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        locale: ['en', 'tw', 'ja']
+        locales:
+          - region: us-east4
+            postfix: -en
+          - region: asia-east1
+            postfix: -tw
+          - region: asia-northeast1
+            postfix: -ja
     env:
       RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/release') && 'latest' || 'dev' }}
       CLOUDRUN_SERVICE_NAME: ${{ startsWith(github.ref, 'refs/tags/release') && 'site' || 'site-staging' }}
@@ -86,5 +92,6 @@ jobs:
         service_account: ${{ secrets.GC_SERVICE_ACCOUNT }}
     - uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
-        service: ${{ env.CLOUDRUN_SERVICE_NAME }}-${{matrix.locale}}
-        image: cofacts/rumors-site:${{ env.RELEASE_TAG }}-${{ matrix.locale }}
+        service: ${{ env.CLOUDRUN_SERVICE_NAME }}${{ matrix.locales.postfix }}
+        image: cofacts/rumors-site:${{ env.RELEASE_TAG }}${{ matrix.locales.postfix }}
+        region: ${{ matrix.locales.region }}
