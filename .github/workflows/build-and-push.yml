@@ -59,13 +59,18 @@ jobs:
           build-args: |
             APP_ID=RUMORS_SITE
             LOCALE=${{ matrix.locales.locale }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # Cache for individual languages
+          # Ref: https://docs.docker.com/build/cache/backends/gha/#scope
+          cache-from: type=gha,scope=${{env.GITHUB_REF_NAME}}${{matrix.locales.postfix}}
+          cache-to: type=gha,mode=max,scope=${{env.GITHUB_REF_NAME}}${{matrix.locales.postfix}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
   
   deploy:
+    permissions: # Required by google-github-actions/auth
+      contents: 'read'
+      id-token: 'write'
     needs: build-and-push
     runs-on: ubuntu-latest
     strategy:
