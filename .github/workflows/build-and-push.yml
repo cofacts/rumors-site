@@ -79,18 +79,21 @@ jobs:
     strategy:
       matrix:
         locales:
-          - region: us-east4
-            postfix: -en
-            hostname: ${{ env.PRODUCTION && 'en.' || 'dev-en.'}}
           - region: asia-east1
             postfix: -tw
-            hostname: ${{ env.PRODUCTION && '' || 'dev.'}}
+            hostname: ''
+            devHostname: dev.
+          - region: us-east4
+            postfix: -en
+            hostname: en.
+            devHostname: dev-en.
           - region: asia-northeast1
             postfix: -ja
-            hostname: ${{ env.PRODUCTION && 'ja.' || 'dev-ja.'}}
+            hostname: ja.
+            devHostname: dev-ja.
     environment:
       name: ${{ env.PRODUCTION && 'production' || 'staging' }}${{ matrix.locales.postfix }}
-      url: https://${{ matrix.locales.hostname }}cofacts.tw
+      url: https://${{ env.PRODUCTION && matrix.locales.hostname || matrix.locales.devHostname }}cofacts.tw
     steps:
     - uses: 'google-github-actions/auth@v1'
       with:
