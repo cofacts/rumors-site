@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 env:
-  PRODUCTION: ${{ startsWith(github.ref, 'refs/tags/release') }}
+  TARGET: ${{ startsWith(github.ref, 'refs/tags/release') && 'production' || 'staging' }}
   # Docker tag prefix
   RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/release') && 'latest' || 'dev' }}
 
@@ -92,10 +92,10 @@ jobs:
             hostname: ja.
             devHostname: dev-ja.
     environment:
-      # evironment.name does not have `env`, cannot use env.PRODUCTION in environment name.
+      # environment.name cannot use env
       # Ref: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
       name: ${{ startsWith(github.ref, 'refs/tags/release') && 'production' || 'staging' }}${{ matrix.locales.postfix }}
-      url: https://${{ env.PRODUCTION && matrix.locales.hostname || matrix.locales.devHostname }}cofacts.tw
+      url: https://${{ env.TARGET == 'production' && matrix.locales.hostname || matrix.locales.devHostname }}cofacts.tw
     steps:
     - uses: 'google-github-actions/auth@v1'
       with:
@@ -103,6 +103,6 @@ jobs:
         service_account: ${{ secrets.GC_SERVICE_ACCOUNT }}
     - uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
-        service: ${{ env.PRODUCTION && 'site' || 'site-staging' }}${{ matrix.locales.postfix }}
+        service: ${{ env.TARGET == 'production' && 'site' || 'site-staging' }}${{ matrix.locales.postfix }}
         image: cofacts/rumors-site:${{ env.RELEASE_TAG }}${{ matrix.locales.postfix }}
         region: ${{ matrix.locales.region }}
