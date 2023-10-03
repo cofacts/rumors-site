@@ -71,6 +71,7 @@ jobs:
     permissions: # Required by google-github-actions/auth
       contents: 'read'
       id-token: 'write'
+    environment: staging
     needs: build-and-push
     runs-on: ubuntu-latest
     strategy:
