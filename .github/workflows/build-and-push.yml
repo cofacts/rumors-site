@@ -92,7 +92,9 @@ jobs:
             hostname: ja.
             devHostname: dev-ja.
     environment:
-      name: ${{ env.PRODUCTION && 'production' || 'staging' }}${{ matrix.locales.postfix }}
+      # evironment.name does not have `env`, cannot use env.PRODUCTION in environment name.
+      # Ref: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
+      name: ${{ startsWith(github.ref, 'refs/tags/release') && 'production' || 'staging' }}${{ matrix.locales.postfix }}
       url: https://${{ env.PRODUCTION && matrix.locales.hostname || matrix.locales.devHostname }}cofacts.tw
     steps:
     - uses: 'google-github-actions/auth@v1'
