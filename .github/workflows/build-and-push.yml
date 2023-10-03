@@ -71,7 +71,6 @@ jobs:
     permissions: # Required by google-github-actions/auth
       contents: 'read'
       id-token: 'write'
-    environment: staging
     needs: build-and-push
     runs-on: ubuntu-latest
     strategy:
@@ -83,6 +82,8 @@ jobs:
             postfix: -tw
           - region: asia-northeast1
             postfix: -ja
+    environment:
+      name: staging${{ matrix.locales.postfix }}
     env:
       RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/release') && 'latest' || 'dev' }}
       CLOUDRUN_SERVICE_NAME: ${{ startsWith(github.ref, 'refs/tags/release') && 'site' || 'site-staging' }}
