@@ -12,6 +12,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  TARGET: ${{ startsWith(github.ref, 'refs/tags/release') && 'production' || 'staging' }}
+  # Docker tag prefix
+  RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/release') && 'latest' || 'dev' }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,8 +32,6 @@ jobs:
             postfix: -tw
           - locale: ja
             postfix: -ja
-    env:
-      RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/release') && 'latest' || 'dev' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -59,8 +62,47 @@ jobs:
           build-args: |
             APP_ID=RUMORS_SITE
             LOCALE=${{ matrix.locales.locale }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # Cache for individual languages
+          # Ref: https://docs.docker.com/build/cache/backends/gha/#scope
+          cache-from: type=gha,scope=${{env.GITHUB_REF_NAME}}${{matrix.locales.postfix}}
+          cache-to: type=gha,mode=max,scope=${{env.GITHUB_REF_NAME}}${{matrix.locales.postfix}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    permissions: # Required by google-github-actions/auth
+      contents: 'read'
+      id-token: 'write'
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        locales:
+          - region: asia-east1
+            postfix: -tw
+            hostname: ''
+            devHostname: dev.
+          - region: us-east4
+            postfix: -en
+            hostname: en.
+            devHostname: dev-en.
+          - region: asia-northeast1
+            postfix: -ja
+            hostname: ja.
+            devHostname: dev-ja.
+    environment:
+      # environment.name cannot use env
+      # Ref: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
+      name: ${{ startsWith(github.ref, 'refs/tags/release') && 'production' || 'staging' }}${{ matrix.locales.postfix }}
+      url: https://${{ env.TARGET == 'production' && matrix.locales.hostname || matrix.locales.devHostname }}cofacts.tw
+    steps:
+    - uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: ${{ secrets.GC_WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.GC_SERVICE_ACCOUNT }}
+    - uses: 'google-github-actions/deploy-cloudrun@v1'
+      with:
+        service: ${{ env.TARGET == 'production' && 'site' || 'site-staging' }}${{ matrix.locales.postfix }}
+        image: cofacts/rumors-site:${{ env.RELEASE_TAG }}${{ matrix.locales.postfix }}
+        region: ${{ matrix.locales.region }}
