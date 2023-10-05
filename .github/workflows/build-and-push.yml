@@ -81,21 +81,21 @@ jobs:
         locales:
           - region: asia-east1
             postfix: -tw
-            hostname: ''
-            devHostname: dev.
+            hostname: cofacts.tw
+            devHostname: dev.cofacts.tw
           - region: us-east4
             postfix: -en
-            hostname: en.
-            devHostname: dev-en.
+            hostname: en.cofacts.tw
+            devHostname: dev-en.cofacts.tw
           - region: asia-northeast1
             postfix: -ja
-            hostname: ja.
-            devHostname: dev-ja.
+            hostname: ja.cofacts.tw
+            devHostname: dev-ja.cofacts.tw
     environment:
       # environment.name cannot use env
       # Ref: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
       name: ${{ startsWith(github.ref, 'refs/tags/release') && 'production' || 'staging' }}${{ matrix.locales.postfix }}
-      url: https://${{ env.TARGET == 'production' && matrix.locales.hostname || matrix.locales.devHostname }}cofacts.tw
+      url: https://${{ env.TARGET == 'production' && matrix.locales.hostname || matrix.locales.devHostname }}
     steps:
     - uses: 'google-github-actions/auth@v1'
       with:
