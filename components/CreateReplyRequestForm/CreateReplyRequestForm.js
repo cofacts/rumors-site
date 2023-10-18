@@ -201,6 +201,14 @@ const CreateReplyRequestForm = React.memo(
     const classes = useStyles();
     const user = useCurrentUser();
 
+    const onCommentButtonClick = () => {
+      if (user) setShowForm(!showForm);
+      else {
+        setShowForm(false);
+        alert(t`Please login first.`);
+      }
+    };
+
     return (
       <>
         <CardContent>
@@ -251,7 +259,7 @@ const CreateReplyRequestForm = React.memo(
             >
               <Button
                 className={cx({ [classes.isButtonActive]: showForm })}
-                onClick={() => setShowForm(!showForm)}
+                onClick={onCommentButtonClick}
                 disableElevation
               >
                 {ownReplyRequest ? t`Update comment` : t`Comment`}
