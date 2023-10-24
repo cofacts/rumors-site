@@ -3,7 +3,6 @@ import * as Y from 'yjs';
 import { ySyncPlugin, ySyncPluginKey } from 'y-prosemirror';
 import { useProseMirror, ProseMirror } from 'use-prosemirror';
 import { schema } from './Schema';
-import { exampleSetup } from 'prosemirror-example-setup';
 import { useState, useRef, useEffect, forwardRef, useCallback } from 'react';
 import { Button, Modal, Box, Typography } from '@material-ui/core';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
@@ -172,7 +171,7 @@ const CustomModalContent = forwardRef(function CustomModalContent(
         permanentUserData,
         onFirstRender,
       }),
-    ].concat(exampleSetup({ schema, menuBar: false })),
+    ],
   });
 
   return (

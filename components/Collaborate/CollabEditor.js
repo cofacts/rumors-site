@@ -13,7 +13,6 @@ import { Button, Typography } from '@material-ui/core';
 import { TranscribePenIcon } from 'components/icons';
 import { useProseMirror, ProseMirror } from 'use-prosemirror';
 import { schema } from './Schema';
-import { exampleSetup } from 'prosemirror-example-setup';
 import { keymap } from 'prosemirror-keymap';
 import { useState, useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -112,9 +111,14 @@ const Editor = ({ provider, currentUser, className, innerRef, onUnmount }) => {
         'Mod-z': undo,
         'Mod-y': redo,
         'Mod-Shift-z': redo,
+        Enter: (state, dispatch) => {
+          // Insert \n on enter
+          dispatch(state.tr.insertText('\n').scrollIntoView());
+          return true;
+        },
       }),
       PlaceholderPlugin(t`Input transcript`),
-    ].concat(exampleSetup({ schema, menuBar: false })),
+    ],
   });
 
   return (
