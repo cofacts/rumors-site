@@ -68,29 +68,6 @@ li.ProseMirror-selectednode:after {
 .ProseMirror-focused .ProseMirror-gapcursor {
   display: block;
 }
-/* Add space around the hr to make clicking it easier */
-
-.ProseMirror-example-setup-style hr {
-  padding: 2px 10px;
-  border: none;
-  margin: 1em 0;
-}
-
-.ProseMirror-example-setup-style hr:after {
-  content: "";
-  display: block;
-  height: 1px;
-  background-color: silver;
-  line-height: 2px;
-}
-
-.ProseMirror ul, .ProseMirror ol {
-  padding-left: 30px;
-}
-
-.ProseMirror-example-setup-style img {
-  cursor: default;
-}
 
 .ProseMirror-prompt {
   background: white;
@@ -132,16 +109,6 @@ li.ProseMirror-selectednode:after {
 .ProseMirror-prompt-buttons {
   margin-top: 5px;
   display: none;
-}
-
-.ProseMirror p:first-child,
-.ProseMirror h1:first-child,
-.ProseMirror h2:first-child,
-.ProseMirror h3:first-child,
-.ProseMirror h4:first-child,
-.ProseMirror h5:first-child,
-.ProseMirror h6:first-child {
-  margin-top: 10px;
 }
 
 .ProseMirror {
