@@ -46,7 +46,7 @@ export const LOAD_FEEDBACKS = gql`
   ) {
     ListArticleReplyFeedbacks(
       filter: { articleId: $articleId, replyId: $replyId, statuses: $statuses }
-      first: 100
+      first: 1000
     ) {
       edges {
         node {
@@ -124,7 +124,9 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
       </Tabs>
       <Box display={tab === 0 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
-          .filter(({ vote }) => vote === 'UPVOTE')
+          .filter(
+            ({ vote, comment }) => vote === 'UPVOTE' && (comment || '').trim()
+          )
           .map(feedback => (
             <Feedback
               key={feedback.id}
@@ -136,7 +138,9 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
       </Box>
       <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
-          .filter(({ vote }) => vote === 'DOWNVOTE')
+          .filter(
+            ({ vote, comment }) => vote === 'DOWNVOTE' && (comment || '').trim()
+          )
           .map(feedback => (
             <Feedback
               key={feedback.id}
