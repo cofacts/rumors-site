@@ -12,7 +12,7 @@ For production via [rumors-deploy](http://github.com/cofacts/rumors-deploy), do 
 
 ## Development
 
-This project uses NodeJS 16+.
+This project uses NodeJS 16. Use a node version manager like `nvm` to install version 16 (ex. `nvm install 16`)
 
 ``` bash
 $ npm install
