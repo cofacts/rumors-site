@@ -33,10 +33,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   container: {
-    width: 800,
+    width: '100%',
+    maxWidth: 800,
     color: theme.palette.text.primary,
+    gap: 20,
     margin: 60,
     display: 'flex',
+    flexWrap: 'wrap',
   },
   second: {
     display: 'flex',
@@ -49,7 +52,8 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
   },
   column: {
-    flex: '1 1',
+    flex: '1 1 auto',
+    minWidth: 'max-content', // distribute width using longest content in the column
   },
   linkTextWithIcon: {
     marginLeft: 12,
@@ -169,12 +173,11 @@ function AppFooter() {
   const isDesktop = useMediaQuery('(min-width:768px)');
 
   return (
-    // <Box component="footer" display={['block', 'block', 'block']}>
     <Box component="footer">
       <div className={classes.first}>
         <div className={classes.container}>
-          {isDesktop && <FactCheckSection classes={classes} />}
-          {isDesktop && <AboutSection classes={classes} />}
+          <FactCheckSection classes={classes} />
+          <AboutSection classes={classes} />
           <ContactSection classes={classes} isDesktop={isDesktop} />
         </div>
       </div>
