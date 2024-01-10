@@ -3,7 +3,11 @@ import { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
   // schema: 'http://localhost:5000/graphql',
   schema: 'https://dev-api.cofacts.tw/graphql',
-  documents: ['pages/**/*.tsx?', 'components/**/*.tsx?', 'lib/**/*.tsx'],
+  documents: [
+    'pages/**/*.{ts,tsx}',
+    'components/**/*.{ts,tsx}',
+    'lib/**/*.{ts,tsx}',
+  ],
   generates: {
     './typegen/': {
       preset: 'client',
