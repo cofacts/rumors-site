@@ -1460,6 +1460,9 @@ export type MutationResult = {
   id?: Maybe<Scalars['String']>;
 };
 
+export type CooccurrenceSectionDataFragment = { __typename?: 'Cooccurrence', createdAt: string, articles: Array<{ __typename?: 'Article', id: string, articleType: ArticleTypeEnum, text?: string | null }> };
+
 export type HighlightFieldsFragment = { __typename?: 'Highlights', text?: string | null, reference?: string | null, hyperlinks?: Array<{ __typename?: 'Hyperlink', title?: string | null, summary?: string | null } | null> | null };
 
+export const CooccurrenceSectionDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CooccurrenceSectionData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Cooccurrence"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"articles"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"articleType"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]} as unknown as DocumentNode<CooccurrenceSectionDataFragment, unknown>;
 export const HighlightFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HighlightFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Highlights"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"reference"}},{"kind":"Field","name":{"kind":"Name","value":"hyperlinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}}]}}]}}]} as unknown as DocumentNode<HighlightFieldsFragment, unknown>;
