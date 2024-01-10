@@ -572,7 +572,13 @@ function ArticlePage() {
           </Hidden>
         </div>
 
-        <Box flex={1} minWidth={0}>
+        <Box
+          flex={1}
+          minWidth={0}
+          display="flex"
+          flexDirection="column"
+          css={{ gap: 12 }}
+        >
           <CooccurrenceSection cooccurrences={article.cooccurrences} />
           <SideSection>
             <SideSectionHeader>{t`Similar messages`}</SideSectionHeader>
