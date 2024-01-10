@@ -579,7 +579,10 @@ function ArticlePage() {
           flexDirection="column"
           css={{ gap: 12 }}
         >
-          <CooccurrenceSection cooccurrences={article.cooccurrences} />
+          <CooccurrenceSection
+            currentArticleId={query.id}
+            cooccurrences={article.cooccurrences}
+          />
           <SideSection>
             <SideSectionHeader>{t`Similar messages`}</SideSectionHeader>
             {similarArticles.length ? (

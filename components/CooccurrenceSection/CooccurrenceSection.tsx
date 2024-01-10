@@ -30,10 +30,12 @@ export const fragments = {
 };
 
 type Props = {
+  /** Ignore the current article */
+  currentArticleId: string;
   cooccurrences: CooccurrenceSectionDataFragment[];
 };
 
-function CooccurrenceSection({ cooccurrences }: Props) {
+function CooccurrenceSection({ currentArticleId, cooccurrences }: Props) {
   // Group cooccurrences by same articles
   // then sort by count (more first) and then last createdAt (latest first)
   const cooccurrenceEntries = useMemo(() => {
@@ -56,7 +58,9 @@ function CooccurrenceSection({ cooccurrences }: Props) {
       const lastCooccurredInEntry = entry ? entry.lastCooccurred : null;
       entries.set(key, {
         key,
-        articles: cooccurrence.articles,
+        articles: cooccurrence.articles.filter(
+          ({ id }) => id !== currentArticleId
+        ),
         count: entry ? entry.count + 1 : 1,
         lastCooccurred:
           lastCooccurredInEntry === null ||
@@ -71,7 +75,7 @@ function CooccurrenceSection({ cooccurrences }: Props) {
         return +b.lastCooccurred - +a.lastCooccurred;
       return 0;
     });
-  }, [cooccurrences]);
+  }, [cooccurrences, currentArticleId]);
 
   if (!cooccurrences.length) return null;
 
