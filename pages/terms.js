@@ -16,6 +16,9 @@ const TERMS_REVISIONS_URL =
 const TERMS_MARKDOWN_URL =
   'https://raw.githubusercontent.com/cofacts/rumors-site/master/LEGAL.md';
 
+const TERMS_FALLBACK_URL =
+  'https://github.com/cofacts/rumors-site/blob/master/LEGAL.md';
+
 // cdn.js URL and checksum from cdn.js website
 //
 const JS_LIBS = [
@@ -69,7 +72,16 @@ function Terms() {
   const [termsHtml, setTermsHtml] = useState(null);
 
   useEffect(() => {
-    const markdownPromise = fetch(TERMS_MARKDOWN_URL).then(resp => resp.text());
+    const markdownPromise = fetch(TERMS_MARKDOWN_URL)
+      .then(resp => {
+        if (resp.status !== 200) throw resp.statusText;
+        return resp.text();
+      })
+      .catch(error => {
+        console.error('Failed to fetch terms markdown', error);
+        window.rollbar.error('Failed to fetch terms markdown', error);
+        return `Cannot load terms content due to "${error}"; please view the terms [here](${TERMS_FALLBACK_URL}) instead.`;
+      });
 
     const scriptPromises = JS_LIBS.map(([src, integrity], idx) => {
       // Don't insert the same script when visit this page the second time
@@ -103,13 +115,21 @@ function Terms() {
     <a key="revision" href={TERMS_REVISIONS_URL}>{t`Github`}</a>
   );
 
+  const termFallbackLink = (
+    <a key="fallback" href={TERMS_FALLBACK_URL}>{t`User Agreement`}</a>
+  );
+
   return (
     <AppLayout>
       <Head>
         <title>{t`User Agreement`}</title>
       </Head>
       <TermArticle>
-        {termsHtml ? <div dangerouslySetInnerHTML={termsHtml} /> : t`Loading`}
+        {termsHtml ? (
+          <div dangerouslySetInnerHTML={termsHtml} />
+        ) : (
+          jt`Loading ${termFallbackLink}...`
+        )}
         <hr />
         <p>{jt`See ${revisionLink} for other revisions of the user agreement.`}</p>
       </TermArticle>
