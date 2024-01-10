@@ -5,8 +5,6 @@ import cx from 'clsx';
 export const SideSection = withStyles(theme => ({
   aside: {
     [theme.breakpoints.up('md')]: {
-      minWidth: 0,
-      flex: 1,
       padding: '0 20px',
       background: theme.palette.background.paper,
       borderRadius: theme.shape.borderRadius,
