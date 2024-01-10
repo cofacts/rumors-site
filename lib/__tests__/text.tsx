@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  linkify,
-  nl2br,
-  truncate,
-  highlightSections,
-} from '../text';
+import { linkify, nl2br, truncate, highlightSections } from '../text';
 
 describe('text', () => {
   describe('linkify', () => {
