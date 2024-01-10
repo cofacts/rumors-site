@@ -9,9 +9,7 @@ const config: CodegenConfig = {
       preset: 'client',
       plugins: [],
       presetConfig: {
-        // Rename useFragment to avoid conflicting with ESLint React hook rule
-        // https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#embrace-fragment-masking-principles
-        fragmentMasking: { unmaskFunctionName: 'getFragmentData' },
+        fragmentMasking: false,
       },
     },
   },
