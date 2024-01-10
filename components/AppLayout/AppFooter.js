@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
     margin: 60,
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   second: {
     display: 'flex',
@@ -52,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
   },
   column: {
-    flex: '1 1 auto',
+    flex: '0 1 auto',
     minWidth: 'max-content', // distribute width using longest content in the column
   },
   linkTextWithIcon: {
