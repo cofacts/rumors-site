@@ -86,8 +86,9 @@ export function formatDate(date) {
 /**
  * Add tooltip and renders date in preferred format
  *
+ * @param {object} props
  * @param {Date | string | number} props.time
- * @param {(t: string) => React.ReactChild} props.children - Render of string
+ * @param {(t: string) => React.ReactChild=} props.children - Render of string
  */
 function TimeInfo({ time, children = t => t }) {
   const date = useMemo(() => (time instanceof Date ? time : new Date(time)), [

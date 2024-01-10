@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
  * Displays "A | B | C" information; separates all its children using '｜'.
  * Supports text children, fragments, and skips falsy childrens like `false` or `null`.
  *
+ * @param {object?} props
  * @param {React.ReactChild} props.children
  * @param {string?} props.className
  * @returns {React.ReactElement}

@@ -34,7 +34,7 @@ function Thumbnail({ article, className }) {
     }
     case 'VIDEO':
       return !article.thumbnailUrl ? (
-        t`A video` + ` (${t`Preview not supported yet`})`
+        <>{t`A video` + ` (${t`Preview not supported yet`})`}</>
       ) : (
         <video
           className={thumbnailCls}
@@ -47,7 +47,7 @@ function Thumbnail({ article, className }) {
       );
     case 'AUDIO':
       return !article.thumbnailUrl ? (
-        t`An audio` + ` (${t`Preview not supported yet`})`
+        <>{t`An audio` + ` (${t`Preview not supported yet`})`}</>
       ) : (
         <audio src={article.thumbnailUrl} controls />
       );
