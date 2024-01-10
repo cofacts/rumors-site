@@ -20,6 +20,7 @@ import useCurrentUser from 'lib/useCurrentUser';
 import PlaceholderPlugin from './Placeholder';
 import getConfig from 'next/config';
 import CollabHistory from './CollabHistory';
+import { useIsUserBlocked } from 'lib/isUserBlocked';
 
 const {
   publicRuntimeConfig: { PUBLIC_COLLAB_SERVER_URL },
@@ -139,6 +140,7 @@ const CollabEditor = ({ article }) => {
   const [showEditor, setShowEditor] = useState(null);
   const [isSynced, setIsSynced] = useState(false);
   const currentUser = useCurrentUser();
+  const isUserBlocked = useIsUserBlocked();
 
   // onTranscribe setup provider for both Editor and CollabHistory to use.
   // And, to avoid duplicated connection, provider will be destroyed(close connection) when Editor unmounted.
@@ -208,7 +210,7 @@ const CollabEditor = ({ article }) => {
             >
               {t`No transcripts yet`}
             </Typography>
-            {!showEditor ? (
+            {!showEditor && !isUserBlocked ? (
               <>
                 <Button
                   color="primary"
@@ -232,20 +234,23 @@ const CollabEditor = ({ article }) => {
             >
               {t`Transcript`}
             </Typography>
-            {!showEditor ? (
-              <Button
-                variant="outlined"
-                className={classes.editButton}
-                onClick={onTranscribe}
-              >
-                <TranscribePenIcon className={classes.newReplyFabIcon} />
-                {t`Edit`}
-              </Button>
-            ) : (
-              isSynced && (
-                <CollabHistory ydoc={provider.document} docName={article.id} />
-              )
-            )}
+            {!showEditor
+              ? !isUserBlocked && (
+                  <Button
+                    variant="outlined"
+                    className={classes.editButton}
+                    onClick={onTranscribe}
+                  >
+                    <TranscribePenIcon className={classes.newReplyFabIcon} />
+                    {t`Edit`}
+                  </Button>
+                )
+              : isSynced && (
+                  <CollabHistory
+                    ydoc={provider.document}
+                    docName={article.id}
+                  />
+                )}
           </>
         )}
       </div>
