@@ -43,6 +43,9 @@ import Infos, { TimeInfo } from 'components/Infos';
 import Thumbnail from 'components/Thumbnail';
 import AIReplySection from 'components/AIReplySection';
 import CollabEditor from 'components/Collaborate';
+import CooccurrenceSection, {
+  fragments as CooccurrenceSectionFragments,
+} from 'components/CooccurrenceSection';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -167,6 +170,9 @@ const LOAD_ARTICLE = gql`
           }
         }
       }
+      cooccurrences {
+        ...CooccurrenceSectionData
+      }
       articleCategories(statuses: $articleCategoryStatuses) {
         ...ArticleCategoryData
         ...AddCategoryDialogData
@@ -194,6 +200,7 @@ const LOAD_ARTICLE = gql`
   ${ArticleCategories.fragments.AddCategoryDialogData}
   ${ArticleInfo.fragments.articleInfo}
   ${Thumbnail.fragments.ThumbnailArticleData}
+  ${CooccurrenceSectionFragments.CooccurrenceSectionData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -565,37 +572,52 @@ function ArticlePage() {
           </Hidden>
         </div>
 
-        <SideSection>
-          <SideSectionHeader>{t`Similar messages`}</SideSectionHeader>
-          {similarArticles.length ? (
-            <SideSectionLinks>
-              {similarArticles.map(({ node }) => (
-                <Link
-                  key={node.id}
-                  href="/article/[id]"
-                  as={`/article/${node.id}`}
-                  passHref
-                >
-                  <SideSectionLink>
-                    {node.articleType !== 'TEXT' ? (
-                      <Thumbnail
+        <Box
+          flex={1}
+          minWidth={0}
+          display="flex"
+          flexDirection="column"
+          css={{ gap: 12 }}
+        >
+          <CooccurrenceSection
+            currentArticleId={query.id}
+            cooccurrences={article.cooccurrences}
+          />
+          <SideSection>
+            <SideSectionHeader>{t`Similar messages`}</SideSectionHeader>
+            {similarArticles.length ? (
+              <SideSectionLinks>
+                {similarArticles.map(({ node }) => (
+                  <Link
+                    key={node.id}
+                    href="/article/[id]"
+                    as={`/article/${node.id}`}
+                    passHref
+                  >
+                    <SideSectionLink>
+                      {node.articleType !== 'TEXT' ? (
+                        <Thumbnail
+                          article={node}
+                          className={classes.asideAttachment}
+                        />
+                      ) : (
+                        <SideSectionText>{node.text}</SideSectionText>
+                      )}
+                      <ArticleInfo
+                        className={classes.asideInfo}
                         article={node}
-                        className={classes.asideAttachment}
                       />
-                    ) : (
-                      <SideSectionText>{node.text}</SideSectionText>
-                    )}
-                    <ArticleInfo className={classes.asideInfo} article={node} />
-                  </SideSectionLink>
-                </Link>
-              ))}
-            </SideSectionLinks>
-          ) : (
-            <Box textAlign="center" pt={4} pb={3}>
-              {t`No similar messages found`}
-            </Box>
-          )}
-        </SideSection>
+                    </SideSectionLink>
+                  </Link>
+                ))}
+              </SideSectionLinks>
+            ) : (
+              <Box textAlign="center" pt={4} pb={3}>
+                {t`No similar messages found`}
+              </Box>
+            )}
+          </SideSection>
+        </Box>
       </div>
       <Hidden mdUp implementation="css">
         <a href={LINE_URL}>

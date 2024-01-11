@@ -306,36 +306,38 @@ function ReplyPage() {
             {getTermsString(t`The content above`, true)}
           </Typography>
         </div>
-        <SideSection>
-          <SideSectionHeader>{t`Similar replies`}</SideSectionHeader>
-          {similarReplies.length > 0 ? (
-            <SideSectionLinks>
-              {similarReplies.map(({ node }) => (
-                <Link
-                  key={node.id}
-                  href="/reply/[id]"
-                  as={`/reply/${node.id}`}
-                  passHref
-                >
-                  <SideSectionLink>
-                    <SideSectionText>{node.text}</SideSectionText>
-                    <Infos className={classes.infos}>
-                      {ngettext(
-                        msgid`Used in ${node.articleReplies.length} message`,
-                        `Used in ${node.articleReplies.length} messages`,
-                        node.articleReplies.length
-                      )}
-                    </Infos>
-                  </SideSectionLink>
-                </Link>
-              ))}
-            </SideSectionLinks>
-          ) : (
-            <Box textAlign="center" pt={4} pb={3}>
-              {t`No similar replies found`}
-            </Box>
-          )}
-        </SideSection>
+        <Box flex={1} minWidth={0}>
+          <SideSection>
+            <SideSectionHeader>{t`Similar replies`}</SideSectionHeader>
+            {similarReplies.length > 0 ? (
+              <SideSectionLinks>
+                {similarReplies.map(({ node }) => (
+                  <Link
+                    key={node.id}
+                    href="/reply/[id]"
+                    as={`/reply/${node.id}`}
+                    passHref
+                  >
+                    <SideSectionLink>
+                      <SideSectionText>{node.text}</SideSectionText>
+                      <Infos className={classes.infos}>
+                        {ngettext(
+                          msgid`Used in ${node.articleReplies.length} message`,
+                          `Used in ${node.articleReplies.length} messages`,
+                          node.articleReplies.length
+                        )}
+                      </Infos>
+                    </SideSectionLink>
+                  </Link>
+                ))}
+              </SideSectionLinks>
+            ) : (
+              <Box textAlign="center" pt={4} pb={3}>
+                {t`No similar replies found`}
+              </Box>
+            )}
+          </SideSection>
+        </Box>
       </div>
     </AppLayout>
   );
