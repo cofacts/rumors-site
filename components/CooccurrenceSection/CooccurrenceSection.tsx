@@ -71,9 +71,7 @@ function CooccurrenceSection({ currentArticleId, cooccurrences }: Props) {
     });
     return Array.from(entries.values()).sort((a, b) => {
       if (a.count !== b.count) return b.count - a.count;
-      if (a.lastCooccurred !== b.lastCooccurred)
-        return +b.lastCooccurred - +a.lastCooccurred;
-      return 0;
+      return +b.lastCooccurred - +a.lastCooccurred;
     });
   }, [cooccurrences, currentArticleId]);
 
