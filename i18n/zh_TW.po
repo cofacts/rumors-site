@@ -2571,7 +2571,7 @@ msgstr[0] "${ entry.count } 人回報與下列訊息搭配"
 #: components/CooccurrenceSection/CooccurrenceSection.tsx:122
 #, javascript-format
 msgid "Last reported at ${ time }"
-msgstr "最後回報於${ time }"
+msgstr "最後回報於 ${ time }"
 
 #: pages/index.js:29
 msgctxt "site title"
