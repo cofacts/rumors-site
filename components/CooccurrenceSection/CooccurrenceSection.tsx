@@ -94,7 +94,7 @@ function CooccurrenceSection({ currentArticleId, cooccurrences }: Props) {
         <SideSection key={entry.key}>
           <SideSectionHeader>
             {ngettext(
-              msgid`Messages sent together`,
+              msgid`Sent together ${entry.count} time`,
               `Sent together ${entry.count} times`,
               entry.count
             )}

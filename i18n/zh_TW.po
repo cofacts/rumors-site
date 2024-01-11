@@ -2563,15 +2563,15 @@ msgstr "尚無歷史紀錄"
 msgid "Loading ${ termFallbackLink }..."
 msgstr ""
 
-#: components/CooccurrenceSection/CooccurrenceSection.tsx:96
-msgid "Messages sent together"
-msgid_plural "Sent together ${ entry.count } times"
-msgstr[0] "${ entry.count } 人回報與下列訊息搭配"
-
 #: components/CooccurrenceSection/CooccurrenceSection.tsx:122
-#, javascript-format
 msgid "Last reported at ${ time }"
 msgstr "最後回報於 ${ time }"
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:96
+#, javascript-format
+msgid "Sent together ${ entry.count } time"
+msgid_plural "Sent together ${ entry.count } times"
+msgstr[0] "${ entry.count } 人回報與下列訊息搭配"
 
 #: pages/index.js:29
 msgctxt "site title"
