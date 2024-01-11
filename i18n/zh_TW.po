@@ -6,13 +6,13 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components/AppLayout/AppFooter.js:114
+#: components/AppLayout/AppFooter.js:112
 #: components/AppLayout/AppSidebar.js:131
 msgid "About"
 msgstr "關於"
 
 #: components/ReportPage/SectionEcosystem.js:175
-#: pages/article/[id].js:371
+#: pages/article/[id].js:383
 #: pages/reply/[id].js:210
 #: pages/reply/[id].js:239
 msgid "Cofacts"
@@ -137,10 +137,12 @@ msgstr "送出"
 msgid "Thank you for the feedback."
 msgstr "感謝您的意見。"
 
-#: pages/article/[id].js:273
+#: pages/article/[id].js:281
 msgid "Your reply has been submitted."
 msgstr "已經送出回應。"
 
+#: components/Collaborate/CollabEditor.js:151
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:208
 #: components/NewReplySection/index.js:137
 #: lib/apollo.js:47
 msgid "Please login first."
@@ -155,7 +157,7 @@ msgstr "搜尋"
 msgid "Searching for messages and replies containing “${ variables.query }”..."
 msgstr "正在搜尋含有「${ variables.query }」的訊息與回應⋯⋯"
 
-#: components/AppLayout/LoginModal.js:108
+#: components/AppLayout/LoginModal.js:134
 msgid "Login / Signup"
 msgstr "登入/註冊"
 
@@ -178,7 +180,7 @@ msgstr "轉傳訊息或網路文章含有個人感想、假說猜測、陰謀論
 msgid "This message has some of its content proved to be false."
 msgstr "轉傳訊息或網路文章有一部分含有不實資訊。"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:297
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:310
 msgid "Facebook"
 msgstr "Facebook"
 
@@ -231,15 +233,14 @@ msgid ""
 msgstr "一起來幫網路上的可疑訊息寫查核回應、共同教導聊天機器人回話，將多元的闢謠資訊傳遞給在 LINE 上收到謠言的人。"
 
 #: components/ProfilePage/ProfilePage.js:103
-#: pages/article/[id].js:313
-#: pages/article/[id].js:317
+#: pages/article/[id].js:321
+#: pages/article/[id].js:325
 #: pages/reply/[id].js:170
 #: pages/reply/[id].js:174
-#: pages/terms.js:112
 msgid "Loading"
 msgstr "載入中"
 
-#: pages/article/[id].js:328
+#: pages/article/[id].js:336
 #: pages/reply/[id].js:185
 msgid "Not found"
 msgstr "找不到此頁面"
@@ -248,7 +249,7 @@ msgstr "找不到此頁面"
 msgid "Reply does not exist"
 msgstr "此回應不存在"
 
-#: pages/article/[id].js:332
+#: pages/article/[id].js:340
 msgid "Message does not exist"
 msgstr "此訊息不存在"
 
@@ -276,11 +277,11 @@ msgstr "透過 Feedrabbit"
 msgid "Latest reply"
 msgstr "最新回應"
 
-#: components/AppLayout/AppFooter.js:101
+#: components/AppLayout/AppFooter.js:100
 msgid "Fact Check"
 msgstr "闢謠"
 
-#: components/AppLayout/AppFooter.js:141
+#: components/AppLayout/AppFooter.js:140
 #: components/AppLayout/AppSidebar.js:136
 msgid "Contact Us"
 msgstr "聯絡我們"
@@ -290,16 +291,16 @@ msgstr "聯絡我們"
 msgid "My Profile"
 msgstr "我的主頁"
 
-#: components/AppLayout/AppFooter.js:154
+#: components/AppLayout/AppFooter.js:153
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
-#: components/AppLayout/AppFooter.js:171
+#: components/AppLayout/AppFooter.js:166
 #: components/ReportPage/SectionSponsor.js:246
 msgid "Donate to Cofacts"
 msgstr "捐款給 Cofacts"
 
-#: components/AppLayout/AppFooter.js:126
+#: components/AppLayout/AppFooter.js:124
 msgid "Impact Report"
 msgstr "影響力報告"
 
@@ -323,7 +324,7 @@ msgstr "含有錯誤訊息"
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
-#: components/AppLayout/AppFooter.js:102
+#: components/AppLayout/AppFooter.js:101
 #: components/LandingPage/Header.js:215
 #: components/SearchPageJumbotron.js:130
 msgid "Messages"
@@ -447,6 +448,7 @@ msgstr "您有沒有什麼想補充的呢？"
 msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
 
+#: components/Collaborate/CollabHistory.js:181
 #: components/LandingPage/SectionArticles.js:153
 #: components/ProfilePage/CommentTab.js:151
 #: components/ProfilePage/RepliedArticleTab.js:251
@@ -458,7 +460,7 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 msgid "Loading..."
 msgstr "載入中⋯"
 
-#: components/AppLayout/AppFooter.js:115
+#: components/AppLayout/AppFooter.js:113
 msgid "About Cofacts"
 msgstr "關於真的假的"
 
@@ -488,17 +490,17 @@ msgstr[0] "被回報 ${ replyRequestCount } 次"
 msgid "Searching"
 msgstr "正在搜尋"
 
-#: pages/article/[id].js:381
+#: pages/article/[id].js:393
 #, javascript-format
 msgid "${ replyRequestCount } person report this message"
 msgid_plural "${ replyRequestCount } people report this message"
 msgstr[0] "有 ${ replyRequestCount } 人想知道以下訊息的真實性"
 
-#: pages/article/[id].js:560
+#: pages/article/[id].js:587
 msgid "Similar messages"
 msgstr "相似可疑訊息"
 
-#: pages/article/[id].js:586
+#: pages/article/[id].js:616
 msgid "No similar messages found"
 msgstr "沒有相似的可疑訊息"
 
@@ -534,15 +536,15 @@ msgstr[0] "原始回應被引用 ${ referenceCount } 次"
 msgid "Copied to clipboard!"
 msgstr "已複製到剪貼簿！"
 
-#: components/NewReplySection/Desktop.js:104
+#: components/NewReplySection/Desktop.js:103
 msgid "You will gain 1 point by submitting the reply"
 msgstr "送出這篇查核回應你可以獲得公道值 1 點"
 
-#: components/NewReplySection/Desktop.js:113
+#: components/NewReplySection/Desktop.js:112
 msgid "Related messages and replies"
 msgstr "相關可疑訊息及回應"
 
-#: components/NewReplySection/Desktop.js:124
+#: components/NewReplySection/Desktop.js:123
 #: components/NewReplySection/Mobile.js:260
 msgid "Use this reply"
 msgstr "直接用此回應"
@@ -587,22 +589,22 @@ msgstr "此查核回應尚被用於以下的可疑訊息"
 msgid "Marked as"
 msgstr "被認為"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:241
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:332
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:254
 #: components/CreateReplyRequestForm/CreateReplyRequestForm.js:345
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:358
 msgid "Reply to this message"
 msgstr "我要查核闢謠"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:252
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:265
 msgid "Update comment"
 msgstr "更新補充"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:252
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:265
 msgid "Comment"
 msgstr "我想補充"
 
 #: components/ArticleReply/ReplyShare.js:74
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:260
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:273
 msgid "Share"
 msgstr "分享"
 
@@ -729,17 +731,17 @@ msgstr "此查核回應尚被用於以下的可疑訊息"
 msgid "Deleted by its author"
 msgstr "此回應已被原作者刪除。"
 
-#: pages/reply/[id].js:310
+#: pages/reply/[id].js:311
 msgid "Similar replies"
 msgstr "相似回應"
 
-#: pages/reply/[id].js:323
+#: pages/reply/[id].js:324
 #, javascript-format
 msgid "Used in ${ node.articleReplies.length } message"
 msgid_plural "Used in ${ node.articleReplies.length } messages"
 msgstr[0] "此查核回應曾經被用於 ${ node.articleReplies.length } 個可疑訊息"
 
-#: pages/reply/[id].js:335
+#: pages/reply/[id].js:336
 msgid "No similar replies found"
 msgstr "沒有相似的回應"
 
@@ -763,15 +765,15 @@ msgstr "目標網站有 HTTPS 錯誤"
 msgid "Unknown error"
 msgstr "未知錯誤"
 
-#: pages/article/[id].js:515
+#: pages/article/[id].js:538
 #, javascript-format
 msgid "There is ${ replyCount } fact-checking reply to the message"
 msgid_plural "There are ${ replyCount } fact-checking replies to the message"
 msgstr[0] "本訊息有 ${ replyCount } 則查核回應"
 msgstr[1] "本訊息有 ${ replyCount } 則查核回應"
 
-#: pages/article/[id].js:553
-#: pages/article/[id].js:596
+#: pages/article/[id].js:569
+#: pages/article/[id].js:627
 msgid "Add Cofacts as friend in LINE"
 msgstr "加 LINE 查謠言"
 
@@ -783,13 +785,13 @@ msgstr "近 31 日"
 msgid "Please provide more info"
 msgstr "字數不足"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:205
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:218
 msgid ""
 "Did you find anything suspicious about the message after you search "
 "Facebook & Google?"
 msgstr "搜尋臉書或 Google 後，你發現了什麼可疑的地方，想給其他編輯參考呢？"
 
-#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:217
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:230
 msgid ""
 "Please provide paragraphs you find controversial, or related news, image & "
 "video material you have found."
@@ -868,20 +870,20 @@ msgstr "我可以闢謠"
 msgid "I can help with coding"
 msgstr "我會寫 Code"
 
-#: components/AppLayout/AppFooter.js:118
+#: components/AppLayout/AppFooter.js:116
 msgid "Introduction"
 msgstr "專案介紹"
 
-#: components/AppLayout/AppFooter.js:121
+#: components/AppLayout/AppFooter.js:119
 #: components/ReportPage/SectionTower.js:107
 msgid "Source Code"
 msgstr "原始碼"
 
-#: components/AppLayout/AppFooter.js:129
+#: components/AppLayout/AppFooter.js:132
 msgid "Contact"
 msgstr "聯繫"
 
-#: pages/article/[id].js:530
+#: pages/article/[id].js:553
 #: pages/reply/[id].js:306
 msgid "The content above"
 msgstr "以上內容"
@@ -954,6 +956,7 @@ msgstr "查核回應"
 msgid "voted replies"
 msgstr "評價回應"
 
+#: components/Collaborate/CollabEditor.js:245
 #: components/ProfilePage/UserPageHeader.js:196
 msgid "Edit"
 msgstr "編輯"
@@ -1040,13 +1043,14 @@ msgstr "CC BY-SA 4.0"
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "CC授權 姓名標示-相同方式分享 4.0"
 
-#: components/AppLayout/AppFooter.js:116
-#: components/AppLayout/LoginModal.js:92
-#: pages/terms.js:109
+#: components/AppLayout/AppFooter.js:114
+#: components/AppLayout/LoginModal.js:118
+#: pages/terms.js:119
+#: pages/terms.js:125
 msgid "User Agreement"
 msgstr "使用者條款"
 
-#: components/AppLayout/LoginModal.js:151
+#: components/AppLayout/LoginModal.js:177
 #, javascript-format
 msgid ""
 "By logging in you agree to ${ termsLink }, and your contribution will be "
@@ -2300,11 +2304,11 @@ msgid ""
 "to reverse harms to democracy and society caused by misinformation."
 msgstr "目前已經存有4萬5千筆以上查證過的資訊，透過投入資源與人力，扭轉不實訊息對民主與社會的危害。"
 
-#: components/ListPageDisplays/ArticleCard.js:111
+#: components/ListPageDisplays/ArticleCard.js:112
 #: components/ListPageDisplays/ReplySearchItem.js:112
 #: components/ProfilePage/CommentTab.js:178
 #: components/ProfilePage/RepliedArticleTab.js:278
-#: pages/article/[id].js:389
+#: pages/article/[id].js:401
 #: pages/replies.js:248
 msgid "First reported ${ timeAgo }"
 msgstr "首次回報於 ${ timeAgo }"
@@ -2336,7 +2340,7 @@ msgid "In linked text"
 msgstr "所附網址的網頁內容"
 
 #: components/ArticleReply/ArticleReply.js:106
-#: pages/article/[id].js:295
+#: pages/article/[id].js:303
 #. t: terms subject
 msgid "This info"
 msgstr "此資訊"
@@ -2389,7 +2393,7 @@ msgid ""
 "the thumb-down button below each reply if you find it not good enough."
 msgstr "注意：這裏不是討論區！請針對上面的「可疑訊息」撰寫回覆，不要去回覆下面的查核回應。若只是想表達現有的查核回應不夠好，請使用該篇回應下方的「倒讚」按鈕。"
 
-#: pages/article/[id].js:464
+#: pages/article/[id].js:487
 msgid "Comments from people reporting this message"
 msgstr "網友回報補充"
 
@@ -2407,11 +2411,11 @@ msgstr[0] "${ totalCount } 則符合篩選條件的訊息"
 msgid "Report abuse"
 msgstr "檢舉違規內容"
 
-#: pages/article/[id].js:422
+#: pages/article/[id].js:434
 msgid "Log in to view video content"
 msgstr "登入以檢視影片內容"
 
-#: pages/article/[id].js:432
+#: pages/article/[id].js:444
 msgid "Log in to view audio content"
 msgstr "登入以檢視錄音內容"
 
@@ -2473,16 +2477,15 @@ msgid "${ article.replyCount } reply"
 msgid_plural "${ article.replyCount } replies"
 msgstr[0] "${ article.replyCount } 則回應"
 
-#: pages/terms.js:103
+#: pages/terms.js:115
 msgid "Github"
 msgstr ""
 
-#: pages/terms.js:114
-#, javascript-format
+#: pages/terms.js:134
 msgid "See ${ revisionLink } for other revisions of the user agreement."
 msgstr ""
 
-#: pages/article/[id].js:395
+#: pages/article/[id].js:407
 msgid "Log in to view content"
 msgstr ""
 
@@ -2508,54 +2511,69 @@ msgid ""
 "skepticism towards it."
 msgstr "目前沒有已撰寫的回應，建議對其抱持健康的懷疑。"
 
-#: pages/article/[id].js:536
+#: components/AIReplySection.js:26
 msgid "Automated analysis from ChatGPT"
 msgstr "ChatGPT 自動分析"
 
-#: pages/article/[id].js:539
+#: components/AIReplySection.js:32
 msgid ""
 "The following is the AI's preliminary analysis of this message, which we "
 "hope will provide you with some ideas before it is fact-checked by a human."
 msgstr "以下是 AI 初步分析此訊息的結果，希望能在有人查核之前，先帶給您一些想法。"
 
-#: components\Collaborate\CollabEditor.js:129
+#: components/Collaborate/CollabEditor.js:121
 msgid "Input transcript"
 msgstr "請輸入逐字稿"
 
-#: components\Collaborate\CollabEditor.js:167
+#: components/Collaborate/CollabEditor.js:211
 msgid "No transcripts yet"
 msgstr "尚無逐字稿"
 
-#: components\Collaborate\CollabEditor.js:178
+#: components/Collaborate/CollabEditor.js:222
 msgid "Transcribe"
 msgstr "提供逐字稿"
 
-#: components\Collaborate\CollabEditor.js:191
+#: components/Collaborate/CollabEditor.js:235
 msgid "Transcript"
 msgstr "逐字稿"
 
-#: components\Collaborate\CollabEditor.js:234
+#: components/Collaborate/CollabEditor.js:291
 msgid "Done"
 msgstr "完成"
 
-#: components\Collaborate\CollabHistory.js:109
+#: components/Collaborate/CollabHistory.js:121
 msgid "Versions"
 msgstr "版本"
 
-#: components\Collaborate\CollabHistory.js:178
+#: components/Collaborate/CollabHistory.js:200
 #, javascript-format
 msgid "Difference between version ${ versionTitle } and its previous version"
 msgstr "版本 ${ versionTitle } 與上一個版本的差異"
 
-#: components\Collaborate\CollabHistory.js:207
+#: components/Collaborate/CollabHistory.js:237
 msgid "History"
 msgstr "歷史紀錄"
 
-#: components\Collaborate\CollabHistory.js:211
+#: components/Collaborate/CollabHistory.js:210
 msgid "No histories..."
 msgstr "尚無歷史紀錄"
 
-#: pages\index.js:29
+#: pages/terms.js:131
+#, javascript-format
+msgid "Loading ${ termFallbackLink }..."
+msgstr ""
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:96
+msgid "Messages sent together"
+msgid_plural "Sent together ${ entry.count } times"
+msgstr[0] "${ entry.count } 人回報與下列訊息搭配"
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:122
+#, javascript-format
+msgid "Last reported at ${ time }"
+msgstr "最後回報於${ time }"
+
+#: pages/index.js:29
 msgctxt "site title"
 msgid "Cofacts"
 msgstr "Cofacts 真的假的"
@@ -2623,12 +2641,12 @@ msgctxt "Mobile editor tab"
 msgid "Compose"
 msgstr "撰寫回應"
 
-#: components/ListPageDisplays/ArticleCard.js:118
+#: components/ListPageDisplays/ArticleCard.js:119
 msgctxt "Info box"
 msgid "replies"
 msgstr "回應"
 
-#: components/ListPageDisplays/ArticleCard.js:122
+#: components/ListPageDisplays/ArticleCard.js:123
 msgctxt "Info box"
 msgid "reports"
 msgstr "回報"
@@ -2649,7 +2667,7 @@ msgctxt "App layout"
 msgid "Messages"
 msgstr "可疑訊息"
 
-#: components/AppLayout/AppFooter.js:104
+#: components/AppLayout/AppFooter.js:102
 #: components/AppLayout/AppHeader.js:157
 #: components/LandingPage/Header.js:218
 #: components/LandingPage/Header.js:269
@@ -2657,7 +2675,7 @@ msgctxt "App layout"
 msgid "Replies"
 msgstr "最新查核"
 
-#: components/AppLayout/AppFooter.js:107
+#: components/AppLayout/AppFooter.js:103
 #: components/AppLayout/AppHeader.js:169
 #: components/LandingPage/Header.js:222
 #: components/LandingPage/Header.js:274
@@ -2665,7 +2683,7 @@ msgctxt "App layout"
 msgid "For You"
 msgstr "等你來答"
 
-#: components/AppLayout/AppFooter.js:110
+#: components/AppLayout/AppFooter.js:104
 #: components/AppLayout/AppHeader.js:178
 #: components/LandingPage/Header.js:226
 msgctxt "App layout"

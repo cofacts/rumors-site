@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
-import { ngettext, msgid } from 'ttag';
+import { ngettext, msgid, t } from 'ttag';
 import gql from 'graphql-tag';
 import { CooccurrenceSectionDataFragment } from 'typegen/graphql';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Infos, { TimeInfo } from 'components/Infos';
 import {
@@ -29,6 +30,15 @@ export const fragments = {
   `,
 };
 
+const useStyles = makeStyles(theme => ({
+  timeInfo: {
+    margin: '8px 0 0',
+    [theme.breakpoints.up('md')]: {
+      margin: '0 0 16px',
+    },
+  },
+}));
+
 type Props = {
   /** Ignore the current article */
   currentArticleId: string;
@@ -36,6 +46,7 @@ type Props = {
 };
 
 function CooccurrenceSection({ currentArticleId, cooccurrences }: Props) {
+  const classes = useStyles();
   // Group cooccurrences by same articles
   // then sort by count (more first) and then last createdAt (latest first)
   const cooccurrenceEntries = useMemo(() => {
@@ -106,8 +117,10 @@ function CooccurrenceSection({ currentArticleId, cooccurrences }: Props) {
               </Link>
             ))}
           </SideSectionLinks>
-          <Infos style={{ margin: '0 0 16px' }}>
-            <TimeInfo time={entry.lastCooccurred} />
+          <Infos className={classes.timeInfo}>
+            <TimeInfo time={entry.lastCooccurred}>
+              {time => t`Last reported at ${time}`}
+            </TimeInfo>
           </Infos>
         </SideSection>
       ))}
