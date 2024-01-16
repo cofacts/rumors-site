@@ -46,7 +46,7 @@ const TermArticle = styled('article')(({ theme }) => ({
   },
 }));
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const markdown = await fs.readFile(
     path.resolve(process.cwd(), './LEGAL.md'),
     'utf8'
@@ -77,7 +77,7 @@ function Terms({ termsHtml }) {
   );
 }
 
-// FIXME: this page don't need SSR, but we need to use `withData` for AppLayout to work.
+// FIXME: this page we always do SSR, but we need to use `withData` for AppLayout to work.
 // Migrate to server components to get rid of Apollo client alltogether.
 //
 const TermsWithData = withData(Terms);
