@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import fs from 'fs/promises';
+import path from 'path';
 import { t, jt } from 'ttag';
 import Head from 'next/head';
+
+import { marked } from 'marked';
 import { styled } from '@material-ui/core/styles';
 
 import AppLayout from 'components/AppLayout';
@@ -10,31 +13,6 @@ import withData from 'lib/apollo';
 //
 const TERMS_REVISIONS_URL =
   'https://github.com/cofacts/rumors-site/commits/master/LEGAL.md';
-
-// URL to the raw Markdown version of the user agreement
-//
-const TERMS_MARKDOWN_URL =
-  'https://raw.githubusercontent.com/cofacts/rumors-site/master/LEGAL.md';
-
-const TERMS_FALLBACK_URL =
-  'https://github.com/cofacts/rumors-site/blob/master/LEGAL.md';
-
-// cdn.js URL and checksum from cdn.js website
-//
-const JS_LIBS = [
-  [
-    'https://cdnjs.cloudflare.com/ajax/libs/marked/4.1.1/marked.min.js',
-    'sha512-+mCmSlBpa1bF0npQzdpxFWIyJaFbVdEcuyET6FtmHmlXIacQjN/vQs1paCsMlVHHZ2ltD2VTHy3fLFhXQu0AMA==',
-  ],
-  [
-    'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js',
-    'sha512-/hVAZO5POxCKdZMSLefw30xEVwjm94PAV9ynjskGbIpBvHO9EBplEcdUlBdCKutpZsF+La8Ag4gNrG0gAOn3Ig==',
-  ],
-];
-
-function getScriptId(idx) {
-  return `_terms_script_${idx}`;
-}
 
 const TermArticle = styled('article')(({ theme }) => ({
   margin: '0 auto 36px',
@@ -68,55 +46,21 @@ const TermArticle = styled('article')(({ theme }) => ({
   },
 }));
 
-function Terms() {
-  const [termsHtml, setTermsHtml] = useState(null);
+export async function getStaticProps() {
+  const markdown = await fs.readFile(
+    path.resolve(process.cwd(), './LEGAL.md'),
+    'utf8'
+  );
+  const termsHtml = marked.parse(markdown);
 
-  useEffect(() => {
-    const markdownPromise = fetch(TERMS_MARKDOWN_URL)
-      .then(resp => {
-        if (resp.status !== 200) throw resp.statusText;
-        return resp.text();
-      })
-      .catch(error => {
-        console.error('Failed to fetch terms markdown', error);
-        window.rollbar.error('Failed to fetch terms markdown', error);
-        return `Cannot load terms content due to "${error}"; please view the terms [here](${TERMS_FALLBACK_URL}) instead.`;
-      });
+  return {
+    props: { termsHtml },
+  };
+}
 
-    const scriptPromises = JS_LIBS.map(([src, integrity], idx) => {
-      // Don't insert the same script when visit this page the second time
-      //
-      if (document.getElementById(getScriptId(idx)) !== null)
-        return Promise.resolve();
-
-      return new Promise(resolve => {
-        /**
-         * <script src="..." integrity="..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-         */
-        const scriptElem = document.createElement('script');
-        scriptElem.id = getScriptId(idx);
-        scriptElem.onload = resolve;
-        scriptElem.integrity = integrity;
-        scriptElem.crossOrigin = 'anonymous';
-        scriptElem.referrerPolicy = 'no-referrer';
-        scriptElem.src = src;
-        window.document.body.appendChild(scriptElem);
-      });
-    });
-
-    Promise.all([markdownPromise, ...scriptPromises]).then(([markdown]) => {
-      // All stuff is ready!
-      const { marked, DOMPurify } = window;
-      setTermsHtml({ __html: DOMPurify.sanitize(marked.parse(markdown)) });
-    });
-  }, []);
-
+function Terms({ termsHtml }) {
   const revisionLink = (
     <a key="revision" href={TERMS_REVISIONS_URL}>{t`Github`}</a>
-  );
-
-  const termFallbackLink = (
-    <a key="fallback" href={TERMS_FALLBACK_URL}>{t`User Agreement`}</a>
   );
 
   return (
@@ -125,11 +69,7 @@ function Terms() {
         <title>{t`User Agreement`}</title>
       </Head>
       <TermArticle>
-        {termsHtml ? (
-          <div dangerouslySetInnerHTML={termsHtml} />
-        ) : (
-          jt`Loading ${termFallbackLink}...`
-        )}
+        <div dangerouslySetInnerHTML={{ __html: termsHtml }} />
         <hr />
         <p>{jt`See ${revisionLink} for other revisions of the user agreement.`}</p>
       </TermArticle>
@@ -137,4 +77,10 @@ function Terms() {
   );
 }
 
-export default withData(Terms);
+// FIXME: this page don't need SSR, but we need to use `withData` for AppLayout to work.
+// Migrate to server components to get rid of Apollo client alltogether.
+//
+const TermsWithData = withData(Terms);
+delete TermsWithData.getInitialProps;
+
+export default TermsWithData;
