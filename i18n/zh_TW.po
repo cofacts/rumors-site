@@ -6,7 +6,7 @@ msgstr ""
 "mime-version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components/AppLayout/AppFooter.js:112
+#: components/AppLayout/AppFooter.js:118
 #: components/AppLayout/AppSidebar.js:131
 msgid "About"
 msgstr "關於"
@@ -277,11 +277,11 @@ msgstr "透過 Feedrabbit"
 msgid "Latest reply"
 msgstr "最新回應"
 
-#: components/AppLayout/AppFooter.js:100
+#: components/AppLayout/AppFooter.js:106
 msgid "Fact Check"
 msgstr "闢謠"
 
-#: components/AppLayout/AppFooter.js:140
+#: components/AppLayout/AppFooter.js:146
 #: components/AppLayout/AppSidebar.js:136
 msgid "Contact Us"
 msgstr "聯絡我們"
@@ -291,16 +291,16 @@ msgstr "聯絡我們"
 msgid "My Profile"
 msgstr "我的主頁"
 
-#: components/AppLayout/AppFooter.js:153
+#: components/AppLayout/AppFooter.js:159
 msgid "Facebook forum"
 msgstr "Facebook 社團"
 
-#: components/AppLayout/AppFooter.js:166
+#: components/AppLayout/AppFooter.js:172
 #: components/ReportPage/SectionSponsor.js:246
 msgid "Donate to Cofacts"
 msgstr "捐款給 Cofacts"
 
-#: components/AppLayout/AppFooter.js:124
+#: components/AppLayout/AppFooter.js:130
 msgid "Impact Report"
 msgstr "影響力報告"
 
@@ -324,7 +324,7 @@ msgstr "含有錯誤訊息"
 msgid "Bust Hoaxes"
 msgstr "查核闢謠"
 
-#: components/AppLayout/AppFooter.js:101
+#: components/AppLayout/AppFooter.js:107
 #: components/LandingPage/Header.js:215
 #: components/SearchPageJumbotron.js:130
 msgid "Messages"
@@ -460,7 +460,7 @@ msgstr "您認為沒有幫助的理由是什麼呢？"
 msgid "Loading..."
 msgstr "載入中⋯"
 
-#: components/AppLayout/AppFooter.js:113
+#: components/AppLayout/AppFooter.js:119
 msgid "About Cofacts"
 msgstr "關於真的假的"
 
@@ -870,16 +870,16 @@ msgstr "我可以闢謠"
 msgid "I can help with coding"
 msgstr "我會寫 Code"
 
-#: components/AppLayout/AppFooter.js:116
+#: components/AppLayout/AppFooter.js:122
 msgid "Introduction"
 msgstr "專案介紹"
 
-#: components/AppLayout/AppFooter.js:119
+#: components/AppLayout/AppFooter.js:125
 #: components/ReportPage/SectionTower.js:107
 msgid "Source Code"
 msgstr "原始碼"
 
-#: components/AppLayout/AppFooter.js:132
+#: components/AppLayout/AppFooter.js:138
 msgid "Contact"
 msgstr "聯繫"
 
@@ -1043,10 +1043,9 @@ msgstr "CC BY-SA 4.0"
 msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr "CC授權 姓名標示-相同方式分享 4.0"
 
-#: components/AppLayout/AppFooter.js:114
+#: components/AppLayout/AppFooter.js:120
 #: components/AppLayout/LoginModal.js:118
-#: pages/terms.js:119
-#: pages/terms.js:125
+#: pages/terms.js:69
 msgid "User Agreement"
 msgstr "使用者條款"
 
@@ -1392,31 +1391,6 @@ msgstr "Cofacts 原創功能一覽"
 msgid "Cofacts fact-checking chatbot, combating misinformation by yourself!"
 msgstr "Cofacts 真的假的聊天機器人・讓你闢謠靠自己！"
 
-#: pages/about.js:259
-msgid ""
-"Cofacts is an information checking platform operated through \n"
-"crowd collaboration and chatbot to have discrete messages of \n"
-"unknown credibility carefully reviewed and discussed through \n"
-"the joint efforts of the public. Cofacts can respond to users' \n"
-"questions and requests 24/7 via chatbot. Our website displays \n"
-"all the information collected, and each selfless volunteer contributor \n"
-"can check out on their own results."
-msgstr ""
-"Cofacts 真的假的 "
-"是一個透過群眾協作以及聊天機器人來做事實查核的可疑訊息查證平台，讓每一個不確定真假的訊息，都能透過群眾的共同努力，被好好檢視跟查核討論。 "
-"Cofacts 真的假的 透過聊天機器人能 24 "
-"小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
-
-#: pages/about.js:268
-msgid ""
-"Cofacts is a citizen-initiated platform that is not affiliated \n"
-"to any political party or politicians. It opens the results to \n"
-"everyone and encourage crowd collaboration that people contribute \n"
-"their own skills to build a chatbot fact-checking for everyone."
-msgstr ""
-"Cofacts "
-"是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊息的方法。"
-
 #: pages/about.js:279
 msgid "In what scenarios can Cofacts help you?"
 msgstr "Cofacts 在什麼時候能幫上忙？"
@@ -1424,21 +1398,6 @@ msgstr "Cofacts 在什麼時候能幫上忙？"
 #: pages/about.js:290
 msgid "You want to do research on false information."
 msgstr "想做不實訊息的研究"
-
-#: pages/about.js:298
-msgid ""
-"Wanna help elders or friends who can’t \n"
-"fact-check information? Let the chatbot \n"
-"check them for you!"
-msgstr "想幫助不會查證訊息的長輩或朋友？"
-
-#: pages/about.js:283
-msgid ""
-"You think that the messages you \n"
-"received may be fake"
-msgstr ""
-"想知道看起來很可疑的 \n"
-" 訊息是真是假？"
 
 #: pages/about.js:306
 msgid ""
@@ -1448,84 +1407,13 @@ msgstr ""
 "想看看最近大家都在 \n"
 " 討論什麼話題？"
 
-#: pages/about.js:330
-msgid ""
-"Cofacts is committed to providing a simple solution to \n"
-"help frontline who suffering from misinformation, and news \n"
-"media workers, media literacy educators and journalists \n"
-"focus on their profession."
-msgstr "提供方便工具幫助第一線查核可疑訊息，幫助相關媒體、教育人士，專注發揮所長，識別假訊息讓謠言止於智者。"
-
-#: pages/about.js:340
-msgid ""
-"All of the source code and fact-checking replies are \n"
-"open and transparent to everyone. Cofacts encourage every \n"
-"citizen to contribute and collaborate; there would be \n"
-"no limit or qualification restriction in Cofacts \n"
-"fact-checking platform."
-msgstr "從平台的每一行程式碼，到查核回復都是公開平等給大眾，每一個人都可以貢獻，每一個人的查核意見也不受它限制。"
-
-#: pages/about.js:351
-msgid ""
-"Cofacts leads in media literacy education and fact-checking \n"
-"skills training. We encourage every individual to do research \n"
-"on information and face misinformation with an active attitude."
-msgstr "帶動媒體識讀教育與事實查核的能力，鼓勵人人做研究，一同討論各方意見，正面面對不實訊息。"
-
 #: pages/about.js:359
 msgid "How Cofacts was born"
 msgstr "Cofacts 怎麼誕生的？"
 
-#: pages/about.js:361
-msgid ""
-"The core idea of this project is to make diverse voices easier \n"
-"to be listened to. We believe that fact-checking contents \n"
-"corresponding to rumors on the Internet, personal opinions and \n"
-"following reply articles are all \"diverse voices\". A person may \n"
-"believe online rumors because they have not been exposed to diverse \n"
-"voices, or are unwilling to reach to different voices. However, \n"
-"even if a person is willing to reach diverse voices, the threshold \n"
-"for actions remains very high."
-msgstr ""
-"這個專案最核心的想法，就是希望讓「不同的聲音」更容易被看見。網路謠言相對應的闢謠文章、以及個人意見與相對應得「回覆」文，都是一種「不同的聲音」。一個人會"
-"去相信網路謠言，或許是因為他沒有接觸過不同的聲音，或不願意去接觸不同的聲音。只是，即使一個人樂意接觸不同的聲音，其實門檻還是很高的。"
-
-#: pages/about.js:371
-msgid ""
-"On the other hand, for people who are used to fact-checking online \n"
-"news, checking all of suspicious LINE messages they receive is very \n"
-"time-consuming. Collaborative fact-checking database is like a jointly \n"
-"edited note. You can leave a response to whatever you fact-check \n"
-"and review in the note, so that when others receive the same message \n"
-"and want to check it, they do not have to start from scratch. Therefore, \n"
-"for people who are accustomed to and willing to do fact-checking \n"
-"and embrace diverse voices, a collaborative rumor-defying database \n"
-"can help them avoid repeated, consuming process."
-msgstr ""
-"對於已經習慣於查證網路消息的人們而言。若在收到每一種轉傳來的 LINE "
-"訊息之後，都要自己花時間一筆一筆查證，會非常地花時間。協作型闢謠資料庫就像是個共筆，大家查到什麼就寫成回應放進去，之後收到同一訊息的人如果也想要查證，就"
-"不用從零開始。因此，對於已經習慣也願意查證、擁抱「不同的聲音」的人，協作型闢謠資料庫能幫這些人少走很多冤枉路。"
-
 #: pages/about.js:383
 msgid "Who we are"
 msgstr "我們是誰？"
-
-#: pages/about.js:385
-msgid ""
-"Cofacts is one of the projects initiated in g0v, a Taiwanese \n"
-"civic technology community, which encourages open source code, \n"
-"collaboration and open data. In 2016, the initiator proposed to \n"
-"develop the main program of the chatbot. With each volunteer's \n"
-"active and enthusiastic contributions in copywriting, developing, \n"
-"fact-checking, and designing, the project has been gradually \n"
-"accumulating results. Further, the value of the project is to \n"
-"encourage citizens to actively contribute to public affairs, and \n"
-"keep the positive, great ideas and energy continuously influencing \n"
-"our society."
-msgstr ""
-"Cofacts 是台灣公民科技社群 g0v "
-"的其中一個專案，鼓勵開放原始碼、群眾協作。團隊成員，包含發起人在內，都是在正職工作之餘參加這個專案，憑藉著大家自主熱心的貢獻，有人寫文案、有人寫程式、有"
-"人查證謠言、有人製圖設計，慢慢開發出的成果。每個人都是自發性地盡一己之力，貢獻到公眾領域。"
 
 #: components/Tutorial/content/bustHoaxes.js:12
 msgid ""
@@ -2477,11 +2365,12 @@ msgid "${ article.replyCount } reply"
 msgid_plural "${ article.replyCount } replies"
 msgstr[0] "${ article.replyCount } 則回應"
 
-#: pages/terms.js:115
+#: pages/terms.js:63
 msgid "Github"
 msgstr ""
 
-#: pages/terms.js:134
+#: pages/terms.js:74
+#, javascript-format
 msgid "See ${ revisionLink } for other revisions of the user agreement."
 msgstr ""
 
@@ -2558,11 +2447,6 @@ msgstr "歷史紀錄"
 msgid "No histories..."
 msgstr "尚無歷史紀錄"
 
-#: pages/terms.js:131
-#, javascript-format
-msgid "Loading ${ termFallbackLink }..."
-msgstr ""
-
 #: components/CooccurrenceSection/CooccurrenceSection.tsx:122
 msgid "Last reported at ${ time }"
 msgstr "最後回報於 ${ time }"
@@ -2572,6 +2456,124 @@ msgstr "最後回報於 ${ time }"
 msgid "Sent together ${ entry.count } time"
 msgid_plural "Sent together ${ entry.count } times"
 msgstr[0] "${ entry.count } 人回報與下列訊息搭配"
+
+#: pages/about.js:259
+msgid ""
+"Cofacts is an information checking platform operated through\n"
+"crowd collaboration and chatbot to have discrete messages of\n"
+"unknown credibility carefully reviewed and discussed through\n"
+"the joint efforts of the public. Cofacts can respond to users'\n"
+"questions and requests 24/7 via chatbot. Our website displays\n"
+"all the information collected, and each selfless volunteer contributor\n"
+"can check out on their own results."
+msgstr ""
+"Cofacts 真的假的"
+"是一個透過群眾協作以及聊天機器人來做事實查核的可疑訊息查證平台，讓每一個不確定真假的訊息，都能透過群眾的共同努力，被好好檢視跟查核討論。"
+"Cofacts 真的假的 透過聊天機器人能 24"
+"小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
+
+#: pages/about.js:268
+msgid ""
+"Cofacts is a citizen-initiated platform that is not affiliated\n"
+"to any political party or politicians. It opens the results to\n"
+"everyone and encourage crowd collaboration that people contribute\n"
+"their own skills to build a chatbot fact-checking for everyone."
+msgstr ""
+"Cofacts"
+"是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊息的方法。"
+
+#: pages/about.js:283
+msgid ""
+"You think that the messages you\n"
+"received may be fake"
+msgstr ""
+"想知道看起來很可疑的\n"
+"訊息是真是假？"
+
+#: pages/about.js:298
+msgid ""
+"Wanna help elders or friends who can’t\n"
+"fact-check information? Let the chatbot\n"
+"check them for you!"
+msgstr "想幫助不會查證訊息的長輩或朋友？"
+
+#: pages/about.js:330
+msgid ""
+"Cofacts is committed to providing a simple solution to\n"
+"help frontline who suffering from misinformation, and news\n"
+"media workers, media literacy educators and journalists\n"
+"focus on their profession."
+msgstr "提供方便工具幫助第一線查核可疑訊息，幫助相關媒體、教育人士，專注發揮所長，識別假訊息讓謠言止於智者。"
+
+#: pages/about.js:340
+msgid ""
+"All of the source code and fact-checking replies are\n"
+"open and transparent to everyone. Cofacts encourage every\n"
+"citizen to contribute and collaborate; there would be\n"
+"no limit or qualification restriction in Cofacts\n"
+"fact-checking platform."
+msgstr "從平台的每一行程式碼，到查核回復都是公開平等給大眾，每一個人都可以貢獻，每一個人的查核意見也不受它限制。"
+
+#: pages/about.js:351
+msgid ""
+"Cofacts leads in media literacy education and fact-checking\n"
+"skills training. We encourage every individual to do research\n"
+"on information and face misinformation with an active attitude."
+msgstr "帶動媒體識讀教育與事實查核的能力，鼓勵人人做研究，一同討論各方意見，正面面對不實訊息。"
+
+#: pages/about.js:361
+msgid ""
+"The core idea of this project is to make diverse voices easier\n"
+"to be listened to. We believe that fact-checking contents\n"
+"corresponding to rumors on the Internet, personal opinions and\n"
+"following reply articles are all \"diverse voices\". A person may\n"
+"believe online rumors because they have not been exposed to diverse\n"
+"voices, or are unwilling to reach to different voices. However,\n"
+"even if a person is willing to reach diverse voices, the threshold\n"
+"for actions remains very high."
+msgstr ""
+"這個專案最核心的想法，就是希望讓「不同的聲音」更容易被看見。網路謠言相對應的闢謠文章、以及個人意見與相對應得「回覆」文，都是一種「不同的聲音」。一個人會"
+"去相信網路謠言，或許是因為他沒有接觸過不同的聲音，或不願意去接觸不同的聲音。只是，即使一個人樂意接觸不同的聲音，其實門檻還是很高的。"
+
+#: pages/about.js:371
+msgid ""
+"On the other hand, for people who are used to fact-checking online\n"
+"news, checking all of suspicious LINE messages they receive is very\n"
+"time-consuming. Collaborative fact-checking database is like a jointly\n"
+"edited note. You can leave a response to whatever you fact-check\n"
+"and review in the note, so that when others receive the same message\n"
+"and want to check it, they do not have to start from scratch. Therefore,\n"
+"for people who are accustomed to and willing to do fact-checking\n"
+"and embrace diverse voices, a collaborative rumor-defying database\n"
+"can help them avoid repeated, consuming process."
+msgstr ""
+"對於已經習慣於查證網路消息的人們而言。若在收到每一種轉傳來的 LINE "
+"訊息之後，都要自己花時間一筆一筆查證，會非常地花時間。協作型闢謠資料庫就像是個共筆，大家查到什麼就寫成回應放進去，之後收到同一訊息的人如果也想要查證，就"
+"不用從零開始。因此，對於已經習慣也願意查證、擁抱「不同的聲音」的人，協作型闢謠資料庫能幫這些人少走很多冤枉路。"
+
+#: pages/about.js:385
+msgid ""
+"Cofacts is one of the projects initiated in g0v, a Taiwanese\n"
+"civic technology community, which encourages open source code,\n"
+"collaboration and open data. In 2016, the initiator proposed to\n"
+"develop the main program of the chatbot. With each volunteer's\n"
+"active and enthusiastic contributions in copywriting, developing,\n"
+"fact-checking, and designing, the project has been gradually\n"
+"accumulating results. Further, the value of the project is to\n"
+"encourage citizens to actively contribute to public affairs, and\n"
+"keep the positive, great ideas and energy continuously influencing\n"
+"our society."
+msgstr ""
+"Cofacts 是台灣公民科技社群 g0v "
+"的其中一個專案，鼓勵開放原始碼、群眾協作。團隊成員，包含發起人在內，都是在正職工作之餘參加這個專案，憑藉著大家自主熱心的貢獻，有人寫文案、有人寫程式、有"
+"人查證謠言、有人製圖設計，慢慢開發出的成果。每個人都是自發性地盡一己之力，貢獻到公眾領域。"
+
+#: pages/about.js:397
+msgid ""
+"Cofacts started in the year 2016 as an open source project.\n"
+"In 2023, Cofacts Work Group established Cofacts association to keep the "
+"Cofacts community running."
+msgstr "Cofacts 開源專案開始於 2016 年。2023 年，Cofacts 工作小組成立社團法人台灣實科協會，持續營運 Cofacts 社群。"
 
 #: pages/index.js:29
 msgctxt "site title"
@@ -2667,7 +2669,7 @@ msgctxt "App layout"
 msgid "Messages"
 msgstr "可疑訊息"
 
-#: components/AppLayout/AppFooter.js:102
+#: components/AppLayout/AppFooter.js:108
 #: components/AppLayout/AppHeader.js:157
 #: components/LandingPage/Header.js:218
 #: components/LandingPage/Header.js:269
@@ -2675,7 +2677,7 @@ msgctxt "App layout"
 msgid "Replies"
 msgstr "最新查核"
 
-#: components/AppLayout/AppFooter.js:103
+#: components/AppLayout/AppFooter.js:109
 #: components/AppLayout/AppHeader.js:169
 #: components/LandingPage/Header.js:222
 #: components/LandingPage/Header.js:274
@@ -2683,7 +2685,7 @@ msgctxt "App layout"
 msgid "For You"
 msgstr "等你來答"
 
-#: components/AppLayout/AppFooter.js:104
+#: components/AppLayout/AppFooter.js:110
 #: components/AppLayout/AppHeader.js:178
 #: components/LandingPage/Header.js:226
 msgctxt "App layout"
