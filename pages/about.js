@@ -256,18 +256,18 @@ const TutorialPage = () => {
             ></iframe>
           </p>
           <p>
-            {t`Cofacts is an information checking platform operated through 
-            crowd collaboration and chatbot to have discrete messages of 
-            unknown credibility carefully reviewed and discussed through 
-            the joint efforts of the public. Cofacts can respond to users' 
-            questions and requests 24/7 via chatbot. Our website displays 
-            all the information collected, and each selfless volunteer contributor 
+            {t`Cofacts is an information checking platform operated through
+            crowd collaboration and chatbot to have discrete messages of
+            unknown credibility carefully reviewed and discussed through
+            the joint efforts of the public. Cofacts can respond to users'
+            questions and requests 24/7 via chatbot. Our website displays
+            all the information collected, and each selfless volunteer contributor
             can check out on their own results.`}
           </p>
           <p>
-            {t`Cofacts is a citizen-initiated platform that is not affiliated 
-            to any political party or politicians. It opens the results to 
-            everyone and encourage crowd collaboration that people contribute 
+            {t`Cofacts is a citizen-initiated platform that is not affiliated
+            to any political party or politicians. It opens the results to
+            everyone and encourage crowd collaboration that people contribute
             their own skills to build a chatbot fact-checking for everyone.`}
           </p>
         </section>
@@ -280,7 +280,7 @@ const TutorialPage = () => {
           <div className={classes.row}>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                {t`You think that the messages you 
+                {t`You think that the messages you
                 received may be fake`}
               </div>
               <img className={classes.colImage} src={fakeMessageImg} />
@@ -295,8 +295,8 @@ const TutorialPage = () => {
           <div className={classes.row}>
             <div className={cx(classes.col, classes.whenItem)}>
               <div className={cx(classes.colContent, classes.whenItemTitle)}>
-                {t`Wanna help elders or friends who can’t 
-                fact-check information? Let the chatbot 
+                {t`Wanna help elders or friends who can’t
+                fact-check information? Let the chatbot
                 check them for you!`}
               </div>
               <img className={classes.colImage} src={parentImg} />
@@ -327,9 +327,9 @@ const TutorialPage = () => {
                 className={classes.colTitle}
               >{t`Instant fact-checking tool`}</div>
               <div className={classes.colContent}>
-                {t`Cofacts is committed to providing a simple solution to 
-                help frontline who suffering from misinformation, and news 
-                media workers, media literacy educators and journalists 
+                {t`Cofacts is committed to providing a simple solution to
+                help frontline who suffering from misinformation, and news
+                media workers, media literacy educators and journalists
                 focus on their profession.`}
               </div>
             </div>
@@ -337,10 +337,10 @@ const TutorialPage = () => {
               <img className={classes.colImage} src={freedomImg} />
               <div className={classes.colTitle}>{t`Free and Open`}</div>
               <div className={classes.colContent}>
-                {t`All of the source code and fact-checking replies are 
-                open and transparent to everyone. Cofacts encourage every 
-                citizen to contribute and collaborate; there would be 
-                no limit or qualification restriction in Cofacts 
+                {t`All of the source code and fact-checking replies are
+                open and transparent to everyone. Cofacts encourage every
+                citizen to contribute and collaborate; there would be
+                no limit or qualification restriction in Cofacts
                 fact-checking platform.`}
               </div>
             </div>
@@ -348,8 +348,8 @@ const TutorialPage = () => {
               <img className={classes.colImage} src={mediaImg} />
               <div className={classes.colTitle}>{t`Media Literacy`}</div>
               <div className={classes.colContent}>
-                {t`Cofacts leads in media literacy education and fact-checking 
-                skills training. We encourage every individual to do research 
+                {t`Cofacts leads in media literacy education and fact-checking
+                skills training. We encourage every individual to do research
                 on information and face misinformation with an active attitude.`}
               </div>
             </div>
@@ -358,40 +358,44 @@ const TutorialPage = () => {
         <section className={classes.birth}>
           <h3>{t`How Cofacts was born`}</h3>
           <p>
-            {t`The core idea of this project is to make diverse voices easier 
-            to be listened to. We believe that fact-checking contents 
-            corresponding to rumors on the Internet, personal opinions and 
-            following reply articles are all "diverse voices". A person may 
-            believe online rumors because they have not been exposed to diverse 
-            voices, or are unwilling to reach to different voices. However, 
-            even if a person is willing to reach diverse voices, the threshold 
+            {t`The core idea of this project is to make diverse voices easier
+            to be listened to. We believe that fact-checking contents
+            corresponding to rumors on the Internet, personal opinions and
+            following reply articles are all "diverse voices". A person may
+            believe online rumors because they have not been exposed to diverse
+            voices, or are unwilling to reach to different voices. However,
+            even if a person is willing to reach diverse voices, the threshold
             for actions remains very high.`}
           </p>
           <p>
-            {t`On the other hand, for people who are used to fact-checking online 
-            news, checking all of suspicious LINE messages they receive is very 
-            time-consuming. Collaborative fact-checking database is like a jointly 
-            edited note. You can leave a response to whatever you fact-check 
-            and review in the note, so that when others receive the same message 
-            and want to check it, they do not have to start from scratch. Therefore, 
-            for people who are accustomed to and willing to do fact-checking 
-            and embrace diverse voices, a collaborative rumor-defying database 
+            {t`On the other hand, for people who are used to fact-checking online
+            news, checking all of suspicious LINE messages they receive is very
+            time-consuming. Collaborative fact-checking database is like a jointly
+            edited note. You can leave a response to whatever you fact-check
+            and review in the note, so that when others receive the same message
+            and want to check it, they do not have to start from scratch. Therefore,
+            for people who are accustomed to and willing to do fact-checking
+            and embrace diverse voices, a collaborative rumor-defying database
             can help them avoid repeated, consuming process.`}
           </p>
         </section>
         <section className={classes.whoWeAre}>
           <h3>{t`Who we are`}</h3>
           <p>
-            {t`Cofacts is one of the projects initiated in g0v, a Taiwanese 
-            civic technology community, which encourages open source code, 
-            collaboration and open data. In 2016, the initiator proposed to 
-            develop the main program of the chatbot. With each volunteer's 
-            active and enthusiastic contributions in copywriting, developing, 
-            fact-checking, and designing, the project has been gradually 
-            accumulating results. Further, the value of the project is to 
-            encourage citizens to actively contribute to public affairs, and 
-            keep the positive, great ideas and energy continuously influencing 
+            {t`Cofacts is one of the projects initiated in g0v, a Taiwanese
+            civic technology community, which encourages open source code,
+            collaboration and open data. In 2016, the initiator proposed to
+            develop the main program of the chatbot. With each volunteer's
+            active and enthusiastic contributions in copywriting, developing,
+            fact-checking, and designing, the project has been gradually
+            accumulating results. Further, the value of the project is to
+            encourage citizens to actively contribute to public affairs, and
+            keep the positive, great ideas and energy continuously influencing
             our society.`}
+          </p>
+          <p>
+            {t`Cofacts started in the year 2016 as an open source project.
+               In 2023, Cofacts Work Group established Cofacts association to keep the Cofacts community running.`}
           </p>
         </section>
       </div>
