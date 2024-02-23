@@ -45,12 +45,18 @@ const useStyles = makeStyles(theme => ({
   second: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
+    flexFlow: 'row wrap',
     padding: 28,
     background: theme.palette.secondary[900],
+    color: theme.palette.secondary[100],
+    gap: 8,
+    fontSize: 16,
   },
   logo: {
     width: 275,
     height: 'auto',
+    verticalAlign: 'bottom',
   },
   column: {
     flex: '0 1 auto',
@@ -194,6 +200,8 @@ function AppFooter() {
             alt="Powered by g0v"
           />
         </a>
+        <div>・</div>
+        <div>台灣實科協會</div>
       </div>
     </Box>
   );
