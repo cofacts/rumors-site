@@ -34,7 +34,7 @@ EXPOSE 3000
 # Note: using npm start here will cause error when exiting the container
 CMD ["node_modules/.bin/pm2-runtime", "ecosystem.config.js"]
 
-COPY package.json package-lock.json next.config.js ecosystem.config.js server.js ./
+COPY package.json package-lock.json next.config.js ecosystem.config.js server.js LEGAL.md ./
 COPY --from=builder /srv/www/.next ./.next
 COPY --from=builder /srv/www/public ./public
 COPY --from=builder /srv/www/node_modules ./node_modules

@@ -33,23 +33,34 @@ const useStyles = makeStyles(theme => ({
     },
   },
   container: {
-    width: 800,
+    width: '100%',
+    maxWidth: 800,
     color: theme.palette.text.primary,
+    gap: 20,
     margin: 60,
     display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   second: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
+    flexFlow: 'row wrap',
     padding: 28,
     background: theme.palette.secondary[900],
+    color: theme.palette.secondary[100],
+    gap: 8,
+    fontSize: 16,
   },
   logo: {
     width: 275,
     height: 'auto',
+    verticalAlign: 'bottom',
   },
   column: {
-    flex: '1 1',
+    flex: '0 1 auto',
+    minWidth: 'max-content', // distribute width using longest content in the column
   },
   linkTextWithIcon: {
     marginLeft: 12,
@@ -89,88 +100,92 @@ const CustomLink = withStyles(theme => ({
   </div>
 ));
 
+function FactCheckSection({ classes }) {
+  return (
+    <div className={classes.column}>
+      <h3>{t`Fact Check`}</h3>
+      <CustomLink href="/articles">{t`Messages`}</CustomLink>
+      <CustomLink href="/replies">{c('App layout').t`Replies`}</CustomLink>
+      <CustomLink href="/hoax-for-you">{c('App layout').t`For You`}</CustomLink>
+      <CustomLink href="/tutorial">{c('App layout').t`Tutorial`}</CustomLink>
+    </div>
+  );
+}
+
+function AboutSection({ classes }) {
+  return (
+    <div className={classes.column}>
+      <h3>{t`About`}</h3>
+      <CustomLink href="/about">{t`About Cofacts`}</CustomLink>
+      <CustomLink href="/terms">{t`User Agreement`}</CustomLink>
+      <CustomLink external href={PROJECT_HACKFOLDR}>
+        {t`Introduction`}
+      </CustomLink>
+      <CustomLink external href={PROJECT_SOURCE_CODE}>
+        {t`Source Code`}
+      </CustomLink>
+      <CustomLink external href={PROJECT_MEDIUM}>
+        Medium
+      </CustomLink>
+      <CustomLink href="/impact">{t`Impact Report`}</CustomLink>
+    </div>
+  );
+}
+
+function ContactSection({ classes, isDesktop }) {
+  return (
+    <div className={classes.column}>
+      <h3>{t`Contact`}</h3>
+      <CustomLink
+        external
+        href={`mailto:${CONTACT_EMAIL}`}
+        icon={({ className }) => (
+          <img className={className} src={mailIcon} style={{ width: '30px' }} />
+        )}
+      >
+        {t`Contact Us`}
+      </CustomLink>
+      <CustomLink
+        external
+        href={EDITOR_FACEBOOK_GROUP}
+        icon={({ className }) => (
+          <img
+            className={className}
+            src={facebookIcon}
+            style={{ width: '30px' }}
+          />
+        )}
+      >
+        {t`Facebook forum`}
+      </CustomLink>
+      <CustomLink
+        external
+        href={LINE_URL}
+        icon={({ className }) => (
+          <img className={className} src={lineIcon} style={{ width: '30px' }} />
+        )}
+      >
+        Line: @cofacts
+      </CustomLink>
+      {isDesktop && <GoogleWebsiteTranslator />}
+      <CustomLink external href={DONATION_URL}>
+        {t`Donate to Cofacts`}
+      </CustomLink>
+    </div>
+  );
+}
+
 function AppFooter() {
   const classes = useStyles();
-  const matches = useMediaQuery('(min-width:768px)');
+  const isDesktop = useMediaQuery('(min-width:768px)');
 
   return (
-    <Box component="footer" display={['none', 'none', 'block']}>
+    <Box component="footer">
       <div className={classes.first}>
         <div className={classes.container}>
-          <div className={classes.column}>
-            <h3>{t`Fact Check`}</h3>
-            <CustomLink href="/articles">{t`Messages`}</CustomLink>
-            <CustomLink href="/replies">
-              {c('App layout').t`Replies`}
-            </CustomLink>
-            <CustomLink href="/hoax-for-you">
-              {c('App layout').t`For You`}
-            </CustomLink>
-            <CustomLink href="/tutorial">
-              {c('App layout').t`Tutorial`}
-            </CustomLink>
-          </div>
-          <div className={classes.column}>
-            <h3>{t`About`}</h3>
-            <CustomLink href="/about">{t`About Cofacts`}</CustomLink>
-            <CustomLink href="/terms">{t`User Agreement`}</CustomLink>
-            <CustomLink external href={PROJECT_HACKFOLDR}>
-              {t`Introduction`}
-            </CustomLink>
-            <CustomLink external href={PROJECT_SOURCE_CODE}>
-              {t`Source Code`}
-            </CustomLink>
-            <CustomLink external href={PROJECT_MEDIUM}>
-              Medium
-            </CustomLink>
-            <CustomLink href="/impact">{t`Impact Report`}</CustomLink>
-          </div>
-          <div className={classes.column}>
-            <h3>{t`Contact`}</h3>
-            <CustomLink
-              external
-              href={`mailto:${CONTACT_EMAIL}`}
-              icon={({ className }) => (
-                <img
-                  className={className}
-                  src={mailIcon}
-                  style={{ width: '30px' }}
-                />
-              )}
-            >
-              {t`Contact Us`}
-            </CustomLink>
-            <CustomLink
-              external
-              href={EDITOR_FACEBOOK_GROUP}
-              icon={({ className }) => (
-                <img
-                  className={className}
-                  src={facebookIcon}
-                  style={{ width: '30px' }}
-                />
-              )}
-            >
-              {t`Facebook forum`}
-            </CustomLink>
-            <CustomLink
-              external
-              href={LINE_URL}
-              icon={({ className }) => (
-                <img
-                  className={className}
-                  src={lineIcon}
-                  style={{ width: '30px' }}
-                />
-              )}
-            >
-              Line: @cofacts
-            </CustomLink>
-            {matches && <GoogleWebsiteTranslator />}
-            <CustomLink external href={DONATION_URL}>
-              {t`Donate to Cofacts`}
-            </CustomLink>
-          </div>
+          <FactCheckSection classes={classes} />
+          <AboutSection classes={classes} />
+          <ContactSection classes={classes} isDesktop={isDesktop} />
         </div>
       </div>
       <div className={classes.second}>
@@ -185,6 +200,8 @@ function AppFooter() {
             alt="Powered by g0v"
           />
         </a>
+        <div>・</div>
+        <div>台灣實科協會</div>
       </div>
     </Box>
   );
