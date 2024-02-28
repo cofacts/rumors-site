@@ -128,14 +128,15 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
       <Box display={tab === 0 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
           .filter(({ vote }) => vote === 'UPVOTE')
-          .sort(( a,b ) => {
-            if (a.comment === '')
-              return 1;
-            else if (b.comment === '')
-              return -1;
+          .sort((a, b) => {
+            if (a.comment === '') return 1;
+            else if (b.comment === '') return -1;
             return 0;
           })
-          .slice(0, isLoadMoreUpvote? feedbacks.length:Math.min(feedbacks.length, 10))
+          .slice(
+            0,
+            isLoadMoreUpvote ? feedbacks.length : Math.min(feedbacks.length, 10)
+          )
           .map(feedback => (
             <Feedback
               key={feedback.id}
@@ -144,27 +145,30 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
               feedback={feedback}
             />
           ))}
-          {feedbacks.length > 10 && !isLoadMoreUpvote &&
-            <LoadMore
-              edges={feedbacks}
-              loading={loading}
-              onMoreRequest={() => {
-                setIsLoadMoreUpvote(true);
-              }}
-            />
-          }
+        {feedbacks.length > 10 && !isLoadMoreUpvote && (
+          <LoadMore
+            edges={feedbacks}
+            loading={loading}
+            onMoreRequest={() => {
+              setIsLoadMoreUpvote(true);
+            }}
+          />
+        )}
       </Box>
       <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
           .filter(({ vote }) => vote === 'DOWNVOTE')
-          .sort(( a,b ) => {
-            if (a.comment === '')
-              return 1;
-            else if (b.comment === '')
-              return -1;
+          .sort((a, b) => {
+            if (a.comment === '') return 1;
+            else if (b.comment === '') return -1;
             return 0;
           })
-          .slice(0, isLoadMoreDownvote? feedbacks.length:Math.min(feedbacks.length, 10))
+          .slice(
+            0,
+            isLoadMoreDownvote
+              ? feedbacks.length
+              : Math.min(feedbacks.length, 10)
+          )
           .map(feedback => (
             <Feedback
               key={feedback.id}
@@ -173,15 +177,15 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
               feedback={feedback}
             />
           ))}
-          {feedbacks.length > 10 && !isLoadMoreDownvote &&
-            <LoadMore
-              edges={feedbacks}
-              loading={loading}
-              onMoreRequest={() => {
-                setIsLoadMoreDownvote(true);
-              }}
-            />
-          }
+        {feedbacks.length > 10 && !isLoadMoreDownvote && (
+          <LoadMore
+            edges={feedbacks}
+            loading={loading}
+            onMoreRequest={() => {
+              setIsLoadMoreDownvote(true);
+            }}
+          />
+        )}
       </Box>
     </>
   );
