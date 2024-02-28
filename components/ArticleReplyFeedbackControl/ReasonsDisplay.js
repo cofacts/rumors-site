@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Tab, Tabs, CircularProgress } from '@material-ui/core';
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
+import { LoadMore } from 'components/ListPageControls';
 import { useIsUserBlocked } from 'lib/isUserBlocked';
 import Feedback from './Feedback';
 
@@ -71,6 +72,8 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
   const classes = useStyles();
   const isUserBlocked = useIsUserBlocked();
   const [tab, setTab] = useState(0);
+  const [isLoadMoreUpvote, setIsLoadMoreUpvote] = useState(false);
+  const [isLoadMoreDownvote, setIsLoadMoreDownvote] = useState(false);
   const { data, loading } = useQuery(LOAD_FEEDBACKS, {
     variables: {
       articleId: articleReply.articleId,
@@ -124,9 +127,15 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
       </Tabs>
       <Box display={tab === 0 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
-          .filter(
-            ({ vote, comment }) => vote === 'UPVOTE' && (comment || '').trim()
-          )
+          .filter(({ vote }) => vote === 'UPVOTE')
+          .sort(( a,b ) => {
+            if (a.comment === '')
+              return 1;
+            else if (b.comment === '')
+              return -1;
+            return 0;
+          })
+          .slice(0, isLoadMoreUpvote? feedbacks.length:Math.min(feedbacks.length, 10))
           .map(feedback => (
             <Feedback
               key={feedback.id}
@@ -135,12 +144,27 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
               feedback={feedback}
             />
           ))}
+          {feedbacks.length > 10 && !isLoadMoreUpvote &&
+            <LoadMore
+              edges={feedbacks}
+              loading={loading}
+              onMoreRequest={() => {
+                setIsLoadMoreUpvote(true);
+              }}
+            />
+          }
       </Box>
       <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
         {feedbacks
-          .filter(
-            ({ vote, comment }) => vote === 'DOWNVOTE' && (comment || '').trim()
-          )
+          .filter(({ vote }) => vote === 'DOWNVOTE')
+          .sort(( a,b ) => {
+            if (a.comment === '')
+              return 1;
+            else if (b.comment === '')
+              return -1;
+            return 0;
+          })
+          .slice(0, isLoadMoreDownvote? feedbacks.length:Math.min(feedbacks.length, 10))
           .map(feedback => (
             <Feedback
               key={feedback.id}
@@ -149,6 +173,15 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
               feedback={feedback}
             />
           ))}
+          {feedbacks.length > 10 && !isLoadMoreDownvote &&
+            <LoadMore
+              edges={feedbacks}
+              loading={loading}
+              onMoreRequest={() => {
+                setIsLoadMoreDownvote(true);
+              }}
+            />
+          }
       </Box>
     </>
   );
