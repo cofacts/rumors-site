@@ -608,12 +608,12 @@ msgstr "我想補充"
 msgid "Share"
 msgstr "分享"
 
-#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:118
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:121
 #, javascript-format
 msgid "Helpful ${ articleReply.positiveFeedbackCount }"
 msgstr "有幫助 ${ articleReply.positiveFeedbackCount }"
 
-#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:122
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:125
 msgid "Not Helpful ${ articleReply.negativeFeedbackCount }"
 msgstr "沒有幫助  ${ articleReply.negativeFeedbackCount }"
 
@@ -2467,10 +2467,10 @@ msgid ""
 "all the information collected, and each selfless volunteer contributor\n"
 "can check out on their own results."
 msgstr ""
-"Cofacts 真的假的"
-"是一個透過群眾協作以及聊天機器人來做事實查核的可疑訊息查證平台，讓每一個不確定真假的訊息，都能透過群眾的共同努力，被好好檢視跟查核討論。"
-"Cofacts 真的假的 透過聊天機器人能 24"
-"小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
+"Cofacts "
+"真的假的是一個透過群眾協作以及聊天機器人來做事實查核的可疑訊息查證平台，讓每一個不確定真假的訊息，都能透過群眾的共同努力，被好好檢視跟查核討論。Cofa"
+"cts 真的假的 透過聊天機器人能 "
+"24小時，不間斷地回應使用者疑惑的可疑訊息；另一方面，我們的網站平台呈現所有被收錄的訊息，每一位無私貢獻的志工都能查核表達自己查到的資料。"
 
 #: pages/about.js:268
 msgid ""
@@ -2479,8 +2479,8 @@ msgid ""
 "everyone and encourage crowd collaboration that people contribute\n"
 "their own skills to build a chatbot fact-checking for everyone."
 msgstr ""
-"Cofacts"
-"是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊息的方法。"
+"Cofacts是一個公民發起的平台，不隸屬於任何政黨或是政治人物，成果開放由所有人一起共享，讓所有人一起努力，貢獻各自的技能，讓機器人可以為您查證不實訊"
+"息的方法。"
 
 #: pages/about.js:283
 msgid ""
@@ -2570,9 +2570,9 @@ msgstr ""
 
 #: pages/about.js:397
 msgid ""
-"Cofacts started in the year 2016 as an open source project.\n"
-"In 2023, Cofacts Work Group established Cofacts association to keep the "
-"Cofacts community running."
+"Cofacts originated as an open-source project in 2016. In 2023, the core "
+"members of Cofacts established an NGO named Cofacts Association in Taiwan "
+"to sustain the Cofacts community."
 msgstr "Cofacts 開源專案開始於 2016 年。2023 年，Cofacts 工作小組成立社團法人台灣實科協會，持續營運 Cofacts 社群。"
 
 #: pages/index.js:29

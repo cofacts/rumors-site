@@ -394,8 +394,7 @@ const TutorialPage = () => {
             our society.`}
           </p>
           <p>
-            {t`Cofacts started in the year 2016 as an open source project.
-               In 2023, Cofacts Work Group established Cofacts association to keep the Cofacts community running.`}
+            {t`Cofacts originated as an open-source project in 2016. In 2023, the core members of Cofacts established an NGO named Cofacts Association in Taiwan to sustain the Cofacts community.`}
           </p>
         </section>
       </div>
