@@ -26,11 +26,22 @@ const USER_QUERY = gql`
   ${AppHeader.fragments.AppHeaderUserData}
 `;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   container: {
     flex: 1,
   },
-});
+  mgp: {
+    color: '#fff',
+    background: theme.palette.secondary[500],
+    display: 'flex',
+    gap: 8,
+    padding: 8,
+    justifyContent: 'center',
+    '& > a': {
+      color: theme.palette.primary[500],
+    },
+  },
+}));
 
 const apiLogout = () => {
   return fetchAPI('/logout').then(resp => resp.json());
@@ -86,6 +97,13 @@ function AppLayout({ children, container = true }) {
 
   return (
     <Fragment>
+      <div className={classes.mgp}>
+        🏆 謠言惑眾獎 🏆 投票到 4/12 唷！
+        <a href="https://www.mygopen.com/p/award_22.html?utm_source=cofacts&utm_medium=site-notif">
+          活動詳情
+        </a>
+        <a href="https://cofacts.tw/mgp">用 LINE 投票去</a>
+      </div>
       <AppHeader
         user={data?.GetUser}
         showProgress={isRouteChanging}

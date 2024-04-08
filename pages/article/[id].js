@@ -47,6 +47,9 @@ import CooccurrenceSection, {
   fragments as CooccurrenceSectionFragments,
 } from 'components/CooccurrenceSection';
 
+const MGP_URL =
+  'https://www.mygopen.com/p/award_22.html??utm_source=cofacts&utm_medium=footer';
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -562,11 +565,11 @@ function ArticlePage() {
           )}
 
           <Hidden smDown implementation="css">
-            <a href={LINE_URL}>
+            <a href={MGP_URL}>
               <img
                 className={classes.bannerImage}
-                src="/line-banner-desktop@2x.png"
-                alt={t`Add Cofacts as friend in LINE`}
+                src="/mgp.jpg"
+                alt="第四屆謠言惑眾獎投票中！"
               />
             </a>
           </Hidden>
@@ -620,11 +623,11 @@ function ArticlePage() {
         </Box>
       </div>
       <Hidden mdUp implementation="css">
-        <a href={LINE_URL}>
+        <a href={MGP_URL}>
           <img
             className={classes.bannerImage}
-            src="/line-banner-mobile@2x.png"
-            alt={t`Add Cofacts as friend in LINE`}
+            src="/mgp.jpg"
+            alt="第四屆謠言惑眾獎投票中！"
             style={{ marginBottom: 24 }}
           />
         </a>
