@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import { gql } from 'graphql-tag';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import { HighlightFieldsFragment } from 'typegen/graphql';
+import { tokenize } from 'linkifyjs';
 
 const BREAK = { $$BREAK: true } as const;
 
@@ -105,11 +106,9 @@ function shortenUrl(s: string, maxLength: number) {
 
 function flatternPureStrings(tokens: React.ReactChild[]) {
   return tokens.every(token => typeof token === 'string')
-    ? tokens.join()
+    ? tokens.join('')
     : tokens;
 }
-
-const urlRegExp = /(https?:\/\/\S+)/;
 
 /**
  * Wrap <a> around hyperlinks inside a react element or string.
@@ -127,13 +126,13 @@ export function linkify(
   return traverseForStrings(elem, str => {
     if (!str) return str;
 
-    const tokenized = str.split(urlRegExp).map((s, i) =>
-      s.match(urlRegExp) ? (
-        <a key={`link${i}`} href={s} {...props}>
-          {shortenUrl(s, maxLength)}
+    const tokenized = tokenize(str).map((token, i) =>
+      token.isLink ? (
+        <a key={`link${i}`} href={token.v} {...props}>
+          {shortenUrl(token.v, maxLength)}
         </a>
       ) : (
-        s
+        token.toString()
       )
     );
 
