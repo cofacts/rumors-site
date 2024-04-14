@@ -9,7 +9,6 @@ Array [
     >
       http://google.com
     </a>,
-    "",
   ],
   <span>
     Please go to 
@@ -18,7 +17,6 @@ Array [
     >
       http://google.com
     </a>
-    
   </span>,
 ]
 `;
@@ -27,13 +25,11 @@ exports[`text linkify attach link on nested elements containing links 1`] = `
 <span>
   Please go to 
   <span>
-    
     <a
       href="http://google.com"
     >
       http://google.com
     </a>
-    
   </span>
    lalala
 </span>
@@ -47,7 +43,6 @@ exports[`text linkify attach link on simple elements containing links 1`] = `
   >
     http://google.com
   </a>
-  
 </span>
 `;
 
@@ -59,7 +54,6 @@ Array [
   >
     http://google.com
   </a>,
-  "",
 ]
 `;
 
@@ -71,7 +65,6 @@ Array [
   >
     http://www.rumtoast.com/5444/line群組行動條碼邀請-一定要關掉，不然駭客會入侵
   </a>,
-  "",
 ]
 `;
 
@@ -90,7 +83,58 @@ Array [
       駭客會入侵
     </React.Fragment>
   </a>,
-  "",
+]
+`;
+
+exports[`text linkify parses half-width brackets correctly 1`] = `
+Array [
+  <a
+    href="http://foo.com/blah_(a)_(b)"
+    target="_blank"
+  >
+    http://foo.com/blah_(a)_(b)
+  </a>,
+  " (",
+  <a
+    href="http://foo.com/blah_(a)_(b)"
+    target="_blank"
+  >
+    http://foo.com/blah_(a)_(b)
+  </a>,
+  ") ",
+  <a
+    href="http://foo.com/blah_(a)_(b)"
+    target="_blank"
+  >
+    http://foo.com/blah_(a)_(b)
+  </a>,
+  ")",
+]
+`;
+
+exports[`text linkify parses full-width brackets correctly 1`] = `
+Array [
+  <a
+    href="http://foo.com/blah_（a）_（b）"
+    target="_blank"
+  >
+    http://foo.com/blah_（a）_（b）
+  </a>,
+  " （",
+  <a
+    href="http://foo.com/blah_(a)_(b)"
+    target="_blank"
+  >
+    http://foo.com/blah_(a)_(b)
+  </a>,
+  "） ",
+  <a
+    href="http://foo.com/blah_(a)_(b)"
+    target="_blank"
+  >
+    http://foo.com/blah_(a)_(b)
+  </a>,
+  "）",
 ]
 `;
 
@@ -103,7 +147,6 @@ Array [
   >
     http://google.com
   </a>,
-  "",
 ]
 `;
 
