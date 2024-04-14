@@ -73,6 +73,28 @@ describe('text', () => {
         })
       ).toMatchSnapshot();
     });
+
+    it('parses half-width brackets correctly', () => {
+      expect(
+        linkify(
+          'http://foo.com/blah_(a)_(b) (http://foo.com/blah_(a)_(b)) http://foo.com/blah_(a)_(b))',
+          {
+            props: { target: '_blank' },
+          }
+        )
+      ).toMatchSnapshot();
+    });
+
+    it('parses full-width brackets correctly', () => {
+      expect(
+        linkify(
+          'http://foo.com/blah_（a）_（b） （http://foo.com/blah_(a)_(b)） http://foo.com/blah_(a)_(b)）',
+          {
+            props: { target: '_blank' },
+          }
+        )
+      ).toMatchSnapshot();
+    });
   });
 
   describe('nl2br', () => {
