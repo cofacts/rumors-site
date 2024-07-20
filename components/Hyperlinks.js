@@ -16,6 +16,11 @@ const useStyles = makeStyles(theme => ({
       flexWrap: 'wrap',
       overflowX: 'visible'
     },
+    '--gutter': `${theme.spacing(2)}px`,
+    marginLeft: 'calc(-1 * var(--gutter))',
+    marginRight: 'calc(-1 * var(--gutter))',
+    paddingLeft: 'var(--gutter)',
+    paddingRight: 'var(--gutter)'
   },
   linkcard: {
     padding: '12px 16px',
