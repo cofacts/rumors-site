@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Button } from '@material-ui/core';
+import TimeInfo from 'components/Infos/TimeInfo';
+import Link from 'next/link';
 
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
@@ -21,6 +23,16 @@ const useStyles = makeStyles(theme => ({
     '& + &': {
       borderTop: `1px solid ${theme.palette.secondary[100]}`,
     },
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  user: {
+    margin: 0,
+    marginRight: 5,
+    fontWeight: 'bold',
   },
   reason: {
     marginTop: 0,
@@ -102,6 +114,9 @@ function ReplyRequestReason({ replyRequest, articleId }) {
   };
 
   const classes = useStyles();
+  replyRequest.createdAt = replyRequest.createdAt
+    ? new Date(replyRequest.createdAt)
+    : new Date();
 
   if (!replyRequestReason) return null;
 
@@ -113,6 +128,10 @@ function ReplyRequestReason({ replyRequest, articleId }) {
         <Avatar user={user} size={40} />
       </Box>
       <Box flex={1} className={classes.reasonBody}>
+        <Box className={classes.header}>
+          <p className={classes.user}>{user.id}</p>
+          <TimeInfo time={replyRequest.createdAt}></TimeInfo>
+        </Box>
         <p className={classes.reason}>{replyRequestReason}</p>
         <Box display="flex" justifyContent="space-between">
           <Box display="flex">
