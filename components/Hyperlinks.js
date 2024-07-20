@@ -8,6 +8,16 @@ import { HyperlinkIcon } from 'components/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: 'flex',
+    flexFlow: 'row',
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      flexWrap: 'wrap',
+      overflowX: 'visible'
+    },
+  },
+  linkcard: {
     padding: '12px 16px',
     margin: '0 8px 8px 0',
     background: theme.palette.secondary[50],
@@ -136,7 +146,7 @@ function Hyperlink({ hyperlink, rel = '' }) {
   const classes = useStyles({ topImageUrl });
 
   return (
-    <article className={classes.root}>
+    <article className={classes.linkcard}>
       <h1 title={title}>{title}</h1>
       <div className={classes.preview}>
         <p className="summary" title={summary}>
@@ -183,12 +193,11 @@ function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
 
   if (hyperlinks && hyperlinks.length === 0) return null;
 
+  const classes = useStyles();
   return (
     <Box
+      className={classes.root}
       component="section"
-      display="flex"
-      flexDirection="row"
-      flexWrap="wrap"
       mt={2}
       mb={1}
     >
