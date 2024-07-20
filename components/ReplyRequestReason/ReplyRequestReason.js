@@ -73,7 +73,7 @@ const ReplyRequestInfo = gql`
     reason
     positiveFeedbackCount
     negativeFeedbackCount
-
+    updatedAt
     user {
       id
       name
@@ -114,9 +114,6 @@ function ReplyRequestReason({ replyRequest, articleId }) {
   };
 
   const classes = useStyles();
-  replyRequest.createdAt = replyRequest.createdAt
-    ? new Date(replyRequest.createdAt)
-    : new Date();
 
   if (!replyRequestReason) return null;
 
@@ -130,7 +127,7 @@ function ReplyRequestReason({ replyRequest, articleId }) {
       <Box flex={1} className={classes.reasonBody}>
         <Box className={classes.header}>
           <p className={classes.user}>{user.id}</p>
-          <TimeInfo time={replyRequest.createdAt}></TimeInfo>
+          <TimeInfo time={replyRequest.updatedAt}/>
         </Box>
         <p className={classes.reason}>{replyRequestReason}</p>
         <Box display="flex" justifyContent="space-between">
