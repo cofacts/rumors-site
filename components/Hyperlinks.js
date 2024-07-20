@@ -29,20 +29,18 @@ const useStyles = makeStyles(theme => ({
     },
   },
   multilink: {
-    flexWrap: 'nowrap',
-    overflowX: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      flexWrap: 'wrap',
-      overflowX: 'visible'
+    [theme.breakpoints.down('sm')]: {
+      flexWrap: 'nowrap',
+      overflowX: 'auto',
+      '--gutter': `${theme.spacing(2)}px`,
+      marginLeft: 'calc(-1 * var(--gutter))',
+      marginRight: 'calc(-1 * var(--gutter))',
+      paddingLeft: 'var(--gutter)',
+      paddingRight: 'var(--gutter)',
+      '& article': {
+        maxWidth: '90%',
+      }
     },
-    '--gutter': `${theme.spacing(2)}px`,
-    marginLeft: 'calc(-1 * var(--gutter))',
-    marginRight: 'calc(-1 * var(--gutter))',
-    paddingLeft: 'var(--gutter)',
-    paddingRight: 'var(--gutter)',
-    '& article': {
-      maxWidth: '90%',
-    }
   },
   url: {
     color: theme.palette.secondary[300],
