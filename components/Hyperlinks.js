@@ -10,17 +10,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexFlow: 'row',
-    flexWrap: 'nowrap',
-    overflowX: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      flexWrap: 'wrap',
-      overflowX: 'visible'
-    },
-    '--gutter': `${theme.spacing(2)}px`,
-    marginLeft: 'calc(-1 * var(--gutter))',
-    marginRight: 'calc(-1 * var(--gutter))',
-    paddingLeft: 'var(--gutter)',
-    paddingRight: 'var(--gutter)'
+    flexWrap: 'wrap',
   },
   linkcard: {
     padding: '12px 16px',
@@ -37,6 +27,19 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 'inherit',
       fontSize: 14,
     },
+  },
+  multilink: {
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      flexWrap: 'wrap',
+      overflowX: 'visible'
+    },
+    '--gutter': `${theme.spacing(2)}px`,
+    marginLeft: 'calc(-1 * var(--gutter))',
+    marginRight: 'calc(-1 * var(--gutter))',
+    paddingLeft: 'var(--gutter)',
+    paddingRight: 'var(--gutter)'
   },
   url: {
     color: theme.palette.secondary[300],
@@ -199,9 +202,13 @@ function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
   if (hyperlinks && hyperlinks.length === 0) return null;
 
   const classes = useStyles();
+  var className = `${classes.root}`;
+  if (hyperlinks.length > 1) {
+    className += ` ${classes.multilink}`;
+  }
   return (
     <Box
-      className={classes.root}
+      className={className}
       component="section"
       mt={2}
       mb={1}
