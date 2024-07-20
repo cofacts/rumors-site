@@ -39,7 +39,10 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 'calc(-1 * var(--gutter))',
     marginRight: 'calc(-1 * var(--gutter))',
     paddingLeft: 'var(--gutter)',
-    paddingRight: 'var(--gutter)'
+    paddingRight: 'var(--gutter)',
+    '& article': {
+      maxWidth: '90%',
+    }
   },
   url: {
     color: theme.palette.secondary[300],
