@@ -101,6 +101,7 @@ const CREATE_REPLY_REQUEST = gql`
   mutation CreateReplyRequestFromForm($articleId: String!, $reason: String!) {
     CreateReplyRequest(articleId: $articleId, reason: $reason) {
       id
+      updatedAt
     }
   }
 `;
