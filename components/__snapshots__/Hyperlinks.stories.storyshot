@@ -31,7 +31,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
     }
   >
     <section
-      className="MuiBox-root MuiBox-root"
+      className="MuiBox-root MuiBox-root makeStyles-root makeStyles-multilink"
     >
       <Hyperlink
         hyperlink={
@@ -44,7 +44,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
         key="0"
       >
         <article
-          className="makeStyles-root"
+          className="makeStyles-linkcard"
         >
           <h1
             title="Lorum Ipsum - Demo Site"
@@ -98,7 +98,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
         key="1"
       >
         <article
-          className="makeStyles-root"
+          className="makeStyles-linkcard"
         >
           <h1
             title="This site has image"
@@ -153,7 +153,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
         key="2"
       >
         <article
-          className="makeStyles-root"
+          className="makeStyles-linkcard"
         >
           <h1 />
           <div
@@ -220,7 +220,7 @@ exports[`Storyshots Hyperlinks Polling 1`] = `
     pollingType="articles"
   >
     <section
-      className="MuiBox-root MuiBox-root"
+      className="MuiBox-root MuiBox-root makeStyles-root"
     >
       <PollingHyperlink
         pollingId="foo"

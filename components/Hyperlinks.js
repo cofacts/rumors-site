@@ -204,7 +204,7 @@ function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
   if (hyperlinks && hyperlinks.length === 0) return null;
 
   let className = `${classes.root}`;
-  if (hyperlinks.length > 1) {
+  if (hyperlinks && hyperlinks.length > 1) {
     className += ` ${classes.multilink}`;
   }
   return (
