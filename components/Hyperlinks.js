@@ -8,6 +8,11 @@ import { HyperlinkIcon } from 'components/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: 'flex',
+    flexFlow: 'row',
+    flexWrap: 'wrap',
+  },
+  linkcard: {
     padding: '12px 16px',
     margin: '0 8px 8px 0',
     background: theme.palette.secondary[50],
@@ -21,6 +26,20 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 10,
       maxWidth: 'inherit',
       fontSize: 14,
+    },
+  },
+  multilink: {
+    [theme.breakpoints.down('sm')]: {
+      flexWrap: 'nowrap',
+      overflowX: 'auto',
+      '--gutter': `${theme.spacing(2)}px`,
+      marginLeft: 'calc(-1 * var(--gutter))',
+      marginRight: 'calc(-1 * var(--gutter))',
+      paddingLeft: 'var(--gutter)',
+      paddingRight: 'var(--gutter)',
+      '& article': {
+        maxWidth: '90%',
+      },
     },
   },
   url: {
@@ -136,7 +155,7 @@ function Hyperlink({ hyperlink, rel = '' }) {
   const classes = useStyles({ topImageUrl });
 
   return (
-    <article className={classes.root}>
+    <article className={classes.linkcard}>
       <h1 title={title}>{title}</h1>
       <div className={classes.preview}>
         <p className="summary" title={summary}>
@@ -177,21 +196,19 @@ function PollingHyperlink({ pollingType, pollingId }) {
  * @param {string?} props.rel - rel prop for the hyperlink (other than noopener and noreferrer)
  */
 function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
+  const classes = useStyles();
   if (!((pollingId && pollingType) || (!pollingId && !pollingType))) {
     throw new Error('pollingType and pollingId must be specified together');
   }
 
   if (hyperlinks && hyperlinks.length === 0) return null;
 
+  let className = `${classes.root}`;
+  if (hyperlinks.length > 1) {
+    className += ` ${classes.multilink}`;
+  }
   return (
-    <Box
-      component="section"
-      display="flex"
-      flexDirection="row"
-      flexWrap="wrap"
-      mt={2}
-      mb={1}
-    >
+    <Box className={className} component="section" mt={2} mb={1}>
       {(hyperlinks || []).map((hyperlink, idx) => (
         <Hyperlink key={idx} hyperlink={hyperlink} rel={rel} />
       ))}
