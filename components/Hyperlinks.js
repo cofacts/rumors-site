@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
       paddingRight: 'var(--gutter)',
       '& article': {
         maxWidth: '90%',
-      }
+      },
     },
   },
   url: {
@@ -196,24 +196,19 @@ function PollingHyperlink({ pollingType, pollingId }) {
  * @param {string?} props.rel - rel prop for the hyperlink (other than noopener and noreferrer)
  */
 function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
+  const classes = useStyles();
   if (!((pollingId && pollingType) || (!pollingId && !pollingType))) {
     throw new Error('pollingType and pollingId must be specified together');
   }
 
   if (hyperlinks && hyperlinks.length === 0) return null;
 
-  const classes = useStyles();
-  var className = `${classes.root}`;
+  let className = `${classes.root}`;
   if (hyperlinks.length > 1) {
     className += ` ${classes.multilink}`;
   }
   return (
-    <Box
-      className={className}
-      component="section"
-      mt={2}
-      mb={1}
-    >
+    <Box className={className} component="section" mt={2} mb={1}>
       {(hyperlinks || []).map((hyperlink, idx) => (
         <Hyperlink key={idx} hyperlink={hyperlink} rel={rel} />
       ))}
