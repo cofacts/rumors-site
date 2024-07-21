@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   reason: {
     marginTop: 0,
   },
+  time: {
+    color: theme.palette.secondary[200],
+  },
   vote: {
     borderRadius: 45,
     marginRight: 3,
@@ -134,7 +137,9 @@ function ReplyRequestReason({ replyRequest, articleId }) {
       <Box flex={1} className={classes.reasonBody}>
         <Box className={classes.header}>
           <p className={classes.user}>{authorElem}</p>
-          <TimeInfo time={replyRequest.updatedAt} />
+          <TimeInfo time={replyRequest.updatedAt}>
+            {str => <span className={classes.time}>{str}</span>}
+          </TimeInfo>
         </Box>
         <p className={classes.reason}>{replyRequestReason}</p>
         <Box display="flex" justifyContent="space-between">
