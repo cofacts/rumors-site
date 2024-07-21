@@ -5,7 +5,6 @@ import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Button } from '@material-ui/core';
 import TimeInfo from 'components/Infos/TimeInfo';
-import Link from 'next/link';
 
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
@@ -127,7 +126,7 @@ function ReplyRequestReason({ replyRequest, articleId }) {
       <Box flex={1} className={classes.reasonBody}>
         <Box className={classes.header}>
           <p className={classes.user}>{user.id}</p>
-          <TimeInfo time={replyRequest.updatedAt}/>
+          <TimeInfo time={replyRequest.updatedAt} />
         </Box>
         <p className={classes.reason}>{replyRequestReason}</p>
         <Box display="flex" justifyContent="space-between">
