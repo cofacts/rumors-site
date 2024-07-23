@@ -173,7 +173,8 @@ const LOAD_ARTICLE = gql`
       cooccurrences {
         ...CooccurrenceSectionData
       }
-      articleCategories(statuses: $articleCategoryStatuses) @connection(key: "articleCategories") {
+      articleCategories(statuses: $articleCategoryStatuses)
+        @connection(key: "articleCategories") {
         ...ArticleCategoryData
         ...AddCategoryDialogData
       }
@@ -221,7 +222,8 @@ const LOAD_ARTICLE_FOR_USER = gql`
       articleReplies(statuses: $articleReplyStatuses) {
         ...ArticleReplyForUser
       }
-      articleCategories(statuses: $articleCategoryStatuses) @connection(key: "articleCategories") {
+      articleCategories(statuses: $articleCategoryStatuses)
+        @connection(key: "articleCategories") {
         ...ArticleCategoryDataForUser
         ...AddCategoryDialogData
       }
