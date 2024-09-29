@@ -23,7 +23,7 @@ function Thumbnail({ article, className }) {
 
   switch (article.articleType) {
     case 'IMAGE': {
-      const altText = ellipsis(article.text ?? '', { wordCount: 40 });
+      const altText = ellipsis(article.text || '', { wordCount: 40 });
       return (
         <img
           className={thumbnailCls}
