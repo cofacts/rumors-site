@@ -384,8 +384,8 @@ function ArticlePage() {
         <title>
           {article.status === 'BLOCKED'
             ? t`Cofacts`
-            : ellipsis(article.text, { wordCount: 100 })}{' '}
-          | {t`Cofacts`}
+            : `${ellipsis(article.text, { wordCount: 100 })}
+          | ${t`Cofacts`}`}
         </title>
         {/* Don't let search engines index blocked spam */ article.status ===
           'BLOCKED' && <meta name="robots" content="noindex, nofollow" />}
