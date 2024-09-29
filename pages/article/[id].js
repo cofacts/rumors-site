@@ -378,14 +378,47 @@ function ArticlePage() {
     element => element.user && currentUser && element.user.id === currentUser.id
   );
 
+  const headerElem = (
+    <header className={classes.textHeader}>
+      <Ribbon className={classes.title}>
+        {ngettext(
+          msgid`${replyRequestCount} person report this message`,
+          `${replyRequestCount} people report this message`,
+          replyRequestCount
+        )}
+      </Ribbon>
+      <Infos>
+        <TimeInfo time={article.createdAt}>
+          {timeAgo => t`First reported ${timeAgo}`}
+        </TimeInfo>
+      </Infos>
+    </header>
+  );
+
+  if (article.status === 'BLOCKED' && !currentUser) {
+    return (
+      <AppLayout>
+        <Head>
+          <title>{t`Cofacts`}</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
+        <div className={classes.root}>
+          <div className={classes.main}>
+            <Card>
+              {headerElem}
+              <CardContent>{t`Log in to view content`}</CardContent>
+            </Card>
+          </div>
+        </div>
+      </AppLayout>
+    );
+  }
+
   return (
     <AppLayout>
       <Head>
         <title>
-          {article.status === 'BLOCKED'
-            ? t`Cofacts`
-            : `${ellipsis(article.text, { wordCount: 100 })}
-          | ${t`Cofacts`}`}
+          {ellipsis(article.text, { wordCount: 100 })} | {t`Cofacts`}
         </title>
         {/* Don't let search engines index blocked spam */ article.status ===
           'BLOCKED' && <meta name="robots" content="noindex, nofollow" />}
@@ -393,85 +426,66 @@ function ArticlePage() {
       <div className={classes.root}>
         <div className={classes.main}>
           <Card>
-            <header className={classes.textHeader}>
-              <Ribbon className={classes.title}>
-                {ngettext(
-                  msgid`${replyRequestCount} person report this message`,
-                  `${replyRequestCount} people report this message`,
-                  replyRequestCount
-                )}
-              </Ribbon>
-              <Infos>
-                <TimeInfo time={article.createdAt}>
-                  {timeAgo => t`First reported ${timeAgo}`}
-                </TimeInfo>
-              </Infos>
-            </header>
+            {headerElem}
             <CardContent>
-              {article.status === 'BLOCKED' && !currentUser ? (
-                t`Log in to view content`
-              ) : (
-                <>
-                  {(() => {
-                    switch (articleType) {
-                      case 'IMAGE':
-                        return !originalAttachmentUrl ? (
-                          <img
-                            className={classes.attachment}
-                            src={attachmentUrl}
-                            alt="image"
-                          />
-                        ) : (
-                          <a
-                            href={originalAttachmentUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <img
-                              className={classes.attachment}
-                              src={attachmentUrl}
-                              alt="image"
-                            />
-                          </a>
-                        );
-                      case 'VIDEO':
-                        return !originalAttachmentUrl ? (
-                          t`Log in to view video content`
-                        ) : (
-                          <video
-                            className={classes.attachment}
-                            src={originalAttachmentUrl}
-                            controls
-                          />
-                        );
-                      case 'AUDIO':
-                        return !originalAttachmentUrl ? (
-                          t`Log in to view audio content`
-                        ) : (
-                          <audio src={originalAttachmentUrl} controls />
-                        );
-                      default:
-                        return (
-                          <>
-                            {text &&
-                              nl2br(
-                                linkify(text, {
-                                  props: {
-                                    target: '_blank',
-                                    rel: 'ugc nofollow',
-                                  },
-                                })
-                              )}
-                            <Hyperlinks
-                              hyperlinks={hyperlinks}
-                              rel="ugc nofollow"
-                            />
-                          </>
-                        );
-                    }
-                  })()}
-                </>
-              )}
+              {(() => {
+                switch (articleType) {
+                  case 'IMAGE':
+                    return !originalAttachmentUrl ? (
+                      <img
+                        className={classes.attachment}
+                        src={attachmentUrl}
+                        alt="image"
+                      />
+                    ) : (
+                      <a
+                        href={originalAttachmentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className={classes.attachment}
+                          src={attachmentUrl}
+                          alt="image"
+                        />
+                      </a>
+                    );
+                  case 'VIDEO':
+                    return !originalAttachmentUrl ? (
+                      t`Log in to view video content`
+                    ) : (
+                      <video
+                        className={classes.attachment}
+                        src={originalAttachmentUrl}
+                        controls
+                      />
+                    );
+                  case 'AUDIO':
+                    return !originalAttachmentUrl ? (
+                      t`Log in to view audio content`
+                    ) : (
+                      <audio src={originalAttachmentUrl} controls />
+                    );
+                  default:
+                    return (
+                      <>
+                        {text &&
+                          nl2br(
+                            linkify(text, {
+                              props: {
+                                target: '_blank',
+                                rel: 'ugc nofollow',
+                              },
+                            })
+                          )}
+                        <Hyperlinks
+                          hyperlinks={hyperlinks}
+                          rel="ugc nofollow"
+                        />
+                      </>
+                    );
+                }
+              })()}
               {articleType !== 'TEXT' ? (
                 <CollabEditor article={article} />
               ) : null}
