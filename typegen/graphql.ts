@@ -167,6 +167,8 @@ export type Article = Node & {
   attachmentUrl?: Maybe<Scalars['String']>;
   /** Number of normal article categories */
   categoryCount: Scalars['Int'];
+  /** Transcript contributors of the article */
+  contributors: Array<Contributor>;
   cooccurrences?: Maybe<Array<Cooccurrence>>;
   /** May be null for legacy articles */
   createdAt?: Maybe<Scalars['String']>;
@@ -186,6 +188,8 @@ export type Article = Node & {
   stats?: Maybe<Array<Maybe<Analytics>>>;
   status: ReplyRequestStatusEnum;
   text?: Maybe<Scalars['String']>;
+  /** Time when the article was last transcribed */
+  transcribedAt?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['String']>;
   /** The user submitted this article */
   user?: Maybe<User>;
@@ -624,6 +628,8 @@ export type Reply = Node & {
   reference?: Maybe<Scalars['String']>;
   /** Replies that has similar text or references of this current reply */
   similarReplies: ReplyConnection;
+  /** The status of this reply, calculated from its author and article replies. */
+  status: ArticleReplyStatusEnum;
   text?: Maybe<Scalars['String']>;
   type: ReplyTypeEnum;
   /** The user submitted this reply version */
@@ -699,6 +705,15 @@ export enum AttachmentVariantEnum {
   /** Tiny, static image representing the attachment. Fixed-height jpeg for images; other types TBD. */
   Thumbnail = 'THUMBNAIL'
 }
+
+export type Contributor = {
+  __typename?: 'Contributor';
+  appId: Scalars['String'];
+  updatedAt?: Maybe<Scalars['String']>;
+  /** The user who contributed to this article. */
+  user?: Maybe<User>;
+  userId: Scalars['String'];
+};
 
 export type Cooccurrence = Node & {
   __typename?: 'Cooccurrence';
@@ -1056,6 +1071,8 @@ export type ListArticleFilter = {
   selfOnly?: InputMaybe<Scalars['Boolean']>;
   /** Returns only articles with the specified statuses */
   statuses?: InputMaybe<Array<ArticleStatusEnum>>;
+  /** Show only articles with(out) article transcript contributed by specified user */
+  transcribedBy?: InputMaybe<UserAndExistInput>;
   /** Specifies how the transcript of `mediaUrl` can be used to search. Can only specify `transcript` when `mediaUrl` is specified. */
   transcript?: InputMaybe<TranscriptFilter>;
   /** Show only articles created by the specific user. */
@@ -1067,8 +1084,8 @@ export type ListArticleFilter = {
 export type UserAndExistInput = {
   /**
    *
-   *                   When true (or not specified), return only entries with the specified user's involvement.
-   *                   When false, return only entries that the specified user did not involve.
+   *         When true (or not specified), return only entries with the specified user's involvement.
+   *         When false, return only entries that the specified user did not involve.
    *
    */
   exists?: InputMaybe<Scalars['Boolean']>;
@@ -1460,9 +1477,12 @@ export type MutationResult = {
   id?: Maybe<Scalars['String']>;
 };
 
-export type CooccurrenceSectionDataFragment = { __typename?: 'Cooccurrence', createdAt: string, articles: Array<{ __typename?: 'Article', id: string, articleType: ArticleTypeEnum, text?: string | null }> };
+export type CooccurrenceSectionDataFragment = { __typename?: 'Cooccurrence', createdAt: string, articles: Array<{ __typename?: 'Article', id: string, articleType: ArticleTypeEnum, text?: string | null, thumbnailUrl?: string | null }> };
+
+export type ThumbnailArticleDataFragment = { __typename?: 'Article', articleType: ArticleTypeEnum, text?: string | null, thumbnailUrl?: string | null };
 
 export type HighlightFieldsFragment = { __typename?: 'Highlights', text?: string | null, reference?: string | null, hyperlinks?: Array<{ __typename?: 'Hyperlink', title?: string | null, summary?: string | null } | null> | null };
 
-export const CooccurrenceSectionDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CooccurrenceSectionData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Cooccurrence"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"articles"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"articleType"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}}]}}]} as unknown as DocumentNode<CooccurrenceSectionDataFragment, unknown>;
+export const ThumbnailArticleDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ThumbnailArticleData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Article"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleType"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","alias":{"kind":"Name","value":"thumbnailUrl"},"name":{"kind":"Name","value":"attachmentUrl"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"variant"},"value":{"kind":"EnumValue","value":"THUMBNAIL"}}]}]}}]} as unknown as DocumentNode<ThumbnailArticleDataFragment, unknown>;
+export const CooccurrenceSectionDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CooccurrenceSectionData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Cooccurrence"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"articles"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"articleType"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ThumbnailArticleData"}}]}}]}},...ThumbnailArticleDataFragmentDoc.definitions]} as unknown as DocumentNode<CooccurrenceSectionDataFragment, unknown>;
 export const HighlightFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HighlightFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Highlights"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"reference"}},{"kind":"Field","name":{"kind":"Name","value":"hyperlinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"summary"}}]}}]}}]} as unknown as DocumentNode<HighlightFieldsFragment, unknown>;
