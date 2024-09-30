@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
+import { ThumbnailArticleDataFragment } from 'typegen/graphql';
 import cx from 'clsx';
 
 import { ellipsis } from 'lib/text';
@@ -12,18 +13,21 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-/**
- *
- * @param {ThumbnailArticleData} props.article
- * @param {string} props.className - for replaced elements like image and video
- */
-function Thumbnail({ article, className }) {
+type Props = {
+  article: ThumbnailArticleDataFragment;
+  className?: string;
+};
+
+function Thumbnail({
+  article,
+  className /* for replaced elements like image and video */,
+}: Props) {
   const classes = useStyles();
   const thumbnailCls = cx(classes.thumbnail, className);
 
   switch (article.articleType) {
     case 'IMAGE': {
-      const altText = ellipsis(article.text ?? '', { wordCount: 40 });
+      const altText = ellipsis(article.text || '', { wordCount: 40 });
       return (
         <img
           className={thumbnailCls}
