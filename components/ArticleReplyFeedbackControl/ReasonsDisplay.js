@@ -53,6 +53,7 @@ export const LOAD_FEEDBACKS = gql`
         node {
           id
           vote
+          createdAt
           user {
             id
           }
@@ -67,6 +68,21 @@ export const LOAD_FEEDBACKS = gql`
   }
   ${Feedback.fragments.ReasonDisplayFeedbackData}
 `;
+
+function isEmptyComment(comment) {
+  return comment === '' || comment === null;
+}
+
+function processedFeedbacks(feedbacks, voteType, isLoadMore) {
+  return feedbacks
+    .filter(({ vote }) => vote === voteType)
+    .sort(
+      (a, b) =>
+        isEmptyComment(b.comment) - isEmptyComment(a.comment) ||
+        b.createdAt.localeCompare(a.createdAt)
+    )
+    .slice(0, isLoadMore ? feedbacks.length : Math.min(feedbacks.length, 10));
+}
 
 function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
   const classes = useStyles();
@@ -95,20 +111,8 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
     if (onSizeChange) return onSizeChange();
   }, [tab, onSizeChange]);
 
-  const IsEmptyComment = comment => comment === '' || comment === null;
-
   const feedbacks =
     data?.ListArticleReplyFeedbacks?.edges.map(({ node }) => node) || [];
-
-  const processedFeedbacks = (feedbacks, voteType, isLoadMore) =>
-    feedbacks
-      .filter(({ vote }) => vote === voteType)
-      .sort((a, b) => {
-        if (IsEmptyComment(a.comment)) return 1;
-        else if (IsEmptyComment(b.comment)) return -1;
-        return 0;
-      })
-      .slice(0, isLoadMore ? feedbacks.length : Math.min(feedbacks.length, 10));
 
   if (loading) {
     return (
