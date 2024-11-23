@@ -95,8 +95,20 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
     if (onSizeChange) return onSizeChange();
   }, [tab, onSizeChange]);
 
+  const IsEmptyComment = comment => comment === '' || comment === null;
+
   const feedbacks =
     data?.ListArticleReplyFeedbacks?.edges.map(({ node }) => node) || [];
+
+  const processedFeedbacks = (feedbacks, voteType, isLoadMore) =>
+    feedbacks
+      .filter(({ vote }) => vote === voteType)
+      .sort((a, b) => {
+        if (IsEmptyComment(a.comment)) return 1;
+        else if (IsEmptyComment(b.comment)) return -1;
+        return 0;
+      })
+      .slice(0, isLoadMore ? feedbacks.length : Math.min(feedbacks.length, 10));
 
   if (loading) {
     return (
@@ -126,25 +138,16 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
         />
       </Tabs>
       <Box display={tab === 0 ? 'block' : 'none'} className={classes.feedbacks}>
-        {feedbacks
-          .filter(({ vote }) => vote === 'UPVOTE')
-          .sort((a, b) => {
-            if (a.comment === '') return 1;
-            else if (b.comment === '') return -1;
-            return 0;
-          })
-          .slice(
-            0,
-            isLoadMoreUpvote ? feedbacks.length : Math.min(feedbacks.length, 10)
-          )
-          .map(feedback => (
+        {processedFeedbacks(feedbacks, 'UPVOTE', isLoadMoreUpvote).map(
+          feedback => (
             <Feedback
               key={feedback.id}
               articleId={articleReply.articleId}
               replyId={articleReply.replyId}
               feedback={feedback}
             />
-          ))}
+          )
+        )}
         {feedbacks.length > 10 && !isLoadMoreUpvote && (
           <LoadMore
             edges={feedbacks}
@@ -156,27 +159,16 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
         )}
       </Box>
       <Box display={tab === 1 ? 'block' : 'none'} className={classes.feedbacks}>
-        {feedbacks
-          .filter(({ vote }) => vote === 'DOWNVOTE')
-          .sort((a, b) => {
-            if (a.comment === '') return 1;
-            else if (b.comment === '') return -1;
-            return 0;
-          })
-          .slice(
-            0,
-            isLoadMoreDownvote
-              ? feedbacks.length
-              : Math.min(feedbacks.length, 10)
-          )
-          .map(feedback => (
+        {processedFeedbacks(feedbacks, 'DOWNVOTE', isLoadMoreDownvote).map(
+          feedback => (
             <Feedback
               key={feedback.id}
               articleId={articleReply.articleId}
               replyId={articleReply.replyId}
               feedback={feedback}
             />
-          ))}
+          )
+        )}
         {feedbacks.length > 10 && !isLoadMoreDownvote && (
           <LoadMore
             edges={feedbacks}
