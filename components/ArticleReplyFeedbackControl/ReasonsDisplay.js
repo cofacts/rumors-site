@@ -78,7 +78,7 @@ function processedFeedbacks(feedbacks, voteType, isLoadMore) {
     .filter(({ vote }) => vote === voteType)
     .sort(
       (a, b) =>
-        isEmptyComment(b.comment) - isEmptyComment(a.comment) ||
+        isEmptyComment(a.comment) - isEmptyComment(b.comment) ||
         b.createdAt.localeCompare(a.createdAt)
     )
     .slice(0, isLoadMore ? feedbacks.length : Math.min(feedbacks.length, 10));
