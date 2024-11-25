@@ -110,6 +110,12 @@ function ProfilePage({ id, slug }) {
   }
 
   if (!data || !data.GetUser) {
+    const userId = currentUser?.id;
+    if (!id && !slug && userId) {
+      router.replace(`/user?id=${userId}`);
+      return null;
+    }
+
     return (
       <AppLayout container={false}>
         <Head>
