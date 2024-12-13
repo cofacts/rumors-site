@@ -966,6 +966,11 @@ msgid "Cofacts chatbot"
 msgstr "Cofacts 真的假的聊天機器人"
 
 #: components/ProfilePage/UserPageHeader.js:256
+#, javascript-format
+msgid "Join date : ${ timeAgo }"
+msgstr "註冊日期 : ${ timeAgo }"
+
+#: components/ProfilePage/UserPageHeader.js:256
 msgid "EXP"
 msgstr "公道值"
 
