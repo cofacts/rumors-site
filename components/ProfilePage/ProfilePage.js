@@ -89,13 +89,16 @@ function ProfilePage({ id, slug }) {
   //
   const router = useRouter();
   const latestSlug = data?.GetUser?.slug; // slug may update after user edits
+  const userId = currentUser?.id;
   useEffect(() => {
-    if (!latestSlug) return;
-    const targetPath = `/user/${encodeURI(latestSlug)}`;
-    if (window.location.pathname !== targetPath) {
+    if (latestSlug === undefined) return;
+    const targetPath = latestSlug
+      ? `/user/${encodeURI(latestSlug)}`
+      : `/user?id=${userId}`;
+    if (router.asPath !== targetPath) {
       router.replace(targetPath);
     }
-  }, [latestSlug, router]);
+  }, [latestSlug, userId, router]);
 
   if (loading) {
     return (
