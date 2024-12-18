@@ -15,6 +15,7 @@ import Ribbon from 'components/Ribbon';
 import LevelIcon from 'components/LevelIcon';
 import LevelProgressBar from 'components/AppLayout/Widgets/LevelProgressBar';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
+import TimeInfo from 'components/Infos/TimeInfo';
 import Stats from './Stats';
 import EditIcon from '@material-ui/icons/Edit';
 import EditProfileDialog from './EditProfileDialog';
@@ -250,6 +251,9 @@ function UserPageHeader({ user, isSelf, stats }) {
               {editButtonElem}
             </Hidden>
           </div>
+          <TimeInfo time={user.createdAt}>
+            {timeAgo => t`Join date : ${timeAgo}`}
+          </TimeInfo>
           <div className={classes.progress}>
             <LevelProgressBar user={user} />
             <Typography variant="caption">

@@ -44,6 +44,7 @@ const LOAD_USER = gql`
   query LoadProfilePage($id: String, $slug: String) {
     GetUser(id: $id, slug: $slug) {
       id
+      createdAt
       ...UserHeaderData
       contributions {
         date
