@@ -97,7 +97,7 @@ function SearchPageJumbotron() {
     });
   };
 
-  const { q } = query;
+  const { q = '' } = query;
   useEffect(() => {
     textareaRef.current.value = q;
   }, [q]);
@@ -116,6 +116,13 @@ function SearchPageJumbotron() {
               name="search"
               className={classes.input}
               minRows={1}
+              onKeyDown={(e) => {
+                // enter to trigger search, so disable default line breaking
+                if (e.key == 'Enter') {
+                  e.preventDefault();
+                  e.target.form.requestSubmit();
+                }
+              }}
             />
             <button type="submit" className={classes.submit}>
               <SearchIcon />
