@@ -13,6 +13,7 @@ import LoginModal from './LoginModal';
 import fetchAPI from 'lib/fetchAPI';
 import { blockUserBrowserAndRefreshIfNeeded } from 'lib/isUserBlocked';
 import Snackbar from '@material-ui/core/Snackbar';
+import { AppProvider } from './context';
 
 const USER_QUERY = gql`
   query AppLayoutQuery {
@@ -86,35 +87,37 @@ function AppLayout({ children, container = true }) {
 
   return (
     <Fragment>
-      <AppHeader
-        user={data?.GetUser}
-        showProgress={isRouteChanging}
-        onMenuButtonClick={toggleSidebar}
-        onLoginModalOpen={openLoginModal}
-        onLogout={logout}
-      />
-      <AppSidebar
-        open={sidebarOpen}
-        toggle={setSidebarOpen}
-        user={data?.GetUser}
-        onLoginModalOpen={openLoginModal}
-        onLogout={logout}
-      />
-      {container ? (
-        <Container className={classes.container}>{children}</Container>
-      ) : (
-        children
-      )}
-      <AppFooter />
-      {loginModalOpen && (
-        <LoginModal onClose={() => setLoginModalOpen(false)} />
-      )}
-      <Snackbar
-        open={snackMsg ? true : false}
-        onClose={() => setSnackMsg('')}
-        message={snackMsg}
-      />
-      <UpgradeDialog />
+      <AppProvider value={{ openLoginModal }}>
+        <AppHeader
+          user={data?.GetUser}
+          showProgress={isRouteChanging}
+          onMenuButtonClick={toggleSidebar}
+          onLoginModalOpen={openLoginModal}
+          onLogout={logout}
+        />
+        <AppSidebar
+          open={sidebarOpen}
+          toggle={setSidebarOpen}
+          user={data?.GetUser}
+          onLoginModalOpen={openLoginModal}
+          onLogout={logout}
+        />
+        {container ? (
+          <Container className={classes.container}>{children}</Container>
+        ) : (
+          children
+        )}
+        <AppFooter />
+        {loginModalOpen && (
+          <LoginModal onClose={() => setLoginModalOpen(false)} />
+        )}
+        <Snackbar
+          open={snackMsg ? true : false}
+          onClose={() => setSnackMsg('')}
+          message={snackMsg}
+        />
+        <UpgradeDialog />
+      </AppProvider>
     </Fragment>
   );
 }
