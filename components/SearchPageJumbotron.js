@@ -2,7 +2,7 @@ import { useRef, useEffect, memo } from 'react';
 import { useRouter } from 'next/router';
 import { t } from 'ttag';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { Tabs, Tab, Box, Container } from '@material-ui/core';
+import { Tabs, Tab, Box, Container, TextareaAutosize } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
     background: '#202020',
   },
   search: {
+    alignSelf: 'flex-start',
     color: theme.palette.common.white,
     paddingRight: theme.spacing(3),
   },
@@ -53,6 +54,7 @@ const useStyles = makeStyles(theme => ({
     outline: 'none',
     color: theme.palette.common.white,
     background: 'transparent',
+    paddingRight: theme.spacing(4),
   },
   submit: {
     display: 'none',
@@ -109,11 +111,11 @@ function SearchPageJumbotron() {
         <form onSubmit={onSearch} className={classes.form}>
           <h2 className={classes.search}>{t`Searching`}</h2>
           <Box flex={1} className={classes.inputArea}>
-            <textarea
+            <TextareaAutosize
               ref={textareaRef}
               name="search"
               className={classes.input}
-              rows={1}
+              minRows={1}
             />
             <button type="submit" className={classes.submit}>
               <SearchIcon />
