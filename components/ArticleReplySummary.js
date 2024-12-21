@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { t, jt } from 'ttag';
 import gql from 'graphql-tag';
 import { ProfileTooltip } from 'components/ProfileLink';
@@ -25,11 +25,16 @@ const useStyles = makeStyles(theme => ({
     '& > a': { textDecoration: 'none' },
     '& > a:hover': { textDecoration: 'underline' },
   },
+  hash: {
+    marginLeft: theme.spacing(1),
+    scrollMargin: `${theme.spacing(15)}px`,
+  },
 }));
 
 function ArticleReplySummary({ articleReply, className, ...props }) {
   const { replyType, user } = articleReply;
 
+  const anchorRef = useRef();
   const classes = useStyles({ replyType });
 
   const authorElem = (
@@ -38,9 +43,23 @@ function ArticleReplySummary({ articleReply, className, ...props }) {
     </ProfileTooltip>
   );
 
+  useEffect(() => {
+    if (anchorRef.current.hash === location.hash) {
+      anchorRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
     <div className={cx(classes.replyType, className)} {...props}>
       {jt`${authorElem} mark this message ${TYPE_NAME[replyType]}`}
+      <a
+        ref={anchorRef}
+        className={classes.hash}
+        href={`#${articleReply.replyId}`}
+        onClick={e => e.target.scrollIntoView({ behavior: 'smooth' })}
+      >
+        #
+      </a>
     </div>
   );
 }
