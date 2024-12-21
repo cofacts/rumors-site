@@ -22,6 +22,7 @@ import ReportAbuseMenuItem, {
 } from 'components/ActionMenu/ReportAbuseMenuItem';
 import useCurrentUser from 'lib/useCurrentUser';
 import cx from 'clsx';
+import { useAppContext } from 'components/AppLayout/context';
 
 const localStorage = typeof window === 'undefined' ? {} : window.localStorage;
 
@@ -201,12 +202,13 @@ const CreateReplyRequestForm = React.memo(
 
     const classes = useStyles();
     const user = useCurrentUser();
+    const { openLoginModal } = useAppContext();
 
     const onCommentButtonClick = () => {
       if (user) setShowForm(!showForm);
       else {
         setShowForm(false);
-        alert(t`Please login first.`);
+        openLoginModal();
       }
     };
 
