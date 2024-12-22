@@ -89,9 +89,9 @@ function ProfilePage({ id, slug }) {
   //
   const router = useRouter();
   const latestSlug = data?.GetUser?.slug; // slug may update after user edits
-  const userId = currentUser?.id;
+  const userId = data?.GetUser?.id;
   useEffect(() => {
-    if (latestSlug === undefined) return;
+    if (!latestSlug && latestSlug !== '') return;
     const targetPath = latestSlug
       ? `/user/${encodeURI(latestSlug)}`
       : `/user?id=${userId}`;
