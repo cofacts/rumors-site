@@ -116,7 +116,7 @@ function SearchPageJumbotron() {
               name="search"
               className={classes.input}
               minRows={1}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 // enter to trigger search, so disable default line breaking
                 if (e.key == 'Enter') {
                   e.preventDefault();
