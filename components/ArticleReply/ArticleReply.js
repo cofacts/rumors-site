@@ -27,6 +27,10 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(2),
     },
   },
+  title: {
+    fontSize: '1em',
+    fontWeight: 700,
+  },
 }));
 
 const ArticleReplyData = gql`
@@ -123,7 +127,7 @@ const ArticleReply = React.memo(({ articleReply }) => {
     const reference = reply.reference;
     return (
       <section className={classes.root}>
-        <h3>{TYPE_REFERENCE_TITLE[replyType]}</h3>
+        <h3 className={classes.title}>{TYPE_REFERENCE_TITLE[replyType]}</h3>
         {reference
           ? nl2br(linkify(reference))
           : `⚠️️ ${t`There is no reference for this reply. Its truthfulness may be doubtful.`}`}
