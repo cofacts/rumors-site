@@ -12,19 +12,19 @@ import CopyButton from '../CopyButton';
 
 const useStyles = makeStyles(theme => ({
   button: ({ open }) => ({
-    fontSize: theme.typography.htmlFontSize,
     borderRadius: 45,
-    padding: '1px 8px',
+    padding: '0px 8px',
     outline: 'none',
     cursor: 'pointer',
     marginLeft: 2,
+    fontWeight: 500,
     border: `1px solid ${
       open ? theme.palette.primary[500] : theme.palette.secondary[100]
     }`,
     color: open ? theme.palette.primary[500] : theme.palette.secondary[200],
     background: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
-      padding: '4px 18px',
+      padding: '0px 18px',
       marginRight: 10,
       marginLeft: 12,
     },

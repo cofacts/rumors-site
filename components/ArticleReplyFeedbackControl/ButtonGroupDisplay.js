@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary[100],
     background: theme.palette.common.white,
     [theme.breakpoints.up('md')]: {
-      padding: '0 18px',
+      padding: '0 15px',
       marginRight: 10,
     },
     '&:hover': {
@@ -46,7 +46,12 @@ const useStyles = makeStyles(theme => ({
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
         borderRight: 0,
-        paddingRight: 0,
+        paddingLeft: '10px',
+        paddingRight: '4px',
+        [theme.breakpoints.up('md')]: {
+          paddingLeft: '18px',
+          paddingRight: '6px',
+        },
       },
       '&:last-child': {
         borderTopLeftRadius: 0,
