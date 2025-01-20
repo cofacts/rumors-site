@@ -86,6 +86,51 @@ const StatusBadge = withStyles(theme => ({
   );
 });
 
+const BackgroundBadge = withStyles(theme => ({
+  container: ({ size, mdSize, majorBadgeBorderUrl }) => ({
+    position: 'relative',
+    display: 'inline-flex',
+    flexShrink: '0',
+    verticalAlign: 'middle',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: majorBadgeBorderUrl ? size + 8 : size,
+    height: majorBadgeBorderUrl ? size + 8 : size,
+    backgroundImage: majorBadgeBorderUrl
+      ? `url(${majorBadgeBorderUrl})`
+      : 'none',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
+    backgroundPosition: 'center',
+    '&:hover': {
+      '&::after': {
+        content: ({ majorBadgeName }) =>
+          majorBadgeName ? `"${majorBadgeName}"` : 'none',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        color: theme.palette.common.white,
+        fontSize: 12,
+        borderRadius: '50%',
+      },
+    },
+    [theme.breakpoints.up('md')]: {
+      width: majorBadgeBorderUrl ? (mdSize || size) + 8 : mdSize || size,
+      height: majorBadgeBorderUrl ? (mdSize || size) + 8 : mdSize || size,
+    },
+  }),
+}))(({ classes, children, ...props }) => (
+  <span className={classes.container} {...props}>
+    {children}
+  </span>
+));
+
 const OpenPeepsAvatar = withStyles(theme => ({
   showcaseWrapper: {
     display: 'flex',
@@ -116,6 +161,23 @@ const OpenPeepsAvatar = withStyles(theme => ({
         `${
           avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'
         } translateY(${size / 15}px)`,
+    },
+    '&:hover': {
+      '&::after': {
+        content: ({ user }) => `"${user?.majorBadgeName}"`,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        color: theme.palette.common.white,
+        fontSize: 12,
+        borderRadius: '50%',
+      },
     },
   },
   // eslint-disable-next-line no-unused-vars
@@ -181,6 +243,16 @@ function Avatar({
   if (hasLink) {
     avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
   }
+  avatar = (
+    <BackgroundBadge
+      majorBadgeBorderUrl={user?.majorBadgeBorderUrl}
+      majorBadgeName={user?.majorBadgeName}
+      size={size}
+      mdSize={mdSize}
+    >
+      {avatar}
+    </BackgroundBadge>
+  );
   return avatar;
 }
 
@@ -192,6 +264,9 @@ Avatar.fragments = {
       avatarUrl
       avatarType
       avatarData
+      majorBadgeBorderUrl
+      majorBadgeImageUrl
+      majorBadgeName
       ...ProfileLinkUserData
     }
     ${ProfileLink.fragments.ProfileLinkUserData}
