@@ -173,6 +173,17 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'space-between',
     },
   },
+  majorBadgeIcon: {
+    position: 'relative',
+    right: '10px', 
+    height: '100%',
+  },
+  majorBadgeName: {
+    position: 'relative',
+    right: '10px', 
+    height: '100%',
+    color: 'white',
+  },
 }));
 
 /**
@@ -233,6 +244,20 @@ function UserPageHeader({ user, isSelf, stats }) {
           <span className={classes.level}>Lv. {user?.level || 0}</span>
           {LEVEL_NAMES[(user?.level)] || ''}
         </Ribbon>
+        <img className={classes.majorBadgeIcon} src={user?.majorBadgeImageUrl}></img>
+        <span
+          className={classes.majorBadgeName}
+          onClick={() => {
+            showDialog({
+              dialog: ShowAwardedBadgeDialog,
+              dialogProps: {
+                user={user}
+              },
+            });
+          }}
+        >
+          {user?.majorBadgeName}
+        </span>
       </div>
 
       <div className={classes.content}>
