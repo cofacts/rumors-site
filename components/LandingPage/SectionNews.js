@@ -171,6 +171,56 @@ const NEWS = {
   ],
   zh_TW: [
     [
+      '2024-01-01 中央社',
+      '日經亞洲：大選中力抗假訊息 台灣公民團體領頭',
+      'https://www.cna.com.tw/news/aipl/202401010048.aspx',
+    ],
+    [
+      '2023-07-11 台灣事實查核中心',
+      '國際專家驚艷 台灣事實查核生態圈能量豐沛',
+      'https://tfc-taiwan.org.tw/articles/9341',
+    ],
+    [
+      '2023-02-18 Newtalk',
+      '東京大學教授率團來訪 青年局長錢念群：樂見新北青年受國際重視',
+      'https://newtalk.tw/news/view/2023-02-18/858070',
+    ],
+    [
+      '2023-01-30 台灣事實查核中心',
+      '匈牙利智庫報告：中國資訊戰善用議題分化台灣社會',
+      'https://tfc-taiwan.org.tw/articles/8733',
+    ],
+    [
+      '2022-12 銘報',
+      '假消息滿天飛 多透過Line運用AI辨真假',
+      'https://mol.mcu.edu.tw/%E5%81%87%E6%B6%88%E6%81%AF%E6%BB%BF%E5%A4%A9%E9%A3%9B-%E5%A4%9A%E9%80%8F%E9%81%8Eline%E9%81%8B%E7%94%A8ai%E8%BE%A8%E7%9C%9F%E5%81%87/',
+    ],
+    [
+      '2022-10-21 未來大人物',
+      '當群組裡傳來假訊息， Cofacts 真的假的：勇敢查核並做個識讀者吧！',
+      'https://becomingaces.com/article/238',
+    ],
+    [
+      '2022-02-21 公視 青春發言人',
+      '人人都可變變變，只有修圖不夠看，直接換臉可以嗎？ | 如何製造和辨別Deepfake影片？技術大公開',
+      'https://www.youtube.com/watch?v=tQ2pLBmKLrQ',
+    ],
+    [
+      '2020-11 台北畫刊',
+      '虛擬世界的真實之聲',
+      'https://www.travel.taipei/zh-tw/pictorial/article/25156',
+    ],
+    [
+      '2020-06 台灣光華雜誌',
+      '謊言vs. 真實 打擊假訊息：防詐達人、Cofacts',
+      'https://www.taiwanpanorama.com.tw/Articles/Details?Guid=428daa91-750f-4ac8-8ec7-21dce4f2cb9d&CatId=7',
+    ],
+    [
+      '2019-12-18 德國之聲',
+      '台湾大选热词：假讯息分割世界',
+      'https://www.dw.com/zh/%E5%8F%B0%E6%B9%BE%E5%A4%A7%E9%80%89%E7%83%AD%E8%AF%8D%E5%81%87%E8%AE%AF%E6%81%AF%E5%88%86%E5%89%B2%E4%B8%96%E7%95%8C/a-51716879',
+    ],
+    [
       '2019-10-13 2019 NPOwer 公益行動家',
       '真的假的 Cofacts —— 建立 Line 機器人對抗假資訊焦慮',
       'https://npost.tw/archives/52977',
