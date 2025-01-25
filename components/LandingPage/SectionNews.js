@@ -142,16 +142,46 @@ const NEWS = {
     ],
   ],
   ja: [
-    // AI: We have these new entries
-    // https://www.asahi.com/sp/articles/DA3S15892573.html	2024/03/22 朝日新聞 -（新世ＡＩ）選挙むしばむ偽動画
-    // https://news.yahoo.co.jp/expert/articles/ea08db1d092604950430e920febc63682cd1b6b9	2024/1/13 #台湾総統選挙 「フェイクニュース集団」との攻防最前線　公民連携「Cofacts」が明かす驚く手口
-    // https://www.nikkei.com/article/DGXZQOFH257OC0V21C23A2000000/	2023/12/27 日本経済新聞 - 台湾総統選挙の情報工作、市民がフェイクを監視
-    // https://s.mxtv.jp/tokyomxplus/mx/article/202312200650/detail/	2023/12/20 Tokyo MX - フェイクニュースで世界が変わる？ 「認知戦」防衛最前線、台湾のファクトチェック機関を堀潤が取材
-    // https://www3.nhk.or.jp/news/html/20221206/k10013914251000.html	2022/12/06 NHK - 台湾 情報戦～市民によるファクトチェック最前線～
-    // https://toyokeizai.net/articles/-/630528?page=2	2022/11/08 台湾のエンジニア集団が｢政治｣で活躍できるワケ
-    // http://www.yaephone.com/xintiao/6306	2021/05 20万人以上が利用中！台湾の民間によるフェイクニュース対策「ネットで見かけた情報」「知り合いから送られてきた情報」、人に知らせたりSNSで投稿する前に「Cofacts 真的假的」でチェックしてみよう
-    // https://wired.jp/membership/2020/11/20/how-taiwans-unlikely-digital-minister-hacked-the-pandemic-2/	2020/11/20 Wired - オードリー・タン：台湾のデジタル担当大臣は、いかにパンデミック対策を成功させたか（後篇）
-    // format these new entries in similar manner and add them to the array, AI!
+    [
+      '2024-03-22 朝日新聞',
+      '（新世ＡＩ）選挙むしばむ偽動画',
+      'https://www.asahi.com/sp/articles/DA3S15892573.html',
+    ],
+    [
+      '2024-01-13 Yahoo!ニュース',
+      '#台湾総統選挙 「フェイクニュース集団」との攻防最前線　公民連携「Cofacts」が明かす驚く手口',
+      'https://news.yahoo.co.jp/expert/articles/ea08db1d092604950430e920febc63682cd1b6b9',
+    ],
+    [
+      '2023-12-27 日本経済新聞',
+      '台湾総統選挙の情報工作、市民がフェイクを監視',
+      'https://www.nikkei.com/article/DGXZQOFH257OC0V21C23A2000000/',
+    ],
+    [
+      '2023-12-20 Tokyo MX',
+      'フェイクニュースで世界が変わる？ 「認知戦」防衛最前線、台湾のファクトチェック機関を堀潤が取材',
+      'https://s.mxtv.jp/tokyomxplus/mx/article/202312200650/detail/',
+    ],
+    [
+      '2022-12-06 NHK',
+      '台湾 情報戦～市民によるファクトチェック最前線～',
+      'https://www3.nhk.or.jp/news/html/20221206/k10013914251000.html',
+    ],
+    [
+      '2022-11-08 東洋経済',
+      '台湾のエンジニア集団が｢政治｣で活躍できるワケ',
+      'https://toyokeizai.net/articles/-/630528?page=2',
+    ],
+    [
+      '2021-05 やえやまフォン',
+      '20万人以上が利用中！台湾の民間によるフェイクニュース対策「ネットで見かけた情報」「知り合いから送られてきた情報」、人に知らせたりSNSで投稿する前に「Cofacts 真的假的」でチェックしてみよう',
+      'http://www.yaephone.com/xintiao/6306',
+    ],
+    [
+      '2020-11-20 Wired',
+      'オードリー・タン：台湾のデジタル担当大臣は、いかにパンデミック対策を成功させたか（後篇）',
+      'https://wired.jp/membership/2020/11/20/how-taiwans-unlikely-digital-minister-hacked-the-pandemic-2/',
+    ],
     [
       '2020-02-06 NHK',
       '台湾 フェイクニュース最前線',
