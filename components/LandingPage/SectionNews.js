@@ -52,11 +52,6 @@ const NEWS = {
     ],
     [
       '2019-03-25 公視早安新聞',
-      '助辨別假新聞 專訪「美玉姨」設計者',
-      'https://news.pts.org.tw/article/426650',
-    ],
-    [
-      '2019-03-25 公視早安新聞',
       '"真的假的" 協作無償建闢謠資料庫',
       'https://www.facebook.com/ptsmorningtaiwan/videos/371996636739225/',
     ],
