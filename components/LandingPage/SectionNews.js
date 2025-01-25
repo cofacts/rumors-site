@@ -163,9 +163,9 @@ const NEWS = {
       'https://s.mxtv.jp/tokyomxplus/mx/article/202312200650/detail/',
     ],
     [
-      '2022-12-06 NHK',
-      '台湾 情報戦～市民によるファクトチェック最前線～',
-      'https://www3.nhk.or.jp/news/html/20221206/k10013914251000.html',
+      '2023-01-13 NHK',
+      '「情報戦」の最前線 台湾ではいま',
+      'https://www3.nhk.or.jp/news/special/sci_cul/2023/01/special/taiwan-2/',
     ],
     [
       '2022-11-08 東洋経済',
