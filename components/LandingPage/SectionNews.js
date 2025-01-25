@@ -3,20 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const NEWS = {
   en_US: [
-    // AI: Add new entries here.
-    // https://www.bpb.de/themen/medien-journalismus/facts-contexts/facts-contexts-en/trail-of-rumours/556432/a-helpful-bot/	2024/11 bpb - A helpful bot - On the trail of rumours
-    // https://dominotheory.com/how-taiwan-tackles-disinformation-as-the-most-targeted-country-for-information-manipulation-in-the-world/	2024/10/25 Domino Theory - How Taiwan Tackles Disinformation as the Most Targeted Country for Information Manipulation in the World
-    // https://www.journals.uchicago.edu/doi/full/10.1086/730621	2024/07/08 The University of Chichago Press - Checking Facts by a Bot - Crowdsourced Facts and Intergenerational Care in Posttruth Taiwan
-    // https://www.persuasion.community/p/how-to-fight-misinformation-without	2024/04/05 Persuation - How to Fight Misinformation Without Censorship
-    // https://www.wienerzeitung.at/a/taiwan-mit-dem-chatbot-gegen-die-grossmacht-china	2024/03/18 Wiener Zeitung - Taiwan: Mit dem Chatbot gegen die Großmacht China
-    // https://www.rsi.ch/info/mondo/L%E2%80%99ombra-della-disinformazione-sul-voto-taiwanese--2038828.html	2024/1/12 RSI - L’ombra della disinformazione sul voto taiwanese
-    // https://www.vrt.be/vrtnws/nl/2024/01/12/nepberichten-overspoelen-taiwan-in-aanloop-naar-verkiezingen/	2024/1/13 VRT - Van regering die bloed van burgers aftapt tot giftig varkensvlees: nepnieuws overspoelt Taiwan vlak voor verkiezingen
-    // https://www.codastory.com/authoritarian-tech/taiwan-election-disinformation-china/	2024/1/5 Coda Story - Taiwan confronts China’s disinformation behemoth ahead of vote
-    // https://www.telegraph.co.uk/world-news/2023/12/16/taiwan-fake-news-fighters-tackle-chinese-election-influence/	2023/12/16 Telegraph - Taiwan’s deepfake fighters tackle Chinese election interference
-    // https://merics.org/en/report/savvy-disinformation-offensive-china-takes-aim-taiwan-election	2023/12/14 Metrics - In a savvy disinformation offensive, China takes aim at Taiwan election
-    // Add these items to the array using existing format, AI!
-
-
     [
       '2018-11-22 Quartz',
       'How Taiwan battled fake anti-LGBT news before its vote on same-sex marriage',
