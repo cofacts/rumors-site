@@ -105,7 +105,7 @@ const NEWS = {
     ],
     [
       '2021-11-02 a day',
-      'จริงหรือมั่ว ชัวร์หรือไม่ 'cofacts' แชตบอตจากไต้หวันผู้อาสาตรวจข่าวปลอมในกรุ๊ป LINE ให้ทุกครอบครัว',
+      "จริงหรือมั่ว ชัวร์หรือไม่ 'cofacts' แชตบอตจากไต้หวันผู้อาสาตรวจข่าวปลอมในกรุ๊ป LINE ให้ทุกครอบครัว",
       'https://adaymagazine.com/cofacts/',
     ],
     [
@@ -119,13 +119,13 @@ const NEWS = {
       'https://www.taiwan-panorama.com/en/Articles/Details?Guid=c67ddbe4-5350-4732-ae97-a70bb42535e1&CatId=7',
     ],
     [
-      '2020-03 l\'Usine Digitale',
-      'Covid-19 : comment Taïwan s\'est appuyé sur la technologie pour contenir l\'épidémie',
+      "2020-03 l'Usine Digitale",
+      "Covid-19 : comment Taïwan s'est appuyé sur la technologie pour contenir l'épidémie",
       'https://www.usine-digitale.fr/article/covid-19-comment-taiwan-s-est-appuye-sur-la-technologie-pour-contenir-l-epidemie.N943431',
     ],
     [
       '2020-01-20 Aljazeera',
-      'The children\'s storyteller helping Taiwan sort fact from fiction',
+      "The children's storyteller helping Taiwan sort fact from fiction",
       'https://www.aljazeera.com/news/2020/1/20/the-childrens-storyteller-helping-taiwan-sort-fact-from-fiction',
     ],
     [
@@ -135,7 +135,7 @@ const NEWS = {
     ],
     [
       '2019-12-18 Reuters',
-      'Chinese \'rumors\' and \'cyber armies\' - Taiwan fights election \'fake news\'',
+      "Chinese 'rumors' and 'cyber armies' - Taiwan fights election 'fake news'",
       'https://www.reuters.com/article/us-taiwan-election-media/chinese-rumors-and-cyber-armies-taiwan-fights-election-fake-news-idUSKBN1YL2MF',
     ],
     [
