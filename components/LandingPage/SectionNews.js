@@ -54,6 +54,91 @@ const NEWS = {
       'https://merics.org/en/report/savvy-disinformation-offensive-china-takes-aim-taiwan-election',
     ],
     [
+      '2023-09-21 Taiwan Studies Journal',
+      'Insights from a Comparative Study on the Variety, Velocity, Veracity, and Viability of Crowdsourced and Professional Fact-Checking Services',
+      'https://tsjournal.org/index.php/jots/article/view/118',
+    ],
+    [
+      '2023-07-12 Bloomberg',
+      "TikTok's Chinese Ownership Adds to Scrutiny in Taiwan Vote",
+      'https://www.bloomberg.com/news/articles/2023-07-12/tiktok-content-under-scrutiny-with-taiwan-election-heating-up#xj4y7vzkg',
+    ],
+    [
+      '2023-03-05 The Wire China',
+      "TSMC's Turning Point",
+      'https://www.thewirechina.com/2023/03/05/tsmc-turning-point/',
+    ],
+    [
+      '2022-12-07 NHK World',
+      'Taiwanese Non-Profits Take on Fake News',
+      'https://web.archive.org/web/20221213060058/https://www3.nhk.or.jp/nhkworld/en/news/videos/20221207162023105/',
+    ],
+    [
+      '2022-11-12 Taipei Times',
+      'Busting lies during poll season',
+      'https://www.taipeitimes.com/News/feat/archives/2022/11/12/2003788764',
+    ],
+    [
+      '2022-11-09 The Atlantic',
+      'Taiwan prepares to be invaded',
+      'https://www.theatlantic.com/magazine/archive/2022/12/china-takeover-taiwan-xi-tsai-ing-wen/671895/',
+    ],
+    [
+      '2022-10-12 Taiwan Insight',
+      'The bot fighting disinformation: the stories of Cofacts',
+      'https://taiwaninsight.org/2022/10/12/the-bot-fighting-disinformation-the-story-of-cofacts/',
+    ],
+    [
+      '2022-09-19 Aljazeera',
+      "Taiwan's amateur fact-checkers wage war on fake news from China",
+      'https://www.aljazeera.com/economy/2022/9/19/taiwan',
+    ],
+    [
+      '2022-06-23 The Diplomat',
+      'Ukraine Disinformation Fight Sounds Warning Bells for Taiwan',
+      'https://thediplomat.com/2022/06/ukraine-disinformation-fight-sounds-warning-bells-for-taiwan/',
+    ],
+    [
+      '2022-02-27 BBC',
+      'How Taiwan used simple tech to help contain Covid-19',
+      'https://www.bbc.com/news/business-60461732',
+    ],
+    [
+      '2021-11-02 a day',
+      'จริงหรือมั่ว ชัวร์หรือไม่ 'cofacts' แชตบอตจากไต้หวันผู้อาสาตรวจข่าวปลอมในกรุ๊ป LINE ให้ทุกครอบครัว',
+      'https://adaymagazine.com/cofacts/',
+    ],
+    [
+      '2020-08 IFTF & Graphika',
+      'Detecting digital fingerprints: Tracing Chinese disinformation in Taiwan',
+      'https://www.iftf.org/disinfo-in-taiwan',
+    ],
+    [
+      '2020-06 Taiwan Panorama',
+      'Rumors vs. Reality: Dr. Message and Cofacts Combat Misinformation',
+      'https://www.taiwan-panorama.com/en/Articles/Details?Guid=c67ddbe4-5350-4732-ae97-a70bb42535e1&CatId=7',
+    ],
+    [
+      '2020-03 l\'Usine Digitale',
+      'Covid-19 : comment Taïwan s\'est appuyé sur la technologie pour contenir l\'épidémie',
+      'https://www.usine-digitale.fr/article/covid-19-comment-taiwan-s-est-appuye-sur-la-technologie-pour-contenir-l-epidemie.N943431',
+    ],
+    [
+      '2020-01-20 Aljazeera',
+      'The children\'s storyteller helping Taiwan sort fact from fiction',
+      'https://www.aljazeera.com/news/2020/1/20/the-childrens-storyteller-helping-taiwan-sort-fact-from-fiction',
+    ],
+    [
+      '2020-01-09 PBS',
+      'In Taiwan, presidential election brings long-simmering tensions with China to the surface',
+      'https://www.pbs.org/newshour/show/in-taiwan-presidential-election-brings-long-simmering-tensions-with-china-to-the-surface',
+    ],
+    [
+      '2019-12-18 Reuters',
+      'Chinese \'rumors\' and \'cyber armies\' - Taiwan fights election \'fake news\'',
+      'https://www.reuters.com/article/us-taiwan-election-media/chinese-rumors-and-cyber-armies-taiwan-fights-election-fake-news-idUSKBN1YL2MF',
+    ],
+    [
       '2018-11-22 Quartz',
       'How Taiwan battled fake anti-LGBT news before its vote on same-sex marriage',
       'https://qz.com/1471411/chat-apps-like-line-spread-anti-lgbt-fake-news-before-taiwan-same-sex-marriage-vote/',
