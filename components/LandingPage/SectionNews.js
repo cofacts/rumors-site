@@ -4,6 +4,56 @@ import { makeStyles } from '@material-ui/core/styles';
 const NEWS = {
   en_US: [
     [
+      '2024-11 bpb',
+      'A helpful bot - On the trail of rumours',
+      'https://www.bpb.de/themen/medien-journalismus/facts-contexts/facts-contexts-en/trail-of-rumours/556432/a-helpful-bot/',
+    ],
+    [
+      '2024-10-25 Domino Theory',
+      'How Taiwan Tackles Disinformation as the Most Targeted Country for Information Manipulation in the World',
+      'https://dominotheory.com/how-taiwan-tackles-disinformation-as-the-most-targeted-country-for-information-manipulation-in-the-world/',
+    ],
+    [
+      '2024-07-08 The University of Chicago Press',
+      'Checking Facts by a Bot - Crowdsourced Facts and Intergenerational Care in Posttruth Taiwan',
+      'https://www.journals.uchicago.edu/doi/full/10.1086/730621',
+    ],
+    [
+      '2024-04-05 Persuasion',
+      'How to Fight Misinformation Without Censorship',
+      'https://www.persuasion.community/p/how-to-fight-misinformation-without',
+    ],
+    [
+      '2024-03-18 Wiener Zeitung',
+      'Taiwan: Mit dem Chatbot gegen die Großmacht China',
+      'https://www.wienerzeitung.at/a/taiwan-mit-dem-chatbot-gegen-die-grossmacht-china',
+    ],
+    [
+      '2024-01-13 VRT',
+      'Van regering die bloed van burgers aftapt tot giftig varkensvlees: nepnieuws overspoelt Taiwan vlak voor verkiezingen',
+      'https://www.vrt.be/vrtnws/nl/2024/01/12/nepberichten-overspoelen-taiwan-in-aanloop-naar-verkiezingen/',
+    ],
+    [
+      '2024-01-12 RSI',
+      "L'ombra della disinformazione sul voto taiwanese",
+      'https://www.rsi.ch/info/mondo/L%E2%80%99ombra-della-disinformazione-sul-voto-taiwanese--2038828.html',
+    ],
+    [
+      '2024-01-05 Coda Story',
+      "Taiwan confronts China's disinformation behemoth ahead of vote",
+      'https://www.codastory.com/authoritarian-tech/taiwan-election-disinformation-china/',
+    ],
+    [
+      '2023-12-16 Telegraph',
+      "Taiwan's deepfake fighters tackle Chinese election interference",
+      'https://www.telegraph.co.uk/world-news/2023/12/16/taiwan-fake-news-fighters-tackle-chinese-election-influence/',
+    ],
+    [
+      '2023-12-14 MERICS',
+      'In a savvy disinformation offensive, China takes aim at Taiwan election',
+      'https://merics.org/en/report/savvy-disinformation-offensive-china-takes-aim-taiwan-election',
+    ],
+    [
       '2018-11-22 Quartz',
       'How Taiwan battled fake anti-LGBT news before its vote on same-sex marriage',
       'https://qz.com/1471411/chat-apps-like-line-spread-anti-lgbt-fake-news-before-taiwan-same-sex-marriage-vote/',
