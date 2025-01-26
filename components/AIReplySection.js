@@ -29,7 +29,9 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
   const [expand, setExpand] = useState(defaultExpand);
   const classes = useStyles();
 
-  const handleVote = (vote: 1 | -1) => {};
+  const handleVote = (vote: 1 | -1) => {
+    // send vote to Langfuse via LangfuseWeb, AI!
+  };
 
   return (
     <Card style={{ background: '#fafafa' }}>
