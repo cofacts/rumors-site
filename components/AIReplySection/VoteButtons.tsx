@@ -5,6 +5,7 @@ import {
   Popover,
   Typography,
 } from '@material-ui/core';
+import cx from 'classnames';
 import CloseIcon from '@material-ui/icons/Close';
 import { t } from 'ttag';
 import { useState } from 'react';
@@ -84,30 +85,43 @@ function VoteButtons({ aiResponseId }: Props) {
     votePopoverAnchorEl,
     setVotePopoverAnchorEl,
   ] = useState<HTMLElement | null>(null);
-  const [pendingVote, setPendingVote] = useState<number | null>(null);
+  const [currentVote, setCurrentVote] = useState<number>(0);
   const [comment, setComment] = useState('');
 
-  const openVotePopover = (
+  const handleVoteClick = async (
     event: React.MouseEvent<HTMLElement>,
     vote: number
   ) => {
-    setVotePopoverAnchorEl(event.currentTarget);
-    setPendingVote(vote);
+    // If clicking same vote again, set to 0 (no vote)
+    const newVote = vote === currentVote ? 0 : vote;
+    
+    // Send vote immediately
+    await langfuseWeb.score({
+      traceId: aiResponseId,
+      name: 'user-feedback',
+      value: newVote,
+    });
+    
+    setCurrentVote(newVote);
+    
+    // Only open popover if setting a new vote (not removing)
+    if (newVote !== 0) {
+      setVotePopoverAnchorEl(event.currentTarget);
+    }
   };
 
   const closeVotePopover = () => {
     setVotePopoverAnchorEl(null);
-    setPendingVote(null);
     setComment('');
   };
 
-  const handleVote = async () => {
-    if (pendingVote === null) return;
+  const handleCommentSubmit = async () => {
+    if (currentVote === 0 || !comment.trim()) return;
 
     await langfuseWeb.score({
       traceId: aiResponseId,
       name: 'user-feedback',
-      value: pendingVote,
+      value: currentVote,
       comment,
     });
     closeVotePopover();
@@ -121,7 +135,10 @@ function VoteButtons({ aiResponseId }: Props) {
           variant="outlined"
           className={classes.vote}
           type="button"
-          onClick={e => openVotePopover(e, 1)}
+          onClick={e => handleVoteClick(e, 1)}
+          className={cx(classes.vote, {
+            [classes.voted]: currentVote === 1
+          })}
         >
           <ThumbUpIcon className={classes.thumbIcon} />
         </Button>
@@ -130,7 +147,10 @@ function VoteButtons({ aiResponseId }: Props) {
           variant="outlined"
           className={classes.vote}
           type="button"
-          onClick={e => openVotePopover(e, -1)}
+          onClick={e => handleVoteClick(e, -1)}
+          className={cx(classes.vote, {
+            [classes.voted]: currentVote === -1
+          })}
         >
           <ThumbDownIcon className={classes.thumbIcon} />
         </Button>
@@ -153,7 +173,7 @@ function VoteButtons({ aiResponseId }: Props) {
           <CloseIcon />
         </button>
         <Typography className={classes.popupTitle}>
-          {pendingVote === 1
+          {currentVote === 1
             ? t`Do you have anything to add?`
             : t`Why do you think it is not useful?`}
         </Typography>
@@ -169,7 +189,7 @@ function VoteButtons({ aiResponseId }: Props) {
             color="primary"
             variant="contained"
             disableElevation
-            onClick={handleVote}
+            onClick={handleCommentSubmit}
           >
             {t`Send`}
           </Button>
