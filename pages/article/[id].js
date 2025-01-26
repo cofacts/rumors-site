@@ -153,6 +153,7 @@ const LOAD_ARTICLE = gql`
         ...CurrentRepliesData
       }
       aiReplies {
+        id
         text
       }
       ...RelatedArticleData
@@ -575,6 +576,7 @@ function ArticlePage() {
 
           {article.aiReplies?.length > 0 && (
             <AIReplySection
+              aiResponseId={article.aiReplies[0].id}
               defaultExpand={replyCount === 0}
               aiReplyText={article.aiReplies[0].text}
             />

@@ -26,7 +26,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AIReplySection({ defaultExpand = false, aiReplyText = '', traceId }) {
+function AIReplySection({
+  defaultExpand = false,
+  aiReplyText = '',
+  aiResponseId,
+}) {
   const [expand, setExpand] = useState(defaultExpand);
   const classes = useStyles();
 
@@ -37,9 +41,9 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '', traceId }) {
 
   const handleVote = async (vote: 1 | -1) => {
     await langfuseWeb.score({
-      traceId,
-      name: 'ai_reply_feedback',
-      value: vote === 1 ? 1 : 0,
+      traceId: aiResponseId,
+      name: 'user-feedback',
+      value: vote,
     });
   };
 
