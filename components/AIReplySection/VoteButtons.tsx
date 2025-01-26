@@ -133,7 +133,6 @@ function VoteButtons({ aiResponseId }: Props) {
         <Button
           size="small"
           variant="outlined"
-          className={classes.vote}
           type="button"
           onClick={e => handleVoteClick(e, 1)}
           className={cx(classes.vote, {
@@ -145,7 +144,6 @@ function VoteButtons({ aiResponseId }: Props) {
         <Button
           size="small"
           variant="outlined"
-          className={classes.vote}
           type="button"
           onClick={e => handleVoteClick(e, -1)}
           className={cx(classes.vote, {
