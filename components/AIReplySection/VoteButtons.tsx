@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: 10,
     },
   },
+  voted: {
+    color: `${theme.palette.primary[500]} !important`,
+  },
   thumbIcon: {
     fontSize: 20,
     fill: 'transparent',
