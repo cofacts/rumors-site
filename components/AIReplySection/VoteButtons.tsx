@@ -1,4 +1,10 @@
-import { Button, Box, makeStyles, Popover, Typography } from '@material-ui/core';
+import {
+  Button,
+  Box,
+  makeStyles,
+  Popover,
+  Typography,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { t } from 'ttag';
 import { useState } from 'react';
@@ -71,11 +77,17 @@ type Props = {
 
 function VoteButtons({ aiResponseId }: Props) {
   const classes = useStyles();
-  const [votePopoverAnchorEl, setVotePopoverAnchorEl] = useState<HTMLElement | null>(null);
+  const [
+    votePopoverAnchorEl,
+    setVotePopoverAnchorEl,
+  ] = useState<HTMLElement | null>(null);
   const [pendingVote, setPendingVote] = useState<number | null>(null);
   const [comment, setComment] = useState('');
 
-  const openVotePopover = (event: React.MouseEvent<HTMLElement>, vote: number) => {
+  const openVotePopover = (
+    event: React.MouseEvent<HTMLElement>,
+    vote: number
+  ) => {
     setVotePopoverAnchorEl(event.currentTarget);
     setPendingVote(vote);
   };
@@ -88,7 +100,7 @@ function VoteButtons({ aiResponseId }: Props) {
 
   const handleVote = async () => {
     if (pendingVote === null) return;
-    
+
     await langfuseWeb.score({
       traceId: aiResponseId,
       name: 'user-feedback',
@@ -106,7 +118,7 @@ function VoteButtons({ aiResponseId }: Props) {
           variant="outlined"
           className={classes.vote}
           type="button"
-          onClick={(e) => openVotePopover(e, 1)}
+          onClick={e => openVotePopover(e, 1)}
         >
           <ThumbUpIcon className={classes.thumbIcon} />
         </Button>
@@ -115,7 +127,7 @@ function VoteButtons({ aiResponseId }: Props) {
           variant="outlined"
           className={classes.vote}
           type="button"
-          onClick={(e) => openVotePopover(e, -1)}
+          onClick={e => openVotePopover(e, -1)}
         >
           <ThumbDownIcon className={classes.thumbIcon} />
         </Button>
