@@ -23,13 +23,14 @@ const langfuseWeb = new LangfuseWeb({
 const useStyles = makeStyles(theme => ({
   vote: {
     borderRadius: 45,
+    marginTop: 16,
     marginRight: 3,
     [theme.breakpoints.up('md')]: {
       marginRight: 10,
     },
   },
   thumbIcon: {
-    fontSize: 16,
+    fontSize: 20,
     fill: 'transparent',
     stroke: 'currentColor',
   },
