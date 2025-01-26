@@ -29,17 +29,17 @@ const useStyles = makeStyles(theme => ({
 function AIReplySection({ defaultExpand = false, aiReplyText = '', traceId }) {
   const [expand, setExpand] = useState(defaultExpand);
   const classes = useStyles();
-  
+
   const langfuseWeb = new LangfuseWeb({
     publicKey: process.env.NEXT_PUBLIC_LANGFUSE_PUBLIC_KEY,
-    baseUrl: 'https://cloud.langfuse.com'
+    baseUrl: 'https://cloud.langfuse.com',
   });
 
   const handleVote = async (vote: 1 | -1) => {
     await langfuseWeb.score({
       traceId,
       name: 'ai_reply_feedback',
-      value: vote === 1 ? 1 : 0
+      value: vote === 1 ? 1 : 0,
     });
   };
 
