@@ -1,14 +1,35 @@
 import { useState } from 'react';
 import { t } from 'ttag';
 
+import { Box, Button, makeStyles } from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import { Card, CardHeader, CardContent } from 'components/Card';
+import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
+
+const useStyles = makeStyles(theme => ({
+  vote: {
+    borderRadius: 45,
+    marginRight: 3,
+    [theme.breakpoints.up('md')]: {
+      marginRight: 10,
+    },
+  },
+  thumbIcon: {
+    fontSize: 16,
+    margin: '0 2px',
+    fill: 'transparent',
+    stroke: 'currentColor',
+  },
+}));
 
 function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
   const [expand, setExpand] = useState(defaultExpand);
+  const classes = useStyles();
+
+  const handleVote = (vote: 1 | -1) => {};
 
   return (
     <Card style={{ background: '#fafafa' }}>
@@ -23,7 +44,7 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
         }}
         onClick={() => setExpand(v => !v)}
       >
-        {t`Automated analysis from ChatGPT`}
+        {t`Automated analysis from AI`}
         {expand ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
       </CardHeader>
       {expand && (
@@ -34,6 +55,28 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
           <div style={{ whiteSpace: 'pre-line', marginTop: 16 }}>
             {aiReplyText}
           </div>
+          <Box display="flex" justifyContent="space-between">
+            <Box display="flex">
+              <Button
+                size="small"
+                variant="outlined"
+                className={classes.vote}
+                type="button"
+                onClick={() => handleVote(1)}
+              >
+                <ThumbUpIcon className={classes.thumbIcon} />
+              </Button>
+              <Button
+                size="small"
+                variant="outlined"
+                className={classes.vote}
+                type="button"
+                onClick={() => handleVote(-1)}
+              >
+                <ThumbDownIcon className={classes.thumbIcon} />
+              </Button>
+            </Box>
+          </Box>
         </CardContent>
       )}
     </Card>
