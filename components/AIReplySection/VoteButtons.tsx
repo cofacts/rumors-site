@@ -80,28 +80,33 @@ type Props = {
 };
 
 // One browser refresh represents one voter
-const aiReplyVoterId = Math.random().toString(36).substring(2);
+const aiReplyVoterId = Math.random()
+  .toString(36)
+  .substring(2);
 
 function VoteButtons({ aiResponseId }: Props) {
   const classes = useStyles();
   const [
     votePopoverAnchorEl,
     setVotePopoverAnchorEl,
-  ] = useState<EventTarget | null>(null);
+  ] = useState<HTMLElement | null>(null);
   const [currentVote, setCurrentVote] = useState<number>(0);
   const [comment, setComment] = useState('');
+
+  // Creates and updates score using the same ID
+  const scoreId = `${aiResponseId}__${aiReplyVoterId}`;
 
   const handleVoteClick = async (
     event: React.MouseEvent<HTMLElement>,
     vote: number
   ) => {
-    const buttonElem = event.target;
+    const buttonElem = event.target as HTMLElement;
     // If clicking same vote again, set to 0 (no vote)
     const newVote = vote === currentVote ? 0 : vote;
 
     // Send vote immediately, no ned to wait
     langfuseWeb.score({
-      id: `${aiResponseId}__${aiReplyVoterId}`,
+      id: scoreId,
       traceId: aiResponseId,
       name: 'user-feedback',
       value: newVote,
@@ -124,6 +129,7 @@ function VoteButtons({ aiResponseId }: Props) {
     if (currentVote === 0 || !comment.trim()) return;
 
     await langfuseWeb.score({
+      id: scoreId,
       traceId: aiResponseId,
       name: 'user-feedback',
       value: currentVote,
