@@ -23,7 +23,6 @@ const langfuseWeb = new LangfuseWeb({
 const useStyles = makeStyles(theme => ({
   vote: {
     borderRadius: 45,
-    marginTop: 16,
     marginRight: 3,
     [theme.breakpoints.up('md')]: {
       marginRight: 10,
@@ -76,7 +75,7 @@ function AIReplySection({
           <div style={{ whiteSpace: 'pre-line', marginTop: 16 }}>
             {aiReplyText}
           </div>
-          <Box display="flex" justifyContent="space-between">
+          <Box display="flex" justifyContent="space-between" mt={2}>
             <Box display="flex">
               <Button
                 size="small"
