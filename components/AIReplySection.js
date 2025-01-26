@@ -1,39 +1,12 @@
 import { useState } from 'react';
 import { t } from 'ttag';
-import { LangfuseWeb } from 'langfuse';
-import getConfig from 'next/config';
-
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import { Card, CardHeader, CardContent } from 'components/Card';
-import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
-
-const {
-  publicRuntimeConfig: { PUBLIC_LANGFUSE_PUBLIC_KEY, PUBLIC_LANGFUSE_HOST },
-} = getConfig();
-
-const langfuseWeb = new LangfuseWeb({
-  publicKey: PUBLIC_LANGFUSE_PUBLIC_KEY,
-  baseUrl: PUBLIC_LANGFUSE_HOST,
-});
-
-const useStyles = makeStyles(theme => ({
-  vote: {
-    borderRadius: 45,
-    marginRight: 3,
-    [theme.breakpoints.up('md')]: {
-      marginRight: 10,
-    },
-  },
-  thumbIcon: {
-    fontSize: 20,
-    fill: 'transparent',
-    stroke: 'currentColor',
-  },
-}));
+import VoteButtons from './VoteButtons';
 
 function AIReplySection({
   defaultExpand = false,
@@ -43,13 +16,6 @@ function AIReplySection({
   const [expand, setExpand] = useState(defaultExpand);
   const classes = useStyles();
 
-  const handleVote = async vote => {
-    await langfuseWeb.score({
-      traceId: aiResponseId,
-      name: 'user-feedback',
-      value: vote,
-    });
-  };
 
   return (
     <Card style={{ background: '#fafafa' }}>
@@ -76,26 +42,7 @@ function AIReplySection({
             {aiReplyText}
           </div>
           <Box display="flex" justifyContent="space-between" mt={2}>
-            <Box display="flex">
-              <Button
-                size="small"
-                variant="outlined"
-                className={classes.vote}
-                type="button"
-                onClick={() => handleVote(1)}
-              >
-                <ThumbUpIcon className={classes.thumbIcon} />
-              </Button>
-              <Button
-                size="small"
-                variant="outlined"
-                className={classes.vote}
-                type="button"
-                onClick={() => handleVote(-1)}
-              >
-                <ThumbDownIcon className={classes.thumbIcon} />
-              </Button>
-            </Box>
+            <VoteButtons aiResponseId={aiResponseId} />
           </Box>
         </CardContent>
       )}
