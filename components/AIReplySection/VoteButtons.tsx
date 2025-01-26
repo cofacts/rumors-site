@@ -94,16 +94,16 @@ function VoteButtons({ aiResponseId }: Props) {
   ) => {
     // If clicking same vote again, set to 0 (no vote)
     const newVote = vote === currentVote ? 0 : vote;
-    
+
     // Send vote immediately
     await langfuseWeb.score({
       traceId: aiResponseId,
       name: 'user-feedback',
       value: newVote,
     });
-    
+
     setCurrentVote(newVote);
-    
+
     // Only open popover if setting a new vote (not removing)
     if (newVote !== 0) {
       setVotePopoverAnchorEl(event.currentTarget);
@@ -137,7 +137,7 @@ function VoteButtons({ aiResponseId }: Props) {
           type="button"
           onClick={e => handleVoteClick(e, 1)}
           className={cx(classes.vote, {
-            [classes.voted]: currentVote === 1
+            [classes.voted]: currentVote === 1,
           })}
         >
           <ThumbUpIcon className={classes.thumbIcon} />
@@ -149,7 +149,7 @@ function VoteButtons({ aiResponseId }: Props) {
           type="button"
           onClick={e => handleVoteClick(e, -1)}
           className={cx(classes.vote, {
-            [classes.voted]: currentVote === -1
+            [classes.voted]: currentVote === -1,
           })}
         >
           <ThumbDownIcon className={classes.thumbIcon} />
