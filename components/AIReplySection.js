@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { t } from 'ttag';
 import { LangfuseWeb } from 'langfuse';
+import getConfig from 'next/config';
 
 import { Box, Button, makeStyles } from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -9,6 +10,15 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { Card, CardHeader, CardContent } from 'components/Card';
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
+
+const {
+  publicRuntimeConfig: { PUBLIC_LANGFUSE_PUBLIC_KEY, PUBLIC_LANGFUSE_HOST },
+} = getConfig();
+
+const langfuseWeb = new LangfuseWeb({
+  publicKey: PUBLIC_LANGFUSE_PUBLIC_KEY,
+  baseUrl: PUBLIC_LANGFUSE_HOST,
+});
 
 const useStyles = makeStyles(theme => ({
   vote: {
@@ -20,7 +30,6 @@ const useStyles = makeStyles(theme => ({
   },
   thumbIcon: {
     fontSize: 16,
-    margin: '0 2px',
     fill: 'transparent',
     stroke: 'currentColor',
   },
@@ -34,12 +43,7 @@ function AIReplySection({
   const [expand, setExpand] = useState(defaultExpand);
   const classes = useStyles();
 
-  const langfuseWeb = new LangfuseWeb({
-    publicKey: process.env.NEXT_PUBLIC_LANGFUSE_PUBLIC_KEY,
-    baseUrl: 'https://cloud.langfuse.com',
-  });
-
-  const handleVote = async (vote: 1 | -1) => {
+  const handleVote = async vote => {
     await langfuseWeb.score({
       traceId: aiResponseId,
       name: 'user-feedback',
