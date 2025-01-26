@@ -27,10 +27,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function VoteButtons({ aiResponseId }) {
+type Props = {
+  aiResponseId: string;
+};
+
+function VoteButtons({ aiResponseId }: Props) {
   const classes = useStyles();
 
-  const handleVote = async vote => {
+  const handleVote = async (vote: -1 | 1) => {
     await langfuseWeb.score({
       traceId: aiResponseId,
       name: 'user-feedback',
