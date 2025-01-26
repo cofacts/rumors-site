@@ -33,20 +33,35 @@ module.exports = {
     //
     // Simplified from https://github.com/twopluszero/next-images/blob/master/index.js
     //
-    config.module.rules.push({
-      test: /\.(jpe?g|png|svg|gif|ico|webp|mp4)$/,
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            publicPath: '/_next/static/images/',
-            outputPath: `${isServer ? '../' : ''}static/images/`,
-            name: '[name]-[hash].[ext]',
+    config.module.rules.push(
+      {
+        test: /\.(jpe?g|png|svg|gif|ico|webp|mp4)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              publicPath: '/_next/static/images/',
+              outputPath: `${isServer ? '../' : ''}static/images/`,
+              name: '[name]-[hash].[ext]',
+            },
           },
-        },
-      ],
-    });
+        ],
+      },
+      {
+        // Langfuse SDK
+        test: /node_modules\/langfuse/,
+        type: 'javascript/auto', // https://stackoverflow.com/a/74957466/1582110
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
+          },
+        ],
+      }
+    );
 
     if (!isServer) {
       config.module.rules.push({
