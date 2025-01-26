@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { t } from 'ttag';
+import { LangfuseWeb } from 'langfuse';
 
 import { Box, Button, makeStyles } from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -25,12 +26,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
+function AIReplySection({ defaultExpand = false, aiReplyText = '', traceId }) {
   const [expand, setExpand] = useState(defaultExpand);
   const classes = useStyles();
+  
+  const langfuseWeb = new LangfuseWeb({
+    publicKey: process.env.NEXT_PUBLIC_LANGFUSE_PUBLIC_KEY,
+    baseUrl: 'https://cloud.langfuse.com'
+  });
 
-  const handleVote = (vote: 1 | -1) => {
-    // send vote to Langfuse via LangfuseWeb, AI!
+  const handleVote = async (vote: 1 | -1) => {
+    await langfuseWeb.score({
+      traceId,
+      name: 'ai_reply_feedback',
+      value: vote === 1 ? 1 : 0
+    });
   };
 
   return (
