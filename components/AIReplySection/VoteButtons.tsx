@@ -79,12 +79,15 @@ type Props = {
   aiResponseId: string;
 };
 
+// One browser refresh represents one voter
+const aiReplyVoterId = Math.random().toString(36).substring(2);
+
 function VoteButtons({ aiResponseId }: Props) {
   const classes = useStyles();
   const [
     votePopoverAnchorEl,
     setVotePopoverAnchorEl,
-  ] = useState<HTMLElement | null>(null);
+  ] = useState<EventTarget | null>(null);
   const [currentVote, setCurrentVote] = useState<number>(0);
   const [comment, setComment] = useState('');
 
@@ -92,11 +95,13 @@ function VoteButtons({ aiResponseId }: Props) {
     event: React.MouseEvent<HTMLElement>,
     vote: number
   ) => {
+    const buttonElem = event.target;
     // If clicking same vote again, set to 0 (no vote)
     const newVote = vote === currentVote ? 0 : vote;
 
-    // Send vote immediately
-    await langfuseWeb.score({
+    // Send vote immediately, no ned to wait
+    langfuseWeb.score({
+      id: `${aiResponseId}__${aiReplyVoterId}`,
       traceId: aiResponseId,
       name: 'user-feedback',
       value: newVote,
@@ -106,7 +111,7 @@ function VoteButtons({ aiResponseId }: Props) {
 
     // Only open popover if setting a new vote (not removing)
     if (newVote !== 0) {
-      setVotePopoverAnchorEl(event.currentTarget);
+      setVotePopoverAnchorEl(buttonElem);
     }
   };
 
