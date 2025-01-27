@@ -4,6 +4,7 @@ import {
   makeStyles,
   Popover,
   Typography,
+  Snackbar,
 } from '@material-ui/core';
 import cx from 'classnames';
 import CloseIcon from '@material-ui/icons/Close';
@@ -92,6 +93,7 @@ function VoteButtons({ aiResponseId }: Props) {
   ] = useState<HTMLElement | null>(null);
   const [currentVote, setCurrentVote] = useState<number>(0);
   const [comment, setComment] = useState('');
+  const [showThankYouSnack, setShowThankYouSnack] = useState(false);
 
   // Creates and updates score using the same ID
   const scoreId = `${aiResponseId}__${aiReplyVoterId}`;
@@ -136,6 +138,7 @@ function VoteButtons({ aiResponseId }: Props) {
       comment,
     });
     closeVotePopover();
+    setShowThankYouSnack(true);
   };
 
   return (
@@ -205,6 +208,11 @@ function VoteButtons({ aiResponseId }: Props) {
           </Button>
         </div>
       </Popover>
+      <Snackbar
+        open={showThankYouSnack}
+        onClose={() => setShowThankYouSnack(false)}
+        message={t`Thank you for the feedback.`}
+      />
     </>
   );
 }
