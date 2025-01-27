@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { t } from 'ttag';
-
+import { Box } from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import { Card, CardHeader, CardContent } from 'components/Card';
 import Hint from 'components/NewReplySection/ReplyForm/Hint';
+import VoteButtons from './VoteButtons';
 
-function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
+function AIReplySection({
+  defaultExpand = false,
+  aiReplyText = '',
+  aiResponseId,
+}) {
   const [expand, setExpand] = useState(defaultExpand);
 
   return (
@@ -23,7 +28,7 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
         }}
         onClick={() => setExpand(v => !v)}
       >
-        {t`Automated analysis from ChatGPT`}
+        {t`Automated analysis from AI`}
         {expand ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
       </CardHeader>
       {expand && (
@@ -34,6 +39,9 @@ function AIReplySection({ defaultExpand = false, aiReplyText = '' }) {
           <div style={{ whiteSpace: 'pre-line', marginTop: 16 }}>
             {aiReplyText}
           </div>
+          <Box display="flex" justifyContent="space-between" mt={2}>
+            <VoteButtons aiResponseId={aiResponseId} />
+          </Box>
         </CardContent>
       )}
     </Card>
