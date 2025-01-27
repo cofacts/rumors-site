@@ -198,6 +198,7 @@ function VoteButtons({ aiResponseId }: Props) {
             color="primary"
             variant="contained"
             disableElevation
+            disabled={!comment.trim()}
             onClick={handleCommentSubmit}
           >
             {t`Send`}
