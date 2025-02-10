@@ -20,6 +20,7 @@ import Stats from './Stats';
 import EditIcon from '@material-ui/icons/Edit';
 import EditProfileDialog from './EditProfileDialog';
 import EditAvatarDialog from './EditAvatarDialog';
+import ShowAwardedBadgeDialog from './showBadgeDialog';
 
 import cx from 'clsx';
 
@@ -173,6 +174,17 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'space-between',
     },
   },
+  majorBadgeIcon: {
+    position: 'relative',
+    right: '10px',
+    height: '100%',
+  },
+  majorBadgeName: {
+    position: 'relative',
+    right: '10px',
+    height: '100%',
+    color: 'white',
+  },
 }));
 
 /**
@@ -186,6 +198,10 @@ function UserPageHeader({ user, isSelf, stats }) {
   const classes = useStyles();
   const [isEditDialogOpen, setEditDialogOpen] = useState(false);
   const [isEditAvatarDialogOpen, setEditAvatarDialogOpen] = useState(false);
+  const [
+    isShowAwardedBadgeDialogOpen,
+    setShowAwardedBadgeDialogOpen,
+  ] = useState(false);
 
   const editButtonElem = isSelf && (
     <Button
@@ -233,6 +249,16 @@ function UserPageHeader({ user, isSelf, stats }) {
           <span className={classes.level}>Lv. {user?.level || 0}</span>
           {LEVEL_NAMES[(user?.level)] || ''}
         </Ribbon>
+        <img
+          className={classes.majorBadgeIcon}
+          src={user?.majorBadgeImageUrl}
+        ></img>
+        <span
+          className={classes.majorBadgeName}
+          onClick={() => setShowAwardedBadgeDialogOpen(true)}
+        >
+          {user?.majorBadgeName}
+        </span>
       </div>
 
       <div className={classes.content}>
@@ -294,6 +320,15 @@ function UserPageHeader({ user, isSelf, stats }) {
           <EditAvatarDialog
             userId={user.id}
             onClose={() => setEditAvatarDialogOpen(false)}
+          />
+        </ThemeProvider>
+      )}
+
+      {isShowAwardedBadgeDialogOpen && (
+        <ThemeProvider theme={lightTheme}>
+          <ShowAwardedBadgeDialog
+            user={user}
+            onClose={() => setShowAwardedBadgeDialogOpen(false)}
           />
         </ThemeProvider>
       )}

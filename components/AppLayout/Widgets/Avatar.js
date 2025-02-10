@@ -86,6 +86,22 @@ const StatusBadge = withStyles(theme => ({
   );
 });
 
+const BackgroundBadge = withStyles(() => ({
+  container: {
+    position: 'relative',
+  },
+  badge: {
+    position: 'absolute',
+    width: ({ size }) => size + 20,
+    height: ({ size }) => size + 20,
+    backgroundColor: 'green',
+    background: ({ user }) => `url(${user?.majorBadgeBorderUrl})`,
+  },
+}))(({ classes, children, props }) => (
+  <div className={classes.container} {...props}>
+    {children}
+  </div>
+));
 const OpenPeepsAvatar = withStyles(theme => ({
   showcaseWrapper: {
     display: 'flex',
@@ -116,6 +132,23 @@ const OpenPeepsAvatar = withStyles(theme => ({
         `${
           avatarData?.flip ? 'scale(-1, 1)' : 'scale(1, 1)'
         } translateY(${size / 15}px)`,
+    },
+    '&:hover': {
+      '&::after': {
+        content: ({ user }) => `"${user?.majorBadgeName}"`,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        color: theme.palette.common.white,
+        fontSize: 12,
+        borderRadius: '50%',
+      },
     },
   },
   // eslint-disable-next-line no-unused-vars
@@ -181,6 +214,7 @@ function Avatar({
   if (hasLink) {
     avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
   }
+  avatar = <BackgroundBadge>{avatar}</BackgroundBadge>;
   return avatar;
 }
 
@@ -192,6 +226,9 @@ Avatar.fragments = {
       avatarUrl
       avatarType
       avatarData
+      majorBadgeBorderUrl
+      majorBadgeImageUrl
+      majorBadgeName
       ...ProfileLinkUserData
     }
     ${ProfileLink.fragments.ProfileLinkUserData}
