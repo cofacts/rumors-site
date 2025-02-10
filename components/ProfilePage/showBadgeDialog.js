@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { t } from 'ttag';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -45,13 +44,10 @@ function ShowAwardedBadgeDialog({ userId, onClose = () => {} }) {
       variables: { id: userId },
     }
   );
-  const { data: badgeData, loading: badgeLoading } = useQuery(
-    showBadgeDetail,
-    {
-      variables: { id: userData?.GetUser?.badges[0]?.id },
-      skip: userLoading,
-    }
-  );
+  const { data: badgeData, loading: badgeLoading } = useQuery(showBadgeDetail, {
+    variables: { id: userData?.GetUser?.badges[0]?.id },
+    skip: userLoading,
+  });
 
   if (userLoading || badgeLoading) {
     return <div></div>;
@@ -62,7 +58,9 @@ function ShowAwardedBadgeDialog({ userId, onClose = () => {} }) {
       <DialogTitle>{badgeData?.Badge?.name}</DialogTitle>
       <DialogContent>
         <div style={{ display: 'flex' }}>
-          <div style={{ width: '60%', padding: 20 }}>{badgeData?.Badge?.description}</div>
+          <div style={{ width: '60%', padding: 20 }}>
+            {badgeData?.Badge?.description}
+          </div>
           <img
             src={badgeData?.Badge?.icon}
             alt={badgeData?.Badge?.name}
@@ -76,3 +74,5 @@ function ShowAwardedBadgeDialog({ userId, onClose = () => {} }) {
     </Dialog>
   );
 }
+
+export default ShowAwardedBadgeDialog;

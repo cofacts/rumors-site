@@ -86,18 +86,18 @@ const StatusBadge = withStyles(theme => ({
   );
 });
 
-const BackgroundBadge = withStyles(theme => ({
+const BackgroundBadge = withStyles(() => ({
   container: {
     position: 'relative',
   },
   badge: {
     position: 'absolute',
-    width: ({ size }) + 20,
-    height: ({ size }) + 20,
+    width: ({ size }) => size + 20,
+    height: ({ size }) => size + 20,
     backgroundColor: 'green',
-    background: URL({ majorBadgeBorderUrl })
+    background: ({ user }) => `url(${user?.majorBadgeBorderUrl})`,
   },
-}))(({ level, classes, children, props }) => (
+}))(({ classes, children, props }) => (
   <div className={classes.container} {...props}>
     {children}
   </div>
@@ -214,7 +214,7 @@ function Avatar({
   if (hasLink) {
     avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
   }
-  avatar = <BackgroundBadge>{avatar}</BackgroundBadge>
+  avatar = <BackgroundBadge>{avatar}</BackgroundBadge>;
   return avatar;
 }
 
