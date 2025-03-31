@@ -94,42 +94,77 @@ const BackgroundBadge = withStyles(theme => ({
     verticalAlign: 'middle',
     justifyContent: 'center',
     alignItems: 'center',
-    width: majorBadgeBorderUrl ? size + 8 : size,
-    height: majorBadgeBorderUrl ? size + 8 : size,
+    width: majorBadgeBorderUrl ? size + 16 : size,
+    height: majorBadgeBorderUrl ? size + 16 : size,
     backgroundImage: majorBadgeBorderUrl
       ? `url(${majorBadgeBorderUrl})`
       : 'none',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
     backgroundPosition: 'center',
-    '&:hover': {
-      '&::after': {
-        content: ({ majorBadgeName }) =>
-          majorBadgeName ? `"${majorBadgeName}"` : 'none',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        color: theme.palette.common.white,
-        fontSize: 12,
-        borderRadius: '50%',
-      },
-    },
     [theme.breakpoints.up('md')]: {
-      width: majorBadgeBorderUrl ? (mdSize || size) + 8 : mdSize || size,
-      height: majorBadgeBorderUrl ? (mdSize || size) + 8 : mdSize || size,
+      width: majorBadgeBorderUrl ? (mdSize || size) + 16 : mdSize || size,
+      height: majorBadgeBorderUrl ? (mdSize || size) + 16 : mdSize || size,
     },
   }),
-}))(({ classes, children, ...props }) => (
-  <span className={classes.container} {...props}>
-    {children}
-  </span>
-));
+  tooltip: {
+    position: 'absolute',
+    left: '100%',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    marginLeft: '8px',
+    padding: '4px 8px',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    color: theme.palette.common.white,
+    fontSize: 12,
+    borderRadius: '4px',
+    whiteSpace: 'nowrap',
+    opacity: 0,
+    visibility: 'hidden',
+    zIndex: 1000,
+    pointerEvents: 'none',
+    transition: 'opacity 0.2s, visibility 0.2s',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      right: '100%',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      border: '6px solid transparent',
+      borderRightColor: 'rgba(0, 0, 0, 0.8)',
+    },
+  },
+  containerWithTooltip: {
+    '&:hover $tooltip': {
+      opacity: 1,
+      visibility: 'visible',
+    },
+    cursor: 'pointer',
+  },
+}))(
+  ({
+    classes,
+    children, // eslint-disable-next-line no-unused-vars
+    majorBadgeBorderUrl,
+    majorBadgeName, // eslint-disable-next-line no-unused-vars
+    size, // eslint-disable-next-line no-unused-vars
+    mdSize,
+    ...props
+  }) => (
+    <div
+      className={cx(
+        classes.container,
+        majorBadgeName && classes.containerWithTooltip
+      )}
+      {...props}
+    >
+      {children}
+      {majorBadgeName && majorBadgeName !== 'undefined' && (
+        <div className={classes.tooltip}>{majorBadgeName}</div>
+      )}
+    </div>
+  )
+);
 
 const OpenPeepsAvatar = withStyles(theme => ({
   showcaseWrapper: {
@@ -243,16 +278,19 @@ function Avatar({
   if (hasLink) {
     avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
   }
-  avatar = (
-    <BackgroundBadge
-      majorBadgeBorderUrl={user?.majorBadgeBorderUrl}
-      majorBadgeName={user?.majorBadgeName}
-      size={size}
-      mdSize={mdSize}
-    >
-      {avatar}
-    </BackgroundBadge>
-  );
+  if (showLevel) {
+    avatar = (
+      <BackgroundBadge
+        majorBadgeBorderUrl={user?.majorBadgeBorderUrl}
+        majorBadgeName={user?.majorBadgeName}
+        size={size}
+        mdSize={mdSize}
+      >
+        {avatar}
+      </BackgroundBadge>
+    );
+  }
+  
   return avatar;
 }
 
