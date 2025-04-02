@@ -41,6 +41,20 @@ const useStyles = makeStyles(theme => ({
     top: 10,
     color: theme.palette.secondary[100],
   },
+  dialogBottom: {
+    paddingBottom: theme.spacing(3),
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  btnSubmitFilter: {
+    background: theme.palette.primary[500],
+    color: theme.palette.common.white,
+    padding: '5px 16px',
+    borderRadius: 30,
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+  },
 }));
 
 /**
@@ -79,6 +93,15 @@ function Filters({ className, children }) {
           className={classes.closeIcon}
           onClick={() => setFiltersShow(false)}
         />
+        <div className={classes.dialogBottom}>
+          <button
+            className={classes.btnSubmitFilter}
+            data-ga="Submit filters button"
+            onClick={() => setFiltersShow(false)}
+          >
+            {t`Submit filters`}
+          </button>
+        </div>
       </Dialog>
     </>
   );
