@@ -89,10 +89,7 @@ function ReplySearch({
   ).concat(relatedArticleReplies);
 
   const validArticleReplies = allArticleReplies.filter(reply => {
-    return (
-      reply.articleId &&
-      reply.article?.id
-    );
+    return reply.articleId && reply.article?.id;
   });
 
   const currentUserOnly = [FILTERS.MY_MESSAGES, FILTERS.MY_REPLIES].includes(
