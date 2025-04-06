@@ -134,6 +134,7 @@ msgstr "刪除"
 msgid "Submit"
 msgstr "送出"
 
+#: components/AIReplySection/VoteButtons.tsx:214
 #: components/ArticleCategories/CategoryOption.js:364
 #: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:238
 msgid "Thank you for the feedback."
@@ -201,7 +202,7 @@ msgid "someone"
 msgstr "有人"
 
 #: components/LandingPage/Stats.js:145
-#. we hold ~
+#. we hold ~ 
 msgid "a gathering of editors."
 msgstr "編輯小聚"
 
@@ -390,7 +391,7 @@ msgstr "訂閱本頁"
 msgid "See Reasons"
 msgstr "看理由"
 
-#: components/AIReplySection/VoteButtons.tsx:203
+#: components/AIReplySection/VoteButtons.tsx:207
 #: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:231
 msgid "Send"
 msgstr "送出"
@@ -446,7 +447,7 @@ msgstr "可疑訊息"
 msgid "Do you have any thing to add?"
 msgstr "您有沒有什麼想補充的呢？"
 
-#: components/AIReplySection/VoteButtons.tsx:187
+#: components/AIReplySection/VoteButtons.tsx:190
 #: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:205
 msgid "Why do you think it is not useful?"
 msgstr "您認為沒有幫助的理由是什麼呢？"
@@ -2237,7 +2238,7 @@ msgstr "所附網址的網頁內容"
 
 #: components/ArticleReply/ArticleReply.js:110
 #: pages/article/[id].js:306
-#. t: terms subject
+#. t: terms subject 
 msgid "This info"
 msgstr "此資訊"
 
@@ -2584,7 +2585,7 @@ msgstr "Cofacts 開源專案開始於 2016 年。2023 年，Cofacts 工作小組
 msgid "Automated analysis from AI"
 msgstr "AI 自動分析"
 
-#: components/AIReplySection/VoteButtons.tsx:186
+#: components/AIReplySection/VoteButtons.tsx:189
 msgid "Do you have anything to add?"
 msgstr "針對這則回應，有沒有想補充的呢？"
 
