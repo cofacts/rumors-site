@@ -128,6 +128,7 @@ msgstr "刪除"
 
 #: components/ArticleCategories/DownVoteDialog.js:99
 #: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+#: components/ListPageControls/Filters.js:88
 #: components/NewReplySection/ReplyForm/Submit.js:28
 #: components/ProfilePage/EditAvatarDialog.js:241
 #: components/ProfilePage/EditProfileDialog.js:98
@@ -2587,10 +2588,6 @@ msgstr "AI 自動分析"
 #: components/AIReplySection/VoteButtons.tsx:186
 msgid "Do you have anything to add?"
 msgstr "針對這則回應，有沒有想補充的呢？"
-
-#: components/ListPageControls/Filters.js:102
-msgid "Submit filters"
-msgstr "篩選送出"
 
 #: pages/index.js:29
 msgctxt "site title"
