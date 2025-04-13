@@ -24,7 +24,11 @@ const useStyles = makeStyles(theme => ({
 
     // Hide border color when not chip and not selected
     borderColor: ({ chip, selected }: StyleProps) =>
-      !chip && !selected ? `transparent` : '',
+      !chip && !selected
+        ? `transparent`
+        : selected
+        ? theme.palette.primary[400]
+        : '',
   },
   /* Chip label */
   label: {

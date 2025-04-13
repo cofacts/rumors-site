@@ -128,6 +128,7 @@ msgstr "刪除"
 
 #: components/ArticleCategories/DownVoteDialog.js:99
 #: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+#: components/ListPageControls/Filters.js:88
 #: components/NewReplySection/ReplyForm/Submit.js:28
 #: components/ProfilePage/EditAvatarDialog.js:241
 #: components/ProfilePage/EditProfileDialog.js:98

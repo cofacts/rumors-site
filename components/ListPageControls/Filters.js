@@ -6,6 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import Dialog from '@material-ui/core/Dialog';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from '@material-ui/core/Button';
 
 import cx from 'clsx';
 
@@ -40,6 +41,14 @@ const useStyles = makeStyles(theme => ({
     right: 12,
     top: 10,
     color: theme.palette.secondary[100],
+  },
+  dialogBottom: {
+    paddingBottom: theme.spacing(3),
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  btnSubmitFilter: {
+    borderRadius: 30,
   },
 }));
 
@@ -79,6 +88,16 @@ function Filters({ className, children }) {
           className={classes.closeIcon}
           onClick={() => setFiltersShow(false)}
         />
+        <div className={classes.dialogBottom}>
+          <Button
+            className={classes.btnSubmitFilter}
+            type="submit"
+            data-ga="Submit filters button"
+            color="primary"
+            variant="contained"
+            onClick={() => setFiltersShow(false)}
+          >{t`Submit`}</Button>
+        </div>
       </Dialog>
     </>
   );
