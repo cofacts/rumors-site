@@ -35,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.secondary[400],
     borderTopLeftRadius: theme.shape.borderRadius,
     borderTopRightRadius: theme.shape.borderRadius,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       padding: '12px 0',
     },
@@ -175,9 +178,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   majorBadgeIcon: {
-    // position: 'relative',
-    // right: '10px',
-    // height: '100%',
     width: '25px',
     height: '25px',
     top: '10px',
@@ -188,19 +188,25 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     color: 'white',
   },
+  badgeContainer: {
+    marginLeft: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    paddingRight: '16px',
+  },
   majorBadgeIconDiv: {
-    marginLeft: '300px',
-    display: 'inline-block',
-    verticalAlign: 'middle',
+    display: 'inline-flex',
+    alignItems: 'center',
     color: 'white',
     height: '25px',
   },
   majorBadgeNameDiv: {
-    marginLeft: '20px',
-    display: 'inline-block',
-    verticalAlign: 'middle',
+    display: 'inline-flex',
+    alignItems: 'center',
     color: 'white',
     height: '25px',
+    marginLeft: '8px',
   },
 }));
 
@@ -266,23 +272,25 @@ function UserPageHeader({ user, isSelf, stats }) {
           <span className={classes.level}>Lv. {user?.level || 0}</span>
           {LEVEL_NAMES[(user?.level)] || ''}
         </Ribbon>
-        <div className={classes.majorBadgeIconDiv}>
+        <div className={classes.badgeContainer}>
           {user?.majorBadgeImageUrl && (
-            <img
-              className={classes.majorBadgeIcon}
-              src={user.majorBadgeImageUrl}
-              alt={user.majorBadgeName || ''}
-            />
+            <div className={classes.majorBadgeIconDiv}>
+              <img
+                className={classes.majorBadgeIcon}
+                src={user.majorBadgeImageUrl}
+                alt={user.majorBadgeName || ''}
+              />
+            </div>
           )}
-        </div>
-        <div className={classes.majorBadgeNameDiv}>
           {user?.majorBadgeName && (
-            <span
-              className={classes.majorBadgeName}
-              onClick={() => setShowAwardedBadgeDialogOpen(true)}
-            >
-              {user.majorBadgeName}
-            </span>
+            <div className={classes.majorBadgeNameDiv}>
+              <span
+                className={classes.majorBadgeName}
+                onClick={() => setShowAwardedBadgeDialogOpen(true)}
+              >
+                {user.majorBadgeName}
+              </span>
+            </div>
           )}
         </div>
       </div>
