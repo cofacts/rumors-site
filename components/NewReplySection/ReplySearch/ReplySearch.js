@@ -20,7 +20,6 @@ const SEARCH = gql`
         node {
           id
           articleReplies {
-            status
             user {
               id
             }
