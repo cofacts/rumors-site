@@ -71,6 +71,8 @@ function ReplyItem({ articleReply, reply, highlight }) {
           user={articleReply.user}
           className={classes.avatar}
           showLevel
+          showBadge
+          badgeBorderWidth={16}
           status={replyType}
           size={30}
           mdSize={72}
