@@ -20,7 +20,7 @@ import Stats from './Stats';
 import EditIcon from '@material-ui/icons/Edit';
 import EditProfileDialog from './EditProfileDialog';
 import EditAvatarDialog from './EditAvatarDialog';
-import ShowAwardedBadgeDialog from './showBadgeDialog';
+import ShowAwardedBadgeDialog from './BadgeDialog';
 
 import cx from 'clsx';
 

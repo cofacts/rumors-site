@@ -269,7 +269,7 @@ function Avatar({
       />
     );
 
-  if (showBadge) {
+  if (showBadge && user?.majorBadgeImageUrl && user?.majorBadgeName) {
     avatar = (
       <BackgroundBadge
         majorBadgeBorderUrl={user?.majorBadgeBorderUrl}
