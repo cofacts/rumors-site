@@ -20,6 +20,7 @@ const SEARCH = gql`
         node {
           id
           articleReplies {
+            status
             user {
               id
             }
@@ -39,6 +40,7 @@ const SEARCH = gql`
       edges {
         node {
           articleReplies {
+            status
             user {
               id
             }
@@ -89,7 +91,7 @@ function ReplySearch({
   ).concat(relatedArticleReplies);
 
   const validArticleReplies = allArticleReplies.filter(reply => {
-    return reply.articleId && reply.article?.id;
+    return reply.status === 'NORMAL';
   });
 
   const currentUserOnly = [FILTERS.MY_MESSAGES, FILTERS.MY_REPLIES].includes(
