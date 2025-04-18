@@ -68,6 +68,7 @@ const RelatedArticleReplyData = gql`
   fragment RelatedArticleReplyData on ArticleReply {
     articleId
     replyId
+    status
     user {
       id
     }
