@@ -100,12 +100,12 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                     <h3
                       className="makeStyles-titleLg"
                     >
-                      Congratulations!
+                      恭喜你！
                     </h3>
                     <p
                       className="makeStyles-contentText"
                     >
-                      You can keep leveling up after your level-up!
+                      公道值又破表了，只好讓你繼續升級啦！
                     </p>
                     <div
                       className="makeStyles-levelContainer"
@@ -229,7 +229,7 @@ exports[`Storyshots UpgradeDialog Default 1`] = `
                           className="makeStyles-progressText"
                         >
                           <span>
-                            EXP
+                            公道值
                           </span>
                           <span>
                             100

@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   ribbon: {
-    display: 'inline-block',
+    display: 'flex',
     alignItems: 'middle',
     gap: '8px',
     padding: '4px 8px',

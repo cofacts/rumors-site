@@ -47,47 +47,47 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
       data={
         Array [
           Object {
-            "content": "While a lot of instant messages are disseminated among our friends' chatroom, you might feel confused whether the information is fake or not.",
+            "content": "熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？",
             "id": 0,
             "images": Array [
               Object {},
             ],
-            "title": "Recieved doubtful messages from social platform",
+            "title": "Line 上收到可疑訊息",
           },
           Object {
-            "content": "You are encouraged to share to suspicious message to Cofacts chatbot, Cofacts chatbot would help you submit the misinformation to Cofacts fact-checking platform for receiveing similar fact-check reports.",
+            "content": "此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應",
             "id": 1,
             "images": Array [
               Object {},
               Object {},
             ],
-            "title": "Share this message to Cofacts",
+            "title": "分享轉傳訊息到「真的假的」機器人",
           },
           Object {
-            "content": "Everyone could review the suspicious messages on Cofacts platform, and discuss the fact-checking process and detail.",
+            "content": "被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息",
             "id": 3,
             "images": Array [
               Object {},
               Object {},
             ],
-            "title": "Submit to Cofacts database & fact-checking platform",
+            "title": "收錄到「真的假的」共享平台",
           },
           Object {
-            "content": "Every volunteers could login Cofacts platform, and submit their fact-checking reports. Volunteers are asked to provide reference and explanation for the fact-checking.",
+            "content": "每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。",
             "id": 4,
             "images": Array [
               Object {},
             ],
-            "title": "Fact checkers would comment fact-checking detail on the platform.",
+            "title": "編輯志工在平台上查核提供意見",
           },
           Object {
-            "content": "Fact-checking contribution would be seen via Cofacts chatbot for everyone; if you think you could improve the content, you are encouraged to submit a new fact-checking reply.",
+            "content": "被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。",
             "id": 5,
             "images": Array [
               Object {},
               Object {},
             ],
-            "title": "Cofacts chatnot would reply this automatically",
+            "title": "機器人自動回應群眾的消息",
           },
         ]
       }
@@ -107,7 +107,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
           <div
             className="makeStyles-title makeStyles-activeTitle"
           >
-            Recieved doubtful messages from social platform
+            Line 上收到可疑訊息
           </div>
           <div
             className="makeStyles-contentWrapper makeStyles-activeContentWrapper"
@@ -115,7 +115,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
             <div
               className="makeStyles-content"
             >
-              While a lot of instant messages are disseminated among our friends' chatroom, you might feel confused whether the information is fake or not.
+              熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
           <div
             className="makeStyles-title"
           >
-            Share this message to Cofacts
+            分享轉傳訊息到「真的假的」機器人
           </div>
           <div
             className="makeStyles-contentWrapper"
@@ -138,7 +138,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
             <div
               className="makeStyles-content"
             >
-              You are encouraged to share to suspicious message to Cofacts chatbot, Cofacts chatbot would help you submit the misinformation to Cofacts fact-checking platform for receiveing similar fact-check reports.
+              此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
           <div
             className="makeStyles-title"
           >
-            Submit to Cofacts database & fact-checking platform
+            收錄到「真的假的」共享平台
           </div>
           <div
             className="makeStyles-contentWrapper"
@@ -161,7 +161,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
             <div
               className="makeStyles-content"
             >
-              Everyone could review the suspicious messages on Cofacts platform, and discuss the fact-checking process and detail.
+              被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息
             </div>
           </div>
         </div>
@@ -176,7 +176,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
           <div
             className="makeStyles-title"
           >
-            Fact checkers would comment fact-checking detail on the platform.
+            編輯志工在平台上查核提供意見
           </div>
           <div
             className="makeStyles-contentWrapper"
@@ -184,7 +184,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
             <div
               className="makeStyles-content"
             >
-              Every volunteers could login Cofacts platform, and submit their fact-checking reports. Volunteers are asked to provide reference and explanation for the fact-checking.
+              每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。
             </div>
           </div>
         </div>
@@ -199,7 +199,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
           <div
             className="makeStyles-title"
           >
-            Cofacts chatnot would reply this automatically
+            機器人自動回應群眾的消息
           </div>
           <div
             className="makeStyles-contentWrapper"
@@ -207,7 +207,7 @@ exports[`Storyshots Tutorial/LineTutorial Desktop 1`] = `
             <div
               className="makeStyles-content"
             >
-              Fact-checking contribution would be seen via Cofacts chatbot for everyone; if you think you could improve the content, you are encouraged to submit a new fact-checking reply.
+              被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。
             </div>
           </div>
         </div>
@@ -279,12 +279,12 @@ exports[`Storyshots Tutorial/LineTutorial Mobile 1`] = `
             <div
               className="makeStyles-title makeStyles-activeTitle"
             >
-              Recieved doubtful messages from social platform
+              Line 上收到可疑訊息
             </div>
             <div
               className="makeStyles-content"
             >
-              While a lot of instant messages are disseminated among our friends' chatroom, you might feel confused whether the information is fake or not.
+              熱心的親朋好友常常分享各種訊息時，但看完後心中或許有些困惑，不知道裡面的內容真實性有多少？
             </div>
           </div>
         </div>
@@ -373,12 +373,12 @@ exports[`Storyshots Tutorial/LineTutorial Mobile 1`] = `
             <div
               className="makeStyles-title"
             >
-              Share this message to Cofacts
+              分享轉傳訊息到「真的假的」機器人
             </div>
             <div
               className="makeStyles-content"
             >
-              You are encouraged to share to suspicious message to Cofacts chatbot, Cofacts chatbot would help you submit the misinformation to Cofacts fact-checking platform for receiveing similar fact-check reports.
+              此時你可以把可疑訊息分享給我們的「真的假的」聊天機器人，我們的機器人會收錄新謠言到我們的網站平台，並比對有沒有類似的查核回應
             </div>
           </div>
         </div>
@@ -467,12 +467,12 @@ exports[`Storyshots Tutorial/LineTutorial Mobile 1`] = `
             <div
               className="makeStyles-title"
             >
-              Submit to Cofacts database & fact-checking platform
+              收錄到「真的假的」共享平台
             </div>
             <div
               className="makeStyles-content"
             >
-              Everyone could review the suspicious messages on Cofacts platform, and discuss the fact-checking process and detail.
+              被收錄到平台後，所有人都可以到 cofacts 網站上檢視可疑訊息，並參與討論查核訊息
             </div>
           </div>
         </div>
@@ -527,12 +527,12 @@ exports[`Storyshots Tutorial/LineTutorial Mobile 1`] = `
             <div
               className="makeStyles-title"
             >
-              Fact checkers would comment fact-checking detail on the platform.
+              編輯志工在平台上查核提供意見
             </div>
             <div
               className="makeStyles-content"
             >
-              Every volunteers could login Cofacts platform, and submit their fact-checking reports. Volunteers are asked to provide reference and explanation for the fact-checking.
+              每一個網友志工都可以登入平台，提供自己查核的結果，查核過程中必須附上相關出處，佐證自己的查核結果。
             </div>
           </div>
         </div>
@@ -621,12 +621,12 @@ exports[`Storyshots Tutorial/LineTutorial Mobile 1`] = `
             <div
               className="makeStyles-title"
             >
-              Cofacts chatnot would reply this automatically
+              機器人自動回應群眾的消息
             </div>
             <div
               className="makeStyles-content"
             >
-              Fact-checking contribution would be seen via Cofacts chatbot for everyone; if you think you could improve the content, you are encouraged to submit a new fact-checking reply.
+              被查核的結果就可以在聊天機器人中出現，讓廣大網友查詢使用了，如果你覺得查核回應不夠好，可以自己也新增一個查核回應。
             </div>
           </div>
         </div>

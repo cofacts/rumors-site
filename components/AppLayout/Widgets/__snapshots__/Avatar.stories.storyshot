@@ -40,9 +40,25 @@ exports[`Storyshots Avatar Normal 1`] = `
         }
         mdSize={null}
         size={40}
+        user={
+          Object {
+            "avatarData": "{\\"accessory\\":\\"None\\",\\"body\\":\\"Gaming\\",\\"face\\":\\"Tired\\",\\"hair\\":\\"Buns\\",\\"facialHair\\":\\"None\\",\\"backgroundColorIndex\\":0.8677238725450868,\\"flip\\":true}",
+            "avatarType": "OpenPeeps",
+            "level": 7,
+            "name": "活潑的田中巴里特",
+          }
+        }
       >
         <div
           className="Component-showcaseWrapper Component-showcaseWrapper"
+          user={
+            Object {
+              "avatarData": "{\\"accessory\\":\\"None\\",\\"body\\":\\"Gaming\\",\\"face\\":\\"Tired\\",\\"hair\\":\\"Buns\\",\\"facialHair\\":\\"None\\",\\"backgroundColorIndex\\":0.8677238725450868,\\"flip\\":true}",
+              "avatarType": "OpenPeeps",
+              "level": 7,
+              "name": "活潑的田中巴里特",
+            }
+          }
         >
           <Peep
             accessory="None"
@@ -231,9 +247,25 @@ exports[`Storyshots Avatar Normal 1`] = `
             }
             mdSize={null}
             size={42}
+            user={
+              Object {
+                "avatarData": "{\\"accessory\\":\\"None\\",\\"body\\":\\"Coffee\\",\\"face\\":\\"LoveGrin\\",\\"hair\\":\\"Afro\\",\\"facialHair\\":\\"Imperial\\",\\"backgroundColorIndex\\":0.6690943799257243,\\"flip\\":false}",
+                "avatarType": "OpenPeeps",
+                "level": 5,
+                "name": "斯文的五峰瓦妮莎",
+              }
+            }
           >
             <div
               className="Component-showcaseWrapper Component-showcaseWrapper"
+              user={
+                Object {
+                  "avatarData": "{\\"accessory\\":\\"None\\",\\"body\\":\\"Coffee\\",\\"face\\":\\"LoveGrin\\",\\"hair\\":\\"Afro\\",\\"facialHair\\":\\"Imperial\\",\\"backgroundColorIndex\\":0.6690943799257243,\\"flip\\":false}",
+                  "avatarType": "OpenPeeps",
+                  "level": 5,
+                  "name": "斯文的五峰瓦妮莎",
+                }
+              }
             >
               <Peep
                 accessory="None"
@@ -447,9 +479,25 @@ exports[`Storyshots Avatar Normal 1`] = `
         }
         mdSize={null}
         size={60}
+        user={
+          Object {
+            "avatarData": "{\\"accessory\\":\\"GlassButterfly\\",\\"body\\":\\"PointingUp\\",\\"face\\":\\"Cyclops\\",\\"hair\\":\\"BunFancy\\",\\"facialHair\\":\\"None\\",\\"backgroundColorIndex\\":0.5628659387485422,\\"flip\\":false}",
+            "avatarType": "OpenPeeps",
+            "level": 20,
+            "name": "貫徹始終的田尾薩琳娜",
+          }
+        }
       >
         <div
           className="Component-showcaseWrapper Component-showcaseWrapper"
+          user={
+            Object {
+              "avatarData": "{\\"accessory\\":\\"GlassButterfly\\",\\"body\\":\\"PointingUp\\",\\"face\\":\\"Cyclops\\",\\"hair\\":\\"BunFancy\\",\\"facialHair\\":\\"None\\",\\"backgroundColorIndex\\":0.5628659387485422,\\"flip\\":false}",
+              "avatarType": "OpenPeeps",
+              "level": 20,
+              "name": "貫徹始終的田尾薩琳娜",
+            }
+          }
         >
           <Peep
             accessory="GlassButterfly"
@@ -648,9 +696,25 @@ exports[`Storyshots Avatar Normal 1`] = `
             }
             mdSize={null}
             size={60}
+            user={
+              Object {
+                "avatarData": "{\\"accessory\\":\\"GlassButterfly\\",\\"body\\":\\"Shirt\\",\\"face\\":\\"Blank\\",\\"hair\\":\\"ShortScratch\\",\\"facialHair\\":\\"FullMajestic\\",\\"backgroundColorIndex\\":0.7752845572942368,\\"flip\\":true}",
+                "avatarType": "OpenPeeps",
+                "level": 0,
+                "name": "無拘束的望安霍伯特",
+              }
+            }
           >
             <div
               className="Component-showcaseWrapper Component-showcaseWrapper"
+              user={
+                Object {
+                  "avatarData": "{\\"accessory\\":\\"GlassButterfly\\",\\"body\\":\\"Shirt\\",\\"face\\":\\"Blank\\",\\"hair\\":\\"ShortScratch\\",\\"facialHair\\":\\"FullMajestic\\",\\"backgroundColorIndex\\":0.7752845572942368,\\"flip\\":true}",
+                  "avatarType": "OpenPeeps",
+                  "level": 0,
+                  "name": "無拘束的望安霍伯特",
+                }
+              }
             >
               <Peep
                 accessory="GlassButterfly"
@@ -862,9 +926,25 @@ exports[`Storyshots Avatar Normal 1`] = `
         }
         mdSize={72}
         size={40}
+        user={
+          Object {
+            "avatarData": "{\\"accessory\\":\\"GlassButterfly\\",\\"body\\":\\"Hoodie\\",\\"face\\":\\"Calm\\",\\"hair\\":\\"DocBouffant\\",\\"facialHair\\":\\"GrayFull\\",\\"backgroundColorIndex\\":0.4192742347800349,\\"flip\\":true}",
+            "avatarType": "OpenPeeps",
+            "level": 1,
+            "name": "卍熱情的金湖摩西卍",
+          }
+        }
       >
         <div
           className="Component-showcaseWrapper Component-showcaseWrapper"
+          user={
+            Object {
+              "avatarData": "{\\"accessory\\":\\"GlassButterfly\\",\\"body\\":\\"Hoodie\\",\\"face\\":\\"Calm\\",\\"hair\\":\\"DocBouffant\\",\\"facialHair\\":\\"GrayFull\\",\\"backgroundColorIndex\\":0.4192742347800349,\\"flip\\":true}",
+              "avatarType": "OpenPeeps",
+              "level": 1,
+              "name": "卍熱情的金湖摩西卍",
+            }
+          }
         >
           <Peep
             accessory="GlassButterfly"

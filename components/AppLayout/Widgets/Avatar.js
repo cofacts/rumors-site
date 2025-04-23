@@ -256,7 +256,6 @@ function Avatar({
         avatarData={avatarData}
         size={size}
         mdSize={mdSize}
-        showBadge={showBadge}
         user={user}
         {...rest}
       />

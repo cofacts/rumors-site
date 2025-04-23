@@ -62,7 +62,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
           onTouchStart={[Function]}
           title=""
         >
-          0 responses
+          0 份回應
         </span>
       </Tooltip>
     </ReplyCountInfo>
@@ -149,7 +149,7 @@ exports[`Storyshots Infos With Reply Count Info 1`] = `
           onTouchStart={[Function]}
           title={null}
         >
-          5 responses
+          5 份回應
         </span>
       </Tooltip>
     </ReplyCountInfo>
