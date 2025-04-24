@@ -74,7 +74,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
         <span
           className="MuiButton-label"
         >
-          時間不限
+          All
         </span>
         <span
           className="MuiTouchRipple-root"
@@ -153,7 +153,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   role="menuitem"
                   tabIndex={0}
                 >
-                  時間不限
+                  All
                   <span
                     className="MuiTouchRipple-root"
                   >
@@ -183,7 +183,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   role="menuitem"
                   tabIndex={-1}
                 >
-                  一天內
+                  In 1 Day
                   <span
                     className="MuiTouchRipple-root"
                   >
@@ -213,7 +213,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   role="menuitem"
                   tabIndex={-1}
                 >
-                  一週內
+                  In 1 Week
                   <span
                     className="MuiTouchRipple-root"
                   >
@@ -243,7 +243,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   role="menuitem"
                   tabIndex={-1}
                 >
-                  一個月內
+                  In 1 Month
                   <span
                     className="MuiTouchRipple-root"
                   >
@@ -273,7 +273,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange No Start End Given 1`] = `
                   role="menuitem"
                   tabIndex={-1}
                 >
-                  自訂範圍
+                  Custom
                   <span
                     className="MuiTouchRipple-root"
                   >
@@ -393,7 +393,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
       <span
         className="makeStyles-to"
       >
-        到
+        to
       </span>
       <input
         className="makeStyles-endDate"
@@ -467,7 +467,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={0}
                   >
-                    時間不限
+                    All
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -497,7 +497,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一天內
+                    In 1 Day
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -527,7 +527,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一週內
+                    In 1 Week
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -557,7 +557,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一個月內
+                    In 1 Month
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -587,7 +587,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    自訂範圍
+                    Custom
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -690,7 +690,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
           <span
             className="MuiButton-label"
           >
-            一天內
+            In 1 Day
           </span>
           <span
             className="MuiTouchRipple-root"
@@ -769,7 +769,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={0}
                   >
-                    時間不限
+                    All
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -799,7 +799,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一天內
+                    In 1 Day
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -829,7 +829,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一週內
+                    In 1 Week
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -859,7 +859,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一個月內
+                    In 1 Month
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -889,7 +889,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    自訂範圍
+                    Custom
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -1003,7 +1003,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
       <span
         className="makeStyles-to"
       >
-        到
+        to
       </span>
       <input
         className="makeStyles-endDate"
@@ -1077,7 +1077,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={0}
                   >
-                    時間不限
+                    All
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -1107,7 +1107,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一天內
+                    In 1 Day
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -1137,7 +1137,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一週內
+                    In 1 Week
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -1167,7 +1167,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    一個月內
+                    In 1 Month
                     <span
                       className="MuiTouchRipple-root"
                     >
@@ -1197,7 +1197,7 @@ exports[`Storyshots ListPageControls/BaseTimeRange Set Start End From Props 1`] 
                     role="menuitem"
                     tabIndex={-1}
                   >
-                    自訂範圍
+                    Custom
                     <span
                       className="MuiTouchRipple-root"
                     >

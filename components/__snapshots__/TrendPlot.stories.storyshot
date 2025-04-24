@@ -156,7 +156,7 @@ exports[`Storyshots TrendPlot Normal 1`] = `
       <div
         className="MuiBox-root MuiBox-root makeStyles-label plotLabel"
       >
-        近 31 日
+        Past 31 days
       </div>
       <Hidden
         xsDown={true}
@@ -193,7 +193,7 @@ exports[`Storyshots TrendPlot Normal 1`] = `
       <div
         className="MuiBox-root MuiBox-root makeStyles-label totalLabel"
       >
-        51,208 次瀏覽
+        Total Visit: 51,208
         <svg
           aria-hidden={true}
           className="MuiSvgIcon-root"

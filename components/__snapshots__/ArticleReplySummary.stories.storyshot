@@ -45,8 +45,8 @@ exports[`Storyshots ArticleReplySummary Different Reply Types 1`] = `
         </span>
       </Tooltip>
     </ProfileTooltip>
-     認為 
-    不在查證範圍
+     mark this message 
+    invalid request
   </div>
 </ArticleReplySummary>
 `;
@@ -68,11 +68,11 @@ exports[`Storyshots ArticleReplySummary No Valid User 1`] = `
       user={null}
     >
       <span>
-        有人
+        Someone
       </span>
     </ProfileTooltip>
-     認為 
-    含有正確訊息
+     mark this message 
+    contains true information
   </div>
 </ArticleReplySummary>
 `;

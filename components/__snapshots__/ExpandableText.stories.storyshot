@@ -106,7 +106,7 @@ exports[`Storyshots ExpandableText With Word Count Given 1`] = `
           onClick={[Function]}
         >
           (
-          閱讀全文 ▼
+          Show More ▼
           )
         </button>
       </Component>

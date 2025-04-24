@@ -166,7 +166,7 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
             <p
               className="error"
             >
-              無法取得資料
+              Cannot get data from URL
             </p>
           </div>
           <span

@@ -15,7 +15,7 @@ exports[`Storyshots ListPageControls/BaseSortInput No Props Given 1`] = `
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
         >
-          排序方式
+          Sort by
         </p>
       </div>
       <svg
@@ -62,7 +62,7 @@ exports[`Storyshots ListPageControls/BaseSortInput With Options 1`] = `
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
         >
-          排序方式
+          Sort by
         </p>
       </div>
       <svg
