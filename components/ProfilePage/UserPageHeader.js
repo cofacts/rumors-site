@@ -20,6 +20,7 @@ import Stats from './Stats';
 import EditIcon from '@material-ui/icons/Edit';
 import EditProfileDialog from './EditProfileDialog';
 import EditAvatarDialog from './EditAvatarDialog';
+import ShowAwardedBadgeDialog from './BadgeDialog';
 
 import cx from 'clsx';
 
@@ -34,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.secondary[400],
     borderTopLeftRadius: theme.shape.borderRadius,
     borderTopRightRadius: theme.shape.borderRadius,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       padding: '12px 0',
     },
@@ -173,6 +177,37 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'space-between',
     },
   },
+  majorBadgeIcon: {
+    width: '25px',
+    height: '25px',
+    top: '10px',
+  },
+  majorBadgeName: {
+    position: 'relative',
+    right: '10px',
+    height: '100%',
+    color: 'white',
+  },
+  badgeContainer: {
+    marginLeft: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    paddingRight: '16px',
+  },
+  majorBadgeIconDiv: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    color: 'white',
+    height: '25px',
+  },
+  majorBadgeNameDiv: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    color: 'white',
+    height: '25px',
+    marginLeft: '8px',
+  },
 }));
 
 /**
@@ -186,6 +221,10 @@ function UserPageHeader({ user, isSelf, stats }) {
   const classes = useStyles();
   const [isEditDialogOpen, setEditDialogOpen] = useState(false);
   const [isEditAvatarDialogOpen, setEditAvatarDialogOpen] = useState(false);
+  const [
+    isShowAwardedBadgeDialogOpen,
+    setShowAwardedBadgeDialogOpen,
+  ] = useState(false);
 
   const editButtonElem = isSelf && (
     <Button
@@ -233,6 +272,27 @@ function UserPageHeader({ user, isSelf, stats }) {
           <span className={classes.level}>Lv. {user?.level || 0}</span>
           {LEVEL_NAMES[(user?.level)] || ''}
         </Ribbon>
+        <div className={classes.badgeContainer}>
+          {user?.majorBadgeImageUrl && (
+            <div className={classes.majorBadgeIconDiv}>
+              <img
+                className={classes.majorBadgeIcon}
+                src={user.majorBadgeImageUrl}
+                alt={user.majorBadgeName || ''}
+              />
+            </div>
+          )}
+          {user?.majorBadgeName && (
+            <div className={classes.majorBadgeNameDiv}>
+              <span
+                className={classes.majorBadgeName}
+                onClick={() => setShowAwardedBadgeDialogOpen(true)}
+              >
+                {user.majorBadgeName}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={classes.content}>
@@ -297,6 +357,15 @@ function UserPageHeader({ user, isSelf, stats }) {
           />
         </ThemeProvider>
       )}
+
+      {isShowAwardedBadgeDialogOpen && (
+        <ThemeProvider theme={lightTheme}>
+          <ShowAwardedBadgeDialog
+            user={user}
+            onClose={() => setShowAwardedBadgeDialogOpen(false)}
+          />
+        </ThemeProvider>
+      )}
     </header>
   );
 }
@@ -311,7 +380,9 @@ exported.fragments = {
       bio
       level
       appId
-
+      majorBadgeId
+      majorBadgeName
+      majorBadgeImageUrl
       points {
         total
         nextLevel

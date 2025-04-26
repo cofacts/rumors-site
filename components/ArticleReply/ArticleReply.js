@@ -146,11 +146,13 @@ const ArticleReply = React.memo(({ articleReply }) => {
       <Box component="header" display="flex" alignItems="center">
         <Avatar
           user={articleReply.user}
+          showBadge
+          badgeBorderWidth={8}
           size={30}
           mdSize={42}
           className={classes.avatar} /*hasLink*/
         />
-        <Box flexGrow={1}>
+        <Box flexGrow={1} ml={2}>
           <ArticleReplySummary articleReply={articleReply} />
           <ReplyInfo reply={reply} articleReplyCreatedAt={createdAt} />
         </Box>

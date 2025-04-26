@@ -86,6 +86,99 @@ const StatusBadge = withStyles(theme => ({
   );
 });
 
+const BackgroundBadge = withStyles(theme => ({
+  container: ({ size, mdSize, badgeBorderWidth, majorBadgeBorderUrl }) => ({
+    position: 'relative',
+    display: 'inline-block',
+    width: majorBadgeBorderUrl ? size + badgeBorderWidth : size,
+    height: majorBadgeBorderUrl ? size + badgeBorderWidth : size,
+    backgroundImage: majorBadgeBorderUrl
+      ? `url(${majorBadgeBorderUrl})`
+      : 'none',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
+    backgroundPosition: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: majorBadgeBorderUrl
+        ? (mdSize || size) + badgeBorderWidth
+        : mdSize || size,
+      height: majorBadgeBorderUrl
+        ? (mdSize || size) + badgeBorderWidth
+        : mdSize || size,
+    },
+  }),
+  avatarWrapper: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: ({ size }) => size,
+    height: ({ size }) => size,
+    [theme.breakpoints.up('md')]: {
+      width: ({ mdSize, size }) => mdSize || size,
+      height: ({ mdSize, size }) => mdSize || size,
+    },
+  },
+  avatarContent: {
+    width: '100%',
+    height: '100%',
+    '& img': {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      borderRadius: '50%',
+    },
+  },
+  tooltip: {
+    position: 'absolute',
+    left: 'calc(100% + 8px)',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    padding: '4px 8px',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    color: theme.palette.common.white,
+    fontSize: 12,
+    borderRadius: '4px',
+    whiteSpace: 'nowrap',
+    opacity: 0,
+    visibility: 'hidden',
+    zIndex: 1000,
+    pointerEvents: 'none',
+    transition: 'opacity 0.2s, visibility 0.2s',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      right: '100%',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      border: '6px solid transparent',
+      borderRightColor: 'rgba(0, 0, 0, 0.8)',
+    },
+  },
+  containerWithTooltip: {
+    '&:hover $tooltip': {
+      opacity: 1,
+      visibility: 'visible',
+    },
+    cursor: 'pointer',
+  },
+}))(({ classes, children, majorBadgeName, ...props }) => (
+  <div
+    className={cx(
+      classes.container,
+      majorBadgeName && classes.containerWithTooltip
+    )}
+    {...props}
+  >
+    <div className={classes.avatarWrapper}>
+      <div className={classes.avatarContent}>{children}</div>
+    </div>
+    {majorBadgeName && majorBadgeName !== 'undefined' && (
+      <div className={classes.tooltip}>{majorBadgeName}</div>
+    )}
+  </div>
+));
+
 const OpenPeepsAvatar = withStyles(theme => ({
   showcaseWrapper: {
     display: 'flex',
@@ -135,9 +228,11 @@ function Avatar({
   user,
   size = 24,
   mdSize = null,
+  badgeBorderWidth = 16,
   showLevel = false,
   status = null,
   hasLink = false,
+  showBadge = false,
   className,
   ...rest
 }) {
@@ -172,6 +267,19 @@ function Avatar({
       />
     );
 
+  if (showBadge && user?.majorBadgeImageUrl && user?.majorBadgeName) {
+    avatar = (
+      <BackgroundBadge
+        majorBadgeBorderUrl={user?.majorBadgeBorderUrl}
+        majorBadgeName={user?.majorBadgeName}
+        badgeBorderWidth={badgeBorderWidth}
+        size={size}
+        mdSize={mdSize}
+      >
+        {avatar}
+      </BackgroundBadge>
+    );
+  }
   if (showLevel) {
     avatar = <LevelBadge level={user?.level}>{avatar}</LevelBadge>;
   }
@@ -181,6 +289,7 @@ function Avatar({
   if (hasLink) {
     avatar = <ProfileLink user={user}>{avatar}</ProfileLink>;
   }
+
   return avatar;
 }
 
@@ -192,6 +301,9 @@ Avatar.fragments = {
       avatarUrl
       avatarType
       avatarData
+      majorBadgeBorderUrl
+      majorBadgeImageUrl
+      majorBadgeName
       ...ProfileLinkUserData
     }
     ${ProfileLink.fragments.ProfileLinkUserData}
