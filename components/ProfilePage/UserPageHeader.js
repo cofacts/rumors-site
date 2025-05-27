@@ -187,6 +187,7 @@ const useStyles = makeStyles(theme => ({
     right: '10px',
     height: '100%',
     color: 'white',
+    cursor: 'pointer',
   },
   badgeContainer: {
     marginLeft: 'auto',
