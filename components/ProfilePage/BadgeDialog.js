@@ -81,10 +81,11 @@ function ShowAwardedBadgeDialog({ user, onClose }) {
         ) : (
           <>
             <div className={classes.descriptionSection}>
-              <Typography className={classes.description}
+              <Typography
+                className={classes.description}
                 component="div"
-                dangerouslySetInnerHTML={{ __html: badge?.description || '' }}>
-                </Typography>
+                dangerouslySetInnerHTML={{ __html: badge?.description || '' }}
+              ></Typography>
             </div>
             <div className={classes.iconSection}>
               {badge?.icon && (
