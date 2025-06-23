@@ -208,14 +208,44 @@ const ReasonEditor = ({
 
   const handleChange = e => {
     if (lastKey.current === 'Enter') {
-      const element = e.target;
-      const { value, selectionStart, selectionEnd } = addListStyle(
-        element,
-        listStyle
-      );
+      const element = editorRef.current;
+      if (!element) return;
+
+      const cursorPos = element.selectionStart;
+      let value = element.value;
+      const lines = value.split('\n');
+      let charCount = 0;
+      let lineIndex = 0;
+
+      for (let i = 0; i < lines.length; i++) {
+        if (cursorPos <= charCount + lines[i].length) {
+          lineIndex = i - 1;
+          break;
+        }
+        charCount += lines[i].length + 1;
+      }
+
+      const currentLine = lines[lineIndex];
+      const indent = currentLine.match(/^(\s*)/)?.[1] ?? '';
+
+      if (listStyle === "BULLETED") {
+        e.preventDefault();
+        const insertText = `${indent}• `;
+        value = value.slice(0, cursorPos) + insertText + value.slice(cursorPos);
+      } else if (listStyle === "NUMBERED") {
+        const match = currentLine.match(/^(\s*)(\d+)\.\s+/);
+        if (match) {
+          e.preventDefault();
+          const nextNumber = parseInt(match[2], 10) + 1;
+          const insertText = `${match[1]}${nextNumber}. `;
+          value = value.slice(0, cursorPos) + insertText + value.slice(cursorPos);
+        } else {
+          e.preventDefault();
+          const insertText = `1. `;
+          value = value.slice(0, cursorPos) + insertText + value.slice(cursorPos);
+        }
+      }
       element.value = value;
-      element.selectionStart = selectionStart;
-      element.selectionEnd = selectionEnd;
     }
     onChange(e);
   };
