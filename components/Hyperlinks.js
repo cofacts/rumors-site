@@ -1,12 +1,12 @@
-import gql from 'graphql-tag';
-import { t } from 'ttag';
-import { Box, CircularProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag'
+import { t } from 'ttag'
+import { Box, CircularProgress } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import { useQuery } from '@apollo/react-hooks'
 
-import { HyperlinkIcon } from 'components/icons';
+import { HyperlinkIcon } from 'components/icons'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexFlow: 'row',
@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     '& .summary': {
       color: theme.palette.secondary[500],
       overflow: 'hidden',
-      margin: 0,
+      margin: '1px 0',
       display: '-webkit-box',
       boxOrient: 'vertical',
       textOverflow: 'ellipsis',
@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => ({
     color: 'firebrick',
     fontStyle: 'italic',
   },
-}));
+}))
 
 const HyperlinkData = gql`
   fragment HyperlinkData on Hyperlink {
@@ -99,7 +99,7 @@ const HyperlinkData = gql`
     topImageUrl
     error
   }
-`;
+`
 
 export const POLLING_QUERY = {
   articles: gql`
@@ -124,7 +124,7 @@ export const POLLING_QUERY = {
     }
     ${HyperlinkData}
   `,
-};
+}
 
 /**
  * @param {string} error - One of ResolveError https://github.com/cofacts/url-resolver/blob/master/src/typeDefs/ResolveError.graphql
@@ -132,16 +132,16 @@ export const POLLING_QUERY = {
 function getErrorText(error) {
   switch (error) {
     case 'NAME_NOT_RESOLVED':
-      return t`Domain name cannot be resolved`;
+      return t`Domain name cannot be resolved`
     case 'UNSUPPORTED':
     case 'INVALID_URL':
-      return t`URL is malformed or not supported`;
+      return t`URL is malformed or not supported`
     case 'NOT_REACHABLE':
-      return t`Cannot get data from URL`;
+      return t`Cannot get data from URL`
     case 'HTTPS_ERROR':
-      return t`Target site contains HTTPS error`;
+      return t`Target site contains HTTPS error`
     default:
-      return t`Unknown error`;
+      return t`Unknown error`
   }
 }
 
@@ -150,29 +150,29 @@ function getErrorText(error) {
  * @param {string} props.rel - rel prop for the hyperlink (other than noopener and noreferrer)
  */
 function Hyperlink({ hyperlink, rel = '' }) {
-  const { title, topImageUrl, error, url } = hyperlink;
-  const summary = (hyperlink.summary || '').slice(0, 200);
+  const { title, topImageUrl, error, url } = hyperlink
+  const summary = (hyperlink.summary || '').slice(0, 200)
 
-  const classes = useStyles({ topImageUrl });
+  const classes = useStyles({ topImageUrl })
 
   return (
     <article className={classes.linkcard}>
       <h1 title={title}>{title}</h1>
       <div className={classes.preview}>
-        <p className="summary" title={summary}>
+        <p className='summary' title={summary}>
           {summary}
         </p>
-        {topImageUrl && <figure className="image" />}
-        {error && <p className="error">{getErrorText(error)}</p>}
+        {topImageUrl && <figure className='image' />}
+        {error && <p className='error'>{getErrorText(error)}</p>}
       </div>
       <span className={classes.url}>
         <HyperlinkIcon />
-        <a href={url} target="_blank" rel={`noopener noreferrer ${rel}`}>
+        <a href={url} target='_blank' rel={`noopener noreferrer ${rel}`}>
           {url}
         </a>
       </span>
     </article>
-  );
+  )
 }
 
 function PollingHyperlink({ pollingType, pollingId }) {
@@ -185,9 +185,9 @@ function PollingHyperlink({ pollingType, pollingId }) {
   useQuery(POLLING_QUERY[pollingType], {
     variables: { id: pollingId },
     pollInterval: 2000,
-  });
+  })
 
-  return <CircularProgress />;
+  return <CircularProgress />
 }
 
 /**
@@ -197,19 +197,19 @@ function PollingHyperlink({ pollingType, pollingId }) {
  * @param {string?} props.rel - rel prop for the hyperlink (other than noopener and noreferrer)
  */
 function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
-  const classes = useStyles();
+  const classes = useStyles()
   if (!((pollingId && pollingType) || (!pollingId && !pollingType))) {
-    throw new Error('pollingType and pollingId must be specified together');
+    throw new Error('pollingType and pollingId must be specified together')
   }
 
-  if (hyperlinks && hyperlinks.length === 0) return null;
+  if (hyperlinks && hyperlinks.length === 0) return null
 
-  let className = `${classes.root}`;
+  let className = `${classes.root}`
   if (hyperlinks && hyperlinks.length > 1) {
-    className += ` ${classes.multilink}`;
+    className += ` ${classes.multilink}`
   }
   return (
-    <Box className={className} component="section" mt={2} mb={1}>
+    <Box className={className} component='section' mt={2} mb={1}>
       {(hyperlinks || []).map((hyperlink, idx) => (
         <Hyperlink key={idx} hyperlink={hyperlink} rel={rel} />
       ))}
@@ -217,11 +217,11 @@ function Hyperlinks({ hyperlinks, pollingType, pollingId, rel }) {
         <PollingHyperlink pollingId={pollingId} pollingType={pollingType} />
       )}
     </Box>
-  );
+  )
 }
 
 Hyperlinks.fragments = {
   HyperlinkData,
-};
+}
 
-export default Hyperlinks;
+export default Hyperlinks
