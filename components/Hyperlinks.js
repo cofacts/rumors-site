@@ -165,7 +165,7 @@ function Hyperlink({ hyperlink, rel = '' }) {
           </p>
         )}
         {topImageUrl && <figure className='image' />}
-        {error && <p className='error'>{getErrorText(error)}</p>}
+        {error && <p className={classes.error}>{getErrorText(error)}</p>}
       </div>
       <span className={classes.url}>
         <HyperlinkIcon />
