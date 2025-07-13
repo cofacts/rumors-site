@@ -9,6 +9,7 @@ import ListPageCard from './ListPageCard';
 import { highlightSections, HighlightFields } from 'lib/text';
 import { useHighlightStyles } from './utils';
 import cx from 'clsx';
+import Hyperlinks from 'components/Hyperlinks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -99,7 +100,14 @@ const useStyles = makeStyles(theme => ({
  * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  */
 function ArticleCard({ article, highlight = '' }) {
-  const { id, text, replyCount, replyRequestCount, createdAt } = article;
+  const {
+    id,
+    text,
+    replyCount,
+    replyRequestCount,
+    createdAt,
+    hyperlinks,
+  } = article;
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
 
@@ -124,13 +132,16 @@ function ArticleCard({ article, highlight = '' }) {
               </div>
             </div>
             <Thumbnail article={article} className={classes.attachment} />
-            {(text || highlight) && (
-              <ExpandableText className={classes.content} lineClamp={3}>
-                {highlight
-                  ? highlightSections(highlight, highlightClasses)
-                  : text}
-              </ExpandableText>
-            )}
+            <div className={classes.content}>
+              {(text || highlight) && (
+                <ExpandableText lineClamp={3}>
+                  {highlight
+                    ? highlightSections(highlight, highlightClasses)
+                    : text}
+                </ExpandableText>
+              )}
+              <Hyperlinks hyperlinks={hyperlinks} />
+            </div>
           </div>
         </ListPageCard>
       </a>
@@ -146,9 +157,13 @@ ArticleCard.fragments = {
       replyCount
       replyRequestCount
       createdAt
+      hyperlinks {
+        ...HyperlinkData
+      }
       ...ThumbnailArticleData
     }
     ${Thumbnail.fragments.ThumbnailArticleData}
+    ${Hyperlinks.fragments.HyperlinkData}
   `,
   Highlight: HighlightFields,
 };
