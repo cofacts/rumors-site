@@ -157,11 +157,13 @@ function Hyperlink({ hyperlink, rel = '' }) {
 
   return (
     <article className={classes.linkcard}>
-      <h1 title={title}>{title}</h1>
+      {title && <h1 title={title}>{title}</h1>}
       <div className={classes.preview}>
-        <p className='summary' title={summary}>
-          {summary}
-        </p>
+        {summary && (
+          <p className='summary' title={summary}>
+            {summary}
+          </p>
+        )}
         {topImageUrl && <figure className='image' />}
         {error && <p className='error'>{getErrorText(error)}</p>}
       </div>
