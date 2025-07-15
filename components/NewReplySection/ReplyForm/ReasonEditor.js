@@ -11,8 +11,7 @@ import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Picker } from 'emoji-mart';
-import { LIST_STYLES, addListStyle, replaceListPrefixAtCursorLine
- } from 'lib/editor';
+import { LIST_STYLES, addListStyle, replaceListPrefixAtCursorLine, detectListStyleAtCursor } from 'lib/editor';
 import SearchBar from '../ReplySearch/SearchBar';
 import ReplySearch from '../ReplySearch/ReplySearch';
 import ReplySearchContext from '../ReplySearch/context';
@@ -235,6 +234,12 @@ const ReasonEditor = ({
     onChange(e);
   };
 
+  const handleCursorChange = e => {
+    const textarea = e.target;
+    const detected = detectListStyleAtCursor(textarea);
+    setListStyle(detected);
+  };
+
   const addEmoji = emoji => {
     const element = editorRef.current;
     const index = element.selectionStart;
@@ -302,6 +307,8 @@ const ReasonEditor = ({
         placeholder={getReasonHint(replyType) + multipleReplyHint}
         onChange={handleChange}
         onKeyDown={handleKeyPress}
+        onClick={handleCursorChange}
+        onKeyUp={handleCursorChange}
         value={value}
         rows={10}
       />
