@@ -206,16 +206,17 @@ const ReasonEditor = ({
     const element = editorRef.current;
     let obj;
     if (listStyle === type) {
+      //toggling off
       obj = replaceListPrefixAtCursorLine(element);
     }
     else {
+      //toggling on or replacing
       obj = replaceListPrefixAtCursorLine(element, type);
     }
     const { value, selectionStart, selectionEnd } = obj;
     onChange({ target: { value, selectionStart, selectionEnd } });
     setListStyle(v => (v === type ? null : type));
     element.focus();
-   
   };
 
   const handleKeyPress = e => void (lastKey.current = e.key);
