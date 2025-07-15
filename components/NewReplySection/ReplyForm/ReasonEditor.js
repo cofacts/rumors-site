@@ -11,7 +11,12 @@ import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Picker } from 'emoji-mart';
-import { LIST_STYLES, addListStyle, replaceListPrefixAtCursorLine, detectListStyleAtCursor } from 'lib/editor';
+import {
+  LIST_STYLES,
+  addListStyle,
+  replaceListPrefixAtCursorLine,
+  detectListStyleAtCursor,
+} from 'lib/editor';
 import SearchBar from '../ReplySearch/SearchBar';
 import ReplySearch from '../ReplySearch/ReplySearch';
 import ReplySearchContext from '../ReplySearch/context';
@@ -207,8 +212,7 @@ const ReasonEditor = ({
     if (listStyle === type) {
       //toggling off
       obj = replaceListPrefixAtCursorLine(element);
-    }
-    else {
+    } else {
       //toggling on or replacing
       obj = replaceListPrefixAtCursorLine(element, type);
     }
