@@ -155,16 +155,11 @@ exports[`Storyshots Hyperlinks All Variants 1`] = `
         <article
           className="makeStyles-linkcard"
         >
-          <h1 />
           <div
             className="makeStyles-preview makeStyles-preview"
           >
             <p
-              className="summary"
-              title=""
-            />
-            <p
-              className="error"
+              className="makeStyles-error"
             >
               Cannot get data from URL
             </p>
