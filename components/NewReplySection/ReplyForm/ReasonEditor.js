@@ -11,7 +11,12 @@ import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Picker } from 'emoji-mart';
-import { LIST_STYLES, addListStyle } from 'lib/editor';
+import {
+  LIST_STYLES,
+  addListStyle,
+  replaceListPrefixAtCursorLine,
+  detectListStyleAtCursor,
+} from 'lib/editor';
 import SearchBar from '../ReplySearch/SearchBar';
 import ReplySearch from '../ReplySearch/ReplySearch';
 import ReplySearchContext from '../ReplySearch/context';
@@ -201,8 +206,21 @@ const ReasonEditor = ({
   const { search, setSearch } = useContext(ReplySearchContext);
   const { fields, handlers } = useContext(ReplyFormContext);
 
-  const toggleListStyle = type => () =>
+  const toggleListStyle = type => () => {
+    const element = editorRef.current;
+    let obj;
+    if (listStyle === type) {
+      //toggling off
+      obj = replaceListPrefixAtCursorLine(element);
+    } else {
+      //toggling on or replacing
+      obj = replaceListPrefixAtCursorLine(element, type);
+    }
+    const { value, selectionStart, selectionEnd } = obj;
+    onChange({ target: { value, selectionStart, selectionEnd } });
     setListStyle(v => (v === type ? null : type));
+    element.focus();
+  };
 
   const handleKeyPress = e => void (lastKey.current = e.key);
 
@@ -218,6 +236,12 @@ const ReasonEditor = ({
       element.selectionEnd = selectionEnd;
     }
     onChange(e);
+  };
+
+  const handleCursorChange = e => {
+    const textarea = e.target;
+    const detected = detectListStyleAtCursor(textarea);
+    setListStyle(detected);
   };
 
   const addEmoji = emoji => {
@@ -287,6 +311,8 @@ const ReasonEditor = ({
         placeholder={getReasonHint(replyType) + multipleReplyHint}
         onChange={handleChange}
         onKeyDown={handleKeyPress}
+        onClick={handleCursorChange}
+        onKeyUp={handleCursorChange}
         value={value}
         rows={10}
       />
