@@ -127,15 +127,7 @@ MyDocument.getInitialProps = async ctx => {
           ),
       });
 
-    let initialProps = {};
-
-    try {
-      initialProps = await Document.getInitialProps(ctx);
-    } catch (e) {
-      // May be getInitialProps don't exist, etc.
-      // Just ignore.
-      console.error(e);
-    }
+    const initialProps = await Document.getInitialProps(ctx);
 
     return {
       ...initialProps,
@@ -149,6 +141,7 @@ MyDocument.getInitialProps = async ctx => {
     };
   } catch (e) {
     rollbar.error(e);
+    throw e;
   }
 };
 

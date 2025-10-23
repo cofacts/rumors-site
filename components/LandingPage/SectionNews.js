@@ -1,7 +1,7 @@
 import { c } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 
-const NEWS = {
+const NEWS_BY_LOCALE = {
   en_US: [
     [
       '2024-11 bpb',
@@ -378,7 +378,10 @@ const NEWS = {
       'https://www.nhk.or.jp/gendai/articles/4371/',
     ],
   ],
-}[process.env.LOCALE];
+};
+
+const locale = process.env.LOCALE || 'en_US';
+const NEWS = NEWS_BY_LOCALE[locale] || NEWS_BY_LOCALE.en_US;
 
 const useStyles = makeStyles(theme => ({
   sectionNews: {
