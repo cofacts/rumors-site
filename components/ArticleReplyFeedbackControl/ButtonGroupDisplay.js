@@ -106,7 +106,7 @@ function ButtonGroupDisplay({
       </Button>
       <Button
         className={cx(classes.vote, isDownVote && classes.voted)}
-        onClick={ isDownVote ? onRemoveVote : onVoteDown }
+        onClick={isDownVote ? onRemoveVote : onVoteDown}
         disabled={isOwnArticleReply}
         data-ga="Downvote"
       >
