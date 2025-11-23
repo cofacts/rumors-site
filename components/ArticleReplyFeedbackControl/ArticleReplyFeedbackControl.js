@@ -143,7 +143,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
     setVote(null);
   };
 
-  const removeVote = () => {
+  const removeVote = useCallback(() => {
     setVote(null);
     createReplyFeedback({
       variables: {
@@ -153,7 +153,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
         comment: '',
       },
     });
-  };
+  }, [createReplyFeedback, articleReply.articleId, articleReply.replyId]);
 
   const handleReasonReposition = useCallback(() => {
     if (reasonsPopoverRef.current) {
