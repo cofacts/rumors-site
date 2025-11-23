@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     borderBottom: `1px dashed ${theme.palette.secondary[100]}`,
   },
   avatar: {
-    marginRight: theme.spacing(0),
     [theme.breakpoints.up('md')]: {
       marginRight: theme.spacing(2),
     },
