@@ -6,8 +6,8 @@
   "author": "MrOrz",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "cross-env TZ=UTC jest",
