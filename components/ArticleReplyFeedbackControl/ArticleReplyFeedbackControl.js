@@ -120,7 +120,10 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
       onCompleted() {
         closeVotePopover();
         setReason('');
-        setReorderSnackShow(true);
+        if (vote !== null) {
+          // Do not show when removing vote
+          setReorderSnackShow(true);
+        }
       },
     }
   );
