@@ -149,6 +149,17 @@ MyDocument.getInitialProps = async ctx => {
     };
   } catch (e) {
     rollbar.error(e);
+    // Return a fallback object to prevent the error
+    // Next.js requires getInitialProps to return an object with html property
+    try {
+      return await Document.getInitialProps(ctx);
+    } catch (fallbackError) {
+      // If Document.getInitialProps also fails, return minimal valid object
+      return {
+        html: '',
+        styles: [],
+      };
+    }
   }
 };
 
