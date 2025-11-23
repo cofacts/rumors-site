@@ -143,6 +143,18 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
     setVote(null);
   };
 
+  const removeVote = () => {
+    setVote(null);
+    createReplyFeedback({
+      variables: {
+        articleId: articleReply.articleId,
+        replyId: articleReply.replyId,
+        vote: 'NEUTRAL',
+        comment: '',
+      },
+    });
+  };
+
   const handleReasonReposition = useCallback(() => {
     if (reasonsPopoverRef.current) {
       reasonsPopoverRef.current.updatePosition();
@@ -155,6 +167,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
         articleReply={articleReply}
         onVoteUp={e => openVotePopover(e, 'UPVOTE')}
         onVoteDown={e => openVotePopover(e, 'DOWNVOTE')}
+        onRemoveVote={removeVote}
         onReasonClick={openReasonsPopover}
       />
       <Popover

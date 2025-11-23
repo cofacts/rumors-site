@@ -79,6 +79,7 @@ function ButtonGroupDisplay({
   articleReply: { ownVote, positiveFeedbackCount, negativeFeedbackCount, user },
   onVoteUp,
   onVoteDown,
+  onRemoveVote,
   onReasonClick,
 }) {
   const classes = useStyles();
@@ -89,11 +90,14 @@ function ButtonGroupDisplay({
   //
   const isOwnArticleReply = currentUser && user && currentUser.id === user.id;
 
+  const isUpVote = ownVote === 'UPVOTE' && classes.voted;
+  const isDownVote = ownVote === 'DOWNVOTE' && classes.voted;
+
   return (
     <ButtonGroup className={classes.buttonGroup} data-ga="Number display">
       <Button
-        className={cx(classes.vote, ownVote === 'UPVOTE' && classes.voted)}
-        onClick={onVoteUp}
+        className={cx(classes.vote, isUpVote)}
+        onClick={isUpVote ? onRemoveVote : onVoteUp}
         disabled={isOwnArticleReply}
         data-ga="Upvote"
       >
@@ -101,8 +105,8 @@ function ButtonGroupDisplay({
         <ThumbUpIcon className={classes.thumbIcon} />
       </Button>
       <Button
-        className={cx(classes.vote, ownVote === 'DOWNVOTE' && classes.voted)}
-        onClick={onVoteDown}
+        className={cx(classes.vote, isDownVote)}
+        onClick={ isDownVote ? onRemoveVote : onVoteDown }
         disabled={isOwnArticleReply}
         data-ga="Downvote"
       >
