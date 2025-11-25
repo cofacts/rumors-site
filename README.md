@@ -12,7 +12,7 @@ For production via [rumors-deploy](http://github.com/cofacts/rumors-deploy), do 
 
 ## Development
 
-This project uses NodeJS 16. Use a node version manager like `nvm` to install version 16 (ex. `nvm install 16`)
+This project uses NodeJS 24. Use a node version manager like `nvm` to install version 24 (ex. `nvm install 24`)
 
 ``` bash
 $ npm install
@@ -167,4 +167,3 @@ To consume the fragments from typed API, see [Fragment Masking documentation](ht
 `LICENSE` defines the license agreement for the source code in this repository.
 
 `LEGAL.md` is the user agreement for Cofacts website users.
-
