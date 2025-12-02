@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
     margin: '0 0 8px 0',
     background: theme.palette.secondary[50],
     borderRadius: 8,
-    width: '100%',
     maxWidth: '100%',
     '& h1': {
       overflow: 'hidden',
