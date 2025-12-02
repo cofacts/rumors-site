@@ -1,10 +1,12 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { c, t } from 'ttag';
 import { makeStyles } from '@material-ui/core/styles';
 import Infos, { TimeInfo } from 'components/Infos';
 import ExpandableText from 'components/ExpandableText';
 import Thumbnail from 'components/Thumbnail';
+import Hyperlinks from 'components/Hyperlinks';
 import ListPageCard from './ListPageCard';
 import { highlightSections, HighlightFields } from 'lib/text';
 import { useHighlightStyles } from './utils';
@@ -99,9 +101,34 @@ const useStyles = makeStyles(theme => ({
  * @param {Highlights?} props.highlight - If given, display search snippet instead of reply text
  */
 function ArticleCard({ article, highlight = '' }) {
-  const { id, text, replyCount, replyRequestCount, createdAt } = article;
+  const {
+    id,
+    text,
+    replyCount,
+    replyRequestCount,
+    createdAt,
+    hyperlinks,
+  } = article;
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
+  const safeHyperlinks = hyperlinks || [];
+  const textWithUrlTitles = useMemo(() => {
+    if (!text) return text;
+    if (!safeHyperlinks.length) return text;
+
+    return safeHyperlinks.reduce((replacedText, hyperlink) => {
+      if (!hyperlink || !hyperlink.title || !hyperlink.url) return replacedText;
+
+      return replacedText.replace(
+        hyperlink.url,
+        `${hyperlink.url} (${hyperlink.title})`
+      );
+    }, text);
+  }, [text, safeHyperlinks]);
+
+  const primaryHyperlink = safeHyperlinks.find(
+    hyperlink => hyperlink && (hyperlink.title || hyperlink.url)
+  );
 
   return (
     <Link href="/article/[id]" as={`/article/${id}`}>
@@ -124,13 +151,17 @@ function ArticleCard({ article, highlight = '' }) {
               </div>
             </div>
             <Thumbnail article={article} className={classes.attachment} />
-            {(text || highlight) && (
-              <ExpandableText className={classes.content} lineClamp={3}>
-                {highlight
-                  ? highlightSections(highlight, highlightClasses)
-                  : text}
-              </ExpandableText>
-            )}
+            <div className={classes.content}>
+              {(text || highlight) && (
+                <ExpandableText lineClamp={3}>
+                  {highlight
+                    ? highlightSections(highlight, highlightClasses)
+                    : textWithUrlTitles}
+                </ExpandableText>
+              )}
+              {/* URL 卡片，沿用單篇文章頁面的 Hyperlinks 樣式 */}
+              <Hyperlinks hyperlinks={safeHyperlinks} rel="ugc nofollow" />
+            </div>
           </div>
         </ListPageCard>
       </a>
@@ -146,6 +177,10 @@ ArticleCard.fragments = {
       replyCount
       replyRequestCount
       createdAt
+      hyperlinks {
+        url
+        title
+      }
       ...ThumbnailArticleData
     }
     ${Thumbnail.fragments.ThumbnailArticleData}
