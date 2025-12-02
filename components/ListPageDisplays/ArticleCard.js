@@ -111,7 +111,7 @@ function ArticleCard({ article, highlight = '' }) {
   } = article;
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
-  const safeHyperlinks = hyperlinks || [];
+  const safeHyperlinks = useMemo(() => hyperlinks || [], [hyperlinks]);
   const textWithUrlTitles = useMemo(() => {
     if (!text) return text;
     if (!safeHyperlinks.length) return text;
@@ -125,10 +125,6 @@ function ArticleCard({ article, highlight = '' }) {
       );
     }, text);
   }, [text, safeHyperlinks]);
-
-  const primaryHyperlink = safeHyperlinks.find(
-    hyperlink => hyperlink && (hyperlink.title || hyperlink.url)
-  );
 
   return (
     <Link href="/article/[id]" as={`/article/${id}`}>
