@@ -8,23 +8,19 @@ it('formatDate formats date', () => {
   expect(formatDate(now)).toMatchInlineSnapshot(`"now"`);
 
   // 5 sec ago
-  expect(formatDate(new Date(now - 5000))).toMatchInlineSnapshot(
-    `"5 sec. ago"`
-  );
+  expect(formatDate(new Date(now - 5000))).toMatchInlineSnapshot(`"5s ago"`);
 
   // 1.5 min ago (rounds up)
-  expect(formatDate(new Date(now - 90000))).toMatchInlineSnapshot(
-    `"2 min. ago"`
-  );
+  expect(formatDate(new Date(now - 90000))).toMatchInlineSnapshot(`"2m ago"`);
 
   // 1.5 hours ago (rounds up)
   expect(
     formatDate(new Date(now - 1.5 * 60 * 60 * 1000))
-  ).toMatchInlineSnapshot(`"2 hr. ago"`);
+  ).toMatchInlineSnapshot(`"2h ago"`);
 
   // 0.5 days and 1 seconds ago
   expect(formatDate(new Date('2019-12-31T23:59:59Z'))).toMatchInlineSnapshot(
-    `"12 hr. ago"`
+    `"12h ago"`
   );
 
   // 1 day ago
@@ -39,7 +35,7 @@ it('formatDate formats date', () => {
 
   // 1.5 days and 1 second ago, but it's the day before yesterday
   expect(formatDate(new Date('2019-12-30T23:59:59Z'))).toMatchInlineSnapshot(
-    `"2 days ago"`
+    `"2d ago"`
   );
 
   // exactly 2 days ago

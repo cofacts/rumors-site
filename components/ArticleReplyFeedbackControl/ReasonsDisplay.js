@@ -96,6 +96,7 @@ function ReasonsDisplay({ articleReply, onSizeChange = () => {} }) {
       replyId: articleReply.replyId,
       statuses: isUserBlocked ? ['NORMAL', 'BLOCKED'] : ['NORMAL'],
     },
+    fetchPolicy: 'cache-and-network',
     ssr: false,
   });
 

@@ -120,7 +120,10 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
       onCompleted() {
         closeVotePopover();
         setReason('');
-        setReorderSnackShow(true);
+        if (vote !== null) {
+          // Do not show when removing vote
+          setReorderSnackShow(true);
+        }
       },
     }
   );
@@ -143,6 +146,18 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
     setVote(null);
   };
 
+  const removeVote = useCallback(() => {
+    setVote(null);
+    createReplyFeedback({
+      variables: {
+        articleId: articleReply.articleId,
+        replyId: articleReply.replyId,
+        vote: 'NEUTRAL',
+        comment: '',
+      },
+    });
+  }, [createReplyFeedback, articleReply.articleId, articleReply.replyId]);
+
   const handleReasonReposition = useCallback(() => {
     if (reasonsPopoverRef.current) {
       reasonsPopoverRef.current.updatePosition();
@@ -155,6 +170,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
         articleReply={articleReply}
         onVoteUp={e => openVotePopover(e, 'UPVOTE')}
         onVoteDown={e => openVotePopover(e, 'DOWNVOTE')}
+        onRemoveVote={removeVote}
         onReasonClick={openReasonsPopover}
       />
       <Popover
