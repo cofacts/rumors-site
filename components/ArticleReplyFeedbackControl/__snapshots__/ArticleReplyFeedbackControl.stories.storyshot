@@ -32,6 +32,7 @@ exports[`Storyshots ArticleReplyFeedbackControl With Article Reply And Reply Set
         }
       }
       onReasonClick={[Function]}
+      onRemoveVote={[Function]}
       onVoteDown={[Function]}
       onVoteUp={[Function]}
     >
