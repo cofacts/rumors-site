@@ -31,8 +31,17 @@ const UPDATE_USER = gql`
 
 function EditProfileDialog({ user, onClose = () => {} }) {
   const [updateUser, { loading }] = useMutation(UPDATE_USER, {
-    onCompleted() {
-      onClose();
+    onCompleted(data) {
+      const newSlug = data?.UpdateUser?.slug;
+      const oldSlug = user.slug;
+      // If username (slug) is updated, wait for backend database to update
+      if (newSlug !== oldSlug) {
+        setTimeout(() => {
+          onClose();
+        }, 1500);
+      } else {
+        onClose();
+      }
     },
     onError(error) {
       setSnackMsg(t`Changes cannot be saved: ${error}`);
