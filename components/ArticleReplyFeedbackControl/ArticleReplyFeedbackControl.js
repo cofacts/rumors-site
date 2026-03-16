@@ -139,6 +139,13 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
   const openVotePopover = (event, value) => {
     setVotePopoverAnchorEl(event.currentTarget);
     setVote(value);
+    createReplyFeedback({
+      variables: {
+        articleId: articleReply.articleId,
+        replyId: articleReply.replyId,
+        vote: value,
+      },
+    });
   };
 
   const closeVotePopover = () => {
@@ -244,7 +251,7 @@ function ArticleReplyFeedbackControl({ articleReply, className }) {
               });
             }}
           >
-            {t`Send`}
+            {reason ? t`Send` : t`Close`}
           </Button>
         </div>
       </Popover>
