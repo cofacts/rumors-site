@@ -49,22 +49,9 @@ module.exports = {
         ],
       },
       {
-        // Langfuse SDK
-        test: /node_modules\/langfuse/,
+        // Langfuse SDK & yjs ecosystem use optional chaining & nullish coalescing
+        test: /node_modules[\\/](langfuse|yjs|y-prosemirror|y-protocols|lib0)/,
         type: 'javascript/auto', // https://stackoverflow.com/a/74957466/1582110
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-        ],
-      },
-      {
-        // yjs ecosystem uses optional chaining & nullish coalescing
-        test: /node_modules\/(yjs|y-prosemirror|y-protocols|lib0)/,
-        type: 'javascript/auto',
         use: [
           {
             loader: 'babel-loader',
