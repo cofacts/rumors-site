@@ -60,6 +60,19 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        // yjs ecosystem uses optional chaining & nullish coalescing
+        test: /node_modules\/(yjs|y-prosemirror|y-protocols|lib0)/,
+        type: 'javascript/auto',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
+          },
+        ],
       }
     );
 
