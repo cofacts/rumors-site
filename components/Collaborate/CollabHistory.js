@@ -1,6 +1,6 @@
 import { t } from 'ttag';
 import * as Y from 'yjs';
-import { ySyncPlugin, ySyncPluginKey } from 'y-prosemirror';
+import { ySyncPlugin, ySyncPluginKey, initProseMirrorDoc } from 'y-prosemirror';
 import { useProseMirror, ProseMirror } from 'use-prosemirror';
 import { schema } from './Schema';
 import { useState, useRef, useEffect, forwardRef, useCallback } from 'react';
@@ -164,11 +164,15 @@ const CustomModalContent = forwardRef(function CustomModalContent(
   });
   const versionList = getYdocData?.GetYdoc?.versions || [];
 
+  const { doc, mapping } = initProseMirrorDoc(yXmlFragment, schema);
+
   const [state, setState] = useProseMirror({
     schema,
+    doc,
     plugins: [
       ySyncPlugin(yXmlFragment, {
         permanentUserData,
+        mapping,
         onFirstRender,
       }),
     ],

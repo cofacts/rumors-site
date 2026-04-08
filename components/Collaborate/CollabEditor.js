@@ -4,6 +4,7 @@ import {
   ySyncPlugin,
   yCursorPlugin,
   yUndoPlugin,
+  initProseMirrorDoc,
   undo,
   redo,
 } from 'y-prosemirror';
@@ -102,10 +103,13 @@ const Editor = ({ provider, currentUser, className, innerRef, onUnmount }) => {
 
   const yXmlFragment = ydoc.get('prosemirror', Y.XmlFragment);
 
+  const { doc, mapping } = initProseMirrorDoc(yXmlFragment, schema);
+
   const [state, setState] = useProseMirror({
     schema,
+    doc,
     plugins: [
-      ySyncPlugin(yXmlFragment, { permanentUserData }),
+      ySyncPlugin(yXmlFragment, { permanentUserData, mapping }),
       yCursorPlugin(provider.awareness),
       yUndoPlugin(),
       keymap({
