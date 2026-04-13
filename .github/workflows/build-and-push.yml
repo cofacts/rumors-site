@@ -102,6 +102,7 @@ jobs:
         workload_identity_provider: ${{ secrets.GC_WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ secrets.GC_SERVICE_ACCOUNT }}
     - uses: 'google-github-actions/deploy-cloudrun@v1'
+      if: env.TARGET == 'staging' || matrix.locales.postfix == '-tw'
       with:
         service: ${{ env.TARGET == 'production' && 'site' || 'site-staging' }}${{ matrix.locales.postfix }}
         image: cofacts/rumors-site:${{ env.RELEASE_TAG }}${{ matrix.locales.postfix }}
