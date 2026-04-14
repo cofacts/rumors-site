@@ -7,7 +7,6 @@ import { LICENSE_URL, EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import Link from 'next/link';
 import { AUTHOR, LICENSE } from 'lib/terms';
 import Facebook from './images/facebook.svg';
-import Twitter from './images/twitter.svg';
 import Github from './images/github.svg';
 import Google from './images/google.svg';
 // import Instagram from './images/instagram.svg';
@@ -133,30 +132,22 @@ function LoginModal({ onClose, redirectPath }) {
     <Dialog open maxWidth="xs" onClose={onClose}>
       <DialogTitle className={classes.title}>{t`Login / Signup`}</DialogTitle>
       <DialogContent className={classes.content}>
-        <ProviderLink
-          provider="facebook"
-          logo={Facebook}
-          color="#1976D2"
-          redirectPath={redirectPath}
-        >
-          Facebook
-        </ProviderLink>
-        <ProviderLink
-          provider="twitter"
-          logo={Twitter}
-          color="#03A9F4"
-          redirectPath={redirectPath}
-        >
-          Twitter
-        </ProviderLink>
-        <ProviderLink
-          provider="github"
-          logo={Github}
-          color="#2B414D"
-          redirectPath={redirectPath}
-        >
-          Github
-        </ProviderLink>
+         <ProviderLink
+           provider="facebook"
+           logo={Facebook}
+           color="#1976D2"
+           redirectPath={redirectPath}
+         >
+           Facebook
+         </ProviderLink>
+         <ProviderLink
+           provider="github"
+           logo={Github}
+           color="#2B414D"
+           redirectPath={redirectPath}
+         >
+           Github
+         </ProviderLink>
         <ProviderLink
           provider="google"
           logo={Google}
