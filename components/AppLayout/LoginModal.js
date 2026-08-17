@@ -7,7 +7,6 @@ import { LICENSE_URL, EDITOR_FACEBOOK_GROUP } from 'constants/urls';
 import Link from 'next/link';
 import { AUTHOR, LICENSE } from 'lib/terms';
 import Facebook from './images/facebook.svg';
-import Twitter from './images/twitter.svg';
 import Github from './images/github.svg';
 import Google from './images/google.svg';
 // import Instagram from './images/instagram.svg';
@@ -140,14 +139,6 @@ function LoginModal({ onClose, redirectPath }) {
           redirectPath={redirectPath}
         >
           Facebook
-        </ProviderLink>
-        <ProviderLink
-          provider="twitter"
-          logo={Twitter}
-          color="#03A9F4"
-          redirectPath={redirectPath}
-        >
-          Twitter
         </ProviderLink>
         <ProviderLink
           provider="github"
