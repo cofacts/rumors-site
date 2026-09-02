@@ -1,0 +1,2832 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals = 1; plural = 0;\n"
+"Language: id\n"
+"mime-version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: components/AppLayout/AppFooter.js:118
+#: components/AppLayout/AppSidebar.js:131
+msgid "About"
+msgstr "Tentang"
+
+#: components/ReportPage/SectionEcosystem.js:175
+#: pages/article/[id].js:403
+#: pages/article/[id].js:422
+#: pages/reply/[id].js:209
+#: pages/reply/[id].js:239
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/ArticleCategories/DownVoteDialog.js:98
+#: components/NewReplySection/Mobile.js:140
+#: components/ProfilePage/EditAvatarDialog.js:236
+#: components/ProfilePage/EditProfileDialog.js:93
+msgid "Cancel"
+msgstr "Batal"
+
+#: components/AppLayout/AppHeader.js:332
+#: components/AppLayout/AppSidebar.js:92
+#: components/LandingPage/Header.js:246
+#: components/LandingPage/Header.js:296
+msgid "Login"
+msgstr "Masuk"
+
+#: components/AppLayout/AppHeader.js:274
+#: components/AppLayout/AppSidebar.js:158
+msgid "Logout"
+msgstr "Keluar"
+
+#: components/SearchPageJumbotron.js:140
+msgid "Replies"
+msgstr "Balasan"
+
+#: components/ArticleInfo.js:72
+#: components/Infos/ReplyCountInfo.js:58
+msgid "${ replyCount } response"
+msgid_plural "${ replyCount } responses"
+msgstr[0] "${ replyCount } respons"
+
+#: components/ListPageControls/BaseSortInput.js:60
+msgid "Sort by"
+msgstr "Urutkan berdasarkan"
+
+#: components/ProfilePage/RepliedArticleTab.js:36
+#: pages/articles.js:143
+#: pages/replies.js:128
+msgid "Most recently asked"
+msgstr "Baru saja ditanyakan"
+
+#: components/ProfilePage/RepliedArticleTab.js:33
+#: pages/articles.js:145
+#: pages/replies.js:127
+msgid "Most recently replied"
+msgstr "Baru saja dibalas"
+
+#: components/ProfilePage/RepliedArticleTab.js:37
+#: pages/articles.js:144
+#: pages/replies.js:129
+msgid "Most asked"
+msgstr "Paling banyak ditanyakan"
+
+#: pages/api/articles/[feed].js:164
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reported Message"
+msgstr "Pesan yang Dilaporkan"
+
+#: components/ArticleReply/ArticleReply.js:103
+msgid "Reason"
+msgstr "Alasan"
+
+#: components/ArticleReply/ArticleReply.js:104
+msgid "Details"
+msgstr "Detail"
+
+#: pages/api/articles/[feed].js:177
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reference"
+msgstr "Referensi"
+
+#: components/ArticleCategories/DownVoteDialog.js:70
+#: components/ArticleReplySummary.js:37
+#: components/ReplyRequestReason/ReplyRequestReason.js:128
+msgid "Someone"
+msgstr "Seseorang"
+
+#: components/ArticleReply/ArticleReply.js:133
+msgid "There is no reference for this reply. Its truthfulness may be doubtful."
+msgstr "Tidak ada referensi untuk balasan ini. Kebenarannya mungkin meragukan."
+
+#: components/ArticleReply/ReplyShare.js:85
+#: components/CopyButton.js:15
+#: components/Subscribe/IFTTTItem.js:207
+msgid "Copy"
+msgstr "Salin"
+
+#: components/CurrentReplies.js:44
+msgid "Deleted replies"
+msgstr "Balasan yang dihapus"
+
+#: components/ArticleReply/ReplyActions.js:85
+msgid "Restore"
+msgstr "Pulihkan"
+
+#: components/CurrentReplies.js:64
+#, javascript-format
+msgid "${ items.length } reply"
+msgid_plural "${ items.length } replies"
+msgstr[0] "${ items.length } balasan"
+
+#: components/CurrentReplies.js:74
+msgid "There are ${ replyLink } deleted by its author."
+msgstr "Ada ${ replyLink } yang dihapus oleh penulisnya."
+
+#: components/ArticleReply/ReplyActions.js:85
+msgid "Delete"
+msgstr "Hapus"
+
+#: components/ArticleCategories/DownVoteDialog.js:99
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+#: components/ListPageControls/Filters.js:88
+#: components/NewReplySection/ReplyForm/Submit.js:28
+#: components/ProfilePage/EditAvatarDialog.js:241
+#: components/ProfilePage/EditProfileDialog.js:98
+msgid "Submit"
+msgstr "Kirim"
+
+#: components/AIReplySection/VoteButtons.tsx:214
+#: components/ArticleCategories/CategoryOption.js:364
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:238
+msgid "Thank you for the feedback."
+msgstr "Terima kasih atas umpan baliknya."
+
+#: pages/article/[id].js:284
+msgid "Your reply has been submitted."
+msgstr "Balasan Anda telah dikirim."
+
+#: components/Collaborate/CollabEditor.js:151
+#: components/NewReplySection/index.js:137
+#: lib/apollo.js:47
+msgid "Please login first."
+msgstr "Silakan masuk terlebih dahulu."
+
+#: pages/search.js:306
+msgid "Search"
+msgstr "Cari"
+
+#: components/NewReplySection/ReplySearch/ReplySearch.js:104
+#, javascript-format
+msgid "Searching for messages and replies containing “${ variables.query }”..."
+msgstr "Mencari pesan dan balasan yang mengandung “${ variables.query }”..."
+
+#: components/AppLayout/LoginModal.js:134
+msgid "Login / Signup"
+msgstr "Masuk / Daftar"
+
+#: constants/replyType.js:79
+msgid "This message cannot or should not be processed by Cofacts editors."
+msgstr "Pesan ini tidak dapat atau tidak seharusnya diproses oleh editor Cofacts."
+
+#: constants/replyType.js:80
+msgid "The message has some of its content proved to be true."
+msgstr "Sebagian isi pesan terbukti benar."
+
+#: constants/replyType.js:81
+msgid ""
+"The message contains personal opinion, unproven hypotheses, conspiracy "
+"theories, studies that has not reached concensus, inferences of political "
+"policies, etc."
+msgstr "Pesan ini berisi opini pribadi, hipotesis yang belum terbukti, teori konspirasi, studi yang belum mencapai konsensus, inferensi kebijakan politik, dll."
+
+#: constants/replyType.js:82
+msgid "This message has some of its content proved to be false."
+msgstr "Sebagian isi pesan terbukti salah."
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:313
+msgid "Facebook"
+msgstr "Facebook"
+
+#: components/AppLayout/AppSidebar.js:127
+#: components/LandingPage/SectionCanDo.js:253
+msgid "Tutorial"
+msgstr "Panduan"
+
+#: pages/reply/[id].js:214
+#: pages/reply/[id].js:245
+msgid "This reply"
+msgstr "Balasan ini"
+
+#: pages/api/articles/[feed].js:173
+#: pages/reply/[id].js:275
+msgid "someone"
+msgstr "seseorang"
+
+#: components/LandingPage/Stats.js:145
+#. we hold ~ 
+msgid "a gathering of editors."
+msgstr "kumpulan editor."
+
+#: components/LandingPage/Stats.js:200
+#, javascript-format
+msgid "About ${ newMessageCount } new messages entering our database each week."
+msgstr "Tentang ${ newMessageCount } pesan baru yang masuk ke basis data kami setiap minggu."
+
+#: components/LandingPage/Stats.js:203
+msgid ""
+"About ${ userForwardingCount } people forwarding new messages to our "
+"database each week."
+msgstr "Tentang ${ userForwardingCount } orang yang meneruskan pesan baru ke basis data kami setiap minggu."
+
+#: components/LandingPage/Stats.js:206
+#, javascript-format
+msgid "But less than ${ editorCount } active editors can help us respond each week."
+msgstr "Tapi kurang dari ${ editorCount } editor aktif yang dapat membantu kami merespons setiap minggu."
+
+#: components/LandingPage/Stats.js:209
+#, javascript-format
+msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
+msgstr "Setiap ${ meetupFrequency } bulan kami mengadakan ${ gathering }"
+
+#: pages/index.js:31
+msgid ""
+"Cofacts is a collaborative system connecting instant messages and "
+"fact-check reports or different opinions together. It's a grass-root effort "
+"fighting mis/disinformation in Taiwan."
+msgstr "Cofacts adalah sistem kolaboratif yang menghubungkan pesan instan dengan laporan cek fakta atau pendapat berbeda. Ini adalah upaya akar rumput melawan disinformasi di Taiwan."
+
+#: components/ProfilePage/ProfilePage.js:107
+#: pages/article/[id].js:324
+#: pages/article/[id].js:328
+#: pages/reply/[id].js:170
+#: pages/reply/[id].js:174
+msgid "Loading"
+msgstr "Memuat"
+
+#: pages/article/[id].js:339
+#: pages/reply/[id].js:185
+msgid "Not found"
+msgstr "Tidak ditemukan"
+
+#: pages/reply/[id].js:189
+msgid "Reply does not exist"
+msgstr "Balasan tidak ada"
+
+#: pages/article/[id].js:343
+msgid "Message does not exist"
+msgstr "Pesan tidak ada"
+
+#: pages/reply/[id].js:291
+#, javascript-format
+msgid "Added by ${ editorElem }"
+msgstr "Ditambahkan oleh ${ editorElem }"
+
+#: pages/api/articles/[feed].js:132
+#. Use &amp; for XML meta tags
+msgid "Cofacts reported messages"
+msgstr "Pesan yang dilaporkan Cofacts"
+
+#: pages/api/articles/[feed].js:134
+#. Use &amp; for XML meta tags
+msgid "List of messages reported by Cofacts users"
+msgstr "Daftar pesan yang dilaporkan oleh pengguna Cofacts"
+
+#: components/Subscribe/FeedDisplay.js:114
+msgid "Via Feedrabbit"
+msgstr "Melalui Feedrabbit"
+
+#: pages/api/articles/[feed].js:171
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Latest reply"
+msgstr "Balasan terbaru"
+
+#: components/AppLayout/AppFooter.js:106
+msgid "Fact Check"
+msgstr "Cek Fakta"
+
+#: components/AppLayout/AppFooter.js:146
+#: components/AppLayout/AppSidebar.js:136
+msgid "Contact Us"
+msgstr "Hubungi Kami"
+
+#: components/AppLayout/AppHeader.js:266
+#: components/AppLayout/AppSidebar.js:119
+msgid "My Profile"
+msgstr "Profil Saya"
+
+#: components/AppLayout/AppFooter.js:159
+msgid "Facebook forum"
+msgstr "Grup Facebook"
+
+#: components/AppLayout/AppFooter.js:172
+#: components/ReportPage/SectionSponsor.js:246
+msgid "Donate to Cofacts"
+msgstr "Donasi untuk Cofacts"
+
+#: components/AppLayout/AppFooter.js:130
+msgid "Impact Report"
+msgstr "Laporan Dampak"
+
+#: constants/replyType.js:72
+msgid "invalid request"
+msgstr "permintaan tidak valid"
+
+#: constants/replyType.js:73
+msgid "contains personal perspective"
+msgstr "mengandung perspektif pribadi"
+
+#: constants/replyType.js:74
+msgid "contains true information"
+msgstr "mengandung informasi benar"
+
+#: constants/replyType.js:75
+msgid "contains misinformation"
+msgstr "mengandung misinformasi"
+
+#: pages/replies.js:260
+msgid "Bust Hoaxes"
+msgstr "Bongkar Hoaks"
+
+#: components/AppLayout/AppFooter.js:107
+#: components/LandingPage/Header.js:215
+#: components/SearchPageJumbotron.js:139
+msgid "Messages"
+msgstr "Pesan"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:25
+msgid "Replied by me"
+msgstr "Dibalas oleh saya"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:23
+msgid "No useful reply yet"
+msgstr "Belum ada balasan yang berguna"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:20
+msgid "Asked many times"
+msgstr "Ditanyakan berkali-kali"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:22
+msgid "Replied many times"
+msgstr "Dibalas berkali-kali"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:132
+#: components/ListPageControls/Filters.js:70
+msgid "Filter"
+msgstr "Filter"
+
+#: components/ListPageControls/CategoryFilter.js:54
+msgid "Topic"
+msgstr "Topik"
+
+#: components/ListPageControls/CategoryFilter.js:57
+msgid "All Topics"
+msgstr "Semua Topik"
+
+#: components/ListPageControls/LoadMore.js:62
+msgid "Load More"
+msgstr "Muat Lebih Banyak"
+
+#: pages/hoax-for-you.js:118
+#: pages/hoax-for-you.js:120
+msgid "Hoax for you"
+msgstr "Hoaks untuk Anda"
+
+#: pages/replies.js:211
+#: pages/replies.js:214
+msgid "Latest replies"
+msgstr "Balasan terbaru"
+
+#: components/ExpandableText.js:53
+msgid "Show Less"
+msgstr "Tampilkan Lebih Sedikit"
+
+#: components/ExpandableText.js:53
+msgid "Show More"
+msgstr "Tampilkan Lebih Banyak"
+
+#: components/Subscribe/FeedDisplay.js:87
+msgid "Subscribe"
+msgstr "Berlangganan"
+
+#: components/ArticleReplyFeedbackControl/ButtonGroupDisplay.js:113
+msgid "See Reasons"
+msgstr "Lihat Alasan"
+
+#: components/AIReplySection/VoteButtons.tsx:207
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:231
+msgid "Send"
+msgstr "Kirim"
+
+#: components/ListPageControls/BaseTimeRange.js:68
+msgid "In 1 Day"
+msgstr "Dalam 1 Hari"
+
+#: components/ListPageControls/BaseTimeRange.js:69
+msgid "In 1 Week"
+msgstr "Dalam 1 Minggu"
+
+#: components/ListPageControls/BaseTimeRange.js:70
+msgid "In 1 Month"
+msgstr "Dalam 1 Bulan"
+
+#: components/ListPageControls/BaseTimeRange.js:162
+msgid "to"
+msgstr "ke"
+
+#: components/ArticleCategories/CategoryOption.js:357
+msgid "See examples"
+msgstr "Lihat contoh"
+
+#: components/ArticleCategories/AddCategoryDialog.js:67
+msgid "Categorize this message"
+msgstr "Klasifikasikan pesan ini"
+
+#: components/ArticleCategories/DownVoteDialog.js:57
+msgid "Report wrong category"
+msgstr "Laporkan kategori salah"
+
+#: components/ArticleCategories/DownVoteDialog.js:85
+msgid ""
+"Please share with us why you think this message does not belong to this "
+"category"
+msgstr "Silakan bagikan kepada kami mengapa Anda merasa pesan ini tidak termasuk dalam kategori ini"
+
+#: components/AppLayout/GlobalSearch.js:145
+msgid "in Messages"
+msgstr "di Pesan"
+
+#: components/AppLayout/GlobalSearch.js:150
+msgid "in Replies"
+msgstr "di Balasan"
+
+#: pages/articles.js:132
+#: pages/articles.js:134
+msgid "Dubious Messages"
+msgstr "Pesan Meragukan"
+
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:204
+msgid "Do you have any thing to add?"
+msgstr "Apakah Anda punya sesuatu untuk ditambahkan?"
+
+#: components/AIReplySection/VoteButtons.tsx:190
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:205
+msgid "Why do you think it is not useful?"
+msgstr "Mengapa Anda pikir itu tidak berguna?"
+
+#: components/Collaborate/CollabHistory.js:181
+#: components/LandingPage/SectionArticles.js:153
+#: components/ProfilePage/CommentTab.js:151
+#: components/ProfilePage/RepliedArticleTab.js:251
+#: pages/articles.js:158
+#: pages/hoax-for-you.js:133
+#: pages/replies.js:231
+#: pages/search.js:177
+#: pages/search.js:256
+msgid "Loading..."
+msgstr "Memuat..."
+
+#: components/AppLayout/AppFooter.js:119
+msgid "About Cofacts"
+msgstr "Tentang Cofacts"
+
+#: components/Subscribe/FeedDisplay.js:113
+msgid "Email"
+msgstr "Email"
+
+#: components/Subscribe/FeedDisplay.js:128
+msgid "Feedly"
+msgstr "Feedly"
+
+#: components/Subscribe/FeedDisplay.js:136
+msgid "Get RSS Feed Link"
+msgstr "Dapatkan Tautan Feed RSS"
+
+#: components/Subscribe/FeedDisplay.js:139
+msgid "Through IFTTT to"
+msgstr "Melalui IFTTT ke"
+
+#: components/ArticleInfo.js:47
+#, javascript-format
+msgid "${ replyRequestCount } occurrence"
+msgid_plural "${ replyRequestCount } occurrences"
+msgstr[0] "${ replyRequestCount } kejadian"
+
+#: components/SearchPageJumbotron.js:112
+msgid "Searching"
+msgstr "Sedang mencari"
+
+#: pages/article/[id].js:385
+#, javascript-format
+msgid "${ replyRequestCount } person report this message"
+msgid_plural "${ replyRequestCount } people report this message"
+msgstr[0] "${ replyRequestCount } orang ingin mengetahui kebenaran pesan ini"
+
+#: pages/article/[id].js:608
+msgid "Similar messages"
+msgstr "Pesan serupa"
+
+#: pages/article/[id].js:637
+msgid "No similar messages found"
+msgstr "Tidak ada pesan serupa yang ditemukan"
+
+#: components/RelatedReplies.js:105
+msgid "View in new tab"
+msgstr "Lihat di tab baru"
+
+#: components/RelatedReplies.js:114
+msgid "Message below was considered"
+msgstr "Pesan di bawah ini dianggap"
+
+#: components/RelatedReplies.js:118
+msgid "Related article"
+msgstr "Artikel terkait"
+
+#: components/RelatedReplies.js:133
+msgid "Related reply"
+msgstr "Balasan terkait"
+
+#: components/ReplyInfo.js:23
+msgid "originally written by ${ user.name }"
+msgstr "ditulis oleh ${ user.name }"
+
+#: components/ReplyInfo.js:26
+#, javascript-format
+msgid "${ referenceCount } reference"
+msgid_plural "${ referenceCount } references"
+msgstr[0] "${ referenceCount } referensi"
+
+#: components/ArticleReply/ReplyShare.js:83
+#: components/Subscribe/FeedDisplay.js:134
+#: components/Subscribe/IFTTTItem.js:206
+msgid "Copied to clipboard!"
+msgstr "Disalin ke papan klip!"
+
+#: components/NewReplySection/Desktop.js:103
+msgid "You will gain 1 point by submitting the reply"
+msgstr "Anda akan mendapatkan 1 poin dengan mengirim balasan"
+
+#: components/NewReplySection/Desktop.js:112
+msgid "Related messages and replies"
+msgstr "Pesan dan balasan terkait"
+
+#: components/NewReplySection/Desktop.js:123
+#: components/NewReplySection/Mobile.js:260
+msgid "Use this reply"
+msgstr "Gunakan balasan ini"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:107
+msgid "All messages"
+msgstr "Semua pesan"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:108
+msgid "My messages"
+msgstr "Pesan saya"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:109
+msgid "All replies"
+msgstr "Semua balasan"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:110
+msgid "My replies"
+msgstr "Balasan saya"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:64
+msgid ""
+"Inserting blank lines between reference items can improve readability in "
+"LINE."
+msgstr "Menyisipkan baris kosong antara item referensi dapat meningkatkan keterbacaan di LINE."
+
+#: components/ListPageDisplays/ReplySearchItem.js:167
+#, javascript-format
+msgid "This reply is also used in ${ replyCount } other message"
+msgid_plural "This reply is also used in ${ replyCount } other messages"
+msgstr[0] "Balasan ini juga digunakan dalam ${ replyCount } pesan lain"
+
+#: components/ListPageDisplays/ReplySearchItem.js:173
+msgid "view"
+msgstr "lihat"
+
+#: components/ListPageDisplays/ReplySearchItem.js:178
+msgid "This reply is used in following messages"
+msgstr "Balasan ini digunakan dalam pesan berikut"
+
+#: components/ListPageControls/ReplyTypeFilter.js:33
+msgid "Marked as"
+msgstr "Ditandai sebagai"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:257
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:348
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:361
+msgid "Reply to this message"
+msgstr "Balas pesan ini"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:268
+msgid "Update comment"
+msgstr "Perbarui komentar"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:268
+msgid "Comment"
+msgstr "Komentar"
+
+#: components/ArticleReply/ReplyShare.js:74
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:276
+msgid "Share"
+msgstr "Bagikan"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:137
+#, javascript-format
+msgid "Helpful ${ articleReply.positiveFeedbackCount }"
+msgstr "Berguna ${ articleReply.positiveFeedbackCount }"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:141
+msgid "Not Helpful ${ articleReply.negativeFeedbackCount }"
+msgstr "Tidak Berguna ${ articleReply.negativeFeedbackCount }"
+
+#: components/ArticleReply/ReplyShare.js:64
+msgid "Successfylly Shared!"
+msgstr "Berhasil Dibagikan!"
+
+#: components/ArticleReplySummary.js:43
+#, javascript-format
+msgid "${ authorElem } mark this message ${ TYPE_NAME[replyType] }"
+msgstr "${ authorElem } menandai pesan ini sebagai ${ TYPE_NAME[replyType] }"
+
+#: components/ArticleCategories/AddCategoryDialog.js:70
+msgid ""
+"Articles are mostly categorized by AI based on our current data, but you "
+"can provide your own opinion to improved the categorization."
+msgstr "Artikel sebagian besar dikategorikan oleh AI berdasarkan data kami saat ini, tetapi Anda dapat memberikan pendapat Anda sendiri untuk meningkatkan kategorisasi."
+
+#: components/ArticleCategories/CategoryOption.js:286
+msgid "Marked"
+msgstr "Ditandai"
+
+#: components/ArticleCategories/CategoryOption.js:316
+msgid "Agree"
+msgstr "Setuju"
+
+#: components/ArticleCategories/CategoryOption.js:337
+msgid "Disagree"
+msgstr "Tidak Setuju"
+
+#: components/ArticleCategories/ArticleCategories.js:94
+msgid "Suggest categories"
+msgstr "Usulkan Kategori"
+
+#: components/ArticleCategories/CategoryOption.js:299
+msgid "Mark"
+msgstr "Tandai"
+
+#: components/NewReplySection/Desktop.js:69
+#: components/NewReplySection/Mobile.js:150
+msgid "Compose a new reply"
+msgstr "Susun balasan baru"
+
+#: components/NewReplySection/Desktop.js:73
+#: components/NewReplySection/Mobile.js:153
+msgid "Use existing replies"
+msgstr "Gunakan balasan yang ada"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:317
+msgid "Keep composing my reply with this"
+msgstr "Lanjutkan menyusun balasan saya dengan ini"
+
+#: components/NewReplySection/ReplyForm/TypeSelect.js:32
+msgid "I think this message"
+msgstr "Saya pikir pesan ini"
+
+#: components/ArticleCategories/CategoryOption.js:309
+msgid "Unmark"
+msgstr "Batalkan Tandai"
+
+#: components/LineChart.js:355
+msgid "Web Visit"
+msgstr "Kunjungan Web"
+
+#: components/LineChart.js:357
+msgid "Line Inquiry"
+msgstr "Pertanyaan Line"
+
+#: components/TrendPlot.js:162
+#, javascript-format
+msgid "Web Visit: ${ totalWebVisits }"
+msgstr "Kunjungan Web: ${ totalWebVisits }"
+
+#: components/TrendPlot.js:170
+#, javascript-format
+msgid "Web: ${ totalWebVisits }"
+msgstr "Web: ${ totalWebVisits }"
+
+#: components/TrendPlot.js:165
+msgid "Line Inquery: ${ totalLineVisits }"
+msgstr "Pertanyaan Line: ${ totalLineVisits }"
+
+#: components/TrendPlot.js:173
+msgid "Line: ${ totalLineVisits }"
+msgstr "Line: ${ totalLineVisits }"
+
+#: components/TrendPlot.js:177
+#, javascript-format
+msgid "Total Visit: ${ totalVisits }"
+msgstr "Total Kunjungan: ${ totalVisits }"
+
+#: components/ListPageDisplays/ReplySearchItem.js:103
+#: components/ProfilePage/CommentTab.js:169
+#: components/ProfilePage/RepliedArticleTab.js:269
+#: pages/replies.js:241
+#, javascript-format
+msgid "${ article.replyRequestCount } occurrence"
+msgid_plural "${ article.replyRequestCount } occurrences"
+msgstr[0] "${ article.replyRequestCount } kejadian"
+
+#: pages/reply/[id].js:125
+#, javascript-format
+msgid "${ otherCount } other reply"
+msgid_plural "${ otherCount } other replies"
+msgstr[0] "${ otherCount } balasan lainnya"
+
+#: pages/reply/[id].js:251
+msgid "The reply is used in the following messages"
+msgstr "Balasan ini digunakan dalam pesan-pesan berikut"
+
+#: pages/reply/[id].js:265
+msgid "Deleted by its author"
+msgstr "Dihapus oleh penulisnya"
+
+#: pages/reply/[id].js:311
+msgid "Similar replies"
+msgstr "Balasan serupa"
+
+#: pages/reply/[id].js:324
+#, javascript-format
+msgid "Used in ${ node.articleReplies.length } message"
+msgid_plural "Used in ${ node.articleReplies.length } messages"
+msgstr[0] "Digunakan dalam ${ node.articleReplies.length } pesan"
+
+#: pages/reply/[id].js:336
+msgid "No similar replies found"
+msgstr "Tidak ada balasan serupa yang ditemukan"
+
+#: components/Hyperlinks.js:134
+msgid "Domain name cannot be resolved"
+msgstr "Nama domain tidak dapat dipecahkan"
+
+#: components/Hyperlinks.js:137
+msgid "URL is malformed or not supported"
+msgstr "URL salah format atau tidak didukung"
+
+#: components/Hyperlinks.js:139
+msgid "Cannot get data from URL"
+msgstr "Tidak dapat mengambil data dari URL"
+
+#: components/Hyperlinks.js:141
+msgid "Target site contains HTTPS error"
+msgstr "Situs target mengandung kesalahan HTTPS"
+
+#: components/Hyperlinks.js:143
+msgid "Unknown error"
+msgstr "Kesalahan tidak diketahui"
+
+#: pages/article/[id].js:558
+#, javascript-format
+msgid "There is ${ replyCount } fact-checking reply to the message"
+msgid_plural "There are ${ replyCount } fact-checking replies to the message"
+msgstr[0] "Ada ${ replyCount } balasan pemeriksaan fakta untuk pesan tersebut"
+
+#: pages/article/[id].js:590
+#: pages/article/[id].js:648
+msgid "Add Cofacts as friend in LINE"
+msgstr "Tambahkan Cofacts sebagai teman di LINE"
+
+#: components/TrendPlot.js:159
+msgid "Past 31 days"
+msgstr "31 hari terakhir"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+msgid "Please provide more info"
+msgstr "Silakan berikan informasi lebih lanjut"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:221
+msgid ""
+"Did you find anything suspicious about the message after you search "
+"Facebook & Google?"
+msgstr "Apakah Anda menemukan hal yang mencurigakan tentang pesan tersebut setelah Anda mencari di Facebook & Google?"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:233
+msgid ""
+"Please provide paragraphs you find controversial, or related news, image & "
+"video material you have found."
+msgstr "Silakan berikan paragraf yang menurut Anda kontroversial, atau materi berita, gambar & video yang telah Anda temukan."
+
+#: components/LandingPage/SectionFeature.js:110
+msgid "Real-Time Response"
+msgstr "Respons Real-Time"
+
+#: components/LandingPage/SectionFeature.js:111
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It's fast and immediate, you\n"
+"don't even have to wait. Better yet, you don't even need to\n"
+"say ‘thank you'. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr "Begitu seseorang merespons permintaan Anda yang tertunda, chatbot akan menjawab Anda melalui LINE. Cepat dan langsung, Anda bahkan tidak perlu menunggu. Lebih baik lagi, Anda bahkan tidak perlu mengucapkan 'terima kasih'. Minta bot untuk memverifikasi untuk Anda, tidak perlu merasa tidak nyaman memintanya bantuan."
+
+#: components/LandingPage/SectionFeature.js:120
+msgid "Crowdsourcing"
+msgstr "Crowdsourcing"
+
+#: components/LandingPage/SectionFeature.js:121
+msgid ""
+"Anyone can verify and respond to other's requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr "Siapa pun dapat memverifikasi dan merespons permintaan orang lain tentang kemungkinan hoaks dan mengunggahnya ke database kami. Kami mendorong warga untuk bergabung dengan program kami, bahkan undang ayah dan ibu Anda untuk bergabung."
+
+#: components/LandingPage/SectionFeature.js:129
+msgid "Different Views"
+msgstr "Pandangan Berbeda"
+
+#: components/LandingPage/SectionFeature.js:130
+msgid ""
+"Knowing what's fact and what's an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other's perspectives."
+msgstr "Mengetahui mana fakta dan mana opini. Melihat sisi-sisi berbeda dari cerita membuat Anda menyadari titik buta Anda sendiri, memungkinkan semua orang untuk saling menghormati perspektif masing-masing."
+
+#: components/LandingPage/SectionFeature.js:137
+msgid "Open Source Authorization"
+msgstr "Otorisasi Open Source"
+
+#: components/LandingPage/SectionFeature.js:138
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr "Kode dari patch yang berbeda, catatan rapat dan statistik database semuanya dibuka untuk publik. Kami mendorong lebih banyak data open source; bekerja dan berbagi dengan orang lain dalam lingkungan yang transparan, menciptakan kemungkinan-kemungkinan yang berbeda."
+
+#: components/LandingPage/SectionContribute.js:132
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+"Cofacts membutuhkan bantuan dari semua orang untuk membuat program kami saat ini menjadi lebih efisien dan lengkap.\\n"
+"Program kolaborasi ini tidak dapat diselesaikan oleh komunitas kecil, kami membutuhkan kontribusi dari setiap orang, menulis kode, membongkar hoaks, dan melakukan riset. Riset dan respons yang didorong oleh motivasi diri adalah cara untuk mengangkat program ini menjadi sesuatu yang hebat."
+
+#: components/LandingPage/SectionContribute.js:141
+msgid "I want to learn how to use Cofacts"
+msgstr "Saya ingin belajar cara menggunakan Cofacts"
+
+#: components/LandingPage/SectionContribute.js:146
+msgid "I can help bust hoaxes"
+msgstr "Saya bisa membantu membongkar hoaks"
+
+#: components/LandingPage/SectionContribute.js:156
+msgid "I can help with coding"
+msgstr "Saya bisa membantu dengan pemrograman"
+
+#: components/AppLayout/AppFooter.js:122
+msgid "Introduction"
+msgstr "Pengenalan"
+
+#: components/AppLayout/AppFooter.js:125
+#: components/ReportPage/SectionTower.js:107
+msgid "Source Code"
+msgstr "Kode Sumber"
+
+#: components/AppLayout/AppFooter.js:138
+msgid "Contact"
+msgstr "Kontak"
+
+#: pages/article/[id].js:573
+#: pages/reply/[id].js:306
+msgid "The content above"
+msgstr "Konten di atas"
+
+#: lib/terms.js:41
+msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "Chatbot pelaporan pesan dan komunitas cek fakta berbasis kerumunan Cofacts"
+
+#: pages/index.js:30
+msgid "Message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "Chatbot pelaporan pesan dan komunitas cek fakta berbasis kerumunan"
+
+#: components/LandingPage/SectionCanDo.js:246
+msgid ""
+"Search by ID “@cofacts” or scan the QR Code above to follow Cofacts\n"
+"LINE account. Forward suspicious text to it, the chatbot will help you\n"
+"check the credibility of the text!"
+msgstr ""
+"Cari berdasarkan ID “@cofacts” atau pindai Kode QR di atas untuk mengikuti akun LINE Cofacts.\\n"
+"Teruskan teks yang mencurigakan ke sana, chatbot akan membantu Anda memeriksa kredibilitas teks tersebut!"
+
+#: components/ProfileLink.js:14
+#, javascript-format
+msgid "Lv.${ user.level } ${ levelName }"
+msgstr "Lv.${ user.level } ${ levelName }"
+
+#: components/ProfilePage/EditProfileDialog.js:57
+#: components/ProfilePage/EditProfileDialog.js:74
+msgid "Username"
+msgstr "Nama Pengguna"
+
+#: components/ProfilePage/EditProfileDialog.js:62
+msgid "Edit profile"
+msgstr "Edit profil"
+
+#: components/ProfilePage/EditProfileDialog.js:66
+msgid "Display name"
+msgstr "Nama Tampilan"
+
+#: components/ProfilePage/EditProfileDialog.js:78
+#, javascript-format
+msgid "Your profile URL will become ${ profileURL }"
+msgstr "URL profil Anda akan menjadi ${ profileURL }"
+
+#: components/ProfilePage/EditProfileDialog.js:83
+msgid "Bio"
+msgstr "Biografi"
+
+#: components/ProfilePage/ProfilePage.js:120
+msgid "User not found"
+msgstr "Pengguna tidak ditemukan"
+
+#: components/ProfilePage/ProfilePage.js:123
+msgid "The user does not exist"
+msgstr "Pengguna tidak ada"
+
+#: components/ProfilePage/ProfilePage.js:178
+msgid "Replied messages"
+msgstr "Pesan yang dibalas"
+
+#: components/ProfilePage/RepliedArticleTab.js:255
+msgid "No replied messages."
+msgstr "Tidak ada pesan yang dibalas."
+
+#: components/ProfilePage/Stats.js:60
+msgid "replied messages"
+msgstr "pesan yang dibalas"
+
+#: components/ProfilePage/Stats.js:62
+msgid "voted replies"
+msgstr "balasan yang diberi suara"
+
+#: components/Collaborate/CollabEditor.js:245
+#: components/ProfilePage/UserPageHeader.js:197
+msgid "Edit"
+msgstr "Edit"
+
+#: components/ProfilePage/UserPageHeader.js:225
+msgid "Cofacts chatbot"
+msgstr "Chatbot Cofacts"
+
+#: components/ProfilePage/UserPageHeader.js:255
+#, javascript-format
+msgid "Join date : ${ timeAgo }"
+msgstr "Tanggal bergabung : ${ timeAgo }"
+
+#: components/ProfilePage/UserPageHeader.js:260
+msgid "EXP"
+msgstr "Nilai Keadilan"
+
+#: components/ProfilePage/UserPageHeader.js:270
+#, javascript-format
+msgid ""
+"This is a user of ${ cofactsChatbotLink }. The profile picture and the "
+"pseudonym are randomly generated."
+msgstr "Ini adalah pengguna dari ${ cofactsChatbotLink }. Foto profil dan nama samaran dihasilkan secara acak."
+
+#: components/AppLayout/AppHeader.js:253
+#: components/AppLayout/AppSidebar.js:112
+#, javascript-format
+msgid "Earn ${ pointsLeft } EXP to next level"
+msgstr "Dapatkan ${ pointsLeft } Nilai Keadilan lagi untuk naik ke level berikutnya"
+
+#: constants/replyType.js:117
+msgid "Opinion Sources"
+msgstr "Sumber Opini"
+
+#: constants/replyType.js:118
+#: constants/replyType.js:119
+msgid "References"
+msgstr "Referensi"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:51
+msgid ""
+"One line summary\n"
+"» Source URL"
+msgstr ""
+"Ringkasan satu baris\\n"
+"» URL Sumber"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:173
+msgid "Please briefly explain why this message should not be processed in Cofacts."
+msgstr "Silakan jelaskan secara singkat mengapa pesan ini tidak perlu diproses di Cofacts."
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:175
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is correct."
+msgstr "Sebagai pengantar singkat untuk referensi, silakan tunjukkan bagian mana dari pesan yang benar."
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:177
+msgid ""
+"Please briefly\n"
+"1. explain which part of the message contains personal opinion\n"
+"2. remind the audience that this is not factual"
+msgstr ""
+"Silakan jelaskan secara singkat:\\n"
+"1. bagian mana dari pesan yang mengandung opini pribadi\\n"
+"2. ingatkan audiens bahwa ini bukan fakta"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:181
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is incorrect."
+msgstr "Sebagai pengantar singkat untuk referensi, silakan tunjukkan bagian mana dari pesan yang salah."
+
+#: lib/terms.js:66
+#, javascript-format
+msgid ""
+"${ subject } by ${ authorLink } is licensed under ${ licenseLink }, the "
+"community name and the provenance link for each item shall be fully cited "
+"for further reproduction or redistribution."
+msgstr "${ subject } oleh ${ authorLink } dilisensikan di bawah ${ licenseLink }; nama komunitas dan tautan asal untuk setiap item harus dikutip sepenuhnya untuk reproduksi atau distribusi ulang selanjutnya."
+
+#: lib/terms.js:42
+msgid "CC BY-SA 4.0"
+msgstr "CC BY-SA 4.0"
+
+#: lib/terms.js:43
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
+
+#: components/AppLayout/AppFooter.js:120
+#: components/AppLayout/LoginModal.js:118
+#: pages/terms.js:69
+msgid "User Agreement"
+msgstr "Perjanjian Pengguna"
+
+#: components/AppLayout/LoginModal.js:177
+#, javascript-format
+msgid ""
+"By logging in you agree to ${ termsLink }, and your contribution will be "
+"published using ${ licenseLink } as ${ authorLink }."
+msgstr "Dengan masuk, Anda setuju dengan ${ termsLink }, dan kontribusi Anda akan diterbitkan menggunakan ${ licenseLink } sebagai ${ authorLink }."
+
+#: lib/terms.js:47
+#, javascript-format
+msgid ""
+"${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
+"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
+msgstr "${ subject } oleh ${ AUTHOR } dilisensikan di bawah ${ SHORT_LICENSE }. Untuk informasi lebih lanjut, silakan kunjungi bot LINE Cofacts ${ LINE_URL } ."
+
+#: pages/about.js:243
+msgid "What is Cofacts"
+msgstr "Apa itu Cofacts"
+
+#: pages/tutorial.js:101
+msgid "How to use Cofacts"
+msgstr "Cara menggunakan Cofacts"
+
+#: components/ContributionChart.js:95
+msgid "Jan"
+msgstr "Jan"
+
+#: components/ContributionChart.js:96
+msgid "Feb"
+msgstr "Feb"
+
+#: components/ContributionChart.js:97
+msgid "Mar"
+msgstr "Mar"
+
+#: components/ContributionChart.js:98
+msgid "Apr"
+msgstr "Apr"
+
+#: components/ContributionChart.js:99
+msgid "May"
+msgstr "Mei"
+
+#: components/ContributionChart.js:100
+msgid "Jun"
+msgstr "Jun"
+
+#: components/ContributionChart.js:101
+msgid "Jul"
+msgstr "Jul"
+
+#: components/ContributionChart.js:102
+msgid "Aug"
+msgstr "Agu"
+
+#: components/ContributionChart.js:103
+msgid "Sep"
+msgstr "Sep"
+
+#: components/ContributionChart.js:104
+msgid "Oct"
+msgstr "Okt"
+
+#: components/ContributionChart.js:105
+msgid "Nov"
+msgstr "Nov"
+
+#: components/ContributionChart.js:106
+msgid "Dec"
+msgstr "Des"
+
+#: components/ContributionChart.js:108
+msgid "Sun"
+msgstr "Min"
+
+#: components/ContributionChart.js:108
+msgid "Mon"
+msgstr "Sen"
+
+#: components/ContributionChart.js:108
+msgid "Tue"
+msgstr "Sel"
+
+#: components/ContributionChart.js:108
+msgid "Wed"
+msgstr "Rab"
+
+#: components/ContributionChart.js:108
+msgid "Thu"
+msgstr "Kam"
+
+#: components/ContributionChart.js:108
+msgid "Fri"
+msgstr "Jum"
+
+#: components/ContributionChart.js:108
+msgid "Sat"
+msgstr "Sab"
+
+#: components/ContributionChart.js:118
+msgid "Less"
+msgstr "Kurang"
+
+#: components/ContributionChart.js:132
+msgid "More"
+msgstr "Lebih"
+
+#: components/ContributionChart.js:210
+msgid "${ count } contribution"
+msgid_plural "${ count } contributions"
+msgstr[0] "${ count } kontribusi"
+
+#: components/ContributionChart.js:168
+#, javascript-format
+msgid "${ total } contribution in the last year"
+msgid_plural "${ total } contributions in the last year"
+msgstr[0] "${ total } kontribusi dalam setahun terakhir"
+
+#: pages/impact.js:60
+msgid "Cofacts social impact report"
+msgstr "Laporan dampak sosial Cofacts"
+
+#: components/ReportPage/SectionSponsor.js:88
+msgid "Open Culture Foundation"
+msgstr "Yayasan Budaya Terbuka"
+
+#: components/ReportPage/SectionSponsor.js:93
+msgid "g0v"
+msgstr "g0v"
+
+#: pages/impact.js:65
+msgid "Individual strengths converge to exert the greatest power"
+msgstr "Kekuatan individu bersatu untuk menghasilkan kekuatan terbesar"
+
+#: components/ReportPage/SectionHowToUse.js:121
+msgid "When you receive a suspicious message..."
+msgstr "Ketika Anda menerima pesan yang mencurigakan..."
+
+#: components/ReportPage/SectionHowToUse.js:123
+msgid "Send it to the chatbot"
+msgstr "Kirim ke bot obrolan"
+
+#: components/ReportPage/SectionHowToUse.js:126
+msgid ""
+"...And it will automatically read it, helping you get the fact-checking "
+"report."
+msgstr "...Dan ia akan membacanya secara otomatis, membantu Anda mendapatkan laporan pemeriksaan fakta."
+
+#: components/ReportPage/SectionInfluence.js:99
+msgid "Community Influence"
+msgstr "Pengaruh Komunitas"
+
+#: components/ReportPage/SectionFeatures.js:146
+msgid "Features of Cofacts"
+msgstr "Fitur Cofacts"
+
+#: components/ReportPage/SectionFeatures.js:151
+msgid "Notification"
+msgstr "Notifikasi"
+
+#: components/ReportPage/SectionFeatures.js:165
+msgid "AI tagging"
+msgstr "Penandaan AI"
+
+#: components/ReportPage/SectionOriginalFeatures.js:27
+msgid "RSS Reading ability"
+msgstr "Kemampuan Membaca RSS"
+
+#: components/ReportPage/SectionOriginalFeatures.js:28
+msgid ""
+"Our database has a large quantity of material, so we use a subscription "
+"system to help link up to IFTTT, find popular topics, and to link to LINE, "
+"telegram, Slack and mail to send reminders that verification is underway."
+msgstr "Database kami memiliki banyak materi, jadi kami menggunakan sistem langganan untuk membantu terhubung ke IFTTT, menemukan topik populer, dan terhubung ke LINE, Telegram, Slack, dan email untuk mengirim pengingat bahwa verifikasi sedang berlangsung."
+
+#: components/ReportPage/SectionOriginalFeatures.js:33
+msgid "LINE notifications"
+msgstr "Notifikasi LINE"
+
+#: components/ReportPage/SectionOriginalFeatures.js:34
+msgid ""
+"Traditional chatbots can only report information that has already been "
+"verified,  but now when one tries to check a non-yet verified piece of "
+"information, the system can send a notification when the information has "
+"been verified.  If a better response has since been provided, the system "
+"can also send a notification to ensure that information provided is always "
+"the most up-to-date."
+msgstr "Chatbot tradisional hanya dapat melaporkan informasi yang sudah diverifikasi, tetapi sekarang ketika seseorang mencoba memeriksa informasi yang belum diverifikasi, sistem dapat mengirim notifikasi ketika informasi tersebut telah diverifikasi. Jika respons yang lebih baik telah diberikan sejak saat itu, sistem juga dapat mengirim notifikasi untuk memastikan bahwa informasi yang diberikan selalu yang terbaru."
+
+#: components/ReportPage/SectionOriginalFeatures.js:39
+msgid "Users can easily check infromation that has already been asked about"
+msgstr "Pengguna dapat dengan mudah memeriksa informasi yang sudah pernah ditanyakan"
+
+#: components/ReportPage/SectionOriginalFeatures.js:40
+msgid ""
+"You can access the list of rumours that have already been checked, and the "
+"chatbot can help you organise your own table of information and help "
+"produce personalised information"
+msgstr "Anda dapat mengakses daftar rumor yang sudah diperiksa, dan chatbot dapat membantu Anda mengatur tabel informasi Anda sendiri serta membantu menghasilkan informasi yang dipersonalisasi"
+
+#: components/ReportPage/SectionOriginalFeatures.js:45
+msgid "The UI of the new website"
+msgstr "UI situs web baru"
+
+#: components/ReportPage/SectionOriginalFeatures.js:46
+msgid ""
+"The site now has gamified features and it is nohow easier to see the "
+"contribution of each collaborator. We also now have data visualisation and "
+"the tools to see what material has been accessed by journalists and the "
+"process of verification for each article."
+msgstr "Situs ini sekarang memiliki fitur gamifikasi dan menjadi jauh lebih mudah untuk melihat kontribusi setiap kolaborator. Kami juga sekarang memiliki visualisasi data dan alat-alat untuk melihat materi apa yang telah diakses oleh jurnalis dan proses verifikasi untuk setiap artikel."
+
+#: components/ReportPage/SectionOriginalFeatures.js:51
+msgid "AI automatic categorisation"
+msgstr "Kategorisasi otomatis AI"
+
+#: components/ReportPage/SectionOriginalFeatures.js:52
+msgid ""
+"We use machine learning technology to help categorise our data. The "
+"technology is capable of correctly labeling messages as being about "
+"politics, scams, the environment, energy, amongst others. This helps "
+"doctors or journalists quickly find messages relating to their areas of "
+"expertise to help with message verification."
+msgstr "Kami menggunakan teknologi machine learning untuk membantu mengategorikan data kami. Teknologi ini mampu memberi label pesan secara akurat sebagai topik politik, penipuan, lingkungan, energi, dan lain-lain. Hal ini membantu dokter atau jurnalis dengan cepat menemukan pesan yang berkaitan dengan bidang keahlian mereka untuk membantu verifikasi pesan."
+
+#: components/ReportPage/SectionOriginalFeatures.js:57
+msgid "Community Builder"
+msgstr "Community Builder"
+
+#: components/ReportPage/SectionOriginalFeatures.js:58
+msgid ""
+"We help community organisers to efficiently check up on current work "
+"progress, the quantity of messages, the positive reviews under the review "
+"mechanism, the list of contributors who helped with the output, and the "
+"review of response and user feedback from a particular period."
+msgstr "Kami membantu penyelenggara komunitas untuk memantau kemajuan pekerjaan saat ini secara efisien, jumlah pesan, ulasan positif di bawah mekanisme tinjauan, daftar kontributor yang membantu dalam produksi, serta tinjauan respons dan umpan balik pengguna dari periode tertentu."
+
+#: components/ReportPage/SectionOriginalFeatures.js:63
+msgid "The ecology of fact checking"
+msgstr "Ekosistem pengecekan fakta"
+
+#: components/ReportPage/SectionOriginalFeatures.js:64
+msgid ""
+"We collaborate with all fact checking organizations and help them enter the "
+"fact checking community by setting aside their competition and rivalry, and "
+"encourage them to work together to help create the largest datasets "
+"possible."
+msgstr "Kami berkolaborasi dengan semua organisasi pengecekan fakta dan membantu mereka masuk ke dalam komunitas pengecekan fakta dengan menyisihkan persaingan dan rivalitas, serta mendorong mereka untuk bekerja sama guna menciptakan dataset terbesar yang mungkin."
+
+#: components/ReportPage/SectionOriginalFeatures.js:69
+msgid "Teaching tools"
+msgstr "Alat Pengajaran"
+
+#: components/ReportPage/SectionOriginalFeatures.js:70
+msgid ""
+"Cofacts helps educators the ability to create their own chatbots with "
+"search capabilities. We provide free consultancy and assistance to our "
+"international collaborators to help the open source community grow. "
+"Thailand has already successfully replicated Cofacts' experience to create "
+"their own search chatbot based on Cofacts."
+msgstr "Cofacts membantu pendidik dengan kemampuan untuk membuat chatbot mereka sendiri dengan fitur pencarian. Kami menyediakan konsultasi dan bantuan gratis bagi kolaborator internasional kami untuk membantu pertumbuhan komunitas open source. Thailand telah berhasil mereplikasi pengalaman Cofacts untuk membuat chatbot pencarian mereka sendiri berdasarkan Cofacts."
+
+#: components/ReportPage/SectionOriginalFeatures.js:75
+msgid "User Feedback"
+msgstr "Umpan Balik Pengguna"
+
+#: components/ReportPage/SectionOriginalFeatures.js:76
+msgid ""
+"We collected user feedback and encourage users to cooperate with us to "
+"create a better open source environment in which many can use our "
+"resources. In addition, by encouraging  user feedback and collaboration, "
+"our collaborators can use this feedback to help improve their user "
+"experience."
+msgstr "Kami mengumpulkan umpan balik pengguna dan mendorong pengguna untuk bekerja sama dengan kami untuk menciptakan lingkungan open source yang lebih baik di mana banyak orang dapat menggunakan sumber daya kami. Selain itu, dengan mendorong umpan balik dan kolaborasi pengguna, kolaborator kami dapat menggunakan umpan balik ini untuk membantu meningkatkan pengalaman pengguna mereka."
+
+#: components/ReportPage/SectionOriginalFeatures.js:81
+msgid "Data"
+msgstr "Data"
+
+#: components/ReportPage/SectionOriginalFeatures.js:82
+msgid ""
+"Cofacts provides a chart that explains how to link the chatbot to a website "
+"as a way to help researchers and journalists to follow important topics and "
+"write impactful reports. There have already been many academics from Taiwan "
+"and other  countries who have quoted this data, and many have directly "
+"accessed material Cofacts' open database."
+msgstr "Cofacts menyediakan grafik yang menjelaskan cara menghubungkan chatbot ke situs web sebagai cara untuk membantu peneliti dan jurnalis mengikuti topik-topik penting dan menulis laporan yang berdampak. Sudah banyak akademisi dari Taiwan dan negara-negara lain yang mengutip data ini, dan banyak yang langsung mengakses materi dari database terbuka Cofacts."
+
+#: components/ReportPage/SectionSponsor.js:114
+#. const FUND = [
+#. {
+#. logo: whoscallLogo,
+#. name: t`Whoscall`,
+#. url: 'https://whoscall.com/zh-hant/about',
+#. },
+#. {
+#. logo: trendmicroLogo,
+#. name: t`Trend Micro`,
+#. url: 'https://www.trendmicro.com/',
+#. },
+#. ];
+msgid "Dcard"
+msgstr "Dcard"
+
+#: components/ReportPage/SectionSponsor.js:255
+msgid "Share to Facebook"
+msgstr "Bagikan ke Facebook"
+
+#: components/ReportPage/Banner.js:212
+#: components/ReportPage/Banner.js:227
+msgid "Social Impact Report"
+msgstr "Laporan Dampak Sosial"
+
+#: components/ReportPage/SectionHowToUse.js:111
+msgid "Super EASY"
+msgstr "Sangat Mudah"
+
+#: components/ReportPage/SectionFeatures.js:157
+msgid "Personal fact-check contribution"
+msgstr "Kontribusi Pengecekan Fakta Pribadi"
+
+#: components/ReportPage/SectionOriginalFeatures.js:226
+msgid "Cofacts original features"
+msgstr "Fitur Asli Cofacts"
+
+#: pages/about.js:252
+msgid "Cofacts fact-checking chatbot, combating misinformation by yourself!"
+msgstr "Chatbot pengecekan fakta Cofacts, lawan misinformasi dengan sendirian!"
+
+#: pages/about.js:279
+msgid "In what scenarios can Cofacts help you?"
+msgstr "Dalam skenario apa Cofacts bisa membantu Anda?"
+
+#: pages/about.js:290
+msgid "You want to do research on false information."
+msgstr "Anda ingin melakukan penelitian tentang informasi palsu."
+
+#: pages/about.js:306
+msgid ""
+"You would like to absorb novel knowledge\n"
+"and see what topics are popular recently"
+msgstr ""
+"Anda ingin menyerap pengetahuan baru\\n"
+"melihat topik apa yang sedang populer belakangan ini"
+
+#: pages/about.js:359
+msgid "How Cofacts was born"
+msgstr "Bagaimana Cofacts Lahir"
+
+#: pages/about.js:383
+msgid "Who we are"
+msgstr "Siapa Kami"
+
+#: components/Tutorial/content/bustHoaxes.js:12
+msgid ""
+"Do you feel fact-checking is too difficult? You can start by reviewing the "
+"responses of others."
+msgstr "Apakah Anda merasa pengecekan fakta terlalu sulit? Anda bisa mulai dengan meninjau respons orang lain."
+
+#: components/Tutorial/content/bustHoaxes.js:13
+msgid ""
+"Take a look at how others do fact-checking may help you write good quality "
+"responses."
+msgstr "Melihat bagaimana orang lain melakukan pengecekan fakta dapat membantu Anda menulis respons berkualitas baik."
+
+#: components/Tutorial/content/bustHoaxes.js:17
+msgid "Searching responses waiting to be reviewed"
+msgstr "Mencari respons yang menunggu untuk ditinjau"
+
+#: components/Tutorial/content/bustHoaxes.js:21
+msgid ""
+"\"Replies\" section lists all volunteer editors' reviews to fact-checking "
+"responses, you can filter information pieces with the tags as follows:\n"
+"\n"
+"\"No useful reply yet\": This labels the pieces of information that may "
+"lack validated high-quality responses. We recommend this tag as a start of "
+"searching.\n"
+"\n"
+"\"Asked many times\": This labels the suspicious messages that are trending "
+"among requests for fact-checking.\n"
+"\n"
+"\"Replied many times\": This labels the suspicious messages that have been "
+"responded to and reviewed a lot."
+msgstr ""
+"Bagian \"Balasan\" mencantumkan semua tinjauan editor sukarelawan terhadap respons pengecekan fakta, Anda dapat menyaring potongan informasi dengan tag sebagai berikut:\\n"
+"\\n"
+"\"Belum ada balasan berguna\": Ini memberi label pada potongan informasi yang mungkin kekurangan respons berkualitas tinggi yang tervalidasi. Kami merekomendasikan tag ini sebagai awal pencarian.\\n"
+"\\n"
+"\"Ditanyakan banyak kali\": Ini memberi label pada pesan mencurigakan yang sedang tren di antara permintaan pengecekan fakta.\\n"
+"\\n"
+"\"Dibalas banyak kali\": Ini memberi label pada pesan mencurigakan yang telah direspons dan ditinjau banyak kali."
+
+#: components/Tutorial/content/bustHoaxes.js:14
+msgid ""
+"Reviews of information on Cofacts are collaborated by contributors from all "
+"over the world and free of charge. However, the fact-checking results may "
+"not necessarily be correct or complete all the time. That is why the "
+"project requires the role of editor to review the checking results to "
+"select responses of high quality. To novice editors, they may learn how "
+"others fact-check on rumors through the review process."
+msgstr "Tinjauan informasi di Cofacts dikolaborasikan oleh kontributor dari seluruh dunia dan gratis. Namun, hasil pengecekan fakta belum tentu selalu benar atau lengkap. Itulah mengapa proyek ini membutuhkan peran editor untuk meninjau hasil pengecekan guna memilih respons berkualitas tinggi. Bagi editor pemula, mereka dapat belajar bagaimana orang lain melakukan pengecekan fakta terhadap rumor melalui proses tinjauan."
+
+#: components/Tutorial/content/bustHoaxes.js:33
+msgid "Evaluating the responses"
+msgstr "Menilai Respons"
+
+#: components/Tutorial/content/bustHoaxes.js:37
+msgid ""
+"You can react to others' checking responses with \"Vote Up\" and \"Vote "
+"Down\". Through the collaborative evaluation, good quality responses will "
+"gradually surface and be exposed to more users. Please leave your reasons "
+"of determining a response as of good or poor quality in the evaluation "
+"process. You can click \"Read More Reasons\" to read the comments left by "
+"others."
+msgstr "Anda dapat bereaksi terhadap respons pengecekan orang lain dengan \"Suara Naik\" dan \"Suara Turun\". Melalui evaluasi kolaboratif, respons berkualitas baik akan secara bertahap muncul dan terpapar kepada lebih banyak pengguna. Silakan tinggalkan alasan Anda dalam menentukan kualitas respons sebagai baik atau buruk dalam proses evaluasi. Anda dapat mengklik \"Baca Lebih Banyak Alasan\" untuk membaca komentar yang ditinggalkan oleh orang lain."
+
+#: components/Tutorial/content/bustHoaxes.js:41
+msgid ""
+"Hit the \"Fact-Check\" button to enter the page and see the sources and "
+"references attached by the editors, as information source is critical to "
+"determining the validity of fact-checking response."
+msgstr "Tekan tombol \"Pengecekan Fakta\" untuk masuk ke halaman dan melihat sumber serta referensi yang dilampirkan oleh editor, karena sumber informasi sangat penting dalam menentukan validitas respons pengecekan fakta."
+
+#: components/Tutorial/content/bustHoaxes.js:48
+msgid "Look for suspicious articles that may require further fact-checking"
+msgstr "Cari artikel mencurigakan yang mungkin memerlukan pengecekan fakta lebih lanjut"
+
+#: components/Tutorial/content/bustHoaxes.js:49
+msgid "Get ready to check information yourself!"
+msgstr "Bersiaplah untuk mengecek informasi sendiri!"
+
+#: components/Tutorial/content/bustHoaxes.js:54
+msgid "Go to \"(Hoax) for you\" to find information to be checked."
+msgstr "Buka \"(Hoaks) untuk Anda\" untuk menemukan informasi yang perlu dicek."
+
+#: components/Tutorial/content/bustHoaxes.js:50
+msgid ""
+"Feeling like fact-checking after learning through evaluating others' "
+"responses?\n"
+"First of all, you can look for suspicious contents waiting to be checked "
+"from the website; that is, messages that have not been fact-checked, or "
+"that have incomplete or inaccurate checking results. These are what the "
+"volunteer community needs you to help with!"
+msgstr ""
+"Setelah belajar dengan mengevaluasi respons orang lain, apakah Anda merasa ingin melakukan pengecekan fakta?\\n"
+"Pertama-tama, Anda dapat mencari konten mencurigakan yang menunggu untuk dicek dari situs web; yaitu pesan yang belum dilakukan pengecekan fakta, atau yang memiliki hasil pengecekan yang tidak lengkap atau tidak akurat. Inilah yang dibutuhkan komunitas sukarelawan agar Anda dapat membantu!"
+
+#: components/Tutorial/content/bustHoaxes.js:58
+msgid ""
+"\"(Hoax) for you\" section compiles contents that have been reported over "
+"twice but yet to have validated checking responses. On the left side of "
+"each piece of content is the current count of responses and number of times "
+"it has been reported that shows how many people want to authenticate this "
+"content."
+msgstr "Bagian \"(Hoaks) untuk Anda\" merangkum konten yang telah dilaporkan lebih dari dua kali tetapi belum memiliki respons pengecekan yang tervalidasi. Di sisi kiri setiap potongan konten terdapat jumlah saat ini dari respons dan berapa kali telah dilaporkan, yang menunjukkan berapa banyak orang yang ingin memvalidasi konten ini."
+
+#: components/Tutorial/content/bustHoaxes.js:67
+msgid "Select topics of interest"
+msgstr "Pilih topik yang diminati"
+
+#: components/Tutorial/content/bustHoaxes.js:71
+msgid ""
+"If you can't find contents you are interested in responding, try the topic "
+"filter! Click the topic filter, and the contents tagged by the topic "
+"keywords will be listed.\n"
+"Some tags have little relevance to professional realms, such as petition, "
+"crowd support, BOLO (be on the lookout), donation, commercial advertising, "
+"message scam, etc. There are tags related to public affairs, such as "
+"preferential measures, new regulations, publicity of policies, gender "
+"issues, China's influence, policy of agriculture, forestry, fishery and "
+"animal husbandry. In addition, there are topics like transnational "
+"interaction, COVID-19 pandemic and so forth that are waiting for "
+"professionals in specific areas to review."
+msgstr ""
+"Jika Anda tidak dapat menemukan konten yang Anda minati untuk direspons, coba filter topik! Klik filter topik, dan konten yang diberi tag dengan kata kunci topik akan dicantumkan.\\n"
+"Beberapa tag memiliki sedikit relevansi dengan bidang profesional, seperti petisi, dukungan massa, BOLO (be on the lookout), donasi, iklan komersial, penipuan pesan, dll. Ada tag yang terkait dengan urusan publik, seperti langkah-langkah preferensial, peraturan baru, publikasi kebijakan, isu gender, pengaruh Tiongkok, kebijakan pertanian, kehutanan, perikanan, dan peternakan. Selain itu, ada topik seperti interaksi lintas negara, pandemi COVID-19, dan sebagainya yang menunggu para profesional di bidang tertentu untuk ditinjau."
+
+#: components/Tutorial/content/bustHoaxes.js:83
+msgid "Analyze the content"
+msgstr "Analisis konten"
+
+#: components/Tutorial/content/bustHoaxes.js:84
+msgid ""
+"After selecting the content you are checking, you can look for questionable "
+"points to be checked."
+msgstr "Setelah memilih konten yang akan Anda periksa, Anda dapat mencari poin-poin yang meragukan untuk diperiksa."
+
+#: components/Tutorial/content/bustHoaxes.js:85
+msgid ""
+"Each message here was reported by chatbot users and may be in various odd "
+"forms, styles with doubtful content. You can try to follow the steps below "
+"to analyze your piece."
+msgstr "Setiap pesan di sini dilaporkan oleh pengguna chatbot dan mungkin dalam berbagai bentuk aneh, gaya dengan konten yang meragukan. Anda dapat mencoba mengikuti langkah-langkah di bawah ini untuk menganalisis bagian Anda."
+
+#: components/Tutorial/content/bustHoaxes.js:101
+msgid "Pointless contents found? Get to the context first!"
+msgstr "Konten tanpa tujuan ditemukan? Dapatkan konteksnya terlebih dahulu!"
+
+#: components/Tutorial/content/bustHoaxes.js:105
+msgid ""
+"Some messages are very short and clueless yet reported by many users, "
+"indicating that the contents may not be spams out of several single users."
+msgstr "Beberapa pesan sangat pendek dan tanpa petunjuk namun dilaporkan oleh banyak pengguna, menunjukkan bahwa kontennya mungkin bukan spam dari beberapa pengguna tunggal."
+
+#: components/Tutorial/content/bustHoaxes.js:113
+msgid ""
+"This type of information is probably shared with videos or images in "
+"communication apps but left without other original content elements, "
+"because currently Cofacts does not support reporting images and videos. "
+"Still, you can copy and paste the text part to the Facebook or other search "
+"tools to see if any users had publicly shared relevant graphics and texts, "
+"trying to get close to the context of the reported materials."
+msgstr "Jenis informasi ini kemungkinan dibagikan dengan video atau gambar di aplikasi komunikasi tetapi ditinggalkan tanpa elemen konten asli lainnya, karena saat ini Cofacts tidak mendukung pelaporan gambar dan video. Namun, Anda dapat menyalin dan menempelkan bagian teks ke Facebook atau alat pencarian lainnya untuk melihat apakah ada pengguna yang telah membagikan grafik dan teks terkait secara publik, mencoba mendekati konteks materi yang dilaporkan."
+
+#: components/Tutorial/content/bustHoaxes.js:121
+msgid ""
+"In addition, some messages may be truncated or incomplete. These may be "
+"texts referred from other chatbots that are cut due to technical "
+"limitations on word counts."
+msgstr "Selain itu, beberapa pesan mungkin terpotong atau tidak lengkap. Ini mungkin teks yang dirujuk dari chatbot lain yang dipotong karena keterbatasan teknis pada jumlah kata."
+
+#: components/Tutorial/content/bustHoaxes.js:129
+msgid ""
+"In this situation, you can utilize Facebook or Google as well to find the "
+"full texts."
+msgstr "Dalam situasi ini, Anda dapat memanfaatkan Facebook atau Google juga untuk menemukan teks lengkap."
+
+#: components/Tutorial/content/bustHoaxes.js:134
+msgid ""
+"Try to raise a few points in the content that may arouse your emotions if "
+"you were to receive the message."
+msgstr "Coba angkat beberapa poin dalam konten yang mungkin membangkitkan emosi Anda jika Anda menerima pesan tersebut."
+
+#: components/Tutorial/content/bustHoaxes.js:138
+msgid ""
+"These parts are usually what users of Cofacts would like to check on, or "
+"triggers for them to share online contents. Take these as a starting point "
+"to plan on what types of information you are providing to appease and "
+"assist the recipients. This approach may be helpful for you to grasp the "
+"critical points and respond to users effectively, especially when "
+"encountering long contents, or strong personal opinions."
+msgstr "Bagian-bagian ini biasanya yang ingin diperiksa oleh pengguna Cofacts, atau pemicu bagi mereka untuk membagikan konten online. Gunakan ini sebagai titik awal untuk merencanakan jenis informasi apa yang Anda berikan untuk menenangkan dan membantu penerima. Pendekatan ini mungkin berguna bagi Anda untuk memahami poin-poin kritis dan merespons pengguna secara efektif, terutama ketika menghadapi konten panjang, atau opini pribadi yang kuat."
+
+#: components/Tutorial/content/bustHoaxes.js:143
+msgid "Refer to the existing resources"
+msgstr "Rujuk sumber daya yang ada"
+
+#: components/Tutorial/content/bustHoaxes.js:147
+msgid ""
+"If you don't have a clue, you can refer to the section of \"Supplementary "
+"Notes from Reporters\" to see if the reporters have shared their views on "
+"the contents, or even extra information."
+msgstr "Jika Anda tidak punya petunjuk, Anda dapat merujuk bagian \"Catatan Tambahan dari Pelapor\" untuk melihat apakah pelapor telah membagikan pandangan mereka tentang konten, atau bahkan informasi tambahan."
+
+#: components/Tutorial/content/bustHoaxes.js:156
+msgid "Search keywords and graphics to prepare for responding"
+msgstr "Cari kata kunci dan grafik untuk mempersiapkan respons"
+
+#: components/Tutorial/content/bustHoaxes.js:171
+msgid "Write a reader-friendly response with our template"
+msgstr "Tulis respons yang ramah pembaca dengan templat kami"
+
+#: components/Tutorial/content/bustHoaxes.js:172
+msgid ""
+"After the checking process, please write down the result, presenting "
+"reader-friendly response following the suggested format."
+msgstr "Setelah proses pemeriksaan, silakan tulis hasilnya, menyajikan respons yang ramah pembaca mengikuti format yang disarankan."
+
+#: components/Tutorial/content/bustHoaxes.js:173
+msgid ""
+"The step is to compile and present the materials and findings that you have "
+"been put efforts in.\n"
+"We advise writing clear responses in the suggested format to help the "
+"chatbot and Cofacts users easily read and understand your fact-checking "
+"results."
+msgstr ""
+"Langkahnya adalah menyusun dan menyajikan materi dan temuan yang telah Anda kerahkan upaya.\\n"
+"Kami menyarankan menulis respons yang jelas dalam format yang disarankan untuk membantu chatbot dan pengguna Cofacts dengan mudah membaca dan memahami hasil pemeriksaan fakta Anda."
+
+#: components/Tutorial/content/bustHoaxes.js:177
+msgid "Select response category"
+msgstr "Pilih kategori respons"
+
+#: components/Tutorial/content/bustHoaxes.js:181
+msgid ""
+"Please assign tags of categories, \"contains true information\", \"contains "
+"misinformation\", or \"contains personal perspective\" to the content based "
+"on your findings.\n"
+"\n"
+"If your research result proves that the content includes false information, "
+"you can mark it as \"contains misinformation\".\n"
+"\n"
+"While your findings show personal perspectives divergent from the original, "
+"you can tag the content as \"contains personal perspective\".\n"
+"\n"
+"Finally, if the fact-checking result demonstrates that the content presents "
+"valid information, you can mark it as \"contains true information\"."
+msgstr ""
+"Silakan tetapkan tag kategori, \"mengandung informasi benar\", \"mengandung disinformasi\", atau \"mengandung perspektif pribadi\" pada konten berdasarkan temuan Anda.\\n"
+"\\n"
+"Jika hasil penelitian Anda membuktikan bahwa konten mencakup informasi palsu, Anda dapat menandainya sebagai \"mengandung disinformasi\".\\n"
+"\\n"
+"Sementara temuan Anda menunjukkan perspektif pribadi yang berbeda dari aslinya, Anda dapat memberi tag konten sebagai \"mengandung perspektif pribadi\".\\n"
+"\\n"
+"Terakhir, jika hasil pemeriksaan fakta menunjukkan bahwa konten menyajikan informasi yang valid, Anda dapat menandainya sebagai \"mengandung informasi benar\"."
+
+#: components/Tutorial/content/bustHoaxes.js:192
+msgid "Fill in the reasons"
+msgstr "Isi alasan"
+
+#: components/Tutorial/content/bustHoaxes.js:196
+msgid ""
+"After tagging, write a brief note on which part in the content \"contains "
+"true information\", \"contains misinformation\", or \"contains personal "
+"perspective\". The note will be shown to users via our chatbot. We suggest "
+"clarifying false and true parts, or perspectives of the content in the "
+"first paragraph and elaborating in following paragraphs if more "
+"explanations are required."
+msgstr "Setelah memberi tag, tulis catatan singkat tentang bagian mana dalam konten yang \"mengandung informasi benar\", \"mengandung disinformasi\", atau \"mengandung perspektif pribadi\". Catatan ini akan ditampilkan kepada pengguna melalui chatbot kami. Kami menyarankan untuk memperjelas bagian yang salah dan benar, atau perspektif konten di paragraf pertama dan menguraikan di paragraf berikutnya jika penjelasan lebih diperlukan."
+
+#: components/Tutorial/content/bustHoaxes.js:201
+msgid "Provide sources and reference"
+msgstr "Sediakan sumber dan referensi"
+
+#: components/Tutorial/content/bustHoaxes.js:205
+msgid ""
+"Paste the links of information and list your reference in the \"Reference\" "
+"or \"Opinion Sources\" column, then your response is good to go!"
+msgstr "Tempel tautan informasi dan daftarkan referensi Anda di kolom \"Referensi\" atau \"Sumber Opini\", maka respons Anda siap dikirim!"
+
+#: components/Tutorial/content/bustHoaxes.js:210
+msgid "Are there any examples for reference?"
+msgstr "Apakah ada contoh untuk referensi?"
+
+#: components/Tutorial/content/bustHoaxes.js:226
+msgid "I really can't find any sources! What should I do?"
+msgstr "Saya benar-benar tidak bisa menemukan sumber! Apa yang harus saya lakukan?"
+
+#: components/Tutorial/content/bustHoaxes.js:227
+msgid ""
+"Don't worry. Leave your progress in \"Comment\" and let the community "
+"continue your work."
+msgstr "Jangan khawatir. Biarkan kemajuan Anda di \"Komentar\" dan biarkan komunitas melanjutkan pekerjaan Anda."
+
+#: components/Tutorial/content/bustHoaxes.js:230
+msgid "Use \"Comment\" function"
+msgstr "Gunakan fungsi \"Komentar\""
+
+#: components/Tutorial/content/bustHoaxes.js:234
+msgid ""
+"Please click \"Comment\", put the information and materials you have found "
+"so far there, and briefly share the parts you could not find.\n"
+"The \"Response Count\" will increase after you send the supplement then "
+"attract other editors to view, so the community members can start from the "
+"supplementary materials you shared to finish remaining fact-checking "
+"process!"
+msgstr ""
+"Silakan klik \"Komentar\", tempelkan informasi dan materi yang telah Anda temukan sejauh ini di sana, dan bagikan secara singkat bagian-bagian yang tidak dapat Anda temukan.\\n"
+"Jumlah \"Respons\" akan meningkat setelah Anda mengirim pelengkap tersebut, sehingga menarik editor lain untuk melihat, agar anggota komunitas dapat memulai dari materi pelengkap yang Anda bagikan untuk menyelesaikan proses verifikasi fakta yang tersisa!"
+
+#: components/Tutorial/content/bustHoaxes.js:214
+msgid ""
+"We have a collaborative note \"Editor's Fantastic Journey\" that records "
+"the cases shared by editors in the past. You can refer to how these editors "
+"analyzed and wrote responses when faced with varied types of information "
+"and contents."
+msgstr "Kami memiliki catatan kolaboratif \"Perjalanan Fantastis Editor\" yang merekam kasus-kasus yang dibagikan oleh editor di masa lalu. Anda dapat merujuk bagaimana editor-editor ini menganalisis dan menulis respons ketika menghadapi berbagai jenis informasi dan konten."
+
+#: components/Tutorial/Article.js:279
+#, javascript-format
+msgid "Step ${ stepNo }"
+msgstr "Langkah ${ stepNo }"
+
+#: components/Tutorial/content/checkRumors.js:10
+msgid ""
+"Have you add Cofacts as your friend on LINE? Feel free to ask if you have "
+"any questions!"
+msgstr "Apakah Anda sudah menambahkan Cofacts sebagai teman Anda di LINE? Jangan ragu untuk bertanya jika Anda memiliki pertanyaan!"
+
+#: components/Tutorial/content/checkRumors.js:11
+msgid ""
+"Friend the chatbot and let it offer solutions to the suspicious messages, "
+"scams and fake news you received."
+msgstr "Tambahkan chatbot sebagai teman dan biarkan ia menawarkan solusi untuk pesan mencurigakan, penipuan, dan berita palsu yang Anda terima."
+
+#: components/Tutorial/content/checkRumors.js:15
+msgid "Friend the Cofacts chatbot and report as much as you want!"
+msgstr "Tambahkan chatbot Cofacts sebagai teman dan laporkan sebanyak yang Anda mau!"
+
+#: components/Tutorial/content/checkRumors.js:19
+msgid ""
+"This is the world's first chatbot capable of fact-checking and supports "
+"open source code. Send it any questionable messages you found. Add the bot "
+"as your friend and receive its welcoming messages. Cofacts wants to be your "
+"good friend!"
+msgstr "Ini adalah chatbot pertama di dunia yang mampu melakukan verifikasi fakta dan mendukung kode sumber terbuka. Kirimkan kepadanya pesan-pesan yang diragukan yang Anda temukan. Tambahkan bot sebagai teman Anda dan terima pesan penyambutannya. Cofacts ingin menjadi sahabat baik Anda!"
+
+#: components/Tutorial/content/checkRumors.js:30
+msgid ""
+"When receiving a suspicious message on your PC, search on the Cofacts "
+"website."
+msgstr "Ketika menerima pesan mencurigakan di PC Anda, cari di situs web Cofacts."
+
+#: components/Tutorial/content/checkRumors.js:31
+msgid "You can paste it in the search box and always get relevant materials."
+msgstr "Anda dapat menempelkannya di kotak pencarian dan selalu mendapatkan materi yang relevan."
+
+#: components/Tutorial/content/checkRumors.js:32
+msgid ""
+"There is a magnifying glass in the upper right corner of the website. Paste "
+"the message you received or the keywords on your mind next to the "
+"magnifying glass to find information you care about!"
+msgstr "Ada kaca pembesar di sudut kanan atas situs web. Tempelkan pesan yang Anda terima atau kata kunci yang ada di pikiran Anda di sebelah kaca pembesar untuk menemukan informasi yang Anda pedulikan!"
+
+#: components/Tutorial/content/checkRumors.js:35
+msgid "Enhance accuracy of your checking progress with the filter"
+msgstr "Tingkatkan akurasi kemajuan pemeriksaan Anda dengan filter"
+
+#: components/Tutorial/content/checkRumors.js:39
+msgid ""
+"There is a filter in the lower right corner and a small monthly calendar on "
+"the left for time setting to help you target varied categories of contents, "
+"such as \"recent\", \"within a specified time range\", \"most frequently "
+"asked\", \"latest response\", and messages related to specific topics. You "
+"can choose whichever you want."
+msgstr "Ada filter di sudut kanan bawah dan kalender bulanan kecil di sebelah kiri untuk pengaturan waktu guna membantu Anda menargetkan berbagai kategori konten, seperti \"terbaru\", \"dalam rentang waktu tertentu\", \"paling sering ditanyakan\", \"respons terbaru\", dan pesan yang terkait dengan topik tertentu. Anda dapat memilih mana pun yang Anda inginkan."
+
+#: components/Tutorial/content/checkRumors.js:50
+msgid "Vote, supplement, and show your curiosity"
+msgstr "Beri suara, lengkapi, dan tunjukkan rasa ingin tahu Anda"
+
+#: components/Tutorial/content/checkRumors.js:51
+msgid ""
+"You can help others troubled by fake news by supplementing checking "
+"materials, voting good to evaluate responses and showing your support for "
+"efforts in tackling misinformation."
+msgstr "Anda dapat membantu orang lain yang terganggu oleh berita palsu dengan melengkapi materi pemeriksaan, memberikan suara positif untuk mengevaluasi respons, dan menunjukkan dukungan Anda terhadap upaya dalam mengatasi disinformasi."
+
+#: components/Tutorial/content/checkRumors.js:52
+msgid ""
+"There are many clues left by previous fact-checkers, or reporters who "
+"requested fact-checking) on the website. Vote up the clues you find "
+"helpful, such as image source, relevant fact-checking information, other "
+"useful reference, to applaud for the efforts! If you find information that "
+"may be helpful for fact-checking, click the report button to submit your "
+"findings."
+msgstr "Ada banyak petunjuk yang ditinggalkan oleh penguji fakta sebelumnya, atau reporter yang meminta verifikasi) di situs web. Beri suara naik untuk petunjuk yang Anda temukan berguna, seperti sumber gambar, informasi verifikasi fakta yang relevan, referensi lain yang berguna, untuk mengapresiasi upayanya! Jika Anda menemukan informasi yang mungkin berguna untuk verifikasi fakta, klik tombol laporan untuk mengirimkan temuan Anda."
+
+#: components/Tutorial/content/checkRumors.js:55
+msgid "Help train AI via classification"
+msgstr "Bantu melatih AI melalui klasifikasi"
+
+#: components/Tutorial/content/checkRumors.js:59
+msgid ""
+"We need your help on the way developing our artificial intelligence. Click "
+"\"Add Category\" to have messages going through the first-round of "
+"classification processing. Also, you can take a look at the contents to see "
+"if you can check on the pieces of information."
+msgstr "Kami membutuhkan bantuan Anda dalam perjalanan mengembangkan kecerdasan buatan kami. Klik \"Tambah Kategori\" agar pesan melewati pemrosesan klasifikasi putaran pertama. Selain itu, Anda juga dapat melihat konten untuk memeriksa apakah Anda dapat mengecek potongan-potongan informasi tersebut."
+
+#: components/Tutorial/content/checkRumors.js:70
+msgid "Log in to the website or browse and check on LINE"
+msgstr "Masuk ke situs web atau jelajahi dan periksa di LINE"
+
+#: components/Tutorial/content/checkRumors.js:71
+msgid ""
+"Log in to the Cofacts website. Welcome to join the largest fact-checking "
+"community! Let's contribute to civic technology."
+msgstr "Masuk ke situs web Cofacts. Selamat datang bergabung dengan komunitas verifikasi fakta terbesar! Mari berkontribusi pada teknologi warga."
+
+#: components/Tutorial/content/checkRumors.js:77
+msgid "Cast your up votes whenever you pass by. Keep up on voting up!"
+msgstr "Berikan suara naik setiap kali Anda lewat. Teruslah memberikan suara naik!"
+
+#: components/Tutorial/content/checkRumors.js:81
+msgid ""
+"After reading the response, if you regard it as a substantial content, "
+"please click like on the bottom left to vote up the response. In LINE, the "
+"bot will also inquire if a response is helpful. You can choose \"Yes\" to "
+"keep a good response helping more people! If you feel the response can be "
+"done better, please help fix it and respond with a new comment of yours."
+msgstr "Setelah membaca respons, jika Anda menganggapnya sebagai konten yang substansial, silakan klik suka di kiri bawah untuk memberikan suara naik pada respons tersebut. Di LINE, bot juga akan menanyakan apakah respons tersebut membantu. Anda dapat memilih \"Ya\" agar respons yang baik terus membantu lebih banyak orang! Jika Anda merasa respons tersebut bisa dilakukan lebih baik, tolong bantu perbaiki dan balas dengan komentar baru Anda."
+
+#: components/Tutorial/content/checkRumors.js:92
+msgid "Share the information you find!"
+msgstr "Bagikan informasi yang Anda temukan!"
+
+#: components/Tutorial/content/checkRumors.js:93
+msgid ""
+"Now start to defeat rumors. The website of enriched information is waiting "
+"for you"
+msgstr "Sekarang mulai kalahkan rumor. Situs web dengan informasi yang kaya menanti Anda"
+
+#: components/Tutorial/content/checkRumors.js:94
+msgid ""
+"Choose \"(Hoax) for you\". It is more blessed to give than to receive, and "
+"fact-checking is like standing on the shoulders of giants to look at the "
+"world. With your help, false information will be defeated one after another!"
+msgstr "Pilih \"(Hoaks) untuk Anda\". Memberi lebih diberkati daripada menerima, dan verifikasi fakta seperti berdiri di bahu raksasa untuk melihat dunia. Dengan bantuan Anda, informasi palsu akan dikalahkan satu per satu!"
+
+#: components/Tutorial/content/checkRumors.js:97
+msgid "The first step is to select \"Contains false information\""
+msgstr "Langkah pertama adalah memilih \"Berisi informasi palsu\""
+
+#: components/Tutorial/content/checkRumors.js:101
+msgid ""
+"Provide the validated points you have checked on to communicate with the "
+"public on why the message contains false information, how readers can view "
+"and evaluate it from specific angles, and attach the source of information "
+"and reference you found to show your care and respect for fact-checking. "
+"Try to converse with sincerity and honesty when faced with questions from "
+"reporters and the public."
+msgstr "Berikan poin-poin yang telah Anda periksa untuk berkomunikasi dengan publik tentang mengapa pesan tersebut berisi informasi palsu, bagaimana pembaca dapat melihat dan mengevaluasinya dari sudut pandang tertentu, serta lampirkan sumber informasi dan referensi yang Anda temukan untuk menunjukkan kepedulian dan rasa hormat Anda terhadap pengecekan fakta. Cobalah untuk berbicara dengan ketulusan dan kejujuran ketika menghadapi pertanyaan dari wartawan dan publik."
+
+#: components/Tutorial/content/checkRumors.js:72
+msgid ""
+"Under the suspicious messages, find and select \"Share\" on the right to "
+"share the response to help your friends.\n"
+"\n"
+" Choose login in the upper right corner! Will you be the next Wow-rrior "
+"contributing a sky-high volume of up votes?"
+msgstr ""
+"Di bawah pesan yang mencurigakan, cari dan pilih \"Bagikan\" di sebelah kanan untuk membagikan respons guna membantu teman-teman Anda.\\n"
+"\\n"
+" Pilih masuk di pojok kanan atas! Akankah Anda menjadi pejuang Wow berikutnya yang memberikan jumlah suara suka setinggi langit?"
+
+#: pages/about.js:275
+msgid "How does misinformation be fact-checked?"
+msgstr "Bagaimana disinformasi diperiksa faktanya?"
+
+#: components/Tutorial/LineTutorial.js:24
+msgid "Recieved doubtful messages from social platform"
+msgstr "Menerima pesan meragukan dari platform media sosial"
+
+#: components/Tutorial/LineTutorial.js:25
+msgid ""
+"While a lot of instant messages are disseminated among our friends' "
+"chatroom, you might feel confused whether the information is fake or not."
+msgstr "Saat banyak pesan instan disebarluaskan di antara ruang obrolan teman-teman kita, Anda mungkin merasa bingung apakah informasinya palsu atau tidak."
+
+#: components/Tutorial/LineTutorial.js:30
+msgid "Share this message to Cofacts"
+msgstr "Bagikan pesan ini ke Cofacts"
+
+#: components/Tutorial/LineTutorial.js:31
+msgid ""
+"You are encouraged to share to suspicious message to Cofacts chatbot, "
+"Cofacts chatbot would help you submit the misinformation to Cofacts "
+"fact-checking platform for receiveing similar fact-check reports."
+msgstr "Anda didorong untuk membagikan pesan yang mencurigakan ke bot obrolan Cofacts; bot obrolan Cofacts akan membantu Anda mengirimkan disinformasi tersebut ke platform pengecekan fakta Cofacts untuk menerima laporan pengecekan fakta serupa."
+
+#: components/Tutorial/LineTutorial.js:36
+msgid "Submit to Cofacts database & fact-checking platform"
+msgstr "Kirim ke basis data & platform pengecekan fakta Cofacts"
+
+#: components/Tutorial/LineTutorial.js:37
+msgid ""
+"Everyone could review the suspicious messages on Cofacts platform, and "
+"discuss the fact-checking process and detail."
+msgstr "Semua orang dapat meninjau pesan yang mencurigakan di platform Cofacts, dan mendiskusikan proses serta detail pengecekan fakta."
+
+#: components/Tutorial/LineTutorial.js:42
+msgid "Fact checkers would comment fact-checking detail on the platform."
+msgstr "Pemeriksa fakta akan mengomentari detail pengecekan fakta di platform."
+
+#: components/Tutorial/LineTutorial.js:43
+msgid ""
+"Every volunteers could login Cofacts platform, and submit their "
+"fact-checking reports. Volunteers are asked to provide reference and "
+"explanation for the fact-checking."
+msgstr "Setiap sukarelawan dapat masuk ke platform Cofacts, dan mengirimkan laporan pengecekan fakta mereka. Sukarelawan diminta untuk menyediakan referensi dan penjelasan untuk pengecekan fakta."
+
+#: components/Tutorial/LineTutorial.js:48
+msgid "Cofacts chatnot would reply this automatically"
+msgstr "Bot obrolan Cofacts akan membalas ini secara otomatis"
+
+#: components/Tutorial/content/bustHoaxes.js:160
+msgid ""
+"Please refer to the Social Media Fact-checking tips & tricks provided by "
+"PTS News Lab Taiwan"
+msgstr "Silakan merujuk pada tips & trik Pengecekan Fakta Media Sosial yang disediakan oleh PTS News Lab Taiwan"
+
+#: components/Tutorial/LineTutorial.js:49
+msgid ""
+"Fact-checking contribution would be seen via Cofacts chatbot for everyone; "
+"if you think you could improve the content, you are encouraged to submit a "
+"new fact-checking reply."
+msgstr "Kontribusi pengecekan fakta dapat dilihat melalui bot obrolan Cofacts untuk semua orang; jika Anda berpikir Anda dapat meningkatkan kontennya, Anda didorong untuk mengirimkan balasan pengecekan fakta baru."
+
+#: pages/about.js:318
+msgid "Cofacts instruction"
+msgstr "Instruksi Cofacts"
+
+#: pages/about.js:322
+msgid "What is Cofacts core value?"
+msgstr "Apa nilai inti Cofacts?"
+
+#: pages/about.js:328
+msgid "Instant fact-checking tool"
+msgstr "Alat pengecekan fakta instan"
+
+#: pages/about.js:338
+msgid "Free and Open"
+msgstr "Gratis dan Terbuka"
+
+#: pages/about.js:349
+msgid "Media Literacy"
+msgstr "Melek Media"
+
+#: components/Tutorial/Article.js:261
+msgid "Collapse"
+msgstr "Lipat"
+
+#: components/Tutorial/Article.js:261
+msgid "Expand"
+msgstr "Bentangkan"
+
+#: components/Tutorial/content/bustHoaxes.js:88
+msgid "Is it a valid request?"
+msgstr "Apakah ini permintaan yang valid?"
+
+#: components/Tutorial/content/bustHoaxes.js:92
+msgid ""
+"In Cofacts, a message request is considered valid if the message is "
+"actually being forwarded among chatrooms in LINE."
+msgstr "Di Cofacts, permintaan pesan dianggap valid jika pesan tersebut benar-benar sedang diteruskan di antara ruang obrolan di LINE."
+
+#: components/Tutorial/content/bustHoaxes.js:96
+msgid ""
+"Take a look at how many people reported the message. If there is only one "
+"person, it may be a test message the user typed in on their own, which will "
+"never be requested again by another user. If this is the case, mark this "
+"message a \"invalid request\". You can also mark commercial advertisements "
+"as \"invalid requests\" as we do not need to help in advertising businesses."
+msgstr "Lihat berapa banyak orang yang melaporkan pesan tersebut. Jika hanya ada satu orang, itu mungkin pesan uji yang diketik sendiri oleh pengguna, yang tidak akan pernah diminta lagi oleh pengguna lain. Jika ini kasusnya, tandai pesan ini sebagai \"permintaan tidak valid\". Anda juga dapat menandai iklan komersial sebagai \"permintaan tidak valid\" karena kami tidak perlu membantu bisnis periklanan."
+
+#: components/Tutorial/content/checkRumors.js:12
+msgid "Scan QR code to add @cofacts to contact"
+msgstr "Pindai kode QR untuk menambahkan @cofacts ke kontak"
+
+#: components/ProfilePage/AvatarSelector.js:178
+msgid "Accessory"
+msgstr "Aksesori"
+
+#: components/ProfilePage/AvatarSelector.js:184
+msgid "Body"
+msgstr "Tubuh"
+
+#: components/ProfilePage/AvatarSelector.js:190
+msgid "Face"
+msgstr "Wajah"
+
+#: components/ProfilePage/AvatarSelector.js:196
+msgid "Hair"
+msgstr "Rambut"
+
+#: components/ProfilePage/AvatarSelector.js:202
+msgid "Facial Hair"
+msgstr "Jenggot"
+
+#: components/ProfilePage/EditAvatarDialog.js:170
+msgid "Edit profile picture"
+msgstr "Ubah foto profil"
+
+#: components/ReportPage/SectionTower.js:92
+msgid "Open data"
+msgstr "Data terbuka"
+
+#: components/ReportPage/SectionTower.js:99
+msgid "Analytics"
+msgstr "Analitik"
+
+#: components/ReportPage/EcosystemModal.js:22
+msgid "Fact-check community"
+msgstr "Komunitas pemeriksa fakta"
+
+#: components/ReportPage/EcosystemModal.js:24
+msgid ""
+"Involves in physical gatherings, independent contributions, daily audit "
+"reports as the frontline organizational community."
+msgstr "Melibatkan pertemuan fisik, kontribusi mandiri, dan laporan audit harian sebagai komunitas organisasi garis depan."
+
+#: components/ReportPage/EcosystemModal.js:28
+msgid "Meet Cofacts editors: the need to keep fighting disinformation"
+msgstr "Temui editor Cofacts: kebutuhan untuk terus melawan disinformasi"
+
+#: components/ReportPage/EcosystemModal.js:32
+msgid "Facebook group for Cofacts editors"
+msgstr "Grup Facebook untuk editor Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:34
+msgid "Past editor's meetups"
+msgstr "Pertemuan editor sebelumnya"
+
+#: components/ReportPage/EcosystemModal.js:38
+msgid "Editor meetups' opening slides"
+msgstr "Slide pembuka pertemuan editor"
+
+#: components/ReportPage/EcosystemModal.js:43
+msgid "Developers"
+msgstr "Pengembang"
+
+#: components/ReportPage/EcosystemModal.js:45
+msgid ""
+"Establish the fact-checking platform, develop chatbots, and create "
+"technological tools to solve problems."
+msgstr "Membangun platform pemeriksaan fakta, mengembangkan chatbot, dan menciptakan alat teknologi untuk menyelesaikan masalah."
+
+#: components/ReportPage/EcosystemModal.js:49
+msgid "Cofacts developer entry page and system diagram"
+msgstr "Halaman masuk pengembang Cofacts dan diagram sistem"
+
+#: components/ReportPage/EcosystemModal.js:53
+#: components/ReportPage/EcosystemModal.js:76
+msgid "How to run Cofacts on your laptop workshop @ g0v summit 2018"
+msgstr "Cara menjalankan Cofacts di laptop Anda lokakarya @ g0v summit 2018"
+
+#: components/ReportPage/EcosystemModal.js:58
+msgid "International sharing"
+msgstr "Berbagi internasional"
+
+#: components/ReportPage/EcosystemModal.js:60
+msgid ""
+"Provides teaching resources of development, focuses on open source sharing, "
+"assists in the development of chatbots, interacts with international "
+"communities and helps with technical support."
+msgstr "Menyediakan sumber daya pengajaran pengembangan, berfokus pada berbagi open source, membantu pengembangan chatbot, berinteraksi dengan komunitas internasional dan membantu dukungan teknis."
+
+#: components/ReportPage/EcosystemModal.js:64
+msgid "Introduction to Cofacts @ Google News Lab APAC summit 2017"
+msgstr "Pengantar Cofacts @ Google News Lab APAC summit 2017"
+
+#: components/ReportPage/EcosystemModal.js:68
+msgid "Cofacts Design @ Chulalongkorn University, 2019"
+msgstr "Desain Cofacts @ Universitas Chulalongkorn, 2019"
+
+#: components/ReportPage/EcosystemModal.js:72
+msgid "Cofacts Design @ LINE DEVELOPER DAY 2020"
+msgstr "Desain Cofacts @ LINE DEVELOPER DAY 2020"
+
+#: components/ReportPage/EcosystemModal.js:80
+msgid "Cofacts clone - Cofact by OpenDream, Thailand"
+msgstr "Clone Cofacts - Cofact oleh OpenDream, Thailand"
+
+#: components/ReportPage/EcosystemModal.js:85
+msgid "Research"
+msgstr "Penelitian"
+
+#: components/ReportPage/EcosystemModal.js:87
+msgid ""
+"Provides open data for investigative journalists and scholars to conduct "
+"research and analysis, and keep data analysis materials public."
+msgstr "Menyediakan data terbuka bagi jurnalis investigatif dan akademisi untuk melakukan penelitian dan analisis, serta menjaga agar materi analisis data tetap publik."
+
+#: components/ReportPage/EcosystemModal.js:89
+msgid "Cofacts open dataset"
+msgstr "Set data terbuka Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:92
+msgid "Cofacts usage analytics"
+msgstr "Analitik penggunaan Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:94
+msgid "Cofacts API"
+msgstr "API Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:246
+#: components/ReportPage/SectionEcosystem.js:135
+msgid "Fact-checking ecosystem"
+msgstr "Ekosistem cek fakta"
+
+#: components/ReportPage/SectionEcosystem.js:177
+msgid ""
+"Cofacts is our original chatbot for checking messages.\n"
+"It is the only open source code and the largest Chinese false information "
+"checking platform.\n"
+"It encourages volunteers to participate through crowd collaboration and "
+"rewards different types of volunteers to motivate their participation."
+msgstr ""
+"Cofacts adalah chatbot asli kami untuk memeriksa pesan.\\n"
+"Ini adalah satu-satunya kode sumber terbuka dan platform pemeriksaan informasi palsu berbahasa Tiongkok terbesar.\\n"
+"Platform ini mendorong partisipasi sukarelawan melalui kolaborasi kerumunan dan memberikan penghargaan kepada berbagai jenis sukarelawan untuk memotivasi partisipasi mereka."
+
+#: components/ReportPage/SectionInfluence.js:110
+msgid ""
+"External and internal propaganda have caused the people to lose their trust "
+"in media and information.\n"
+"Cofacts took the lead in making a change, establishing a platform and "
+"creating a chatbot with fact-checking capabilities.\n"
+"We automated the process of combating false information through artificial "
+"intelligence and machine learning,\n"
+"in order to avoid exhausting professional reviewers and provide review "
+"resources."
+msgstr ""
+"Propaganda eksternal dan internal telah menyebabkan rakyat kehilangan kepercayaan terhadap media dan informasi.\\n"
+"Cofacts mengambil langkah terdepan dalam menciptakan perubahan, dengan membangun platform dan membuat chatbot dengan kemampuan cek fakta.\\n"
+"Kami mengotomatisasi proses penanggulangan informasi palsu melalui kecerdasan buatan dan pembelajaran mesin,\\n"
+"demi menghindari kelelahan penguji profesional dan menyediakan sumber daya peninjauan."
+
+#: pages/impact.js:67
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was "
+"launched in 2016 by the engineers, proposed to the civic tech community, "
+"and accomplished by a group of volunteers. The team members meet up weekly "
+"to maintain the project's dynamic."
+msgstr "Cofacts adalah chatbot cek fakta yang dikembangkan paling awal. Proyek ini diluncurkan pada tahun 2016 oleh para insinyur, diusulkan ke komunitas teknologi sipil, dan diselesaikan oleh sekelompok sukarelawan. Anggota tim bertemu mingguan untuk menjaga dinamika proyek."
+
+#: pages/impact.js:70
+msgid ""
+"At present, there have been more than 45,000 verified pieces of content in "
+"our database. Through investing human and other resources, the project is "
+"to reverse harms to democracy and society caused by misinformation."
+msgstr "Saat ini, terdapat lebih dari 45.000 konten terverifikasi dalam basis data kami. Dengan menginvestasikan sumber daya manusia dan lainnya, proyek ini bertujuan untuk membalikkan kerugian terhadap demokrasi dan masyarakat yang disebabkan oleh disinformasi."
+
+#: components/ListPageDisplays/ArticleCard.js:112
+#: components/ListPageDisplays/ReplySearchItem.js:112
+#: components/ProfilePage/CommentTab.js:178
+#: components/ProfilePage/RepliedArticleTab.js:278
+#: pages/article/[id].js:393
+#: pages/replies.js:248
+msgid "First reported ${ timeAgo }"
+msgstr "Dilaporkan pertama kali ${ timeAgo }"
+
+#: components/ReplyInfo.js:18
+#, javascript-format
+msgid "replied ${ timeAgoStr }"
+msgstr "membalas ${ timeAgoStr }"
+
+#: components/ProfilePage/EditProfileDialog.js:38
+#, javascript-format
+msgid "Changes cannot be saved: ${ error }"
+msgstr "Perubahan tidak dapat disimpan: ${ error }"
+
+#: components/Infos/TimeInfo.js:52
+msgid "${ formatted } ago"
+msgstr "${ formatted } lalu"
+
+#: components/WonderCallEmbed.js:55
+msgid "Loading contact form"
+msgstr "Memuat formulir kontak"
+
+#: components/ListPageDisplays/utils.js:11
+msgid "In reference text"
+msgstr "Dalam teks referensi"
+
+#: components/ListPageDisplays/utils.js:18
+msgid "In linked text"
+msgstr "Dalam teks tertaut"
+
+#: components/ArticleReply/ArticleReply.js:110
+#: pages/article/[id].js:306
+#. t: terms subject 
+msgid "This info"
+msgstr "Informasi ini"
+
+#: components/ReportPage/SectionFeatures.js:152
+msgid ""
+"An exclusive service keeps users from repeating requests and provides\n"
+"immediate information about false messages in the previous queries."
+msgstr ""
+"Layanan eksklusif mencegah pengguna mengulang permintaan dan menyediakan\\n"
+"informasi segera tentang pesan palsu dalam kueri sebelumnya."
+
+#: components/ReportPage/SectionFeatures.js:158
+msgid ""
+"Volunteers would login Cofacts and fact-check the suspicious messages.\n"
+"What fact-checkers have replied and commented would be transparent\n"
+"and reviewed, the achievement was opened and shareable."
+msgstr ""
+"Sukarelawan akan masuk ke Cofacts dan memeriksa fakta pesan yang mencurigakan.\\n"
+"Apa yang telah dibalas dan dikomentari oleh pemeriksa fakta akan transparan\\n"
+"dan ditinjau, pencapaiannya dibuka dan dapat dibagikan."
+
+#: components/ReportPage/SectionFeatures.js:166
+msgid ""
+"Cofacts has categorized misinformation via topics automatically, making\n"
+"different expertise focus on their professional fields. Such as COVID-19,\n"
+"Vaccine related, propaganda, public policy, or fraud, these could be\n"
+"categorized by Artificial Intelligence."
+msgstr ""
+"Cofacts telah mengkategorikan disinformasi secara otomatis melalui topik, sehingga\\n"
+"keahlian berbeda dapat fokus pada bidang profesional mereka. Misalnya COVID-19,\\n"
+"berkaitan dengan vaksin, propaganda, kebijakan publik, atau penipuan, hal-hal ini dapat\\n"
+"dikategorikan oleh Kecerdasan Buatan."
+
+#: components/ReportPage/SectionFeatures.js:174
+msgid ""
+"Cofacts has provided API connecting instruction, fact-checking system\n"
+"since 2016. This achievement leads the combating misinformation ecosystem.\n"
+"There were third party chatbots connecting to Cofacts open API and IFCN\n"
+"member started to conduct own chatbots."
+msgstr ""
+"Cofacts telah menyediakan instruksi koneksi API, sistem cek fakta\\n"
+"sejak tahun 2016. Pencapaian ini memimpin ekosistem penanggulangan disinformasi.\\n"
+"Ada chatbot pihak ketiga yang terhubung ke API terbuka Cofacts dan anggota IFCN\\n"
+"mulai menjalankan chatbot mereka sendiri."
+
+#: components/NewReplySection/index.js:111
+msgid "Please provide reply text."
+msgstr "Silakan berikan teks balasan."
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:248
+msgid ""
+"Note: This is not a comment section! Please write your reply in response to "
+"the reported message above, NOT to other editors' replies below. Please use "
+"the thumb-down button below each reply if you find it not good enough."
+msgstr "Catatan: Ini bukan bagian komentar! Silakan tulis balasan Anda sebagai respons terhadap pesan yang dilaporkan di atas, BUKAN terhadap balasan editor lain di bawah. Silakan gunakan tombol jempol ke bawah di bawah setiap balasan jika Anda merasa kurang memadai."
+
+#: pages/article/[id].js:507
+msgid "Comments from people reporting this message"
+msgstr "Komentar dari orang-orang yang melaporkan pesan ini"
+
+#: components/ProfilePage/RepliedArticleTab.js:35
+msgid "Most recently replied by any user"
+msgstr "Terakhir dijawab oleh pengguna mana pun"
+
+#: components/ProfilePage/RepliedArticleTab.js:259
+#, javascript-format
+msgid "${ totalCount } message matching criteria"
+msgid_plural "${ totalCount } messages matching criteria"
+msgstr[0] "${ totalCount } pesan yang sesuai kriteria"
+
+#: components/ActionMenu/ReportAbuseMenuItem.js:45
+msgid "Report abuse"
+msgstr "Laporkan penyalahgunaan"
+
+#: pages/article/[id].js:456
+msgid "Log in to view video content"
+msgstr "Masuk untuk melihat konten video"
+
+#: pages/article/[id].js:466
+msgid "Log in to view audio content"
+msgstr "Masuk untuk melihat konten audio"
+
+#: components/Thumbnail.tsx:41
+msgid "A video"
+msgstr "Sebuah video"
+
+#: components/Thumbnail.tsx:41
+#: components/Thumbnail.tsx:54
+msgid "Preview not supported yet"
+msgstr "Pratinjau belum didukung"
+
+#: components/Thumbnail.tsx:54
+msgid "An audio"
+msgstr "Sebuah audio"
+
+#: components/ListPageControls/ArticleTypeFilter.js:13
+msgid "Text"
+msgstr "Teks"
+
+#: components/ListPageControls/ArticleTypeFilter.js:14
+msgid "Image"
+msgstr "Gambar"
+
+#: components/ListPageControls/ArticleTypeFilter.js:15
+msgid "Video"
+msgstr "Video"
+
+#: components/ListPageControls/ArticleTypeFilter.js:16
+msgid "Audio"
+msgstr "Audio"
+
+#: components/ListPageControls/ArticleTypeFilter.js:33
+msgid "Format"
+msgstr "Format"
+
+#: components/ProfilePage/CommentTab.js:155
+msgid ""
+"This user does not provide comments to any message in the specified date "
+"range."
+msgstr "Pengguna ini tidak memberikan komentar pada pesan apa pun dalam rentang tanggal yang ditentukan."
+
+#: components/ProfilePage/CommentTab.js:159
+#, javascript-format
+msgid "${ totalCount } comment matching criteria"
+msgid_plural "${ totalCount } comments matching criteria"
+msgstr[0] "${ totalCount } komentar yang sesuai kriteria"
+
+#: components/ProfilePage/ProfilePage.js:179
+msgid "Comments"
+msgstr "Komentar"
+
+#: components/ProfilePage/Stats.js:61
+msgid "comments"
+msgstr "komentar"
+
+#: components/ProfilePage/CommentTab.js:184
+msgid "${ article.replyCount } reply"
+msgid_plural "${ article.replyCount } replies"
+msgstr[0] "${ article.replyCount } balasan"
+
+#: pages/terms.js:63
+msgid "Github"
+msgstr "Github"
+
+#: pages/terms.js:74
+#, javascript-format
+msgid "See ${ revisionLink } for other revisions of the user agreement."
+msgstr "Lihat ${ revisionLink } untuk revisi lain dari perjanjian pengguna."
+
+#: pages/article/[id].js:410
+#: pages/reply/[id].js:216
+msgid "Log in to view content"
+msgstr "Masuk untuk melihat konten"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:19
+msgid "Asked only once"
+msgstr "Hanya ditanyakan sekali"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:21
+msgid "Zero replies"
+msgstr "Nol balasan"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:24
+msgid "Has useful replies"
+msgstr "Memiliki balasan yang berguna"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:26
+msgid "Not replied by me"
+msgstr "Tidak dibalas oleh saya"
+
+#: components/CurrentReplies.js:84
+msgid ""
+"No response has been written yet. It is recommended to maintain a healthy "
+"skepticism towards it."
+msgstr "Belum ada respons yang ditulis. Disarankan untuk mempertahankan skeptisisme yang sehat terhadapnya."
+
+#: components/AIReplySection/AIReplySection.js:37
+msgid ""
+"The following is the AI's preliminary analysis of this message, which we "
+"hope will provide you with some ideas before it is fact-checked by a human."
+msgstr "Berikut adalah analisis awal AI dari pesan ini, yang kami harap dapat memberikan Anda beberapa ide sebelum diperiksa oleh manusia."
+
+#: components/Collaborate/CollabEditor.js:121
+msgid "Input transcript"
+msgstr "Masukkan transkrip"
+
+#: components/Collaborate/CollabEditor.js:211
+msgid "No transcripts yet"
+msgstr "Belum ada transkrip"
+
+#: components/Collaborate/CollabEditor.js:222
+msgid "Transcribe"
+msgstr "Transkripsi"
+
+#: components/Collaborate/CollabEditor.js:235
+msgid "Transcript"
+msgstr "Transkrip"
+
+#: components/Collaborate/CollabEditor.js:291
+msgid "Done"
+msgstr "Selesai"
+
+#: components/Collaborate/CollabHistory.js:121
+msgid "Versions"
+msgstr "Versi"
+
+#: components/Collaborate/CollabHistory.js:200
+#, javascript-format
+msgid "Difference between version ${ versionTitle } and its previous version"
+msgstr "Perbedaan antara versi ${ versionTitle } dan versi sebelumnya"
+
+#: components/Collaborate/CollabHistory.js:237
+msgid "History"
+msgstr "Riwayat"
+
+#: components/Collaborate/CollabHistory.js:210
+msgid "No histories..."
+msgstr "Belum ada riwayat..."
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:122
+msgid "Last reported at ${ time }"
+msgstr "Laporan terakhir pada ${ time }"
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:96
+#, javascript-format
+msgid "Sent together ${ entry.count } time"
+msgid_plural "Sent together ${ entry.count } times"
+msgstr[0] "Dikirim bersama ${ entry.count } kali"
+
+#: pages/about.js:259
+msgid ""
+"Cofacts is an information checking platform operated through\n"
+"crowd collaboration and chatbot to have discrete messages of\n"
+"unknown credibility carefully reviewed and discussed through\n"
+"the joint efforts of the public. Cofacts can respond to users'\n"
+"questions and requests 24/7 via chatbot. Our website displays\n"
+"all the information collected, and each selfless volunteer contributor\n"
+"can check out on their own results."
+msgstr "Cofacts adalah platform pemeriksaan informasi yang dioperasikan melalui kolaborasi kerumunan dan chatbot agar pesan-pesan diskret dengan kredibilitas yang tidak diketahui dapat ditinjau dan dibahas secara cermat melalui upaya bersama masyarakat. Cofacts dapat menjawab pertanyaan dan permintaan pengguna 24/7 melalui chatbot. Situs web kami menampilkan semua informasi yang dikumpulkan, dan setiap kontributor sukarelawan yang murah hati dapat memeriksa hasil mereka sendiri."
+
+#: pages/about.js:268
+msgid ""
+"Cofacts is a citizen-initiated platform that is not affiliated\n"
+"to any political party or politicians. It opens the results to\n"
+"everyone and encourage crowd collaboration that people contribute\n"
+"their own skills to build a chatbot fact-checking for everyone."
+msgstr "Cofacts adalah platform yang diinisiasi oleh warga yang tidak berafiliasi dengan partai politik atau politisi mana pun. Ini membuka hasil untuk semua orang dan mendorong kolaborasi kerumunan agar orang-orang berkontribusi dengan keterampilan mereka sendiri untuk membangun fact-checking chatbot untuk semua orang."
+
+#: pages/about.js:283
+msgid ""
+"You think that the messages you\n"
+"received may be fake"
+msgstr "Anda berpikir bahwa pesan yang Anda terima mungkin palsu"
+
+#: pages/about.js:298
+msgid ""
+"Wanna help elders or friends who can’t\n"
+"fact-check information? Let the chatbot\n"
+"check them for you!"
+msgstr "Mau membantu orang tua atau teman yang tidak bisa memeriksa fakta informasi? Biarkan chatbot memeriksakan untuk Anda!"
+
+#: pages/about.js:330
+msgid ""
+"Cofacts is committed to providing a simple solution to\n"
+"help frontline who suffering from misinformation, and news\n"
+"media workers, media literacy educators and journalists\n"
+"focus on their profession."
+msgstr "Cofacts berkomitmen untuk menyediakan solusi sederhana untuk membantu garis depan yang menderita dari misinformasi, dan pekerja media berita, pendidik literasi media, dan jurnalis fokus pada profesi mereka."
+
+#: pages/about.js:340
+msgid ""
+"All of the source code and fact-checking replies are\n"
+"open and transparent to everyone. Cofacts encourage every\n"
+"citizen to contribute and collaborate; there would be\n"
+"no limit or qualification restriction in Cofacts\n"
+"fact-checking platform."
+msgstr "Semua kode sumber dan balasan fact-checking terbuka dan transparan untuk semua orang. Cofacts mendorong setiap warga negara untuk berkontribusi dan berkolaborasi; tidak akan ada batas atau pembatasan kualifikasi di platform fact-checking Cofacts."
+
+#: pages/about.js:351
+msgid ""
+"Cofacts leads in media literacy education and fact-checking\n"
+"skills training. We encourage every individual to do research\n"
+"on information and face misinformation with an active attitude."
+msgstr "Cofacts memimpin dalam pendidikan literasi media dan pelatihan keterampilan fact-checking. Kami mendorong setiap individu untuk melakukan penelitian tentang informasi dan menghadapi misinformasi dengan sikap aktif."
+
+#: pages/about.js:361
+msgid ""
+"The core idea of this project is to make diverse voices easier\n"
+"to be listened to. We believe that fact-checking contents\n"
+"corresponding to rumors on the Internet, personal opinions and\n"
+"following reply articles are all \"diverse voices\". A person may\n"
+"believe online rumors because they have not been exposed to diverse\n"
+"voices, or are unwilling to reach to different voices. However,\n"
+"even if a person is willing to reach diverse voices, the threshold\n"
+"for actions remains very high."
+msgstr "Ide inti dari proyek ini adalah membuat suara-suara beragam lebih mudah didengar. Kami percaya bahwa konten fact-checking yang sesuai dengan rumor di Internet, opini pribadi, dan artikel balasan berikutnya adalah semua \"suara-suara beragam\". Seseorang mungkin percaya rumor online karena mereka belum terpapar pada suara-suara beragam, atau tidak mau menjangkau suara-suara yang berbeda. Namun, bahkan jika seseorang bersedia menjangkau suara-suara beragam, ambang tindakan tetap sangat tinggi."
+
+#: pages/about.js:371
+msgid ""
+"On the other hand, for people who are used to fact-checking online\n"
+"news, checking all of suspicious LINE messages they receive is very\n"
+"time-consuming. Collaborative fact-checking database is like a jointly\n"
+"edited note. You can leave a response to whatever you fact-check\n"
+"and review in the note, so that when others receive the same message\n"
+"and want to check it, they do not have to start from scratch. Therefore,\n"
+"for people who are accustomed to and willing to do fact-checking\n"
+"and embrace diverse voices, a collaborative rumor-defying database\n"
+"can help them avoid repeated, consuming process."
+msgstr "Di sisi lain, bagi orang-orang yang terbiasa memeriksa fakta berita online, memeriksa semua pesan LINE mencurigakan yang mereka terima sangat memakan waktu. Basis data fact-checking kolaboratif seperti catatan yang diedit bersama. Anda dapat meninggalkan respons untuk apa pun yang Anda periksa fakta dan tinjau dalam catatan, sehingga ketika orang lain menerima pesan yang sama dan ingin memeriksanya, mereka tidak perlu mulai dari nol. Oleh karena itu, bagi orang-orang yang terbiasa dan bersedia melakukan fact-checking dan merangkul suara-suara beragam, basis data penyangkal rumor kolaboratif dapat membantu mereka menghindari proses berulang yang menguras energi."
+
+#: pages/about.js:385
+msgid ""
+"Cofacts is one of the projects initiated in g0v, a Taiwanese\n"
+"civic technology community, which encourages open source code,\n"
+"collaboration and open data. In 2016, the initiator proposed to\n"
+"develop the main program of the chatbot. With each volunteer's\n"
+"active and enthusiastic contributions in copywriting, developing,\n"
+"fact-checking, and designing, the project has been gradually\n"
+"accumulating results. Further, the value of the project is to\n"
+"encourage citizens to actively contribute to public affairs, and\n"
+"keep the positive, great ideas and energy continuously influencing\n"
+"our society."
+msgstr "Cofacts adalah salah satu proyek yang diinisiasi di g0v, sebuah komunitas teknologi sipil Taiwan, yang mendorong kode sumber terbuka, kolaborasi, dan data terbuka. Pada tahun 2016, penginisiasi mengusulkan untuk mengembangkan program utama chatbot. Dengan kontribusi aktif dan antusias dari setiap sukarelawan dalam penulisan salinan, pengembangan, fact-checking, dan desain, proyek ini telah secara bertahap mengakumulasi hasil. Lebih lanjut, nilai proyek ini adalah mendorong warga negara untuk secara aktif berkontribusi pada urusan publik, dan terus-menerus memengaruhi masyarakat kita dengan ide-ide dan energi positif yang besar."
+
+#: pages/about.js:397
+msgid ""
+"Cofacts originated as an open-source project in 2016. In 2023, the core "
+"members of Cofacts established an NGO named Cofacts Association in Taiwan "
+"to sustain the Cofacts community."
+msgstr "Cofacts berasal sebagai proyek open-source pada tahun 2016. Pada tahun 2023, anggota inti Cofacts mendirikan LSM bernama Asosiasi Cofacts di Taiwan untuk mempertahankan komunitas Cofacts."
+
+#: components/AIReplySection/AIReplySection.js:31
+msgid "Automated analysis from AI"
+msgstr "Analisis otomatis dari AI"
+
+#: components/AIReplySection/VoteButtons.tsx:189
+msgid "Do you have anything to add?"
+msgstr "Apakah Anda punya sesuatu untuk ditambahkan?"
+
+#: pages/index.js:29
+msgctxt "site title"
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/Tutorial/TutorialHeader.js:59
+msgctxt "Tutorial"
+msgid "What is Cofacts?"
+msgstr "Apa itu Cofacts?"
+
+#: components/Tutorial/TutorialHeader.js:66
+msgctxt "Tutorial"
+msgid "How to use it?"
+msgstr "Bagaimana cara menggunakannya?"
+
+#: pages/tutorial.js:113
+msgctxt "Tutorial"
+msgid "I'd Fact-check"
+msgstr "Saya ingin Memverifikasi Fakta"
+
+#: pages/tutorial.js:125
+msgctxt "Tutorial"
+msgid "I'd Review"
+msgstr "Saya ingin Meninjau"
+
+#: components/LineChart.js:239
+#, javascript-format
+msgctxt "LineChart"
+msgid "${ visit } time"
+msgid_plural "${ visit } times"
+msgstr[0] "${ visit } kali"
+
+#: components/TrendPlot.js:106
+msgctxt "TrendPlot"
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/TrendPlot.js:135
+msgctxt "TrendPlot"
+msgid "Auntie Meiyu"
+msgstr "Tante Meiyu"
+
+#: components/TrendPlot.js:137
+msgctxt "TrendPlot"
+msgid "Dr.Message"
+msgstr "Dr. Pesan"
+
+#: components/TrendPlot.js:139
+msgctxt "TrendPlot"
+msgid "Unknown"
+msgstr "Tidak Diketahui"
+
+#: components/ReportPage/SectionHowToUse.js:134
+msgctxt "impact"
+msgid "More"
+msgstr "Lainnya"
+
+#: components/NewReplySection/Mobile.js:172
+msgctxt "Mobile editor tab"
+msgid "Message"
+msgstr "Pesan"
+
+#: components/NewReplySection/Mobile.js:173
+msgctxt "Mobile editor tab"
+msgid "Compose"
+msgstr "Buat"
+
+#: components/ListPageDisplays/ArticleCard.js:119
+msgctxt "Info box"
+msgid "replies"
+msgstr "balasan"
+
+#: components/ListPageDisplays/ArticleCard.js:123
+msgctxt "Info box"
+msgid "reports"
+msgstr "laporan"
+
+#: components/ListPageControls/BaseTimeRange.js:67
+msgctxt "Time range dropdown"
+msgid "All"
+msgstr "Semua"
+
+#: components/ListPageControls/BaseTimeRange.js:71
+msgctxt "Time range dropdown"
+msgid "Custom"
+msgstr "Kustom"
+
+#: components/AppLayout/AppHeader.js:150
+#: components/LandingPage/Header.js:264
+msgctxt "App layout"
+msgid "Messages"
+msgstr "Pesan"
+
+#: components/AppLayout/AppFooter.js:108
+#: components/AppLayout/AppHeader.js:157
+#: components/LandingPage/Header.js:218
+#: components/LandingPage/Header.js:269
+msgctxt "App layout"
+msgid "Replies"
+msgstr "Balasan"
+
+#: components/AppLayout/AppFooter.js:109
+#: components/AppLayout/AppHeader.js:169
+#: components/LandingPage/Header.js:222
+#: components/LandingPage/Header.js:274
+msgctxt "App layout"
+msgid "For You"
+msgstr "Untuk Anda"
+
+#: components/AppLayout/AppFooter.js:110
+#: components/AppLayout/AppHeader.js:178
+#: components/LandingPage/Header.js:226
+msgctxt "App layout"
+msgid "Tutorial"
+msgstr "Tutorial"
+
+#: components/LandingPage/SectionCanDo.js:214
+msgctxt "landing page"
+msgid "Give it a try:"
+msgstr "Cobalah:"
+
+#: components/LandingPage/SectionCanDo.js:235
+msgctxt "landing page"
+msgid "or"
+msgstr "atau"
+
+#: components/LandingPage/SectionCanDo.js:241
+msgctxt "landing page"
+msgid "Send hoax message to Cofacts via the LINE app"
+msgstr "Kirim pesan hoaks ke Cofacts melalui aplikasi LINE"
+
+#: components/LandingPage/SectionCanDo.js:231
+msgctxt "landing page"
+msgid "Search"
+msgstr "Cari"
+
+#: components/LandingPage/SectionHow.js:179
+msgctxt "landing page"
+msgid "Crowdsourced and Diverse"
+msgstr "Kolaboratif dan Beragam"
+
+#: components/LandingPage/SectionHow.js:187
+msgctxt "landing page"
+msgid "Everybody can fact-check the fact checkers"
+msgstr "Semua orang dapat memverifikasi para penguji fakta"
+
+#: components/LandingPage/SectionJoin.js:216
+msgctxt "landing page"
+msgid "Count me in!"
+msgstr "Hitung saya!"
+
+#: components/LandingPage/SectionArticles.js:147
+msgctxt "landing page"
+msgid "Everyone wants to know..."
+msgstr "Semua orang ingin tahu..."
+
+#: components/LandingPage/SectionCanDo.js:218
+msgctxt "landing page"
+msgid "Paste a suspicious text message below"
+msgstr "Tempel pesan teks yang mencurigakan di bawah ini"
+
+#: components/LandingPage/SectionHow.js:171
+msgctxt "landing page"
+msgid "How do we determine truth?"
+msgstr "Bagaimana kita menentukan kebenaran?"
+
+#: components/LandingPage/SectionHow.js:182
+msgctxt "landing page"
+msgid ""
+"The fact checking replies are written from other contributors,\n"
+"Cofacts helps you see the diversity of the fact checking process."
+msgstr ""
+"Balasan pemeriksaan fakta ditulis oleh kontributor lain,\\n"
+"Cofacts membantu Anda melihat keragaman proses pemeriksaan fakta."
+
+#: components/LandingPage/SectionHow.js:190
+msgctxt "landing page"
+msgid ""
+"We believe there is no omniscient judge.\n"
+"We feel that only through individuals working together can we determine "
+"truth.\n"
+"You can review the others' viewpoints and share your perspective on the "
+"Cofacts platform."
+msgstr ""
+"Kami percaya tidak ada hakim yang mengetahui segalanya.\\n"
+"Kami merasa bahwa hanya melalui kerja sama individu kita dapat menentukan kebenaran.\\n"
+"Anda dapat meninjau sudut pandang orang lain dan berbagi perspektif Anda di platform Cofacts."
+
+#: components/LandingPage/SectionHow.js:197
+msgctxt "landing page"
+msgid "A Community of Mutual Support"
+msgstr "Komunitas Saling Mendukung"
+
+#: components/LandingPage/SectionHow.js:200
+msgctxt "landing page"
+msgid ""
+"Cofacts is building a community where everyone plays a part in "
+"fact-checking."
+msgstr "Cofacts sedang membangun komunitas di mana semua orang berperan dalam pemeriksaan fakta."
+
+#: components/LandingPage/SectionHow.js:204
+msgctxt "landing page"
+msgid ""
+"You can make a difference in others' lives through your contributions to "
+"the fact-checking repository."
+msgstr "Anda dapat membuat perbedaan dalam hidup orang lain melalui kontribusi Anda ke repositori pemeriksaan fakta."
+
+#: components/LandingPage/SectionJoin.js:202
+msgctxt "landing page"
+msgid "Do you want to join us in fighting disinformation?"
+msgstr "Apakah Anda ingin bergabung dengan kami dalam melawan disinformasi?"
+
+#: components/LandingPage/SectionJoin.js:205
+msgctxt "landing page"
+msgid ""
+"Join us today.\n"
+"The world needs YOUR help!"
+msgstr ""
+"Bergabunglah dengan kami hari ini.\\n"
+"Dunia membutuhkan bantuan ANDA!"
+
+#: components/LandingPage/SectionJoin.js:208
+msgctxt "landing page"
+msgid ""
+"It doesn't matter whether you've been unhappy with how previous fact checks "
+"were written,\n"
+"found a hoax that hasn't been busted,\n"
+"or are just full of a sense of justice and a desire for truth,\n"
+"YOU could be the next misinformation-busting warrior!"
+msgstr ""
+"Tidak masalah apakah Anda pernah tidak puas dengan cara penulisan pemeriksaan fakta sebelumnya,\\n"
+"menemukan hoaks yang belum terbongkar,\\n"
+"atau hanya penuh dengan rasa keadilan dan keinginan akan kebenaran,\\n"
+"ANDA bisa menjadi prajurit pembongkar salah informasi berikutnya!"
+
+#: components/LandingPage/SectionNews.js:440
+msgctxt "landing page"
+msgid "Look mom, it's me!"
+msgstr "Lihat, Bu, itu saya!"
+
+#: components/LandingPage/Stats.js:182
+msgctxt "landing page"
+msgid "Fact Checker Daily Statistics"
+msgstr "Statistik Harian Penguji Fakta"
+
+#: components/LandingPage/Stats.js:184
+msgctxt "landing page"
+msgid "Check out what we've been able to accomplish together."
+msgstr "Lihat apa yang telah berhasil kita capai bersama."
+
+#: components/LandingPage/SectionContribute.js:121
+msgctxt "landing page"
+msgid ""
+"We need your help!\n"
+"Join us today!"
+msgstr ""
+"Kami membutuhkan bantuan Anda!\\n"
+"Bergabunglah dengan kami hari ini!"
+
+#: components/AppLayout/UpgradeDialog.js:305
+msgctxt "upgrade dialog"
+msgid "Congratulations!"
+msgstr "Selamat!"
+
+#: components/AppLayout/UpgradeDialog.js:308
+msgctxt "upgrade dialog"
+msgid "You can keep leveling up after your level-up!"
+msgstr "Anda dapat terus naik level setelah Anda naik level!"
+
+#: components/AppLayout/UpgradeDialog.js:328
+msgctxt "upgrade dialog"
+msgid "EXP"
+msgstr "EXP"
+
+#: components/AppLayout/UpgradeDialog.js:359
+msgctxt "upgrade dialog"
+msgid "Keep up the good work and save the world!"
+msgstr "Teruslah bekerja dengan baik dan selamatkan dunia!"
+
+#: components/AppLayout/UpgradeDialog.js:363
+msgctxt "upgrade dialog"
+msgid "I've got your back"
+msgstr "Saya mendukung Anda"
+
+#: components/AppLayout/UpgradeDialog.js:356
+#, javascript-format
+msgctxt "upgrade dialog"
+msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
+msgstr "Hore! ${ LEVEL_NAMES[nextLevel] }"

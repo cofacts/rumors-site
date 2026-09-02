@@ -1,0 +1,2832 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals = 1; plural = 0;\n"
+"Language: th\n"
+"mime-version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: components/AppLayout/AppFooter.js:118
+#: components/AppLayout/AppSidebar.js:131
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+#: components/ReportPage/SectionEcosystem.js:175
+#: pages/article/[id].js:403
+#: pages/article/[id].js:422
+#: pages/reply/[id].js:209
+#: pages/reply/[id].js:239
+msgid "Cofacts"
+msgstr "Cofacts จริงหรือหลอก"
+
+#: components/ArticleCategories/DownVoteDialog.js:98
+#: components/NewReplySection/Mobile.js:140
+#: components/ProfilePage/EditAvatarDialog.js:236
+#: components/ProfilePage/EditProfileDialog.js:93
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: components/AppLayout/AppHeader.js:332
+#: components/AppLayout/AppSidebar.js:92
+#: components/LandingPage/Header.js:246
+#: components/LandingPage/Header.js:296
+msgid "Login"
+msgstr "เข้าสู่ระบบ"
+
+#: components/AppLayout/AppHeader.js:274
+#: components/AppLayout/AppSidebar.js:158
+msgid "Logout"
+msgstr "ออกจากระบบ"
+
+#: components/SearchPageJumbotron.js:140
+msgid "Replies"
+msgstr "การตอบกลับล่าสุด"
+
+#: components/ArticleInfo.js:72
+#: components/Infos/ReplyCountInfo.js:58
+msgid "${ replyCount } response"
+msgid_plural "${ replyCount } responses"
+msgstr[0] "${ replyCount } คำตอบ"
+
+#: components/ListPageControls/BaseSortInput.js:60
+msgid "Sort by"
+msgstr "เรียงตาม"
+
+#: components/ProfilePage/RepliedArticleTab.js:36
+#: pages/articles.js:143
+#: pages/replies.js:128
+msgid "Most recently asked"
+msgstr "ถามล่าสุด"
+
+#: components/ProfilePage/RepliedArticleTab.js:33
+#: pages/articles.js:145
+#: pages/replies.js:127
+msgid "Most recently replied"
+msgstr "ตอบกลับล่าสุด"
+
+#: components/ProfilePage/RepliedArticleTab.js:37
+#: pages/articles.js:144
+#: pages/replies.js:129
+msgid "Most asked"
+msgstr "ถูกถามมากที่สุด"
+
+#: pages/api/articles/[feed].js:164
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reported Message"
+msgstr "ข้อความที่รายงาน"
+
+#: components/ArticleReply/ArticleReply.js:103
+msgid "Reason"
+msgstr "เหตุผล"
+
+#: components/ArticleReply/ArticleReply.js:104
+msgid "Details"
+msgstr "รายละเอียด"
+
+#: pages/api/articles/[feed].js:177
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reference"
+msgstr "อ้างอิง"
+
+#: components/ArticleCategories/DownVoteDialog.js:70
+#: components/ArticleReplySummary.js:37
+#: components/ReplyRequestReason/ReplyRequestReason.js:128
+msgid "Someone"
+msgstr "บางคน"
+
+#: components/ArticleReply/ArticleReply.js:133
+msgid "There is no reference for this reply. Its truthfulness may be doubtful."
+msgstr "ไม่มีแหล่งอ้างอิงสำหรับคำตอบนี้ ความถูกต้องอาจเป็นที่สงสัยได้"
+
+#: components/ArticleReply/ReplyShare.js:85
+#: components/CopyButton.js:15
+#: components/Subscribe/IFTTTItem.js:207
+msgid "Copy"
+msgstr "คัดลอก"
+
+#: components/CurrentReplies.js:44
+msgid "Deleted replies"
+msgstr "คำตอบที่ถูกลบ"
+
+#: components/ArticleReply/ReplyActions.js:85
+msgid "Restore"
+msgstr "กู้คืน"
+
+#: components/CurrentReplies.js:64
+#, javascript-format
+msgid "${ items.length } reply"
+msgid_plural "${ items.length } replies"
+msgstr[0] "${ items.length } คำตอบ"
+
+#: components/CurrentReplies.js:74
+msgid "There are ${ replyLink } deleted by its author."
+msgstr "มี ${ replyLink } ที่ถูกลบโดยผู้เขียน"
+
+#: components/ArticleReply/ReplyActions.js:85
+msgid "Delete"
+msgstr "ลบ"
+
+#: components/ArticleCategories/DownVoteDialog.js:99
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+#: components/ListPageControls/Filters.js:88
+#: components/NewReplySection/ReplyForm/Submit.js:28
+#: components/ProfilePage/EditAvatarDialog.js:241
+#: components/ProfilePage/EditProfileDialog.js:98
+msgid "Submit"
+msgstr "ส่ง"
+
+#: components/AIReplySection/VoteButtons.tsx:214
+#: components/ArticleCategories/CategoryOption.js:364
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:238
+msgid "Thank you for the feedback."
+msgstr "ขอบคุณสำหรับความคิดเห็น"
+
+#: pages/article/[id].js:284
+msgid "Your reply has been submitted."
+msgstr "การตอบกลับของคุณได้ถูกส่งเรียบร้อยแล้ว"
+
+#: components/Collaborate/CollabEditor.js:151
+#: components/NewReplySection/index.js:137
+#: lib/apollo.js:47
+msgid "Please login first."
+msgstr "กรุณาเข้าสู่ระบบก่อน"
+
+#: pages/search.js:306
+msgid "Search"
+msgstr "ค้นหา"
+
+#: components/NewReplySection/ReplySearch/ReplySearch.js:104
+#, javascript-format
+msgid "Searching for messages and replies containing “${ variables.query }”..."
+msgstr "กำลังค้นหาข้อความและการตอบกลับที่มีคำว่า “${ variables.query }”..."
+
+#: components/AppLayout/LoginModal.js:134
+msgid "Login / Signup"
+msgstr "เข้าสู่ระบบ / สมัครสมาชิก"
+
+#: constants/replyType.js:79
+msgid "This message cannot or should not be processed by Cofacts editors."
+msgstr "ข้อความนี้ไม่สามารถหรือไม่ควรได้รับการประมวลผลโดยบรรณาธิการของ Cofacts"
+
+#: constants/replyType.js:80
+msgid "The message has some of its content proved to be true."
+msgstr "ข้อความนี้มี部分内容ที่พิสูจน์แล้วว่าถูกต้อง"
+
+#: constants/replyType.js:81
+msgid ""
+"The message contains personal opinion, unproven hypotheses, conspiracy "
+"theories, studies that has not reached concensus, inferences of political "
+"policies, etc."
+msgstr "ข้อความนี้มีความคิดเห็นส่วนตัว สมมติฐานที่ยังไม่ได้รับการพิสูจน์ ทฤษฎีสมคบคิด การศึกษาที่ยังไม่บรรลุฉันทามติ การอนุมานเกี่ยวกับนโยบายทางการเมือง เป็นต้น"
+
+#: constants/replyType.js:82
+msgid "This message has some of its content proved to be false."
+msgstr "ข้อความนี้มี部分内容ที่พิสูจน์แล้วว่าไม่ถูกต้อง"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:313
+msgid "Facebook"
+msgstr "Facebook"
+
+#: components/AppLayout/AppSidebar.js:127
+#: components/LandingPage/SectionCanDo.js:253
+msgid "Tutorial"
+msgstr "บทเรียนการใช้งาน"
+
+#: pages/reply/[id].js:214
+#: pages/reply/[id].js:245
+msgid "This reply"
+msgstr "การตอบกลับนี้"
+
+#: pages/api/articles/[feed].js:173
+#: pages/reply/[id].js:275
+msgid "someone"
+msgstr "บางคน"
+
+#: components/LandingPage/Stats.js:145
+#. we hold ~ 
+msgid "a gathering of editors."
+msgstr "การรวมตัวของบรรณาธิการ"
+
+#: components/LandingPage/Stats.js:200
+#, javascript-format
+msgid "About ${ newMessageCount } new messages entering our database each week."
+msgstr "เกี่ยวกับ ${ newMessageCount } ข้อความใหม่เข้าสู่ฐานข้อมูลของเราในแต่ละสัปดาห์"
+
+#: components/LandingPage/Stats.js:203
+msgid ""
+"About ${ userForwardingCount } people forwarding new messages to our "
+"database each week."
+msgstr "เกี่ยวกับ ${ userForwardingCount } คนที่ส่งต่อข้อความใหม่เข้าสู่ฐานข้อมูลของเราในแต่ละสัปดาห์"
+
+#: components/LandingPage/Stats.js:206
+#, javascript-format
+msgid "But less than ${ editorCount } active editors can help us respond each week."
+msgstr "แต่มีบรรณาธิการที่ใช้งานจริงน้อยกว่า ${ editorCount } คนที่สามารถช่วยเราตอบกลับในแต่ละสัปดาห์"
+
+#: components/LandingPage/Stats.js:209
+#, javascript-format
+msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
+msgstr "ทุก ${ meetupFrequency } เดือน เราจัด ${ gathering }"
+
+#: pages/index.js:31
+msgid ""
+"Cofacts is a collaborative system connecting instant messages and "
+"fact-check reports or different opinions together. It's a grass-root effort "
+"fighting mis/disinformation in Taiwan."
+msgstr "Cofacts เป็นระบบการทำงานร่วมกันที่เชื่อมโยงข้อความทันทีกับรายงานการตรวจสอบข้อเท็จจริงหรือความคิดเห็นที่แตกต่างกัน มันคือความพยายามระดับรากหญ้าในการต่อสู้กับข้อมูลผิด/บิดเบือน在台湾"
+
+#: components/ProfilePage/ProfilePage.js:107
+#: pages/article/[id].js:324
+#: pages/article/[id].js:328
+#: pages/reply/[id].js:170
+#: pages/reply/[id].js:174
+msgid "Loading"
+msgstr "กำลังโหลด"
+
+#: pages/article/[id].js:339
+#: pages/reply/[id].js:185
+msgid "Not found"
+msgstr "ไม่พบ"
+
+#: pages/reply/[id].js:189
+msgid "Reply does not exist"
+msgstr "การตอบกลับไม่อยู่"
+
+#: pages/article/[id].js:343
+msgid "Message does not exist"
+msgstr "ข้อความไม่อยู่"
+
+#: pages/reply/[id].js:291
+#, javascript-format
+msgid "Added by ${ editorElem }"
+msgstr "เพิ่มโดย ${ editorElem }"
+
+#: pages/api/articles/[feed].js:132
+#. Use &amp; for XML meta tags
+msgid "Cofacts reported messages"
+msgstr "ข้อความที่รายงานโดย Cofacts"
+
+#: pages/api/articles/[feed].js:134
+#. Use &amp; for XML meta tags
+msgid "List of messages reported by Cofacts users"
+msgstr "รายการข้อความที่ผู้ใช้ Cofacts รายงาน"
+
+#: components/Subscribe/FeedDisplay.js:114
+msgid "Via Feedrabbit"
+msgstr "ผ่าน Feedrabbit"
+
+#: pages/api/articles/[feed].js:171
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Latest reply"
+msgstr "คำตอบล่าสุด"
+
+#: components/AppLayout/AppFooter.js:106
+msgid "Fact Check"
+msgstr "การตรวจสอบข้อเท็จจริง"
+
+#: components/AppLayout/AppFooter.js:146
+#: components/AppLayout/AppSidebar.js:136
+msgid "Contact Us"
+msgstr "ติดต่อเรา"
+
+#: components/AppLayout/AppHeader.js:266
+#: components/AppLayout/AppSidebar.js:119
+msgid "My Profile"
+msgstr "โปรไฟล์ของฉัน"
+
+#: components/AppLayout/AppFooter.js:159
+msgid "Facebook forum"
+msgstr "กลุ่ม Facebook"
+
+#: components/AppLayout/AppFooter.js:172
+#: components/ReportPage/SectionSponsor.js:246
+msgid "Donate to Cofacts"
+msgstr "บริจาคให้ Cofacts"
+
+#: components/AppLayout/AppFooter.js:130
+msgid "Impact Report"
+msgstr "รายงานผลกระทบ"
+
+#: constants/replyType.js:72
+msgid "invalid request"
+msgstr "คำขอไม่ถูกต้อง"
+
+#: constants/replyType.js:73
+msgid "contains personal perspective"
+msgstr "มีมุมมองส่วนตัว"
+
+#: constants/replyType.js:74
+msgid "contains true information"
+msgstr "มีข้อมูลที่ถูกต้อง"
+
+#: constants/replyType.js:75
+msgid "contains misinformation"
+msgstr "มีข้อมูลที่ไม่ถูกต้อง"
+
+#: pages/replies.js:260
+msgid "Bust Hoaxes"
+msgstr "จับผิดข่าวลวง"
+
+#: components/AppLayout/AppFooter.js:107
+#: components/LandingPage/Header.js:215
+#: components/SearchPageJumbotron.js:139
+msgid "Messages"
+msgstr "ข้อความ"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:25
+msgid "Replied by me"
+msgstr "ฉันตอบแล้ว"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:23
+msgid "No useful reply yet"
+msgstr "ยังไม่มีคำตอบที่เป็นประโยชน์"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:20
+msgid "Asked many times"
+msgstr "ถามหลายครั้ง"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:22
+msgid "Replied many times"
+msgstr "ตอบหลายครั้ง"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:132
+#: components/ListPageControls/Filters.js:70
+msgid "Filter"
+msgstr "ตัวกรอง"
+
+#: components/ListPageControls/CategoryFilter.js:54
+msgid "Topic"
+msgstr "หัวข้อ"
+
+#: components/ListPageControls/CategoryFilter.js:57
+msgid "All Topics"
+msgstr "ทุกหัวข้อ"
+
+#: components/ListPageControls/LoadMore.js:62
+msgid "Load More"
+msgstr "โหลดเพิ่มเติม"
+
+#: pages/hoax-for-you.js:118
+#: pages/hoax-for-you.js:120
+msgid "Hoax for you"
+msgstr "ข่าวลวงสำหรับคุณ"
+
+#: pages/replies.js:211
+#: pages/replies.js:214
+msgid "Latest replies"
+msgstr "คำตอบล่าสุด"
+
+#: components/ExpandableText.js:53
+msgid "Show Less"
+msgstr "แสดงน้อยลง"
+
+#: components/ExpandableText.js:53
+msgid "Show More"
+msgstr "แสดง المزيد"
+
+#: components/Subscribe/FeedDisplay.js:87
+msgid "Subscribe"
+msgstr "สมัครสมาชิก"
+
+#: components/ArticleReplyFeedbackControl/ButtonGroupDisplay.js:113
+msgid "See Reasons"
+msgstr "ดูเหตุผล"
+
+#: components/AIReplySection/VoteButtons.tsx:207
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:231
+msgid "Send"
+msgstr "ส่ง"
+
+#: components/ListPageControls/BaseTimeRange.js:68
+msgid "In 1 Day"
+msgstr "ภายใน 1 วัน"
+
+#: components/ListPageControls/BaseTimeRange.js:69
+msgid "In 1 Week"
+msgstr "ภายใน 1 สัปดาห์"
+
+#: components/ListPageControls/BaseTimeRange.js:70
+msgid "In 1 Month"
+msgstr "ภายใน 1 เดือน"
+
+#: components/ListPageControls/BaseTimeRange.js:162
+msgid "to"
+msgstr "ถึง"
+
+#: components/ArticleCategories/CategoryOption.js:357
+msgid "See examples"
+msgstr "ดูตัวอย่าง"
+
+#: components/ArticleCategories/AddCategoryDialog.js:67
+msgid "Categorize this message"
+msgstr "จัดหมวดหมู่นี้"
+
+#: components/ArticleCategories/DownVoteDialog.js:57
+msgid "Report wrong category"
+msgstr "รายงานหมวดหมู่ที่ผิด"
+
+#: components/ArticleCategories/DownVoteDialog.js:85
+msgid ""
+"Please share with us why you think this message does not belong to this "
+"category"
+msgstr "กรุณาบอกเราว่าทำไมคุณถึงคิดว่าข้อความนี้ไม่อยู่ในหมวดหมู่นี้"
+
+#: components/AppLayout/GlobalSearch.js:145
+msgid "in Messages"
+msgstr "ในข้อความ"
+
+#: components/AppLayout/GlobalSearch.js:150
+msgid "in Replies"
+msgstr "ในคำตอบ"
+
+#: pages/articles.js:132
+#: pages/articles.js:134
+msgid "Dubious Messages"
+msgstr "ข้อความที่น่าสงสัย"
+
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:204
+msgid "Do you have any thing to add?"
+msgstr "คุณมีอะไรจะเพิ่มไหม?"
+
+#: components/AIReplySection/VoteButtons.tsx:190
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:205
+msgid "Why do you think it is not useful?"
+msgstr "ทำไมคุณถึงคิดว่ามันไม่ช่วย?"
+
+#: components/Collaborate/CollabHistory.js:181
+#: components/LandingPage/SectionArticles.js:153
+#: components/ProfilePage/CommentTab.js:151
+#: components/ProfilePage/RepliedArticleTab.js:251
+#: pages/articles.js:158
+#: pages/hoax-for-you.js:133
+#: pages/replies.js:231
+#: pages/search.js:177
+#: pages/search.js:256
+msgid "Loading..."
+msgstr "กำลังโหลด..."
+
+#: components/AppLayout/AppFooter.js:119
+msgid "About Cofacts"
+msgstr "เกี่ยวกับ Cofacts"
+
+#: components/Subscribe/FeedDisplay.js:113
+msgid "Email"
+msgstr "อีเมล"
+
+#: components/Subscribe/FeedDisplay.js:128
+msgid "Feedly"
+msgstr "Feedly"
+
+#: components/Subscribe/FeedDisplay.js:136
+msgid "Get RSS Feed Link"
+msgstr "รับลิงก์ RSS Feed"
+
+#: components/Subscribe/FeedDisplay.js:139
+msgid "Through IFTTT to"
+msgstr "ผ่าน IFTTT ไปยัง"
+
+#: components/ArticleInfo.js:47
+#, javascript-format
+msgid "${ replyRequestCount } occurrence"
+msgid_plural "${ replyRequestCount } occurrences"
+msgstr[0] "${ replyRequestCount } ครั้ง"
+
+#: components/SearchPageJumbotron.js:112
+msgid "Searching"
+msgstr "กำลังค้นหา"
+
+#: pages/article/[id].js:385
+#, javascript-format
+msgid "${ replyRequestCount } person report this message"
+msgid_plural "${ replyRequestCount } people report this message"
+msgstr[0] "มี ${ replyRequestCount } คนรายงานข้อความนี้"
+
+#: pages/article/[id].js:608
+msgid "Similar messages"
+msgstr "ข้อความที่คล้ายกัน"
+
+#: pages/article/[id].js:637
+msgid "No similar messages found"
+msgstr "ไม่พบข้อความที่คล้ายกัน"
+
+#: components/RelatedReplies.js:105
+msgid "View in new tab"
+msgstr "ดูในแท็บใหม่"
+
+#: components/RelatedReplies.js:114
+msgid "Message below was considered"
+msgstr "ข้อความด้านล่างถูกพิจารณาว่า"
+
+#: components/RelatedReplies.js:118
+msgid "Related article"
+msgstr "บทความที่เกี่ยวข้อง"
+
+#: components/RelatedReplies.js:133
+msgid "Related reply"
+msgstr "การตอบกลับที่เกี่ยวข้อง"
+
+#: components/ReplyInfo.js:23
+msgid "originally written by ${ user.name }"
+msgstr "เขียนโดย ${ user.name } เป็นคนแรก"
+
+#: components/ReplyInfo.js:26
+#, javascript-format
+msgid "${ referenceCount } reference"
+msgid_plural "${ referenceCount } references"
+msgstr[0] "อ้างอิง ${ referenceCount } รายการ"
+
+#: components/ArticleReply/ReplyShare.js:83
+#: components/Subscribe/FeedDisplay.js:134
+#: components/Subscribe/IFTTTItem.js:206
+msgid "Copied to clipboard!"
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว!"
+
+#: components/NewReplySection/Desktop.js:103
+msgid "You will gain 1 point by submitting the reply"
+msgstr "คุณจะได้รับ 1 คะแนนจากการส่งการตอบกลับนี้"
+
+#: components/NewReplySection/Desktop.js:112
+msgid "Related messages and replies"
+msgstr "ข้อความและการตอบกลับที่เกี่ยวข้อง"
+
+#: components/NewReplySection/Desktop.js:123
+#: components/NewReplySection/Mobile.js:260
+msgid "Use this reply"
+msgstr "ใช้การตอบกลับนี้"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:107
+msgid "All messages"
+msgstr "ข้อความทั้งหมด"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:108
+msgid "My messages"
+msgstr "ข้อความของฉัน"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:109
+msgid "All replies"
+msgstr "การตอบกลับทั้งหมด"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:110
+msgid "My replies"
+msgstr "การตอบกลับของฉัน"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:64
+msgid ""
+"Inserting blank lines between reference items can improve readability in "
+"LINE."
+msgstr "การแทรกบรรทัดว่างระหว่างรายการอ้างอิงสามารถช่วยเพิ่มความสะดวกในการอ่านบน LINE ได้"
+
+#: components/ListPageDisplays/ReplySearchItem.js:167
+#, javascript-format
+msgid "This reply is also used in ${ replyCount } other message"
+msgid_plural "This reply is also used in ${ replyCount } other messages"
+msgstr[0] "การตอบกลับนี้ยังถูกใช้ในข้อความอื่นอีก ${ replyCount } ข้อความ"
+
+#: components/ListPageDisplays/ReplySearchItem.js:173
+msgid "view"
+msgstr "ดู"
+
+#: components/ListPageDisplays/ReplySearchItem.js:178
+msgid "This reply is used in following messages"
+msgstr "การตอบกลับนี้ถูกใช้ในข้อความต่อไปนี้"
+
+#: components/ListPageControls/ReplyTypeFilter.js:33
+msgid "Marked as"
+msgstr "ถูกทำเครื่องหมายว่าเป็น"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:257
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:348
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:361
+msgid "Reply to this message"
+msgstr "ตอบกลับข้อความนี้"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:268
+msgid "Update comment"
+msgstr "อัปเดตความคิดเห็น"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:268
+msgid "Comment"
+msgstr "ความคิดเห็น"
+
+#: components/ArticleReply/ReplyShare.js:74
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:276
+msgid "Share"
+msgstr "แชร์"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:137
+#, javascript-format
+msgid "Helpful ${ articleReply.positiveFeedbackCount }"
+msgstr "มีประโยชน์ ${ articleReply.positiveFeedbackCount }"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:141
+msgid "Not Helpful ${ articleReply.negativeFeedbackCount }"
+msgstr "ไม่ช่วยอะไร ${ articleReply.negativeFeedbackCount }"
+
+#: components/ArticleReply/ReplyShare.js:64
+msgid "Successfylly Shared!"
+msgstr "แชร์เรียบร้อยแล้ว!"
+
+#: components/ArticleReplySummary.js:43
+#, javascript-format
+msgid "${ authorElem } mark this message ${ TYPE_NAME[replyType] }"
+msgstr "${ authorElem } ระบุว่าข้อความนี้คือ ${ TYPE_NAME[replyType] }"
+
+#: components/ArticleCategories/AddCategoryDialog.js:70
+msgid ""
+"Articles are mostly categorized by AI based on our current data, but you "
+"can provide your own opinion to improved the categorization."
+msgstr "บทความส่วนใหญ่ถูกจัดหมวดหมู่โดย AI จากข้อมูลปัจจุบันของเรา แต่คุณสามารถแสดงความคิดเห็นของคุณเองเพื่อปรับปรุงการจัดหมวดหมู่ได้"
+
+#: components/ArticleCategories/CategoryOption.js:286
+msgid "Marked"
+msgstr "ถูกทำเครื่องหมายแล้ว"
+
+#: components/ArticleCategories/CategoryOption.js:316
+msgid "Agree"
+msgstr "เห็นด้วย"
+
+#: components/ArticleCategories/CategoryOption.js:337
+msgid "Disagree"
+msgstr "ไม่เห็นด้วย"
+
+#: components/ArticleCategories/ArticleCategories.js:94
+msgid "Suggest categories"
+msgstr "แนะนำหมวดหมู่"
+
+#: components/ArticleCategories/CategoryOption.js:299
+msgid "Mark"
+msgstr "ทำเครื่องหมาย"
+
+#: components/NewReplySection/Desktop.js:69
+#: components/NewReplySection/Mobile.js:150
+msgid "Compose a new reply"
+msgstr "เขียนคำตอบใหม่"
+
+#: components/NewReplySection/Desktop.js:73
+#: components/NewReplySection/Mobile.js:153
+msgid "Use existing replies"
+msgstr "ใช้คำตอบที่มีอยู่แล้ว"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:317
+msgid "Keep composing my reply with this"
+msgstr "ยังคงเขียนคำตอบของฉันต่อจากสิ่งนี้"
+
+#: components/NewReplySection/ReplyForm/TypeSelect.js:32
+msgid "I think this message"
+msgstr "ฉันคิดว่าข้อความนี้"
+
+#: components/ArticleCategories/CategoryOption.js:309
+msgid "Unmark"
+msgstr "ยกเลิกการทำเครื่องหมาย"
+
+#: components/LineChart.js:355
+msgid "Web Visit"
+msgstr "เยี่ยมชมเว็บ"
+
+#: components/LineChart.js:357
+msgid "Line Inquiry"
+msgstr "สอบถามผ่าน Line"
+
+#: components/TrendPlot.js:162
+#, javascript-format
+msgid "Web Visit: ${ totalWebVisits }"
+msgstr "เยี่ยมชมเว็บ: ${ totalWebVisits } ครั้ง"
+
+#: components/TrendPlot.js:170
+#, javascript-format
+msgid "Web: ${ totalWebVisits }"
+msgstr "เว็บ: ${ totalWebVisits } ครั้ง"
+
+#: components/TrendPlot.js:165
+msgid "Line Inquery: ${ totalLineVisits }"
+msgstr "สอบถามผ่าน Line: ${ totalLineVisits } ครั้ง"
+
+#: components/TrendPlot.js:173
+msgid "Line: ${ totalLineVisits }"
+msgstr "Line: ${ totalLineVisits } ครั้ง"
+
+#: components/TrendPlot.js:177
+#, javascript-format
+msgid "Total Visit: ${ totalVisits }"
+msgstr "ยอดรวมการเยี่ยมชม: ${ totalVisits } ครั้ง"
+
+#: components/ListPageDisplays/ReplySearchItem.js:103
+#: components/ProfilePage/CommentTab.js:169
+#: components/ProfilePage/RepliedArticleTab.js:269
+#: pages/replies.js:241
+#, javascript-format
+msgid "${ article.replyRequestCount } occurrence"
+msgid_plural "${ article.replyRequestCount } occurrences"
+msgstr[0] "เกิดขึ้น ${ article.replyRequestCount } ครั้ง"
+
+#: pages/reply/[id].js:125
+#, javascript-format
+msgid "${ otherCount } other reply"
+msgid_plural "${ otherCount } other replies"
+msgstr[0] "อีก ${ otherCount } คำตอบ"
+
+#: pages/reply/[id].js:251
+msgid "The reply is used in the following messages"
+msgstr "คำตอบนี้ถูกใช้ในข้อความต่อไปนี้"
+
+#: pages/reply/[id].js:265
+msgid "Deleted by its author"
+msgstr "ถูกลบโดยผู้เขียน"
+
+#: pages/reply/[id].js:311
+msgid "Similar replies"
+msgstr "คำตอบที่คล้ายกัน"
+
+#: pages/reply/[id].js:324
+#, javascript-format
+msgid "Used in ${ node.articleReplies.length } message"
+msgid_plural "Used in ${ node.articleReplies.length } messages"
+msgstr[0] "ถูกใช้ใน ${ node.articleReplies.length } ข้อความ"
+
+#: pages/reply/[id].js:336
+msgid "No similar replies found"
+msgstr "ไม่พบคำตอบที่คล้ายกัน"
+
+#: components/Hyperlinks.js:134
+msgid "Domain name cannot be resolved"
+msgstr "ไม่สามารถระบุชื่อโดเมนได้"
+
+#: components/Hyperlinks.js:137
+msgid "URL is malformed or not supported"
+msgstr "URL ผิดรูปแบบหรือไม่รองรับ"
+
+#: components/Hyperlinks.js:139
+msgid "Cannot get data from URL"
+msgstr "ไม่สามารถรับข้อมูลจาก URL ได้"
+
+#: components/Hyperlinks.js:141
+msgid "Target site contains HTTPS error"
+msgstr "เว็บไซต์เป้าหมายมีข้อผิดพลาด HTTPS"
+
+#: components/Hyperlinks.js:143
+msgid "Unknown error"
+msgstr "ข้อผิดพลาดที่ไม่ทราบสาเหตุ"
+
+#: pages/article/[id].js:558
+#, javascript-format
+msgid "There is ${ replyCount } fact-checking reply to the message"
+msgid_plural "There are ${ replyCount } fact-checking replies to the message"
+msgstr[0] "มีคำตอบการตรวจสอบข้อเท็จจริง ${ replyCount } รายการสำหรับข้อความนี้"
+
+#: pages/article/[id].js:590
+#: pages/article/[id].js:648
+msgid "Add Cofacts as friend in LINE"
+msgstr "เพิ่ม Cofacts เป็นเพื่อนใน LINE"
+
+#: components/TrendPlot.js:159
+msgid "Past 31 days"
+msgstr "31 วันที่ผ่านมา"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+msgid "Please provide more info"
+msgstr "กรุณาให้ข้อมูลเพิ่มเติม"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:221
+msgid ""
+"Did you find anything suspicious about the message after you search "
+"Facebook & Google?"
+msgstr "หลังจากค้นหาใน Facebook และ Google แล้ว คุณพบสิ่งใดที่น่าสงสัยเกี่ยวกับข้อความนี้หรือไม่?"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:233
+msgid ""
+"Please provide paragraphs you find controversial, or related news, image & "
+"video material you have found."
+msgstr "กรุณาระบุย่อหน้าที่คุณเห็นว่าเป็นข้อถกเถียง หรือข่าว ภาพ และวิดีโอที่คุณค้นพบ"
+
+#: components/LandingPage/SectionFeature.js:110
+msgid "Real-Time Response"
+msgstr "ตอบสนองแบบเรียลไทม์"
+
+#: components/LandingPage/SectionFeature.js:111
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It's fast and immediate, you\n"
+"don't even have to wait. Better yet, you don't even need to\n"
+"say ‘thank you'. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr "เมื่อมีคนตอบกลับคำขอของคุณที่รอดำเนินการ แชทบอทจะตอบคุณผ่าน LINE รวดเร็วและทันที ไม่ต้องรอ ไม่ต้องขอบคุณด้วยซ้ำ ให้บอทตรวจสอบแทนคุณ ไม่ต้องรู้สึกอึดอัดเมื่อขอความช่วยเหลือ"
+
+#: components/LandingPage/SectionFeature.js:120
+msgid "Crowdsourcing"
+msgstr " crowdsourcing"
+
+#: components/LandingPage/SectionFeature.js:121
+msgid ""
+"Anyone can verify and respond to other's requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr "ใครก็ได้สามารถตรวจสอบและตอบกลับคำขอของผู้อื่นเกี่ยวกับข่าวลือที่เป็นไปได้ และอัปโหลดเข้าฐานข้อมูลของเรา เราเชิญชวนให้ประชาชนเข้าร่วมโครงการของเรา แม้แต่ชวนพ่อแม่มาร่วมด้วย"
+
+#: components/LandingPage/SectionFeature.js:129
+msgid "Different Views"
+msgstr "มุมมองที่หลากหลาย"
+
+#: components/LandingPage/SectionFeature.js:130
+msgid ""
+"Knowing what's fact and what's an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other's perspectives."
+msgstr "การรู้ว่าอะไรคือข้อเท็จจริงและอะไรคือนิยามความคิดเห็น การเห็นด้านต่าง ๆ ของเรื่องราวทำให้คุณตระหนักถึงจุดบอดของตัวเอง ทำให้ทุกคนเคารพมุมมองของกันและกัน"
+
+#: components/LandingPage/SectionFeature.js:137
+msgid "Open Source Authorization"
+msgstr "การอนุญาตแบบโอเพนซอร์ส"
+
+#: components/LandingPage/SectionFeature.js:138
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr "โค้ดของแพตช์ต่าง ๆ บันทึกการประชุม และสถิติฐานข้อมูลทั้งหมดเปิดต่อสาธารณะ เราส่งเสริมข้อมูลโอเพนซอร์สมากขึ้น ทำงานและแบ่งปันกับผู้อื่นในสภาพแวดล้อมที่โปร่งใส สร้างความเป็นไปได้ที่หลากหลาย"
+
+#: components/LandingPage/SectionContribute.js:132
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+"Cofacts ต้องการให้ทุกคนมาช่วยกันทำให้โปรแกรมปัจจุบันของเรามีประสิทธิภาพและสมบูรณ์ยิ่งขึ้น\\n"
+"โครงการความร่วมมือนี้ไม่สามารถเสร็จสิ้นได้ด้วยชุมชนขนาดเล็ก เราต้องการให้ทุกคนมีส่วนร่วม เขียนโค้ด\\n"
+"ตรวจสอบข่าวลือ และทำการวิจัย การวิจัยและการตอบกลับด้วยแรงจูงใจจากภายในคือวิธีที่จะยกระดับโปรแกรมนี้ออกมาเป็นสิ่งที่ยิ่งใหญ่"
+
+#: components/LandingPage/SectionContribute.js:141
+msgid "I want to learn how to use Cofacts"
+msgstr "ฉันอยากเรียนรู้วิธีใช้ Cofacts"
+
+#: components/LandingPage/SectionContribute.js:146
+msgid "I can help bust hoaxes"
+msgstr "ฉันช่วยตรวจสอบข่าวลือได้"
+
+#: components/LandingPage/SectionContribute.js:156
+msgid "I can help with coding"
+msgstr "ฉันช่วยเขียนโค้ดได้"
+
+#: components/AppLayout/AppFooter.js:122
+msgid "Introduction"
+msgstr "แนะนำโครงการ"
+
+#: components/AppLayout/AppFooter.js:125
+#: components/ReportPage/SectionTower.js:107
+msgid "Source Code"
+msgstr "ซอร์สโค้ด"
+
+#: components/AppLayout/AppFooter.js:138
+msgid "Contact"
+msgstr "ติดต่อเรา"
+
+#: pages/article/[id].js:573
+#: pages/reply/[id].js:306
+msgid "The content above"
+msgstr "เนื้อหาข้างบน"
+
+#: lib/terms.js:41
+msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "แชทบอทรายงานข้อความและชุมชนตรวจสอบข้อเท็จจริงแบบ crowdsourcing ของ Cofacts"
+
+#: pages/index.js:30
+msgid "Message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "แชทบอทรายงานข้อความและชุมชนตรวจสอบข้อเท็จจริงแบบ crowdsourcing"
+
+#: components/LandingPage/SectionCanDo.js:246
+msgid ""
+"Search by ID “@cofacts” or scan the QR Code above to follow Cofacts\n"
+"LINE account. Forward suspicious text to it, the chatbot will help you\n"
+"check the credibility of the text!"
+msgstr ""
+"ค้นหาด้วย ID “@cofacts” หรือสแกน QR Code ข้างบนเพื่อติดตามบัญชี\\n"
+"LINE ของ Cofacts ส่งต่อข้อความที่น่าสงสัยไปยังแชทบอท แชทบอทจะช่วยคุณ\\n"
+"ตรวจสอบความน่าเชื่อถือของข้อความ!"
+
+#: components/ProfileLink.js:14
+#, javascript-format
+msgid "Lv.${ user.level } ${ levelName }"
+msgstr "Lv.${ user.level } ${ levelName }"
+
+#: components/ProfilePage/EditProfileDialog.js:57
+#: components/ProfilePage/EditProfileDialog.js:74
+msgid "Username"
+msgstr "ชื่อผู้ใช้"
+
+#: components/ProfilePage/EditProfileDialog.js:62
+msgid "Edit profile"
+msgstr "แก้ไขโปรไฟล์"
+
+#: components/ProfilePage/EditProfileDialog.js:66
+msgid "Display name"
+msgstr "ชื่อที่แสดง"
+
+#: components/ProfilePage/EditProfileDialog.js:78
+#, javascript-format
+msgid "Your profile URL will become ${ profileURL }"
+msgstr "URL โปรไฟล์ของคุณจะกลายเป็น ${ profileURL }"
+
+#: components/ProfilePage/EditProfileDialog.js:83
+msgid "Bio"
+msgstr "ประวัติส่วนตัว"
+
+#: components/ProfilePage/ProfilePage.js:120
+msgid "User not found"
+msgstr "ไม่พบผู้ใช้"
+
+#: components/ProfilePage/ProfilePage.js:123
+msgid "The user does not exist"
+msgstr "ผู้ใช้นี้ไม่อยู่"
+
+#: components/ProfilePage/ProfilePage.js:178
+msgid "Replied messages"
+msgstr "ข้อความที่ตอบกลับแล้ว"
+
+#: components/ProfilePage/RepliedArticleTab.js:255
+msgid "No replied messages."
+msgstr "ไม่มีข้อความที่ตอบกลับแล้ว"
+
+#: components/ProfilePage/Stats.js:60
+msgid "replied messages"
+msgstr "ข้อความที่ตอบกลับแล้ว"
+
+#: components/ProfilePage/Stats.js:62
+msgid "voted replies"
+msgstr "การโหวตตอบกลับ"
+
+#: components/Collaborate/CollabEditor.js:245
+#: components/ProfilePage/UserPageHeader.js:197
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: components/ProfilePage/UserPageHeader.js:225
+msgid "Cofacts chatbot"
+msgstr "แชทบอท Cofacts"
+
+#: components/ProfilePage/UserPageHeader.js:255
+#, javascript-format
+msgid "Join date : ${ timeAgo }"
+msgstr "วันที่เข้าร่วม : ${ timeAgo }"
+
+#: components/ProfilePage/UserPageHeader.js:260
+msgid "EXP"
+msgstr "คะแนนความยุติธรรม"
+
+#: components/ProfilePage/UserPageHeader.js:270
+#, javascript-format
+msgid ""
+"This is a user of ${ cofactsChatbotLink }. The profile picture and the "
+"pseudonym are randomly generated."
+msgstr "นี่คือผู้ใช้ของ ${ cofactsChatbotLink } รูปภาพโปรไฟล์และชื่อแฝงถูกสุ่มสร้างขึ้น"
+
+#: components/AppLayout/AppHeader.js:253
+#: components/AppLayout/AppSidebar.js:112
+#, javascript-format
+msgid "Earn ${ pointsLeft } EXP to next level"
+msgstr "ต้องได้รับอีก ${ pointsLeft } คะแนนความยุติธรรม เพื่อเลื่อนขึ้นระดับถัดไป"
+
+#: constants/replyType.js:117
+msgid "Opinion Sources"
+msgstr "แหล่งที่มาของความคิดเห็น"
+
+#: constants/replyType.js:118
+#: constants/replyType.js:119
+msgid "References"
+msgstr "อ้างอิง"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:51
+msgid ""
+"One line summary\n"
+"» Source URL"
+msgstr ""
+"สรุปในบรรทัดเดียว\\n"
+"» URL แหล่งที่มา"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:173
+msgid "Please briefly explain why this message should not be processed in Cofacts."
+msgstr "กรุณาอธิบายอย่างย่อว่าทำไมข้อความนี้จึงไม่ควรได้รับการประมวลผลใน Cofacts"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:175
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is correct."
+msgstr "ในฐานะบทนำสั้นๆ สำหรับส่วนอ้างอิง กรุณาระบุว่าส่วนใดของข้อความนั้นถูกต้อง"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:177
+msgid ""
+"Please briefly\n"
+"1. explain which part of the message contains personal opinion\n"
+"2. remind the audience that this is not factual"
+msgstr ""
+"กรุณาอธิบายอย่างย่อ:\\n"
+"1. ส่วนใดของข้อความที่ประกอบด้วยความคิดเห็นส่วนตัว\\n"
+"2. เตือนผู้ชมว่าสิ่งนี้ไม่ใช่ข้อเท็จจริง"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:181
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is incorrect."
+msgstr "ในฐานะบทนำสั้นๆ สำหรับส่วนอ้างอิง กรุณาระบุว่าส่วนใดของข้อความนั้นไม่ถูกต้อง"
+
+#: lib/terms.js:66
+#, javascript-format
+msgid ""
+"${ subject } by ${ authorLink } is licensed under ${ licenseLink }, the "
+"community name and the provenance link for each item shall be fully cited "
+"for further reproduction or redistribution."
+msgstr "${ subject } โดย ${ authorLink } ได้รับอนุญาตภายใต้ ${ licenseLink } ชื่อชุมชนและลิงก์แหล่งที่มาของแต่ละรายการจะต้องถูกระบุอย่างครบถ้วนสำหรับการทำซ้ำหรือการกระจายต่อ"
+
+#: lib/terms.js:42
+msgid "CC BY-SA 4.0"
+msgstr "CC BY-SA 4.0"
+
+#: lib/terms.js:43
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "ครีเอทีฟคอมมอนส์ ระบุชื่อ-แบ่งปันเหมือนเดิม 4.0"
+
+#: components/AppLayout/AppFooter.js:120
+#: components/AppLayout/LoginModal.js:118
+#: pages/terms.js:69
+msgid "User Agreement"
+msgstr "ข้อตกลงผู้ใช้"
+
+#: components/AppLayout/LoginModal.js:177
+#, javascript-format
+msgid ""
+"By logging in you agree to ${ termsLink }, and your contribution will be "
+"published using ${ licenseLink } as ${ authorLink }."
+msgstr "เมื่อเข้าสู่ระบบ คุณตกลงกับ ${ termsLink } และคุณูปการของคุณจะถูกเผยแพร่โดยใช้ ${ licenseLink } ในนามของ ${ authorLink }"
+
+#: lib/terms.js:47
+#, javascript-format
+msgid ""
+"${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
+"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
+msgstr "${ subject } โดย ${ AUTHOR } ได้รับอนุญาตภายใต้ ${ SHORT_LICENSE } หากต้องการข้อมูลเพิ่มเติม กรุณาเยี่ยมชม Cofacts LINE bot ที่ ${ LINE_URL }"
+
+#: pages/about.js:243
+msgid "What is Cofacts"
+msgstr "Cofacts คืออะไร"
+
+#: pages/tutorial.js:101
+msgid "How to use Cofacts"
+msgstr "วิธีใช้ Cofacts"
+
+#: components/ContributionChart.js:95
+msgid "Jan"
+msgstr "ม.ค."
+
+#: components/ContributionChart.js:96
+msgid "Feb"
+msgstr "ก.พ."
+
+#: components/ContributionChart.js:97
+msgid "Mar"
+msgstr "มี.ค."
+
+#: components/ContributionChart.js:98
+msgid "Apr"
+msgstr "เม.ย."
+
+#: components/ContributionChart.js:99
+msgid "May"
+msgstr "พ.ค."
+
+#: components/ContributionChart.js:100
+msgid "Jun"
+msgstr "มิ.ย."
+
+#: components/ContributionChart.js:101
+msgid "Jul"
+msgstr "ก.ค."
+
+#: components/ContributionChart.js:102
+msgid "Aug"
+msgstr "ส.ค."
+
+#: components/ContributionChart.js:103
+msgid "Sep"
+msgstr "ก.ย."
+
+#: components/ContributionChart.js:104
+msgid "Oct"
+msgstr "ต.ค."
+
+#: components/ContributionChart.js:105
+msgid "Nov"
+msgstr "พ.ย."
+
+#: components/ContributionChart.js:106
+msgid "Dec"
+msgstr "ธ.ค."
+
+#: components/ContributionChart.js:108
+msgid "Sun"
+msgstr "อา."
+
+#: components/ContributionChart.js:108
+msgid "Mon"
+msgstr "จ."
+
+#: components/ContributionChart.js:108
+msgid "Tue"
+msgstr "อ."
+
+#: components/ContributionChart.js:108
+msgid "Wed"
+msgstr "พ."
+
+#: components/ContributionChart.js:108
+msgid "Thu"
+msgstr "พฤ."
+
+#: components/ContributionChart.js:108
+msgid "Fri"
+msgstr "ศ."
+
+#: components/ContributionChart.js:108
+msgid "Sat"
+msgstr "ส."
+
+#: components/ContributionChart.js:118
+msgid "Less"
+msgstr "น้อยลง"
+
+#: components/ContributionChart.js:132
+msgid "More"
+msgstr "มากขึ้น"
+
+#: components/ContributionChart.js:210
+msgid "${ count } contribution"
+msgid_plural "${ count } contributions"
+msgstr[0] "มีส่วนร่วม ${ count } ครั้ง"
+
+#: components/ContributionChart.js:168
+#, javascript-format
+msgid "${ total } contribution in the last year"
+msgid_plural "${ total } contributions in the last year"
+msgstr[0] "มีส่วนร่วมทั้งหมด ${ total } ครั้งในปีที่ผ่านมา"
+
+#: pages/impact.js:60
+msgid "Cofacts social impact report"
+msgstr "รายงานผลกระทบทางสังคมของ Cofacts"
+
+#: components/ReportPage/SectionSponsor.js:88
+msgid "Open Culture Foundation"
+msgstr "มูลนิธิวัฒนธรรมเปิด"
+
+#: components/ReportPage/SectionSponsor.js:93
+msgid "g0v"
+msgstr "g0v"
+
+#: pages/impact.js:65
+msgid "Individual strengths converge to exert the greatest power"
+msgstr "จุดแข็งส่วนบุคคลมารวมกันเพื่อสร้างพลังที่ยิ่งใหญ่ที่สุด"
+
+#: components/ReportPage/SectionHowToUse.js:121
+msgid "When you receive a suspicious message..."
+msgstr "เมื่อคุณได้รับข้อความที่น่าสงสัย..."
+
+#: components/ReportPage/SectionHowToUse.js:123
+msgid "Send it to the chatbot"
+msgstr "ส่งไปยังแชทบอท"
+
+#: components/ReportPage/SectionHowToUse.js:126
+msgid ""
+"...And it will automatically read it, helping you get the fact-checking "
+"report."
+msgstr "...และมันจะอ่านให้อัตโนมัติ ช่วยให้คุณได้รายงานการตรวจสอบข้อเท็จจริง"
+
+#: components/ReportPage/SectionInfluence.js:99
+msgid "Community Influence"
+msgstr "อิทธิพลของชุมชน"
+
+#: components/ReportPage/SectionFeatures.js:146
+msgid "Features of Cofacts"
+msgstr "ฟีเจอร์ของ Cofacts"
+
+#: components/ReportPage/SectionFeatures.js:151
+msgid "Notification"
+msgstr "การแจ้งเตือน"
+
+#: components/ReportPage/SectionFeatures.js:165
+msgid "AI tagging"
+msgstr "การติดแท็กด้วย AI"
+
+#: components/ReportPage/SectionOriginalFeatures.js:27
+msgid "RSS Reading ability"
+msgstr "ความสามารถในการอ่าน RSS"
+
+#: components/ReportPage/SectionOriginalFeatures.js:28
+msgid ""
+"Our database has a large quantity of material, so we use a subscription "
+"system to help link up to IFTTT, find popular topics, and to link to LINE, "
+"telegram, Slack and mail to send reminders that verification is underway."
+msgstr "ฐานข้อมูลของเราประกอบด้วยเนื้อหาจำนวนมาก ดังนั้นเราจึงใช้ระบบการสมัครรับข้อมูลเพื่อช่วยเชื่อมโยงกับ IFTTT ค้นหาหัวข้อที่เป็นที่นิยม และเชื่อมโยงไปยัง LINE, Telegram, Slack และอีเมล เพื่อส่งคำเตือนว่ากระบวนการตรวจสอบกำลังดำเนินการอยู่"
+
+#: components/ReportPage/SectionOriginalFeatures.js:33
+msgid "LINE notifications"
+msgstr "การแจ้งเตือนผ่าน LINE"
+
+#: components/ReportPage/SectionOriginalFeatures.js:34
+msgid ""
+"Traditional chatbots can only report information that has already been "
+"verified,  but now when one tries to check a non-yet verified piece of "
+"information, the system can send a notification when the information has "
+"been verified.  If a better response has since been provided, the system "
+"can also send a notification to ensure that information provided is always "
+"the most up-to-date."
+msgstr "แชทบอทแบบดั้งเดิมสามารถรายงานเฉพาะข้อมูลที่ได้รับการยืนยันแล้วเท่านั้น แต่ปัจจุบันเมื่อผู้ใช้พยายามตรวจสอบข้อมูลที่ยังไม่ได้รับการยืนยัน ระบบสามารถส่งการแจ้งเตือนได้เมื่อข้อมูลนั้นได้รับการยืนยันแล้ว หากมีคำตอบที่ดีกว่าถูกนำเสนอในภายหลัง ระบบยังสามารถส่งการแจ้งเตือนได้อีกครั้ง เพื่อให้มั่นใจว่าข้อมูลที่ให้ไว้จะเป็นข้อมูลล่าสุดเสมอ"
+
+#: components/ReportPage/SectionOriginalFeatures.js:39
+msgid "Users can easily check infromation that has already been asked about"
+msgstr "ผู้ใช้สามารถตรวจสอบข้อมูลที่เคยสอบถามไปแล้วได้อย่างง่ายดาย"
+
+#: components/ReportPage/SectionOriginalFeatures.js:40
+msgid ""
+"You can access the list of rumours that have already been checked, and the "
+"chatbot can help you organise your own table of information and help "
+"produce personalised information"
+msgstr "คุณสามารถเข้าถึงรายการข่าวลือที่ได้รับการตรวจสอบแล้ว และแชทบอทสามารถช่วยคุณจัดระเบียบตารางข้อมูลของคุณเอง รวมถึงช่วยสร้างข้อมูลส่วนบุคคล"
+
+#: components/ReportPage/SectionOriginalFeatures.js:45
+msgid "The UI of the new website"
+msgstr "อินเทอร์เฟซผู้ใช้ (UI) ของเว็บไซต์ใหม่"
+
+#: components/ReportPage/SectionOriginalFeatures.js:46
+msgid ""
+"The site now has gamified features and it is nohow easier to see the "
+"contribution of each collaborator. We also now have data visualisation and "
+"the tools to see what material has been accessed by journalists and the "
+"process of verification for each article."
+msgstr "เว็บไซต์ปัจจุบันมีฟีเจอร์แบบเกมมิฟาย ทำให้เห็นผลงานและส่วนร่วมของผู้ร่วมงานแต่ละคนได้ง่ายขึ้น นอกจากนี้เรายังมีระบบการแสดงข้อมูลด้วยภาพ (Data Visualization) และเครื่องมือสำหรับดูว่าสื่อใดที่นักข่าวได้เข้าถึง และกระบวนการตรวจสอบสำหรับแต่ละบทความ"
+
+#: components/ReportPage/SectionOriginalFeatures.js:51
+msgid "AI automatic categorisation"
+msgstr "การจัดหมวดหมู่โดยอัตโนมัติด้วย AI"
+
+#: components/ReportPage/SectionOriginalFeatures.js:52
+msgid ""
+"We use machine learning technology to help categorise our data. The "
+"technology is capable of correctly labeling messages as being about "
+"politics, scams, the environment, energy, amongst others. This helps "
+"doctors or journalists quickly find messages relating to their areas of "
+"expertise to help with message verification."
+msgstr "เราใช้เทคโนโลยีการเรียนรู้ของเครื่อง (Machine Learning) เพื่อช่วยจัดหมวดหมู่ข้อมูลของเรา เทคโนโลยีนี้สามารถติดป้ายข้อความได้อย่างถูกต้องว่าเป็นเรื่องเกี่ยวกับ การเมือง การฉ้อโกง สิ่งแวดล้อม พลังงาน เป็นต้น ซึ่งช่วยให้แพทย์หรือนักข่าวค้นหาข้อความที่เกี่ยวข้องกับสาขาความเชี่ยวชาญของตนได้อย่างรวดเร็ว เพื่อช่วยในการตรวจสอบข้อความ"
+
+#: components/ReportPage/SectionOriginalFeatures.js:57
+msgid "Community Builder"
+msgstr "Community Builder"
+
+#: components/ReportPage/SectionOriginalFeatures.js:58
+msgid ""
+"We help community organisers to efficiently check up on current work "
+"progress, the quantity of messages, the positive reviews under the review "
+"mechanism, the list of contributors who helped with the output, and the "
+"review of response and user feedback from a particular period."
+msgstr "เราช่วยผู้จัดกิจกรรมชุมชนในการติดตามความคืบหน้าของงานปัจจุบัน ปริมาณข้อความ คำชมเชิงบวกภายใต้กลไกการทบทวน รายการผู้มีส่วนร่วมที่ช่วยในการผลิต และผลการทบทวนการตอบกลับและข้อเสนอแนะจากผู้ใช้ในช่วงเวลาหนึ่งอย่างมีประสิทธิภาพ"
+
+#: components/ReportPage/SectionOriginalFeatures.js:63
+msgid "The ecology of fact checking"
+msgstr "ระบบนิเวศของการตรวจสอบข้อเท็จจริง"
+
+#: components/ReportPage/SectionOriginalFeatures.js:64
+msgid ""
+"We collaborate with all fact checking organizations and help them enter the "
+"fact checking community by setting aside their competition and rivalry, and "
+"encourage them to work together to help create the largest datasets "
+"possible."
+msgstr "เราทำงานร่วมกับองค์กรตรวจสอบข้อเท็จจริงทุกแห่ง และช่วยให้พวกเขาเข้าสู่ชุมชนการตรวจสอบข้อเท็จจริง โดยวางการแข่งขันและความขัดแย้งลง และ鼓励他们ให้ร่วมกันสร้างชุดข้อมูลที่มีขนาดใหญ่ที่สุดเท่าที่จะเป็นไปได้"
+
+#: components/ReportPage/SectionOriginalFeatures.js:69
+msgid "Teaching tools"
+msgstr "เครื่องมือการสอน"
+
+#: components/ReportPage/SectionOriginalFeatures.js:70
+msgid ""
+"Cofacts helps educators the ability to create their own chatbots with "
+"search capabilities. We provide free consultancy and assistance to our "
+"international collaborators to help the open source community grow. "
+"Thailand has already successfully replicated Cofacts' experience to create "
+"their own search chatbot based on Cofacts."
+msgstr "Cofacts ช่วยให้ผู้สอนมีความสามารถในการสร้างแชทบอทของตนเองพร้อมฟังก์ชันการค้นหา เราให้การปรึกษาและการช่วยเหลือฟรีแก่พันธมิตรระหว่างประเทศของเรา เพื่อช่วยขยายชุมชนโอเพนซอร์ส ประเทศไทยได้ประสบความสำเร็จในการนำประสบการณ์ของ Cofacts มาสร้างแชทบอทค้นหาของตนเองบนพื้นฐานของ Cofacts แล้ว"
+
+#: components/ReportPage/SectionOriginalFeatures.js:75
+msgid "User Feedback"
+msgstr "ข้อเสนอแนะจากผู้ใช้"
+
+#: components/ReportPage/SectionOriginalFeatures.js:76
+msgid ""
+"We collected user feedback and encourage users to cooperate with us to "
+"create a better open source environment in which many can use our "
+"resources. In addition, by encouraging  user feedback and collaboration, "
+"our collaborators can use this feedback to help improve their user "
+"experience."
+msgstr "เราได้รวบรวมข้อเสนอแนะจากผู้ใช้ และกระตุ้นให้ผู้ใช้ร่วมมือกับเราในการสร้างสภาพแวดล้อมโอเพนซอร์สที่ดีขึ้น ซึ่งหลายคนสามารถใช้ทรัพยากรของเราได้ นอกจากนี้ ด้วยการกระตุ้นข้อเสนอแนะและการร่วมมือจากผู้ใช้ พันธมิตรของเราสามารถใช้ข้อเสนอแนะเหล่านี้เพื่อช่วยปรับปรุงประสบการณ์ของผู้ใช้"
+
+#: components/ReportPage/SectionOriginalFeatures.js:81
+msgid "Data"
+msgstr "ข้อมูล"
+
+#: components/ReportPage/SectionOriginalFeatures.js:82
+msgid ""
+"Cofacts provides a chart that explains how to link the chatbot to a website "
+"as a way to help researchers and journalists to follow important topics and "
+"write impactful reports. There have already been many academics from Taiwan "
+"and other  countries who have quoted this data, and many have directly "
+"accessed material Cofacts' open database."
+msgstr "Cofacts นำเสนอแผนภูมิที่อธิบายวิธีการเชื่อมโยงแชทบอทเข้ากับเว็บไซต์ เพื่อเป็นแนวทางให้นักวิจัยและนักข่าวติดตามประเด็นสำคัญและเขียนรายงานที่มีผลกระทบ ปัจจุบันมีนักวิชาการจากไต้หวันและประเทศอื่นๆ จำนวนมากที่อ้างถึงข้อมูลนี้ และหลายคนได้เข้าถึงข้อมูลจากฐานข้อมูลเปิดของ Cofacts โดยตรง"
+
+#: components/ReportPage/SectionSponsor.js:114
+#. const FUND = [
+#. {
+#. logo: whoscallLogo,
+#. name: t`Whoscall`,
+#. url: 'https://whoscall.com/zh-hant/about',
+#. },
+#. {
+#. logo: trendmicroLogo,
+#. name: t`Trend Micro`,
+#. url: 'https://www.trendmicro.com/',
+#. },
+#. ];
+msgid "Dcard"
+msgstr "Dcard"
+
+#: components/ReportPage/SectionSponsor.js:255
+msgid "Share to Facebook"
+msgstr "แชร์ไปยัง Facebook"
+
+#: components/ReportPage/Banner.js:212
+#: components/ReportPage/Banner.js:227
+msgid "Social Impact Report"
+msgstr "รายงานผลกระทบทางสังคม"
+
+#: components/ReportPage/SectionHowToUse.js:111
+msgid "Super EASY"
+msgstr "ง่ายมาก"
+
+#: components/ReportPage/SectionFeatures.js:157
+msgid "Personal fact-check contribution"
+msgstr "การมีส่วนร่วมในการตรวจสอบข้อเท็จจริงส่วนบุคคล"
+
+#: components/ReportPage/SectionOriginalFeatures.js:226
+msgid "Cofacts original features"
+msgstr "ฟีเจอร์ต้นฉบับของ Cofacts"
+
+#: pages/about.js:252
+msgid "Cofacts fact-checking chatbot, combating misinformation by yourself!"
+msgstr "แชทบอทตรวจสอบข้อเท็จจริงของ Cofacts ต่อสู้กับข้อมูลเท็จด้วยตัวคุณเอง!"
+
+#: pages/about.js:279
+msgid "In what scenarios can Cofacts help you?"
+msgstr "Cofacts สามารถช่วยคุณได้ในสถานการณ์ใด?"
+
+#: pages/about.js:290
+msgid "You want to do research on false information."
+msgstr "คุณต้องการทำวิจัยเกี่ยวกับข้อมูลเท็จ"
+
+#: pages/about.js:306
+msgid ""
+"You would like to absorb novel knowledge\n"
+"and see what topics are popular recently"
+msgstr ""
+"คุณต้องการรับความรู้ใหม่\\n"
+"และดูว่าหัวข้อใดกำลังเป็นที่นิยมในขณะนี้"
+
+#: pages/about.js:359
+msgid "How Cofacts was born"
+msgstr "Cofacts กำเนิดขึ้นมาอย่างไร"
+
+#: pages/about.js:383
+msgid "Who we are"
+msgstr "เราคือใคร"
+
+#: components/Tutorial/content/bustHoaxes.js:12
+msgid ""
+"Do you feel fact-checking is too difficult? You can start by reviewing the "
+"responses of others."
+msgstr "คุณรู้สึกว่า การตรวจสอบข้อเท็จจริงนั้นยากเกินไปหรือไม่? คุณสามารถเริ่มต้นด้วยการทบทวนคำตอบของผู้อื่น"
+
+#: components/Tutorial/content/bustHoaxes.js:13
+msgid ""
+"Take a look at how others do fact-checking may help you write good quality "
+"responses."
+msgstr "ลองดูว่าคนอื่นตรวจสอบข้อเท็จจริงอย่างไร อาจช่วยให้คุณเขียนคำตอบที่มีคุณภาพดี"
+
+#: components/Tutorial/content/bustHoaxes.js:17
+msgid "Searching responses waiting to be reviewed"
+msgstr "ค้นหาคำตอบที่รอการทบทวน"
+
+#: components/Tutorial/content/bustHoaxes.js:21
+msgid ""
+"\"Replies\" section lists all volunteer editors' reviews to fact-checking "
+"responses, you can filter information pieces with the tags as follows:\n"
+"\n"
+"\"No useful reply yet\": This labels the pieces of information that may "
+"lack validated high-quality responses. We recommend this tag as a start of "
+"searching.\n"
+"\n"
+"\"Asked many times\": This labels the suspicious messages that are trending "
+"among requests for fact-checking.\n"
+"\n"
+"\"Replied many times\": This labels the suspicious messages that have been "
+"responded to and reviewed a lot."
+msgstr ""
+"ส่วน \"คำตอบ\" จะแสดงการทบทวนจากบรรณาธิการอาสาสมัครทั้งหมดต่อคำตอบในการตรวจสอบข้อเท็จจริง คุณสามารถกรองข้อมูลโดยใช้แท็กดังต่อไปนี้:\\n"
+"\\n"
+"\"ยังไม่มีคำตอบที่เป็นประโยชน์\": แท็กนี้ใช้สำหรับข้อมูลที่ยังขาดคำตอบที่มีคุณภาพสูงที่ได้รับการยืนยัน เราแนะนำให้คุณเริ่มการค้นหาด้วยแท็กนี้\\n"
+"\\n"
+"\"ถูกถามหลายครั้ง\": แท็กนี้ใช้สำหรับข้อความที่น่าสงสัยที่กำลังเป็นที่นิยมในคำขอตรวจสอบข้อเท็จจริง\\n"
+"\\n"
+"\"ตอบกลับหลายครั้ง\": แท็กนี้ใช้สำหรับข้อความที่น่าสงสัยที่ถูกตอบกลับและทบทวนแล้วจำนวนมาก"
+
+#: components/Tutorial/content/bustHoaxes.js:14
+msgid ""
+"Reviews of information on Cofacts are collaborated by contributors from all "
+"over the world and free of charge. However, the fact-checking results may "
+"not necessarily be correct or complete all the time. That is why the "
+"project requires the role of editor to review the checking results to "
+"select responses of high quality. To novice editors, they may learn how "
+"others fact-check on rumors through the review process."
+msgstr "การทบทวนข้อมูลบน Cofacts เป็นความร่วมมือจากผู้มีส่วนร่วมจากทั่วโลกและไม่มีค่าใช้จ่าย อย่างไรก็ตาม ผลการตรวจสอบข้อเท็จจริงอาจไม่ถูกต้องหรือครบถ้วนเสมอไป นั่นคือเหตุผลที่โครงการต้องการบทบาทของบรรณาธิการเพื่อทบทวนผลการตรวจสอบและเลือกคำตอบที่มีคุณภาพสูง สำหรับบรรณาธิการมือใหม่ พวกเขาสามารถเรียนรู้ว่าคนอื่นตรวจสอบข่าวลืออย่างไรผ่านกระบวนการทบทวน"
+
+#: components/Tutorial/content/bustHoaxes.js:33
+msgid "Evaluating the responses"
+msgstr "การประเมินคำตอบ"
+
+#: components/Tutorial/content/bustHoaxes.js:37
+msgid ""
+"You can react to others' checking responses with \"Vote Up\" and \"Vote "
+"Down\". Through the collaborative evaluation, good quality responses will "
+"gradually surface and be exposed to more users. Please leave your reasons "
+"of determining a response as of good or poor quality in the evaluation "
+"process. You can click \"Read More Reasons\" to read the comments left by "
+"others."
+msgstr "คุณสามารถตอบสนองต่อคำตอบการตรวจสอบของผู้อื่นด้วย \"โหวตขึ้น\" และ \"โหวตลง\" ผ่านการประเมินร่วมกัน คำตอบที่มีคุณภาพดีจะค่อยๆ โผล่ขึ้นมาและถูกเปิดเผยให้ผู้ใช้更多的人เห็น ในระหว่างการประเมิน กรุณาแสดงเหตุผลของคุณในการตัดสินว่าคำตอบนั้นมีคุณภาพดีหรือแย่ในกระบวนการประเมิน คุณสามารถคลิก \"อ่านเหตุผลเพิ่มเติม\" เพื่ออ่านความคิดเห็นที่ผู้อื่นทิ้งไว้"
+
+#: components/Tutorial/content/bustHoaxes.js:41
+msgid ""
+"Hit the \"Fact-Check\" button to enter the page and see the sources and "
+"references attached by the editors, as information source is critical to "
+"determining the validity of fact-checking response."
+msgstr "กดปุ่ม \"ตรวจสอบข้อเท็จจริง\" เพื่อเข้าสู่หน้าและดูแหล่งที่มาและอ้างอิงที่บรรณาธิการแนบมา เนื่องจากแหล่งข้อมูลมีความสำคัญต่อการกำหนดความถูกต้องของคำตอบในการตรวจสอบข้อเท็จจริง"
+
+#: components/Tutorial/content/bustHoaxes.js:48
+msgid "Look for suspicious articles that may require further fact-checking"
+msgstr "ค้นหาบทความที่น่าสงสัยซึ่งอาจต้องการการตรวจสอบข้อเท็จจริงเพิ่มเติม"
+
+#: components/Tutorial/content/bustHoaxes.js:49
+msgid "Get ready to check information yourself!"
+msgstr "เตรียมพร้อมที่จะตรวจสอบข้อมูลด้วยตัวคุณเอง!"
+
+#: components/Tutorial/content/bustHoaxes.js:54
+msgid "Go to \"(Hoax) for you\" to find information to be checked."
+msgstr "ไปที่ \"(ข่าวลือ) สำหรับคุณ\" เพื่อค้นหาข้อมูลที่ต้องการตรวจสอบ"
+
+#: components/Tutorial/content/bustHoaxes.js:50
+msgid ""
+"Feeling like fact-checking after learning through evaluating others' "
+"responses?\n"
+"First of all, you can look for suspicious contents waiting to be checked "
+"from the website; that is, messages that have not been fact-checked, or "
+"that have incomplete or inaccurate checking results. These are what the "
+"volunteer community needs you to help with!"
+msgstr ""
+"รู้สึกอยากตรวจสอบข้อเท็จจริงหลังจากเรียนรู้จากการประเมินคำตอบของผู้อื่นหรือไม่?\\n"
+"ก่อนอื่น คุณสามารถค้นหาเนื้อหาที่น่าสงสัยที่รอการตรวจสอบจากเว็บไซต์ นั่นคือ ข้อความที่ยังไม่ได้รับการตรวจสอบ หรือมีผลการตรวจสอบที่ไม่ครบถ้วนหรือไม่ถูกต้อง สิ่งเหล่านี้คือสิ่งที่ชุมชนอาสาสมัครต้องการให้คุณช่วยเหลือ!"
+
+#: components/Tutorial/content/bustHoaxes.js:58
+msgid ""
+"\"(Hoax) for you\" section compiles contents that have been reported over "
+"twice but yet to have validated checking responses. On the left side of "
+"each piece of content is the current count of responses and number of times "
+"it has been reported that shows how many people want to authenticate this "
+"content."
+msgstr "ส่วน \"(ข่าวลือ) สำหรับคุณ\" รวบรวมเนื้อหาที่ถูกส่งรายงานมากกว่าสองครั้งแต่ยังไม่มีการตอบกลับจากการตรวจสอบที่ได้รับการยืนยัน ด้านซ้ายของแต่ละเนื้อหาเป็นจำนวนคำตอบปัจจุบันและจำนวนครั้งที่ถูกรายงาน ซึ่งแสดงให้เห็นว่ามีกี่คนที่ต้องการยืนยันเนื้อหานี้"
+
+#: components/Tutorial/content/bustHoaxes.js:67
+msgid "Select topics of interest"
+msgstr "เลือกหัวข้อที่น่าสนใจ"
+
+#: components/Tutorial/content/bustHoaxes.js:71
+msgid ""
+"If you can't find contents you are interested in responding, try the topic "
+"filter! Click the topic filter, and the contents tagged by the topic "
+"keywords will be listed.\n"
+"Some tags have little relevance to professional realms, such as petition, "
+"crowd support, BOLO (be on the lookout), donation, commercial advertising, "
+"message scam, etc. There are tags related to public affairs, such as "
+"preferential measures, new regulations, publicity of policies, gender "
+"issues, China's influence, policy of agriculture, forestry, fishery and "
+"animal husbandry. In addition, there are topics like transnational "
+"interaction, COVID-19 pandemic and so forth that are waiting for "
+"professionals in specific areas to review."
+msgstr ""
+"หากคุณไม่พบเนื้อหาที่คุณสนใจตอบ ลองใช้ตัวกรองหัวข้อ! คลิกที่ตัวกรองหัวข้อ และเนื้อหาที่มีแท็กตามคีย์เวิร์ดของหัวข้อนั้นจะถูกแสดง\\n"
+"บางแท็กมีความเกี่ยวข้องน้อยกับสาขาวิชาชีพ เช่น การลงชื่อสนับสนุน การระดมทุน การค้นหา การบริจาค การโฆษณาเชิงพาณิชย์ การหลอกลวงข้อความฟรี เป็นต้น มีแท็กที่เกี่ยวข้องกับประเด็นสาธารณะ เช่น มาตรการส่งเสริม กฎระเบียบใหม่ การประชาสัมพันธ์นโยบาย ประเด็นเรื่องเพศ อิทธิพลของจีน นโยบายด้านการเกษตร ป่าไม้ ประมง และปศุสัตว์ นอกจากนี้ ยังมีหัวข้อเช่น ปฏิสัมพันธ์ข้ามชาติ ภาวะฉุกเฉินจากโรคระบาด COVID-19 และอื่นๆ ที่รอผู้เชี่ยวชาญในสาขาเฉพาะด้านมาทบทวน"
+
+#: components/Tutorial/content/bustHoaxes.js:83
+msgid "Analyze the content"
+msgstr "วิเคราะห์เนื้อหา"
+
+#: components/Tutorial/content/bustHoaxes.js:84
+msgid ""
+"After selecting the content you are checking, you can look for questionable "
+"points to be checked."
+msgstr "หลังจากเลือกเนื้อหาที่คุณกำลังตรวจสอบแล้ว คุณสามารถมองหาจุดที่น่าสงสัยเพื่อตรวจสอบได้"
+
+#: components/Tutorial/content/bustHoaxes.js:85
+msgid ""
+"Each message here was reported by chatbot users and may be in various odd "
+"forms, styles with doubtful content. You can try to follow the steps below "
+"to analyze your piece."
+msgstr "ข้อความแต่ละข้อความที่นี่ถูกรายงานโดยผู้ใช้แชทบอท และอาจอยู่ในรูปแบบแปลกๆ หลายรูปแบบ สไตล์ที่มีเนื้อหาที่น่าสงสัย คุณสามารถลองทำตามขั้นตอนด้านล่างเพื่อวิเคราะห์ชิ้นงานของคุณ"
+
+#: components/Tutorial/content/bustHoaxes.js:101
+msgid "Pointless contents found? Get to the context first!"
+msgstr "พบเนื้อหาที่ไร้สาระหรือไม่? เริ่มจากบริบทก่อน!"
+
+#: components/Tutorial/content/bustHoaxes.js:105
+msgid ""
+"Some messages are very short and clueless yet reported by many users, "
+"indicating that the contents may not be spams out of several single users."
+msgstr "ข้อความบางข้อความสั้นมากและไม่มีเบาะแส แต่ถูกรายงานโดยผู้ใช้จำนวนมาก ซึ่งบ่งชี้ว่าเนื้อหานั้นอาจไม่ใช่สแปมจากผู้ใช้เพียงไม่กี่คน"
+
+#: components/Tutorial/content/bustHoaxes.js:113
+msgid ""
+"This type of information is probably shared with videos or images in "
+"communication apps but left without other original content elements, "
+"because currently Cofacts does not support reporting images and videos. "
+"Still, you can copy and paste the text part to the Facebook or other search "
+"tools to see if any users had publicly shared relevant graphics and texts, "
+"trying to get close to the context of the reported materials."
+msgstr "ข้อมูลประเภทนี้มักจะถูกแชร์พร้อมกับวิดีโอหรือรูปภาพในแอปแชท แต่ไม่ได้ออกแบบมาเพื่อรองรับการรายงานรูปภาพและวิดีโอ ดังนั้น คุณสามารถคัดลอกและวางส่วนที่เป็นข้อความไปยัง Facebook หรือเครื่องมือค้นหาอื่นๆ เพื่อดูว่ามีผู้ใช้คนใดเคยแชร์กราฟิกและข้อความที่เกี่ยวข้องในที่สาธารณะหรือไม่ เพื่อพยายามเข้าถึงบริบทของสื่อที่ถูกรายงาน"
+
+#: components/Tutorial/content/bustHoaxes.js:121
+msgid ""
+"In addition, some messages may be truncated or incomplete. These may be "
+"texts referred from other chatbots that are cut due to technical "
+"limitations on word counts."
+msgstr "นอกจากนี้ ข้อความบางข้อความอาจถูกตัดทอนหรือไม่สมบูรณ์ ซึ่งอาจเป็นข้อความที่อ้างอิงจากแชทบอทอื่นที่ถูกตัดเนื่องจากข้อจำกัดทางเทคนิคด้านจำนวนคำ"
+
+#: components/Tutorial/content/bustHoaxes.js:129
+msgid ""
+"In this situation, you can utilize Facebook or Google as well to find the "
+"full texts."
+msgstr "ในสถานการณ์นี้ คุณสามารถใช้ Facebook หรือ Google เพื่อค้นหาข้อความฉบับเต็มได้เช่นกัน"
+
+#: components/Tutorial/content/bustHoaxes.js:134
+msgid ""
+"Try to raise a few points in the content that may arouse your emotions if "
+"you were to receive the message."
+msgstr "ลองระบุจุดบางจุดในเนื้อหาที่อาจกระตุ้นอารมณ์ของคุณ หากคุณเป็นผู้รับข้อความนั้น"
+
+#: components/Tutorial/content/bustHoaxes.js:138
+msgid ""
+"These parts are usually what users of Cofacts would like to check on, or "
+"triggers for them to share online contents. Take these as a starting point "
+"to plan on what types of information you are providing to appease and "
+"assist the recipients. This approach may be helpful for you to grasp the "
+"critical points and respond to users effectively, especially when "
+"encountering long contents, or strong personal opinions."
+msgstr "ส่วนเหล่านี้มักจะเป็นสิ่งที่ผู้ใช้ Cofacts ต้องการตรวจสอบ หรือสิ่งจูงใจให้พวกเขาแชร์เนื้อหาออนไลน์ ใช้สิ่งเหล่านี้เป็นจุดเริ่มต้นในการวางแผนว่าคุณจะนำเสนอข้อมูลประเภทใดเพื่อปลอบประโลมและช่วยเหลือผู้รับ วิธีนี้อาจช่วยให้คุณจับประเด็นสำคัญและตอบสนองต่อผู้ใช้ได้อย่างมีประสิทธิภาพ โดยเฉพาะเมื่อต้องเผชิญกับเนื้อหายาวๆ หรือความคิดเห็นส่วนตัวที่รุนแรง"
+
+#: components/Tutorial/content/bustHoaxes.js:143
+msgid "Refer to the existing resources"
+msgstr "ดูทรัพยากรที่มีอยู่"
+
+#: components/Tutorial/content/bustHoaxes.js:147
+msgid ""
+"If you don't have a clue, you can refer to the section of \"Supplementary "
+"Notes from Reporters\" to see if the reporters have shared their views on "
+"the contents, or even extra information."
+msgstr "หากคุณไม่มีเบาะแส คุณสามารถดูส่วน \"หมายเหตุเพิ่มเติมจากผู้รายงาน\" เพื่อดูว่าผู้รายงานได้แบ่งปันมุมมองของพวกเขาเกี่ยวกับเนื้อหานี้หรือไม่ หรือแม้แต่ข้อมูลเพิ่มเติม"
+
+#: components/Tutorial/content/bustHoaxes.js:156
+msgid "Search keywords and graphics to prepare for responding"
+msgstr "ค้นหาคีย์เวิร์ดและกราฟิกเพื่อเตรียมพร้อมสำหรับการตอบกลับ"
+
+#: components/Tutorial/content/bustHoaxes.js:171
+msgid "Write a reader-friendly response with our template"
+msgstr "เขียนคำตอบที่ผู้อ่านเข้าใจง่ายด้วยเทมเพลตของเรา"
+
+#: components/Tutorial/content/bustHoaxes.js:172
+msgid ""
+"After the checking process, please write down the result, presenting "
+"reader-friendly response following the suggested format."
+msgstr "หลังจากกระบวนการตรวจสอบแล้ว กรุณาจดบันทึกผลลัพธ์ โดยนำเสนอคำตอบที่ผู้อ่านเข้าใจง่ายตามรูปแบบที่แนะนำ"
+
+#: components/Tutorial/content/bustHoaxes.js:173
+msgid ""
+"The step is to compile and present the materials and findings that you have "
+"been put efforts in.\n"
+"We advise writing clear responses in the suggested format to help the "
+"chatbot and Cofacts users easily read and understand your fact-checking "
+"results."
+msgstr ""
+"ขั้นตอนคือการรวบรวมและนำเสนอวัสดุและผลการค้นคว้าที่คุณได้ทุ่มเทไป\\n"
+"เราแนะนำให้เขียนคำตอบที่ชัดเจนในรูปแบบที่แนะนำ เพื่อช่วยให้แชทบอทและผู้ใช้ Cofacts อ่านและทำความเข้าใจผลการตรวจสอบข้อเท็จจริงของคุณได้ง่าย"
+
+#: components/Tutorial/content/bustHoaxes.js:177
+msgid "Select response category"
+msgstr "เลือกหมวดหมู่คำตอบ"
+
+#: components/Tutorial/content/bustHoaxes.js:181
+msgid ""
+"Please assign tags of categories, \"contains true information\", \"contains "
+"misinformation\", or \"contains personal perspective\" to the content based "
+"on your findings.\n"
+"\n"
+"If your research result proves that the content includes false information, "
+"you can mark it as \"contains misinformation\".\n"
+"\n"
+"While your findings show personal perspectives divergent from the original, "
+"you can tag the content as \"contains personal perspective\".\n"
+"\n"
+"Finally, if the fact-checking result demonstrates that the content presents "
+"valid information, you can mark it as \"contains true information\"."
+msgstr ""
+"กรุณาติดแท็กหมวดหมู่ \"มีข้อมูลจริง\", \"มีข้อมูลเท็จ\", หรือ \"มีมุมมองส่วนตัว\" ให้กับเนื้อหานี้ตามผลการค้นคว้าของคุณ\\n"
+"\\n"
+"หากผลการวิจัยของคุณพิสูจน์ว่าเนื้อหามีข้อมูลเท็จ คุณสามารถทำเครื่องหมายว่าเป็น \"มีข้อมูลเท็จ\"\\n"
+"\\n"
+"ในขณะที่ผลการค้นคว้าของคุณแสดงมุมมองส่วนตัวที่แตกต่างจากต้นฉบับ คุณสามารถติดแท็กเนื้อหานี้ว่าเป็น \"มีมุมมองส่วนตัว\"\\n"
+"\\n"
+"สุดท้าย หากผลการตรวจสอบข้อเท็จจริงแสดงให้เห็นว่าเนื้อหานี้เสนอข้อมูลที่มีประสิทธิภาพ คุณสามารถทำเครื่องหมายว่าเป็น \"มีข้อมูลจริง\""
+
+#: components/Tutorial/content/bustHoaxes.js:192
+msgid "Fill in the reasons"
+msgstr "กรอกรายละเอียด"
+
+#: components/Tutorial/content/bustHoaxes.js:196
+msgid ""
+"After tagging, write a brief note on which part in the content \"contains "
+"true information\", \"contains misinformation\", or \"contains personal "
+"perspective\". The note will be shown to users via our chatbot. We suggest "
+"clarifying false and true parts, or perspectives of the content in the "
+"first paragraph and elaborating in following paragraphs if more "
+"explanations are required."
+msgstr "หลังจากติดแท็กแล้ว เขียนบันทึกสั้นๆ เกี่ยวกับส่วนใดในเนื้อหา \"มีข้อมูลจริง\", \"มีข้อมูลเท็จ\", หรือ \"มีมุมมองส่วนตัว\" บันทึกนี้จะแสดง给用户ผ่านแชทบอทของเรา เรายังแนะนำให้ชี้แจงส่วนที่เป็นเท็จและจริง หรือมุมมองของเนื้อหาในย่อหน้าแรก และขยายความในย่อหน้าถัดไปหากต้องการคำอธิบายเพิ่มเติม"
+
+#: components/Tutorial/content/bustHoaxes.js:201
+msgid "Provide sources and reference"
+msgstr "ให้แหล่งที่มาและอ้างอิง"
+
+#: components/Tutorial/content/bustHoaxes.js:205
+msgid ""
+"Paste the links of information and list your reference in the \"Reference\" "
+"or \"Opinion Sources\" column, then your response is good to go!"
+msgstr "วางลิงก์ของข้อมูลและรายการอ้างอิงของคุณในคอลัมน์ \"อ้างอิง\" หรือ \"แหล่งที่มาของความคิดเห็น\" จากนั้นคำตอบของคุณก็พร้อมส่ง!"
+
+#: components/Tutorial/content/bustHoaxes.js:210
+msgid "Are there any examples for reference?"
+msgstr "มีตัวอย่างใดบ้างสำหรับอ้างอิง?"
+
+#: components/Tutorial/content/bustHoaxes.js:226
+msgid "I really can't find any sources! What should I do?"
+msgstr "ฉันหาแหล่งที่มาไม่ได้เลย! ฉันควรทำอย่างไร?"
+
+#: components/Tutorial/content/bustHoaxes.js:227
+msgid ""
+"Don't worry. Leave your progress in \"Comment\" and let the community "
+"continue your work."
+msgstr "ไม่ต้องกังวล ปล่อยความคืบหน้าของคุณไว้ใน \"ความคิดเห็น\" และปล่อยให้ชุมชนดำเนินการต่อจากคุณ"
+
+#: components/Tutorial/content/bustHoaxes.js:230
+msgid "Use \"Comment\" function"
+msgstr "ใช้ฟังก์ชัน \"แสดงความคิดเห็น\""
+
+#: components/Tutorial/content/bustHoaxes.js:234
+msgid ""
+"Please click \"Comment\", put the information and materials you have found "
+"so far there, and briefly share the parts you could not find.\n"
+"The \"Response Count\" will increase after you send the supplement then "
+"attract other editors to view, so the community members can start from the "
+"supplementary materials you shared to finish remaining fact-checking "
+"process!"
+msgstr ""
+"กรุณาคลิก \"แสดงความคิดเห็น\" วางข้อมูลและหลักฐานที่คุณค้นพบจนถึงตอนนี้ไว้在那里 และแบ่งปันอย่างสั้นๆ ส่วนที่คุณยังหาไม่พบ\\n"
+"\"จำนวนการตอบกลับ\" จะเพิ่มขึ้นหลังจากคุณส่งข้อมูลเพิ่มเติม ซึ่งจะช่วยดึงดูดบรรณาธิการคนอื่นให้เข้ามาดู เพื่อให้สมาชิกในชุมชนสามารถเริ่มต้นจากข้อมูลที่كمคุณแบ่งปันเพื่อกระบวนตรวจสอบข้อเท็จจริงที่เหลือให้เสร็จสมบูรณ์!"
+
+#: components/Tutorial/content/bustHoaxes.js:214
+msgid ""
+"We have a collaborative note \"Editor's Fantastic Journey\" that records "
+"the cases shared by editors in the past. You can refer to how these editors "
+"analyzed and wrote responses when faced with varied types of information "
+"and contents."
+msgstr "เรามีบันทึกความร่วมมือชื่อ \"การเดินทางมหัศจรรย์ของบรรณาธิการ\" ซึ่งบันทึกกรณีศึกษาที่บรรณาธิการได้แบ่งปันในอดีต คุณสามารถอ้างอิงวิธีการที่บรรณาธิการเหล่านี้วิเคราะห์และเขียนคำตอบเมื่อต้องเผชิญกับข้อมูลและเนื้อหาหลากหลายประเภท"
+
+#: components/Tutorial/Article.js:279
+#, javascript-format
+msgid "Step ${ stepNo }"
+msgstr "ขั้นตอนที่ ${ stepNo }"
+
+#: components/Tutorial/content/checkRumors.js:10
+msgid ""
+"Have you add Cofacts as your friend on LINE? Feel free to ask if you have "
+"any questions!"
+msgstr "คุณเพิ่ม Cofacts เป็นเพื่อนใน LINE แล้วหรือยัง? ถามได้เลยถ้ามีคำถาม!"
+
+#: components/Tutorial/content/checkRumors.js:11
+msgid ""
+"Friend the chatbot and let it offer solutions to the suspicious messages, "
+"scams and fake news you received."
+msgstr "เพิ่มแชทบอทเป็นเพื่อนและให้มันเสนอทางออกสำหรับข้อความที่น่าสงสัย การหลอกลวง และข่าวปลอมที่คุณได้รับ"
+
+#: components/Tutorial/content/checkRumors.js:15
+msgid "Friend the Cofacts chatbot and report as much as you want!"
+msgstr "เพิ่มแชทบอท Cofacts เป็นเพื่อนและรายงานเท่าที่คุณต้องการ!"
+
+#: components/Tutorial/content/checkRumors.js:19
+msgid ""
+"This is the world's first chatbot capable of fact-checking and supports "
+"open source code. Send it any questionable messages you found. Add the bot "
+"as your friend and receive its welcoming messages. Cofacts wants to be your "
+"good friend!"
+msgstr "นี่คือแชทบอทตัวแรกของโลกที่มีความสามารถในการตรวจสอบข้อเท็จจริงและรองรับโค้ดโอเพนซอร์ส ส่งข้อความใดก็ตามที่คุณสงสัยไปให้มัน เพิ่มบอทเป็นเพื่อนของคุณและรับข้อความต้อนรับ Cofacts ต้องการเป็นเพื่อนที่ดีของคุณ!"
+
+#: components/Tutorial/content/checkRumors.js:30
+msgid ""
+"When receiving a suspicious message on your PC, search on the Cofacts "
+"website."
+msgstr "เมื่อได้รับข้อความที่น่าสงสัยบนคอมพิวเตอร์ของคุณ ให้ค้นหาบนเว็บไซต์ Cofacts"
+
+#: components/Tutorial/content/checkRumors.js:31
+msgid "You can paste it in the search box and always get relevant materials."
+msgstr "คุณสามารถวางไว้ในช่องค้นหาและจะได้เอกสารที่เกี่ยวข้องเสมอ"
+
+#: components/Tutorial/content/checkRumors.js:32
+msgid ""
+"There is a magnifying glass in the upper right corner of the website. Paste "
+"the message you received or the keywords on your mind next to the "
+"magnifying glass to find information you care about!"
+msgstr "มีแว่นขยายที่มุมขวาบนของเว็บไซต์ วางข้อความที่คุณได้รับหรือคำสำคัญที่คุณนึกถึงข้างแว่นขยายเพื่อค้นหาข้อมูลที่คุณสนใจ!"
+
+#: components/Tutorial/content/checkRumors.js:35
+msgid "Enhance accuracy of your checking progress with the filter"
+msgstr "เพิ่มความแม่นยำของกระบวนการตรวจสอบของคุณด้วยตัวกรอง"
+
+#: components/Tutorial/content/checkRumors.js:39
+msgid ""
+"There is a filter in the lower right corner and a small monthly calendar on "
+"the left for time setting to help you target varied categories of contents, "
+"such as \"recent\", \"within a specified time range\", \"most frequently "
+"asked\", \"latest response\", and messages related to specific topics. You "
+"can choose whichever you want."
+msgstr "มีตัวกรองที่มุมขวาล่างและปฏิทินรายเดือนขนาดเล็กทางซ้ายสำหรับการตั้งค่าเวลา เพื่อช่วยให้คุณระบุหมวดหมู่เนื้อหาที่หลากหลาย เช่น \"ล่าสุด\", \"ในช่วงเวลาที่กำหนด\", \"ถูกถามบ่อยที่สุด\", \"การตอบกลับล่าสุด\" และข้อความที่เกี่ยวข้องกับหัวข้อเฉพาะ คุณสามารถเลือกได้ตามที่ต้องการ"
+
+#: components/Tutorial/content/checkRumors.js:50
+msgid "Vote, supplement, and show your curiosity"
+msgstr "โหวต, เพิ่มเติม, และแสดงความอยากรู้ของคุณ"
+
+#: components/Tutorial/content/checkRumors.js:51
+msgid ""
+"You can help others troubled by fake news by supplementing checking "
+"materials, voting good to evaluate responses and showing your support for "
+"efforts in tackling misinformation."
+msgstr "คุณสามารถช่วยผู้อื่นที่กำลังทุกข์ทรมานจากข่าวปลอมโดยการเพิ่มเติมเอกสารตรวจสอบ, โหวตดีเพื่อประเมินการตอบกลับ และแสดงการสนับสนุนต่อความพยายามในการจัดการกับข้อมูลที่ไม่ถูกต้อง"
+
+#: components/Tutorial/content/checkRumors.js:52
+msgid ""
+"There are many clues left by previous fact-checkers, or reporters who "
+"requested fact-checking) on the website. Vote up the clues you find "
+"helpful, such as image source, relevant fact-checking information, other "
+"useful reference, to applaud for the efforts! If you find information that "
+"may be helpful for fact-checking, click the report button to submit your "
+"findings."
+msgstr "มีเบาะแสจำนวนมากที่ทิ้งไว้โดยผู้ตรวจสอบข้อเท็จจริงก่อนหน้า (หรือผู้สื่อข่าวที่ขอตรวจสอบ) บนเว็บไซต์ โหวตขึ้นสำหรับเบาะแสที่คุณพบว่ามีความช่วยเหลือ เช่น แหล่งที่มาของภาพ, ข้อมูลการตรวจสอบข้อเท็จจริงที่เกี่ยวข้อง, เอกสารอ้างอิงอื่นๆ ที่ berguna เพื่อปรบมือให้กับความพยายาม! หากคุณพบข้อมูลที่สามารถช่วยในการตรวจสอบข้อเท็จจริง กรุณากดปุ่มรายงานเพื่อส่งผลการค้นพบของคุณ"
+
+#: components/Tutorial/content/checkRumors.js:55
+msgid "Help train AI via classification"
+msgstr "ช่วยฝึก AI ผ่านการจัดหมวดหมู่"
+
+#: components/Tutorial/content/checkRumors.js:59
+msgid ""
+"We need your help on the way developing our artificial intelligence. Click "
+"\"Add Category\" to have messages going through the first-round of "
+"classification processing. Also, you can take a look at the contents to see "
+"if you can check on the pieces of information."
+msgstr "เราต้องการความช่วยเหลือของคุณในการพัฒนาปัญญาประดิษฐ์ของเรา คลิก \"เพิ่มหมวดหมู่\" เพื่อให้ข้อความผ่านกระบวนการจัดหมวดหมู่รอบแรก นอกจากนี้ คุณยังสามารถดูเนื้อหาเพื่อดูว่าคุณสามารถตรวจสอบชิ้นส่วนข้อมูลได้หรือไม่"
+
+#: components/Tutorial/content/checkRumors.js:70
+msgid "Log in to the website or browse and check on LINE"
+msgstr "เข้าสู่ระบบเว็บไซต์ หรือเรียกดูและตรวจสอบบน LINE"
+
+#: components/Tutorial/content/checkRumors.js:71
+msgid ""
+"Log in to the Cofacts website. Welcome to join the largest fact-checking "
+"community! Let's contribute to civic technology."
+msgstr "เข้าสู่ระบบเว็บไซต์ Cofacts ยินดีต้อนรับเข้าร่วมชุมชนตรวจสอบข้อเท็จจริงที่ใหญ่ที่สุด! มาช่วยกันสร้างเทคโนโลยีพลเมือง"
+
+#: components/Tutorial/content/checkRumors.js:77
+msgid "Cast your up votes whenever you pass by. Keep up on voting up!"
+msgstr "กดโหวตขึ้นทุกครั้งที่คุณผ่านไป อย่าหยุดโหวตขึ้น!"
+
+#: components/Tutorial/content/checkRumors.js:81
+msgid ""
+"After reading the response, if you regard it as a substantial content, "
+"please click like on the bottom left to vote up the response. In LINE, the "
+"bot will also inquire if a response is helpful. You can choose \"Yes\" to "
+"keep a good response helping more people! If you feel the response can be "
+"done better, please help fix it and respond with a new comment of yours."
+msgstr "หลังจากอ่านการตอบกลับแล้ว หากคุณมองว่าเป็นเนื้อหาที่มีสาระ กรุณากดไลค์ที่มุมซ้ายล่างเพื่อโหวตขึ้นการตอบกลับ ใน LINE บอทก็จะสอบถามว่าการตอบกลับนั้นมีความช่วยเหลือหรือไม่ คุณสามารถเลือก \"ใช่\" เพื่อให้การตอบกลับที่ดีช่วยคนมากขึ้น! หากคุณรู้สึกว่าสามารถทำได้ดีกว่า กรุณาช่วยแก้ไขและตอบกลับด้วยความคิดเห็นใหม่ของคุณ"
+
+#: components/Tutorial/content/checkRumors.js:92
+msgid "Share the information you find!"
+msgstr "แบ่งปันข้อมูลที่คุณค้นพบ!"
+
+#: components/Tutorial/content/checkRumors.js:93
+msgid ""
+"Now start to defeat rumors. The website of enriched information is waiting "
+"for you"
+msgstr "ตอนนี้เริ่มเอาชนะข่าวลือ เว็บไซต์ที่มีข้อมูลอุดมสมบูรณ์กำลังรอคุณอยู่"
+
+#: components/Tutorial/content/checkRumors.js:94
+msgid ""
+"Choose \"(Hoax) for you\". It is more blessed to give than to receive, and "
+"fact-checking is like standing on the shoulders of giants to look at the "
+"world. With your help, false information will be defeated one after another!"
+msgstr "เลือก \"(ข่าวลวง) สำหรับคุณ\" การให้ดีกว่าการรับ และการตรวจสอบข้อเท็จจริงเปรียบเสมือนยืนบนไหล่ของยักษ์ใหญ่เพื่อมองโลก ด้วยความช่วยเหลือของคุณ ข้อมูลเท็จจะถูกเอาชนะทีละชิ้น!"
+
+#: components/Tutorial/content/checkRumors.js:97
+msgid "The first step is to select \"Contains false information\""
+msgstr "ขั้นตอนแรกคือการเลือก \"มีข้อมูลเท็จ\""
+
+#: components/Tutorial/content/checkRumors.js:101
+msgid ""
+"Provide the validated points you have checked on to communicate with the "
+"public on why the message contains false information, how readers can view "
+"and evaluate it from specific angles, and attach the source of information "
+"and reference you found to show your care and respect for fact-checking. "
+"Try to converse with sincerity and honesty when faced with questions from "
+"reporters and the public."
+msgstr "ให้เหตุผลที่คุณตรวจสอบแล้วเพื่อสื่อสารกับสาธารณชนว่าทำไมข้อความจึงมีข้อมูลเท็จ ผู้อ่านสามารถดูและประเมินจากมุมมองเฉพาะได้อย่างไร และแนบแหล่งข้อมูลและอ้างอิงที่คุณพบเพื่อแสดงถึงความใส่ใจและความเคารพต่อการตรวจสอบข้อเท็จจริง พยายามสนทนาด้วยความจริงใจและความซื่อสัตย์เมื่อเผชิญกับคำถามจากผู้สื่อข่าวและสาธารณชน"
+
+#: components/Tutorial/content/checkRumors.js:72
+msgid ""
+"Under the suspicious messages, find and select \"Share\" on the right to "
+"share the response to help your friends.\n"
+"\n"
+" Choose login in the upper right corner! Will you be the next Wow-rrior "
+"contributing a sky-high volume of up votes?"
+msgstr ""
+"ภายใต้ข้อความที่น่าสงสัย ให้ค้นหาและเลือก \"แชร์\" ทางด้านขวาเพื่อแชร์การตอบกลับเพื่อนช่วยเพื่อนๆ ของคุณ\\n"
+"\\n"
+" เลือกเข้าสู่ระบบที่มุมบนขวา! คุณจะเป็นนักรบว้าวคนต่อไปที่มีจำนวนโหวตสูงลิ่วหรือไม่?"
+
+#: pages/about.js:275
+msgid "How does misinformation be fact-checked?"
+msgstr "ข้อมูลเท็จถูกตรวจสอบอย่างไร?"
+
+#: components/Tutorial/LineTutorial.js:24
+msgid "Recieved doubtful messages from social platform"
+msgstr "ได้รับข้อความที่น่าสงสัยจากแพลตฟอร์มโซเชียล"
+
+#: components/Tutorial/LineTutorial.js:25
+msgid ""
+"While a lot of instant messages are disseminated among our friends' "
+"chatroom, you might feel confused whether the information is fake or not."
+msgstr "ในขณะที่ข้อความด่วนจำนวนมากถูกเผยแพร่ในกลุ่มแชทของเพื่อนๆ คุณอาจรู้สึกสับสนว่าข้อมูลนั้นเป็นเท็จหรือไม่"
+
+#: components/Tutorial/LineTutorial.js:30
+msgid "Share this message to Cofacts"
+msgstr "แชร์ข้อความนี้ไปยัง Cofacts"
+
+#: components/Tutorial/LineTutorial.js:31
+msgid ""
+"You are encouraged to share to suspicious message to Cofacts chatbot, "
+"Cofacts chatbot would help you submit the misinformation to Cofacts "
+"fact-checking platform for receiveing similar fact-check reports."
+msgstr "คุณได้รับการสนับสนุนให้แชร์ข้อความที่น่าสงสัยไปยังแชทบอท Cofacts แชทบอท Cofacts จะช่วยคุณส่งข้อมูลเท็จไปยังแพลตฟอร์มการตรวจสอบข้อเท็จจริงของ Cofacts เพื่อรับรายงานการตรวจสอบที่คล้ายกัน"
+
+#: components/Tutorial/LineTutorial.js:36
+msgid "Submit to Cofacts database & fact-checking platform"
+msgstr "ส่งเข้าฐานข้อมูลและแพลตฟอร์มการตรวจสอบข้อเท็จจริงของ Cofacts"
+
+#: components/Tutorial/LineTutorial.js:37
+msgid ""
+"Everyone could review the suspicious messages on Cofacts platform, and "
+"discuss the fact-checking process and detail."
+msgstr "ทุกคนสามารถตรวจสอบข้อความที่น่าสงสัยบนแพลตฟอร์ม Cofacts และอภิปรายเกี่ยวกับกระบวนการและรายละเอียดของการตรวจสอบข้อเท็จจริง"
+
+#: components/Tutorial/LineTutorial.js:42
+msgid "Fact checkers would comment fact-checking detail on the platform."
+msgstr "ผู้ตรวจสอบข้อเท็จจริงจะแสดงความคิดเห็นเกี่ยวกับรายละเอียดการตรวจสอบบนแพลตฟอร์ม"
+
+#: components/Tutorial/LineTutorial.js:43
+msgid ""
+"Every volunteers could login Cofacts platform, and submit their "
+"fact-checking reports. Volunteers are asked to provide reference and "
+"explanation for the fact-checking."
+msgstr "อาสาสมัครทุกคนสามารถเข้าสู่ระบบแพลตฟอร์ม Cofacts และส่งรายงานการตรวจสอบของพวกเขา อาสาสมัครต้องให้แหล่งอ้างอิงและคำอธิบายสำหรับการตรวจสอบ"
+
+#: components/Tutorial/LineTutorial.js:48
+msgid "Cofacts chatnot would reply this automatically"
+msgstr "แชทบอท Cofacts จะตอบกลับโดยอัตโนมัติ"
+
+#: components/Tutorial/content/bustHoaxes.js:160
+msgid ""
+"Please refer to the Social Media Fact-checking tips & tricks provided by "
+"PTS News Lab Taiwan"
+msgstr "โปรดดูคำแนะนำและเคล็ดลับในการตรวจสอบข้อเท็จจริงบนโซเชียลมีเดียที่จัดทำโดยห้องปฏิบัติการข่าว PTS ไต้หวัน"
+
+#: components/Tutorial/LineTutorial.js:49
+msgid ""
+"Fact-checking contribution would be seen via Cofacts chatbot for everyone; "
+"if you think you could improve the content, you are encouraged to submit a "
+"new fact-checking reply."
+msgstr "การมีส่วนร่วมในการตรวจสอบข้อเท็จจริงสามารถดูได้ผ่านแชทบอท Cofacts สำหรับทุกคน หากคุณคิดว่าคุณสามารถปรับปรุงเนื้อหาได้ คุณได้รับการสนับสนุนให้ส่งการตอบกลับการตรวจสอบใหม่"
+
+#: pages/about.js:318
+msgid "Cofacts instruction"
+msgstr "คำแนะนำการใช้งาน Cofacts"
+
+#: pages/about.js:322
+msgid "What is Cofacts core value?"
+msgstr "คุณค่าหลักของ Cofacts คืออะไร?"
+
+#: pages/about.js:328
+msgid "Instant fact-checking tool"
+msgstr "เครื่องมือตรวจสอบแบบทันที"
+
+#: pages/about.js:338
+msgid "Free and Open"
+msgstr "อิสระและเปิดกว้าง"
+
+#: pages/about.js:349
+msgid "Media Literacy"
+msgstr "การรู้เท่าทันสื่อ"
+
+#: components/Tutorial/Article.js:261
+msgid "Collapse"
+msgstr "ย่อ"
+
+#: components/Tutorial/Article.js:261
+msgid "Expand"
+msgstr "ขยาย"
+
+#: components/Tutorial/content/bustHoaxes.js:88
+msgid "Is it a valid request?"
+msgstr "เป็นคำขอที่ถูกต้องหรือไม่?"
+
+#: components/Tutorial/content/bustHoaxes.js:92
+msgid ""
+"In Cofacts, a message request is considered valid if the message is "
+"actually being forwarded among chatrooms in LINE."
+msgstr "ใน Cofacts คำขอข้อความจะถือว่าถูกต้องหากข้อความนั้นกำลังถูกส่งต่อจริงในกลุ่มแชทใน LINE"
+
+#: components/Tutorial/content/bustHoaxes.js:96
+msgid ""
+"Take a look at how many people reported the message. If there is only one "
+"person, it may be a test message the user typed in on their own, which will "
+"never be requested again by another user. If this is the case, mark this "
+"message a \"invalid request\". You can also mark commercial advertisements "
+"as \"invalid requests\" as we do not need to help in advertising businesses."
+msgstr "ลองดูว่ามีกี่คนที่รายงานข้อความนี้ หากมีเพียงคนเดียว อาจเป็นข้อความทดสอบที่ผู้ใช้พิมพ์ด้วยตนเอง ซึ่งจะไม่มีการขอตรวจสอบซ้ำโดยผู้ใช้คนอื่น หากเป็นกรณีนี้ ให้ทำเครื่องหมายว่า \"คำขอไม่ถูกต้อง\" นอกจากนี้ คุณยังสามารถทำเครื่องหมายโฆษณาเชิงพาณิชย์เป็น \"คำขอไม่ถูกต้อง\" เนื่องจากเราไม่จำเป็นต้องช่วยโปรโมทธุรกิจ"
+
+#: components/Tutorial/content/checkRumors.js:12
+msgid "Scan QR code to add @cofacts to contact"
+msgstr "สแกน QR Code เพื่อเพิ่ม @cofacts เป็นเพื่อน"
+
+#: components/ProfilePage/AvatarSelector.js:178
+msgid "Accessory"
+msgstr "อุปกรณ์เสริม"
+
+#: components/ProfilePage/AvatarSelector.js:184
+msgid "Body"
+msgstr "ลำตัว"
+
+#: components/ProfilePage/AvatarSelector.js:190
+msgid "Face"
+msgstr "ใบหน้า"
+
+#: components/ProfilePage/AvatarSelector.js:196
+msgid "Hair"
+msgstr "ทรงผม"
+
+#: components/ProfilePage/AvatarSelector.js:202
+msgid "Facial Hair"
+msgstr "หนวดเครา"
+
+#: components/ProfilePage/EditAvatarDialog.js:170
+msgid "Edit profile picture"
+msgstr "แก้ไขรูปโปรไฟล์"
+
+#: components/ReportPage/SectionTower.js:92
+msgid "Open data"
+msgstr "ข้อมูลเปิด"
+
+#: components/ReportPage/SectionTower.js:99
+msgid "Analytics"
+msgstr "การวิเคราะห์ข้อมูล"
+
+#: components/ReportPage/EcosystemModal.js:22
+msgid "Fact-check community"
+msgstr "ชุมชนตรวจสอบข้อเท็จจริง"
+
+#: components/ReportPage/EcosystemModal.js:24
+msgid ""
+"Involves in physical gatherings, independent contributions, daily audit "
+"reports as the frontline organizational community."
+msgstr "เกี่ยวข้องกับงานรวมตัวกันแบบออฟไลน์ การมีส่วนร่วมอย่างอิสระ และรายงานการตรวจสอบประจำวันในฐานะชุมชนองค์กรแนวหน้า"
+
+#: components/ReportPage/EcosystemModal.js:28
+msgid "Meet Cofacts editors: the need to keep fighting disinformation"
+msgstr "พบปะบรรณาธิการ Cofacts: ความจำเป็นในการต่อสู้กับข้อมูลเท็จอย่างต่อเนื่อง"
+
+#: components/ReportPage/EcosystemModal.js:32
+msgid "Facebook group for Cofacts editors"
+msgstr "กลุ่ม Facebook สำหรับบรรณาธิการ Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:34
+msgid "Past editor's meetups"
+msgstr "งานพบปะบรรณาธิการในอดีต"
+
+#: components/ReportPage/EcosystemModal.js:38
+msgid "Editor meetups' opening slides"
+msgstr "สไลด์เปิดสำหรับงานพบปะบรรณาธิการ"
+
+#: components/ReportPage/EcosystemModal.js:43
+msgid "Developers"
+msgstr "นักพัฒนา"
+
+#: components/ReportPage/EcosystemModal.js:45
+msgid ""
+"Establish the fact-checking platform, develop chatbots, and create "
+"technological tools to solve problems."
+msgstr "สร้างแพลตฟอร์มตรวจสอบข้อเท็จจริง พัฒนาแชทบอท และสร้างเครื่องมือทางเทคโนโลยีเพื่อแก้ปัญหา"
+
+#: components/ReportPage/EcosystemModal.js:49
+msgid "Cofacts developer entry page and system diagram"
+msgstr "หน้าเริ่มต้นสำหรับนักพัฒนา Cofacts และแผนผังระบบ"
+
+#: components/ReportPage/EcosystemModal.js:53
+#: components/ReportPage/EcosystemModal.js:76
+msgid "How to run Cofacts on your laptop workshop @ g0v summit 2018"
+msgstr "เวิร์กช็อปวิธีการติดตั้ง Cofacts บนแล็ปท็อปของคุณ @ g0v summit 2018"
+
+#: components/ReportPage/EcosystemModal.js:58
+msgid "International sharing"
+msgstr "การแลกเปลี่ยนระดับนานาชาติ"
+
+#: components/ReportPage/EcosystemModal.js:60
+msgid ""
+"Provides teaching resources of development, focuses on open source sharing, "
+"assists in the development of chatbots, interacts with international "
+"communities and helps with technical support."
+msgstr "ให้ทรัพยากรการสอนสำหรับการพัฒนา มุ่งเน้นการแบ่งปันโอเพนซอร์ส ช่วยเหลือในการพัฒนาแชทบอท ปฏิสัมพันธ์กับชุมชนระหว่างประเทศ และช่วยเหลือด้านเทคนิค"
+
+#: components/ReportPage/EcosystemModal.js:64
+msgid "Introduction to Cofacts @ Google News Lab APAC summit 2017"
+msgstr "แนะนำ Cofacts @ Google News Lab APAC summit 2017"
+
+#: components/ReportPage/EcosystemModal.js:68
+msgid "Cofacts Design @ Chulalongkorn University, 2019"
+msgstr "การออกแบบ Cofacts @ มหาวิทยาลัยจุฬาลงกรณ์, 2019"
+
+#: components/ReportPage/EcosystemModal.js:72
+msgid "Cofacts Design @ LINE DEVELOPER DAY 2020"
+msgstr "การออกแบบ Cofacts @ LINE DEVELOPER DAY 2020"
+
+#: components/ReportPage/EcosystemModal.js:80
+msgid "Cofacts clone - Cofact by OpenDream, Thailand"
+msgstr "Cofacts clone - Cofact โดย OpenDream, ประเทศไทย"
+
+#: components/ReportPage/EcosystemModal.js:85
+msgid "Research"
+msgstr "งานวิจัย"
+
+#: components/ReportPage/EcosystemModal.js:87
+msgid ""
+"Provides open data for investigative journalists and scholars to conduct "
+"research and analysis, and keep data analysis materials public."
+msgstr "เปิดข้อมูลให้สื่อมวลชนสายสืบสวนและนักวิชาการนำไปใช้ในงานวิจัยและการวิเคราะห์ พร้อมเผยแพร่เอกสารการวิเคราะห์ข้อมูลสู่สาธารณะ"
+
+#: components/ReportPage/EcosystemModal.js:89
+msgid "Cofacts open dataset"
+msgstr "ชุดข้อมูลเปิดของ Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:92
+msgid "Cofacts usage analytics"
+msgstr "สถิติการใช้งาน Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:94
+msgid "Cofacts API"
+msgstr "API ของ Cofacts"
+
+#: components/ReportPage/EcosystemModal.js:246
+#: components/ReportPage/SectionEcosystem.js:135
+msgid "Fact-checking ecosystem"
+msgstr "ระบบนิเวศการตรวจสอบข้อเท็จจริง"
+
+#: components/ReportPage/SectionEcosystem.js:177
+msgid ""
+"Cofacts is our original chatbot for checking messages.\n"
+"It is the only open source code and the largest Chinese false information "
+"checking platform.\n"
+"It encourages volunteers to participate through crowd collaboration and "
+"rewards different types of volunteers to motivate their participation."
+msgstr ""
+"Cofacts คือแชตบอตต้นฉบับของเราสำหรับตรวจสอบข้อความ\\n"
+"เป็นแพลตฟอร์มตรวจสอบข้อมูลเท็จภาษาจีนที่ใหญ่ที่สุดและมีโค้ดโอเพนซอร์สเพียงหนึ่งเดียว\\n"
+"เราส่งเสริมให้อาสาสมัครมีส่วนร่วมผ่านการทำงานร่วมกันแบบ crowdsourcing และมอบรางวัลให้อาสาสมัครในประเภทต่าง ๆ เพื่อสร้างแรงจูงใจในการเข้าร่วม"
+
+#: components/ReportPage/SectionInfluence.js:110
+msgid ""
+"External and internal propaganda have caused the people to lose their trust "
+"in media and information.\n"
+"Cofacts took the lead in making a change, establishing a platform and "
+"creating a chatbot with fact-checking capabilities.\n"
+"We automated the process of combating false information through artificial "
+"intelligence and machine learning,\n"
+"in order to avoid exhausting professional reviewers and provide review "
+"resources."
+msgstr ""
+"การโฆษณาชวนเชื่อทั้งจากภายนอกและภายในทำให้ประชาชนสูญเสียความไว้วางใจในสื่อและข้อมูล\\n"
+"Cofacts เป็นผู้นำในการเปลี่ยนแปลง โดยสร้างแพลตฟอร์มและแชตบอตที่มีคุณสมบัติในการตรวจสอบข้อเท็จจริง\\n"
+"เราทำให้กระบวนการต่อสู้กับข้อมูลเท็จเป็นอัตโนมัติด้วยปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง\\n"
+"เพื่อหลีกเลี่ยงไม่ให้ผู้ตรวจสอบมืออาชีพหมดแรงและเพื่อให้มีทรัพยากรสำหรับการตรวจสอบ"
+
+#: pages/impact.js:67
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was "
+"launched in 2016 by the engineers, proposed to the civic tech community, "
+"and accomplished by a group of volunteers. The team members meet up weekly "
+"to maintain the project's dynamic."
+msgstr "Cofacts คือแชตบอตตรวจสอบข้อเท็จจริงที่พัฒนาขึ้นเร็วที่สุด โครงการนี้เริ่มขึ้นในปี 2016 โดยวิศวกร เสนอต่อชุมชนเทคโนโลยีพลเมือง และสำเร็จโดยกลุ่มอาสาสมัคร สมาชิกทีมพบกันทุกสัปดาห์เพื่อรักษาพลวัตของโครงการ"
+
+#: pages/impact.js:70
+msgid ""
+"At present, there have been more than 45,000 verified pieces of content in "
+"our database. Through investing human and other resources, the project is "
+"to reverse harms to democracy and society caused by misinformation."
+msgstr "ปัจจุบัน ฐานข้อมูลของเราเก็บเนื้อหาที่ได้รับการยืนยันแล้วมากกว่า 45,000 รายการ ผ่านการลงทุนด้านบุคลากรและทรัพยากรอื่น ๆ โครงการนี้มีเป้าหมายเพื่อพลิกกลับผลกระทบที่เกิดจากข้อมูลผิดต่อประชาธิปไตยและสังคม"
+
+#: components/ListPageDisplays/ArticleCard.js:112
+#: components/ListPageDisplays/ReplySearchItem.js:112
+#: components/ProfilePage/CommentTab.js:178
+#: components/ProfilePage/RepliedArticleTab.js:278
+#: pages/article/[id].js:393
+#: pages/replies.js:248
+msgid "First reported ${ timeAgo }"
+msgstr "รายงานครั้งแรกเมื่อ ${ timeAgo }"
+
+#: components/ReplyInfo.js:18
+#, javascript-format
+msgid "replied ${ timeAgoStr }"
+msgstr "ตอบกลับเมื่อ ${ timeAgoStr }"
+
+#: components/ProfilePage/EditProfileDialog.js:38
+#, javascript-format
+msgid "Changes cannot be saved: ${ error }"
+msgstr "ไม่สามารถบันทึกการเปลี่ยนแปลงได้: ${ error }"
+
+#: components/Infos/TimeInfo.js:52
+msgid "${ formatted } ago"
+msgstr "${ formatted } ก่อนหน้า"
+
+#: components/WonderCallEmbed.js:55
+msgid "Loading contact form"
+msgstr "กำลังโหลดแบบฟอร์มติดต่อ"
+
+#: components/ListPageDisplays/utils.js:11
+msgid "In reference text"
+msgstr "ในข้อความอ้างอิง"
+
+#: components/ListPageDisplays/utils.js:18
+msgid "In linked text"
+msgstr "ในข้อความที่แนบลิงก์"
+
+#: components/ArticleReply/ArticleReply.js:110
+#: pages/article/[id].js:306
+#. t: terms subject 
+msgid "This info"
+msgstr "ข้อมูลนี้"
+
+#: components/ReportPage/SectionFeatures.js:152
+msgid ""
+"An exclusive service keeps users from repeating requests and provides\n"
+"immediate information about false messages in the previous queries."
+msgstr "บริการเฉพาะช่วยให้ผู้ใช้ไม่ต้องส่งคำขอซ้ำ และให้ข้อมูลทันทีเกี่ยวกับข้อความเท็จในคำขอครั้งก่อนหน้า"
+
+#: components/ReportPage/SectionFeatures.js:158
+msgid ""
+"Volunteers would login Cofacts and fact-check the suspicious messages.\n"
+"What fact-checkers have replied and commented would be transparent\n"
+"and reviewed, the achievement was opened and shareable."
+msgstr ""
+"อาสาสมัครจะเข้าสู่ระบบ Cofacts และตรวจสอบข้อความที่น่าสงสัย\\n"
+"สิ่งที่ผู้ตรวจสอบข้อเท็จจริงตอบกลับและแสดงความคิดเห็นจะถูกเปิดเผย\\n"
+"และได้รับการทบทวน ผลลัพธ์ที่เปิดให้แชร์ได้"
+
+#: components/ReportPage/SectionFeatures.js:166
+msgid ""
+"Cofacts has categorized misinformation via topics automatically, making\n"
+"different expertise focus on their professional fields. Such as COVID-19,\n"
+"Vaccine related, propaganda, public policy, or fraud, these could be\n"
+"categorized by Artificial Intelligence."
+msgstr ""
+"Cofacts จัดหมวดหมู่ข้อมูลผิดตามหัวข้อโดยอัตโนมัติ ทำให้\\n"
+"ผู้เชี่ยวชาญที่แตกต่างกันมุ่งเน้นในสาขาวิชาชีพของตน เช่น โควิด-19\\n"
+"ที่เกี่ยวข้องกับวัคซีน การโฆษณาชวนเชื่อ นโยบายสาธารณะ หรือการฉ้อโกง ซึ่งสามารถ\\n"
+"จัดหมวดหมู่ได้ด้วยปัญญาประดิษฐ์"
+
+#: components/ReportPage/SectionFeatures.js:174
+msgid ""
+"Cofacts has provided API connecting instruction, fact-checking system\n"
+"since 2016. This achievement leads the combating misinformation ecosystem.\n"
+"There were third party chatbots connecting to Cofacts open API and IFCN\n"
+"member started to conduct own chatbots."
+msgstr ""
+"Cofacts ได้ให้คำแนะนำการเชื่อมต่อ API ระบบตรวจสอบข้อเท็จจริง\\n"
+"ตั้งแต่ปี 2016 ผลลัพธ์นี้นำระบบนิเวศการต่อสู้กับข้อมูลผิด\\n"
+"มีแชตบอตของบุคคลที่สามเชื่อมต่อกับ API เปิดของ Cofacts และสมาชิก IFCN\\n"
+"เริ่มดำเนินการแชตบอตของตนเอง"
+
+#: components/NewReplySection/index.js:111
+msgid "Please provide reply text."
+msgstr "กรุณาให้ข้อความตอบกลับ"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:248
+msgid ""
+"Note: This is not a comment section! Please write your reply in response to "
+"the reported message above, NOT to other editors' replies below. Please use "
+"the thumb-down button below each reply if you find it not good enough."
+msgstr "หมายเหตุ: นี่ไม่ใช่ส่วนแสดงความคิดเห็น! กรุณาเขียนคำตอบของคุณเป็นคำตอบสำหรับข้อความที่รายงานด้านบน ไม่ใช่คำตอบสำหรับคำตอบของบรรณาธิการคนอื่นด้านล่าง กรุณาใช้ปุ่มนิ้วชี้ลงใต้แต่ละคำตอบหากคุณพบว่าไม่ดีพอ"
+
+#: pages/article/[id].js:507
+msgid "Comments from people reporting this message"
+msgstr "ความคิดเห็นจากผู้คนที่รายงานข้อความนี้"
+
+#: components/ProfilePage/RepliedArticleTab.js:35
+msgid "Most recently replied by any user"
+msgstr "ล่าสุดที่ผู้ใช้คนใดก็ได้ตอบกลับ"
+
+#: components/ProfilePage/RepliedArticleTab.js:259
+#, javascript-format
+msgid "${ totalCount } message matching criteria"
+msgid_plural "${ totalCount } messages matching criteria"
+msgstr[0] "${ totalCount } ข้อความที่ตรงกับเกณฑ์"
+
+#: components/ActionMenu/ReportAbuseMenuItem.js:45
+msgid "Report abuse"
+msgstr "แจ้งการละเมิด"
+
+#: pages/article/[id].js:456
+msgid "Log in to view video content"
+msgstr "เข้าสู่ระบบเพื่อดูเนื้อหาวิดีโอ"
+
+#: pages/article/[id].js:466
+msgid "Log in to view audio content"
+msgstr "เข้าสู่ระบบเพื่อดูเนื้อหาดนตรี"
+
+#: components/Thumbnail.tsx:41
+msgid "A video"
+msgstr "วิดีโอหนึ่งรายการ"
+
+#: components/Thumbnail.tsx:41
+#: components/Thumbnail.tsx:54
+msgid "Preview not supported yet"
+msgstr "ยังไม่ได้รองรับการดูตัวอย่าง"
+
+#: components/Thumbnail.tsx:54
+msgid "An audio"
+msgstr "เสียงหนึ่งรายการ"
+
+#: components/ListPageControls/ArticleTypeFilter.js:13
+msgid "Text"
+msgstr "ข้อความ"
+
+#: components/ListPageControls/ArticleTypeFilter.js:14
+msgid "Image"
+msgstr "รูปภาพ"
+
+#: components/ListPageControls/ArticleTypeFilter.js:15
+msgid "Video"
+msgstr "วิดีโอ"
+
+#: components/ListPageControls/ArticleTypeFilter.js:16
+msgid "Audio"
+msgstr "เสียง"
+
+#: components/ListPageControls/ArticleTypeFilter.js:33
+msgid "Format"
+msgstr "รูปแบบ"
+
+#: components/ProfilePage/CommentTab.js:155
+msgid ""
+"This user does not provide comments to any message in the specified date "
+"range."
+msgstr "ผู้ใช้นี้ไม่ได้ให้ความคิดเห็นใดๆ กับข้อความในช่วงวันที่ที่กำหนด"
+
+#: components/ProfilePage/CommentTab.js:159
+#, javascript-format
+msgid "${ totalCount } comment matching criteria"
+msgid_plural "${ totalCount } comments matching criteria"
+msgstr[0] "${ totalCount } ความคิดเห็นที่ตรงกับเกณฑ์"
+
+#: components/ProfilePage/ProfilePage.js:179
+msgid "Comments"
+msgstr "ความคิดเห็น"
+
+#: components/ProfilePage/Stats.js:61
+msgid "comments"
+msgstr "ความคิดเห็น"
+
+#: components/ProfilePage/CommentTab.js:184
+msgid "${ article.replyCount } reply"
+msgid_plural "${ article.replyCount } replies"
+msgstr[0] "${ article.replyCount } คำตอบ"
+
+#: pages/terms.js:63
+msgid "Github"
+msgstr "Github"
+
+#: pages/terms.js:74
+#, javascript-format
+msgid "See ${ revisionLink } for other revisions of the user agreement."
+msgstr "ดู ${ revisionLink } สำหรับฉบับแก้ไขอื่นๆ ของข้อตกลงผู้ใช้"
+
+#: pages/article/[id].js:410
+#: pages/reply/[id].js:216
+msgid "Log in to view content"
+msgstr "เข้าสู่ระบบเพื่อดูเนื้อหา"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:19
+msgid "Asked only once"
+msgstr "ถามเพียงครั้งเดียว"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:21
+msgid "Zero replies"
+msgstr "ไม่มีคำตอบ"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:24
+msgid "Has useful replies"
+msgstr "มีคำตอบที่เป็นประโยชน์"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:26
+msgid "Not replied by me"
+msgstr "ฉันไม่ได้ตอบกลับ"
+
+#: components/CurrentReplies.js:84
+msgid ""
+"No response has been written yet. It is recommended to maintain a healthy "
+"skepticism towards it."
+msgstr "ยังไม่มีคำตอบที่เขียนไว้ แนะนำให้มีความสงสัยอย่างมีเหตุผลต่อข้อความนั้น"
+
+#: components/AIReplySection/AIReplySection.js:37
+msgid ""
+"The following is the AI's preliminary analysis of this message, which we "
+"hope will provide you with some ideas before it is fact-checked by a human."
+msgstr "ด้านล่างนี้คือการวิเคราะห์เบื้องต้นของ AI สำหรับข้อความนี้ ซึ่งหวังว่าจะให้แนวคิดแก่คุณก่อนที่มนุษย์จะตรวจสอบข้อเท็จจริง"
+
+#: components/Collaborate/CollabEditor.js:121
+msgid "Input transcript"
+msgstr "ป้อนสคริปต์คำพูด"
+
+#: components/Collaborate/CollabEditor.js:211
+msgid "No transcripts yet"
+msgstr "ยังไม่มีสคริปต์คำพูด"
+
+#: components/Collaborate/CollabEditor.js:222
+msgid "Transcribe"
+msgstr "แปลงเป็นสคริปต์คำพูด"
+
+#: components/Collaborate/CollabEditor.js:235
+msgid "Transcript"
+msgstr "สคริปต์คำพูด"
+
+#: components/Collaborate/CollabEditor.js:291
+msgid "Done"
+msgstr "เสร็จสิ้น"
+
+#: components/Collaborate/CollabHistory.js:121
+msgid "Versions"
+msgstr "เวอร์ชัน"
+
+#: components/Collaborate/CollabHistory.js:200
+#, javascript-format
+msgid "Difference between version ${ versionTitle } and its previous version"
+msgstr "ความแตกต่างระหว่างเวอร์ชัน ${ versionTitle } และเวอร์ชันก่อนหน้า"
+
+#: components/Collaborate/CollabHistory.js:237
+msgid "History"
+msgstr "ประวัติ"
+
+#: components/Collaborate/CollabHistory.js:210
+msgid "No histories..."
+msgstr "ยังไม่มีประวัติ..."
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:122
+msgid "Last reported at ${ time }"
+msgstr "รายงานล่าสุดเมื่อ ${ time }"
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:96
+#, javascript-format
+msgid "Sent together ${ entry.count } time"
+msgid_plural "Sent together ${ entry.count } times"
+msgstr[0] "ส่งพร้อมกัน ${ entry.count } ครั้ง"
+
+#: pages/about.js:259
+msgid ""
+"Cofacts is an information checking platform operated through\n"
+"crowd collaboration and chatbot to have discrete messages of\n"
+"unknown credibility carefully reviewed and discussed through\n"
+"the joint efforts of the public. Cofacts can respond to users'\n"
+"questions and requests 24/7 via chatbot. Our website displays\n"
+"all the information collected, and each selfless volunteer contributor\n"
+"can check out on their own results."
+msgstr "Cofacts เป็นแพลตฟอร์มตรวจสอบข้อมูลผ่านการทำงานร่วมกันของชุมชนและแชทบอท เพื่อให้ข้อความที่มีความน่าเชื่อถือไม่แน่นอนได้รับการทบทวนและอภิปรายอย่างรอบคอบผ่านความพยายามร่วมของประชาชน Cofacts สามารถตอบคำถามและคำขอของผู้ใช้ตลอด 24 ชั่วโมงผ่านแชทบอท เว็บไซต์ของเราแสดงข้อมูลที่รวบรวมทั้งหมด และอาสาสมัครผู้มีส่วนร่วมแต่ละคนสามารถตรวจสอบผลลัพธ์ของตนเองได้"
+
+#: pages/about.js:268
+msgid ""
+"Cofacts is a citizen-initiated platform that is not affiliated\n"
+"to any political party or politicians. It opens the results to\n"
+"everyone and encourage crowd collaboration that people contribute\n"
+"their own skills to build a chatbot fact-checking for everyone."
+msgstr "Cofacts เป็นแพลตฟอร์มริเริ่มโดยพลเมืองที่ไม่สังกัดพรรคการเมืองหรือนักการเมืองใด ๆ เปิดผลให้ทุกคนและส่งเสริมการทำงานร่วมกันของชุมชนให้ผู้คนนำทักษะของตนเองมาสร้างการตรวจสอบข้อเท็จจริงด้วยแชทบอทสำหรับทุกคน"
+
+#: pages/about.js:283
+msgid ""
+"You think that the messages you\n"
+"received may be fake"
+msgstr "คุณคิดว่าข้อความที่คุณได้รับอาจเป็นของปลอม"
+
+#: pages/about.js:298
+msgid ""
+"Wanna help elders or friends who can’t\n"
+"fact-check information? Let the chatbot\n"
+"check them for you!"
+msgstr "อยากช่วยผู้สูงอายุหรือเพื่อนที่ไม่สามารถตรวจสอบข้อเท็จจริงของข้อมูลได้? ให้แชทบอทตรวจสอบแทนคุณ!"
+
+#: pages/about.js:330
+msgid ""
+"Cofacts is committed to providing a simple solution to\n"
+"help frontline who suffering from misinformation, and news\n"
+"media workers, media literacy educators and journalists\n"
+"focus on their profession."
+msgstr "Cofacts มุ่งมั่นที่จะนำเสนอแนวทางที่ง่ายเพื่อช่วยผู้ที่ทำงานแนวหน้าซึ่งกำลังทุกข์ทรมานจากข้อมูลเท็จ รวมถึงพนักงานสื่อมวลชน ครูผู้สอนการรู้เท่าทันสื่อ และนักข่าว ให้พวกเขาสามารถมุ่งเน้นในวิชาชีพของตน"
+
+#: pages/about.js:340
+msgid ""
+"All of the source code and fact-checking replies are\n"
+"open and transparent to everyone. Cofacts encourage every\n"
+"citizen to contribute and collaborate; there would be\n"
+"no limit or qualification restriction in Cofacts\n"
+"fact-checking platform."
+msgstr "ซอร์สโค้ดทั้งหมดและการตอบกลับในการตรวจสอบข้อเท็จจริงเปิดกว้างและโปร่งใสสำหรับทุกคน Cofacts ส่งเสริมให้พลเมืองทุกคนมีส่วนร่วมและร่วมมือกัน โดยไม่มีการจำกัดหรือข้อจำกัดด้านคุณสมบัติในแพลตฟอร์มตรวจสอบข้อเท็จจริงของ Cofacts"
+
+#: pages/about.js:351
+msgid ""
+"Cofacts leads in media literacy education and fact-checking\n"
+"skills training. We encourage every individual to do research\n"
+"on information and face misinformation with an active attitude."
+msgstr "Cofacts นำหน้าในด้านการศึกษาการรู้เท่าทันสื่อและการฝึกอบรมทักษะการตรวจสอบข้อเท็จจริง เราส่งเสริมให้แต่ละบุคคลทำการวิจัยเกี่ยวกับข้อมูลและเผชิญกับข้อมูลเท็จด้วยทัศนคติเชิงรุก"
+
+#: pages/about.js:361
+msgid ""
+"The core idea of this project is to make diverse voices easier\n"
+"to be listened to. We believe that fact-checking contents\n"
+"corresponding to rumors on the Internet, personal opinions and\n"
+"following reply articles are all \"diverse voices\". A person may\n"
+"believe online rumors because they have not been exposed to diverse\n"
+"voices, or are unwilling to reach to different voices. However,\n"
+"even if a person is willing to reach diverse voices, the threshold\n"
+"for actions remains very high."
+msgstr "แนวคิดหลักของโครงการนี้คือทำให้เสียงที่หลากหลาย更容易ได้ยิน เรามองว่าเนื้อหาการตรวจสอบข้อเท็จจริงที่สอดคล้องกับข่าวลือบนอินเทอร์เน็ต ความคิดเห็นส่วนตัว และบทความตอบกลับที่เกี่ยวข้องล้วนเป็น \"เสียงที่หลากหลาย\" บุคคลหนึ่งอาจเชื่อข่าวลือออนไลน์เพราะไม่เคยสัมผัสกับเสียงที่หลากหลาย หรือไม่เต็มใจที่จะเข้าถึงเสียงที่แตกต่างกัน อย่างไรก็ตาม แม้บุคคลนั้นจะเต็มใจที่จะเข้าถึงเสียงที่หลากหลาย แต่เกณฑ์ในการลงมือทำยังคงสูงมาก"
+
+#: pages/about.js:371
+msgid ""
+"On the other hand, for people who are used to fact-checking online\n"
+"news, checking all of suspicious LINE messages they receive is very\n"
+"time-consuming. Collaborative fact-checking database is like a jointly\n"
+"edited note. You can leave a response to whatever you fact-check\n"
+"and review in the note, so that when others receive the same message\n"
+"and want to check it, they do not have to start from scratch. Therefore,\n"
+"for people who are accustomed to and willing to do fact-checking\n"
+"and embrace diverse voices, a collaborative rumor-defying database\n"
+"can help them avoid repeated, consuming process."
+msgstr "ในทางกลับกัน สำหรับผู้ที่คุ้นเคยกับการตรวจสอบข่าวออนไลน์ การตรวจสอบข้อความ LINE ที่ต้องสงสัยทั้งหมดที่ได้รับนั้นใช้เวลาอย่างมาก ฐานข้อมูลการตรวจสอบข้อเท็จจริงแบบร่วมมือเปรียบเสมือนบันทึกที่แก้ไขร่วมกัน คุณสามารถทิ้งคำตอบสำหรับการตรวจสอบข้อเท็จจริงและทบทวนในบันทึก ดังนั้น เมื่อผู้อื่นได้รับข้อความเดียวกันและต้องการตรวจสอบ พวกเขาไม่ต้องเริ่มต้นจากศูนย์ ด้วยเหตุนี้ สำหรับผู้ที่คุ้นเคยและเต็มใจที่จะตรวจสอบข้อเท็จจริงและยอมรับเสียงที่หลากหลาย ฐานข้อมูลหักล้างข่าวลือแบบร่วมมือสามารถช่วยให้พวกเขาหลีกเลี่ยงกระบวนการที่ซ้ำซ้อนและสิ้นเปลือง"
+
+#: pages/about.js:385
+msgid ""
+"Cofacts is one of the projects initiated in g0v, a Taiwanese\n"
+"civic technology community, which encourages open source code,\n"
+"collaboration and open data. In 2016, the initiator proposed to\n"
+"develop the main program of the chatbot. With each volunteer's\n"
+"active and enthusiastic contributions in copywriting, developing,\n"
+"fact-checking, and designing, the project has been gradually\n"
+"accumulating results. Further, the value of the project is to\n"
+"encourage citizens to actively contribute to public affairs, and\n"
+"keep the positive, great ideas and energy continuously influencing\n"
+"our society."
+msgstr "Cofacts เป็นหนึ่งในโครงการที่ริเริ่มใน g0v ซึ่งเป็นชุมชนเทคโนโลยีพลเมืองของไต้หวัน ที่ส่งเสริมโค้ดโอเพนซอร์ส การร่วมมือกัน และข้อมูลเปิด ในปี 2016 ผู้ริเริ่มเสนอให้พัฒนาโปรแกรมหลักของแชทบอท ด้วยความมีส่วนร่วมอย่างกระตือรือร้นและกระตือรือร้นของอาสาสมัครแต่ละคนในการเขียนข้อความ การพัฒนา การตรวจสอบข้อเท็จจริง และการออกแบบ โครงการจึงค่อย ๆ สะสมผลลัพธ์ ยิ่งไปกว่านั้น คุณค่าของโครงการคือการส่งเสริมให้พลเมืองมีส่วนร่วมอย่างกระตือรือร้นในกิจการสาธารณะ และรักษาแนวคิดและพลังงานที่ดีและยิ่งใหญ่อย่างต่อเนื่องให้ส่งผลกระทบต่อสังคมของเรา"
+
+#: pages/about.js:397
+msgid ""
+"Cofacts originated as an open-source project in 2016. In 2023, the core "
+"members of Cofacts established an NGO named Cofacts Association in Taiwan "
+"to sustain the Cofacts community."
+msgstr "Cofacts เริ่มต้นเป็นโครงการโอเพนซอร์สในปี 2016 ในปี 2023 สมาชิกหลักของ Cofacts ได้จัดตั้งองค์กรไม่แสวงหากำไรชื่อ สมาคม Cofacts ในไต้หวัน เพื่อสนับสนุนชุมชน Cofacts ต่อไป"
+
+#: components/AIReplySection/AIReplySection.js:31
+msgid "Automated analysis from AI"
+msgstr "การวิเคราะห์อัตโนมัติจาก AI"
+
+#: components/AIReplySection/VoteButtons.tsx:189
+msgid "Do you have anything to add?"
+msgstr "คุณมีอะไรจะเพิ่มเติมไหม?"
+
+#: pages/index.js:29
+msgctxt "site title"
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/Tutorial/TutorialHeader.js:59
+msgctxt "Tutorial"
+msgid "What is Cofacts?"
+msgstr "Cofacts คืออะไร?"
+
+#: components/Tutorial/TutorialHeader.js:66
+msgctxt "Tutorial"
+msgid "How to use it?"
+msgstr "วิธีใช้งาน?"
+
+#: pages/tutorial.js:113
+msgctxt "Tutorial"
+msgid "I'd Fact-check"
+msgstr "ฉันอยากตรวจสอบข้อเท็จจริง"
+
+#: pages/tutorial.js:125
+msgctxt "Tutorial"
+msgid "I'd Review"
+msgstr "ฉันอยากทบทวน"
+
+#: components/LineChart.js:239
+#, javascript-format
+msgctxt "LineChart"
+msgid "${ visit } time"
+msgid_plural "${ visit } times"
+msgstr[0] "${ visit } ครั้ง"
+
+#: components/TrendPlot.js:106
+msgctxt "TrendPlot"
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/TrendPlot.js:135
+msgctxt "TrendPlot"
+msgid "Auntie Meiyu"
+msgstr "ป้าเหม่ยหยู"
+
+#: components/TrendPlot.js:137
+msgctxt "TrendPlot"
+msgid "Dr.Message"
+msgstr "ดร.เมสเสจ"
+
+#: components/TrendPlot.js:139
+msgctxt "TrendPlot"
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+#: components/ReportPage/SectionHowToUse.js:134
+msgctxt "impact"
+msgid "More"
+msgstr "เพิ่มเติม"
+
+#: components/NewReplySection/Mobile.js:172
+msgctxt "Mobile editor tab"
+msgid "Message"
+msgstr "ข้อความ"
+
+#: components/NewReplySection/Mobile.js:173
+msgctxt "Mobile editor tab"
+msgid "Compose"
+msgstr "เขียน"
+
+#: components/ListPageDisplays/ArticleCard.js:119
+msgctxt "Info box"
+msgid "replies"
+msgstr "คำตอบ"
+
+#: components/ListPageDisplays/ArticleCard.js:123
+msgctxt "Info box"
+msgid "reports"
+msgstr "รายงาน"
+
+#: components/ListPageControls/BaseTimeRange.js:67
+msgctxt "Time range dropdown"
+msgid "All"
+msgstr "ทั้งหมด"
+
+#: components/ListPageControls/BaseTimeRange.js:71
+msgctxt "Time range dropdown"
+msgid "Custom"
+msgstr "กำหนดเอง"
+
+#: components/AppLayout/AppHeader.js:150
+#: components/LandingPage/Header.js:264
+msgctxt "App layout"
+msgid "Messages"
+msgstr "ข้อความ"
+
+#: components/AppLayout/AppFooter.js:108
+#: components/AppLayout/AppHeader.js:157
+#: components/LandingPage/Header.js:218
+#: components/LandingPage/Header.js:269
+msgctxt "App layout"
+msgid "Replies"
+msgstr "คำตอบ"
+
+#: components/AppLayout/AppFooter.js:109
+#: components/AppLayout/AppHeader.js:169
+#: components/LandingPage/Header.js:222
+#: components/LandingPage/Header.js:274
+msgctxt "App layout"
+msgid "For You"
+msgstr "สำหรับคุณ"
+
+#: components/AppLayout/AppFooter.js:110
+#: components/AppLayout/AppHeader.js:178
+#: components/LandingPage/Header.js:226
+msgctxt "App layout"
+msgid "Tutorial"
+msgstr "บทเรียน"
+
+#: components/LandingPage/SectionCanDo.js:214
+msgctxt "landing page"
+msgid "Give it a try:"
+msgstr "ลองดู:"
+
+#: components/LandingPage/SectionCanDo.js:235
+msgctxt "landing page"
+msgid "or"
+msgstr "หรือ"
+
+#: components/LandingPage/SectionCanDo.js:241
+msgctxt "landing page"
+msgid "Send hoax message to Cofacts via the LINE app"
+msgstr "ส่งข้อความข่าวลือไปยัง Cofacts ผ่านแอป LINE"
+
+#: components/LandingPage/SectionCanDo.js:231
+msgctxt "landing page"
+msgid "Search"
+msgstr "ค้นหา"
+
+#: components/LandingPage/SectionHow.js:179
+msgctxt "landing page"
+msgid "Crowdsourced and Diverse"
+msgstr " crowdsourced และหลากหลาย"
+
+#: components/LandingPage/SectionHow.js:187
+msgctxt "landing page"
+msgid "Everybody can fact-check the fact checkers"
+msgstr "ทุกคนสามารถตรวจสอบผู้ตรวจสอบข้อเท็จจริงได้"
+
+#: components/LandingPage/SectionJoin.js:216
+msgctxt "landing page"
+msgid "Count me in!"
+msgstr "นับฉันด้วย!"
+
+#: components/LandingPage/SectionArticles.js:147
+msgctxt "landing page"
+msgid "Everyone wants to know..."
+msgstr "ทุกคนอยากรู้..."
+
+#: components/LandingPage/SectionCanDo.js:218
+msgctxt "landing page"
+msgid "Paste a suspicious text message below"
+msgstr "วางข้อความที่สงสัยไว้ด้านล่าง"
+
+#: components/LandingPage/SectionHow.js:171
+msgctxt "landing page"
+msgid "How do we determine truth?"
+msgstr "เราจะตัดสินความจริงอย่างไร?"
+
+#: components/LandingPage/SectionHow.js:182
+msgctxt "landing page"
+msgid ""
+"The fact checking replies are written from other contributors,\n"
+"Cofacts helps you see the diversity of the fact checking process."
+msgstr ""
+"คำตอบการตรวจสอบข้อเท็จจริงเขียนโดยผู้มีส่วนร่วมคนอื่น\\n"
+"Cofacts ช่วยให้คุณเห็นความหลากหลายของกระบวนการตรวจสอบข้อเท็จจริง"
+
+#: components/LandingPage/SectionHow.js:190
+msgctxt "landing page"
+msgid ""
+"We believe there is no omniscient judge.\n"
+"We feel that only through individuals working together can we determine "
+"truth.\n"
+"You can review the others' viewpoints and share your perspective on the "
+"Cofacts platform."
+msgstr ""
+"เราเชื่อว่าไม่มีผู้พิพากษาที่รู้ทุกสิ่ง\\n"
+"เรารู้สึกว่า只有通过ผู้คนทำงานร่วมกันเท่านั้นที่เราจะตัดสินความจริงได้\\n"
+"คุณสามารถทบทวนมุมมองของคนอื่นและแบ่งปันมุมมองของคุณบนแพลตฟอร์ม Cofacts"
+
+#: components/LandingPage/SectionHow.js:197
+msgctxt "landing page"
+msgid "A Community of Mutual Support"
+msgstr "ชุมชนแห่งการสนับสนุนซึ่งกันและกัน"
+
+#: components/LandingPage/SectionHow.js:200
+msgctxt "landing page"
+msgid ""
+"Cofacts is building a community where everyone plays a part in "
+"fact-checking."
+msgstr "Cofacts กำลังสร้างชุมชนที่ทุกคนมีส่วนร่วมในการตรวจสอบข้อเท็จจริง"
+
+#: components/LandingPage/SectionHow.js:204
+msgctxt "landing page"
+msgid ""
+"You can make a difference in others' lives through your contributions to "
+"the fact-checking repository."
+msgstr "คุณสามารถสร้างความแตกต่างในชีวิตของคนอื่นผ่านการมีส่วนร่วมของคุณในคลังข้อมูลการตรวจสอบข้อเท็จจริง"
+
+#: components/LandingPage/SectionJoin.js:202
+msgctxt "landing page"
+msgid "Do you want to join us in fighting disinformation?"
+msgstr "คุณต้องการเข้าร่วมกับเราในการต่อสู้กับข้อมูลเท็จหรือไม่?"
+
+#: components/LandingPage/SectionJoin.js:205
+msgctxt "landing page"
+msgid ""
+"Join us today.\n"
+"The world needs YOUR help!"
+msgstr ""
+"เข้าร่วมกับเราวันนี้\\n"
+"โลกต้องการความช่วยเหลือจากคุณ!"
+
+#: components/LandingPage/SectionJoin.js:208
+msgctxt "landing page"
+msgid ""
+"It doesn't matter whether you've been unhappy with how previous fact checks "
+"were written,\n"
+"found a hoax that hasn't been busted,\n"
+"or are just full of a sense of justice and a desire for truth,\n"
+"YOU could be the next misinformation-busting warrior!"
+msgstr ""
+"ไม่สำคัญว่าคุณจะไม่พอใจกับการเขียนการตรวจสอบข้อเท็จจริงก่อนหน้า\\n"
+"พบข่าวลือที่ยังไม่ได้ถูกเปิดเผย\\n"
+"หรือมีแต่ความรู้สึกยุติธรรมและความปรารถนาในความจริง\\n"
+"คุณอาจเป็นนักรบผู้ทำลายข้อมูลผิดคนต่อไป!"
+
+#: components/LandingPage/SectionNews.js:440
+msgctxt "landing page"
+msgid "Look mom, it's me!"
+msgstr "ดูแม่ ฉันเอง!"
+
+#: components/LandingPage/Stats.js:182
+msgctxt "landing page"
+msgid "Fact Checker Daily Statistics"
+msgstr "สถิติรายวันของผู้ตรวจสอบข้อเท็จจริง"
+
+#: components/LandingPage/Stats.js:184
+msgctxt "landing page"
+msgid "Check out what we've been able to accomplish together."
+msgstr "ดูสิ่งที่เราสามารถบรรลุร่วมกันได้"
+
+#: components/LandingPage/SectionContribute.js:121
+msgctxt "landing page"
+msgid ""
+"We need your help!\n"
+"Join us today!"
+msgstr ""
+"เราต้องการความช่วยเหลือจากคุณ!\\n"
+"เข้าร่วมกับเราวันนี้!"
+
+#: components/AppLayout/UpgradeDialog.js:305
+msgctxt "upgrade dialog"
+msgid "Congratulations!"
+msgstr "ยินดีด้วย!"
+
+#: components/AppLayout/UpgradeDialog.js:308
+msgctxt "upgrade dialog"
+msgid "You can keep leveling up after your level-up!"
+msgstr "คุณสามารถยกระดับต่อหลังจากที่คุณยกระดับแล้ว!"
+
+#: components/AppLayout/UpgradeDialog.js:328
+msgctxt "upgrade dialog"
+msgid "EXP"
+msgstr "EXP"
+
+#: components/AppLayout/UpgradeDialog.js:359
+msgctxt "upgrade dialog"
+msgid "Keep up the good work and save the world!"
+msgstr "ทำต่อไปและช่วยโลก!"
+
+#: components/AppLayout/UpgradeDialog.js:363
+msgctxt "upgrade dialog"
+msgid "I've got your back"
+msgstr "ฉันอยู่ข้างหลังคุณ"
+
+#: components/AppLayout/UpgradeDialog.js:356
+#, javascript-format
+msgctxt "upgrade dialog"
+msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
+msgstr "เฮ้! ${ LEVEL_NAMES[nextLevel] }"

@@ -1,0 +1,2822 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals = 1; plural = 0;\n"
+"Language: ko\n"
+"mime-version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: components/AppLayout/AppFooter.js:118
+#: components/AppLayout/AppSidebar.js:131
+msgid "About"
+msgstr "소개"
+
+#: components/ReportPage/SectionEcosystem.js:175
+#: pages/article/[id].js:403
+#: pages/article/[id].js:422
+#: pages/reply/[id].js:209
+#: pages/reply/[id].js:239
+msgid "Cofacts"
+msgstr "코팩츠"
+
+#: components/ArticleCategories/DownVoteDialog.js:98
+#: components/NewReplySection/Mobile.js:140
+#: components/ProfilePage/EditAvatarDialog.js:236
+#: components/ProfilePage/EditProfileDialog.js:93
+msgid "Cancel"
+msgstr "취소"
+
+#: components/AppLayout/AppHeader.js:332
+#: components/AppLayout/AppSidebar.js:92
+#: components/LandingPage/Header.js:246
+#: components/LandingPage/Header.js:296
+msgid "Login"
+msgstr "로그인"
+
+#: components/AppLayout/AppHeader.js:274
+#: components/AppLayout/AppSidebar.js:158
+msgid "Logout"
+msgstr "로그아웃"
+
+#: components/SearchPageJumbotron.js:140
+msgid "Replies"
+msgstr "답변"
+
+#: components/ArticleInfo.js:72
+#: components/Infos/ReplyCountInfo.js:58
+msgid "${ replyCount } response"
+msgid_plural "${ replyCount } responses"
+msgstr[0] "${ replyCount }개의 답변"
+
+#: components/ListPageControls/BaseSortInput.js:60
+msgid "Sort by"
+msgstr "정렬 기준"
+
+#: components/ProfilePage/RepliedArticleTab.js:36
+#: pages/articles.js:143
+#: pages/replies.js:128
+msgid "Most recently asked"
+msgstr "최근 질문"
+
+#: components/ProfilePage/RepliedArticleTab.js:33
+#: pages/articles.js:145
+#: pages/replies.js:127
+msgid "Most recently replied"
+msgstr "최근 답변"
+
+#: components/ProfilePage/RepliedArticleTab.js:37
+#: pages/articles.js:144
+#: pages/replies.js:129
+msgid "Most asked"
+msgstr "가장 많이 질문됨"
+
+#: pages/api/articles/[feed].js:164
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reported Message"
+msgstr "신고된 메시지"
+
+#: components/ArticleReply/ArticleReply.js:103
+msgid "Reason"
+msgstr "사유"
+
+#: components/ArticleReply/ArticleReply.js:104
+msgid "Details"
+msgstr "상세 정보"
+
+#: pages/api/articles/[feed].js:177
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Reference"
+msgstr "참고 자료"
+
+#: components/ArticleCategories/DownVoteDialog.js:70
+#: components/ArticleReplySummary.js:37
+#: components/ReplyRequestReason/ReplyRequestReason.js:128
+msgid "Someone"
+msgstr "익명 사용자"
+
+#: components/ArticleReply/ArticleReply.js:133
+msgid "There is no reference for this reply. Its truthfulness may be doubtful."
+msgstr "이 답변에는 출처가 없습니다. 사실 여부는 불확실할 수 있습니다."
+
+#: components/ArticleReply/ReplyShare.js:85
+#: components/CopyButton.js:15
+#: components/Subscribe/IFTTTItem.js:207
+msgid "Copy"
+msgstr "복사"
+
+#: components/CurrentReplies.js:44
+msgid "Deleted replies"
+msgstr "삭제된 답변"
+
+#: components/ArticleReply/ReplyActions.js:85
+msgid "Restore"
+msgstr "복원"
+
+#: components/CurrentReplies.js:64
+#, javascript-format
+msgid "${ items.length } reply"
+msgid_plural "${ items.length } replies"
+msgstr[0] "${ items.length }개의 답변"
+
+#: components/CurrentReplies.js:74
+msgid "There are ${ replyLink } deleted by its author."
+msgstr "${ replyLink }이(가) 작성자에 의해 삭제되었습니다."
+
+#: components/ArticleReply/ReplyActions.js:85
+msgid "Delete"
+msgstr "삭제"
+
+#: components/ArticleCategories/DownVoteDialog.js:99
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+#: components/ListPageControls/Filters.js:88
+#: components/NewReplySection/ReplyForm/Submit.js:28
+#: components/ProfilePage/EditAvatarDialog.js:241
+#: components/ProfilePage/EditProfileDialog.js:98
+msgid "Submit"
+msgstr "제출"
+
+#: components/AIReplySection/VoteButtons.tsx:214
+#: components/ArticleCategories/CategoryOption.js:364
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:238
+msgid "Thank you for the feedback."
+msgstr "피드백을 감사합니다."
+
+#: pages/article/[id].js:284
+msgid "Your reply has been submitted."
+msgstr "답변이 제출되었습니다."
+
+#: components/Collaborate/CollabEditor.js:151
+#: components/NewReplySection/index.js:137
+#: lib/apollo.js:47
+msgid "Please login first."
+msgstr "먼저 로그인해 주세요."
+
+#: pages/search.js:306
+msgid "Search"
+msgstr "검색"
+
+#: components/NewReplySection/ReplySearch/ReplySearch.js:104
+#, javascript-format
+msgid "Searching for messages and replies containing “${ variables.query }”..."
+msgstr "“${ variables.query }”가 포함된 메시지와 답변을 검색하는 중..."
+
+#: components/AppLayout/LoginModal.js:134
+msgid "Login / Signup"
+msgstr "로그인 / 가입"
+
+#: constants/replyType.js:79
+msgid "This message cannot or should not be processed by Cofacts editors."
+msgstr "이 메시지는 Cofacts 편집자가 처리할 수 없거나 처리하지 않아야 합니다."
+
+#: constants/replyType.js:80
+msgid "The message has some of its content proved to be true."
+msgstr "메시지의 일부 내용이 사실로 확인되었습니다."
+
+#: constants/replyType.js:81
+msgid ""
+"The message contains personal opinion, unproven hypotheses, conspiracy "
+"theories, studies that has not reached concensus, inferences of political "
+"policies, etc."
+msgstr "메시지에 개인 의견, 입증되지 않은 가설, 음모론, 합의에 도달하지 못한 연구, 정치 정책에 대한 추론 등이 포함되어 있습니다."
+
+#: constants/replyType.js:82
+msgid "This message has some of its content proved to be false."
+msgstr "메시지의 일부 내용이 허위로 확인되었습니다."
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:313
+msgid "Facebook"
+msgstr "Facebook"
+
+#: components/AppLayout/AppSidebar.js:127
+#: components/LandingPage/SectionCanDo.js:253
+msgid "Tutorial"
+msgstr "튜토리얼"
+
+#: pages/reply/[id].js:214
+#: pages/reply/[id].js:245
+msgid "This reply"
+msgstr "이 답변"
+
+#: pages/api/articles/[feed].js:173
+#: pages/reply/[id].js:275
+msgid "someone"
+msgstr "누군가"
+
+#: components/LandingPage/Stats.js:145
+#. we hold ~ 
+msgid "a gathering of editors."
+msgstr "편집자들의 모임입니다."
+
+#: components/LandingPage/Stats.js:200
+#, javascript-format
+msgid "About ${ newMessageCount } new messages entering our database each week."
+msgstr "매주 데이터베이스에 ${ newMessageCount }개의 새 메시지가 들어옵니다."
+
+#: components/LandingPage/Stats.js:203
+msgid ""
+"About ${ userForwardingCount } people forwarding new messages to our "
+"database each week."
+msgstr "매주 ${ userForwardingCount }명이 새 메시지를 데이터베이스로 전달합니다."
+
+#: components/LandingPage/Stats.js:206
+#, javascript-format
+msgid "But less than ${ editorCount } active editors can help us respond each week."
+msgstr "하지만 매주 우리를 도와 답변할 수 있는 활성 편집자는 ${ editorCount }명 미만입니다."
+
+#: components/LandingPage/Stats.js:209
+#, javascript-format
+msgid "Every ${ meetupFrequency } months we hold ${ gathering }"
+msgstr "매 ${ meetupFrequency }개월마다 ${ gathering }을(를) 개최합니다"
+
+#: pages/index.js:31
+msgid ""
+"Cofacts is a collaborative system connecting instant messages and "
+"fact-check reports or different opinions together. It's a grass-root effort "
+"fighting mis/disinformation in Taiwan."
+msgstr "Cofacts는 인스턴트 메시지와 팩트체크 보고서 또는 다양한 의견을 연결하는 협력 시스템입니다. 대만에서 오/허정보와 싸우는 풀뿌리 노력입니다."
+
+#: components/ProfilePage/ProfilePage.js:107
+#: pages/article/[id].js:324
+#: pages/article/[id].js:328
+#: pages/reply/[id].js:170
+#: pages/reply/[id].js:174
+msgid "Loading"
+msgstr "로딩 중"
+
+#: pages/article/[id].js:339
+#: pages/reply/[id].js:185
+msgid "Not found"
+msgstr "찾을 수 없음"
+
+#: pages/reply/[id].js:189
+msgid "Reply does not exist"
+msgstr "답변이 존재하지 않습니다"
+
+#: pages/article/[id].js:343
+msgid "Message does not exist"
+msgstr "메시지가 존재하지 않습니다"
+
+#: pages/reply/[id].js:291
+#, javascript-format
+msgid "Added by ${ editorElem }"
+msgstr "${ editorElem }이(가) 추가함"
+
+#: pages/api/articles/[feed].js:132
+#. Use &amp; for XML meta tags
+msgid "Cofacts reported messages"
+msgstr "Cofacts가 보고한 메시지"
+
+#: pages/api/articles/[feed].js:134
+#. Use &amp; for XML meta tags
+msgid "List of messages reported by Cofacts users"
+msgstr "Cofacts 用户报告的留言列表"
+
+#: components/Subscribe/FeedDisplay.js:114
+msgid "Via Feedrabbit"
+msgstr "通过 Feedrabbit"
+
+#: pages/api/articles/[feed].js:171
+#. https://stackoverflow.com/a/54905457/1582110
+msgid "Latest reply"
+msgstr "最新回复"
+
+#: components/AppLayout/AppFooter.js:106
+msgid "Fact Check"
+msgstr "事实核查"
+
+#: components/AppLayout/AppFooter.js:146
+#: components/AppLayout/AppSidebar.js:136
+msgid "Contact Us"
+msgstr "联系我们"
+
+#: components/AppLayout/AppHeader.js:266
+#: components/AppLayout/AppSidebar.js:119
+msgid "My Profile"
+msgstr "我的主页"
+
+#: components/AppLayout/AppFooter.js:159
+msgid "Facebook forum"
+msgstr "Facebook 社团"
+
+#: components/AppLayout/AppFooter.js:172
+#: components/ReportPage/SectionSponsor.js:246
+msgid "Donate to Cofacts"
+msgstr "向 Cofacts 捐款"
+
+#: components/AppLayout/AppFooter.js:130
+msgid "Impact Report"
+msgstr "影响力报告"
+
+#: constants/replyType.js:72
+msgid "invalid request"
+msgstr "无效请求"
+
+#: constants/replyType.js:73
+msgid "contains personal perspective"
+msgstr "包含个人观点"
+
+#: constants/replyType.js:74
+msgid "contains true information"
+msgstr "包含正确信息"
+
+#: constants/replyType.js:75
+msgid "contains misinformation"
+msgstr "包含错误信息"
+
+#: pages/replies.js:260
+msgid "Bust Hoaxes"
+msgstr "揭穿谣言"
+
+#: components/AppLayout/AppFooter.js:107
+#: components/LandingPage/Header.js:215
+#: components/SearchPageJumbotron.js:139
+msgid "Messages"
+msgstr "留言"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:25
+msgid "Replied by me"
+msgstr "我已回复"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:23
+msgid "No useful reply yet"
+msgstr "暂无有效回复"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:20
+msgid "Asked many times"
+msgstr "多次提问"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:22
+msgid "Replied many times"
+msgstr "多次回复"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:132
+#: components/ListPageControls/Filters.js:70
+msgid "Filter"
+msgstr "筛选"
+
+#: components/ListPageControls/CategoryFilter.js:54
+msgid "Topic"
+msgstr "主题"
+
+#: components/ListPageControls/CategoryFilter.js:57
+msgid "All Topics"
+msgstr "所有主题"
+
+#: components/ListPageControls/LoadMore.js:62
+msgid "Load More"
+msgstr "加载更多"
+
+#: pages/hoax-for-you.js:118
+#: pages/hoax-for-you.js:120
+msgid "Hoax for you"
+msgstr "为您推荐的谣言"
+
+#: pages/replies.js:211
+#: pages/replies.js:214
+msgid "Latest replies"
+msgstr "最新回复"
+
+#: components/ExpandableText.js:53
+msgid "Show Less"
+msgstr "접기"
+
+#: components/ExpandableText.js:53
+msgid "Show More"
+msgstr "더 보기"
+
+#: components/Subscribe/FeedDisplay.js:87
+msgid "Subscribe"
+msgstr "구독"
+
+#: components/ArticleReplyFeedbackControl/ButtonGroupDisplay.js:113
+msgid "See Reasons"
+msgstr "이유 보기"
+
+#: components/AIReplySection/VoteButtons.tsx:207
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:231
+msgid "Send"
+msgstr "보내기"
+
+#: components/ListPageControls/BaseTimeRange.js:68
+msgid "In 1 Day"
+msgstr "1일 이내"
+
+#: components/ListPageControls/BaseTimeRange.js:69
+msgid "In 1 Week"
+msgstr "1주 이내"
+
+#: components/ListPageControls/BaseTimeRange.js:70
+msgid "In 1 Month"
+msgstr "1개월 이내"
+
+#: components/ListPageControls/BaseTimeRange.js:162
+msgid "to"
+msgstr "~까지"
+
+#: components/ArticleCategories/CategoryOption.js:357
+msgid "See examples"
+msgstr "예시 보기"
+
+#: components/ArticleCategories/AddCategoryDialog.js:67
+msgid "Categorize this message"
+msgstr "이 메시지 분류하기"
+
+#: components/ArticleCategories/DownVoteDialog.js:57
+msgid "Report wrong category"
+msgstr "분류 오류 신고"
+
+#: components/ArticleCategories/DownVoteDialog.js:85
+msgid ""
+"Please share with us why you think this message does not belong to this "
+"category"
+msgstr "이 메시지가 해당 분류에 속하지 않는다고 생각하는 이유를 알려주세요."
+
+#: components/AppLayout/GlobalSearch.js:145
+msgid "in Messages"
+msgstr "메시지에서"
+
+#: components/AppLayout/GlobalSearch.js:150
+msgid "in Replies"
+msgstr "답변에서"
+
+#: pages/articles.js:132
+#: pages/articles.js:134
+msgid "Dubious Messages"
+msgstr "의심스러운 메시지"
+
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:204
+msgid "Do you have any thing to add?"
+msgstr "추가할 내용이 있으신가요?"
+
+#: components/AIReplySection/VoteButtons.tsx:190
+#: components/ArticleReplyFeedbackControl/ArticleReplyFeedbackControl.js:205
+msgid "Why do you think it is not useful?"
+msgstr "도움이 되지 않는다고 생각하시는 이유는 무엇인가요?"
+
+#: components/Collaborate/CollabHistory.js:181
+#: components/LandingPage/SectionArticles.js:153
+#: components/ProfilePage/CommentTab.js:151
+#: components/ProfilePage/RepliedArticleTab.js:251
+#: pages/articles.js:158
+#: pages/hoax-for-you.js:133
+#: pages/replies.js:231
+#: pages/search.js:177
+#: pages/search.js:256
+msgid "Loading..."
+msgstr "로딩 중..."
+
+#: components/AppLayout/AppFooter.js:119
+msgid "About Cofacts"
+msgstr "코팩츠 소개"
+
+#: components/Subscribe/FeedDisplay.js:113
+msgid "Email"
+msgstr "이메일"
+
+#: components/Subscribe/FeedDisplay.js:128
+msgid "Feedly"
+msgstr "Feedly"
+
+#: components/Subscribe/FeedDisplay.js:136
+msgid "Get RSS Feed Link"
+msgstr "RSS 피드 링크 가져오기"
+
+#: components/Subscribe/FeedDisplay.js:139
+msgid "Through IFTTT to"
+msgstr "IFTTT를 통해 ~으로"
+
+#: components/ArticleInfo.js:47
+#, javascript-format
+msgid "${ replyRequestCount } occurrence"
+msgid_plural "${ replyRequestCount } occurrences"
+msgstr[0] "${ replyRequestCount }회 발생"
+
+#: components/SearchPageJumbotron.js:112
+msgid "Searching"
+msgstr "검색 중"
+
+#: pages/article/[id].js:385
+#, javascript-format
+msgid "${ replyRequestCount } person report this message"
+msgid_plural "${ replyRequestCount } people report this message"
+msgstr[0] "${ replyRequestCount } 명이 이 메시지의 진위를 알고 싶어합니다"
+
+#: pages/article/[id].js:608
+msgid "Similar messages"
+msgstr "유사한 의심스러운 메시지"
+
+#: pages/article/[id].js:637
+msgid "No similar messages found"
+msgstr "유사한 의심스러운 메시지를 찾을 수 없습니다"
+
+#: components/RelatedReplies.js:105
+msgid "View in new tab"
+msgstr "새 탭에서 원문 보기"
+
+#: components/RelatedReplies.js:114
+msgid "Message below was considered"
+msgstr "아래 메시지는 다음과 같이 표시되었습니다:"
+
+#: components/RelatedReplies.js:118
+msgid "Related article"
+msgstr "관련 메시지 원문"
+
+#: components/RelatedReplies.js:133
+msgid "Related reply"
+msgstr "사실 확인 답변"
+
+#: components/ReplyInfo.js:23
+msgid "originally written by ${ user.name }"
+msgstr "${ user.name }의 사실 확인 답변 인용"
+
+#: components/ReplyInfo.js:26
+#, javascript-format
+msgid "${ referenceCount } reference"
+msgid_plural "${ referenceCount } references"
+msgstr[0] "원본 답변이 ${ referenceCount } 회 인용됨"
+
+#: components/ArticleReply/ReplyShare.js:83
+#: components/Subscribe/FeedDisplay.js:134
+#: components/Subscribe/IFTTTItem.js:206
+msgid "Copied to clipboard!"
+msgstr "클립보드에 복사되었습니다!"
+
+#: components/NewReplySection/Desktop.js:103
+msgid "You will gain 1 point by submitting the reply"
+msgstr "이 사실 확인 답변을 제출하면 공정 점수 1점을 획득할 수 있습니다"
+
+#: components/NewReplySection/Desktop.js:112
+msgid "Related messages and replies"
+msgstr "관련 의심스러운 메시지 및 답변"
+
+#: components/NewReplySection/Desktop.js:123
+#: components/NewReplySection/Mobile.js:260
+msgid "Use this reply"
+msgstr "이 답변 바로 사용"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:107
+msgid "All messages"
+msgstr "전체 메시지"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:108
+msgid "My messages"
+msgstr "내 메시지"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:109
+msgid "All replies"
+msgstr "전체 답변"
+
+#: components/NewReplySection/ReplySearch/SearchBar.js:110
+msgid "My replies"
+msgstr "내 답변"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:64
+msgid ""
+"Inserting blank lines between reference items can improve readability in "
+"LINE."
+msgstr "참고 항목 사이에 빈 줄을 삽입하면 LINE에서 가독성을 높일 수 있습니다."
+
+#: components/ListPageDisplays/ReplySearchItem.js:167
+#, javascript-format
+msgid "This reply is also used in ${ replyCount } other message"
+msgid_plural "This reply is also used in ${ replyCount } other messages"
+msgstr[0] "이 사실 확인 답변은 다른 ${ replyCount }개의 의심스러운 메시지에 사용되었습니다"
+
+#: components/ListPageDisplays/ReplySearchItem.js:173
+msgid "view"
+msgstr "보기"
+
+#: components/ListPageDisplays/ReplySearchItem.js:178
+msgid "This reply is used in following messages"
+msgstr "이 사실 확인 답변은 다음 의심스러운 메시지에 사용되었습니다"
+
+#: components/ListPageControls/ReplyTypeFilter.js:33
+msgid "Marked as"
+msgstr "다음으로 표시됨:"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:257
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:348
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:361
+msgid "Reply to this message"
+msgstr "이 메시지에 사실 확인 답변하기"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:268
+msgid "Update comment"
+msgstr "댓글 업데이트"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:268
+msgid "Comment"
+msgstr "댓글"
+
+#: components/ArticleReply/ReplyShare.js:74
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:276
+msgid "Share"
+msgstr "공유"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:137
+#, javascript-format
+msgid "Helpful ${ articleReply.positiveFeedbackCount }"
+msgstr "도움이 됨 ${ articleReply.positiveFeedbackCount }"
+
+#: components/ArticleReplyFeedbackControl/ReasonsDisplay.js:141
+msgid "Not Helpful ${ articleReply.negativeFeedbackCount }"
+msgstr "도움이 안 됨 ${ articleReply.negativeFeedbackCount }"
+
+#: components/ArticleReply/ReplyShare.js:64
+msgid "Successfylly Shared!"
+msgstr "성공적으로 공유되었습니다!"
+
+#: components/ArticleReplySummary.js:43
+#, javascript-format
+msgid "${ authorElem } mark this message ${ TYPE_NAME[replyType] }"
+msgstr "${ authorElem } 님이 이 메시지를 ${ TYPE_NAME[replyType] } 로 표시했습니다"
+
+#: components/ArticleCategories/AddCategoryDialog.js:70
+msgid ""
+"Articles are mostly categorized by AI based on our current data, but you "
+"can provide your own opinion to improved the categorization."
+msgstr "아티클은 현재 데이터를 기반으로 AI가 대부분 분류하지만, 분류를 개선하기 위해 직접 의견을 제시할 수 있습니다."
+
+#: components/ArticleCategories/CategoryOption.js:286
+msgid "Marked"
+msgstr "표시됨"
+
+#: components/ArticleCategories/CategoryOption.js:316
+msgid "Agree"
+msgstr "동의"
+
+#: components/ArticleCategories/CategoryOption.js:337
+msgid "Disagree"
+msgstr "반대"
+
+#: components/ArticleCategories/ArticleCategories.js:94
+msgid "Suggest categories"
+msgstr "카테고리 제안"
+
+#: components/ArticleCategories/CategoryOption.js:299
+msgid "Mark"
+msgstr "표시"
+
+#: components/NewReplySection/Desktop.js:69
+#: components/NewReplySection/Mobile.js:150
+msgid "Compose a new reply"
+msgstr "새로운 답변 작성"
+
+#: components/NewReplySection/Desktop.js:73
+#: components/NewReplySection/Mobile.js:153
+msgid "Use existing replies"
+msgstr "기존 답변 사용"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:317
+msgid "Keep composing my reply with this"
+msgstr "이것으로 내 답변을 계속 작성하기"
+
+#: components/NewReplySection/ReplyForm/TypeSelect.js:32
+msgid "I think this message"
+msgstr "나는 이 메시지가"
+
+#: components/ArticleCategories/CategoryOption.js:309
+msgid "Unmark"
+msgstr "표시 해제"
+
+#: components/LineChart.js:355
+msgid "Web Visit"
+msgstr "웹 방문"
+
+#: components/LineChart.js:357
+msgid "Line Inquiry"
+msgstr "라인 문의"
+
+#: components/TrendPlot.js:162
+#, javascript-format
+msgid "Web Visit: ${ totalWebVisits }"
+msgstr "웹 방문: ${ totalWebVisits }"
+
+#: components/TrendPlot.js:170
+#, javascript-format
+msgid "Web: ${ totalWebVisits }"
+msgstr "웹: ${ totalWebVisits }"
+
+#: components/TrendPlot.js:165
+msgid "Line Inquery: ${ totalLineVisits }"
+msgstr "라인 문의: ${ totalLineVisits }"
+
+#: components/TrendPlot.js:173
+msgid "Line: ${ totalLineVisits }"
+msgstr "라인: ${ totalLineVisits }"
+
+#: components/TrendPlot.js:177
+#, javascript-format
+msgid "Total Visit: ${ totalVisits }"
+msgstr "총 방문: ${ totalVisits }"
+
+#: components/ListPageDisplays/ReplySearchItem.js:103
+#: components/ProfilePage/CommentTab.js:169
+#: components/ProfilePage/RepliedArticleTab.js:269
+#: pages/replies.js:241
+#, javascript-format
+msgid "${ article.replyRequestCount } occurrence"
+msgid_plural "${ article.replyRequestCount } occurrences"
+msgstr[0] "${ article.replyRequestCount } 회 발생"
+
+#: pages/reply/[id].js:125
+#, javascript-format
+msgid "${ otherCount } other reply"
+msgid_plural "${ otherCount } other replies"
+msgstr[0] "다른 ${ otherCount }개의 답변"
+
+#: pages/reply/[id].js:251
+msgid "The reply is used in the following messages"
+msgstr "이 답변은 다음 메시지에 사용되었습니다"
+
+#: pages/reply/[id].js:265
+msgid "Deleted by its author"
+msgstr "작성자가 삭제했습니다"
+
+#: pages/reply/[id].js:311
+msgid "Similar replies"
+msgstr "유사한 답변"
+
+#: pages/reply/[id].js:324
+#, javascript-format
+msgid "Used in ${ node.articleReplies.length } message"
+msgid_plural "Used in ${ node.articleReplies.length } messages"
+msgstr[0] "${ node.articleReplies.length }개의 메시지에 사용됨"
+
+#: pages/reply/[id].js:336
+msgid "No similar replies found"
+msgstr "유사한 답변을 찾을 수 없습니다"
+
+#: components/Hyperlinks.js:134
+msgid "Domain name cannot be resolved"
+msgstr "도메인 이름을 해석할 수 없습니다"
+
+#: components/Hyperlinks.js:137
+msgid "URL is malformed or not supported"
+msgstr "URL 형식이 잘못되었거나 지원되지 않습니다"
+
+#: components/Hyperlinks.js:139
+msgid "Cannot get data from URL"
+msgstr "URL에서 데이터를 가져올 수 없습니다"
+
+#: components/Hyperlinks.js:141
+msgid "Target site contains HTTPS error"
+msgstr "대상 사이트에 HTTPS 오류가 있습니다"
+
+#: components/Hyperlinks.js:143
+msgid "Unknown error"
+msgstr "알 수 없는 오류"
+
+#: pages/article/[id].js:558
+#, javascript-format
+msgid "There is ${ replyCount } fact-checking reply to the message"
+msgid_plural "There are ${ replyCount } fact-checking replies to the message"
+msgstr[0] "해당 메시지에 대한 팩트체크 답변이 ${ replyCount }개 있습니다"
+
+#: pages/article/[id].js:590
+#: pages/article/[id].js:648
+msgid "Add Cofacts as friend in LINE"
+msgstr "LINE에서 Cofacts를 친구로 추가하기"
+
+#: components/TrendPlot.js:159
+msgid "Past 31 days"
+msgstr "최근 31일"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:138
+msgid "Please provide more info"
+msgstr "더 많은 정보를 제공해 주세요"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:221
+msgid ""
+"Did you find anything suspicious about the message after you search "
+"Facebook & Google?"
+msgstr "Facebook과 Google에서 검색한 후, 메시지에서 의심스러운 점을 발견하셨나요?"
+
+#: components/CreateReplyRequestForm/CreateReplyRequestForm.js:233
+msgid ""
+"Please provide paragraphs you find controversial, or related news, image & "
+"video material you have found."
+msgstr "논쟁적인 단락을 제공하거나, 찾은 관련 뉴스, 이미지 및 영상 자료를 공유해 주세요."
+
+#: components/LandingPage/SectionFeature.js:110
+msgid "Real-Time Response"
+msgstr "실시간 응답"
+
+#: components/LandingPage/SectionFeature.js:111
+msgid ""
+"Once someone respond to your pending request, the chatbot\n"
+"will answer you through LINE. It's fast and immediate, you\n"
+"don't even have to wait. Better yet, you don't even need to\n"
+"say ‘thank you'. Ask the bot to verify for you, no need to\n"
+"feel uncomfortable asking it for favors."
+msgstr "누군가가 대기 중인 요청에 응답하면, 챗봇이 LINE을 통해 답변해 드립니다. 빠르고 즉시 처리되므로 기다릴 필요가 없습니다. 더 나아가, '감사합니다'라고 말할 필요도 없습니다. 봇에게 대신 검증해 달라고 요청하세요, 도움을 청하는 것이 어색하지 않습니다."
+
+#: components/LandingPage/SectionFeature.js:120
+msgid "Crowdsourcing"
+msgstr "크라우드소싱"
+
+#: components/LandingPage/SectionFeature.js:121
+msgid ""
+"Anyone can verify and respond to other's requests on\n"
+"possible hoax and upload it into our database. We encourage\n"
+"citizens to join our program, even invite your mom and dad\n"
+"to join."
+msgstr "누구나 잠재적 허위 정보에 대해 타인의 요청을 검증하고 응답하여 데이터베이스에 업로드할 수 있습니다. 시민들이 우리 프로그램에 참여하도록 장려하며, 부모님까지 초대해 보세요."
+
+#: components/LandingPage/SectionFeature.js:129
+msgid "Different Views"
+msgstr "다양한 관점"
+
+#: components/LandingPage/SectionFeature.js:130
+msgid ""
+"Knowing what's fact and what's an opinion. Seeing different\n"
+"sides of the story makes you realize your own blindspot,\n"
+"allowing everyone to respect each other's perspectives."
+msgstr "사실이 무엇이고 의견이 무엇인지 아는 것. 이야기의 다른 측면을 보는 것은 자신의 맹점을 인식하게 하여, 모든 사람이 서로의 관점을 존중할 수 있게 합니다."
+
+#: components/LandingPage/SectionFeature.js:137
+msgid "Open Source Authorization"
+msgstr "오픈 소스 라이선스"
+
+#: components/LandingPage/SectionFeature.js:138
+msgid ""
+"Codes of different patches, meeting records and database\n"
+"statistics are all opened to public. We encourage more open\n"
+"source data; work and share with others in a transparent\n"
+"environment, create different possibilities."
+msgstr "다양한 패치의 코드, 회의록 및 데이터베이스 통계는 모두 대중에게 공개됩니다. 우리는 더 많은 오픈 소스 데이터를 장려하며, 투명한 환경에서 협력하고 공유하여 다양한 가능성을 창출합니다."
+
+#: components/LandingPage/SectionContribute.js:132
+msgid ""
+"Cofacts needs all of you to help our current program to be more\n"
+"efficient and complete. This collaborate program cannot be completed\n"
+"by a small community, we need everyone to contribute, write codes,\n"
+"bust hoaxes and research. Self-motivated researching and responding\n"
+"is the way to transcend this program into something great."
+msgstr ""
+"Cofacts는 여러분 모두의 도움이 필요합니다. 현재의 프로그램을 더 효율적이고 완전하게 만들기 위해.\\n"
+"이 협업 프로그램은 작은 커뮤니티만으로는 완성될 수 없으며, 우리는 모든 사람이 기여하고, 코드를 작성하고, 가짜 뉴스를 폭로하고, 연구를 하는 것을 필요로 합니다. 자발적인 연구와 응답은 이 프로그램을 위대한 무언가로 초월하는 방법입니다."
+
+#: components/LandingPage/SectionContribute.js:141
+msgid "I want to learn how to use Cofacts"
+msgstr "Cofacts 사용법을 배우고 싶습니다"
+
+#: components/LandingPage/SectionContribute.js:146
+msgid "I can help bust hoaxes"
+msgstr "가짜 뉴스 폭로에 도움을 줄 수 있습니다"
+
+#: components/LandingPage/SectionContribute.js:156
+msgid "I can help with coding"
+msgstr "코딩에 도움을 줄 수 있습니다"
+
+#: components/AppLayout/AppFooter.js:122
+msgid "Introduction"
+msgstr "소개"
+
+#: components/AppLayout/AppFooter.js:125
+#: components/ReportPage/SectionTower.js:107
+msgid "Source Code"
+msgstr "소스 코드"
+
+#: components/AppLayout/AppFooter.js:138
+msgid "Contact"
+msgstr "연락처"
+
+#: pages/article/[id].js:573
+#: pages/reply/[id].js:306
+msgid "The content above"
+msgstr "위 내용"
+
+#: lib/terms.js:41
+msgid "Cofacts message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "Cofacts 메시지 보고 챗봇과 크라우드소싱 팩트체크 커뮤니티"
+
+#: pages/index.js:30
+msgid "Message reporting chatbot and crowd-sourced fact-checking community"
+msgstr "메시지 보고 챗봇과 크라우드소싱 팩트체크 커뮤니티"
+
+#: components/LandingPage/SectionCanDo.js:246
+msgid ""
+"Search by ID “@cofacts” or scan the QR Code above to follow Cofacts\n"
+"LINE account. Forward suspicious text to it, the chatbot will help you\n"
+"check the credibility of the text!"
+msgstr ""
+"ID \"@cofacts\"로 검색하거나 위의 QR 코드를 스캔하여 Cofacts\\n"
+"LINE 계정을 팔로우하세요. 의심스러운 문자를 전달하면, 챗봇이\\n"
+"문자의 신뢰성을 확인하는 데 도움을 드립니다!"
+
+#: components/ProfileLink.js:14
+#, javascript-format
+msgid "Lv.${ user.level } ${ levelName }"
+msgstr "Lv.${ user.level } ${ levelName }"
+
+#: components/ProfilePage/EditProfileDialog.js:57
+#: components/ProfilePage/EditProfileDialog.js:74
+msgid "Username"
+msgstr "사용자 이름"
+
+#: components/ProfilePage/EditProfileDialog.js:62
+msgid "Edit profile"
+msgstr "프로필 편집"
+
+#: components/ProfilePage/EditProfileDialog.js:66
+msgid "Display name"
+msgstr "표시 이름"
+
+#: components/ProfilePage/EditProfileDialog.js:78
+#, javascript-format
+msgid "Your profile URL will become ${ profileURL }"
+msgstr "프로필 URL이 ${ profileURL }이 됩니다"
+
+#: components/ProfilePage/EditProfileDialog.js:83
+msgid "Bio"
+msgstr "자기소개"
+
+#: components/ProfilePage/ProfilePage.js:120
+msgid "User not found"
+msgstr "사용자를 찾을 수 없습니다"
+
+#: components/ProfilePage/ProfilePage.js:123
+msgid "The user does not exist"
+msgstr "사용자가 존재하지 않습니다"
+
+#: components/ProfilePage/ProfilePage.js:178
+msgid "Replied messages"
+msgstr "답변한 메시지"
+
+#: components/ProfilePage/RepliedArticleTab.js:255
+msgid "No replied messages."
+msgstr "답변한 메시지가 없습니다."
+
+#: components/ProfilePage/Stats.js:60
+msgid "replied messages"
+msgstr "답변한 메시지"
+
+#: components/ProfilePage/Stats.js:62
+msgid "voted replies"
+msgstr "투표한 답변"
+
+#: components/Collaborate/CollabEditor.js:245
+#: components/ProfilePage/UserPageHeader.js:197
+msgid "Edit"
+msgstr "편집"
+
+#: components/ProfilePage/UserPageHeader.js:225
+msgid "Cofacts chatbot"
+msgstr "Cofacts 챗봇"
+
+#: components/ProfilePage/UserPageHeader.js:255
+#, javascript-format
+msgid "Join date : ${ timeAgo }"
+msgstr "가입일 : ${ timeAgo }"
+
+#: components/ProfilePage/UserPageHeader.js:260
+msgid "EXP"
+msgstr "경험치"
+
+#: components/ProfilePage/UserPageHeader.js:270
+#, javascript-format
+msgid ""
+"This is a user of ${ cofactsChatbotLink }. The profile picture and the "
+"pseudonym are randomly generated."
+msgstr "이 사용자는 ${ cofactsChatbotLink }의 사용자입니다. 프로필 사진과 가명은 무작위로 생성됩니다."
+
+#: components/AppLayout/AppHeader.js:253
+#: components/AppLayout/AppSidebar.js:112
+#, javascript-format
+msgid "Earn ${ pointsLeft } EXP to next level"
+msgstr "다음 레벨까지 ${ pointsLeft } 경험치를 더 얻으세요"
+
+#: constants/replyType.js:117
+msgid "Opinion Sources"
+msgstr "의견 출처"
+
+#: constants/replyType.js:118
+#: constants/replyType.js:119
+msgid "References"
+msgstr "참고 자료"
+
+#: components/NewReplySection/ReplyForm/ReferenceInput.js:51
+msgid ""
+"One line summary\n"
+"» Source URL"
+msgstr ""
+"한 줄 요약\\n"
+"» 출처 URL"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:173
+msgid "Please briefly explain why this message should not be processed in Cofacts."
+msgstr "Cofacts에서 이 메시지가 처리되지 않아야 하는 이유를 간략히 설명해 주세요."
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:175
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is correct."
+msgstr "참고 자료의 간단한 소개로, 메시지의 어떤 부분이 정확한지 지적해 주세요."
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:177
+msgid ""
+"Please briefly\n"
+"1. explain which part of the message contains personal opinion\n"
+"2. remind the audience that this is not factual"
+msgstr ""
+"간략히 설명해 주세요:\\n"
+"1. 메시지의 어떤 부분에 개인 의견이 포함되어 있는지\\n"
+"2. 이것이 사실(fact)이 아님을 청중에게 상기시키기"
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:181
+msgid ""
+"As a brief intro for the references, please point out which part of the "
+"message is incorrect."
+msgstr "참고 자료의 간단한 소개로, 메시지의 어떤 부분이 부정확한지 지적해 주세요."
+
+#: lib/terms.js:66
+#, javascript-format
+msgid ""
+"${ subject } by ${ authorLink } is licensed under ${ licenseLink }, the "
+"community name and the provenance link for each item shall be fully cited "
+"for further reproduction or redistribution."
+msgstr "${ authorLink }의 ${ subject }는 ${ licenseLink } 라이선스 하에 제공됩니다. 재제작 또는 재배포 시 각 항목의 커뮤니티 명칭과 출처 링크를 완전히 인용해야 합니다."
+
+#: lib/terms.js:42
+msgid "CC BY-SA 4.0"
+msgstr "CC BY-SA 4.0"
+
+#: lib/terms.js:43
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "크리에이티브 커먼즈 저작자표시-동일조건변경허용 4.0"
+
+#: components/AppLayout/AppFooter.js:120
+#: components/AppLayout/LoginModal.js:118
+#: pages/terms.js:69
+msgid "User Agreement"
+msgstr "이용약관"
+
+#: components/AppLayout/LoginModal.js:177
+#, javascript-format
+msgid ""
+"By logging in you agree to ${ termsLink }, and your contribution will be "
+"published using ${ licenseLink } as ${ authorLink }."
+msgstr "로그인하면 ${ termsLink }에 동의하는 것이며, 귀하의 기여물은 ${ authorLink } 이름으로 ${ licenseLink } 라이선스를 사용하여 게시됩니다."
+
+#: lib/terms.js:47
+#, javascript-format
+msgid ""
+"${ subject } by ${ AUTHOR } is licensed under ${ SHORT_LICENSE }. To "
+"provide more info, please visit Cofacts LINE bot ${ LINE_URL } ."
+msgstr "${ AUTHOR }의 ${ subject }는 ${ SHORT_LICENSE } 라이선스 하에 제공됩니다. 자세한 정보를 원하시면 Cofacts LINE 봇 ${ LINE_URL }을(를) 방문하세요."
+
+#: pages/about.js:243
+msgid "What is Cofacts"
+msgstr "Cofacts란?"
+
+#: pages/tutorial.js:101
+msgid "How to use Cofacts"
+msgstr "Cofacts 사용법"
+
+#: components/ContributionChart.js:95
+msgid "Jan"
+msgstr "1월"
+
+#: components/ContributionChart.js:96
+msgid "Feb"
+msgstr "2월"
+
+#: components/ContributionChart.js:97
+msgid "Mar"
+msgstr "3월"
+
+#: components/ContributionChart.js:98
+msgid "Apr"
+msgstr "4월"
+
+#: components/ContributionChart.js:99
+msgid "May"
+msgstr "5월"
+
+#: components/ContributionChart.js:100
+msgid "Jun"
+msgstr "6월"
+
+#: components/ContributionChart.js:101
+msgid "Jul"
+msgstr "7월"
+
+#: components/ContributionChart.js:102
+msgid "Aug"
+msgstr "8월"
+
+#: components/ContributionChart.js:103
+msgid "Sep"
+msgstr "9월"
+
+#: components/ContributionChart.js:104
+msgid "Oct"
+msgstr "10월"
+
+#: components/ContributionChart.js:105
+msgid "Nov"
+msgstr "11월"
+
+#: components/ContributionChart.js:106
+msgid "Dec"
+msgstr "12월"
+
+#: components/ContributionChart.js:108
+msgid "Sun"
+msgstr "일"
+
+#: components/ContributionChart.js:108
+msgid "Mon"
+msgstr "월"
+
+#: components/ContributionChart.js:108
+msgid "Tue"
+msgstr "화"
+
+#: components/ContributionChart.js:108
+msgid "Wed"
+msgstr "수"
+
+#: components/ContributionChart.js:108
+msgid "Thu"
+msgstr "목"
+
+#: components/ContributionChart.js:108
+msgid "Fri"
+msgstr "금"
+
+#: components/ContributionChart.js:108
+msgid "Sat"
+msgstr "토"
+
+#: components/ContributionChart.js:118
+msgid "Less"
+msgstr "줄임"
+
+#: components/ContributionChart.js:132
+msgid "More"
+msgstr "더 보기"
+
+#: components/ContributionChart.js:210
+msgid "${ count } contribution"
+msgid_plural "${ count } contributions"
+msgstr[0] "${ count }회 기여"
+
+#: components/ContributionChart.js:168
+#, javascript-format
+msgid "${ total } contribution in the last year"
+msgid_plural "${ total } contributions in the last year"
+msgstr[0] "지난 1년간 총 ${ total }회 기여"
+
+#: pages/impact.js:60
+msgid "Cofacts social impact report"
+msgstr "코팩츠 사회적 영향 보고서"
+
+#: components/ReportPage/SectionSponsor.js:88
+msgid "Open Culture Foundation"
+msgstr "오픈 컬처 재단"
+
+#: components/ReportPage/SectionSponsor.js:93
+msgid "g0v"
+msgstr "g0v"
+
+#: pages/impact.js:65
+msgid "Individual strengths converge to exert the greatest power"
+msgstr "개인의 강점이 하나로 모이면 가장 큰 힘을 발휘합니다"
+
+#: components/ReportPage/SectionHowToUse.js:121
+msgid "When you receive a suspicious message..."
+msgstr "의심스러운 메시지를 받았을 때..."
+
+#: components/ReportPage/SectionHowToUse.js:123
+msgid "Send it to the chatbot"
+msgstr "채팅봇으로 보내기"
+
+#: components/ReportPage/SectionHowToUse.js:126
+msgid ""
+"...And it will automatically read it, helping you get the fact-checking "
+"report."
+msgstr "...자동으로 내용을 분석하여 팩트체크 보고서를 받아볼 수 있습니다."
+
+#: components/ReportPage/SectionInfluence.js:99
+msgid "Community Influence"
+msgstr "커뮤니티 영향력"
+
+#: components/ReportPage/SectionFeatures.js:146
+msgid "Features of Cofacts"
+msgstr "Cofacts의 특징"
+
+#: components/ReportPage/SectionFeatures.js:151
+msgid "Notification"
+msgstr "알림"
+
+#: components/ReportPage/SectionFeatures.js:165
+msgid "AI tagging"
+msgstr "AI 태그"
+
+#: components/ReportPage/SectionOriginalFeatures.js:27
+msgid "RSS Reading ability"
+msgstr "RSS 읽기 기능"
+
+#: components/ReportPage/SectionOriginalFeatures.js:28
+msgid ""
+"Our database has a large quantity of material, so we use a subscription "
+"system to help link up to IFTTT, find popular topics, and to link to LINE, "
+"telegram, Slack and mail to send reminders that verification is underway."
+msgstr "우리의 데이터베이스에는 대량의 자료가 포함되어 있으므로, IFTTT와의 연동, 인기 주제 탐색, 그리고 LINE, Telegram, Slack 및 이메일을 통한 검증 진행 알림 전송을 돕는 구독 시스템을 사용합니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:33
+msgid "LINE notifications"
+msgstr "LINE 알림"
+
+#: components/ReportPage/SectionOriginalFeatures.js:34
+msgid ""
+"Traditional chatbots can only report information that has already been "
+"verified,  but now when one tries to check a non-yet verified piece of "
+"information, the system can send a notification when the information has "
+"been verified.  If a better response has since been provided, the system "
+"can also send a notification to ensure that information provided is always "
+"the most up-to-date."
+msgstr "전통적인 챗봇은 이미 검증된 정보만 보고할 수 있지만, 이제 아직 검증되지 않은 정보를 확인하려는 경우 시스템은 정보가 검증되면 알림을 보낼 수 있습니다. 이후 더 나은 응답이 제공된 경우에도 시스템은 항상 최신 정보를 제공하도록 알림을 보낼 수 있습니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:39
+msgid "Users can easily check infromation that has already been asked about"
+msgstr "사용자는 이미 질문한 정보를 쉽게 확인할 수 있습니다"
+
+#: components/ReportPage/SectionOriginalFeatures.js:40
+msgid ""
+"You can access the list of rumours that have already been checked, and the "
+"chatbot can help you organise your own table of information and help "
+"produce personalised information"
+msgstr "이미 확인된 루머 목록에 접근할 수 있으며, 챗봇은 사용자 자신의 정보 표를 정리하고 개인화된 정보를 생성하는 데 도움을 줍니다"
+
+#: components/ReportPage/SectionOriginalFeatures.js:45
+msgid "The UI of the new website"
+msgstr "새로운 웹사이트의 UI"
+
+#: components/ReportPage/SectionOriginalFeatures.js:46
+msgid ""
+"The site now has gamified features and it is nohow easier to see the "
+"contribution of each collaborator. We also now have data visualisation and "
+"the tools to see what material has been accessed by journalists and the "
+"process of verification for each article."
+msgstr "사이트에는 이제 게이미피케이션 기능이 포함되어 있으며, 각 협력자의 기여도를 훨씬 쉽게 볼 수 있습니다. 또한 이제 데이터 시각화와 기자들이 어떤 자료를 접근했는지, 각 기사의 검증 과정을 볼 수 있는 도구를 갖추고 있습니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:51
+msgid "AI automatic categorisation"
+msgstr "AI 자동 분류"
+
+#: components/ReportPage/SectionOriginalFeatures.js:52
+msgid ""
+"We use machine learning technology to help categorise our data. The "
+"technology is capable of correctly labeling messages as being about "
+"politics, scams, the environment, energy, amongst others. This helps "
+"doctors or journalists quickly find messages relating to their areas of "
+"expertise to help with message verification."
+msgstr "우리는 머신러닝 기술을 사용하여 데이터를 분류하는 데 도움을 줍니다. 이 기술은 정치, 사기, 환경, 에너지 등 다양한 주제에 대한 메시지를 정확하게 라벨링할 수 있습니다. 이를 통해 의사나 기자가 자신의 전문 분야와 관련된 메시지를 빠르게 찾아 메시지 검증에 도움을 줄 수 있습니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:57
+msgid "Community Builder"
+msgstr "커뮤니티 빌더"
+
+#: components/ReportPage/SectionOriginalFeatures.js:58
+msgid ""
+"We help community organisers to efficiently check up on current work "
+"progress, the quantity of messages, the positive reviews under the review "
+"mechanism, the list of contributors who helped with the output, and the "
+"review of response and user feedback from a particular period."
+msgstr "우리는 커뮤니티 조직자가 현재 작업 진행 상황, 메시지 수량, 심사 메커니즘 하의 긍정적 리뷰, 산출물에 기여한 공헌자 목록, 특정 기간의 응답 및 사용자 피드백 검토를 효율적으로 추적할 수 있도록 돕습니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:63
+msgid "The ecology of fact checking"
+msgstr "팩트체크 생태계"
+
+#: components/ReportPage/SectionOriginalFeatures.js:64
+msgid ""
+"We collaborate with all fact checking organizations and help them enter the "
+"fact checking community by setting aside their competition and rivalry, and "
+"encourage them to work together to help create the largest datasets "
+"possible."
+msgstr "우리는 모든 팩트체크 조직과 협력하여 경쟁과 라이벌 관계를 내려놓고 팩트체크 커뮤니티에 진입하도록 돕고, 가능한 가장 큰 데이터셋을 만들기 위해 함께 일하도록 장려합니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:69
+msgid "Teaching tools"
+msgstr "교육 도구"
+
+#: components/ReportPage/SectionOriginalFeatures.js:70
+msgid ""
+"Cofacts helps educators the ability to create their own chatbots with "
+"search capabilities. We provide free consultancy and assistance to our "
+"international collaborators to help the open source community grow. "
+"Thailand has already successfully replicated Cofacts' experience to create "
+"their own search chatbot based on Cofacts."
+msgstr "Cofacts는 교육자에게 검색 기능을 갖춘 자체 챗봇을 만들 수 있는 능력을 제공합니다. 우리는 오픈소스 커뮤니티의 성장을 돕기 위해 국제 협력자에게 무료 컨설팅과 지원을 제공합니다. 태국은 이미 Cofacts의 경험을 성공적으로 복제하여 Cofacts 기반의 자체 검색 챗봇을 만들었습니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:75
+msgid "User Feedback"
+msgstr "사용자 피드백"
+
+#: components/ReportPage/SectionOriginalFeatures.js:76
+msgid ""
+"We collected user feedback and encourage users to cooperate with us to "
+"create a better open source environment in which many can use our "
+"resources. In addition, by encouraging  user feedback and collaboration, "
+"our collaborators can use this feedback to help improve their user "
+"experience."
+msgstr "우리는 사용자 피드백을 수집하고 사용자가 우리와 협력하여 많은 사람들이 우리의 자원을 사용할 수 있는 더 나은 오픈소스 환경을 만들도록 장려합니다. 또한, 사용자 피드백과 협력을 장려함으로써, 우리의 협력자들은 이러한 피드백을 사용하여 사용자 경험을 개선하는 데 도움을 받을 수 있습니다."
+
+#: components/ReportPage/SectionOriginalFeatures.js:81
+msgid "Data"
+msgstr "데이터"
+
+#: components/ReportPage/SectionOriginalFeatures.js:82
+msgid ""
+"Cofacts provides a chart that explains how to link the chatbot to a website "
+"as a way to help researchers and journalists to follow important topics and "
+"write impactful reports. There have already been many academics from Taiwan "
+"and other  countries who have quoted this data, and many have directly "
+"accessed material Cofacts' open database."
+msgstr "Cofacts는 챗봇을 웹사이트에 연결하는 방법을 설명하는 차트를 제공하여 연구자와 기자가 중요한 주제를 추적하고 영향력 있는 보고서를 작성하는 데 도움을 줍니다. 이미 대만과 다른 나라들의 많은 학자들이 이 데이터를 인용했으며, 많은 이들이 Cofacts의 오픈 데이터베이스 자료에 직접 접근했습니다."
+
+#: components/ReportPage/SectionSponsor.js:114
+#. const FUND = [
+#. {
+#. logo: whoscallLogo,
+#. name: t`Whoscall`,
+#. url: 'https://whoscall.com/zh-hant/about',
+#. },
+#. {
+#. logo: trendmicroLogo,
+#. name: t`Trend Micro`,
+#. url: 'https://www.trendmicro.com/',
+#. },
+#. ];
+msgid "Dcard"
+msgstr "Dcard"
+
+#: components/ReportPage/SectionSponsor.js:255
+msgid "Share to Facebook"
+msgstr "Facebook에 공유하기"
+
+#: components/ReportPage/Banner.js:212
+#: components/ReportPage/Banner.js:227
+msgid "Social Impact Report"
+msgstr "사회적 영향 보고서"
+
+#: components/ReportPage/SectionHowToUse.js:111
+msgid "Super EASY"
+msgstr "참여가 매우 쉬워요"
+
+#: components/ReportPage/SectionFeatures.js:157
+msgid "Personal fact-check contribution"
+msgstr "개인 팩트체크 기여"
+
+#: components/ReportPage/SectionOriginalFeatures.js:226
+msgid "Cofacts original features"
+msgstr "Cofacts의 독창적인 기능 소개"
+
+#: pages/about.js:252
+msgid "Cofacts fact-checking chatbot, combating misinformation by yourself!"
+msgstr "Cofacts 팩트체크 챗봇, 직접 허위 정보를 가려보세요!"
+
+#: pages/about.js:279
+msgid "In what scenarios can Cofacts help you?"
+msgstr "Cofacts가 어떤 상황에서 도움이 될까요?"
+
+#: pages/about.js:290
+msgid "You want to do research on false information."
+msgstr "허위 정보에 대한 연구를 하고 싶어요."
+
+#: pages/about.js:306
+msgid ""
+"You would like to absorb novel knowledge\n"
+"and see what topics are popular recently"
+msgstr ""
+"새로운 지식을 습득하고\\n"
+"최근 인기 있는 주제들을 살펴보고 싶어요"
+
+#: pages/about.js:359
+msgid "How Cofacts was born"
+msgstr "Cofacts의 탄생 이야기"
+
+#: pages/about.js:383
+msgid "Who we are"
+msgstr "우리는 누구인가"
+
+#: components/Tutorial/content/bustHoaxes.js:12
+msgid ""
+"Do you feel fact-checking is too difficult? You can start by reviewing the "
+"responses of others."
+msgstr "팩트체크가 너무 어렵게 느껴지나요? 다른 사람들의 답변을 검토하는 것부터 시작해 보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:13
+msgid ""
+"Take a look at how others do fact-checking may help you write good quality "
+"responses."
+msgstr "다른 사람들이 어떻게 팩트체크를 하는지 살펴보는 것이 좋은 품질의 답변을 작성하는 데 도움이 될 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:17
+msgid "Searching responses waiting to be reviewed"
+msgstr "검토를 기다리고 있는 답변 검색"
+
+#: components/Tutorial/content/bustHoaxes.js:21
+msgid ""
+"\"Replies\" section lists all volunteer editors' reviews to fact-checking "
+"responses, you can filter information pieces with the tags as follows:\n"
+"\n"
+"\"No useful reply yet\": This labels the pieces of information that may "
+"lack validated high-quality responses. We recommend this tag as a start of "
+"searching.\n"
+"\n"
+"\"Asked many times\": This labels the suspicious messages that are trending "
+"among requests for fact-checking.\n"
+"\n"
+"\"Replied many times\": This labels the suspicious messages that have been "
+"responded to and reviewed a lot."
+msgstr ""
+"\"답변\" 섹션에는 팩트체크 답변에 대한 모든 자원봉사 편집자들의 검토 내용이 나열되어 있으며, 다음과 같은 태그로 정보 조각을 필터링할 수 있습니다:\\n"
+"\\n"
+"\"아직 유용한 답변 없음\": 이 태그는 검증된 고품질 답변이 부족할 수 있는 정보 조각을 표시합니다. 검색의 시작으로 이 태그 사용을 권장합니다.\\n"
+"\\n"
+"\"여러 번 질문됨\": 이 태그는 팩트체크 요청에서 트렌드를 이루고 있는 의심스러운 메시지를 표시합니다.\\n"
+"\\n"
+"\"여러 번 답변됨\": 이 태그는 많이 답변되고 검토된 의심스러운 메시지를 표시합니다."
+
+#: components/Tutorial/content/bustHoaxes.js:14
+msgid ""
+"Reviews of information on Cofacts are collaborated by contributors from all "
+"over the world and free of charge. However, the fact-checking results may "
+"not necessarily be correct or complete all the time. That is why the "
+"project requires the role of editor to review the checking results to "
+"select responses of high quality. To novice editors, they may learn how "
+"others fact-check on rumors through the review process."
+msgstr "Cofacts의 정보 검토는 전 세계의 기여자들이 협력하여 무상으로 이루어집니다. 그러나 팩트체크 결과가 항상 정확하거나 완전하지는 않을 수 있습니다. 그래서 프로젝트에서는 편집자의 역할이 필요하며, 그들은 체크 결과를 검토하여 고품질 답변을 선별합니다. 초보 편집자들은 검토 과정을 통해 다른 사람들이 어떻게 소문을 팩트체크하는지 배울 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:33
+msgid "Evaluating the responses"
+msgstr "답변 평가하기"
+
+#: components/Tutorial/content/bustHoaxes.js:37
+msgid ""
+"You can react to others' checking responses with \"Vote Up\" and \"Vote "
+"Down\". Through the collaborative evaluation, good quality responses will "
+"gradually surface and be exposed to more users. Please leave your reasons "
+"of determining a response as of good or poor quality in the evaluation "
+"process. You can click \"Read More Reasons\" to read the comments left by "
+"others."
+msgstr "\"추천\"과 \"비추천\"으로 다른 사람들의 체크 답변에 반응할 수 있습니다. 협동 평가를 통해 고품질 답변은 점차 부상하여 더 많은 사용자에게 노출될 것입니다. 평가 과정에서 답변이 좋거나 나쁘다고 판단한 이유를 남겨 주세요. \"더 많은 이유 보기\"를 클릭하면 다른 사람들이 남긴 댓글을 읽을 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:41
+msgid ""
+"Hit the \"Fact-Check\" button to enter the page and see the sources and "
+"references attached by the editors, as information source is critical to "
+"determining the validity of fact-checking response."
+msgstr "\"팩트체크\" 버튼을 눌러 페이지로 들어가면 편집자들이 첨부한 출처와 참고 자료를 볼 수 있습니다. 정보 출처는 팩트체크 답변의 유효성을 결정하는 데 중요하기 때문입니다."
+
+#: components/Tutorial/content/bustHoaxes.js:48
+msgid "Look for suspicious articles that may require further fact-checking"
+msgstr "추가 팩트체크가 필요한 의심스러운 기사를 찾아보세요"
+
+#: components/Tutorial/content/bustHoaxes.js:49
+msgid "Get ready to check information yourself!"
+msgstr "직접 정보를 확인해 보자!"
+
+#: components/Tutorial/content/bustHoaxes.js:54
+msgid "Go to \"(Hoax) for you\" to find information to be checked."
+msgstr "\"(유언) 당신을 위해\"로 이동하여 확인할 정보를 찾아보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:50
+msgid ""
+"Feeling like fact-checking after learning through evaluating others' "
+"responses?\n"
+"First of all, you can look for suspicious contents waiting to be checked "
+"from the website; that is, messages that have not been fact-checked, or "
+"that have incomplete or inaccurate checking results. These are what the "
+"volunteer community needs you to help with!"
+msgstr ""
+"다른 사람들의 답변을 평가하면서 학습한 후, 팩트체크를 해 보고 싶으신가요?\\n"
+"먼저, 웹사이트에서 확인을 기다리는 의심스러운 콘텐츠를 찾을 수 있습니다. 즉, 아직 팩트체크되지 않았거나, 체크 결과가 불완전하거나 부정확한 메시지입니다. 이들은 자원봉사 커뮤니티가 여러분의 도움을 필요로 하는 부분입니다!"
+
+#: components/Tutorial/content/bustHoaxes.js:58
+msgid ""
+"\"(Hoax) for you\" section compiles contents that have been reported over "
+"twice but yet to have validated checking responses. On the left side of "
+"each piece of content is the current count of responses and number of times "
+"it has been reported that shows how many people want to authenticate this "
+"content."
+msgstr "\"(유언) 당신을 위해\" 섹션은 두 번 이상 보고되었지만 아직 검증된 체크 답변이 없는 콘텐츠를 컴파일합니다. 각 콘텐츠 조각의 왼쪽에는 현재 답변 수와 보고 횟수가 표시되어 있어 이 콘텐츠를 인증하고 싶어하는 사람의 수를 보여줍니다."
+
+#: components/Tutorial/content/bustHoaxes.js:67
+msgid "Select topics of interest"
+msgstr "관심 있는 주제 선택"
+
+#: components/Tutorial/content/bustHoaxes.js:71
+msgid ""
+"If you can't find contents you are interested in responding, try the topic "
+"filter! Click the topic filter, and the contents tagged by the topic "
+"keywords will be listed.\n"
+"Some tags have little relevance to professional realms, such as petition, "
+"crowd support, BOLO (be on the lookout), donation, commercial advertising, "
+"message scam, etc. There are tags related to public affairs, such as "
+"preferential measures, new regulations, publicity of policies, gender "
+"issues, China's influence, policy of agriculture, forestry, fishery and "
+"animal husbandry. In addition, there are topics like transnational "
+"interaction, COVID-19 pandemic and so forth that are waiting for "
+"professionals in specific areas to review."
+msgstr ""
+"답변하고 싶은 콘텐츠를 찾지 못한다면, 주제 필터를 사용해 보세요! 주제 필터를 클릭하면 주제 키워드로 태그된 콘텐츠가 나열됩니다.\\n"
+"일부 태그는 전문 분야와 관련이 적습니다. 예를 들어 청원, 군중 지원, BOLO (be on the lookout), 기부, 상업 광고, 메시지 사기 등입니다. 공공 사무와 관련된 태그도 있습니다. 예를 들어 우대 조치, 새로운 규정, 정책 홍보, 성별 문제, 중국의 영향력, 농업, 임업, 수산 및 축산 정책 등입니다. 또한, 특정 분야의 전문가들이 검토하기를 기다리는 주제들도 있습니다. 예를 들어跨国 상호작용, 코로나19 팬데믹 등입니다."
+
+#: components/Tutorial/content/bustHoaxes.js:83
+msgid "Analyze the content"
+msgstr "분석하기"
+
+#: components/Tutorial/content/bustHoaxes.js:84
+msgid ""
+"After selecting the content you are checking, you can look for questionable "
+"points to be checked."
+msgstr "확인할 내용을 선택한 후, 확인이 필요한 의문점을 찾아보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:85
+msgid ""
+"Each message here was reported by chatbot users and may be in various odd "
+"forms, styles with doubtful content. You can try to follow the steps below "
+"to analyze your piece."
+msgstr "여기 있는 각 메시지는 챗봇 사용자에 의해 보고되었으며, 의심스러운 내용으로 다양한 기이한 형태나 스타일일 수 있습니다. 아래 단계를 따라 내용을 분석해 보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:101
+msgid "Pointless contents found? Get to the context first!"
+msgstr "맥락 없는 내용을 발견했나요? 먼저 맥락을 파악하세요!"
+
+#: components/Tutorial/content/bustHoaxes.js:105
+msgid ""
+"Some messages are very short and clueless yet reported by many users, "
+"indicating that the contents may not be spams out of several single users."
+msgstr "일부 메시지는 매우 짧고 단서가 없는데도 많은 사용자에게 보고되었습니다. 이는 내용이 여러 단일 사용자의 스팸일 가능성이 낮음을 의미합니다."
+
+#: components/Tutorial/content/bustHoaxes.js:113
+msgid ""
+"This type of information is probably shared with videos or images in "
+"communication apps but left without other original content elements, "
+"because currently Cofacts does not support reporting images and videos. "
+"Still, you can copy and paste the text part to the Facebook or other search "
+"tools to see if any users had publicly shared relevant graphics and texts, "
+"trying to get close to the context of the reported materials."
+msgstr "이 유형의 정보는 현재 Cofacts가 이미지와 비디오 보고를 지원하지 않기 때문에, 다른 원본 콘텐츠 요소 없이 통신 앱에서 비디오나 이미지와 함께 공유되었을 가능성이 높습니다. 그래도 텍스트 부분을 Facebook이나 기타 검색 도구로 복사하여 붙여넣어 사용자가 관련 그래픽과 텍스트를 공개적으로 공유했는지 확인하고, 보고된 자료의 맥락에 가까워지도록 노력해 보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:121
+msgid ""
+"In addition, some messages may be truncated or incomplete. These may be "
+"texts referred from other chatbots that are cut due to technical "
+"limitations on word counts."
+msgstr "또한, 일부 메시지는 잘리거나 불완전할 수 있습니다. 이들은 단어 수에 대한 기술적 제한으로 인해 잘린 다른 챗봇에서 참조된 텍스트일 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:129
+msgid ""
+"In this situation, you can utilize Facebook or Google as well to find the "
+"full texts."
+msgstr "이러한 상황에서, 전체 텍스트를 찾기 위해 Facebook 또는 Google을 활용할 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:134
+msgid ""
+"Try to raise a few points in the content that may arouse your emotions if "
+"you were to receive the message."
+msgstr "내용 중 감정을 자극할 수 있는 몇 가지 지점을 찾아보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:138
+msgid ""
+"These parts are usually what users of Cofacts would like to check on, or "
+"triggers for them to share online contents. Take these as a starting point "
+"to plan on what types of information you are providing to appease and "
+"assist the recipients. This approach may be helpful for you to grasp the "
+"critical points and respond to users effectively, especially when "
+"encountering long contents, or strong personal opinions."
+msgstr "이 부분들은 보통 Cofacts 사용자가 확인하고 싶어 하거나 온라인 콘텐츠를 공유하는 트리거입니다. 수신자를 진정시키고 돕기 위해 어떤 유형의 정보를 제공할지 계획하는 시작점으로 삼으세요. 이 접근법은 특히 긴 콘텐츠나 강한 개인 의견에 직면했을 때 중요한 지점을 파악하고 사용자에게 효과적으로 대응하는 데 도움이 될 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:143
+msgid "Refer to the existing resources"
+msgstr "기존 자료 참고하기"
+
+#: components/Tutorial/content/bustHoaxes.js:147
+msgid ""
+"If you don't have a clue, you can refer to the section of \"Supplementary "
+"Notes from Reporters\" to see if the reporters have shared their views on "
+"the contents, or even extra information."
+msgstr "단서가 없다면, 보고자가 내용에 대한 견해를 공유했거나 심지어 추가 정보를 제공했는지 확인하기 위해 '보고자 추가 노트' 섹션을 참고해 보세요."
+
+#: components/Tutorial/content/bustHoaxes.js:156
+msgid "Search keywords and graphics to prepare for responding"
+msgstr "응답 준비를 위해 키워드와 그래픽 검색하기"
+
+#: components/Tutorial/content/bustHoaxes.js:171
+msgid "Write a reader-friendly response with our template"
+msgstr "템플릿을 사용하여 독자가 읽기 쉬운 응답 작성하기"
+
+#: components/Tutorial/content/bustHoaxes.js:172
+msgid ""
+"After the checking process, please write down the result, presenting "
+"reader-friendly response following the suggested format."
+msgstr "확인 과정 후, 제안된 형식을 따르며 독자가 읽기 쉬운 응답으로 결과를 기록해 주세요."
+
+#: components/Tutorial/content/bustHoaxes.js:173
+msgid ""
+"The step is to compile and present the materials and findings that you have "
+"been put efforts in.\n"
+"We advise writing clear responses in the suggested format to help the "
+"chatbot and Cofacts users easily read and understand your fact-checking "
+"results."
+msgstr ""
+"이 단계는 노력하여 수집한 자료와 발견 사항을 정리하고 제시하는 것입니다.\\n"
+"챗봇과 Cofacts 사용자가 여러분의 팩트체크 결과를 쉽게 읽고 이해할 수 있도록 제안된 형식으로 명확한 응답을 작성하는 것을 권장합니다."
+
+#: components/Tutorial/content/bustHoaxes.js:177
+msgid "Select response category"
+msgstr "응답 카테고리 선택"
+
+#: components/Tutorial/content/bustHoaxes.js:181
+msgid ""
+"Please assign tags of categories, \"contains true information\", \"contains "
+"misinformation\", or \"contains personal perspective\" to the content based "
+"on your findings.\n"
+"\n"
+"If your research result proves that the content includes false information, "
+"you can mark it as \"contains misinformation\".\n"
+"\n"
+"While your findings show personal perspectives divergent from the original, "
+"you can tag the content as \"contains personal perspective\".\n"
+"\n"
+"Finally, if the fact-checking result demonstrates that the content presents "
+"valid information, you can mark it as \"contains true information\"."
+msgstr ""
+"발견 사항에 기반하여 내용에 '진실 정보 포함', '오정보 포함', 또는 '개인 관점 포함' 카테고리 태그를 지정해 주세요.\\n"
+"\\n"
+"연구 결과가 내용이 거짓 정보를 포함함을 증명한다면, '오정보 포함'으로 표시할 수 있습니다.\\n"
+"\\n"
+"발견 사항이 원래와 다른 개인 관점을 보여준다면, 내용을 '개인 관점 포함'으로 태그할 수 있습니다.\\n"
+"\\n"
+"마지막으로, 팩트체크 결과가 내용이 유효한 정보를 제시함을 입증한다면, '진실 정보 포함'으로 표시할 수 있습니다."
+
+#: components/Tutorial/content/bustHoaxes.js:192
+msgid "Fill in the reasons"
+msgstr "이유 입력하기"
+
+#: components/Tutorial/content/bustHoaxes.js:196
+msgid ""
+"After tagging, write a brief note on which part in the content \"contains "
+"true information\", \"contains misinformation\", or \"contains personal "
+"perspective\". The note will be shown to users via our chatbot. We suggest "
+"clarifying false and true parts, or perspectives of the content in the "
+"first paragraph and elaborating in following paragraphs if more "
+"explanations are required."
+msgstr "태그 지정 후, 내용 중 '진실 정보 포함', '오정보 포함', 또는 '개인 관점 포함'인 부분이 어디인지 간략한 노트를 작성하세요. 이 노트는 챗봇을 통해 사용자에게 표시됩니다. 첫 단락에서 내용의 거짓 및 진실 부분 또는 관점을 명확히 하고, 더 많은 설명이 필요하면 후속 단락에서 상세히 서술하는 것을 권장합니다."
+
+#: components/Tutorial/content/bustHoaxes.js:201
+msgid "Provide sources and reference"
+msgstr "출처 및 참고 자료 제공하기"
+
+#: components/Tutorial/content/bustHoaxes.js:205
+msgid ""
+"Paste the links of information and list your reference in the \"Reference\" "
+"or \"Opinion Sources\" column, then your response is good to go!"
+msgstr "'참고 자료' 또는 '의견 출처' 열에 정보 링크를 붙여넣고 참고 자료를 나열하면, 응답이 완료됩니다!"
+
+#: components/Tutorial/content/bustHoaxes.js:210
+msgid "Are there any examples for reference?"
+msgstr "참고할 예시가 있나요?"
+
+#: components/Tutorial/content/bustHoaxes.js:226
+msgid "I really can't find any sources! What should I do?"
+msgstr "정말 출처를 찾을 수 없어요! 어떻게 해야 하나요?"
+
+#: components/Tutorial/content/bustHoaxes.js:227
+msgid ""
+"Don't worry. Leave your progress in \"Comment\" and let the community "
+"continue your work."
+msgstr "걱정 마세요. '댓글'에 진행 상황을 남겨 두시고, 커뮤니티가 여러분의 작업을 이어가게 하세요."
+
+#: components/Tutorial/content/bustHoaxes.js:230
+msgid "Use \"Comment\" function"
+msgstr "\"댓글\" 기능 사용"
+
+#: components/Tutorial/content/bustHoaxes.js:234
+msgid ""
+"Please click \"Comment\", put the information and materials you have found "
+"so far there, and briefly share the parts you could not find.\n"
+"The \"Response Count\" will increase after you send the supplement then "
+"attract other editors to view, so the community members can start from the "
+"supplementary materials you shared to finish remaining fact-checking "
+"process!"
+msgstr ""
+"\"댓글\"을 클릭하여 지금까지 찾은 정보와 자료를 여기에 넣고, 찾지 못한 부분을 간략히 공유하세요.\\n"
+"보충 내용을 보내면 \"응답 수\"가 증가하여 다른 편집자들이 메시지를 보고 오게 됩니다. 그러면 커뮤니티 구성원들이 여러분이 공유한 보충 자료에서부터 나머지 사실 확인 과정을 마무리할 수 있습니다!"
+
+#: components/Tutorial/content/bustHoaxes.js:214
+msgid ""
+"We have a collaborative note \"Editor's Fantastic Journey\" that records "
+"the cases shared by editors in the past. You can refer to how these editors "
+"analyzed and wrote responses when faced with varied types of information "
+"and contents."
+msgstr "과거 편집자들이 공유한 사례를 기록한 협업 노트 \"편집자의 환상적인 여정\"이 있습니다. 다양한 유형의 정보와 콘텐츠에 직면했을 때 이 편집자들이 어떻게 분석하고 응답을 작성했는지 참고해 보세요."
+
+#: components/Tutorial/Article.js:279
+#, javascript-format
+msgid "Step ${ stepNo }"
+msgstr "${ stepNo } 단계"
+
+#: components/Tutorial/content/checkRumors.js:10
+msgid ""
+"Have you add Cofacts as your friend on LINE? Feel free to ask if you have "
+"any questions!"
+msgstr "Cofacts를 LINE 친구로 추가하셨나요? 궁금한 점이 있으면 편하게 물어보세요!"
+
+#: components/Tutorial/content/checkRumors.js:11
+msgid ""
+"Friend the chatbot and let it offer solutions to the suspicious messages, "
+"scams and fake news you received."
+msgstr "채팅봇을 친구로 추가하여 받은 의심스러운 메시지, 사기 및 가짜 뉴스에 대한 해결책을 제시하게 하세요."
+
+#: components/Tutorial/content/checkRumors.js:15
+msgid "Friend the Cofacts chatbot and report as much as you want!"
+msgstr "Cofacts 채팅봇을 친구로 추가하고 원하는 만큼 신고하세요!"
+
+#: components/Tutorial/content/checkRumors.js:19
+msgid ""
+"This is the world's first chatbot capable of fact-checking and supports "
+"open source code. Send it any questionable messages you found. Add the bot "
+"as your friend and receive its welcoming messages. Cofacts wants to be your "
+"good friend!"
+msgstr "사실 확인이 가능하고 오픈 소스 코드를 지원하는 세계 최초의 채팅봇입니다. 발견한 의심스러운 메시지를 모두 보내세요. 봇을 친구로 추가하면 환영 메시지를 받을 수 있습니다. Cofacts는 여러분의 좋은 친구가 되고 싶습니다!"
+
+#: components/Tutorial/content/checkRumors.js:30
+msgid ""
+"When receiving a suspicious message on your PC, search on the Cofacts "
+"website."
+msgstr "PC에서 의심스러운 메시지를 받으면 Cofacts 웹사이트에서 검색하세요."
+
+#: components/Tutorial/content/checkRumors.js:31
+msgid "You can paste it in the search box and always get relevant materials."
+msgstr "검색창에 붙여넣으면 항상 관련 자료를 얻을 수 있습니다."
+
+#: components/Tutorial/content/checkRumors.js:32
+msgid ""
+"There is a magnifying glass in the upper right corner of the website. Paste "
+"the message you received or the keywords on your mind next to the "
+"magnifying glass to find information you care about!"
+msgstr "웹사이트 우측 상단에 확대경이 있습니다. 확대경 옆에 받은 메시지나 머릿속에 떠오르는 키워드를 붙여넣어 관심 있는 정보를 찾아보세요!"
+
+#: components/Tutorial/content/checkRumors.js:35
+msgid "Enhance accuracy of your checking progress with the filter"
+msgstr "필터로 확인 진행 상황의 정확도를 높여 보세요"
+
+#: components/Tutorial/content/checkRumors.js:39
+msgid ""
+"There is a filter in the lower right corner and a small monthly calendar on "
+"the left for time setting to help you target varied categories of contents, "
+"such as \"recent\", \"within a specified time range\", \"most frequently "
+"asked\", \"latest response\", and messages related to specific topics. You "
+"can choose whichever you want."
+msgstr "우측 하단에 필터가 있고 왼쪽에는 시간 설정을 위한 작은 월력이 있어 \"최근\", \"지정된 시간 범위 내\", \"가장 많이 질문됨\", \"최신 응답\" 및 특정 주제와 관련된 메시지와 같은 다양한 카테고리의 콘텐츠를 대상으로 할 수 있도록 도와줍니다. 원하는 것을 선택할 수 있습니다."
+
+#: components/Tutorial/content/checkRumors.js:50
+msgid "Vote, supplement, and show your curiosity"
+msgstr "투표, 보충, 그리고 호기심을 보여주세요"
+
+#: components/Tutorial/content/checkRumors.js:51
+msgid ""
+"You can help others troubled by fake news by supplementing checking "
+"materials, voting good to evaluate responses and showing your support for "
+"efforts in tackling misinformation."
+msgstr "가짜 뉴스에 시달리는 다른 사람들을 위해 확인 자료를 보충하고, 응답을 평가하기 위해 좋아요를 투표하며, 잘못된 정보와의 싸움에 대한 노력을 지지하는 방식으로 도움을 줄 수 있습니다."
+
+#: components/Tutorial/content/checkRumors.js:52
+msgid ""
+"There are many clues left by previous fact-checkers, or reporters who "
+"requested fact-checking) on the website. Vote up the clues you find "
+"helpful, such as image source, relevant fact-checking information, other "
+"useful reference, to applaud for the efforts! If you find information that "
+"may be helpful for fact-checking, click the report button to submit your "
+"findings."
+msgstr "웹사이트에는 이전 사실 확인자(또는 사실 확인을 요청한 기자들)가 남긴 많은 단서들이 있습니다. 이미지 출처, 관련 사실 확인 정보, 기타 유용한 참고 자료 등 도움이 되는 단서에 상향 투표를 하여 노력에 박수를 보내세요. 사실 확인에 도움이 될 수 있는 정보를 발견했다면, 발견 사항을 제출하기 위해 신고 버튼을 클릭하세요."
+
+#: components/Tutorial/content/checkRumors.js:55
+msgid "Help train AI via classification"
+msgstr "분류를 통해 AI 학습을 돕습니다"
+
+#: components/Tutorial/content/checkRumors.js:59
+msgid ""
+"We need your help on the way developing our artificial intelligence. Click "
+"\"Add Category\" to have messages going through the first-round of "
+"classification processing. Also, you can take a look at the contents to see "
+"if you can check on the pieces of information."
+msgstr "인공지능 개발 과정에서 여러분의 도움이 필요합니다. \"카테고리 추가\"를 클릭하여 메시지가 1차 분류 처리를 거치게 하세요. 또한, 콘텐츠 내용을 살펴보고 정보 조각들을 확인할 수 있는지 확인해 보세요."
+
+#: components/Tutorial/content/checkRumors.js:70
+msgid "Log in to the website or browse and check on LINE"
+msgstr "웹사이트에 로그인하거나 LINE에서 탐색하고 확인하세요"
+
+#: components/Tutorial/content/checkRumors.js:71
+msgid ""
+"Log in to the Cofacts website. Welcome to join the largest fact-checking "
+"community! Let's contribute to civic technology."
+msgstr "Cofacts 웹사이트에 로그인하세요. 가장 큰 사실 확인 커뮤니티에 참여해 주셔서 감사합니다! 시민 기술에 함께 기여합시다."
+
+#: components/Tutorial/content/checkRumors.js:77
+msgid "Cast your up votes whenever you pass by. Keep up on voting up!"
+msgstr "지나갈 때마다 상향 투표를 하세요. 계속 상향 투표하세요!"
+
+#: components/Tutorial/content/checkRumors.js:81
+msgid ""
+"After reading the response, if you regard it as a substantial content, "
+"please click like on the bottom left to vote up the response. In LINE, the "
+"bot will also inquire if a response is helpful. You can choose \"Yes\" to "
+"keep a good response helping more people! If you feel the response can be "
+"done better, please help fix it and respond with a new comment of yours."
+msgstr "응답을 읽은 후, 그것이 실질적인 내용이라고 생각되면 좌측 하단의 좋아요를 클릭하여 응답에 상향 투표를 하세요. LINE에서는 봇도 응답이 도움이 되었는지 묻습니다. \"예\"를 선택하여 좋은 응답이 더 많은 사람들을 도울 수 있게 하세요! 응답이 더 잘될 수 있다고 생각되면, 수정을 도와주고 새로운 댓글로 응답하세요."
+
+#: components/Tutorial/content/checkRumors.js:92
+msgid "Share the information you find!"
+msgstr "찾은 정보를 공유하세요!"
+
+#: components/Tutorial/content/checkRumors.js:93
+msgid ""
+"Now start to defeat rumors. The website of enriched information is waiting "
+"for you"
+msgstr "이제 루머를 물리치기 시작하세요. 풍부한 정보로 가득한 웹사이트가 여러분을 기다리고 있습니다"
+
+#: components/Tutorial/content/checkRumors.js:94
+msgid ""
+"Choose \"(Hoax) for you\". It is more blessed to give than to receive, and "
+"fact-checking is like standing on the shoulders of giants to look at the "
+"world. With your help, false information will be defeated one after another!"
+msgstr "\"(허위) 당신을 위해\"를 선택하세요. 주는 것이 받는 것보다 더 복이 있으며, 사실 확인은 거인의 어깨 위에 올라 세상을 바라보는 것과 같습니다. 여러분의 도움으로, 잘못된 정보는 하나씩 물리쳐질 것입니다!"
+
+#: components/Tutorial/content/checkRumors.js:97
+msgid "The first step is to select \"Contains false information\""
+msgstr "첫 번째 단계는 \"허위 정보 포함\"을 선택하는 것입니다."
+
+#: components/Tutorial/content/checkRumors.js:101
+msgid ""
+"Provide the validated points you have checked on to communicate with the "
+"public on why the message contains false information, how readers can view "
+"and evaluate it from specific angles, and attach the source of information "
+"and reference you found to show your care and respect for fact-checking. "
+"Try to converse with sincerity and honesty when faced with questions from "
+"reporters and the public."
+msgstr "확인된 포인트를 제공하여 대중과 소통하고, 메시지가 왜 허위 정보를 포함하는지, 독자가 특정 관점에서 어떻게 보고 평가할 수 있는지 설명하십시오. 또한, 사실 확인에 대한 관심과 존중을 보여주기 위해 찾은 정보 출처와 참고 자료를 첨부하십시오. 기자와 대중의 질문에 직면했을 때 진정성과 정직으로 대화하려 노력하십시오."
+
+#: components/Tutorial/content/checkRumors.js:72
+msgid ""
+"Under the suspicious messages, find and select \"Share\" on the right to "
+"share the response to help your friends.\n"
+"\n"
+" Choose login in the upper right corner! Will you be the next Wow-rrior "
+"contributing a sky-high volume of up votes?"
+msgstr ""
+"의심스러운 메시지 아래에서 오른쪽의 \"공유\"를 찾아 선택하여 응답을 공유하고 친구들을 도우십시오.\\n"
+"\\n"
+" 오른쪽 상단에서 로그인 선택! 다음 하늘 높이 올라가는 업보트를 기여하는 와우리어가 될 준비가 되셨나요?"
+
+#: pages/about.js:275
+msgid "How does misinformation be fact-checked?"
+msgstr "오정보는 어떻게 사실 확인이 이루어지는가?"
+
+#: components/Tutorial/LineTutorial.js:24
+msgid "Recieved doubtful messages from social platform"
+msgstr "소셜 플랫폼에서 의심스러운 메시지를 받았습니다"
+
+#: components/Tutorial/LineTutorial.js:25
+msgid ""
+"While a lot of instant messages are disseminated among our friends' "
+"chatroom, you might feel confused whether the information is fake or not."
+msgstr "많은 인스턴트 메시지가 우리 친구들의 채팅방 사이에서 유포되는 동안, 정보가 가짜인지 아닌지 혼란스러울 수 있습니다."
+
+#: components/Tutorial/LineTutorial.js:30
+msgid "Share this message to Cofacts"
+msgstr "이 메시지를 Cofacts에 공유하세요"
+
+#: components/Tutorial/LineTutorial.js:31
+msgid ""
+"You are encouraged to share to suspicious message to Cofacts chatbot, "
+"Cofacts chatbot would help you submit the misinformation to Cofacts "
+"fact-checking platform for receiveing similar fact-check reports."
+msgstr "Cofacts 챗봇에 의심스러운 메시지를 공유하도록 권장됩니다. Cofacts 챗봇은 유사한 사실 확인 보고서를 받기 위해 오정보를 Cofacts 사실 확인 플랫폼에 제출하는 데 도움을 드립니다."
+
+#: components/Tutorial/LineTutorial.js:36
+msgid "Submit to Cofacts database & fact-checking platform"
+msgstr "Cofacts 데이터베이스 및 사실 확인 플랫폼에 제출"
+
+#: components/Tutorial/LineTutorial.js:37
+msgid ""
+"Everyone could review the suspicious messages on Cofacts platform, and "
+"discuss the fact-checking process and detail."
+msgstr "모든 사람은 Cofacts 플랫폼에서 의심스러운 메시지를 검토하고, 사실 확인 과정과 세부 사항을 논의할 수 있습니다."
+
+#: components/Tutorial/LineTutorial.js:42
+msgid "Fact checkers would comment fact-checking detail on the platform."
+msgstr "사실 확인자는 플랫폼에서 사실 확인 세부 사항에 대해 코멘트합니다."
+
+#: components/Tutorial/LineTutorial.js:43
+msgid ""
+"Every volunteers could login Cofacts platform, and submit their "
+"fact-checking reports. Volunteers are asked to provide reference and "
+"explanation for the fact-checking."
+msgstr "모든 자원봉사자는 Cofacts 플랫폼에 로그인하여 자신의 사실 확인 보고서를 제출할 수 있습니다. 자원봉사자에게는 사실 확인에 대한 참고 자료와 설명을 제공하도록 요청됩니다."
+
+#: components/Tutorial/LineTutorial.js:48
+msgid "Cofacts chatnot would reply this automatically"
+msgstr "Cofacts 챗봇은 자동으로 이 메시지에 응답합니다"
+
+#: components/Tutorial/content/bustHoaxes.js:160
+msgid ""
+"Please refer to the Social Media Fact-checking tips & tricks provided by "
+"PTS News Lab Taiwan"
+msgstr "PTS 뉴스 랩 대만에서 제공한 소셜 미디어 사실 확인 팁과 요령을 참조하십시오"
+
+#: components/Tutorial/LineTutorial.js:49
+msgid ""
+"Fact-checking contribution would be seen via Cofacts chatbot for everyone; "
+"if you think you could improve the content, you are encouraged to submit a "
+"new fact-checking reply."
+msgstr "사실 확인 기여도는 모든 사람이 Cofacts 챗봇을 통해 볼 수 있습니다. 내용을 개선할 수 있다고 생각한다면, 새로운 사실 확인 답변을 제출하도록 권장됩니다."
+
+#: pages/about.js:318
+msgid "Cofacts instruction"
+msgstr "Cofacts 사용법"
+
+#: pages/about.js:322
+msgid "What is Cofacts core value?"
+msgstr "Cofacts의 핵심 가치는 무엇입니까?"
+
+#: pages/about.js:328
+msgid "Instant fact-checking tool"
+msgstr "즉시 사실 확인 도구"
+
+#: pages/about.js:338
+msgid "Free and Open"
+msgstr "무료 및 개방형"
+
+#: pages/about.js:349
+msgid "Media Literacy"
+msgstr "미디어 리터러시"
+
+#: components/Tutorial/Article.js:261
+msgid "Collapse"
+msgstr "접기"
+
+#: components/Tutorial/Article.js:261
+msgid "Expand"
+msgstr "펼치기"
+
+#: components/Tutorial/content/bustHoaxes.js:88
+msgid "Is it a valid request?"
+msgstr "유효한 요청입니까?"
+
+#: components/Tutorial/content/bustHoaxes.js:92
+msgid ""
+"In Cofacts, a message request is considered valid if the message is "
+"actually being forwarded among chatrooms in LINE."
+msgstr "Cofacts에서, 메시지가 실제로 LINE의 채팅방 사이에서 전달되고 있는 경우 메시지 요청은 유효한 것으로 간주됩니다."
+
+#: components/Tutorial/content/bustHoaxes.js:96
+msgid ""
+"Take a look at how many people reported the message. If there is only one "
+"person, it may be a test message the user typed in on their own, which will "
+"never be requested again by another user. If this is the case, mark this "
+"message a \"invalid request\". You can also mark commercial advertisements "
+"as \"invalid requests\" as we do not need to help in advertising businesses."
+msgstr "사람들이 메시지를 보고한 횟수를 살펴보세요. 한 명뿐이라면, 사용자가 직접 입력한 테스트 메시지일 수 있으며, 다른 사용자에 의해 다시 요청되지 않을 것입니다. 이 경우, 이 메시지를 \"유효하지 않은 요청\"으로 표시하십시오. 상업적 광고도 \"유효하지 않은 요청\"으로 표시할 수 있으며, 우리는 광고 비즈니스를 돕는 데 도움이 필요하지 않기 때문입니다."
+
+#: components/Tutorial/content/checkRumors.js:12
+msgid "Scan QR code to add @cofacts to contact"
+msgstr "QR 코드를 스캔하여 @cofacts를 연락처에 추가하세요"
+
+#: components/ProfilePage/AvatarSelector.js:178
+msgid "Accessory"
+msgstr "액세서리"
+
+#: components/ProfilePage/AvatarSelector.js:184
+msgid "Body"
+msgstr "상반신"
+
+#: components/ProfilePage/AvatarSelector.js:190
+msgid "Face"
+msgstr "얼굴"
+
+#: components/ProfilePage/AvatarSelector.js:196
+msgid "Hair"
+msgstr "머리카락"
+
+#: components/ProfilePage/AvatarSelector.js:202
+msgid "Facial Hair"
+msgstr "얼굴 수염"
+
+#: components/ProfilePage/EditAvatarDialog.js:170
+msgid "Edit profile picture"
+msgstr "프로필 사진 편집"
+
+#: components/ReportPage/SectionTower.js:92
+msgid "Open data"
+msgstr "오픈 데이터"
+
+#: components/ReportPage/SectionTower.js:99
+msgid "Analytics"
+msgstr "분석"
+
+#: components/ReportPage/EcosystemModal.js:22
+msgid "Fact-check community"
+msgstr "팩트체크 커뮤니티"
+
+#: components/ReportPage/EcosystemModal.js:24
+msgid ""
+"Involves in physical gatherings, independent contributions, daily audit "
+"reports as the frontline organizational community."
+msgstr "실제 모임, 독립적인 기여, 일일 감사 보고서를 통해 최전선 조직 커뮤니티로 참여합니다."
+
+#: components/ReportPage/EcosystemModal.js:28
+msgid "Meet Cofacts editors: the need to keep fighting disinformation"
+msgstr "코팩츠 에디터 만나기: 가짜 뉴스와 싸워야 하는 이유"
+
+#: components/ReportPage/EcosystemModal.js:32
+msgid "Facebook group for Cofacts editors"
+msgstr "코팩츠 에디터용 Facebook 그룹"
+
+#: components/ReportPage/EcosystemModal.js:34
+msgid "Past editor's meetups"
+msgstr "지난 에디터 모임"
+
+#: components/ReportPage/EcosystemModal.js:38
+msgid "Editor meetups' opening slides"
+msgstr "에디터 모임 오프닝 슬라이드"
+
+#: components/ReportPage/EcosystemModal.js:43
+msgid "Developers"
+msgstr "개발자"
+
+#: components/ReportPage/EcosystemModal.js:45
+msgid ""
+"Establish the fact-checking platform, develop chatbots, and create "
+"technological tools to solve problems."
+msgstr "팩트체크 플랫폼을 구축하고, 챗봇을 개발하며, 문제를 해결하기 위한 기술 도구를 만듭니다."
+
+#: components/ReportPage/EcosystemModal.js:49
+msgid "Cofacts developer entry page and system diagram"
+msgstr "코팩츠 개발자 진입 페이지 및 시스템 다이어그램"
+
+#: components/ReportPage/EcosystemModal.js:53
+#: components/ReportPage/EcosystemModal.js:76
+msgid "How to run Cofacts on your laptop workshop @ g0v summit 2018"
+msgstr "노트북에서 코팩츠 실행 방법 워크숍 @ g0v 서밋 2018"
+
+#: components/ReportPage/EcosystemModal.js:58
+msgid "International sharing"
+msgstr "국제 공유"
+
+#: components/ReportPage/EcosystemModal.js:60
+msgid ""
+"Provides teaching resources of development, focuses on open source sharing, "
+"assists in the development of chatbots, interacts with international "
+"communities and helps with technical support."
+msgstr "개발 교육 자료를 제공하고, 오픈소스 공유에 집중하며, 챗봇 개발을 지원하고, 국제 커뮤니티와 교류하며, 기술 지원을 돕습니다."
+
+#: components/ReportPage/EcosystemModal.js:64
+msgid "Introduction to Cofacts @ Google News Lab APAC summit 2017"
+msgstr "코팩츠 소개 @ Google News Lab APAC 서밋 2017"
+
+#: components/ReportPage/EcosystemModal.js:68
+msgid "Cofacts Design @ Chulalongkorn University, 2019"
+msgstr "코팩츠 디자인 @ 추락콘 대학교, 2019"
+
+#: components/ReportPage/EcosystemModal.js:72
+msgid "Cofacts Design @ LINE DEVELOPER DAY 2020"
+msgstr "코팩츠 디자인 @ LINE DEVELOPER DAY 2020"
+
+#: components/ReportPage/EcosystemModal.js:80
+msgid "Cofacts clone - Cofact by OpenDream, Thailand"
+msgstr "코팩츠 클론 - 태국의 OpenDream이 만든 코팩츠"
+
+#: components/ReportPage/EcosystemModal.js:85
+msgid "Research"
+msgstr "연구"
+
+#: components/ReportPage/EcosystemModal.js:87
+msgid ""
+"Provides open data for investigative journalists and scholars to conduct "
+"research and analysis, and keep data analysis materials public."
+msgstr "조사 기자와 학자들이 연구와 분석을 수행하고 데이터 분석 자료를 공개할 수 있도록 오픈 데이터를 제공합니다."
+
+#: components/ReportPage/EcosystemModal.js:89
+msgid "Cofacts open dataset"
+msgstr "Cofacts 오픈 데이터셋"
+
+#: components/ReportPage/EcosystemModal.js:92
+msgid "Cofacts usage analytics"
+msgstr "Cofacts 사용 분석"
+
+#: components/ReportPage/EcosystemModal.js:94
+msgid "Cofacts API"
+msgstr "Cofacts API"
+
+#: components/ReportPage/EcosystemModal.js:246
+#: components/ReportPage/SectionEcosystem.js:135
+msgid "Fact-checking ecosystem"
+msgstr "팩트체크 생태계"
+
+#: components/ReportPage/SectionEcosystem.js:177
+msgid ""
+"Cofacts is our original chatbot for checking messages.\n"
+"It is the only open source code and the largest Chinese false information "
+"checking platform.\n"
+"It encourages volunteers to participate through crowd collaboration and "
+"rewards different types of volunteers to motivate their participation."
+msgstr ""
+"Cofacts는 메시지를 확인하기 위한 우리의 오리지널 챗봇입니다.\\n"
+"이는 유일한 오픈 소스 코드이자 가장 큰 중국어 허위 정보 확인 플랫폼입니다.\\n"
+"이것은 크라우드 콜라보레이션을 통해 자원봉사자의 참여를 장려하고, 다양한 유형의 자원봉사자에게 보상을 주어 그들의 참여를 독려합니다."
+
+#: components/ReportPage/SectionInfluence.js:110
+msgid ""
+"External and internal propaganda have caused the people to lose their trust "
+"in media and information.\n"
+"Cofacts took the lead in making a change, establishing a platform and "
+"creating a chatbot with fact-checking capabilities.\n"
+"We automated the process of combating false information through artificial "
+"intelligence and machine learning,\n"
+"in order to avoid exhausting professional reviewers and provide review "
+"resources."
+msgstr ""
+"외부와 내부의 선전은 사람들이 미디어와 정보에 대한 신뢰를 잃게 만들었습니다.\\n"
+"Cofacts는 변화를 주도하여 플랫폼을 구축하고 팩트체크 기능을 갖춘 챗봇을 만들었습니다.\\n"
+"우리는 인공지능과 기계 학습을 통해 허위 정보와의 싸움 프로세스를 자동화하여,\\n"
+"전문 리뷰어의 피로도를 줄이고 리뷰 자원을 제공하기 위함입니다."
+
+#: pages/impact.js:67
+msgid ""
+"Cofacts is the earliest-developed fact-checking chatbot. The project was "
+"launched in 2016 by the engineers, proposed to the civic tech community, "
+"and accomplished by a group of volunteers. The team members meet up weekly "
+"to maintain the project's dynamic."
+msgstr "Cofacts는 가장 일찍 개발된 팩트체크 챗봇입니다. 이 프로젝트는 2016년에 엔지니어들에 의해 시작되어 시민 기술 커뮤니티에 제안되었고, 자원봉사자 그룹에 의해 완성되었습니다. 팀 멤버들은 매주 만나 프로젝트의 역동성을 유지합니다."
+
+#: pages/impact.js:70
+msgid ""
+"At present, there have been more than 45,000 verified pieces of content in "
+"our database. Through investing human and other resources, the project is "
+"to reverse harms to democracy and society caused by misinformation."
+msgstr "현재 우리 데이터베이스에는 45,000건 이상의 검증된 콘텐츠가 있습니다. 인적 자원 및 기타 자원을 투입하여, 이 프로젝트는 허위 정보가 민주주의와 사회에 미치는 피해를 되돌리기 위한 것입니다."
+
+#: components/ListPageDisplays/ArticleCard.js:112
+#: components/ListPageDisplays/ReplySearchItem.js:112
+#: components/ProfilePage/CommentTab.js:178
+#: components/ProfilePage/RepliedArticleTab.js:278
+#: pages/article/[id].js:393
+#: pages/replies.js:248
+msgid "First reported ${ timeAgo }"
+msgstr "${ timeAgo }에 처음 보고됨"
+
+#: components/ReplyInfo.js:18
+#, javascript-format
+msgid "replied ${ timeAgoStr }"
+msgstr "${ timeAgoStr }에 답변함"
+
+#: components/ProfilePage/EditProfileDialog.js:38
+#, javascript-format
+msgid "Changes cannot be saved: ${ error }"
+msgstr "변경 사항을 저장할 수 없습니다: ${ error }"
+
+#: components/Infos/TimeInfo.js:52
+msgid "${ formatted } ago"
+msgstr "${ formatted } 전"
+
+#: components/WonderCallEmbed.js:55
+msgid "Loading contact form"
+msgstr "연락처 양식 로딩 중"
+
+#: components/ListPageDisplays/utils.js:11
+msgid "In reference text"
+msgstr "참고 텍스트 내"
+
+#: components/ListPageDisplays/utils.js:18
+msgid "In linked text"
+msgstr "링크된 텍스트 내"
+
+#: components/ArticleReply/ArticleReply.js:110
+#: pages/article/[id].js:306
+#. t: terms subject 
+msgid "This info"
+msgstr "이 정보"
+
+#: components/ReportPage/SectionFeatures.js:152
+msgid ""
+"An exclusive service keeps users from repeating requests and provides\n"
+"immediate information about false messages in the previous queries."
+msgstr "독점 서비스는 사용자가 요청을 반복하는 것을 방지하고 이전 쿼리에서 허위 메시지에 대한 즉각적인 정보를 제공합니다."
+
+#: components/ReportPage/SectionFeatures.js:158
+msgid ""
+"Volunteers would login Cofacts and fact-check the suspicious messages.\n"
+"What fact-checkers have replied and commented would be transparent\n"
+"and reviewed, the achievement was opened and shareable."
+msgstr ""
+"자원봉사자는 Cofacts에 로그인하여 의심스러운 메시지를 팩트체크합니다.\\n"
+"팩트체커들이 답변하고 댓글을 단 내용은 투명하게 검토되며, 성과는 공개되고 공유 가능합니다."
+
+#: components/ReportPage/SectionFeatures.js:166
+msgid ""
+"Cofacts has categorized misinformation via topics automatically, making\n"
+"different expertise focus on their professional fields. Such as COVID-19,\n"
+"Vaccine related, propaganda, public policy, or fraud, these could be\n"
+"categorized by Artificial Intelligence."
+msgstr "Cofacts는 허위 정보를 주제별로 자동으로 분류하여, 다른 전문 지식이 자신의 전문 분야에 집중할 수 있게 합니다. 예를 들어 COVID-19, 백신 관련, 선전, 공공 정책 또는 사기 등은 인공지능에 의해 분류될 수 있습니다."
+
+#: components/ReportPage/SectionFeatures.js:174
+msgid ""
+"Cofacts has provided API connecting instruction, fact-checking system\n"
+"since 2016. This achievement leads the combating misinformation ecosystem.\n"
+"There were third party chatbots connecting to Cofacts open API and IFCN\n"
+"member started to conduct own chatbots."
+msgstr "Cofacts는 2016년부터 API 연결 지침과 팩트체크 시스템을 제공해 왔습니다. 이 성과는 허위 정보와의 싸움 생태계를 선도합니다. Cofacts 오픈 API에 연결된 제3자 챗봇이 있었고, IFCN 회원은 자체 챗봇을 운영하기 시작했습니다."
+
+#: components/NewReplySection/index.js:111
+msgid "Please provide reply text."
+msgstr "답변 텍스트를 입력해 주세요."
+
+#: components/NewReplySection/ReplyForm/ReasonEditor.js:248
+msgid ""
+"Note: This is not a comment section! Please write your reply in response to "
+"the reported message above, NOT to other editors' replies below. Please use "
+"the thumb-down button below each reply if you find it not good enough."
+msgstr "참고: 이것은 댓글 섹션이 아닙니다! 위의 보고된 메시지에 대한 답변으로 작성해 주시고, 아래 다른 편집자들의 답변에 대해서는 작성하지 마세요. 충분하지 않다고 생각되면 각 답변 아래의 엄지 아래 버튼을 사용해 주세요."
+
+#: pages/article/[id].js:507
+msgid "Comments from people reporting this message"
+msgstr "이 메시지를 보고한 사람들의 댓글"
+
+#: components/ProfilePage/RepliedArticleTab.js:35
+msgid "Most recently replied by any user"
+msgstr "최근 사용자 중 가장 최근 답변"
+
+#: components/ProfilePage/RepliedArticleTab.js:259
+#, javascript-format
+msgid "${ totalCount } message matching criteria"
+msgid_plural "${ totalCount } messages matching criteria"
+msgstr[0] "조건에 맞는 메시지 ${ totalCount }개"
+
+#: components/ActionMenu/ReportAbuseMenuItem.js:45
+msgid "Report abuse"
+msgstr "불편 신고"
+
+#: pages/article/[id].js:456
+msgid "Log in to view video content"
+msgstr "로그인하여 비디오 콘텐츠 보기"
+
+#: pages/article/[id].js:466
+msgid "Log in to view audio content"
+msgstr "로그인하여 오디오 콘텐츠 보기"
+
+#: components/Thumbnail.tsx:41
+msgid "A video"
+msgstr "비디오 1개"
+
+#: components/Thumbnail.tsx:41
+#: components/Thumbnail.tsx:54
+msgid "Preview not supported yet"
+msgstr "아직 미리보기 미지원"
+
+#: components/Thumbnail.tsx:54
+msgid "An audio"
+msgstr "오디오 1개"
+
+#: components/ListPageControls/ArticleTypeFilter.js:13
+msgid "Text"
+msgstr "텍스트"
+
+#: components/ListPageControls/ArticleTypeFilter.js:14
+msgid "Image"
+msgstr "이미지"
+
+#: components/ListPageControls/ArticleTypeFilter.js:15
+msgid "Video"
+msgstr "비디오"
+
+#: components/ListPageControls/ArticleTypeFilter.js:16
+msgid "Audio"
+msgstr "오디오"
+
+#: components/ListPageControls/ArticleTypeFilter.js:33
+msgid "Format"
+msgstr "형식"
+
+#: components/ProfilePage/CommentTab.js:155
+msgid ""
+"This user does not provide comments to any message in the specified date "
+"range."
+msgstr "이 사용자는 지정된 날짜 범위 내 어떤 메시지에 대해서도 댓글을 남기지 않았습니다."
+
+#: components/ProfilePage/CommentTab.js:159
+#, javascript-format
+msgid "${ totalCount } comment matching criteria"
+msgid_plural "${ totalCount } comments matching criteria"
+msgstr[0] "조건에 맞는 댓글 ${ totalCount }개"
+
+#: components/ProfilePage/ProfilePage.js:179
+msgid "Comments"
+msgstr "댓글"
+
+#: components/ProfilePage/Stats.js:61
+msgid "comments"
+msgstr "댓글"
+
+#: components/ProfilePage/CommentTab.js:184
+msgid "${ article.replyCount } reply"
+msgid_plural "${ article.replyCount } replies"
+msgstr[0] "답글 ${ article.replyCount }개"
+
+#: pages/terms.js:63
+msgid "Github"
+msgstr "GitHub"
+
+#: pages/terms.js:74
+#, javascript-format
+msgid "See ${ revisionLink } for other revisions of the user agreement."
+msgstr "이용약관의 다른 개정 사항은 ${ revisionLink }에서 확인하세요."
+
+#: pages/article/[id].js:410
+#: pages/reply/[id].js:216
+msgid "Log in to view content"
+msgstr "로그인하여 콘텐츠 보기"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:19
+msgid "Asked only once"
+msgstr "한 번만 질문됨"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:21
+msgid "Zero replies"
+msgstr "답변 없음"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:24
+msgid "Has useful replies"
+msgstr "유용한 답변 있음"
+
+#: components/ListPageControls/ArticleStatusFilter.tsx:26
+msgid "Not replied by me"
+msgstr "내가 답변하지 않음"
+
+#: components/CurrentReplies.js:84
+msgid ""
+"No response has been written yet. It is recommended to maintain a healthy "
+"skepticism towards it."
+msgstr "아직 작성된 응답이 없습니다. 이에 대해 건강한 회의적 태도를 유지하는 것이 좋습니다."
+
+#: components/AIReplySection/AIReplySection.js:37
+msgid ""
+"The following is the AI's preliminary analysis of this message, which we "
+"hope will provide you with some ideas before it is fact-checked by a human."
+msgstr "다음은 AI가 이 메시지에 대해 수행한 예비 분석 결과입니다. 사람이 사실 확인을 하기 전에 몇 가지 아이디어를 제공해 드리고자 합니다."
+
+#: components/Collaborate/CollabEditor.js:121
+msgid "Input transcript"
+msgstr "전사 입력"
+
+#: components/Collaborate/CollabEditor.js:211
+msgid "No transcripts yet"
+msgstr "아직 전사가 없습니다"
+
+#: components/Collaborate/CollabEditor.js:222
+msgid "Transcribe"
+msgstr "전사"
+
+#: components/Collaborate/CollabEditor.js:235
+msgid "Transcript"
+msgstr "전사"
+
+#: components/Collaborate/CollabEditor.js:291
+msgid "Done"
+msgstr "완료"
+
+#: components/Collaborate/CollabHistory.js:121
+msgid "Versions"
+msgstr "버전"
+
+#: components/Collaborate/CollabHistory.js:200
+#, javascript-format
+msgid "Difference between version ${ versionTitle } and its previous version"
+msgstr "버전 ${ versionTitle }과 이전 버전 간의 차이"
+
+#: components/Collaborate/CollabHistory.js:237
+msgid "History"
+msgstr "기록"
+
+#: components/Collaborate/CollabHistory.js:210
+msgid "No histories..."
+msgstr "기록 없음..."
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:122
+msgid "Last reported at ${ time }"
+msgstr "마지막 보고 시각: ${ time }"
+
+#: components/CooccurrenceSection/CooccurrenceSection.tsx:96
+#, javascript-format
+msgid "Sent together ${ entry.count } time"
+msgid_plural "Sent together ${ entry.count } times"
+msgstr[0] "${ entry.count }명이 함께 보냄"
+
+#: pages/about.js:259
+msgid ""
+"Cofacts is an information checking platform operated through\n"
+"crowd collaboration and chatbot to have discrete messages of\n"
+"unknown credibility carefully reviewed and discussed through\n"
+"the joint efforts of the public. Cofacts can respond to users'\n"
+"questions and requests 24/7 via chatbot. Our website displays\n"
+"all the information collected, and each selfless volunteer contributor\n"
+"can check out on their own results."
+msgstr "Cofacts는 크라우드 협업과 챗봇을 통해 운영되는 정보 검증 플랫폼으로, 출처가 불분명한 개별 메시지가 대중의 공동 노력으로 신중하게 검토되고 논의되도록 합니다. Cofacts는 챗봇을 통해 사용자의 질문과 요청에 24시간 365일 대응할 수 있습니다. 우리의 웹사이트에는 수집된 모든 정보가 표시되며, 각 헌신적인 자원봉사 기여자는 자신의 결과를 확인할 수 있습니다."
+
+#: pages/about.js:268
+msgid ""
+"Cofacts is a citizen-initiated platform that is not affiliated\n"
+"to any political party or politicians. It opens the results to\n"
+"everyone and encourage crowd collaboration that people contribute\n"
+"their own skills to build a chatbot fact-checking for everyone."
+msgstr "Cofacts는 시민이 주도하는 플랫폼으로, 특정 정당이나 정치인과 제휴되어 있지 않습니다. 그 결과는 모두에게 공개되며, 사람들이 자신의 기술을 기여하여 모두를 위한 챗봇 사실 확인을 구축하도록 하는 크라우드 협업을 장려합니다."
+
+#: pages/about.js:283
+msgid ""
+"You think that the messages you\n"
+"received may be fake"
+msgstr "받은 메시지가 가짜일 수 있다고 생각하세요"
+
+#: pages/about.js:298
+msgid ""
+"Wanna help elders or friends who can’t\n"
+"fact-check information? Let the chatbot\n"
+"check them for you!"
+msgstr "정보를 사실 확인하지 못하는 어르신이나 친구를 도우시나요? 챗봇이 대신 확인해 드립니다!"
+
+#: pages/about.js:330
+msgid ""
+"Cofacts is committed to providing a simple solution to\n"
+"help frontline who suffering from misinformation, and news\n"
+"media workers, media literacy educators and journalists\n"
+"focus on their profession."
+msgstr "Cofacts는 잘못된 정보로 고통받는 최전선에서 일하는 사람들, 뉴스 미디어 종사자, 미디어 리터러시 교육자 및 기자들이 그들의 전문 분야에 집중할 수 있도록 돕기 위한 간단한 솔루션을 제공하는 것을 목표로 합니다."
+
+#: pages/about.js:340
+msgid ""
+"All of the source code and fact-checking replies are\n"
+"open and transparent to everyone. Cofacts encourage every\n"
+"citizen to contribute and collaborate; there would be\n"
+"no limit or qualification restriction in Cofacts\n"
+"fact-checking platform."
+msgstr "모든 소스 코드와 사실 확인 답변은 모두에게 공개적이고 투명합니다. Cofacts는 모든 시민이 기여하고 협력하도록 장려하며, Cofacts 사실 확인 플랫폼에는 제한이나 자격 요건이 없습니다."
+
+#: pages/about.js:351
+msgid ""
+"Cofacts leads in media literacy education and fact-checking\n"
+"skills training. We encourage every individual to do research\n"
+"on information and face misinformation with an active attitude."
+msgstr "Cofacts는 미디어 리터러시 교육과 사실 확인 기술 훈련을 선도합니다. 우리는 모든 개인이 정보를 조사하고 능동적인 자세로 잘못된 정보에 직면하도록 장려합니다."
+
+#: pages/about.js:361
+msgid ""
+"The core idea of this project is to make diverse voices easier\n"
+"to be listened to. We believe that fact-checking contents\n"
+"corresponding to rumors on the Internet, personal opinions and\n"
+"following reply articles are all \"diverse voices\". A person may\n"
+"believe online rumors because they have not been exposed to diverse\n"
+"voices, or are unwilling to reach to different voices. However,\n"
+"even if a person is willing to reach diverse voices, the threshold\n"
+"for actions remains very high."
+msgstr "이 프로젝트의 핵심 아이디어는 다양한 목소리가 더 쉽게 들리도록 하는 것입니다. 우리는 인터넷상의 루머, 개인 의견 및 그에 따른 답변 기사가 모두 '다양한 목소리'라고 믿습니다. 한 사람이 온라인 루머를 믿는 이유는 다양한 목소리에 노출되지 않았거나 다른 목소리에 도달하기를 원하지 않기 때문일 수 있습니다. 그러나 한 사람이 다양한 목소리에 도달하기를 원하더라도 행동의 임계값은 여전히 매우 높습니다."
+
+#: pages/about.js:371
+msgid ""
+"On the other hand, for people who are used to fact-checking online\n"
+"news, checking all of suspicious LINE messages they receive is very\n"
+"time-consuming. Collaborative fact-checking database is like a jointly\n"
+"edited note. You can leave a response to whatever you fact-check\n"
+"and review in the note, so that when others receive the same message\n"
+"and want to check it, they do not have to start from scratch. Therefore,\n"
+"for people who are accustomed to and willing to do fact-checking\n"
+"and embrace diverse voices, a collaborative rumor-defying database\n"
+"can help them avoid repeated, consuming process."
+msgstr "반면에, 온라인 뉴스의 사실 확인에 익숙한 사람들에게는 의심스러운 LINE 메시지를 모두 확인하는 것은 매우 시간이 많이 걸립니다. 협력형 사실 확인 데이터베이스는 공동으로 편집된 노트와 같습니다. 노트에서 사실 확인하고 검토한 것에 대한 응답을 남길 수 있으므로, 다른 사람이 동일한 메시지를 받고 확인하려고 할 때 처음부터 시작할 필요가 없습니다. 따라서, 사실 확인에 익숙하고 다양한 목소리를 수용하는 사람들에게 협력형 루머 반박 데이터베이스는 반복적이고 소모적인 과정을 피하는 데 도움이 될 수 있습니다."
+
+#: pages/about.js:385
+msgid ""
+"Cofacts is one of the projects initiated in g0v, a Taiwanese\n"
+"civic technology community, which encourages open source code,\n"
+"collaboration and open data. In 2016, the initiator proposed to\n"
+"develop the main program of the chatbot. With each volunteer's\n"
+"active and enthusiastic contributions in copywriting, developing,\n"
+"fact-checking, and designing, the project has been gradually\n"
+"accumulating results. Further, the value of the project is to\n"
+"encourage citizens to actively contribute to public affairs, and\n"
+"keep the positive, great ideas and energy continuously influencing\n"
+"our society."
+msgstr "Cofacts는 오픈 소스 코드, 협업 및 오픈 데이터를 장려하는 대만 시민 기술 커뮤니티인 g0v에서 시작된 프로젝트 중 하나입니다. 2016년, 창시자는 챗봇의 메인 프로그램을 개발할 것을 제안했습니다. 각 자원봉사자의 카피라이팅, 개발, 사실 확인 및 디자인에 대한 적극적이고 열정적인 기여를 통해, 프로젝트는 점진적으로 결과를 축적해 왔습니다. 또한, 이 프로젝트의 가치는 시민들이 공공 사안에 적극적으로 기여하도록 장려하고, 긍정적이고 위대한 아이디어와 에너지가 지속적으로 우리 사회에 영향을 미치도록 하는 것입니다."
+
+#: pages/about.js:397
+msgid ""
+"Cofacts originated as an open-source project in 2016. In 2023, the core "
+"members of Cofacts established an NGO named Cofacts Association in Taiwan "
+"to sustain the Cofacts community."
+msgstr "Cofacts는 2016년에 오픈 소스 프로젝트로 시작되었습니다. 2023년, Cofacts의 핵심 멤버들은 대만에 Cofacts 협회라는 NGO를 설립하여 Cofacts 커뮤니티를 지속시키고 있습니다."
+
+#: components/AIReplySection/AIReplySection.js:31
+msgid "Automated analysis from AI"
+msgstr "AI 자동 분석"
+
+#: components/AIReplySection/VoteButtons.tsx:189
+msgid "Do you have anything to add?"
+msgstr "이 응답에 대해 추가할 내용이 있으신가요?"
+
+#: pages/index.js:29
+msgctxt "site title"
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/Tutorial/TutorialHeader.js:59
+msgctxt "Tutorial"
+msgid "What is Cofacts?"
+msgstr "Cofacts란 무엇인가요?"
+
+#: components/Tutorial/TutorialHeader.js:66
+msgctxt "Tutorial"
+msgid "How to use it?"
+msgstr "사용 방법은 어떻게 되나요?"
+
+#: pages/tutorial.js:113
+msgctxt "Tutorial"
+msgid "I'd Fact-check"
+msgstr "사실 확인하기"
+
+#: pages/tutorial.js:125
+msgctxt "Tutorial"
+msgid "I'd Review"
+msgstr "검토하기"
+
+#: components/LineChart.js:239
+#, javascript-format
+msgctxt "LineChart"
+msgid "${ visit } time"
+msgid_plural "${ visit } times"
+msgstr[0] "${ visit }회 방문"
+
+#: components/TrendPlot.js:106
+msgctxt "TrendPlot"
+msgid "Cofacts"
+msgstr "Cofacts"
+
+#: components/TrendPlot.js:135
+msgctxt "TrendPlot"
+msgid "Auntie Meiyu"
+msgstr "메이유 아저씨"
+
+#: components/TrendPlot.js:137
+msgctxt "TrendPlot"
+msgid "Dr.Message"
+msgstr "메시지 박사"
+
+#: components/TrendPlot.js:139
+msgctxt "TrendPlot"
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#: components/ReportPage/SectionHowToUse.js:134
+msgctxt "impact"
+msgid "More"
+msgstr "더 보기"
+
+#: components/NewReplySection/Mobile.js:172
+msgctxt "Mobile editor tab"
+msgid "Message"
+msgstr "메시지"
+
+#: components/NewReplySection/Mobile.js:173
+msgctxt "Mobile editor tab"
+msgid "Compose"
+msgstr "작성하기"
+
+#: components/ListPageDisplays/ArticleCard.js:119
+msgctxt "Info box"
+msgid "replies"
+msgstr "답글"
+
+#: components/ListPageDisplays/ArticleCard.js:123
+msgctxt "Info box"
+msgid "reports"
+msgstr "리포트"
+
+#: components/ListPageControls/BaseTimeRange.js:67
+msgctxt "Time range dropdown"
+msgid "All"
+msgstr "전체"
+
+#: components/ListPageControls/BaseTimeRange.js:71
+msgctxt "Time range dropdown"
+msgid "Custom"
+msgstr "사용자 지정"
+
+#: components/AppLayout/AppHeader.js:150
+#: components/LandingPage/Header.js:264
+msgctxt "App layout"
+msgid "Messages"
+msgstr "메시지"
+
+#: components/AppLayout/AppFooter.js:108
+#: components/AppLayout/AppHeader.js:157
+#: components/LandingPage/Header.js:218
+#: components/LandingPage/Header.js:269
+msgctxt "App layout"
+msgid "Replies"
+msgstr "답글"
+
+#: components/AppLayout/AppFooter.js:109
+#: components/AppLayout/AppHeader.js:169
+#: components/LandingPage/Header.js:222
+#: components/LandingPage/Header.js:274
+msgctxt "App layout"
+msgid "For You"
+msgstr "당신을 위해"
+
+#: components/AppLayout/AppFooter.js:110
+#: components/AppLayout/AppHeader.js:178
+#: components/LandingPage/Header.js:226
+msgctxt "App layout"
+msgid "Tutorial"
+msgstr "튜토리얼"
+
+#: components/LandingPage/SectionCanDo.js:214
+msgctxt "landing page"
+msgid "Give it a try:"
+msgstr "다음과 같이 해보세요:"
+
+#: components/LandingPage/SectionCanDo.js:235
+msgctxt "landing page"
+msgid "or"
+msgstr "또는"
+
+#: components/LandingPage/SectionCanDo.js:241
+msgctxt "landing page"
+msgid "Send hoax message to Cofacts via the LINE app"
+msgstr "LINE 앱을 통해 Cofacts로 허위 메시지 보내기"
+
+#: components/LandingPage/SectionCanDo.js:231
+msgctxt "landing page"
+msgid "Search"
+msgstr "검색"
+
+#: components/LandingPage/SectionHow.js:179
+msgctxt "landing page"
+msgid "Crowdsourced and Diverse"
+msgstr "크라우드소싱과 다양성"
+
+#: components/LandingPage/SectionHow.js:187
+msgctxt "landing page"
+msgid "Everybody can fact-check the fact checkers"
+msgstr "모두가 팩트 체커를 검증할 수 있습니다"
+
+#: components/LandingPage/SectionJoin.js:216
+msgctxt "landing page"
+msgid "Count me in!"
+msgstr "나도 참여합니다!"
+
+#: components/LandingPage/SectionArticles.js:147
+msgctxt "landing page"
+msgid "Everyone wants to know..."
+msgstr "모두가 알고 싶어 하는 것은..."
+
+#: components/LandingPage/SectionCanDo.js:218
+msgctxt "landing page"
+msgid "Paste a suspicious text message below"
+msgstr "의심스러운 텍스트 메시지를 아래에 붙여넣으세요"
+
+#: components/LandingPage/SectionHow.js:171
+msgctxt "landing page"
+msgid "How do we determine truth?"
+msgstr "우리는 어떻게 진실을 판별합니까?"
+
+#: components/LandingPage/SectionHow.js:182
+msgctxt "landing page"
+msgid ""
+"The fact checking replies are written from other contributors,\n"
+"Cofacts helps you see the diversity of the fact checking process."
+msgstr ""
+"팩트 체크 응답은 다른 기여자들에 의해 작성됩니다.\\n"
+"Cofacts는 팩트 체크 과정의 다양성을 볼 수 있도록 도와줍니다."
+
+#: components/LandingPage/SectionHow.js:190
+msgctxt "landing page"
+msgid ""
+"We believe there is no omniscient judge.\n"
+"We feel that only through individuals working together can we determine "
+"truth.\n"
+"You can review the others' viewpoints and share your perspective on the "
+"Cofacts platform."
+msgstr ""
+"우리는 전지전능한 심판자가 없다고 믿습니다.\\n"
+"개인들이 함께 협력해야만 진실을 판별할 수 있다고 느낍니다.\\n"
+"Cofacts 플랫폼에서 다른 사람들의 관점을 검토하고 당신의 견해를 나눌 수 있습니다."
+
+#: components/LandingPage/SectionHow.js:197
+msgctxt "landing page"
+msgid "A Community of Mutual Support"
+msgstr "상호 지원의 커뮤니티"
+
+#: components/LandingPage/SectionHow.js:200
+msgctxt "landing page"
+msgid ""
+"Cofacts is building a community where everyone plays a part in "
+"fact-checking."
+msgstr "Cofacts는 모두가 팩트 체크에 참여하는 커뮤니티를 구축하고 있습니다."
+
+#: components/LandingPage/SectionHow.js:204
+msgctxt "landing page"
+msgid ""
+"You can make a difference in others' lives through your contributions to "
+"the fact-checking repository."
+msgstr "팩트 체크 저장소에 대한 당신의 기여를 통해 다른 사람들의 삶에 변화를 가져올 수 있습니다."
+
+#: components/LandingPage/SectionJoin.js:202
+msgctxt "landing page"
+msgid "Do you want to join us in fighting disinformation?"
+msgstr "우리와 함께 허위 정보와 싸우고 싶으신가요?"
+
+#: components/LandingPage/SectionJoin.js:205
+msgctxt "landing page"
+msgid ""
+"Join us today.\n"
+"The world needs YOUR help!"
+msgstr ""
+"오늘 바로 참여하세요.\\n"
+"세상은 당신의 도움이 필요합니다!"
+
+#: components/LandingPage/SectionJoin.js:208
+msgctxt "landing page"
+msgid ""
+"It doesn't matter whether you've been unhappy with how previous fact checks "
+"were written,\n"
+"found a hoax that hasn't been busted,\n"
+"or are just full of a sense of justice and a desire for truth,\n"
+"YOU could be the next misinformation-busting warrior!"
+msgstr ""
+"이전 팩트 체크가 어떻게 작성되었는지 불만이 있거나,\\n"
+"아직 밝혀지지 않은 허위 정보를 발견했거나,\\n"
+"단순히 정의감과 진실을 향한 열정이 넘친다면,\\n"
+"당신이 다음 허위 정보 격파 전사가 될 수 있습니다!"
+
+#: components/LandingPage/SectionNews.js:440
+msgctxt "landing page"
+msgid "Look mom, it's me!"
+msgstr "엄마, 저 여기 있어요!"
+
+#: components/LandingPage/Stats.js:182
+msgctxt "landing page"
+msgid "Fact Checker Daily Statistics"
+msgstr "팩트 체커 일일 통계"
+
+#: components/LandingPage/Stats.js:184
+msgctxt "landing page"
+msgid "Check out what we've been able to accomplish together."
+msgstr "함께 이룬 성과를 확인해 보세요."
+
+#: components/LandingPage/SectionContribute.js:121
+msgctxt "landing page"
+msgid ""
+"We need your help!\n"
+"Join us today!"
+msgstr ""
+"당신의 도움이 필요합니다!\\n"
+"오늘 바로 참여하세요!"
+
+#: components/AppLayout/UpgradeDialog.js:305
+msgctxt "upgrade dialog"
+msgid "Congratulations!"
+msgstr "축하합니다!"
+
+#: components/AppLayout/UpgradeDialog.js:308
+msgctxt "upgrade dialog"
+msgid "You can keep leveling up after your level-up!"
+msgstr "레벨 업 후에도 계속 레벨 업할 수 있습니다!"
+
+#: components/AppLayout/UpgradeDialog.js:328
+msgctxt "upgrade dialog"
+msgid "EXP"
+msgstr "경험치"
+
+#: components/AppLayout/UpgradeDialog.js:359
+msgctxt "upgrade dialog"
+msgid "Keep up the good work and save the world!"
+msgstr "좋은 일을 계속하며 세상을 구하세요!"
+
+#: components/AppLayout/UpgradeDialog.js:363
+msgctxt "upgrade dialog"
+msgid "I've got your back"
+msgstr "나는 당신을 지지합니다"
+
+#: components/AppLayout/UpgradeDialog.js:356
+#, javascript-format
+msgctxt "upgrade dialog"
+msgid "Cheers! ${ LEVEL_NAMES[nextLevel] }"
+msgstr "건배! ${ LEVEL_NAMES[nextLevel] }"
