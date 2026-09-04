@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0 8px 8px 0',
     background: theme.palette.secondary[50],
     borderRadius: 8,
+    width: '100%',
     maxWidth: '100%',
     '& h1': {
       overflow: 'hidden',
@@ -67,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     '& .summary': {
       color: theme.palette.secondary[500],
       overflow: 'hidden',
-      margin: 0,
+      margin: '1px 0',
       display: '-webkit-box',
       boxOrient: 'vertical',
       textOverflow: 'ellipsis',
@@ -156,13 +157,15 @@ function Hyperlink({ hyperlink, rel = '' }) {
 
   return (
     <article className={classes.linkcard}>
-      <h1 title={title}>{title}</h1>
+      {title && <h1 title={title}>{title}</h1>}
       <div className={classes.preview}>
-        <p className="summary" title={summary}>
-          {summary}
-        </p>
+        {summary && (
+          <p className="summary" title={summary}>
+            {summary}
+          </p>
+        )}
         {topImageUrl && <figure className="image" />}
-        {error && <p className="error">{getErrorText(error)}</p>}
+        {error && <p className={classes.error}>{getErrorText(error)}</p>}
       </div>
       <span className={classes.url}>
         <HyperlinkIcon />

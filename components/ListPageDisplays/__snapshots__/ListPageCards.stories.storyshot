@@ -96,25 +96,31 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                   }
                   className="makeStyles-attachment"
                 />
-                <ExpandableText
+                <div
                   className="makeStyles-content"
-                  lineClamp={3}
                 >
-                  <div
-                    className="makeStyles-content"
+                  <ExpandableText
+                    lineClamp={3}
                   >
-                    <div
-                      className="makeStyles-root"
-                      style={
-                        Object {
-                          "maxHeight": 42,
+                    <div>
+                      <div
+                        className="makeStyles-root"
+                        style={
+                          Object {
+                            "maxHeight": 42,
+                          }
                         }
-                      }
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </div>
                     </div>
-                  </div>
-                </ExpandableText>
+                  </ExpandableText>
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -223,38 +229,20 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                   }
                   className="makeStyles-attachment"
                 />
-                <ExpandableText
+                <div
                   className="makeStyles-content"
-                  lineClamp={3}
                 >
-                  <div
-                    className="makeStyles-content"
+                  <ExpandableText
+                    lineClamp={3}
                   >
-                    <div
-                      className="makeStyles-root"
-                      style={
-                        Object {
-                          "maxHeight": 42,
+                    <div>
+                      <div
+                        className="makeStyles-root"
+                        style={
+                          Object {
+                            "maxHeight": 42,
+                          }
                         }
-                      }
-                    >
-                      <mark
-                        className="makeStyles-highlight"
-                        key="highlight-0"
-                      >
-                        Lorem ipsum
-                      </mark>
-                       dolor sit amet, consectetur adipiscing elit. 
-                      <mark
-                        className="makeStyles-highlight"
-                        key="highlight-1"
-                      >
-                        Mauris eu ex augue
-                      </mark>
-                      . Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
-                      <section
-                        className="makeStyles-hyperlinks"
-                        key="hyperlink-section-0"
                       >
                         <mark
                           className="makeStyles-highlight"
@@ -262,18 +250,42 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                         >
                           Lorem ipsum
                         </mark>
-                         dolor sit amet 
+                         dolor sit amet, consectetur adipiscing elit. 
                         <mark
                           className="makeStyles-highlight"
                           key="highlight-1"
                         >
                           Mauris eu ex augue
                         </mark>
-                        . Etiam posuere sagittis iaculis.
-                      </section>
+                        . Etiam posuere sagittis iaculis. Vestibulum sollicitudin nec felis a mollis. Phasellus ut est velit. Proin fermentum arcu ornare quam vulputate, vel eleifend velit ultrices. Fusce tincidunt vel urna at luctus.
+                        <section
+                          className="makeStyles-hyperlinks"
+                          key="hyperlink-section-0"
+                        >
+                          <mark
+                            className="makeStyles-highlight"
+                            key="highlight-0"
+                          >
+                            Lorem ipsum
+                          </mark>
+                           dolor sit amet 
+                          <mark
+                            className="makeStyles-highlight"
+                            key="highlight-1"
+                          >
+                            Mauris eu ex augue
+                          </mark>
+                          . Etiam posuere sagittis iaculis.
+                        </section>
+                      </div>
                     </div>
-                  </div>
-                </ExpandableText>
+                  </ExpandableText>
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -377,6 +389,15 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     src="https://placekitten.com/512/1000"
                   />
                 </Thumbnail>
+                <div
+                  className="makeStyles-content"
+                >
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -480,6 +501,15 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     src="https://placekitten.com/2000/150"
                   />
                 </Thumbnail>
+                <div
+                  className="makeStyles-content"
+                >
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -579,6 +609,15 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                 >
                   A video (Preview not supported yet)
                 </Thumbnail>
+                <div
+                  className="makeStyles-content"
+                >
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -685,6 +724,15 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     src="https://drive.google.com/uc?id=1SQ9lc1-ghzw-SL6Dyb_UMN6hAPBAckvK&confirm=t"
                   />
                 </Thumbnail>
+                <div
+                  className="makeStyles-content"
+                >
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -791,6 +839,15 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     src="https://drive.google.com/uc?id=1DczThMYTmGV3GvDCAU2EPnhsBwVcoFQi&confirm=t"
                   />
                 </Thumbnail>
+                <div
+                  className="makeStyles-content"
+                >
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
@@ -893,6 +950,15 @@ exports[`Storyshots ListPageDisplays/ListPageCards Article Cards 1`] = `
                     src="https://drive.google.com/uc?id=1D-K8hVcOw7UNbu80uJkAYMJd1HilAFOp&confirm=t"
                   />
                 </Thumbnail>
+                <div
+                  className="makeStyles-content"
+                >
+                  <Hyperlinks>
+                    <section
+                      className="MuiBox-root MuiBox-root makeStyles-root"
+                    />
+                  </Hyperlinks>
+                </div>
               </div>
             </article>
           </ListPageCard>
