@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Button } from '@material-ui/core';
 import TimeInfo from 'components/Infos/TimeInfo';
 import { ProfileTooltip } from 'components/ProfileLink';
+import { renderSafeMarkdown } from 'lib/renderSafeMarkdown';
 
 import { ThumbUpIcon, ThumbDownIcon } from 'components/icons';
 import Avatar from 'components/AppLayout/Widgets/Avatar';
@@ -37,6 +38,8 @@ const useStyles = makeStyles(theme => ({
   },
   reason: {
     marginTop: 0,
+    '& > :first-child': { marginTop: 0 },
+    '& > :last-child': { marginBottom: 0 },
   },
   time: {
     color: theme.palette.secondary[200],
@@ -141,7 +144,12 @@ function ReplyRequestReason({ replyRequest, articleId }) {
             {str => <span className={classes.time}>{str}</span>}
           </TimeInfo>
         </Box>
-        <p className={classes.reason}>{replyRequestReason}</p>
+        <div
+          className={classes.reason}
+          dangerouslySetInnerHTML={{
+            __html: renderSafeMarkdown(replyRequestReason),
+          }}
+        />
         <Box display="flex" justifyContent="space-between">
           <Box display="flex">
             <Button
