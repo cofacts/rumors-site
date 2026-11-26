@@ -157,7 +157,9 @@ const LOAD_ARTICLE = gql`
         text
       }
       ...RelatedArticleData
-      similarArticles: relatedArticles {
+      similarArticles: relatedArticles(
+        filter: { embedding: 0.7, videoEmbedding: 0.85 }
+      ) {
         edges {
           node {
             id

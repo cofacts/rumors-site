@@ -17,7 +17,9 @@ import { withReplySearchContext } from './ReplySearch/context';
 
 const RelatedArticleData = gql`
   fragment RelatedArticleData on Article {
-    relatedArticles(filter: { replyCount: { GT: 0 } }) {
+    relatedArticles(
+      filter: { replyCount: { GT: 0 }, embedding: 0.7, videoEmbedding: 0.85 }
+    ) {
       edges {
         node {
           id
