@@ -17,6 +17,7 @@ export type Scalars = {
 export type Query = {
   __typename?: 'Query';
   GetArticle?: Maybe<Article>;
+  GetBadge?: Maybe<Badge>;
   GetCategory?: Maybe<Category>;
   GetReply?: Maybe<Reply>;
   /**
@@ -41,6 +42,11 @@ export type Query = {
 
 
 export type QueryGetArticleArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryGetBadgeArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
 
@@ -286,6 +292,8 @@ export enum AiResponseStatusEnum {
 export enum AiResponseTypeEnum {
   /** The AI Response is an automated analysis / reply of an article. */
   AiReply = 'AI_REPLY',
+  /** AI generated embedding vectors of the specified article, reply, or search query. Used as cache for hybrid search. */
+  Embedding = 'EMBEDDING',
   /** AI transcribed text of the specified article. */
   Transcript = 'TRANSCRIPT'
 }
@@ -302,6 +310,8 @@ export type User = Node & {
   avatarType?: Maybe<AvatarTypeEnum>;
   /** returns avatar url from facebook, github or gravatar */
   avatarUrl?: Maybe<Scalars['String']>;
+  /** Badges awarded to the user. */
+  badges: Array<UserAwardedBadge>;
   bio?: Maybe<Scalars['String']>;
   /** If not null, the user is blocked with the announcement in this string. */
   blockedReason?: Maybe<Scalars['String']>;
@@ -317,6 +327,14 @@ export type User = Node & {
   id: Scalars['ID'];
   lastActiveAt?: Maybe<Scalars['String']>;
   level: Scalars['Int'];
+  /** returns badge background image url */
+  majorBadgeBorderUrl?: Maybe<Scalars['String']>;
+  /** returns badge icon url */
+  majorBadgeId?: Maybe<Scalars['String']>;
+  /** returns badge icon url */
+  majorBadgeImageUrl?: Maybe<Scalars['String']>;
+  /** returns badge name */
+  majorBadgeName?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   points: PointInfo;
   /** Number of articles this user has replied to */
@@ -340,6 +358,15 @@ export enum AvatarTypeEnum {
   Gravatar = 'Gravatar',
   OpenPeeps = 'OpenPeeps'
 }
+
+export type UserAwardedBadge = {
+  __typename?: 'UserAwardedBadge';
+  badgeId: Scalars['String'];
+  badgeMetaData: Scalars['String'];
+  createdAt: Scalars['String'];
+  isDisplayed: Scalars['Boolean'];
+  updatedAt: Scalars['String'];
+};
 
 /** List only the entries that were created between the specific time range. The time range value is in elasticsearch date format (https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html) */
 export type TimeRangeInput = {
@@ -742,7 +769,21 @@ export enum ArticleReferenceTypeEnum {
 }
 
 export type RelatedArticleFilter = {
+  /** Opt-in hybrid search; pass `{}` for the default thresholds. This article's stored embeddings are the kNN query, and its article type is the query type. Articles that have no embeddings yet get the text and media similarity only. */
+  embedding?: InputMaybe<ArticleEmbeddingFilter>;
   replyCount?: InputMaybe<RangeInput>;
+};
+
+/** Opt-in hybrid search: also retrieve the nearest neighbors via kNN, in addition to what BM25 matches. Pass `{}` to use the default threshold of each doc type, which depends on the type of the query. kNN runs separately for each doc type (TEXT, IMAGE, VIDEO; AUDIO is never searched by kNN), taking up to `k` nearest neighbors of each doc type. A doc type without a default threshold for the query type is not searched by kNN unless a threshold is given here. Docs only kNN finds come after the BM25 matches. `totalCount` then also counts the nearest neighbors, so it no longer tells how many match the keywords. */
+export type ArticleEmbeddingFilter = {
+  /** Minimum cosine similarity for IMAGE docs to be found by kNN. Defaults to a value that depends on the type of the query (text, image or video); `null` skips kNN on IMAGE docs. */
+  imageDocSimilarity?: InputMaybe<Scalars['Float']>;
+  /** How many nearest neighbors kNN takes for each doc type (TEXT, IMAGE and VIDEO each), between 1 and 250. Defaults to 100. */
+  k?: InputMaybe<Scalars['Int']>;
+  /** Minimum cosine similarity for TEXT docs to be found by kNN. Defaults to a value that depends on the type of the query (text, image or video); `null` skips kNN on TEXT docs. */
+  textDocSimilarity?: InputMaybe<Scalars['Float']>;
+  /** Minimum cosine similarity for VIDEO docs to be found by kNN. Defaults to a value that depends on the type of the query (text, image or video); `null` skips kNN on VIDEO docs. */
+  videoDocSimilarity?: InputMaybe<Scalars['Float']>;
 };
 
 /** List only the entries whose field match the criteria. */
@@ -849,6 +890,20 @@ export enum AnalyticsDocTypeEnum {
   Article = 'ARTICLE',
   Reply = 'REPLY'
 }
+
+export type Badge = {
+  __typename?: 'Badge';
+  borderImage?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  issuers: Array<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
 
 export type Ydoc = {
   __typename?: 'Ydoc';
@@ -1043,6 +1098,8 @@ export type ListArticleFilter = {
   categoryIds?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** List only the articles that were created between the specific time range. */
   createdAt?: InputMaybe<TimeRangeInput>;
+  /** Opt-in hybrid search with `moreLikeThis` or `mediaUrl`; pass `{}` for the default thresholds. With `mediaUrl`, the media itself is the kNN query (its embedding is only created when logged in; otherwise only the one made before is used). Without it, the `moreLikeThis` text is the query (created only when logged in, as well). Omit for BM25-only (default). */
+  embedding?: InputMaybe<ArticleEmbeddingFilter>;
   /** Specify an articleId here to show only articles from the sender of that specified article. */
   fromUserOfArticleId?: InputMaybe<Scalars['String']>;
   /**
@@ -1055,7 +1112,7 @@ export type ListArticleFilter = {
   hasArticleReplyWithMorePositiveFeedback?: InputMaybe<Scalars['Boolean']>;
   /** If given, only list out articles with specific IDs */
   ids?: InputMaybe<Array<Scalars['ID']>>;
-  /** Show the media article similar to the input url */
+  /** Show the media article similar to the input url. The transcript and embedding of the media are only created when logged in; otherwise only the ones made before are used. */
   mediaUrl?: InputMaybe<Scalars['String']>;
   /** List all articles related to a given string. */
   moreLikeThis?: InputMaybe<MoreLikeThisInput>;
@@ -1119,7 +1176,7 @@ export type TranscriptFilter = {
    * See https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-minimum-should-match.html for possible values.
    */
   minimumShouldMatch?: InputMaybe<Scalars['String']>;
-  /** Only used when `filter.mediaUrl` is provided. Generates transcript if provided `filter.mediaUrl` is not transcribed previously. */
+  /** [Deprecated] No longer read. The transcript is always generated when `filter.mediaUrl` is not transcribed previously. */
   shouldCreate?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -1232,6 +1289,8 @@ export type ListReplyFilter = {
   appId?: InputMaybe<Scalars['String']>;
   /** List only the replies that were created between the specific time range. */
   createdAt?: InputMaybe<TimeRangeInput>;
+  /** Opt-in hybrid search with `moreLikeThis`; pass `{}` for the default threshold. The query text embedding is only created when logged in. Omit for BM25-only (default). */
+  embedding?: InputMaybe<ReplyEmbeddingFilter>;
   /** If given, only list out replies with specific IDs */
   ids?: InputMaybe<Array<Scalars['ID']>>;
   moreLikeThis?: InputMaybe<MoreLikeThisInput>;
@@ -1245,6 +1304,14 @@ export type ListReplyFilter = {
   userId?: InputMaybe<Scalars['String']>;
   /** Show only replies created by the specified users. */
   userIds?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** Opt-in hybrid search: also retrieve the nearest neighbors via kNN, in addition to what BM25 matches (up to `k`). Pass `{}` to use the defaults. `totalCount` then also counts the nearest neighbors, so it no longer tells how many match the keywords. */
+export type ReplyEmbeddingFilter = {
+  /** How many nearest neighbors kNN takes, between 1 and 250. Defaults to 100. */
+  k?: InputMaybe<Scalars['Int']>;
+  /** Minimum cosine similarity for replies to be found by kNN. Defaults to 0.75. */
+  textDocSimilarity?: InputMaybe<Scalars['Float']>;
 };
 
 /** An entry of orderBy argument. Specifies field name and the sort order. Only one field name is allowd per entry. */
@@ -1475,6 +1542,24 @@ export type ArticleReferenceInput = {
 export type MutationResult = {
   __typename?: 'MutationResult';
   id?: Maybe<Scalars['String']>;
+};
+
+/** AI generated embedding vectors for the specified docId, used as cache for hybrid search. The vector data itself is not exposed via GraphQL — only the cache metadata is queryable. */
+export type AiEmbedding = AiResponse & Node & {
+  __typename?: 'AIEmbedding';
+  createdAt: Scalars['String'];
+  /** The id for the document that this AI response is for. */
+  docId?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
+  /** Processing status of AI */
+  status: AiResponseStatusEnum;
+  /** AI response text. Populated after status becomes SUCCESS. */
+  text?: Maybe<Scalars['String']>;
+  /** AI response type */
+  type: AiResponseTypeEnum;
+  updatedAt?: Maybe<Scalars['String']>;
+  /** The user triggered this AI response */
+  user?: Maybe<User>;
 };
 
 export type CooccurrenceSectionDataFragment = { __typename?: 'Cooccurrence', createdAt: string, articles: Array<{ __typename?: 'Article', id: string, articleType: ArticleTypeEnum, text?: string | null, thumbnailUrl?: string | null }> };
