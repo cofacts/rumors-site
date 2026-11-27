@@ -31,16 +31,6 @@ import useCurrentUser from 'lib/useCurrentUser';
 
 const MAX_KEYWORD_LENGTH = 500;
 
-/**
- * Minimum cosine similarity for the kNN (embedding) part of the article search.
- * - Text to text articles: 0.7, from the hybrid search eval in cofacts/rumors-api#411.
- * - Text to image / video articles, each media type searched on its own: 0.75.
- *   Cross-modal similarity runs lower; 0.7 brings in ~100 unrelated videos per
- *   query, while a video's own transcript rarely scores above 0.8.
- */
-const TEXT_EMBEDDING_THRESHOLD = 0.7;
-const MEDIA_EMBEDDING_THRESHOLD = 0.75;
-
 const LIST_ARTICLES = gql`
   query ArticleSearchResult($filter: ListArticleFilter, $after: String) {
     ListArticles(
@@ -157,8 +147,9 @@ function MessageSearchResult({ query, userId }) {
   const listQueryVars = {
     filter: {
       ...urlQuery2Filter(query),
-      embedding: TEXT_EMBEDDING_THRESHOLD,
-      mediaEmbedding: MEDIA_EMBEDDING_THRESHOLD,
+      // Hybrid search with the API's default thresholds. The query text is
+      // only embedded for logged-in users.
+      embedding: {},
       ...getArticleStatusFilter(query, userId),
       categoryIds: CategoryFilter.getValues(query),
       ...(replyTypes.length ? { replyTypes } : {}),
@@ -173,6 +164,9 @@ function MessageSearchResult({ query, userId }) {
   } = useQuery(LIST_ARTICLES, {
     variables: listQueryVars,
     notifyOnNetworkStatusChange: true, // Make loading true on `fetchMore`
+    // Server-side rendering is anonymous, so its result has no kNN hits; fetch
+    // again for a logged-in user.
+    fetchPolicy: userId ? 'cache-and-network' : 'cache-first',
   });
 
   // Separate these stats query so that it will be cached by apollo-client and sends no network request
@@ -180,6 +174,7 @@ function MessageSearchResult({ query, userId }) {
   //
   const { data: listStatData } = useQuery(LIST_ARTICLE_STAT, {
     variables: listQueryVars,
+    fetchPolicy: userId ? 'cache-and-network' : 'cache-first',
   });
 
   // List data

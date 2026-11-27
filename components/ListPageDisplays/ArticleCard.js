@@ -103,6 +103,12 @@ function ArticleCard({ article, highlight = '' }) {
   const classes = useStyles();
   const highlightClasses = useHighlightStyles();
 
+  // The API returns a highlight object even when nothing in it is highlighted,
+  // e.g. for a doc that only kNN (embedding) finds. Show the text then.
+  const highlightElems = highlight
+    ? highlightSections(highlight, highlightClasses)
+    : [];
+
   return (
     <Link href="/article/[id]" as={`/article/${id}`}>
       <a className={cx(classes.root)}>
@@ -124,11 +130,9 @@ function ArticleCard({ article, highlight = '' }) {
               </div>
             </div>
             <Thumbnail article={article} className={classes.attachment} />
-            {(text || highlight) && (
+            {(text || highlightElems.length > 0) && (
               <ExpandableText className={classes.content} lineClamp={3}>
-                {highlight
-                  ? highlightSections(highlight, highlightClasses)
-                  : text}
+                {highlightElems.length > 0 ? highlightElems : text}
               </ExpandableText>
             )}
           </div>
