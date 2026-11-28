@@ -302,8 +302,9 @@ function ArticlePage() {
       variables: { id: query.id },
       skip: !currentUser,
       ssr: false,
-      // kNN is the slowest part; don't let it hold up the user's own data.
-      context: { batchKey: 'similar-articles-with-knn' },
+      // Batched with LoadArticlePageForUser on purpose: a logged-in request
+      // updates the user's lastActiveAt, and two concurrent requests of the
+      // same user can conflict on it.
     }
   );
 
