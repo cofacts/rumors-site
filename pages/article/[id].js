@@ -121,6 +121,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const SimilarArticleData = gql`
+  fragment SimilarArticleData on Article {
+    id
+    text
+    articleType
+    articleCategories {
+      categoryId
+    }
+    ...ArticleInfo
+    ...ThumbnailArticleData
+  }
+  ${ArticleInfo.fragments.articleInfo}
+  ${Thumbnail.fragments.ThumbnailArticleData}
+`;
+
 const LOAD_ARTICLE = gql`
   query LoadArticlePage(
     $id: String!
@@ -157,17 +172,14 @@ const LOAD_ARTICLE = gql`
         text
       }
       ...RelatedArticleData
-      similarArticles: relatedArticles(filter: { embedding: {} }) {
+      # No kNN for everyone; logged-in users also get kNN, see
+      # LOAD_SIMILAR_ARTICLES_FOR_USER. For them this query's result is
+      # replaced, so its relatedArticles work is spent twice: SSR cannot tell
+      # who is logged in.
+      similarArticles: relatedArticles {
         edges {
           node {
-            id
-            text
-            articleType
-            articleCategories {
-              categoryId
-            }
-            ...ArticleInfo
-            ...ThumbnailArticleData
+            ...SimilarArticleData
           }
         }
       }
@@ -200,9 +212,29 @@ const LOAD_ARTICLE = gql`
   ${NewReplySection.fragments.RelatedArticleData}
   ${ArticleCategories.fragments.ArticleCategoryData}
   ${ArticleCategories.fragments.AddCategoryDialogData}
-  ${ArticleInfo.fragments.articleInfo}
-  ${Thumbnail.fragments.ThumbnailArticleData}
+  ${SimilarArticleData}
   ${CooccurrenceSectionFragments.CooccurrenceSectionData}
+`;
+
+/**
+ * Similar articles with kNN (embedding), for logged-in users only: every
+ * article page view would otherwise run a kNN on Elasticsearch, and SSR serves
+ * mostly anonymous visitors.
+ */
+const LOAD_SIMILAR_ARTICLES_FOR_USER = gql`
+  query LoadSimilarArticlesForUser($id: String!) {
+    GetArticle(id: $id) {
+      id
+      similarArticlesWithKnn: relatedArticles(filter: { embedding: {} }) {
+        edges {
+          node {
+            ...SimilarArticleData
+          }
+        }
+      }
+    }
+  }
+  ${SimilarArticleData}
 `;
 
 const LOAD_ARTICLE_FOR_USER = gql`
@@ -264,6 +296,17 @@ function ArticlePage() {
     fetchPolicy: 'network-only',
   });
   const currentUser = useCurrentUser();
+  const { data: similarForUserData } = useQuery(
+    LOAD_SIMILAR_ARTICLES_FOR_USER,
+    {
+      variables: { id: query.id },
+      skip: !currentUser,
+      ssr: false,
+      // Batched with LoadArticlePageForUser on purpose: a logged-in request
+      // updates the user's lastActiveAt, and two concurrent requests of the
+      // same user can conflict on it.
+    }
+  );
 
   const replySectionRef = useRef(null);
   const newReplyRef = useRef(null);
@@ -356,9 +399,15 @@ function ArticlePage() {
     hyperlinks,
     replyCount,
   } = article;
-  const similarArticles = article?.similarArticles?.edges || [];
+  // The kNN result only when it is for this article: after client-side
+  // navigation, the previous article's result is returned while reloading.
+  const similarArticleConnection =
+    (similarForUserData?.GetArticle?.id === article.id &&
+      similarForUserData.GetArticle.similarArticlesWithKnn) ||
+    article?.similarArticles;
+  const similarArticles = similarArticleConnection?.edges || [];
   // get a set of similar category in array
-  const similarCategories = article?.similarArticles?.edges?.reduce(
+  const similarCategories = similarArticleConnection?.edges?.reduce(
     (ary, sa) => {
       const ac = sa.node?.articleCategories || [];
       ary = [...new Set([...ary, ...ac.map(cat => cat.categoryId)])];

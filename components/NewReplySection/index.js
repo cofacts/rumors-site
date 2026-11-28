@@ -17,7 +17,9 @@ import { withReplySearchContext } from './ReplySearch/context';
 
 const RelatedArticleData = gql`
   fragment RelatedArticleData on Article {
-    relatedArticles(filter: { replyCount: { GT: 0 }, embedding: {} }) {
+    # No kNN (embedding) here: this fragment is in LOAD_ARTICLE, which every
+    # visitor's article page runs, while only logged-in users see this section.
+    relatedArticles(filter: { replyCount: { GT: 0 } }) {
       edges {
         node {
           id
