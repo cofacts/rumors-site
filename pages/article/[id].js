@@ -172,8 +172,10 @@ const LOAD_ARTICLE = gql`
         text
       }
       ...RelatedArticleData
-      # BM25 only for everyone; logged-in users also get kNN, see
-      # LOAD_SIMILAR_ARTICLES_FOR_USER.
+      # No kNN for everyone; logged-in users also get kNN, see
+      # LOAD_SIMILAR_ARTICLES_FOR_USER. For them this query's result is
+      # replaced, so its relatedArticles work is spent twice: SSR cannot tell
+      # who is logged in.
       similarArticles: relatedArticles {
         edges {
           node {
@@ -296,7 +298,13 @@ function ArticlePage() {
   const currentUser = useCurrentUser();
   const { data: similarForUserData } = useQuery(
     LOAD_SIMILAR_ARTICLES_FOR_USER,
-    { variables: { id: query.id }, skip: !currentUser, ssr: false }
+    {
+      variables: { id: query.id },
+      skip: !currentUser,
+      ssr: false,
+      // kNN is the slowest part; don't let it hold up the user's own data.
+      context: { batchKey: 'similar-articles-with-knn' },
+    }
   );
 
   const replySectionRef = useRef(null);
@@ -390,8 +398,11 @@ function ArticlePage() {
     hyperlinks,
     replyCount,
   } = article;
+  // The kNN result only when it is for this article: after client-side
+  // navigation, the previous article's result is returned while reloading.
   const similarArticleConnection =
-    similarForUserData?.GetArticle?.similarArticlesWithKnn ??
+    (similarForUserData?.GetArticle?.id === article.id &&
+      similarForUserData.GetArticle.similarArticlesWithKnn) ||
     article?.similarArticles;
   const similarArticles = similarArticleConnection?.edges || [];
   // get a set of similar category in array
